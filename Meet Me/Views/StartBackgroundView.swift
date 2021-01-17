@@ -14,7 +14,7 @@ struct StartBackgroundView: View {
     
     var body: some View {
         ZStack {
-            Color("BackgroundSecondary")
+            LinearGradient(gradient: Gradient(colors: [Color("BackgroundSecondary"), Color("BackgroundSecondary").opacity(0.7)]), startPoint: .bottomLeading, endPoint: .topTrailing)
                 .ignoresSafeArea()
                 .onAppear {
                     showAnimation = true
@@ -24,7 +24,7 @@ struct StartBackgroundView: View {
             ZStack {
                 Circle()
                     .foregroundColor(.accentColor)
-                    .blendMode(.hardLight)
+                    .blendMode(.softLight)
                     .scaleEffect(showAnimation ? 1.2 : 0.8)
                     .offset(x: showAnimation ? 130 : 0, y: showAnimation ? 300 : -20)
                 
