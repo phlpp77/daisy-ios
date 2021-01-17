@@ -28,6 +28,9 @@ struct StartView: View {
             
             // show the welcome message, the question and then the button to start
             WelcomeView(showWelcomeView: $showWelcomeView, showSecondLine: $showSecondLine, showStartButton: $showStartButton).opacity(showWelcomeView ? 1 : 0)
+            
+            // show the register form
+            RegisterView().opacity(showWelcomeView ? 0 : 1)
         }
         .animation(.easeInOut)
         // animation of second textline starts
@@ -80,8 +83,10 @@ struct WelcomeView: View {
                 }
                 .padding()
                 .modifier(FrozenWindowModifier())
+                .frame(maxHeight: .infinity)
                 .animation(.easeInOut(duration: 1.0))
                 
+                Spacer()
                 // start button shows the register view
                 Button(action: {
                     showWelcomeView = false
@@ -97,7 +102,6 @@ struct WelcomeView: View {
                 .opacity(showStartButton ? 1 : 0.0)
                 .scaleEffect(showStartButton ? 1 : 0.9)
                 .animation(.easeInOut)
-                .offset(y: 200)
             }
         }
     }

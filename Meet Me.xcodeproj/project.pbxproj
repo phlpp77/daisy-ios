@@ -17,6 +17,7 @@
 		175E40E925B4A31C00ADC9BF /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40E825B4A31C00ADC9BF /* HapticFeedback.swift */; };
 		175E40F025B4CD3300ADC9BF /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40EF25B4CD3300ADC9BF /* RegisterView.swift */; };
 		175E40F425B4CD9400ADC9BF /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40F325B4CD9400ADC9BF /* Modifiers.swift */; };
+		175E40FA25B4D26A00ADC9BF /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40F925B4D26A00ADC9BF /* Information.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		175E40E825B4A31C00ADC9BF /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
 		175E40EF25B4CD3300ADC9BF /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		175E40F325B4CD9400ADC9BF /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		175E40F925B4D26A00ADC9BF /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 			children = (
 				175E40E825B4A31C00ADC9BF /* HapticFeedback.swift */,
 				175E40F325B4CD9400ADC9BF /* Modifiers.swift */,
+				175E40F925B4D26A00ADC9BF /* Information.swift */,
 			);
 			path = Extra;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				175E40FA25B4D26A00ADC9BF /* Information.swift in Sources */,
 				175E40E025B43BB200ADC9BF /* StartView.swift in Sources */,
 				175E40E325B4670800ADC9BF /* StartBackgroundView.swift in Sources */,
 				175E40F425B4CD9400ADC9BF /* Modifiers.swift in Sources */,
