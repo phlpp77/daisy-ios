@@ -54,6 +54,9 @@
 			children = (
 				17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */,
 				17153EE625A8C5C30072CE83 /* ContentView.swift */,
+				175E40DC25B4320E00ADC9BF /* Views */,
+				175E40DE25B4322000ADC9BF /* ViewModels */,
+				175E40DD25B4321600ADC9BF /* Models */,
 				17153EE825A8C5C30072CE83 /* Assets.xcassets */,
 				17153EED25A8C5C30072CE83 /* Info.plist */,
 				17153EEA25A8C5C30072CE83 /* Preview Content */,
@@ -67,6 +70,27 @@
 				17153EEB25A8C5C30072CE83 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		175E40DC25B4320E00ADC9BF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		175E40DD25B4321600ADC9BF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		175E40DE25B4322000ADC9BF /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
