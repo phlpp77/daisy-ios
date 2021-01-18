@@ -36,6 +36,7 @@ struct RegisterView: View {
                 }
                 .font(.subheadline)
                 .foregroundColor(.accentColor)
+                .frame(height: 300)
                 .padding()
                 .modifier(FrozenWindowModifier())
                 .frame(maxHeight: .infinity)
@@ -43,7 +44,10 @@ struct RegisterView: View {
                 
                 Spacer()
                 
+                // register button
                 Button(action: {
+                    // type register func here
+                    
                     
                 }, label: {
                     HStack {
