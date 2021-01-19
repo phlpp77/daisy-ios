@@ -35,6 +35,7 @@ struct StartBackgroundView: View {
             }
             .animation(Animation.linear(duration: 30).repeatForever())
         }
+        .blur(radius: 100)
     }
 }
 
