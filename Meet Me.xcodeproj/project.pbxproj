@@ -18,6 +18,7 @@
 		175E40F025B4CD3300ADC9BF /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40EF25B4CD3300ADC9BF /* RegisterView.swift */; };
 		175E40F425B4CD9400ADC9BF /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40F325B4CD9400ADC9BF /* Modifiers.swift */; };
 		175E40FA25B4D26A00ADC9BF /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40F925B4D26A00ADC9BF /* Information.swift */; };
+		17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E45ABA25B74F6600B9A93B /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		175E40EF25B4CD3300ADC9BF /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		175E40F325B4CD9400ADC9BF /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		175E40F925B4D26A00ADC9BF /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
+		17E45ABA25B74F6600B9A93B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			children = (
 				175E40DF25B43BB200ADC9BF /* StartView.swift */,
 				175E40EF25B4CD3300ADC9BF /* RegisterView.swift */,
+				17E45ABA25B74F6600B9A93B /* LoginView.swift */,
 				175E40E225B4670800ADC9BF /* StartBackgroundView.swift */,
 				175E40E525B46ABB00ADC9BF /* BlurView.swift */,
 			);
@@ -199,6 +202,7 @@
 				175E40F025B4CD3300ADC9BF /* RegisterView.swift in Sources */,
 				17153EE725A8C5C30072CE83 /* ContentView.swift in Sources */,
 				17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */,
+				17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */,
 				175E40E925B4A31C00ADC9BF /* HapticFeedback.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
