@@ -9,9 +9,13 @@ import SwiftUI
 
 struct RegisterView: View {
     
-    @State var email = ""
-    @State var password = ""
+
     @State var password2 = ""
+    
+    //wird nur gebraucht wenn man die View über sheet anzeigt
+    //kann man implementieren für das registrieren
+    @Environment(\.presentationMode) var presentationMode
+    @StateObject private var registerVM = RegisterViewModel()
     
     @State var showSecondPasswordTextField = false
     
@@ -23,7 +27,7 @@ struct RegisterView: View {
                 VStack(alignment: .leading) {
                     HStack(spacing: 12) {
                         Image(systemName: "envelope")
-                        TextField("Gebe deine E-Mail Adresse ein", text: $email)
+                        TextField("Gebe deine E-Mail Adresse ein", text: $registerVM.email)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .keyboardType(.emailAddress)
                     }
@@ -34,7 +38,7 @@ struct RegisterView: View {
                     // main password textField
                     HStack(spacing: 12) {
                         Image(systemName: "lock.shield")
-                        SecureField("Suche dir ein Passwort aus", text: $password)
+                        SecureField("Suche dir ein Passwort aus", text: $registerVM.password)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .onTapGesture {
                                 showSecondPasswordTextField = true
@@ -86,7 +90,12 @@ struct RegisterView: View {
                     
                     
                     // type register func here
-                    
+                    registerVM.register {
+                        //if register was succsesful
+                        presentationMode.wrappedValue.dismiss()
+                    }
+
+
                     
                 }, label: {
                     HStack {

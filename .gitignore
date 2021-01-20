@@ -7,6 +7,9 @@
 ##added
 xcuserdata/
 .DS_Store
+*.xcuserstate
+project.xcworkspace/
+
 
 ### Firebase ###
 .idea
