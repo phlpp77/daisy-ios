@@ -17,7 +17,16 @@ struct LoginView: View {
 //            StartBackgroundView()
             
             VStack {
+                
                 VStack(alignment: .leading) {
+                    
+                    Image("login")
+                        .resizable()
+                        .frame(width: 100, height: 100, alignment: .center)
+                        .aspectRatio(contentMode: .fit)
+                        .padding(.bottom, 20)
+                        .padding(.leading, 80)
+                    
                     HStack(spacing: 12) {
                         Image(systemName: "envelope")
                         TextField("Gebe deine E-Mail Adresse ein", text: $email)
