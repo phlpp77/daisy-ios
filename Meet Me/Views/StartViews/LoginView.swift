@@ -14,6 +14,9 @@ struct LoginView: View {
     @State var isActive: Bool = false
     @ObservedObject private var loginVM = LoginViewModel()
     
+    // change the var for the main animation
+    @Binding var userIsLoggedIn: Bool
+    
     
     var body: some View {
         ZStack {
@@ -66,6 +69,9 @@ struct LoginView: View {
                     hapticPulse(feedback: .rigid)
                     loginVM.login {
                         isActive = true
+                        print("Login erfolgreich \(isActive)")
+                        userIsLoggedIn = true
+                        
                     }
                     
                     
@@ -87,6 +93,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(userIsLoggedIn: .constant(false))
     }
 }

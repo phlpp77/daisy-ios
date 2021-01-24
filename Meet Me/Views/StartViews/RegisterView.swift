@@ -9,6 +9,8 @@ import SwiftUI
 
 struct RegisterView: View {
     
+    // for animation to loginView
+    @Binding var showLoginView: Bool
     
     //wird nur gebraucht wenn man die View über sheet anzeigt
     //kann man implementieren für das registrieren
@@ -59,7 +61,10 @@ struct RegisterView: View {
                     
                     // have account button
                     Button(action: {
-                        LoginView()
+                        
+                        // change view to LoginView
+                        showLoginView = true
+                        
                         // type "have account" func here -> to login screen
                         
                     }) {
@@ -113,6 +118,6 @@ struct RegisterView: View {
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView()
+        RegisterView(showLoginView: .constant(false))
     }
 }
