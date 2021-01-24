@@ -9,8 +9,6 @@ import SwiftUI
 
 struct RegisterView: View {
     
-
-    @State var password2 = ""
     
     //wird nur gebraucht wenn man die View über sheet anzeigt
     //kann man implementieren für das registrieren
@@ -53,7 +51,7 @@ struct RegisterView: View {
                     // retype password textField
                     HStack(spacing: 12) {
                         Image(systemName: "goforward")
-                        SecureField("Wiederhole dein Passwort", text: $password2)
+                        SecureField("Wiederhole dein Passwort", text: $registerVM.password2)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                     .frame(height: showSecondPasswordTextField ? 40 : 0)
@@ -61,6 +59,7 @@ struct RegisterView: View {
                     
                     // have account button
                     Button(action: {
+                        LoginView()
                         // type "have account" func here -> to login screen
                         
                     }) {
@@ -87,7 +86,6 @@ struct RegisterView: View {
                     hapticPulse(feedback: .rigid)
                     
                     // important: check if both passwords are the same
-                    
                     
                     // type register func here
                     registerVM.register {
