@@ -4,10 +4,24 @@
 
 
 ##added
+<<<<<<< HEAD
 xcuserdata/
 .DS_Store
 *.xcuserstate
 project.xcworkspace/
+=======
+<<<<<<< HEAD
+
+.DS_Store
+xcuserdata/
+=======
+xcuserdata/
+.DS_Store
+*.xcuserstate
+project.xcworkspace/
+
+>>>>>>> 62ea3654014747b18affc942f0dd110dde2a87e4
+>>>>>>> UI-development
 
 ### Firebase ###
 .idea

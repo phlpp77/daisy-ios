@@ -9,8 +9,11 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State var email = ""
-    @State var password = ""
+    
+    //Sobald login gedrückt wurde und Erfolgreich war wird die Variable True
+    @State var isActive: Bool = false
+    @ObservedObject private var loginVM = LoginViewModel()
+    
     
     var body: some View {
         ZStack {
@@ -29,7 +32,7 @@ struct LoginView: View {
                     
                     HStack(spacing: 12) {
                         Image(systemName: "envelope")
-                        TextField("Gebe deine E-Mail Adresse ein", text: $email)
+                        TextField("Gebe deine E-Mail Adresse ein", text: $loginVM.email)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .keyboardType(.emailAddress)
                     }
@@ -40,7 +43,7 @@ struct LoginView: View {
                     // main password textField
                     HStack(spacing: 12) {
                         Image(systemName: "lock.shield")
-                        SecureField("Gebe dein Passwort ein", text: $password)
+                        SecureField("Gebe dein Passwort ein", text: $loginVM.password)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             
                     }
@@ -61,7 +64,9 @@ struct LoginView: View {
                 Button(action: {
                     // haptic feedback when button is tapped
                     hapticPulse(feedback: .rigid)
-                    // type login function here
+                    loginVM.login {
+                        isActive = true
+                    }
                     
                     
                 }, label: {
