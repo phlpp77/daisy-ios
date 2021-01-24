@@ -9,8 +9,8 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State var email = ""
-    @State var password = ""
+
+    @StateObject private var loginVM = RegisterViewModel()
     
     var body: some View {
         ZStack {
