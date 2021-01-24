@@ -1,13 +1,13 @@
-
 # Created by https://www.toptal.com/developers/gitignore/api/firebase,xcode,swift
 # Edit at https://www.toptal.com/developers/gitignore?templates=firebase,xcode,swift
 
 
 
 ##added
-
-.DS_Store
 xcuserdata/
+.DS_Store
+*.xcuserstate
+project.xcworkspace/
 
 ### Firebase ###
 .idea
