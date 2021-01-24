@@ -10,7 +10,7 @@ import SwiftUI
 struct LoginView: View {
     
     
-    //Sobald login gedrückt wurde wird die Vaiable True
+    //Sobald login gedrückt wurde und Erfolgreich war wird die Variable True
     @State var isActive: Bool = false
     @ObservedObject private var loginVM = LoginViewModel()
     
