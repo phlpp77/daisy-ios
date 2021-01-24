@@ -10,7 +10,11 @@ import SwiftUI
 
 struct StartView: View {
     
+    // for animation from welcomeView to RegisterView
     @State var showWelcomeView = true
+    
+    // for animation to loginView
+    @State var showLoginView = false
     
     // animation to show the second line of text after the used read the first line
     @State var showSecondLine = false
@@ -27,10 +31,21 @@ struct StartView: View {
                 .blur(radius: 1)
             
             // show the welcome message, the question and then the button to start
-            WelcomeView(showWelcomeView: $showWelcomeView, showSecondLine: $showSecondLine, showStartButton: $showStartButton).opacity(showWelcomeView ? 1 : 0)
+            WelcomeView(showWelcomeView: $showWelcomeView, showSecondLine: $showSecondLine, showStartButton: $showStartButton)
+                // animate from welcome to register view
+                .opacity(showWelcomeView ? 1 : 0)
             
             // show the register form
-            RegisterView().opacity(showWelcomeView ? 0 : 1)
+            RegisterView(showLoginView: $showLoginView)
+                // animate from welcome to register view
+                .opacity(showWelcomeView ? 0 : 1)
+                // animation from register to login view
+                .opacity(showLoginView ? 0 : 1)
+            
+            // show the login view
+            LoginView()
+                // animation from register to login view
+                .opacity(showLoginView ? 1 : 0)
         }
         .animation(.easeInOut)
         // animation of second textline starts

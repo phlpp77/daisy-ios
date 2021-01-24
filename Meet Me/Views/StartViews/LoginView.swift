@@ -66,6 +66,7 @@ struct LoginView: View {
                     hapticPulse(feedback: .rigid)
                     loginVM.login {
                         isActive = true
+                        print("Login erfolgreich \(isActive)")
                     }
                     
                     
