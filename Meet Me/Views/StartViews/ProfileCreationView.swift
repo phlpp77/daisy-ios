@@ -12,13 +12,29 @@ struct ProfileCreationView: View {
     // MARK: - state vars
     
     // var for the name of the profile owner
-    @State var name = ""
+    @State var name = "Name"
     
     // var for the gender of the profile owner
     @State var gender = ""
     
     // var for the birthday date of the profile owner
     @State var birthdayDate = ""
+    
+    // show the alertbox
+    @State var showAlertBox = false
+    
+    // state var to catch what the user has handed into the textfield of the alertbox
+    @State var outputAlertBox = ""
+    
+    // var to check at which step the user wants to hand in data
+    @State var pathwayStep = 0
+    
+    // icon name changes after the value is set
+    @State var iconName = "pencil.circle"
+    
+    // var to see if the action in the alert was accepted or not
+    @State var accpetedAction = false
+    
     
     var body: some View {
         ZStack {
@@ -38,7 +54,7 @@ struct ProfileCreationView: View {
                     }
                     ScrollView {
                         // view to fill in the name
-                        NameLineView(name: $name)
+                        NameLineView(name: $name, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"))
                         
                         Image("Pathway-ProfileCreation")
                             .resizable()
@@ -66,6 +82,23 @@ struct ProfileCreationView: View {
                 .padding(.horizontal, 16)
                 // bring the content VStack to the same size as the background shade
                 .frame(width: 340, height: 620, alignment: .center)
+                
+                if showAlertBox {
+                    
+                    // switch case to show the correct alertbox for each step in the pathway
+                    switch pathwayStep {
+                    
+                    // case 0 is the first step -> name creation
+                    case 0:
+                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", output: $name, show: $showAlertBox, accepted: $accpetedAction)
+                    
+                    // the default is 0 which is the first step in the pathway -> name creation
+                    default:
+                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", output: $outputAlertBox, show: $showAlertBox, accepted: $accpetedAction)
+                    }
+                    
+                }
+                
             }
         }
     }
@@ -83,12 +116,33 @@ struct NameLineView: View {
     // Binding from main View
     @Binding var name: String
     
+    // binding for pathway change
+    @Binding var pathwayStep: Int
+    
+    // binding for show/hide of alertBox
+    @Binding var showAlertBox: Bool
+    
+    // icon name changes after the value is set
+    @Binding var iconName: String
+    
     var body: some View {
         HStack {
-            TextField("", text: $name)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .frame(width: 35)
-            Text("Name")
+            Button(action: {
+                pathwayStep = 0
+                showAlertBox = true
+                if name != "Name" {
+                    iconName = "checkmark.circle"
+                }
+                
+            }) {
+                Image(systemName: iconName)
+                    .font(.title)
+                    .padding(4)
+                    .background(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+            }
+            
+            Text(name)
         }
         .padding(.horizontal, 16)
         .frame(width: 340, alignment: .leading)
