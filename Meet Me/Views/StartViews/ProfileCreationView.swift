@@ -17,6 +17,9 @@ struct ProfileCreationView: View {
     // var for the gender of the profile owner
     @State var gender = ""
     
+    // var for the birthday date of the profile owner
+    @State var birthdayDate = ""
+    
     var body: some View {
         ZStack {
             // background with animation
@@ -33,14 +36,31 @@ struct ProfileCreationView: View {
                         Text("Verrate uns doch ein paar Infos über dich.")
                             .font(.largeTitle)
                     }
-                    VStack {
+                    ScrollView {
                         // view to fill in the name
                         NameLineView(name: $name)
                         
-                        Spacer()
-                            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        Image("Pathway-ProfileCreation")
+                            .resizable()
+                            .frame(width: 268.58, height: 92.92, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         
                         GenderLineView(gender: $gender)
+                        
+                        Image("Pathway-ProfileCreation")
+                            .resizable()
+                            .frame(width: 268.58, height: 92.92, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .rotation3DEffect(
+                                Angle(degrees: 180),
+                                axis: (x: 0, y: 1.0, z: 0.0)
+                            )
+                        
+                        BirthdayLineView(birthdayDate: $birthdayDate)
+                        
+                        Image("Pathway-ProfileCreation")
+                            .resizable()
+                            .frame(width: 268.58, height: 92.92, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        
+                        
                     }
                 }
                 .padding(.horizontal, 16)
@@ -65,10 +85,10 @@ struct NameLineView: View {
     
     var body: some View {
         HStack {
-            Text("Name")
             TextField("", text: $name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(width: 35)
+            Text("Name")
         }
         .padding(.horizontal, 16)
         .frame(width: 340, alignment: .leading)
@@ -89,5 +109,22 @@ struct GenderLineView: View {
         }
         .padding(.horizontal, 16)
         .frame(width: 340, alignment: .trailing)
+    }
+}
+
+struct BirthdayLineView: View {
+    
+    // Binding from main View
+    @Binding var birthdayDate: String
+    
+    var body: some View {
+        HStack {
+            TextField("", text: $birthdayDate)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .frame(width: 35)
+            Text("Birthday")
+        }
+        .padding(.horizontal, 16)
+        .frame(width: 340, alignment: .leading)
     }
 }
