@@ -64,7 +64,10 @@ struct AlertBoxView: View {
                     // button to cancel the action
                     Button(action: {
                         output = ""
-                        show = false
+                        withAnimation(.spring()) {
+                            self.show.toggle()
+                        }
+                        
                         accepted = false
                     }) {
                         Text(cancelButton)
@@ -75,7 +78,9 @@ struct AlertBoxView: View {
                     
                     // button to confirm the action
                     Button(action: {
-                        show = false
+                        withAnimation(.spring()) {
+                            self.show.toggle()
+                        }
                         accepted = true
                     }) {
                         Text(confirmButton)

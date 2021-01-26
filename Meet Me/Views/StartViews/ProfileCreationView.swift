@@ -32,6 +32,9 @@ struct ProfileCreationView: View {
     // icon name changes after the value is set
     @State var iconName = "pencil.circle"
     
+    // background color changes after the value is set
+    @State var backgroundColor = "BackgroundMain"
+    
     // var to see if the action in the alert was accepted or not
     @State var accpetedAction = false
     
@@ -49,12 +52,13 @@ struct ProfileCreationView: View {
                 
                 VStack {
                     VStack {
-                        Text("Verrate uns doch ein paar Infos über dich.")
+                        Text("Verrate uns doch ein paar Infos über dich!")
                             .font(.largeTitle)
+                            .padding(.top, 16)
                     }
                     ScrollView {
                         // view to fill in the name
-                        NameLineView(name: $name, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"))
+                        NameLineView(name: $name, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: $backgroundColor)
                         
                         Image("Pathway-ProfileCreation")
                             .resizable()
@@ -91,15 +95,23 @@ struct ProfileCreationView: View {
                     // case 0 is the first step -> name creation
                     case 0:
                         AlertBoxView(title: "Type in your Name", placeholder: "Type here..", output: $name, show: $showAlertBox, accepted: $accpetedAction)
+                            // z index 1 == the top layer -> this is needed due to animation processes
+                            .zIndex(1.0)
+                        
                     
                     // the default is 0 which is the first step in the pathway -> name creation
                     default:
                         AlertBoxView(title: "Type in your Name", placeholder: "Type here..", output: $outputAlertBox, show: $showAlertBox, accepted: $accpetedAction)
+                            // z index 1 == the top layer -> this is needed due to animation processes
+                            .zIndex(1.0)
                     }
                     
                 }
                 
+                
             }
+            .animation(.spring(blendDuration: 0.15))
+            
         }
     }
 }
@@ -125,20 +137,25 @@ struct NameLineView: View {
     // icon name changes after the value is set
     @Binding var iconName: String
     
+    // background color changes after the value is set
+    @Binding var backgroundColor: String
+    
     var body: some View {
         HStack {
             Button(action: {
                 pathwayStep = 0
                 showAlertBox = true
                 if name != "Name" {
+                    backgroundColor = ""
                     iconName = "checkmark.circle"
+                    
                 }
                 
             }) {
                 Image(systemName: iconName)
                     .font(.title)
                     .padding(4)
-                    .background(Color.white)
+                    .background(Color(backgroundColor))
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
             }
             
