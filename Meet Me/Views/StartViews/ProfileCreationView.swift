@@ -58,13 +58,13 @@ struct ProfileCreationView: View {
                     }
                     ScrollView {
                         // view to fill in the name
-                        NameLineView(name: $name, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: $backgroundColor)
+                        NameLineView(name: $name, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction ? .constant("") : .constant("BackgroundMain"))
                         
                         Image("Pathway-ProfileCreation")
                             .resizable()
                             .frame(width: 268.58, height: 92.92, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         
-                        GenderLineView(gender: $gender)
+                        GenderLineView(gender: $gender, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction ? .constant("") : .constant("BackgroundMain"))
                         
                         Image("Pathway-ProfileCreation")
                             .resizable()
@@ -94,14 +94,17 @@ struct ProfileCreationView: View {
                     
                     // case 0 is the first step -> name creation
                     case 0:
-                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", output: $name, show: $showAlertBox, accepted: $accpetedAction)
+                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", textFieldInput: true, output: $name, show: $showAlertBox, accepted: $accpetedAction)
                             // z index 1 == the top layer -> this is needed due to animation processes
                             .zIndex(1.0)
-                        
+                    
+                    // case 1 is the second step -> gender creation
+                    case 1:
+                        AlertBoxView(title: "Choose your gender", placeholder: "Tap here to choose..", defaultText: "", textFieldInput: true, output: $gender, show: $showAlertBox, accepted: $accpetedAction)
                     
                     // the default is 0 which is the first step in the pathway -> name creation
                     default:
-                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", output: $outputAlertBox, show: $showAlertBox, accepted: $accpetedAction)
+                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", output: $outputAlertBox, show: $showAlertBox, accepted: $accpetedAction)
                             // z index 1 == the top layer -> this is needed due to animation processes
                             .zIndex(1.0)
                     }
@@ -143,14 +146,9 @@ struct NameLineView: View {
     var body: some View {
         HStack {
             Button(action: {
+                // configure which step it is in the pathway
                 pathwayStep = 0
                 showAlertBox = true
-                if name != "Name" {
-                    backgroundColor = ""
-                    iconName = "checkmark.circle"
-                    
-                }
-                
             }) {
                 Image(systemName: iconName)
                     .font(.title)
@@ -171,17 +169,65 @@ struct GenderLineView: View {
     // Binding from main View
     @Binding var gender: String
     
+    // binding for pathway change
+    @Binding var pathwayStep: Int
+    
+    // binding for show/hide of alertBox
+    @Binding var showAlertBox: Bool
+    
+    // icon name changes after the value is set
+    @Binding var iconName: String
+    
+    // background color changes after the value is set
+    @Binding var backgroundColor: String
+    
     var body: some View {
         HStack {
-            Text("Gender")
-            TextField("", text: $gender)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .frame(width: 35)
+            Button(action: {
+                // configure which step it is in the pathway
+                pathwayStep = 1
+                showAlertBox = true
+            }) {
+                Text(gender)
+                
+                Image(systemName: iconName)
+                    .font(.title)
+                    .padding(4)
+                    .background(Color(backgroundColor))
+                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+            }
+            
+            
         }
         .padding(.horizontal, 16)
         .frame(width: 340, alignment: .trailing)
     }
 }
+
+
+
+
+
+
+
+
+//
+//struct GenderXLineView: View {
+//
+//    // Binding from main View
+//    @Binding var gender: String
+//
+//    var body: some View {
+//        HStack {
+//            Text("Gender")
+//            TextField("", text: $gender)
+//                .textFieldStyle(RoundedBorderTextFieldStyle())
+//                .frame(width: 35)
+//        }
+//        .padding(.horizontal, 16)
+//        .frame(width: 340, alignment: .trailing)
+//    }
+//}
 
 struct BirthdayLineView: View {
     
