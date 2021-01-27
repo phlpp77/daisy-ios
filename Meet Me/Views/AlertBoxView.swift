@@ -24,7 +24,7 @@ struct AlertBoxView: View {
     var textFieldInput = false
     
     // design the alertBox to have a Picker input possibility
-    var pickerInput = true
+    var pickerInput = false
     
     // cancel button per default
     var cancelButton = "Cancel"

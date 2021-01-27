@@ -11,7 +11,8 @@ struct UserModel: Codable {
     var id: String?
     var userId: String = ""
     var name: String = ""
-    var age: Int = 0
+    var birthdayDate: String = ""
+    var gender: String = ""
     
-    
+
 }
