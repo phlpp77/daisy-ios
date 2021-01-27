@@ -16,8 +16,15 @@ struct RegisterView: View {
     //kann man implementieren für das registrieren
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var registerVM = RegisterViewModel()
-    
+       
     @State var showSecondPasswordTextField = false
+    
+    // if a problem happens during the register process a message can be shown
+    @State var problemAccured = false
+    
+    // message to present the user when error happend
+    @State var problemMessage = "Wrong password"
+    
     
     var body: some View {
         ZStack {
@@ -25,6 +32,16 @@ struct RegisterView: View {
             
             VStack {
                 VStack(alignment: .leading) {
+                    
+                    if problemAccured {
+                        Text(problemMessage)
+                            .font(.footnote)
+                            .padding(.leading, 35)
+                        // spring animation not working at this stage -> normal blend animation is used
+//                            .scaleEffect(problemAccured ? 1.0 : 0.1)
+//                            .animation(.spring(response: 0.6, dampingFraction: 0.4, blendDuration: 5))
+                    }
+                    
                     HStack(spacing: 12) {
                         Image(systemName: "envelope")
                         TextField("Gebe deine E-Mail Adresse ein", text: $registerVM.email)
@@ -71,6 +88,11 @@ struct RegisterView: View {
                         Text("Ich habe schon einen Account")
                             .font(.subheadline)
                             .foregroundColor(.gray)
+                            .padding(3)
+                            .padding(.trailing, 58)
+                            .background(Color.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
+                            
                     }
                     .padding(.leading, 32)
                     
