@@ -24,7 +24,10 @@ struct AlertBoxView: View {
     var textFieldInput = false
     
     // design the alertBox to have a Picker input possibility
-    var pickerInput = true
+    var pickerInput = false
+    
+    // array which is shown in the picker view
+    var pickerInputArray = [""]
     
     // cancel button per default
     var cancelButton = "Cancel"
@@ -70,11 +73,18 @@ struct AlertBoxView: View {
                 
                 // only show Picker if it defined
                 if pickerInput {
-                    // picker - ATTENTION-NOT YET IMPLEMENTED
-                    Picker(selection: /*@START_MENU_TOKEN@*/.constant(1)/*@END_MENU_TOKEN@*/, label: /*@START_MENU_TOKEN@*/Text("Picker")/*@END_MENU_TOKEN@*/, content: {
-                        /*@START_MENU_TOKEN@*/Text("1").tag(1)/*@END_MENU_TOKEN@*/
-                        /*@START_MENU_TOKEN@*/Text("2").tag(2)/*@END_MENU_TOKEN@*/
-                    })
+                    // picker
+                    
+                    // THE BINDING OF THE OUTPUT STRING THROWS AN ERROR - OUTPUT IS NOT SHOWING CORRECTLY
+                    VStack {
+                        PickerTextField(data: pickerInputArray, placerholder: placeholder, selectedOutput: $output)
+                            .frame(height: 35)
+                            .padding(.horizontal, 20)
+                        PickerTextField(data: ["pert", "schoko"], placerholder: "placeholder", selectedOutput: $output)
+                            .frame(height: 35)
+                        Text("Output: \(output)")
+                            .font(.largeTitle)
+                    }
                 }
                 
                 
@@ -104,6 +114,7 @@ struct AlertBoxView: View {
                         withAnimation(.spring()) {
                             self.show.toggle()
                             
+                            // check if output is useful
                             if output != defaultText && output != "" {
                                 accepted = true
                             } else {
