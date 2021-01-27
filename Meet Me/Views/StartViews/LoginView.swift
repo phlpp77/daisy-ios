@@ -17,6 +17,11 @@ struct LoginView: View {
     // change the var for the main animation
     @Binding var userIsLoggedIn: Bool
     
+    // if a problem happens during the login process a message can be shown
+    @State var problemAccured = false
+    
+    // message to present the user when error happend
+    @State var problemMessage = "Wrong password"
     
     var body: some View {
         ZStack {
@@ -26,12 +31,23 @@ struct LoginView: View {
                 
                 VStack(alignment: .leading) {
                     
-                    Image("login")
-                        .resizable()
-                        .frame(width: 100, height: 100, alignment: .center)
-                        .aspectRatio(contentMode: .fit)
-                        .padding(.bottom, 20)
-                        .padding(.leading, 80)
+                    VStack {
+                        Image("login")
+                            .resizable()
+                            .frame(width: 100, height: 100, alignment: .center)
+                            .aspectRatio(contentMode: .fit)
+                            .padding(.bottom, 10)
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    if problemAccured {
+                        Text(problemMessage)
+                            .font(.footnote)
+                            .padding(.leading, 35)
+                        // spring animation not working at this stage -> normal blend animation is used
+//                            .scaleEffect(problemAccured ? 1.0 : 0.1)
+//                            .animation(.spring(response: 0.6, dampingFraction: 0.4, blendDuration: 5))
+                    }
                     
                     HStack(spacing: 12) {
                         Image(systemName: "envelope")
