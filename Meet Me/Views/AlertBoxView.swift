@@ -24,7 +24,7 @@ struct AlertBoxView: View {
     var textFieldInput = false
     
     // design the alertBox to have a Picker input possibility
-    var pickerInput = false
+    var pickerInput = true
     
     // array which is shown in the picker view
     var pickerInputArray = [""]
@@ -46,6 +46,7 @@ struct AlertBoxView: View {
     // accepted param to give the information back
     @Binding var accepted: Bool
     
+    @State var pickerOutput = ""
     
     var body: some View {
         ZStack {
@@ -77,12 +78,12 @@ struct AlertBoxView: View {
                     
                     // THE BINDING OF THE OUTPUT STRING THROWS AN ERROR - OUTPUT IS NOT SHOWING CORRECTLY
                     VStack {
-                        PickerTextField(data: pickerInputArray, placerholder: placeholder, selectedOutput: $output)
+//                        PickerTextField(data: pickerInputArray, placerholder: placeholder, selectedOutput: $pickerOutput)
+//                            .frame(height: 35)
+//                            .padding(.horizontal, 20)
+                        PickerTextField(data: ["pert", "schoko"], placerholder: "placeholder", selectedOutput: $pickerOutput)
                             .frame(height: 35)
-                            .padding(.horizontal, 20)
-                        PickerTextField(data: ["pert", "schoko"], placerholder: "placeholder", selectedOutput: $output)
-                            .frame(height: 35)
-                        Text("Output: \(output)")
+                        Text("Output: \(pickerOutput)")
                             .font(.largeTitle)
                     }
                 }
@@ -113,6 +114,9 @@ struct AlertBoxView: View {
                     Button(action: {
                         withAnimation(.spring()) {
                             self.show.toggle()
+                            
+                            // check if the picker was used then the pickeroutput needs to be assigned to the normal output
+                            output = pickerOutput
                             
                             // check if output is useful
                             if output != defaultText && output != "" {
