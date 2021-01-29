@@ -11,7 +11,7 @@ pod 'Firebase/Auth', :git => 'https://gitlab.com/phlpp77/meet-me.git', :branch =
 pod 'Firebase/Storage', :git => 'https://gitlab.com/phlpp77/meet-me.git', :branch => 'db-development'
 pod 'Firebase/Firestore', :git => 'https://gitlab.com/phlpp77/meet-me.git', :branch => 'db-development'
 	# add the Firebase pod for Google Analytics
-pod 'Firebase/Analytics', :git => 'https://gitlab.com/phlpp77/meet-me.git', :branch => 'db-development'
+pod 'FirebaseFirestoreSwift', :git => 'https://gitlab.com/phlpp77/meet-me.git', :branch => 'db-development'
 # add pods for any other desired Firebase products
 # https://firebase.google.com/docs/ios/setup#available-pods
 
