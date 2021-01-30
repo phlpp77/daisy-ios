@@ -10,11 +10,12 @@ import SwiftUI
 struct PickerView: View {
     
     @State var lastSelectedIndex = ""
+    @State var lastIndex: Int?
     
     var body: some View {
         VStack {
-            PickerTextField(data: ["1", "2", "Albert"], placerholder: "Select item", selectedOutput: $lastSelectedIndex)
-            Text(lastSelectedIndex)
+            PickerTextField(data: ["1", "2", "Albert"], placerholder: "Select item", lastSelectedIndex: $lastIndex)
+            Text(String(lastIndex ?? 0))
                 .font(.largeTitle)
         }
         .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)

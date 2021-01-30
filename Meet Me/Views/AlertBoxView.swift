@@ -46,7 +46,7 @@ struct AlertBoxView: View {
     // accepted param to give the information back
     @Binding var accepted: Bool
     
-    @State var pickerOutput = ""
+    @State var lastSelectedIndex: Int?
     
     var body: some View {
         ZStack {
@@ -78,13 +78,13 @@ struct AlertBoxView: View {
                     
                     // THE BINDING OF THE OUTPUT STRING THROWS AN ERROR - OUTPUT IS NOT SHOWING CORRECTLY
                     VStack {
-//                        PickerTextField(data: pickerInputArray, placerholder: placeholder, selectedOutput: $pickerOutput)
-//                            .frame(height: 35)
-//                            .padding(.horizontal, 20)
-                        PickerTextField(data: ["pert", "schoko"], placerholder: "placeholder", selectedOutput: $pickerOutput)
+                        PickerTextField(data: pickerInputArray, placerholder: placeholder, lastSelectedIndex: $lastSelectedIndex)
                             .frame(height: 35)
-                        Text("Output: \(pickerOutput)")
-                            .font(.largeTitle)
+                            .padding(.horizontal, 20)
+//                        PickerTextField(data: ["pert", "schoko"], placerholder: "placeholder", lastSelectedIndex: $lastSelectedIndex, selectedOutput: $pickerOutput)
+//                            .frame(height: 35)
+//                        Text("Output: \(lastSelectedIndex ?? 0)")
+//                            .font(.largeTitle)
                     }
                 }
                 
@@ -116,7 +116,9 @@ struct AlertBoxView: View {
                             self.show.toggle()
                             
                             // check if the picker was used then the pickeroutput needs to be assigned to the normal output
-                            output = pickerOutput
+                            if pickerInput {
+                                output = pickerInputArray[lastSelectedIndex ?? 0]
+                            }
                             
                             // check if output is useful
                             if output != defaultText && output != "" {

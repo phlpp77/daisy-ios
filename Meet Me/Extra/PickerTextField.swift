@@ -18,10 +18,7 @@ struct PickerTextField: UIViewRepresentable {
     var placerholder: String
     
     // index of the selected item
-    @State var lastSelectedIndex: Int?
-    
-    // string output of the selected item
-    @Binding var selectedOutput: String
+    @Binding var lastSelectedIndex: Int?
     
     func makeUIView(context: Context) -> UITextField {
         self.pickerView.delegate = context.coordinator
@@ -60,9 +57,6 @@ struct PickerTextField: UIViewRepresentable {
     func updateUIView(_ uiView: UIViewType, context: Context) {
         if let lastSelectedIndex = self.lastSelectedIndex {
             uiView.text = self.data[lastSelectedIndex]
-            
-            // assign the selected output as string, it must be something in there because lastSelectedIndex is proven before
-            self.selectedOutput = self.data[lastSelectedIndex]
         }
     }
     
