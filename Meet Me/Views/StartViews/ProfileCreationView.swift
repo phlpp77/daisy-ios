@@ -62,13 +62,13 @@ struct ProfileCreationView: View {
                         
                         Text(gender)
                         // view to fill in the name
-                        NameLineView(name: $addProfileCreationVM.name, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction ? .constant("") : .constant("BackgroundMain"))
+                        NameLineView(name: $addProfileCreationVM.name, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         Image("Pathway-ProfileCreation")
                             .resizable()
                             .frame(width: 268.58, height: 92.92, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         
-                        GenderLineView(gender: $addProfileCreationVM.gender, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction ? .constant("") : .constant("BackgroundMain"))
+                        GenderLineView(gender: $addProfileCreationVM.gender, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         Image("Pathway-ProfileCreation")
                             .resizable()
