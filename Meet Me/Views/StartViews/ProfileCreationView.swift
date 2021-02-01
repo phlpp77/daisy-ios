@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ProfileCreationView: View {
     
+    
+    @StateObject private var addProfileCreationVM = ProfileCreationModel()
     // MARK: - state vars
     
     // var for the name of the profile owner
@@ -58,13 +60,13 @@ struct ProfileCreationView: View {
                     }
                     ScrollView {
                         // view to fill in the name
-                        NameLineView(name: $name, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction ? .constant("") : .constant("BackgroundMain"))
+                        NameLineView(name: $addProfileCreationVM.name, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction ? .constant("") : .constant("BackgroundMain"))
                         
                         Image("Pathway-ProfileCreation")
                             .resizable()
                             .frame(width: 268.58, height: 92.92, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         
-                        GenderLineView(gender: $gender, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction ? .constant("") : .constant("BackgroundMain"))
+                        GenderLineView(gender: $addProfileCreationVM.gender, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction ? .constant("") : .constant("BackgroundMain"))
                         
                         Image("Pathway-ProfileCreation")
                             .resizable()
@@ -74,7 +76,7 @@ struct ProfileCreationView: View {
                                 axis: (x: 0, y: 1.0, z: 0.0)
                             )
                         
-                        BirthdayLineView(birthdayDate: $birthdayDate)
+                        BirthdayLineView(birthdayDate: $addProfileCreationVM.birthdayDate)
                         
                         Image("Pathway-ProfileCreation")
                             .resizable()
@@ -94,13 +96,13 @@ struct ProfileCreationView: View {
                     
                     // case 0 is the first step -> name creation
                     case 0:
-                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", textFieldInput: true, output: $name, show: $showAlertBox, accepted: $accpetedAction)
+                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", textFieldInput: true, output: $addProfileCreationVM.name, show: $showAlertBox, accepted: $accpetedAction)
                             // z index 1 == the top layer -> this is needed due to animation processes
                             .zIndex(1.0)
                     
                     // case 1 is the second step -> gender creation
                     case 1:
-                        AlertBoxView(title: "Choose your gender", placeholder: "Tap here to choose..", defaultText: "", textFieldInput: true, output: $gender, show: $showAlertBox, accepted: $accpetedAction)
+                        AlertBoxView(title: "Choose your gender", placeholder: "Tap here to choose..", defaultText: "", textFieldInput: true, output: $addProfileCreationVM.gender, show: $showAlertBox, accepted: $accpetedAction)
                     
                     // the default is 0 which is the first step in the pathway -> name creation
                     default:

@@ -6,33 +6,38 @@
 //
 
 import Foundation
-import Firebase
-//import FirebaseFirestoreSwift
 
-class ProfileCreationModel {
+class ProfileCreationModel: ObservableObject {
     
-    private var db: Firestore
+    private var firestoreManager: FirestoreManager
+    @Published var saved: Bool = false
+    @Published var message: String = ""
+    
+    var userId: String = ""
+    var name: String = ""
+    var birthdayDate: String = ""
+    var gender: String = ""
     
     init() {
-        db = Firestore.firestore()
+        firestoreManager = FirestoreManager()
     }
     
-    func save(userModel: UserModel, completion: @escaping (Result<UserModel?, Error>) -> Void) {
+    func save() {
         
-        do {
-            let ref = try db.collection("users").addDocument(from: userModel)
-            ref.getDocument { (snapshot, error) in
-                guard let snapshot = snapshot, error == nil else {
-                    completion(.failure(error!))
-                    return
+        let userModel = UserModel( userId: userId, name: name, birthdayDate: birthdayDate, gender: gender)
+        firestoreManager.saveUser(userModel: userModel){ result in
+            switch result {
+            case .success(let userModel):
+                DispatchQueue.main.async {
+                    self.saved = userModel == nil ? false: true
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self .message = ErrorMessages.userSaveFailed
                 }
                 
-                let store = try? snapshot.data(as: UserModel.self)
-                completion(.succes(stoe))
-            }
-        } catch let error {
-                completion(.failure(error))
+            
             }
         }
     }
-
+}

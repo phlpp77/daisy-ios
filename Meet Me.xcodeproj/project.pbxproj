@@ -22,7 +22,9 @@
 		17C0C1CE25BF67D60021987D /* AlertBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C0C1CD25BF67D60021987D /* AlertBoxView.swift */; };
 		17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E45ABA25B74F6600B9A93B /* LoginView.swift */; };
 		3C4632628DFAFFCA3B1B6674 /* Pods_Meet_Me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6866AE96A8202B7FCBDD60 /* Pods_Meet_Me.framework */; };
-		905485A125C48B0A00E2024D /* ProfileCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485A025C48B0A00E2024D /* ProfileCreationModel.swift */; };
+		905485A125C48B0A00E2024D /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485A025C48B0A00E2024D /* FirestoreManager.swift */; };
+		905485D325C4AB2400E2024D /* ProfileCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485D225C4AB2400E2024D /* ProfileCreationModel.swift */; };
+		905485D625C4B44F00E2024D /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485D525C4B44F00E2024D /* ErrorMessages.swift */; };
 		90B1BFD625B8DB9200F8FBF7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1BFD525B8DB9200F8FBF7 /* LoginViewModel.swift */; };
 		90B1BFDB25B8DBB700F8FBF7 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1BFDA25B8DBB700F8FBF7 /* RegisterViewModel.swift */; };
 		90DB66B425B8D412006D2C4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90DB66B325B8D412006D2C4E /* GoogleService-Info.plist */; };
@@ -47,7 +49,9 @@
 		17C0C1CD25BF67D60021987D /* AlertBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBoxView.swift; sourceTree = "<group>"; };
 		17E45ABA25B74F6600B9A93B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		8CC506F59200740347A6B95E /* Pods-Meet Me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Me.debug.xcconfig"; path = "Target Support Files/Pods-Meet Me/Pods-Meet Me.debug.xcconfig"; sourceTree = "<group>"; };
-		905485A025C48B0A00E2024D /* ProfileCreationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationModel.swift; sourceTree = "<group>"; };
+		905485A025C48B0A00E2024D /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		905485D225C4AB2400E2024D /* ProfileCreationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationModel.swift; sourceTree = "<group>"; };
+		905485D525C4B44F00E2024D /* ErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessages.swift; sourceTree = "<group>"; };
 		90B1BFD525B8DB9200F8FBF7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = "Meet Me/ViewModels/LoginViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		90B1BFDA25B8DBB700F8FBF7 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterViewModel.swift; path = "Meet Me/ViewModels/RegisterViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		90DB66B325B8D412006D2C4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 		17153EE325A8C5C30072CE83 /* Meet Me */ = {
 			isa = PBXGroup;
 			children = (
+				905485D025C4AA6100E2024D /* Manager */,
 				17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */,
 				17153EE625A8C5C30072CE83 /* ContentView.swift */,
 				90DB66B325B8D412006D2C4E /* GoogleService-Info.plist */,
@@ -145,8 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				90B1BFD525B8DB9200F8FBF7 /* LoginViewModel.swift */,
+				905485D225C4AB2400E2024D /* ProfileCreationModel.swift */,
 				90B1BFDA25B8DBB700F8FBF7 /* RegisterViewModel.swift */,
-				905485A025C48B0A00E2024D /* ProfileCreationModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 				175E40E825B4A31C00ADC9BF /* HapticFeedback.swift */,
 				175E40F325B4CD9400ADC9BF /* Modifiers.swift */,
 				175E40F925B4D26A00ADC9BF /* Information.swift */,
+				905485D525C4B44F00E2024D /* ErrorMessages.swift */,
 			);
 			path = Extra;
 			sourceTree = "<group>";
@@ -168,6 +174,14 @@
 				CED01C3F270FAC0ABF13CC65 /* Pods-Meet Me.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		905485D025C4AA6100E2024D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				905485A025C48B0A00E2024D /* FirestoreManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		A99606559D29C5E8C75383F5 /* Frameworks */ = {
@@ -304,9 +318,11 @@
 				90F8AB4625BF5CDA00E969E0 /* UserModel.swift in Sources */,
 				90B1BFDB25B8DBB700F8FBF7 /* RegisterViewModel.swift in Sources */,
 				17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */,
-				905485A125C48B0A00E2024D /* ProfileCreationModel.swift in Sources */,
+				905485A125C48B0A00E2024D /* FirestoreManager.swift in Sources */,
 				90B1BFD625B8DB9200F8FBF7 /* LoginViewModel.swift in Sources */,
+				905485D625C4B44F00E2024D /* ErrorMessages.swift in Sources */,
 				17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */,
+				905485D325C4AB2400E2024D /* ProfileCreationModel.swift in Sources */,
 				175E40E925B4A31C00ADC9BF /* HapticFeedback.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
