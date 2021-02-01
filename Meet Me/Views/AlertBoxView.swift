@@ -26,6 +26,9 @@ struct AlertBoxView: View {
     // design the alertBox to have a Picker input possibility
     var pickerInput = false
     
+    // array which is shown in the picker view
+    var pickerInputArray = [""]
+    
     // cancel button per default
     var cancelButton = "Cancel"
     
@@ -43,6 +46,7 @@ struct AlertBoxView: View {
     // accepted param to give the information back
     @Binding var accepted: Bool
     
+    @State var lastSelectedIndex: Int?
     
     var body: some View {
         ZStack {
@@ -70,11 +74,18 @@ struct AlertBoxView: View {
                 
                 // only show Picker if it defined
                 if pickerInput {
-                    // picker - ATTENTION-NOT YET IMPLEMENTED
-                    Picker(selection: /*@START_MENU_TOKEN@*/.constant(1)/*@END_MENU_TOKEN@*/, label: /*@START_MENU_TOKEN@*/Text("Picker")/*@END_MENU_TOKEN@*/, content: {
-                        /*@START_MENU_TOKEN@*/Text("1").tag(1)/*@END_MENU_TOKEN@*/
-                        /*@START_MENU_TOKEN@*/Text("2").tag(2)/*@END_MENU_TOKEN@*/
-                    })
+                    // picker
+                    
+                    // THE BINDING OF THE OUTPUT STRING THROWS AN ERROR - OUTPUT IS NOT SHOWING CORRECTLY
+                    VStack {
+                        PickerTextField(data: pickerInputArray, placerholder: placeholder, lastSelectedIndex: $lastSelectedIndex)
+                            .frame(height: 35)
+                            .padding(.horizontal, 20)
+//                        PickerTextField(data: ["pert", "schoko"], placerholder: "placeholder", lastSelectedIndex: $lastSelectedIndex, selectedOutput: $pickerOutput)
+//                            .frame(height: 35)
+//                        Text("Output: \(lastSelectedIndex ?? 0)")
+//                            .font(.largeTitle)
+                    }
                 }
                 
                 
@@ -104,6 +115,12 @@ struct AlertBoxView: View {
                         withAnimation(.spring()) {
                             self.show.toggle()
                             
+                            // check if the picker was used then the pickeroutput needs to be assigned to the normal output
+                            if pickerInput {
+                                output = pickerInputArray[lastSelectedIndex ?? 0]
+                            }
+                            
+                            // check if output is useful
                             if output != defaultText && output != "" {
                                 accepted = true
                             } else {
