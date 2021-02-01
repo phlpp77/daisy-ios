@@ -6,12 +6,12 @@ target 'Meet Me' do
   use_frameworks!
 
   # Pods for Meet Me
-pod 'Firebase/Analytics'
-pod 'Firebase/Auth'
-pod 'Firebase/Storage'
-pod 'Firebase/Firestore'
+pod 'Firebase/Analytics', :git => 'https://gitlab.com/phlpp77/meet-me.git', :branch => 'db-development'
+pod 'Firebase/Auth', :git => 'https://gitlab.com/phlpp77/meet-me.git', :branch => 'db-development'
+pod 'Firebase/Storage', :git => 'https://gitlab.com/phlpp77/meet-me.git', :branch => 'db-development'
+pod 'Firebase/Firestore', :git => 'https://gitlab.com/phlpp77/meet-me.git', :branch => 'db-development'
 	# add the Firebase pod for Google Analytics
-pod 'FirebaseFirestoreSwift'
+pod 'FirebaseFirestoreSwift', :git => 'https://gitlab.com/phlpp77/meet-me.git', :branch => 'db-development'
 # add pods for any other desired Firebase products
 # https://firebase.google.com/docs/ios/setup#available-pods
 
