@@ -17,7 +17,7 @@ struct ProfileCreationView: View {
     @State var name = "Name"
     
     // var for the gender of the profile owner
-    @State var gender = ""
+    @State var gender = "Gender"
     
     // var for the birthday date of the profile owner
     @State var birthdayDate = ""
@@ -59,6 +59,8 @@ struct ProfileCreationView: View {
                             .padding(.top, 16)
                     }
                     ScrollView {
+                        
+                        Text(gender)
                         // view to fill in the name
                         NameLineView(name: $addProfileCreationVM.name, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction ? .constant("") : .constant("BackgroundMain"))
                         
@@ -102,7 +104,8 @@ struct ProfileCreationView: View {
                     
                     // case 1 is the second step -> gender creation
                     case 1:
-                        AlertBoxView(title: "Choose your gender", placeholder: "Tap here to choose..", defaultText: "", textFieldInput: true, output: $addProfileCreationVM.gender, show: $showAlertBox, accepted: $accpetedAction)
+                        AlertBoxView(title: "Choose your gender", placeholder: "Tap here to choose..", defaultText: "Gender", pickerInput: true, pickerInputArray: ["male", "female", "other"], output: $addProfileCreationVM.gender, show: $showAlertBox, accepted: $accpetedAction)
+                            .zIndex(1.0)
                     
                     // the default is 0 which is the first step in the pathway -> name creation
                     default:
@@ -170,7 +173,7 @@ struct GenderLineView: View {
     
     // Binding from main View
     @Binding var gender: String
-    
+
     // binding for pathway change
     @Binding var pathwayStep: Int
     
@@ -185,13 +188,14 @@ struct GenderLineView: View {
     
     var body: some View {
         HStack {
+            
+            Text(gender)
+            
             Button(action: {
                 // configure which step it is in the pathway
                 pathwayStep = 1
                 showAlertBox = true
             }) {
-                Text(gender)
-                
                 Image(systemName: iconName)
                     .font(.title)
                     .padding(4)
