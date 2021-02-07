@@ -31,12 +31,12 @@ struct PickerTextField: UIViewRepresentable {
         
         
         // configure closing of the keyboard cia accessory view
-        let toolbar = UIToolbar()
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35))
         toolbar.sizeToFit()
+        self.textField.inputAccessoryView = toolbar
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self.helpForClosingObject, action: #selector(self.helpForClosingObject.doneButtonAction))
         toolbar.setItems([flexibleSpace, doneButton], animated: true)
-        self.textField.inputAccessoryView = toolbar
         
         
         // when the "done" button is tapped
