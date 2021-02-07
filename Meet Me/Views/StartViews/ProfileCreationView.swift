@@ -14,10 +14,8 @@ struct ProfileCreationView: View {
     // MARK: - state vars
     
     // var for the name of the profile owner
-    @State var name = "Name"
     
     // var for the gender of the profile owner
-    @State var gender = "Gender"
     
     // var for the birthday date of the profile owner
     @State var birthdayDate = ""
@@ -38,7 +36,7 @@ struct ProfileCreationView: View {
     @State var backgroundColor = "BackgroundMain"
     
     // var to see if the action in the alert was accepted or not
-    @State var accpetedAction = false
+    @State var accpetedAction = [false, false, false]
     
     
     var body: some View {
@@ -60,15 +58,14 @@ struct ProfileCreationView: View {
                     }
                     ScrollView {
                         
-                        Text(gender)
                         // view to fill in the name
-                        NameLineView(name: $addProfileCreationVM.name, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction ? .constant("Clear") : .constant("BackgroundMain"))
+                        NameLineView(name: $addProfileCreationVM.name, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[0] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[0] ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         Image("Pathway-ProfileCreation")
                             .resizable()
                             .frame(width: 268.58, height: 92.92, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         
-                        GenderLineView(gender: $addProfileCreationVM.gender, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction ? .constant("Clear") : .constant("BackgroundMain"))
+                        GenderLineView(gender: $addProfileCreationVM.gender, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[1] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[1] ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         Image("Pathway-ProfileCreation")
                             .resizable()
@@ -98,18 +95,18 @@ struct ProfileCreationView: View {
                     
                     // case 0 is the first step -> name creation
                     case 0:
-                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", textFieldInput: true, output: $addProfileCreationVM.name, show: $showAlertBox, accepted: $accpetedAction)
+                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", textFieldInput: true, output: $addProfileCreationVM.name, show: $showAlertBox, accepted: $accpetedAction[0])
                             // z index 1 == the top layer -> this is needed due to animation processes
                             .zIndex(1.0)
                     
                     // case 1 is the second step -> gender creation
                     case 1:
-                        AlertBoxView(title: "Choose your gender", placeholder: "Tap here to choose..", defaultText: "Gender", pickerInput: true, pickerInputArray: ["male", "female", "other"], output: $addProfileCreationVM.gender, show: $showAlertBox, accepted: $accpetedAction)
+                        AlertBoxView(title: "Choose your gender", placeholder: "Tap here to choose..", defaultText: "Gender", pickerInput: true, pickerInputArray: ["Male", "Female", "Other"], output: $addProfileCreationVM.gender, show: $showAlertBox, accepted: $accpetedAction[1])
                             .zIndex(1.0)
                     
                     // the default is 0 which is the first step in the pathway -> name creation
                     default:
-                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", output: $outputAlertBox, show: $showAlertBox, accepted: $accpetedAction)
+                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", output: $outputAlertBox, show: $showAlertBox, accepted: $accpetedAction[2])
                             // z index 1 == the top layer -> this is needed due to animation processes
                             .zIndex(1.0)
                     }

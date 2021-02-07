@@ -96,7 +96,7 @@ struct AlertBoxView: View {
                     
                     // button to cancel the action
                     Button(action: {
-                        output = ""
+                        output = defaultText
                         withAnimation(.spring()) {
                             self.show.toggle()
                             
@@ -124,6 +124,7 @@ struct AlertBoxView: View {
                             if output != defaultText && output != "" {
                                 accepted = true
                             } else {
+                                output = defaultText
                                 accepted = false
                             }
                             

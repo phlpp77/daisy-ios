@@ -14,9 +14,9 @@ class ProfileCreationModel: ObservableObject {
     @Published var message: String = ""
     
     var userId: String = ""
-    var name: String = ""
+    var name: String = "Name"
     var birthdayDate: String = ""
-    var gender: String = ""
+    var gender: String = "Gender"
     
     init() {
         firestoreManager = FirestoreManager()
