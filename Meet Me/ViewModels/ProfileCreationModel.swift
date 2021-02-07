@@ -15,7 +15,7 @@ class ProfileCreationModel: ObservableObject {
     
     var userId: String = ""
     var name: String = "Name"
-    var birthdayDate: String = ""
+    var birthdayDate: String = "Birthday"
     var gender: String = "Gender"
     
     init() {

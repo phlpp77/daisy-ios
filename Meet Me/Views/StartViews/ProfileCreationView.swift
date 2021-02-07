@@ -61,12 +61,15 @@ struct ProfileCreationView: View {
                         // view to fill in the name
                         NameLineView(name: $addProfileCreationVM.name, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[0] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[0] ? .constant("Clear") : .constant("BackgroundMain"))
                         
+                        // create image for the first to second step pathway
                         Image("Pathway-ProfileCreation")
                             .resizable()
                             .frame(width: 268.58, height: 92.92, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         
+                        // get the gender of the user
                         GenderLineView(gender: $addProfileCreationVM.gender, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[1] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[1] ? .constant("Clear") : .constant("BackgroundMain"))
                         
+                        // create image for the second to the third step of the pathway
                         Image("Pathway-ProfileCreation")
                             .resizable()
                             .frame(width: 268.58, height: 92.92, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -75,7 +78,7 @@ struct ProfileCreationView: View {
                                 axis: (x: 0, y: 1.0, z: 0.0)
                             )
                         
-                        BirthdayLineView(birthdayDate: $addProfileCreationVM.birthdayDate)
+                        BirthdayLineView(birthday: $addProfileCreationVM.birthdayDate, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[2] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[2] ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         Image("Pathway-ProfileCreation")
                             .resizable()
@@ -102,6 +105,11 @@ struct ProfileCreationView: View {
                     // case 1 is the second step -> gender creation
                     case 1:
                         AlertBoxView(title: "Choose your gender", placeholder: "Tap here to choose..", defaultText: "Gender", pickerInput: true, pickerInputArray: ["Male", "Female", "Other"], output: $addProfileCreationVM.gender, show: $showAlertBox, accepted: $accpetedAction[1])
+                            .zIndex(1.0)
+                        
+                    // case 2 is the second step -> birthday date
+                    case 2:
+                        AlertBoxView(title: "Select your birthday date", placeholder: "Tap here to choose..", defaultText: "Birthday", dateInput: true, output: $addProfileCreationVM.birthdayDate, show: $showAlertBox, accepted: $accpetedAction[2])
                             .zIndex(1.0)
                     
                     // the default is 0 which is the first step in the pathway -> name creation
@@ -207,42 +215,40 @@ struct GenderLineView: View {
     }
 }
 
-
-
-
-
-
-
-
-//
-//struct GenderXLineView: View {
-//
-//    // Binding from main View
-//    @Binding var gender: String
-//
-//    var body: some View {
-//        HStack {
-//            Text("Gender")
-//            TextField("", text: $gender)
-//                .textFieldStyle(RoundedBorderTextFieldStyle())
-//                .frame(width: 35)
-//        }
-//        .padding(.horizontal, 16)
-//        .frame(width: 340, alignment: .trailing)
-//    }
-//}
-
 struct BirthdayLineView: View {
     
     // Binding from main View
-    @Binding var birthdayDate: String
+    @Binding var birthday: String
+
+    // binding for pathway change
+    @Binding var pathwayStep: Int
+    
+    // binding for show/hide of alertBox
+    @Binding var showAlertBox: Bool
+    
+    // icon name changes after the value is set
+    @Binding var iconName: String
+    
+    // background color changes after the value is set
+    @Binding var backgroundColor: String
     
     var body: some View {
         HStack {
-            TextField("", text: $birthdayDate)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .frame(width: 35)
-            Text("Birthday")
+            
+            Button(action: {
+                // configure which step it is in the pathway
+                pathwayStep = 2
+                showAlertBox = true
+            }) {
+                Image(systemName: iconName)
+                    .font(.title)
+                    .padding(4)
+                    .background(Color(backgroundColor))
+                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+            }
+            
+            Text(birthday)
+            
         }
         .padding(.horizontal, 16)
         .frame(width: 340, alignment: .leading)

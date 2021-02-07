@@ -29,6 +29,9 @@ struct AlertBoxView: View {
     // array which is shown in the picker view
     var pickerInputArray = [""]
     
+    // design the alertBox to have a DatePicker input possibility
+    var dateInput = false
+    
     // cancel button per default
     var cancelButton = "Cancel"
     
@@ -46,7 +49,12 @@ struct AlertBoxView: View {
     // accepted param to give the information back
     @Binding var accepted: Bool
     
+    // lastSlectedIndex is need to get the value out of the picker array in the picker mode of the alert box
     @State var lastSelectedIndex: Int?
+    
+    // date
+    @State var date: Date = Date()
+    
     
     var body: some View {
         ZStack {
@@ -75,17 +83,15 @@ struct AlertBoxView: View {
                 // only show Picker if it defined
                 if pickerInput {
                     // picker
-                    
-                    // THE BINDING OF THE OUTPUT STRING THROWS AN ERROR - OUTPUT IS NOT SHOWING CORRECTLY
-                    VStack {
-                        PickerTextField(data: pickerInputArray, placerholder: placeholder, lastSelectedIndex: $lastSelectedIndex)
-                            .frame(height: 35)
-                            .padding(.horizontal, 20)
-//                        PickerTextField(data: ["pert", "schoko"], placerholder: "placeholder", lastSelectedIndex: $lastSelectedIndex, selectedOutput: $pickerOutput)
-//                            .frame(height: 35)
-//                        Text("Output: \(lastSelectedIndex ?? 0)")
-//                            .font(.largeTitle)
-                    }
+                    PickerTextField(data: pickerInputArray, placerholder: placeholder, lastSelectedIndex: $lastSelectedIndex)
+                        .frame(height: 35)
+                        .padding(.horizontal, 20)
+                }
+                
+                // only show the DatePicker if it is defined
+                if dateInput {
+                    // date picker
+                    DateTextField(date: $date)
                 }
                 
                 
@@ -118,6 +124,12 @@ struct AlertBoxView: View {
                             // check if the picker was used then the pickeroutput needs to be assigned to the normal output
                             if pickerInput {
                                 output = pickerInputArray[lastSelectedIndex ?? 0]
+                            }
+                            
+                            if dateInput {
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.dateFormat = "dd/MM/YY"
+                                output = dateFormatter.string(from: date)
                             }
                             
                             // check if output is useful
