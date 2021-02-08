@@ -16,8 +16,8 @@ struct Meet_MeApp: App {
     }
     var body: some Scene {
         WindowGroup {
-//            StartView()
-            ProfileCreationView()
+            StartView()
+//            ProfileCreationView()
 //            PickerView()
         }
     }

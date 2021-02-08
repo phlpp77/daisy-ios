@@ -12,6 +12,9 @@ struct ProfileCreationView: View {
     
     @StateObject private var addProfileCreationVM = ProfileCreationModel()
     
+    // binding to show the main controller that the proccess is finished
+    @Binding var profileCreationFinished: Bool
+    
     // MARK: - state vars
     
     // var for the birthday date of the profile owner in the date format
@@ -47,8 +50,8 @@ struct ProfileCreationView: View {
     
     var body: some View {
         ZStack {
-            // background with animation
-            StartBackgroundView()
+            // background with animation - for testing background is handled in the main startView
+//            StartBackgroundView()
             
             // box where all items are in with fixed size
             ZStack {
@@ -130,6 +133,8 @@ struct ProfileCreationView: View {
                         }
                         .frame(width: 268.58)
                         
+                        // button is disabled until the user set at least the name, the gender and the birthday
+                        let enoughInformation = !(accpetedAction[0] && accpetedAction[1] && accpetedAction[2])
                         
                         // update button
                         Button(action: {
@@ -146,8 +151,8 @@ struct ProfileCreationView: View {
                         .padding()
                         .modifier(FrozenWindowModifier())
                         .padding(.bottom, 16)
-                        // button is disabled until the user set at least the name, the gender and the birthday
-                        .disabled(accpetedAction[0] && accpetedAction[1] && accpetedAction[2])
+                        .opacity(enoughInformation ? 1 : 0.7)
+                        .disabled(enoughInformation)
                         
                         
                     }
@@ -212,7 +217,7 @@ struct ProfileCreationView: View {
 
 struct ProfileCreationView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCreationView()
+        ProfileCreationView(profileCreationFinished: .constant(false))
 //            .previewDevice("iPhone 8")
     }
 }

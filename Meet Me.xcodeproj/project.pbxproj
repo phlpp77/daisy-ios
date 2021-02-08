@@ -18,6 +18,10 @@
 		175E40F025B4CD3300ADC9BF /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40EF25B4CD3300ADC9BF /* RegisterView.swift */; };
 		175E40F425B4CD9400ADC9BF /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40F325B4CD9400ADC9BF /* Modifiers.swift */; };
 		175E40FA25B4D26A00ADC9BF /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40F925B4D26A00ADC9BF /* Information.swift */; };
+		1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */; };
+		1774B67225D1E2E500D1D2F1 /* MainSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */; };
+		1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67425D1E31400D1D2F1 /* MainExploreView.swift */; };
+		1774B67925D1E35200D1D2F1 /* MainChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67825D1E35200D1D2F1 /* MainChatView.swift */; };
 		1778E41325D0904100C5D343 /* DateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1778E41225D0904000C5D343 /* DateTextField.swift */; };
 		17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67225C2093D00E4DA78 /* PickerTextField.swift */; };
 		17A1E67625C20DD200E4DA78 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67525C20DD200E4DA78 /* PickerView.swift */; };
@@ -48,6 +52,10 @@
 		175E40EF25B4CD3300ADC9BF /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		175E40F325B4CD9400ADC9BF /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		175E40F925B4D26A00ADC9BF /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
+		1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerView.swift; sourceTree = "<group>"; };
+		1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSettingsView.swift; sourceTree = "<group>"; };
+		1774B67425D1E31400D1D2F1 /* MainExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainExploreView.swift; sourceTree = "<group>"; };
+		1774B67825D1E35200D1D2F1 /* MainChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChatView.swift; sourceTree = "<group>"; };
 		1778E41225D0904000C5D343 /* DateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTextField.swift; sourceTree = "<group>"; };
 		17A1E67225C2093D00E4DA78 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		17A1E67525C20DD200E4DA78 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
@@ -141,6 +149,10 @@
 				1724D0FB25BE1EAF007F3277 /* StartViews */,
 				175E40E525B46ABB00ADC9BF /* BlurView.swift */,
 				17C0C1CD25BF67D60021987D /* AlertBoxView.swift */,
+				1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */,
+				1774B67425D1E31400D1D2F1 /* MainExploreView.swift */,
+				1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */,
+				1774B67825D1E35200D1D2F1 /* MainChatView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -330,10 +342,14 @@
 				90B1BFDB25B8DBB700F8FBF7 /* RegisterViewModel.swift in Sources */,
 				17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */,
 				905485A125C48B0A00E2024D /* FirestoreManager.swift in Sources */,
+				1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */,
+				1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */,
+				1774B67925D1E35200D1D2F1 /* MainChatView.swift in Sources */,
 				17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */,
 				90B1BFD625B8DB9200F8FBF7 /* LoginViewModel.swift in Sources */,
 				905485D625C4B44F00E2024D /* ErrorMessages.swift in Sources */,
 				17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */,
+				1774B67225D1E2E500D1D2F1 /* MainSettingsView.swift in Sources */,
 				905485D325C4AB2400E2024D /* ProfileCreationModel.swift in Sources */,
 				175E40E925B4A31C00ADC9BF /* HapticFeedback.swift in Sources */,
 			);
