@@ -18,12 +18,14 @@ struct Meet_MeApp: App {
     }
     var body: some Scene {
         WindowGroup {
+//            ProfileCreationView(profileCreationFinished: .constant(false))
+            
             if startProcessDone {
                 MainControllerView()
             } else {
                 StartView(startProcessDone: $startProcessDone)
             }
-//            ProfileCreationView()
+
 //            PickerView()
         }
     }

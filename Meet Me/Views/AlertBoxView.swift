@@ -55,8 +55,12 @@ struct AlertBoxView: View {
     // date
     @State var date: Date = Date()
     
+    // empty textField
+    @State var emptyText: String = ""
+    
     
     var body: some View {
+                
         ZStack {
             
             // background
@@ -75,7 +79,7 @@ struct AlertBoxView: View {
                 // only show textField if it defined
                 if textFieldInput {
                     // texfield
-                    TextField(placeholder, text: $output)
+                    TextField(placeholder, text: $emptyText)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(.horizontal, 20)
                 }
@@ -121,6 +125,10 @@ struct AlertBoxView: View {
                         withAnimation(.spring()) {
                             self.show.toggle()
                             
+                            if textFieldInput {
+                                output = emptyText
+                            }
+                            
                             // check if the picker was used then the pickeroutput needs to be assigned to the normal output
                             if pickerInput {
                                 output = pickerInputArray[lastSelectedIndex ?? 0]
@@ -142,7 +150,8 @@ struct AlertBoxView: View {
                             
                         }
                         
-                    }) {
+                        })
+                        {
                         Text(confirmButton)
                             .frame(width: 108)
                     }
@@ -153,6 +162,7 @@ struct AlertBoxView: View {
             .modifier(FrozenWindowModifier())
         }
     }
+    
     
     func getBirthdayDate() -> Date {
         return self.date
