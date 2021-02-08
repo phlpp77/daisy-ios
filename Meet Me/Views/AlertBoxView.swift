@@ -153,6 +153,10 @@ struct AlertBoxView: View {
             .modifier(FrozenWindowModifier())
         }
     }
+    
+    func getBirthdayDate() -> Date {
+        return self.date
+    }
 }
 
 struct AlertBoxView_Previews: PreviewProvider {

@@ -13,12 +13,14 @@ struct ProfileCreationView: View {
     @StateObject private var addProfileCreationVM = ProfileCreationModel()
     // MARK: - state vars
     
-    // var for the name of the profile owner
+    // var for the birthday date of the profile owner in the date format
+    @State var birthdayDate: Date = Date()
     
-    // var for the gender of the profile owner
+    // user is searching for..
+    @State var searchingFor: String = "Searching for"
     
-    // var for the birthday date of the profile owner
-    @State var birthdayDate = ""
+    // user accepts the location usage - NEEDS TO BE CHANGED TO BOOL
+    @State var acceptLocation: String = "True"
     
     // show the alertbox
     @State var showAlertBox = false
@@ -36,7 +38,7 @@ struct ProfileCreationView: View {
     @State var backgroundColor = "BackgroundMain"
     
     // var to see if the action in the alert was accepted or not
-    @State var accpetedAction = [false, false, false]
+    @State var accpetedAction = [false, false, false, false, false]
     
     
     var body: some View {
@@ -64,7 +66,7 @@ struct ProfileCreationView: View {
                         // create image for the first to second step pathway
                         Image("Pathway-ProfileCreation")
                             .resizable()
-                            .frame(width: 268.58, height: 92.92, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: 268.58, height: 92.92, alignment: .center)
                         
                         // get the gender of the user
                         GenderLineView(gender: $addProfileCreationVM.gender, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[1] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[1] ? .constant("Clear") : .constant("BackgroundMain"))
@@ -72,20 +74,37 @@ struct ProfileCreationView: View {
                         // create image for the second to the third step of the pathway
                         Image("Pathway-ProfileCreation")
                             .resizable()
-                            .frame(width: 268.58, height: 92.92, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: 268.58, height: 92.92, alignment: .center)
                             .rotation3DEffect(
                                 Angle(degrees: 180),
                                 axis: (x: 0, y: 1.0, z: 0.0)
                             )
                         
+                        // get the birthday date of the user
                         BirthdayLineView(birthday: $addProfileCreationVM.birthdayDate, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[2] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[2] ? .constant("Clear") : .constant("BackgroundMain"))
                         
+                        // create image for the third to the fourth step of the pathway
                         Image("Pathway-ProfileCreation")
                             .resizable()
-                            .frame(width: 268.58, height: 92.92, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: 268.58, height: 92.92, alignment: .center)
                         
+                        // get for what the user is searching (women, men, both)
+                        SearchingLineView(searchingFor: $searchingFor, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[3] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[3] ? .constant("Clear") : .constant("BackgroundMain"))
+                        
+                        // create image for the fourth to the fifth step of the pathway
+                        Image("Pathway-ProfileCreation")
+                            .resizable()
+                            .frame(width: 268.58, height: 92.92, alignment: .center)
+                            .rotation3DEffect(
+                                Angle(degrees: 180),
+                                axis: (x: 0, y: 1.0, z: 0.0)
+                            )
+                        
+                        LocationLineView(acceptLocation: $acceptLocation, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[4] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[4] ? .constant("Clear") : .constant("BackgroundMain"))
                         
                     }
+                    .padding(.bottom, 16)
+
                 }
                 .padding(.horizontal, 16)
                 // bring the content VStack to the same size as the background shade
@@ -107,10 +126,20 @@ struct ProfileCreationView: View {
                         AlertBoxView(title: "Choose your gender", placeholder: "Tap here to choose..", defaultText: "Gender", pickerInput: true, pickerInputArray: ["Male", "Female", "Other"], output: $addProfileCreationVM.gender, show: $showAlertBox, accepted: $accpetedAction[1])
                             .zIndex(1.0)
                         
-                    // case 2 is the second step -> birthday date
+                    // case 2 is the third step -> birthday date
                     case 2:
-                        AlertBoxView(title: "Select your birthday date", placeholder: "Tap here to choose..", defaultText: "Birthday", dateInput: true, output: $addProfileCreationVM.birthdayDate, show: $showAlertBox, accepted: $accpetedAction[2])
+                        AlertBoxView(title: "Select your birthday date", placeholder: "Tap here to choose..", defaultText: "Birthday", dateInput: true, output: $addProfileCreationVM.birthdayDate, show: $showAlertBox, accepted: $accpetedAction[2], date: birthdayDate)
                             .zIndex(1.0)
+                        
+                    // case 3 is the fourth step -> searching for creation
+                    case 3:
+                        AlertBoxView(title: "Choose for whom you are searching", placeholder: "Tap here to choose..", defaultText: "Searching for", pickerInput: true, pickerInputArray: ["Male", "Female", "Both"], output: $searchingFor, show: $showAlertBox, accepted: $accpetedAction[3])
+                            .zIndex(1.0)
+                        
+                    case 4:
+                        // add alertbox to ask user for location services
+                        AlertBoxView(title: "Allow app to use your current location", placeholder: "", defaultText: "", output: $acceptLocation, show: $showAlertBox, accepted: $accpetedAction[4])
+                        
                     
                     // the default is 0 which is the first step in the pathway -> name creation
                     default:
@@ -248,6 +277,87 @@ struct BirthdayLineView: View {
             }
             
             Text(birthday)
+            
+        }
+        .padding(.horizontal, 16)
+        .frame(width: 340, alignment: .leading)
+    }
+}
+
+struct SearchingLineView: View {
+    
+    // Binding from main View
+    @Binding var searchingFor: String
+
+    // binding for pathway change
+    @Binding var pathwayStep: Int
+    
+    // binding for show/hide of alertBox
+    @Binding var showAlertBox: Bool
+    
+    // icon name changes after the value is set
+    @Binding var iconName: String
+    
+    // background color changes after the value is set
+    @Binding var backgroundColor: String
+    
+    var body: some View {
+        HStack {
+            
+            Text(searchingFor)
+            
+            Button(action: {
+                // configure which step it is in the pathway
+                pathwayStep = 3
+                showAlertBox = true
+            }) {
+                Image(systemName: iconName)
+                    .font(.title)
+                    .padding(4)
+                    .background(Color(backgroundColor))
+                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+            }
+            
+            
+        }
+        .padding(.horizontal, 16)
+        .frame(width: 340, alignment: .trailing)
+    }
+}
+
+struct LocationLineView: View {
+    
+    // Binding from main View
+    @Binding var acceptLocation: String
+
+    // binding for pathway change
+    @Binding var pathwayStep: Int
+    
+    // binding for show/hide of alertBox
+    @Binding var showAlertBox: Bool
+    
+    // icon name changes after the value is set
+    @Binding var iconName: String
+    
+    // background color changes after the value is set
+    @Binding var backgroundColor: String
+    
+    var body: some View {
+        HStack {
+            
+            Button(action: {
+                // configure which step it is in the pathway
+                pathwayStep = 4
+                showAlertBox = true
+            }) {
+                Image(systemName: iconName)
+                    .font(.title)
+                    .padding(4)
+                    .background(Color(backgroundColor))
+                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+            }
+            
+            Text("Location")
             
         }
         .padding(.horizontal, 16)
