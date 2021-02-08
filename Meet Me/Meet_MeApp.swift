@@ -11,12 +11,18 @@ import Firebase
 @main
 struct Meet_MeApp: App {
     
+    @State var startProcessDone: Bool = false
+    
     init() {
         FirebaseApp.configure()
     }
     var body: some Scene {
         WindowGroup {
-            StartView()
+            if startProcessDone {
+                MainControllerView()
+            } else {
+                StartView(startProcessDone: $startProcessDone)
+            }
 //            ProfileCreationView()
 //            PickerView()
         }

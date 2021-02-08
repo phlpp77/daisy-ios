@@ -149,10 +149,7 @@
 				1724D0FB25BE1EAF007F3277 /* StartViews */,
 				175E40E525B46ABB00ADC9BF /* BlurView.swift */,
 				17C0C1CD25BF67D60021987D /* AlertBoxView.swift */,
-				1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */,
-				1774B67425D1E31400D1D2F1 /* MainExploreView.swift */,
-				1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */,
-				1774B67825D1E35200D1D2F1 /* MainChatView.swift */,
+				1774B67C25D1E7A200D1D2F1 /* MainController */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -186,6 +183,17 @@
 				905485D525C4B44F00E2024D /* ErrorMessages.swift */,
 			);
 			path = Extra;
+			sourceTree = "<group>";
+		};
+		1774B67C25D1E7A200D1D2F1 /* MainController */ = {
+			isa = PBXGroup;
+			children = (
+				1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */,
+				1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */,
+				1774B67425D1E31400D1D2F1 /* MainExploreView.swift */,
+				1774B67825D1E35200D1D2F1 /* MainChatView.swift */,
+			);
+			path = MainController;
 			sourceTree = "<group>";
 		};
 		5249E9C9E4879C62B0DE99B3 /* Pods */ = {

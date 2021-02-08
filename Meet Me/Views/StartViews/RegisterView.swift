@@ -141,6 +141,6 @@ struct RegisterView: View {
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView(showLoginView: .constant(false))
+        RegisterView(showLoginView: .constant(false), userIsLoggedIn: .constant(false))
     }
 }

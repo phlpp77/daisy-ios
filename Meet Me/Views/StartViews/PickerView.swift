@@ -17,6 +17,7 @@ struct PickerView: View {
             DateTextField(date: $date)
             Text(String(lastIndex ?? 0))
                 .font(.largeTitle)
+                .foregroundColor(.accentColor)
         }
         .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
     }

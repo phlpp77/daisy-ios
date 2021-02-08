@@ -9,7 +9,12 @@ import SwiftUI
 
 struct MainExploreView: View {
     var body: some View {
-        Text("Everything to find meets is here - Meet Me Market")
+        VStack {
+            Text("Everything to find meets is here")
+            Text("Meet Me Market")
+                .font(.largeTitle)
+                .foregroundColor(.accentColor)
+        }
     }
 }
 

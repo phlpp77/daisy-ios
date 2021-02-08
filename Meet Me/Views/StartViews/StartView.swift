@@ -10,6 +10,9 @@ import SwiftUI
 
 struct StartView: View {
     
+    // returns true when login or registration process is done
+    @Binding var startProcessDone: Bool
+    
     // for animation from welcomeView to RegisterView
     @State var showWelcomeView = true
     
@@ -25,9 +28,6 @@ struct StartView: View {
     // animation to show the button to start
     @State var showStartButton = false
     
-    // is true when the profile creation process is done
-    @State var profileCreationFinished: Bool = false
-    
     var body: some View {
         
         ZStack {
@@ -41,7 +41,7 @@ struct StartView: View {
                 // animate from welcome to register view
                 .opacity(showWelcomeView ? 1 : 0)
             
-            ProfileCreationView(profileCreationFinished: $profileCreationFinished)
+            ProfileCreationView(profileCreationFinished: $startProcessDone)
                 // animation from login to profile creation
                 .opacity(userIsLoggedIn ? 1 : 0)
             
@@ -81,7 +81,7 @@ struct StartView: View {
 
 struct StartView_Previews: PreviewProvider {
     static var previews: some View {
-        StartView()
+        StartView(startProcessDone: .constant(false))
     }
 }
 
