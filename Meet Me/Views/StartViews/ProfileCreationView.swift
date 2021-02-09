@@ -211,7 +211,15 @@ struct GenderLineView: View {
 }
 
 
-
+//Button("Save") {
+    //addProfileCreationVM.save()
+//}.onChange(of: addProfileCreationVM.saved, perform: { value in
+    //if value {
+        //WIRD AUSGEFÜHRT WENN SAVE ERFOLGREICH
+    //}
+//})
+//}
+//Text(addProfileCreationVM.message)
 
 
 

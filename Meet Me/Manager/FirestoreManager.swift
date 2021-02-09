@@ -17,6 +17,8 @@ class FirestoreManager {
         db = Firestore.firestore()
     }
     
+    
+    
     func saveUser(userModel: UserModel, completion: @escaping (Result<UserModel?, Error>) -> Void) {
         
         do {
@@ -34,5 +36,31 @@ class FirestoreManager {
                 completion(.failure(error))
             }
         }
+    
+    
+    //retrunt noch alle nutzer
+    func getUserItem(completion: @escaping (Result<[UserModel]?, Error>) -> Void) {
+        
+        db.collection("users")
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    if let snapshot = snapshot {
+                        let users: [UserModel]? = snapshot.documents.compactMap { doc in
+                            var user = try? doc.data(as: UserModel.self)
+                            if user != nil {
+                                user!.userId = doc.documentID
+                            }
+                            return user
+                        }
+                        
+                        completion(.success(users))
+                    }
+                    
+                }
+            }
+    
     }
+}
 
