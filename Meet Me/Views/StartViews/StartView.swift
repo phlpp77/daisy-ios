@@ -10,6 +10,9 @@ import SwiftUI
 
 struct StartView: View {
     
+    // returns true when login or registration process is done
+    @Binding var startProcessDone: Bool
+    
     // for animation from welcomeView to RegisterView
     @State var showWelcomeView = true
     
@@ -38,12 +41,12 @@ struct StartView: View {
                 // animate from welcome to register view
                 .opacity(showWelcomeView ? 1 : 0)
             
-            ProfileCreationView()
+            ProfileCreationView(profileCreationFinished: $startProcessDone)
                 // animation from login to profile creation
                 .opacity(userIsLoggedIn ? 1 : 0)
             
             // show the register form
-            RegisterView(showLoginView: $showLoginView)
+            RegisterView(showLoginView: $showLoginView, userIsLoggedIn: $userIsLoggedIn)
                 // animate from welcome to register view
                 .opacity(showWelcomeView ? 0 : 1)
                 // animation from register to login view
@@ -61,14 +64,15 @@ struct StartView: View {
         .animation(.easeInOut)
         // animation of second textline starts
         .onTapGesture {
-            // when tapped the second time the next button shows up after 0.5 seconds
-            if showSecondLine {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    showStartButton = true
-                }
-            }
+            
+            
             // everytime the screen is tapped
             self.showSecondLine = true
+            
+            // when tapped the next button shows up after 0.1 seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                showStartButton = true
+            }
             hapticPulse(feedback: .rigid)
         }
     }
@@ -77,7 +81,7 @@ struct StartView: View {
 
 struct StartView_Previews: PreviewProvider {
     static var previews: some View {
-        StartView()
+        StartView(startProcessDone: .constant(false))
     }
 }
 
@@ -95,15 +99,15 @@ struct WelcomeView: View {
                     
                     // adding a different color to the name
                     HStack(spacing: 0) {
-                        Text("Hallo, ")
-                        Text("Namenloser")
+                        Text("Hello, ")
+                        Text("Nameless")
                             .foregroundColor(.accentColor)
                         Text(".")
                     }
                     .font(.title)
                     
                     // question shows up after tap -> animation
-                    Text(showSecondLine ? "Willst du neue Leute kennenlernen?" : "")
+                    Text(showSecondLine ? "Do you want to meet new people?" : "")
                         .font(.subheadline)
                     
                 }
@@ -118,7 +122,7 @@ struct WelcomeView: View {
                     showWelcomeView = false
                 }, label: {
                     HStack {
-                        Text("Klar, let's go!")
+                        Text("Sure, let's go!")
                             .foregroundColor(.primary)
                         Image(systemName: "figure.walk")
                     }

@@ -12,6 +12,8 @@ struct RegisterView: View {
     // for animation to loginView
     @Binding var showLoginView: Bool
     
+    @Binding var userIsLoggedIn: Bool
+    
     //wird nur gebraucht wenn man die View über sheet anzeigt
     //kann man implementieren für das registrieren
     @Environment(\.presentationMode) var presentationMode
@@ -44,7 +46,7 @@ struct RegisterView: View {
                     
                     HStack(spacing: 12) {
                         Image(systemName: "envelope")
-                        TextField("Gebe deine E-Mail Adresse ein", text: $registerVM.email)
+                        TextField("Type your email address here", text: $registerVM.email)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .keyboardType(.emailAddress)
                     }
@@ -55,7 +57,7 @@ struct RegisterView: View {
                     // main password textField
                     HStack(spacing: 12) {
                         Image(systemName: "lock.shield")
-                        SecureField("Suche dir ein Passwort aus", text: $registerVM.password)
+                        SecureField("Choose a password", text: $registerVM.password)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .onTapGesture {
                                 showSecondPasswordTextField = true
@@ -70,7 +72,7 @@ struct RegisterView: View {
                     // retype password textField
                     HStack(spacing: 12) {
                         Image(systemName: "goforward")
-                        SecureField("Wiederhole dein Passwort", text: $registerVM.password2)
+                        SecureField("Repeat your password", text: $registerVM.password2)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                     .frame(height: showSecondPasswordTextField ? 40 : 0)
@@ -85,13 +87,11 @@ struct RegisterView: View {
                         // type "have account" func here -> to login screen
                         
                     }) {
-                        Text("Ich habe schon einen Account")
+                        Text("I have an account")
                             .font(.subheadline)
                             .foregroundColor(.gray)
                             .padding(3)
                             .padding(.trailing, 58)
-                            .background(Color.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
                             
                     }
                     .padding(.leading, 32)
@@ -117,6 +117,7 @@ struct RegisterView: View {
                     // type register func here
                     registerVM.register {
                         //if register was succsesful
+                        userIsLoggedIn = true
                         presentationMode.wrappedValue.dismiss()
                     }
 
@@ -140,6 +141,6 @@ struct RegisterView: View {
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView(showLoginView: .constant(false))
+        RegisterView(showLoginView: .constant(false), userIsLoggedIn: .constant(false))
     }
 }

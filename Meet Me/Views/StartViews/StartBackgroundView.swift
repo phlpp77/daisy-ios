@@ -29,6 +29,12 @@ struct StartBackgroundView: View {
                     .offset(x: showAnimation ? 130 : 0, y: showAnimation ? 300 : -20)
                 
                 Circle()
+                    .foregroundColor(.accentColor)
+                    .blendMode(.softLight)
+                    .scaleEffect(showAnimation ? 0.02 : 1.8)
+                    .offset(x: -50)
+                
+                Circle()
                     .foregroundColor(Color("BackgroundOptional")).opacity(0.6)
                     .scaleEffect(showAnimation ? 1.2 : 1)
                     .offset(x: showAnimation ? -130 : 100, y: showAnimation ? -60 : 100)

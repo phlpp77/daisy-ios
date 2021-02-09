@@ -31,15 +31,6 @@ struct LoginView: View {
                 
                 VStack(alignment: .leading) {
                     
-                    VStack {
-                        Image("login")
-                            .resizable()
-                            .frame(width: 100, height: 100, alignment: .center)
-                            .aspectRatio(contentMode: .fit)
-                            .padding(.bottom, 10)
-                    }
-                    .frame(maxWidth: .infinity)
-                    
                     if problemAccured {
                         Text(problemMessage)
                             .font(.footnote)
@@ -51,7 +42,7 @@ struct LoginView: View {
                     
                     HStack(spacing: 12) {
                         Image(systemName: "envelope")
-                        TextField("Gebe deine E-Mail Adresse ein", text: $loginVM.email)
+                        TextField("Enter your email address here", text: $loginVM.email)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .keyboardType(.emailAddress)
                     }
@@ -62,7 +53,7 @@ struct LoginView: View {
                     // main password textField
                     HStack(spacing: 12) {
                         Image(systemName: "lock.shield")
-                        SecureField("Gebe dein Passwort ein", text: $loginVM.password)
+                        SecureField("Enter your password here", text: $loginVM.password)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             
                     }
@@ -85,7 +76,7 @@ struct LoginView: View {
                     hapticPulse(feedback: .rigid)
                     loginVM.login {
                         isActive = true
-                        print("Login erfolgreich \(isActive)")
+                        print("Login succeeded \(isActive)")
                         userIsLoggedIn = true
                         
                     }
