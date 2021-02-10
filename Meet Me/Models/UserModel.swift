@@ -13,6 +13,7 @@ struct UserModel: Codable {
     var name: String
     var birthdayDate: String
     var gender: String
+    var startProcessDone: Bool = true 
     
 
 }
