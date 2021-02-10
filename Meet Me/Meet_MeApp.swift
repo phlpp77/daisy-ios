@@ -20,11 +20,13 @@ struct Meet_MeApp: App {
         WindowGroup {
 //            ProfileCreationView(profileCreationFinished: .constant(false))
             
-            if startProcessDone {
-                MainControllerView()
-            } else {
-                StartView(startProcessDone: $startProcessDone)
-            }
+            MainControllerView()
+            
+//            if startProcessDone {
+//                MainControllerView()
+//            } else {
+//                StartView(startProcessDone: $startProcessDone)
+//            }
 
 //            PickerView()
         }

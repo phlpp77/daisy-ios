@@ -23,6 +23,8 @@
 		1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67425D1E31400D1D2F1 /* MainExploreView.swift */; };
 		1774B67925D1E35200D1D2F1 /* MainChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67825D1E35200D1D2F1 /* MainChatView.swift */; };
 		1778E41325D0904100C5D343 /* DateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1778E41225D0904000C5D343 /* DateTextField.swift */; };
+		179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C525D477F1007F64D6 /* YouEventView.swift */; };
+		179B27CA25D48788007F64D6 /* EventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C925D48788007F64D6 /* EventLineView.swift */; };
 		17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67225C2093D00E4DA78 /* PickerTextField.swift */; };
 		17A1E67625C20DD200E4DA78 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67525C20DD200E4DA78 /* PickerView.swift */; };
 		17BC5FE025BE0B5900F35075 /* ProfileCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */; };
@@ -57,6 +59,8 @@
 		1774B67425D1E31400D1D2F1 /* MainExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainExploreView.swift; sourceTree = "<group>"; };
 		1774B67825D1E35200D1D2F1 /* MainChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChatView.swift; sourceTree = "<group>"; };
 		1778E41225D0904000C5D343 /* DateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTextField.swift; sourceTree = "<group>"; };
+		179B27C525D477F1007F64D6 /* YouEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventView.swift; sourceTree = "<group>"; };
+		179B27C925D48788007F64D6 /* EventLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLineView.swift; sourceTree = "<group>"; };
 		17A1E67225C2093D00E4DA78 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		17A1E67525C20DD200E4DA78 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationView.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 				1724D0FB25BE1EAF007F3277 /* StartViews */,
 				175E40E525B46ABB00ADC9BF /* BlurView.swift */,
 				17C0C1CD25BF67D60021987D /* AlertBoxView.swift */,
+				179B27C425D476F7007F64D6 /* Marketplace */,
 				1774B67C25D1E7A200D1D2F1 /* MainController */,
 			);
 			path = Views;
@@ -194,6 +199,15 @@
 				1774B67825D1E35200D1D2F1 /* MainChatView.swift */,
 			);
 			path = MainController;
+			sourceTree = "<group>";
+		};
+		179B27C425D476F7007F64D6 /* Marketplace */ = {
+			isa = PBXGroup;
+			children = (
+				179B27C525D477F1007F64D6 /* YouEventView.swift */,
+				179B27C925D48788007F64D6 /* EventLineView.swift */,
+			);
+			path = Marketplace;
 			sourceTree = "<group>";
 		};
 		5249E9C9E4879C62B0DE99B3 /* Pods */ = {
@@ -348,6 +362,7 @@
 				1778E41325D0904100C5D343 /* DateTextField.swift in Sources */,
 				90F8AB4625BF5CDA00E969E0 /* UserModel.swift in Sources */,
 				90B1BFDB25B8DBB700F8FBF7 /* RegisterViewModel.swift in Sources */,
+				179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */,
 				17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */,
 				905485A125C48B0A00E2024D /* FirestoreManager.swift in Sources */,
 				1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */,
@@ -357,6 +372,7 @@
 				90B1BFD625B8DB9200F8FBF7 /* LoginViewModel.swift in Sources */,
 				905485D625C4B44F00E2024D /* ErrorMessages.swift in Sources */,
 				17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */,
+				179B27CA25D48788007F64D6 /* EventLineView.swift in Sources */,
 				1774B67225D1E2E500D1D2F1 /* MainSettingsView.swift in Sources */,
 				905485D325C4AB2400E2024D /* ProfileCreationModel.swift in Sources */,
 				175E40E925B4A31C00ADC9BF /* HapticFeedback.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct UserModel: Codable {
     
@@ -13,6 +14,7 @@ struct UserModel: Codable {
     var name: String
     var birthdayDate: String
     var gender: String
+//    var picture: Image
     
 
 }
