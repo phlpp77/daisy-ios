@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+
+
+enum SourceType {
+    case photoLibrary
+    case camera
+}
+
 struct ProfileCreationView: View {
     
     
@@ -46,6 +53,14 @@ struct ProfileCreationView: View {
     
     // var to see if the action in the alert was accepted or not
     @State var accpetedAction = [false, false, false, false, false, false]
+    
+    @State private var showImagePicker: Bool = false
+    @State private var image: Image? = nil
+    @State private var originalImage: UIImage? = nil
+    @State private var name: String = ""
+    @State private var showActionSheet: Bool = false
+    @State private var sourceType: SourceType = .photoLibrary
+    
     
     
     var body: some View {
@@ -318,15 +333,7 @@ struct GenderLineView: View {
 }
 
 
-//Button("Save") {
-    //addProfileCreationVM.save()
-//}.onChange(of: addProfileCreationVM.saved, perform: { value in
-    //if value {
-        //WIRD AUSGEFÜHRT WENN SAVE ERFOLGREICH
-    //}
-//})
-//}
-//Text(addProfileCreationVM.message)
+
 
 
 
@@ -389,6 +396,8 @@ struct BirthdayLineView: View {
         .frame(width: 340, alignment: .leading)
     }
 }
+
+
 
 struct SearchingLineView: View {
     
@@ -511,3 +520,4 @@ struct PictureLineView: View {
         .frame(width: 340, alignment: .trailing)
     }
 }
+
