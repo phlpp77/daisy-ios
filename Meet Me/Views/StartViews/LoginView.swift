@@ -80,6 +80,10 @@ struct LoginView: View {
                         userIsLoggedIn = true
                         
                     }
+                    //Show textfield if checkErrors is true
+                    problemAccured = loginVM.checkErrors()
+                    //Set Problem Message to ErrorMessage
+                    problemMessage = loginVM.errorMessage
                     
                     
                 }, label: {

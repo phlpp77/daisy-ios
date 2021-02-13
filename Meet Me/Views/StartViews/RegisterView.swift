@@ -120,6 +120,10 @@ struct RegisterView: View {
                         userIsLoggedIn = true
                         presentationMode.wrappedValue.dismiss()
                     }
+                    //Show textfield if checkErrors is true
+                    problemAccured = registerVM.checkErrors()
+                    //Set Problem Message to ErrorMessage
+                    problemMessage = registerVM.errorMessage
 
 
                     

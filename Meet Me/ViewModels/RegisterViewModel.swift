@@ -13,23 +13,46 @@ class RegisterViewModel: ObservableObject {
     var email: String = ""
     var password: String = ""
     var password2: String = ""
+    var errorMessage: String = ""
     
     func register(completion: @escaping () -> Void){
-        if password == password2 {
-            Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    completion()
-                }
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                self.errorMessage = error.localizedDescription
+            } else {
+                completion()
             }
+<<<<<<< HEAD
         } else {
             //Muss in ein Texfield geschrieben werden
             
             print("passwords are not the same")
+=======
+>>>>>>> db-development
+        }
+        
+        
+    }
+    
+
+    
+    
+    func checkErrors() -> Bool {
+        
+        if self.errorMessage != "" {
+            return true
+        }
+        if password != password2 && password != "" {
+            self.errorMessage = "Passwords are not the same"
+            return true
+        } else {
+            return false
         }
         
     }
+    
+    
+    
     
 }
 

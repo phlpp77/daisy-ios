@@ -27,6 +27,7 @@
 		179B27CA25D48788007F64D6 /* EventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C925D48788007F64D6 /* EventLineView.swift */; };
 		17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67225C2093D00E4DA78 /* PickerTextField.swift */; };
 		17A1E67625C20DD200E4DA78 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67525C20DD200E4DA78 /* PickerView.swift */; };
+		17AC8C8425D8315100252875 /* YouProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AC8C8325D8315100252875 /* YouProfileView.swift */; };
 		17BC5FE025BE0B5900F35075 /* ProfileCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */; };
 		17C0C1CE25BF67D60021987D /* AlertBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C0C1CD25BF67D60021987D /* AlertBoxView.swift */; };
 		17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E45ABA25B74F6600B9A93B /* LoginView.swift */; };
@@ -39,6 +40,7 @@
 		90F2334725D57BE5003FB1D9 /* FirestoreFotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2334625D57BE5003FB1D9 /* FirestoreFotoManager.swift */; };
 		90F2334D25D58481003FB1D9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2334C25D58481003FB1D9 /* ImagePicker.swift */; };
 		90F2335125D5943B003FB1D9 /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */; };
+		90F2336325D830E7003FB1D9 /* ProfileCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2336225D830E7003FB1D9 /* ProfileCreationModel.swift */; };
 		90F8AB4625BF5CDA00E969E0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F8AB4525BF5CDA00E969E0 /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,7 @@
 		179B27C925D48788007F64D6 /* EventLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLineView.swift; sourceTree = "<group>"; };
 		17A1E67225C2093D00E4DA78 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		17A1E67525C20DD200E4DA78 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		17AC8C8325D8315100252875 /* YouProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouProfileView.swift; sourceTree = "<group>"; };
 		17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationView.swift; sourceTree = "<group>"; };
 		17C0C1CD25BF67D60021987D /* AlertBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBoxView.swift; sourceTree = "<group>"; };
 		17E45ABA25B74F6600B9A93B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -77,6 +80,7 @@
 		90F2334625D57BE5003FB1D9 /* FirestoreFotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreFotoManager.swift; sourceTree = "<group>"; };
 		90F2334C25D58481003FB1D9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
+		90F2336225D830E7003FB1D9 /* ProfileCreationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCreationModel.swift; sourceTree = "<group>"; };
 		90F8AB4525BF5CDA00E969E0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		AB6866AE96A8202B7FCBDD60 /* Pods_Meet_Me.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meet_Me.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED01C3F270FAC0ABF13CC65 /* Pods-Meet Me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Me.release.xcconfig"; path = "Target Support Files/Pods-Meet Me/Pods-Meet Me.release.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				90B1BFD525B8DB9200F8FBF7 /* LoginViewModel.swift */,
+				90F2336225D830E7003FB1D9 /* ProfileCreationModel.swift */,
 				90B1BFDA25B8DBB700F8FBF7 /* RegisterViewModel.swift */,
 			);
 			path = ViewModels;
@@ -211,6 +216,7 @@
 			children = (
 				179B27C525D477F1007F64D6 /* YouEventView.swift */,
 				179B27C925D48788007F64D6 /* EventLineView.swift */,
+				17AC8C8325D8315100252875 /* YouProfileView.swift */,
 			);
 			path = Marketplace;
 			sourceTree = "<group>";
@@ -359,6 +365,7 @@
 				175E40FA25B4D26A00ADC9BF /* Information.swift in Sources */,
 				90F2335125D5943B003FB1D9 /* PhotoCaptureView.swift in Sources */,
 				175E40E025B43BB200ADC9BF /* StartView.swift in Sources */,
+				90F2336325D830E7003FB1D9 /* ProfileCreationModel.swift in Sources */,
 				17C0C1CE25BF67D60021987D /* AlertBoxView.swift in Sources */,
 				17A1E67625C20DD200E4DA78 /* PickerView.swift in Sources */,
 				175E40E325B4670800ADC9BF /* StartBackgroundView.swift in Sources */,
@@ -375,6 +382,7 @@
 				905485A125C48B0A00E2024D /* FirestoreManager.swift in Sources */,
 				90F2334D25D58481003FB1D9 /* ImagePicker.swift in Sources */,
 				1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */,
+				17AC8C8425D8315100252875 /* YouProfileView.swift in Sources */,
 				1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */,
 				1774B67925D1E35200D1D2F1 /* MainChatView.swift in Sources */,
 				17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */,
