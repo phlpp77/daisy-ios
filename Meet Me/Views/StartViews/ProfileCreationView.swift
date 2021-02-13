@@ -352,7 +352,7 @@ struct GenderLineView: View {
 struct BirthdayLineView: View {
     
     // Binding from main View
-    @Binding var birthday: Date
+    @Binding var birthday: String
 
     // binding for pathway change
     @Binding var pathwayStep: Int

@@ -41,6 +41,7 @@
 		90F2334D25D58481003FB1D9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2334C25D58481003FB1D9 /* ImagePicker.swift */; };
 		90F2335125D5943B003FB1D9 /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */; };
 		90F2336325D830E7003FB1D9 /* ProfileCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2336225D830E7003FB1D9 /* ProfileCreationModel.swift */; };
+		90F2336725D84736003FB1D9 /* MeProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2336625D84736003FB1D9 /* MeProfileModel.swift */; };
 		90F8AB4625BF5CDA00E969E0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F8AB4525BF5CDA00E969E0 /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		90F2334C25D58481003FB1D9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
 		90F2336225D830E7003FB1D9 /* ProfileCreationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCreationModel.swift; sourceTree = "<group>"; };
+		90F2336625D84736003FB1D9 /* MeProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileModel.swift; sourceTree = "<group>"; };
 		90F8AB4525BF5CDA00E969E0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		AB6866AE96A8202B7FCBDD60 /* Pods_Meet_Me.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meet_Me.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED01C3F270FAC0ABF13CC65 /* Pods-Meet Me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Me.release.xcconfig"; path = "Target Support Files/Pods-Meet Me/Pods-Meet Me.release.xcconfig"; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				90B1BFD525B8DB9200F8FBF7 /* LoginViewModel.swift */,
+				90F2336625D84736003FB1D9 /* MeProfileModel.swift */,
 				90F2336225D830E7003FB1D9 /* ProfileCreationModel.swift */,
 				90B1BFDA25B8DBB700F8FBF7 /* RegisterViewModel.swift */,
 			);
@@ -364,6 +367,7 @@
 				17BC5FE025BE0B5900F35075 /* ProfileCreationView.swift in Sources */,
 				175E40FA25B4D26A00ADC9BF /* Information.swift in Sources */,
 				90F2335125D5943B003FB1D9 /* PhotoCaptureView.swift in Sources */,
+				90F2336725D84736003FB1D9 /* MeProfileModel.swift in Sources */,
 				175E40E025B43BB200ADC9BF /* StartView.swift in Sources */,
 				90F2336325D830E7003FB1D9 /* ProfileCreationModel.swift in Sources */,
 				17C0C1CE25BF67D60021987D /* AlertBoxView.swift in Sources */,
