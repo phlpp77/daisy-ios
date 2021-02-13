@@ -15,8 +15,10 @@ class ProfileCreationModel: ObservableObject {
     
     var userId: String = ""
     var name: String = "Name"
-    var birthdayDate: String = "Birthday"
+    var birthdayDate: Date = Date()
     var gender: String = "Gender"
+    var searchingFor: String = ""
+    var startProcessDone: Bool = true
     
     init() {
         firestoreManager = FirestoreManager()
@@ -24,7 +26,7 @@ class ProfileCreationModel: ObservableObject {
     
     func save() {
         
-        let userModel = UserModel( userId: userId, name: name, birthdayDate: birthdayDate, gender: gender)
+        let userModel = UserModel( userId: userId, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor)
         firestoreManager.saveUser(userModel: userModel){ result in
             switch result {
             case .success(let userModel):

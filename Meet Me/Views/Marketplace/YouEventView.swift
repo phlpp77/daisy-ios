@@ -21,7 +21,11 @@ struct YouEventView: View {
     // not used due to prototyping
     var picture: Image = Image("")
     // user image needs to be added to the UserModel
+<<<<<<< HEAD
     var userProfile: UserModel = UserModel(userId: "007", name: "Philipp", birthdayDate: "06.09.1998", gender: "male")
+=======
+    //private var userProfile: UserModel = UserModel(userId: "007", name: "Philipp", birthdayDate: "06.09.1998", gender: "male")
+>>>>>>> origin/db-development
     
     var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
