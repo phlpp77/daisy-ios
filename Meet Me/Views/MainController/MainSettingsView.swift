@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct MainSettingsView: View {
+    
+    var user: UserModel = testUser
+    
+    
     var body: some View {
-        Text("Settings and Profile stuff")
-            .font(.title)
+        MeProfileView(user: user)
     }
 }
 
