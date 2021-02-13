@@ -40,6 +40,15 @@ struct ProfileCreationView: View {
     // state var to catch what the user has handed into the textfield of the alertbox
     @State var outputAlertBox = ""
     
+    // image handling
+    
+    // show
+    @State var showImagePicker = true
+    // image (swiftUI)
+    @State var image: Image? = Image("Philipp")
+    // image UIKit
+    @State var uiImage: UIImage? = UIImage(named: "Philipp")
+    
     // var to check at which step the user wants to hand in data
     @State var pathwayStep = 0
     
@@ -123,7 +132,7 @@ struct ProfileCreationView: View {
                             .frame(width: 268.58, height: 92.92, alignment: .center)
                         
                         // upload image to database
-                        PictureLineView(pictureText: accpetedAction[5] ? .constant("You look good today") : .constant("No picture"), pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: $iconName, backgroundColor: $backgroundColor)
+                        PictureLineView(pictureText: accpetedAction[5] ? .constant("You look good today") : .constant("No picture"), showPicker: $showImagePicker, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: $iconName, backgroundColor: $backgroundColor)
                         
                         // create image for the end pathway to the update profile button
                         VStack(alignment: .trailing) {
@@ -222,9 +231,14 @@ struct ProfileCreationView: View {
                     case 4:
                         // add alertbox to ask user for location services
                         AlertBoxView(title: "Allow app to use your current location", placeholder: "", defaultText: "", output: $acceptLocation, show: $showAlertBox, accepted: $accpetedAction[4])
-                        
+                    
+                    // image picker view
                     case 5:
-                        AlertBoxView(title: "Choose a picture of yourself", placeholder: "", defaultText: "", output: $acceptLocation, show: $showAlertBox, accepted: $accpetedAction[4])
+                        if showImagePicker {
+                            ImagePicker(isShown: $showImagePicker, image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
+                        }
+                        
+//                        AlertBoxView(title: "Choose a picture of yourself", placeholder: "", defaultText: "", output: $acceptLocation, show: $showAlertBox, accepted: $accpetedAction[4])
                     
                     // the default is 0 which is the first step in the pathway -> name creation
                     default:
@@ -496,6 +510,9 @@ struct PictureLineView: View {
     
     // Binding from main View
     @Binding var pictureText: String
+    
+    // show imagePicker
+    @Binding var showPicker: Bool
 
     // binding for pathway change
     @Binding var pathwayStep: Int
@@ -517,7 +534,9 @@ struct PictureLineView: View {
             Button(action: {
                 // configure which step it is in the pathway
                 pathwayStep = 5
+                showPicker = true
                 showAlertBox = true
+                print("show")
             }) {
                 Image(systemName: iconName)
                     .font(.title)
