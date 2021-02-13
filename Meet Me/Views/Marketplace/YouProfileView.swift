@@ -9,10 +9,10 @@ import SwiftUI
 
 struct YouProfileView: View {
     
-    private var id: String
-    private var name: String
-    private var birthdayDate: Date
-    private var gender: String
+    var id: String
+    var name: String
+    var birthdayDate: Date
+    var gender: String
     
     var body: some View {
         Text("Hello, World!")

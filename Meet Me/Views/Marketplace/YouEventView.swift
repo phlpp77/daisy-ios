@@ -21,11 +21,10 @@ struct YouEventView: View {
     // not used due to prototyping
     var picture: Image = Image("")
     // user image needs to be added to the UserModel
-<<<<<<< HEAD
-    var userProfile: UserModel = UserModel(userId: "007", name: "Philipp", birthdayDate: "06.09.1998", gender: "male")
-=======
-    //private var userProfile: UserModel = UserModel(userId: "007", name: "Philipp", birthdayDate: "06.09.1998", gender: "male")
->>>>>>> origin/db-development
+    // sample user and birthday
+        
+//    var userProfile: UserModel = UserModel(userId: "007", name: "Philipp", birthdayDate: createSampleDate(YouEventView(dragPosition: .constant(.zero)))(), gender: "Male", searchingFor: "Female")
+
     
     var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -112,6 +111,20 @@ struct YouEventView: View {
                    dragPosition = .zero
                 }
         )
+    }
+    
+    func createSampleDate() -> Date {
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 1998
+        dateComponents.month = 9
+        dateComponents.day = 6
+        
+        // since the components above (like year 1980) are for Gregorian
+        let userCalendar = Calendar(identifier: .gregorian)
+        
+        let someDateTime = userCalendar.date(from: dateComponents)!
+        return someDateTime
     }
 }
 

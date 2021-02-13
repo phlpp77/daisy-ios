@@ -25,7 +25,7 @@ struct ProfileCreationView: View {
     // MARK: - state vars
     
     // var for the birthday date of the profile owner in the date format
-    @State var birthdayDate: Date = Date()
+    @State var birthdayDate: String = ""
     
     // user is searching for..
     @State var searchingFor: String = "Searching for"
@@ -97,7 +97,7 @@ struct ProfileCreationView: View {
                         }
                         
                         // get the birthday date of the user
-                        BirthdayLineView(birthday: $addProfileCreationVM.birthdayDate, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[2] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[2] ? .constant("Clear") : .constant("BackgroundMain"))
+                        BirthdayLineView(birthday: $birthdayDate, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[2] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[2] ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         // create image for the third to the fourth step of the pathway
                         Image("Pathway-ProfileCreation")
@@ -148,6 +148,12 @@ struct ProfileCreationView: View {
                             addProfileCreationVM.save()
                             // haptic feedback when button is tapped
                             hapticPulse(feedback: .rigid)
+                            
+                            
+                            // convert birthday date from string to date and hand it over to the VM for storage in database
+                            let bDate = convertStringToDate(date: birthdayDate)
+                            
+                            addProfileCreationVM.birthdayDate = bDate
                             
                             // process is done
                             //profileCreationFinished = true
@@ -206,7 +212,7 @@ struct ProfileCreationView: View {
                         
                     // case 2 is the third step -> birthday date
                     case 2:
-                        AlertBoxView(title: "Select your birthday date", placeholder: "Tap here to choose..", defaultText: "Birthday", dateInput: true, output: $addProfileCreationVM.birthdayDate, show: $showAlertBox, accepted: $accpetedAction[2], date: birthdayDate)
+                        AlertBoxView(title: "Select your birthday date", placeholder: "Tap here to choose..", defaultText: "Birthday", dateInput: true, output: $birthdayDate, show: $showAlertBox, accepted: $accpetedAction[2])
                             .zIndex(1.0)
                         
                     // case 3 is the fourth step -> searching for creation
@@ -236,6 +242,18 @@ struct ProfileCreationView: View {
             
         }
     }
+    
+    
+    func convertStringToDate(date: String) -> Date {
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.locale = Locale(identifier: "en_DE")
+        dateFormatter.dateFormat = "dd/MM/YY"
+        
+        let date = dateFormatter.date(from: date)!
+        return date
+    }
+    
 }
 
 struct ProfileCreationView_Previews: PreviewProvider {
@@ -352,7 +370,7 @@ struct GenderLineView: View {
 struct BirthdayLineView: View {
     
     // Binding from main View
-    @Binding var birthday: Date
+    @Binding var birthday: String
 
     // binding for pathway change
     @Binding var pathwayStep: Int
