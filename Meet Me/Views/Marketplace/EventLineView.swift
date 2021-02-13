@@ -9,53 +9,10 @@ import SwiftUI
 
 struct EventLineView: View {
     
-    @State var position: CGSize = .zero
+    @State var dragPosition: CGSize = .zero
     
     var body: some View {
-        VStack {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 10) {
-                    ForEach(0 ..< 5) { item in
-                        GeometryReader { geometry in
-                            VStack {
-                                YouEventView()
-                                    .rotation3DEffect(
-                                        // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
-                                        Angle(
-                                            degrees: Double(geometry.frame(in: .global).minX - 30) / -40),
-                                            axis: (x: 0, y: 10, z: 0)
-                                        )
-    //                                .scaleEffect(CGSize(width: 1.0, height: 1.0))
-                                    .offset(x: position.width, y: position.height)
-                                    .gesture(
-                                        DragGesture()
-                                            .onChanged { value in
-                                                position = value.translation
-                                                
-                                            }
-                                            .onEnded { value in
-                                               position = .zero
-                                            }
-                                    )
-                            
-    //                            Text(
-    //                                String(
-    ////                                    Double(geometry.frame(in: .global).minX - 100) / -10
-    //                                    Double(geometry.size.width)
-    //                                )
-    //                            )
-                                }
-                                
-                        }
-                        .frame(width: 250, height: 250)
-                        .padding(.bottom, 35)
-                        .padding(.leading, 30)
-                    }
-                }
-            }
-            .frame(maxWidth: .infinity)
-            
-            Spacer()
+        ZStack {
             
             Color.white
                 .frame(width: 150, height: 150, alignment: .center)
@@ -67,9 +24,49 @@ struct EventLineView: View {
                         ))
                         .foregroundColor(Color.black.opacity(0.5))
                 )
+                .offset(y: 140)
+            
+            VStack {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(0 ..< 5) { item in
+                            GeometryReader { geometry in
+                                VStack {
+                                    YouEventView(dragPosition: $dragPosition)
+                                        .rotation3DEffect(
+                                            // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
+                                            Angle(
+                                                degrees: Double(geometry.frame(in: .global).minX - 30) / -40),
+                                                axis: (x: 0, y: 10, z: 0)
+                                            )
+        //                                .scaleEffect(CGSize(width: 1.0, height: 1.0))
+                                        .offset(x: dragPosition.width, y: dragPosition.height)
+                                                                        
+        //                            Text(
+        //                                String(
+        ////                                    Double(geometry.frame(in: .global).minX - 100) / -10
+        //                                    Double(geometry.size.width)
+        //                                )
+        //                            )
+                                    }
+                                    
+                            }
+                            .frame(width: 250, height: 250)
+                            .padding(.bottom, 190)
+                            .padding(.leading, 30)
+                                                        
+                        }
+                    }
+                }
+                .frame(maxWidth: .infinity)
                 
+                
+                Spacer()
+            }
+            .frame(height: 440)
+            
         }
-        .frame(height: 400)
+        .frame(height: 440)
         
     }
 }

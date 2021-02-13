@@ -9,32 +9,34 @@ import SwiftUI
 
 struct YouEventView: View {
     
-    // vars
-    private var category:String = "Café"
-    private var date: Date = Date()
-    private var startTime: Date = Date()
-    // test purpose add 30 minutes
-    private var endTime: Date = Date() + 30 * 60
-    // not used due to prototyping
-    private var picture: Image = Image("")
-    // user image needs to be added to the UserModel
-    private var userProfile: UserModel = UserModel(userId: "007", name: "Philipp", birthdayDate: "06.09.1998", gender: "male")
+    // Bindings
+    @Binding var dragPosition: CGSize
     
-    private var dateFormatter: DateFormatter = { 
+    // vars
+    var category:String = "Café"
+    var date: Date = Date()
+    var startTime: Date = Date()
+    // test purpose add 30 minutes
+    var endTime: Date = Date() + 30 * 60
+    // not used due to prototyping
+    var picture: Image = Image("")
+    // user image needs to be added to the UserModel
+    var userProfile: UserModel = UserModel(userId: "007", name: "Philipp", birthdayDate: "06.09.1998", gender: "male")
+    
+    var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_DE")
         formatter.dateStyle = .medium
         return formatter
     }()
     
-    private var timeFormatter: DateFormatter = {
+    var timeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_DE")
         formatter.timeStyle = .short
         return formatter
     }()
-    
-    
+       
     
     
     var body: some View {
@@ -96,11 +98,24 @@ struct YouEventView: View {
         .frame(width: 250, height: 250, alignment: .center)
         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 15)
+        .gesture(
+            DragGesture()
+                .onChanged { value in
+                    dragPosition = value.translation
+                    
+                }
+                .onEnded { value in
+                   dragPosition = .zero
+                }
+        )
     }
 }
 
-struct YouEventView_Previews: PreviewProvider {
-    static var previews: some View {
-        YouEventView()
-    }
-}
+//struct YouEventView_Previews: PreviewProvider {
+//    
+//    @State var cgsize: CGSize = .zero
+//    
+//    static var previews: some View {
+//        YouEventView(dragPosition: $cgsize)
+//    }
+//}
