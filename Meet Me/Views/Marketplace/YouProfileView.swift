@@ -9,7 +9,10 @@ import SwiftUI
 
 struct YouProfileView: View {
     
-    
+    private var id: String
+    private var name: String
+    private var birthdayDate: Date
+    private var gender: String
     
     var body: some View {
         Text("Hello, World!")
@@ -18,6 +21,6 @@ struct YouProfileView: View {
 
 struct YouProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        YouProfileView()
+        YouProfileView(id: "1", name: "Philipp", birthdayDate: Date(), gender: "Male")
     }
 }
