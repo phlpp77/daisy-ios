@@ -48,7 +48,7 @@ class FirestoreManager {
         
         db.collection("users")
             .whereField("userId", isEqualTo: currentUser.uid)
-            .getDocuments { (snapshot, error) in
+            .getDocuments() { (snapshot, error) in
                 if let error = error {
                     completion(.failure(error))
                 } else {

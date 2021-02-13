@@ -25,6 +25,7 @@ struct MeProfileView: View {
         gender = user.gender
         searchingFor = user.searchingFor
         url = user.url
+        print(user)
     }
     
     var body: some View {
