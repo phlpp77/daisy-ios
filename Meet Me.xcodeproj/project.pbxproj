@@ -23,6 +23,7 @@
 		1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67425D1E31400D1D2F1 /* MainExploreView.swift */; };
 		1774B67925D1E35200D1D2F1 /* MainChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67825D1E35200D1D2F1 /* MainChatView.swift */; };
 		1778E41325D0904100C5D343 /* DateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1778E41225D0904000C5D343 /* DateTextField.swift */; };
+		177F681925D8409200BC345B /* MeProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F681825D8409200BC345B /* MeProfileView.swift */; };
 		179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C525D477F1007F64D6 /* YouEventView.swift */; };
 		179B27CA25D48788007F64D6 /* EventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C925D48788007F64D6 /* EventLineView.swift */; };
 		17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67225C2093D00E4DA78 /* PickerTextField.swift */; };
@@ -63,6 +64,7 @@
 		1774B67425D1E31400D1D2F1 /* MainExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainExploreView.swift; sourceTree = "<group>"; };
 		1774B67825D1E35200D1D2F1 /* MainChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChatView.swift; sourceTree = "<group>"; };
 		1778E41225D0904000C5D343 /* DateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTextField.swift; sourceTree = "<group>"; };
+		177F681825D8409200BC345B /* MeProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileView.swift; sourceTree = "<group>"; };
 		179B27C525D477F1007F64D6 /* YouEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventView.swift; sourceTree = "<group>"; };
 		179B27C925D48788007F64D6 /* EventLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLineView.swift; sourceTree = "<group>"; };
 		17A1E67225C2093D00E4DA78 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				179B27C525D477F1007F64D6 /* YouEventView.swift */,
 				179B27C925D48788007F64D6 /* EventLineView.swift */,
 				17AC8C8325D8315100252875 /* YouProfileView.swift */,
+				177F681825D8409200BC345B /* MeProfileView.swift */,
 			);
 			path = Marketplace;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				175E40E625B46ABB00ADC9BF /* BlurView.swift in Sources */,
 				175E40F025B4CD3300ADC9BF /* RegisterView.swift in Sources */,
 				90F2334725D57BE5003FB1D9 /* FirestoreFotoManager.swift in Sources */,
+				177F681925D8409200BC345B /* MeProfileView.swift in Sources */,
 				17153EE725A8C5C30072CE83 /* ContentView.swift in Sources */,
 				1778E41325D0904100C5D343 /* DateTextField.swift in Sources */,
 				90F8AB4625BF5CDA00E969E0 /* UserModel.swift in Sources */,
@@ -523,7 +527,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -531,7 +535,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Me";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Mee";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -548,7 +552,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -556,7 +560,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Me";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Mee";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
