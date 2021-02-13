@@ -23,8 +23,9 @@ class RegisterViewModel: ObservableObject {
                     completion()
                 }
             }
-        }else {
+        } else {
             //Muss in ein Texfield geschrieben werden
+            
             print("passwords are not the same")
         }
         

@@ -25,7 +25,7 @@ struct RegisterView: View {
     @State var problemAccured = false
     
     // message to present the user when error happend
-    @State var problemMessage = "Wrong password"
+    @State var problemMessage = "Passwords are not the same"
     
     
     var body: some View {
