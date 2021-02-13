@@ -136,6 +136,7 @@ struct AlertBoxView: View {
                             
                             if dateInput {
                                 let dateFormatter = DateFormatter()
+                                dateFormatter.locale = Locale(identifier: "en_DE")
                                 dateFormatter.dateFormat = "dd/MM/YY"
                                 output = dateFormatter.string(from: date)
                             }

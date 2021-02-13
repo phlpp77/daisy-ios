@@ -40,7 +40,7 @@ class UserListModel: ObservableObject {
             user.name
         }
         
-        var birthdayDate: String {
+        var birthdayDate: Date {
             user.birthdayDate
         }
         

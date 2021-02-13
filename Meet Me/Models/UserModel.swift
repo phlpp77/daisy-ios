@@ -12,10 +12,11 @@ struct UserModel: Codable {
     
     var userId: String = ""
     var name: String = ""
-    var birthdayDate: String = ""
+    var birthdayDate: Date = Date()
     var gender: String = ""
     var startProcessDone: Bool = true
     var searchingFor: String = ""
+    var url: String = ""
     
     
     

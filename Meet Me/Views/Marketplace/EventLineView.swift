@@ -39,22 +39,11 @@ struct EventLineView: View {
                                                 degrees: Double(geometry.frame(in: .global).minX - 30) / -40),
                                                 axis: (x: 0, y: 10, z: 0)
                                             )
-        //                                .scaleEffect(CGSize(width: 1.0, height: 1.0))
-                                        .offset(x: dragPosition.width, y: dragPosition.height)
-                                                                        
-        //                            Text(
-        //                                String(
-        ////                                    Double(geometry.frame(in: .global).minX - 100) / -10
-        //                                    Double(geometry.size.width)
-        //                                )
-        //                            )
                                     }
-                                    
                             }
                             .frame(width: 250, height: 250)
                             .padding(.bottom, 190)
-                            .padding(.leading, 30)
-                                                        
+                            .padding(.leading, 30)                                                        
                         }
                     }
                 }
