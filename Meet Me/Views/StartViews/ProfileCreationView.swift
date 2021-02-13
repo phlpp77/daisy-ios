@@ -143,10 +143,10 @@ struct ProfileCreationView: View {
                         
                         // update button
                         Button(action: {
-                            addProfileCreationVM.save()
+                            addProfileCreationVM.saveUserSettings()
                             // haptic feedback when button is tapped
                             hapticPulse(feedback: .rigid)
-                            
+                            print(birthdayDate)
                             // convert birthday date from string to date and hand it over to the VM for storage in database
                             let bDate = convertStringToDate(date: birthdayDate)
                             

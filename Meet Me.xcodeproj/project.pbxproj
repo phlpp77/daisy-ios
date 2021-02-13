@@ -33,6 +33,7 @@
 		17C0C1CE25BF67D60021987D /* AlertBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C0C1CD25BF67D60021987D /* AlertBoxView.swift */; };
 		17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E45ABA25B74F6600B9A93B /* LoginView.swift */; };
 		3C4632628DFAFFCA3B1B6674 /* Pods_Meet_Me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6866AE96A8202B7FCBDD60 /* Pods_Meet_Me.framework */; };
+		902EF6B925D89213004464F0 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6B825D89213004464F0 /* PhotoModel.swift */; };
 		905485A125C48B0A00E2024D /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485A025C48B0A00E2024D /* FirestoreManager.swift */; };
 		905485D625C4B44F00E2024D /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485D525C4B44F00E2024D /* ErrorMessages.swift */; };
 		90B1BFD625B8DB9200F8FBF7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1BFD525B8DB9200F8FBF7 /* LoginViewModel.swift */; };
@@ -75,6 +76,7 @@
 		17C0C1CD25BF67D60021987D /* AlertBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBoxView.swift; sourceTree = "<group>"; };
 		17E45ABA25B74F6600B9A93B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		8CC506F59200740347A6B95E /* Pods-Meet Me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Me.debug.xcconfig"; path = "Target Support Files/Pods-Meet Me/Pods-Meet Me.debug.xcconfig"; sourceTree = "<group>"; };
+		902EF6B825D89213004464F0 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		905485A025C48B0A00E2024D /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		905485D525C4B44F00E2024D /* ErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessages.swift; sourceTree = "<group>"; };
 		90B1BFD525B8DB9200F8FBF7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = "Meet Me/ViewModels/LoginViewModel.swift"; sourceTree = SOURCE_ROOT; };
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				90F8AB4525BF5CDA00E969E0 /* UserModel.swift */,
+				902EF6B825D89213004464F0 /* PhotoModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				90B1BFD625B8DB9200F8FBF7 /* LoginViewModel.swift in Sources */,
 				905485D625C4B44F00E2024D /* ErrorMessages.swift in Sources */,
 				17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */,
+				902EF6B925D89213004464F0 /* PhotoModel.swift in Sources */,
 				179B27CA25D48788007F64D6 /* EventLineView.swift in Sources */,
 				1774B67225D1E2E500D1D2F1 /* MainSettingsView.swift in Sources */,
 				175E40E925B4A31C00ADC9BF /* HapticFeedback.swift in Sources */,
