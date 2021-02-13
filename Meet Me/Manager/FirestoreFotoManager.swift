@@ -5,9 +5,9 @@
 ////  Created by Lukas Dech on 11.02.21.
 ////
 //
-//import Foundation
-//import Firebase
-//import FirebaseFirestoreSwift
+import Foundation
+import Firebase
+import FirebaseFirestoreSwift
 //
 //enum LoadingState {
 //    case idle
@@ -17,9 +17,17 @@
 //}
 //
 //
-//class FirestoreFotoManager: ObservableObject {
+class FirestoreFotoManager: ObservableObject {
+    
+    
+     private var showImagePicker: Bool = false
+//     private var image: Image? = nil
+     private var originalImage: UIImage? = nil
+     private var name: String = ""
+     private var showActionSheet: Bool = false
+     private var sourceType: SourceType = .photoLibrary
 //
-//    let storage = Storage.storage()
+   let storage = Storage.storage()
 //    let db = Firestore.firestore()
 //    @Published var fungi: [ProfileCreationModel] = []
 //    @Published var loadingState: LoadingState = .idle
@@ -78,27 +86,27 @@
 //        }
 //
 //    }
-//    func uploadPhoto(data: Data, completion: @escaping (URL?) -> Void) {
-//
-//        //create unique image names
-//        let imageName = UUID().uuidString
-//        //reference to Storage
-//        let storageRef = storage.reference()
-//        //access to photo ref
-//        let photoRef = storageRef.child("UserImages/\(imageName).png")
-//
-//        photoRef.putData(data, metadata: nil) { metadata, error in
-//            photoRef.downloadURL { (url, error) in
-//                if let error = error {
-//                    print(error.localizedDescription)
-//                } else {
-//                    completion(url)
-//                }
-//            }
-//        }
-//
-//    }
-//
+  func uploadPhoto(data: Data, completion: @escaping (URL?) -> Void) {
+        //create unique image names
+       let imageName = UUID().uuidString
+        //reference to Storage
+        let storageRef = storage.reference()
+        //access to photo ref
+        let photoRef = storageRef.child("UserImages/\(imageName).png")
+        
+       //Upload the data and get the url
+       photoRef.putData(data, metadata: nil) { metadata, error in
+            photoRef.downloadURL { (url, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                   completion(url)
+                }
+            }
+        }
+
+    }
+
 //    private func savePhoto() {
 //
 //        DispatchQueue.main.async {
@@ -132,3 +140,4 @@
 //    }
 //
 //}
+}
