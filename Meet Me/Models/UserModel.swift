@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct UserModel: Codable {
     var id: String?
