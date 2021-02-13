@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+
+
+enum SourceType {
+    case photoLibrary
+    case camera
+}
+
 struct ProfileCreationView: View {
     
     
@@ -138,11 +145,12 @@ struct ProfileCreationView: View {
                         
                         // update button
                         Button(action: {
+                            addProfileCreationVM.save()
                             // haptic feedback when button is tapped
                             hapticPulse(feedback: .rigid)
                             
                             // process is done
-                            profileCreationFinished = true
+                            //profileCreationFinished = true
                             
                         }, label: {
                             HStack {
@@ -156,6 +164,18 @@ struct ProfileCreationView: View {
                         .padding(.bottom, 16)
                         .opacity(enoughInformation ? 1 : 0.7)
                         .disabled(enoughInformation)
+                        
+                        .onChange(of: addProfileCreationVM.saved, perform: { value in
+                            if value {
+                                //if save succssful
+                                profileCreationFinished = true
+                                print("saveddddd")
+                            } else {
+                                //if profile settings didnt uploded
+                                print("Problems")
+                            }
+                        })
+                        
                         
                         
                     }
@@ -304,6 +324,31 @@ struct GenderLineView: View {
     }
 }
 
+
+
+
+
+
+
+
+//
+//struct GenderXLineView: View {
+//
+//    // Binding from main View
+//    @Binding var gender: String
+//
+//    var body: some View {
+//        HStack {
+//            Text("Gender")
+//            TextField("", text: $gender)
+//                .textFieldStyle(RoundedBorderTextFieldStyle())
+//                .frame(width: 35)
+//        }
+//        .padding(.horizontal, 16)
+//        .frame(width: 340, alignment: .trailing)
+//    }
+//}
+
 struct BirthdayLineView: View {
     
     // Binding from main View
@@ -343,6 +388,8 @@ struct BirthdayLineView: View {
         .frame(width: 340, alignment: .leading)
     }
 }
+
+
 
 struct SearchingLineView: View {
     
@@ -465,3 +512,4 @@ struct PictureLineView: View {
         .frame(width: 340, alignment: .trailing)
     }
 }
+

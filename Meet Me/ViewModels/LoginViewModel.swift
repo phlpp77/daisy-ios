@@ -17,6 +17,7 @@ class LoginViewModel: ObservableObject {
         
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let error = error {
+                print("wrong Password")
                 print(error.localizedDescription)
             } else {
                 completion()
@@ -25,5 +26,7 @@ class LoginViewModel: ObservableObject {
         }
         
     }
+    
+
     
 }
