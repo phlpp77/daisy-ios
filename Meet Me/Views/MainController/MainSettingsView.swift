@@ -10,10 +10,22 @@ import SwiftUI
 struct MainSettingsView: View {
     
     var user: UserModel = testUser
+    @ObservedObject private var userListVM = UserListModel()
+
+    
+    
+  
+    
+  
+    
     
     
     var body: some View {
-        MeProfileView(user: user)
+        
+        MeProfileView(user: userListVM.userModel)
+            .onAppear {
+                userListVM.getUser()
+            }
     }
 }
 

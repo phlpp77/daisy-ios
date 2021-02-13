@@ -27,8 +27,6 @@ struct ProfileCreationView: View {
     // var for the birthday date of the profile owner in the date format
     @State var birthdayDate: String = ""
     
-    // user is searching for..
-    @State var searchingFor: String = "Searching for"
     
     // user accepts the location usage - NEEDS TO BE CHANGED TO BOOL
     @State var acceptLocation: String = "True"
@@ -105,7 +103,7 @@ struct ProfileCreationView: View {
                             .frame(width: 268.58, height: 92.92, alignment: .center)
                         
                         // get for what the user is searching (women, men, both)
-                        SearchingLineView(searchingFor: $searchingFor, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[3] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[3] ? .constant("Clear") : .constant("BackgroundMain"))
+                        SearchingLineView(searchingFor: $addProfileCreationVM.searchingFor, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[3] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[3] ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         // create image for the fourth to the fifth step of the pathway
                         Image("Pathway-ProfileCreation")
@@ -217,7 +215,7 @@ struct ProfileCreationView: View {
                         
                     // case 3 is the fourth step -> searching for creation
                     case 3:
-                        AlertBoxView(title: "Choose for whom you are searching", placeholder: "Tap here to choose..", defaultText: "Searching for", pickerInput: true, pickerInputArray: ["Male", "Female", "Both"], output: $searchingFor, show: $showAlertBox, accepted: $accpetedAction[3])
+                        AlertBoxView(title: "Choose for whom you are searching", placeholder: "Tap here to choose..", defaultText: "Searching for", pickerInput: true, pickerInputArray: ["Male", "Female", "Both"], output: $addProfileCreationVM.searchingFor, show: $showAlertBox, accepted: $accpetedAction[3])
                             .zIndex(1.0)
                         
                     case 4:

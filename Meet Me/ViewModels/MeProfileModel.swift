@@ -10,19 +10,23 @@ import Foundation
 
 class UserListModel: ObservableObject {
     private var firestoreManager: FirestoreManager
-    @Published var user: [MeProfileModel] = []
+    var user: [MeProfileModel] = []
+    @Published var userModel: UserModel = testUser
+
     
     init() {
         firestoreManager = FirestoreManager()
     }
     
-    func getUser() {
+    func getUser(){
         firestoreManager.getUserItem { result in
             switch result {
             case .success(let user):
                 if let user = user {
                     DispatchQueue.main.async {
                         self.user = user.map(MeProfileModel.init)
+                        self.userModel = self.convertModels(userArray: self.user)
+                        
                         
                     }
                 }
@@ -31,6 +35,25 @@ class UserListModel: ObservableObject {
             }
         }
     }
+    
+    func convertModels(userArray: [MeProfileModel]) -> UserModel {
+        
+        var user: UserModel = testUser
+        
+            user.name = userArray[0].name
+            user.gender = userArray[0].gender
+            user.startProcessDone = userArray[0].startProcessDone
+            user.searchingFor = userArray[0].searchingFor
+            user.url = userArray[0].url
+            user.userId = userArray[0].userId
+            user.birthdayDate = userArray[0].birthdayDate
+            
+        return user
+            
+         
+    }
+        
+    
 
     struct MeProfileModel {
         
@@ -40,7 +63,7 @@ class UserListModel: ObservableObject {
             user.name
         }
         
-        var birthdayDate: String {
+        var birthdayDate: Date {
             user.birthdayDate
         }
         
@@ -55,7 +78,19 @@ class UserListModel: ObservableObject {
         var searchingFor: String {
             user.searchingFor
         }
+        
+        var userId: String {
+            user.userId
+        }
+        
+        var url: String {
+            user.url
+        }
+        
     }
+    
+    
+
 }
 
 

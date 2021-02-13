@@ -17,7 +17,7 @@ class ProfileCreationModel: ObservableObject {
     
     var userId: String = ""
     var name: String = "Name"
-    var birthdayDate: String = ""
+    var birthdayDate: Date = Date()
     var gender: String = "Gender"
     var searchingFor: String = ""
     var startProcessDone: Bool = true
