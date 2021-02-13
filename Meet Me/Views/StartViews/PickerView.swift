@@ -9,17 +9,15 @@ import SwiftUI
 
 struct PickerView: View {
     
-    @State var date: Date = Date()
-    @State var lastIndex: Int?
+    @State var position: CGSize = .zero
     
     var body: some View {
-        VStack {
-            DateTextField(date: $date)
-            Text(String(lastIndex ?? 0))
-                .font(.largeTitle)
-                .foregroundColor(.accentColor)
+        List {
+            ForEach(0 ..< 5) { item in
+                YouEventView(dragPosition: $position)
+//                Text("Test")
+            }
         }
-        .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
     }
 }
 

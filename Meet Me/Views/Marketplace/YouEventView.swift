@@ -101,16 +101,12 @@ struct YouEventView: View {
         .frame(width: 250, height: 250, alignment: .center)
         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 15)
-        .gesture(
-            DragGesture()
-                .onChanged { value in
-                    dragPosition = value.translation
-                    
-                }
-                .onEnded { value in
-                   dragPosition = .zero
-                }
-        )
+        .background(
+              GeometryReader { proxy in
+                Color.clear
+                  
+              }
+            )
     }
     
 }
