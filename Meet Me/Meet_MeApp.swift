@@ -25,18 +25,19 @@ struct Meet_MeApp: App {
     var body: some Scene {
         
         WindowGroup {
-            ProfileCreationView(profileCreationFinished: .constant(false))
+//            ProfileCreationView(profileCreationFinished: .constant(false))
             
             //Copy into if for autologin
             //||  autoLogin()
-//            if startProcessDone {
-//
-//                MainControllerView()
-//
-//            } else {
-//                StartView(startProcessDone: $startProcessDone)
-//
-//            }
+            if startProcessDone {
+
+                MainControllerView()
+
+            } else {
+                StartView(startProcessDone: $startProcessDone)
+                    .ignoresSafeArea(.keyboard, edges: .bottom)
+
+            }
 
 //            PickerView()
         }

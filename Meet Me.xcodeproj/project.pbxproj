@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */; };
-		17153EE725A8C5C30072CE83 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17153EE625A8C5C30072CE83 /* ContentView.swift */; };
 		17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EE825A8C5C30072CE83 /* Assets.xcassets */; };
 		17153EEC25A8C5C30072CE83 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EEB25A8C5C30072CE83 /* Preview Assets.xcassets */; };
 		175E40E025B43BB200ADC9BF /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40DF25B43BB200ADC9BF /* StartView.swift */; };
@@ -24,6 +23,7 @@
 		1774B67925D1E35200D1D2F1 /* MainChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67825D1E35200D1D2F1 /* MainChatView.swift */; };
 		1778E41325D0904100C5D343 /* DateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1778E41225D0904000C5D343 /* DateTextField.swift */; };
 		177F681925D8409200BC345B /* MeProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F681825D8409200BC345B /* MeProfileView.swift */; };
+		177F682A25D8937F00BC345B /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F682925D8937F00BC345B /* KeyboardHandler.swift */; };
 		179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C525D477F1007F64D6 /* YouEventView.swift */; };
 		179B27CA25D48788007F64D6 /* EventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C925D48788007F64D6 /* EventLineView.swift */; };
 		17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67225C2093D00E4DA78 /* PickerTextField.swift */; };
@@ -49,7 +49,6 @@
 /* Begin PBXFileReference section */
 		17153EE125A8C5C30072CE83 /* Meet Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meet Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meet_MeApp.swift; sourceTree = "<group>"; };
-		17153EE625A8C5C30072CE83 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		17153EE825A8C5C30072CE83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17153EEB25A8C5C30072CE83 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		17153EED25A8C5C30072CE83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		1774B67825D1E35200D1D2F1 /* MainChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChatView.swift; sourceTree = "<group>"; };
 		1778E41225D0904000C5D343 /* DateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTextField.swift; sourceTree = "<group>"; };
 		177F681825D8409200BC345B /* MeProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileView.swift; sourceTree = "<group>"; };
+		177F682925D8937F00BC345B /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		179B27C525D477F1007F64D6 /* YouEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventView.swift; sourceTree = "<group>"; };
 		179B27C925D48788007F64D6 /* EventLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLineView.swift; sourceTree = "<group>"; };
 		17A1E67225C2093D00E4DA78 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
@@ -125,7 +125,6 @@
 			children = (
 				905485D025C4AA6100E2024D /* Manager */,
 				17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */,
-				17153EE625A8C5C30072CE83 /* ContentView.swift */,
 				90DB66B325B8D412006D2C4E /* GoogleService-Info.plist */,
 				175E40DC25B4320E00ADC9BF /* Views */,
 				175E40DE25B4322000ADC9BF /* ViewModels */,
@@ -201,6 +200,7 @@
 				175E40F325B4CD9400ADC9BF /* Modifiers.swift */,
 				175E40F925B4D26A00ADC9BF /* Information.swift */,
 				905485D525C4B44F00E2024D /* ErrorMessages.swift */,
+				177F682925D8937F00BC345B /* KeyboardHandler.swift */,
 			);
 			path = Extra;
 			sourceTree = "<group>";
@@ -381,7 +381,6 @@
 				175E40F025B4CD3300ADC9BF /* RegisterView.swift in Sources */,
 				90F2334725D57BE5003FB1D9 /* FirestoreFotoManager.swift in Sources */,
 				177F681925D8409200BC345B /* MeProfileView.swift in Sources */,
-				17153EE725A8C5C30072CE83 /* ContentView.swift in Sources */,
 				1778E41325D0904100C5D343 /* DateTextField.swift in Sources */,
 				90F8AB4625BF5CDA00E969E0 /* UserModel.swift in Sources */,
 				90B1BFDB25B8DBB700F8FBF7 /* RegisterViewModel.swift in Sources */,
@@ -392,6 +391,7 @@
 				1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */,
 				17AC8C8425D8315100252875 /* YouProfileView.swift in Sources */,
 				1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */,
+				177F682A25D8937F00BC345B /* KeyboardHandler.swift in Sources */,
 				1774B67925D1E35200D1D2F1 /* MainChatView.swift in Sources */,
 				17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */,
 				90B1BFD625B8DB9200F8FBF7 /* LoginViewModel.swift in Sources */,

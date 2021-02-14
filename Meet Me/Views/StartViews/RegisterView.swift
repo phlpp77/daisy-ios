@@ -9,6 +9,9 @@ import SwiftUI
 
 struct RegisterView: View {
     
+    // needed to get keyboard height when keyboard is shown
+    @StateObject private var keyboardHandler = KeyboardHandler()
+    
     // for animation to loginView
     @Binding var showLoginView: Bool
     
@@ -33,6 +36,11 @@ struct RegisterView: View {
 //            StartBackgroundView()
             
             VStack {
+                
+                Spacer()
+                    .frame(height: 150)
+                
+                // stack with textfields
                 VStack(alignment: .leading) {
                     
                     if problemAccured {
@@ -78,6 +86,7 @@ struct RegisterView: View {
                     .frame(height: showSecondPasswordTextField ? 40 : 0)
                     .opacity(showSecondPasswordTextField ? 1 : 0)
                     
+                    
                     // have account button
                     Button(action: {
                         
@@ -101,9 +110,12 @@ struct RegisterView: View {
                 .foregroundColor(.accentColor)
                 .padding()
                 .modifier(FrozenWindowModifier())
-                .animation(.easeInOut)
-                .frame(maxHeight: .infinity)
+//                .animation(.easeInOut)
+//                .frame(maxHeight: .infinity)
                 .frame(width: screen.width - 40)
+                // animation when keyboard is shown or not
+                .offset(y: keyboardHandler.keyboardHeight/10)
+                .animation(.easeInOut(duration: 0.3))
 
                 Spacer()
                 
@@ -136,7 +148,9 @@ struct RegisterView: View {
                 })
                 .padding()
                 .modifier(FrozenWindowModifier())
-//                .offset(y: 200)
+                // animation when keyboard is shown or not
+                .padding(.bottom, keyboardHandler.keyboardHeight)
+                .animation(.easeInOut(duration: 0.3))
             }
             
         }
