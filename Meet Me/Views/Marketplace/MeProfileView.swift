@@ -101,13 +101,7 @@ struct MeProfileView: View {
     }
 }
 
-func dateToAge(date: Date) -> Int {
-//    let dateComponents = DateComponents()
-    let lifeTime = date.timeIntervalSinceNow
-    let years = -lifeTime / 60 / 60 / 24 / 365
-    return Int(years)
-    
-}
+
 
 struct MeProfileView_Previews: PreviewProvider {
     static var previews: some View {
@@ -117,20 +111,4 @@ struct MeProfileView_Previews: PreviewProvider {
 
 
 
-// test user
-let testUser: UserModel = UserModel(userId: "007", name: "Philipp", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Female")
 
-// date creation for testing
-func createSampleDate() -> Date {
-    
-    var dateComponents = DateComponents()
-    dateComponents.year = 1998
-    dateComponents.month = 9
-    dateComponents.day = 6
-    
-    // since the components above (like year 1980) are for Gregorian
-    let userCalendar = Calendar(identifier: .gregorian)
-    
-    let someDateTime = userCalendar.date(from: dateComponents)!
-    return someDateTime
-}
