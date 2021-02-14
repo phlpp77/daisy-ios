@@ -11,9 +11,10 @@ struct YouEventView: View {
     
     // Bindings
     @Binding var dragPosition: CGSize
+    @Binding var eventModelObject: EventModelObject
     
     // vars
-    var category:String = "Café"
+    var category: String = "Café"
     var date: Date = Date()
     var startTime: Date = Date()
     // test purpose add 30 minutes

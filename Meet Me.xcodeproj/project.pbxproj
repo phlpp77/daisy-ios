@@ -10,6 +10,7 @@
 		17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */; };
 		17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EE825A8C5C30072CE83 /* Assets.xcassets */; };
 		17153EEC25A8C5C30072CE83 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EEB25A8C5C30072CE83 /* Preview Assets.xcassets */; };
+		174423AA25D9A0DF00D25EDD /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174423A925D9A0DF00D25EDD /* EventModel.swift */; };
 		175E40E025B43BB200ADC9BF /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40DF25B43BB200ADC9BF /* StartView.swift */; };
 		175E40E325B4670800ADC9BF /* StartBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40E225B4670800ADC9BF /* StartBackgroundView.swift */; };
 		175E40E625B46ABB00ADC9BF /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40E525B46ABB00ADC9BF /* BlurView.swift */; };
@@ -57,6 +58,7 @@
 		17153EE825A8C5C30072CE83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17153EEB25A8C5C30072CE83 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		17153EED25A8C5C30072CE83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		174423A925D9A0DF00D25EDD /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		175E40DF25B43BB200ADC9BF /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		175E40E225B4670800ADC9BF /* StartBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartBackgroundView.swift; sourceTree = "<group>"; };
 		175E40E525B46ABB00ADC9BF /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				90F8AB4525BF5CDA00E969E0 /* UserModel.swift */,
 				902EF6B825D89213004464F0 /* PhotoModel.swift */,
 				902EF6C125D8A13B004464F0 /* PhotoModelObject .swift */,
+				174423A925D9A0DF00D25EDD /* EventModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				17AC8C8425D8315100252875 /* YouProfileView.swift in Sources */,
 				1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */,
 				902EF6BD25D896E3004464F0 /* UIImageResized.swift in Sources */,
+				174423AA25D9A0DF00D25EDD /* EventModel.swift in Sources */,
 				177F682A25D8937F00BC345B /* KeyboardHandler.swift in Sources */,
 				1774B67925D1E35200D1D2F1 /* MainChatView.swift in Sources */,
 				17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */,
