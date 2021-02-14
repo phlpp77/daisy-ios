@@ -60,6 +60,7 @@ class MeProfileViewModel: ObservableObject {
         firestoreFotoManager.getAllPhotosFromUser(completionHandler: { success in
             if success {
                 // yeah picture
+                if
                 print(URL(string: self.firestoreFotoManager.photoModel[0].url)!)
                 let url = URL(string: self.firestoreFotoManager.photoModel[0].url)!
                 self.userPictureURL = url
