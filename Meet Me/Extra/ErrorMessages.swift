@@ -10,4 +10,5 @@ import Foundation
 struct ErrorMessages {
     
     static let userSaveFailed = "Unable to upload the user data"
+    static let eventSaveFailed = "Unable to upload the event"
 }

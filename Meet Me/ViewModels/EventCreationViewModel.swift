@@ -16,17 +16,17 @@ class EventCreationViewModel: ObservableObject {
     @Published var message: String = ""
     
     
-    var userId: String
-    var name: String
-    var eventId: String
-    var category: String
-    var date: Date
-    var startTime: Date
-    var endTime: Date
-    var pictureURL: URL
+    var userId: String = "007"
+    var name: String = "Nice Event"
+    var eventId: String = "008"
+    var category: String = "Café"
+    var date: Date = Date()
+    var startTime: Date = Date ()
+    var endTime: Date = Date() + 30 * 60
+    var pictureURL: URL = stockURL
     let storage = Storage.storage()
     
-    
+
     init() {
         fireStoreManagerEvent = FireStoreManagerEvent()
     }
@@ -45,7 +45,7 @@ class EventCreationViewModel: ObservableObject {
                 }
             case .failure(_):
                 DispatchQueue.main.async {
-                    self .message = ErrorMessages.EventSaveFailed
+                    self .message = ErrorMessages.eventSaveFailed
                 }
                 
             
