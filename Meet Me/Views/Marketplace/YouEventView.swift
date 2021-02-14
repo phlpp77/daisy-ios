@@ -12,7 +12,7 @@ struct YouEventView: View {
     // Bindings
     @Binding var dragPosition: CGSize
     
-    // vars
+    // vars to show in the screen
     private var category: String
     private var date: Date
     private var startTime: Date

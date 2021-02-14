@@ -13,6 +13,7 @@ struct DateTextField: UIViewRepresentable {
     
     // format to show the dates
     var localeStyle: String = "en_DE"
+    public var dateFormat: String = "dd/MM/YY"
 
     var didChange: () -> Void = { }
 
@@ -92,6 +93,10 @@ struct DateTextField: UIViewRepresentable {
         // setting the design to the old look which is inside the keyboard area
         datePickerView.preferredDatePickerStyle = .wheels
         datePickerView.locale = Locale(identifier: localeStyle)
+        // if not the standard view then use only the time
+        if dateFormat != "dd/MM/YY" {
+            datePickerView.datePickerMode = .time
+        }
         textField.inputView = datePickerView
         datePickerView.addTarget(context.coordinator, action: #selector(Coordinator.handleDatePicker(sender:)), for: .valueChanged)
         addDoneButtonToKeyboard(textField)
@@ -101,6 +106,7 @@ struct DateTextField: UIViewRepresentable {
     func updateUIView(_ uiView: UITextField, context: Context) {
         // German format DE and English language en
         dateFormatter.locale = Locale(identifier: localeStyle)
+        dateFormatter.dateFormat = dateFormat
         uiView.text = dateFormatter.string(from: date)
     }
 
@@ -163,6 +169,13 @@ extension DateTextField {
     func placeholder(_ text: String?) -> some View {
         var view = self
         view.placeholder = text
+        return view
+    }
+    
+    // func to only change the dateFormat of the picker
+    func dateFormat(_ dateFormat: String) -> some View {
+        var view = self
+        view.dateFormat = dateFormat
         return view
     }
     
