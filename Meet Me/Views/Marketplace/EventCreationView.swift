@@ -10,6 +10,9 @@ import URLImage
 
 struct EventCreationView: View {
     
+    // binding for presentation
+    @Binding var presentation: Bool
+    
     // vars to show in the screen
     @State private var category: String = "Café"
     @State private var date: Date = Date()
@@ -30,6 +33,8 @@ struct EventCreationView: View {
     @State private var startTimeAsString = ""
     @State private var endTimeAsString = ""
     
+    // animation of custom button
+    @State private var buttonPressed: Bool = false
     
     var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -49,102 +54,132 @@ struct EventCreationView: View {
     
     var body: some View {
         ZStack {
-            ZStack {
-                // Main image as a backgrond of the event
-                Image(uiImage: uiImage!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 250, height: 250, alignment: .center)
-                .onTapGesture {
-                    self.showAlertBox = true
-                    self.pathNumber = 99
-                }
-                
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(category)
-                            .onTapGesture {
-                                self.showAlertBox = true
-                                self.pathNumber = 0
-                            }
-                        
-                        Spacer()
-                        Divider()
-                        
-                        Text(dateAsString)
-                            .onAppear {
-                                self.dateAsString = dateFormatter.string(from: Date())
-                            }
-                            .onTapGesture {
-                                self.showAlertBox = true
-                                self.pathNumber = 1
-                            }
-                        
+            VStack {
+                ZStack {
+                    // Main image as a backgrond of the event
+                    Image(uiImage: uiImage!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 250, height: 250, alignment: .center)
+                    .onTapGesture {
+                        self.showAlertBox = true
+                        self.pathNumber = 99
                     }
-                    .padding(.horizontal, 8)
-                    .frame(width: 250, height: 30)
-                    .background(BlurView(style: .systemThickMaterial))
-                    .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 10)
                     
-                    Spacer()
-                    
-                    HStack {
-                        Image(uiImage: #imageLiteral(resourceName: "Philipp"))
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 60, height: 60, alignment: .center)
-                            .overlay(
-                                Circle()
-                                    .stroke(Color.white.opacity(0.9), lineWidth: 5)
-                            )
-                            .clipShape(Circle())
-                            .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 12)
-                            .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
-                        
-                        Spacer()
-                        
-                        
-                        // time
+                    VStack(alignment: .leading) {
                         HStack {
-                            Text(startTimeAsString)
-                                .foregroundColor(.accentColor)
+                            Text(category)
+                                .onTapGesture {
+                                    self.showAlertBox = true
+                                    self.pathNumber = 0
+                                }
+                            
+                            Spacer()
+                            Divider()
+                            
+                            Text(dateAsString)
                                 .onAppear {
-                                    self.startTimeAsString = timeFormatter.string(from: startTime)
+                                    self.dateAsString = dateFormatter.string(from: Date())
                                 }
                                 .onTapGesture {
                                     self.showAlertBox = true
-                                    self.pathNumber = 2
+                                    self.pathNumber = 1
                                 }
-                            Text("until")
-                            Text(endTimeAsString)
-                                .onAppear {
-                                    self.endTimeAsString = timeFormatter.string(from: endTime)
-                                }
-                                .onTapGesture {
-                                    self.showAlertBox = true
-                                    self.pathNumber = 3
-                                }
+                            
                         }
-                        .font(.headline)
-    //                        .padding(.horizontal, 20)
+                        .padding(.horizontal, 8)
+                        .frame(width: 250, height: 30)
+                        .background(BlurView(style: .systemThickMaterial))
+                        .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 10)
+                        
+                        Spacer()
+                        
+                        HStack {
+                            Image(uiImage: #imageLiteral(resourceName: "Philipp"))
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 60, height: 60, alignment: .center)
+                                .overlay(
+                                    Circle()
+                                        .stroke(Color.white.opacity(0.9), lineWidth: 5)
+                                )
+                                .clipShape(Circle())
+                                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 12)
+                                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                            
+                            Spacer()
+                            
+                            
+                            // time
+                            HStack {
+                                Text(startTimeAsString)
+                                    .foregroundColor(.accentColor)
+                                    .onAppear {
+                                        self.startTimeAsString = timeFormatter.string(from: startTime)
+                                    }
+                                    .onTapGesture {
+                                        self.showAlertBox = true
+                                        self.pathNumber = 2
+                                    }
+                                Text("until")
+                                Text(endTimeAsString)
+                                    .onAppear {
+                                        self.endTimeAsString = timeFormatter.string(from: endTime)
+                                    }
+                                    .onTapGesture {
+                                        self.showAlertBox = true
+                                        self.pathNumber = 3
+                                    }
+                            }
+                            .font(.headline)
+        //                        .padding(.horizontal, 20)
+                        }
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 8)
+                        .frame(width: 250)
+                        .background(BlurView(style: .systemUltraThinMaterial))
                     }
-                    .padding(.vertical, 5)
-                    .padding(.horizontal, 8)
-                    .frame(width: 250)
-                    .background(BlurView(style: .systemUltraThinMaterial))
+                    
+                    
                 }
+                .frame(width: 250, height: 250, alignment: .center)
+                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 15)
+                .background(
+                      GeometryReader { proxy in
+                        Color.clear
+                          
+                      }
+            )
                 
+                // update button
+                HStack {
+                    Text("Create event")
+                        .foregroundColor(.accentColor)
+                    Image(systemName: "checkmark.circle")
+                }
+                .opacity(buttonPressed ? 0.5 : 1)
+                
+                .padding()
+                .modifier(FrozenWindowModifier())
+                .padding(.bottom, 16)
+                .scaleEffect(buttonPressed ? 0.8 : 1)
+                .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
+                .onTapGesture {
+                    // update handling
+                    
+                    // button animation start
+                    buttonPressed.toggle()
+                    
+                    // haptic feedback when button is tapped
+                    hapticPulse(feedback: .rigid)
+                    
+                    // close view
+                    presentation = false
+                }
                 
             }
-            .frame(width: 250, height: 250, alignment: .center)
-            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-            .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 15)
-            .background(
-                  GeometryReader { proxy in
-                    Color.clear
-                      
-                  }
-            )
+            
             
             if showAlertBox {
                 switch pathNumber {
@@ -176,6 +211,13 @@ struct EventCreationView: View {
             
         }
         
+    }
+    
+    // function to convert strings into dates for upload into the database
+    func datesForUpload() {
+        self.date = dateFormatter.date(from: dateAsString)!
+        self.startTime = timeFormatter.date(from: startTimeAsString)!
+        self.endTime = timeFormatter.date(from: endTimeAsString)!
     }
 }
 
