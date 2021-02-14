@@ -30,8 +30,6 @@ struct MeProfileView: View {
         gender = user.gender
         searchingFor = user.searchingFor
         url = user.url
-        
-        
     }
     
     var body: some View {
@@ -40,7 +38,7 @@ struct MeProfileView: View {
                 .font(.largeTitle)
                 .frame(width: 340, alignment: .leading)
             if showProfilePhoto {
-                URLImage(url: testUrl) { image
+                URLImage(url: getProfilePictureURL(url: firestoreFotoManager.photoModel[0].url)) { image
                 in
                 image.resizable()
                     .aspectRatio(contentMode: .fit)
@@ -120,7 +118,7 @@ struct MeProfileView: View {
                     print("Erfolg")
                     print(showProfilePhoto)
                     print("\(firestoreFotoManager.photoModel.count) Bei Success")
-                    print(firestoreFotoManager.photoModel[0].url)
+//                    getProfilePictureURL(url: firestoreFotoManager.photoModel[0].url)
                 } else {
                     print("else completion")
                     // ohh, no picture
@@ -132,6 +130,12 @@ struct MeProfileView: View {
             print(showProfilePhoto)
         }
         .frame(width: 340, height: 450, alignment: .center)
+    }
+    
+    func getProfilePictureURL(url: String) -> URL {
+        let url = URL(string: url)
+        return url!
+        
     }
 }
 
