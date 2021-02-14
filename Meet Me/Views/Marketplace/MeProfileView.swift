@@ -38,24 +38,23 @@ struct MeProfileView: View {
                 .font(.largeTitle)
                 .frame(width: 340, alignment: .leading)
             
-                URLImage(url: profilePictureURL) { image
-                in
+            URLImage(url: profilePictureURL) { image in
                 image.resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .overlay(
+                        Circle()
+                            .stroke(Color.white.opacity(0.9), lineWidth: 15)
+                    )
+                    .clipShape(Circle())
+                    .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 12)
+                    .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
             }
             
             
 //            Image("Philipp")
 //                .resizable()
-//                .aspectRatio(contentMode: .fill)
-//                .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-//                .overlay(
-//                    Circle()
-//                        .stroke(Color.white.opacity(0.9), lineWidth: 15)
-//                )
-//                .clipShape(Circle())
-//                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 12)
-//                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+//
             
             Spacer()
             
