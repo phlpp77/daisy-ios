@@ -223,6 +223,6 @@ struct EventCreationView: View {
 
 struct EventCreationView_Previews: PreviewProvider {
     static var previews: some View {
-        EventCreationView()
+        EventCreationView(presentation: .constant(true))
     }
 }
