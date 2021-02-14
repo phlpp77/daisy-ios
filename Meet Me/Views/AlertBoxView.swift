@@ -32,6 +32,9 @@ struct AlertBoxView: View {
     // design the alertBox to have a DatePicker input possibility
     var dateInput = false
     
+    // design the date format of the alertbox
+    var dateFormat = "dd/MM/YY"
+    
     // cancel button per default
     var cancelButton = "Cancel"
     
@@ -95,7 +98,11 @@ struct AlertBoxView: View {
                 // only show the DatePicker if it is defined
                 if dateInput {
                     // date picker
-                    DateTextField(date: $date)
+                    let dateTextField = DateTextField(date: $date)
+                    
+                    // is change the dateFormat and returning a view
+                    dateTextField.dateFormat(dateFormat)
+                    
                 }
                 
                 
@@ -137,7 +144,7 @@ struct AlertBoxView: View {
                             if dateInput {
                                 let dateFormatter = DateFormatter()
                                 dateFormatter.locale = Locale(identifier: "en_DE")
-                                dateFormatter.dateFormat = "dd/MM/YY"
+                                dateFormatter.dateFormat = self.dateFormat
                                 output = dateFormatter.string(from: date)
                             }
                             
