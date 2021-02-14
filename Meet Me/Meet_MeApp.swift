@@ -15,7 +15,7 @@ import Firebase
 struct Meet_MeApp: App {
     
     @State var startProcessDone: Bool = false
-   private var meet_MeAppVM: Meet_MeAppViewModel = Meet_MeAppViewModel()
+    //@ObservedObject private var meet_MeAppVM: Meet_MeAppViewModel = Meet_MeAppViewModel()
 
     
     init() {
@@ -27,11 +27,12 @@ struct Meet_MeApp: App {
     var body: some Scene {
         
         WindowGroup {
-            //ProfileCreationView(profileCreationFinished: .constant(false))
             
+            //ProfileCreationView(profileCreationFinished: .constant(false))
+            //meet_MeAppVM.CheckUserAccForAutoLogin()
 //            Copy into if for autologin
 //            ||  autoLogin()
-            if meet_MeAppVM.CheckUserAccForAutoLogin() {
+            if startProcessDone || checkUserAccForAutoLogin() {
 
                 MainControllerView()
 
@@ -42,6 +43,16 @@ struct Meet_MeApp: App {
             }
 
             //PickerView()
+        }
+    }
+    
+    func checkUserAccForAutoLogin() -> Bool{
+        if Auth.auth().currentUser != nil{
+            return true
+            
+        } else {
+            return false
+
         }
     }
     

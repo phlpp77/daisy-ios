@@ -86,7 +86,7 @@ struct StartView_Previews: PreviewProvider {
 }
 
 struct WelcomeView: View {
-    
+   
     // pass over the states from the StartView
     @Binding var showWelcomeView: Bool
     @Binding var showSecondLine: Bool
@@ -120,6 +120,8 @@ struct WelcomeView: View {
                 // start button shows the register view
                 Button(action: {
                     showWelcomeView = false
+ 
+                    
                 }, label: {
                     HStack {
                         Text("Sure, let's go!")

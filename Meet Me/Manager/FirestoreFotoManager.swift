@@ -33,7 +33,7 @@ class FirestoreFotoManager: ObservableObject {
         
         print("func start savePhoto")
         if let originalImage = originalImage {
-            if let resizedImage = originalImage.resized(width: 1024) {
+            if let resizedImage = originalImage.resized(width: 360) {
                 print("image resizing")
                 if let data = resizedImage.pngData() {
                     print("image resized")

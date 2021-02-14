@@ -12,11 +12,11 @@ import FirebaseFirestoreSwift
 class Meet_MeAppViewModel: ObservableObject {
     var firestoreManagerUser: FirestoreManagerUser = FirestoreManagerUser()
 
-
+ 
 
 
     func CheckUserAccForAutoLogin() -> Bool{
-        if Auth.auth().currentUser != nil && getUser() {
+        if Auth.auth().currentUser != nil{
             return true
             
         } else {
@@ -31,7 +31,9 @@ class Meet_MeAppViewModel: ObservableObject {
             switch result {
             case .success(let user):
                 if let user = user {
-                    userStartProcessDone = user.startProcessDone
+                    if user.startProcessDone != nil {
+                        userStartProcessDone = true 
+                    }
                 }
             case .failure(let error):
                 print(error.localizedDescription)
