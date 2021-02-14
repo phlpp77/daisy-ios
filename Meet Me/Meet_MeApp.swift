@@ -25,10 +25,10 @@ struct Meet_MeApp: App {
     var body: some Scene {
         
         WindowGroup {
-//            ProfileCreationView(profileCreationFinished: .constant(false))
+            //ProfileCreationView(profileCreationFinished: .constant(false))
             
-            //Copy into if for autologin
-            //||  autoLogin()
+//            Copy into if for autologin
+//            ||  autoLogin()
             if startProcessDone {
 
                 MainControllerView()
@@ -39,7 +39,7 @@ struct Meet_MeApp: App {
 
             }
 
-//            PickerView()
+            //PickerView()
         }
     }
     

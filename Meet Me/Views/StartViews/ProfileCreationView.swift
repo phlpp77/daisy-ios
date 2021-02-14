@@ -18,6 +18,7 @@ struct ProfileCreationView: View {
     
     
     @StateObject private var addProfileCreationVM = ProfileCreationModel()
+    @StateObject private var firestoreFotoManger = FirestoreFotoManager()
     
     // binding to show the main controller that the proccess is finished
     @Binding var profileCreationFinished: Bool
@@ -45,9 +46,9 @@ struct ProfileCreationView: View {
     // show
     @State var showImagePicker = true
     // image (swiftUI)
-    @State var image: Image? = Image("Philipp")
+    @State var image: Image? 
     // image UIKit
-    @State var uiImage: UIImage? = UIImage(named: "Philipp")
+    @State var uiImage: UIImage?
     
     // var to check at which step the user wants to hand in data
     @State var pathwayStep = 0
@@ -152,12 +153,17 @@ struct ProfileCreationView: View {
                         
                         // update button
                         Button(action: {
+                            addProfileCreationVM.saveUserSettings()
+                            firestoreFotoManger.savePhoto(originalImage: uiImage)
+                            // haptic feedback when button is tapped
+                            hapticPulse(feedback: .rigid)
+                            print(birthdayDate)
                             // convert birthday date from string to date and hand it over to the VM for storage in database
                             let bDate = convertStringToDate(date: birthdayDate)
                             
                             addProfileCreationVM.birthdayDate = bDate
                             
-                            addProfileCreationVM.save()
+                            addProfileCreationVM.saveUserSettings()
                             // haptic feedback when button is tapped
                             hapticPulse(feedback: .rigid)
                             

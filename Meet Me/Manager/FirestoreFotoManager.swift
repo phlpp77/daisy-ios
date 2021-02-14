@@ -8,136 +8,136 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
-//
-//enum LoadingState {
-//    case idle
-//    case loading
-//    case success
-//    case failure
-//}
-//
-//
+import URLImage
+
+
 class FirestoreFotoManager: ObservableObject {
     
+    let storage = Storage.storage()
+    private var db: Firestore
+    //typealias CompletionHandler = (_ success: Bool) -> Void
+     
+    init() {
+          db = Firestore.firestore()
+    }
     
-     private var showImagePicker: Bool = false
-//     private var image: Image? = nil
-     private var originalImage: UIImage? = nil
-     private var name: String = ""
-     private var showActionSheet: Bool = false
-     private var sourceType: SourceType = .photoLibrary
-//
-   let storage = Storage.storage()
-//    let db = Firestore.firestore()
-//    @Published var fungi: [ProfileCreationModel] = []
-//    @Published var loadingState: LoadingState = .idle
-//
-//
-//
-//    func getAllFungiForUser(){
-//
-//        DispatchQueue.main.async {
-//            self.loadingState = .loading
-//        }
-//        guard let currentUser = Auth.auth().currentUser else {
-//            return
-//        }
-//
-//        db.collection("users")
-//            .whereField("userId", isEqualTo: currentUser.uid)
-//            .getDocuments { [weak self] (snapshot, error) in
-//                if let error = error {
-//                    print(error.localizedDescription)
-//                    DispatchQueue.main.async {
-//                        self?.loadingState = .failure
-//                    }
-//                } else {
-//                    if let snapshot = snapshot {
-//                        let fungi: [ProfileCreationModel] = snapshot.documents.compactMap { doc in
-//                            var fungi = try? doc.data(as: UserModel.self)
-//                            fungi?.id = doc.documentID
-//                            if let fungi = fungi {
-//                                return FungiViewModel(fungi: fungi)
-//                            }
-//                            return nil
-//                        }
-//                        DispatchQueue.main.async {
-//                            self?.fungi = fungi
-//                            self?.loadingState = .success
-//
-//                        }
-//                    }
-//                }
-//            }
-//
-//    }
-//
-//    func save(name: String, url: URL, completion: (Error?) -> Void) {
-//        guard let currentUser = Auth.auth().currentUser else {
-//            return
-//        }
-//
-//        do {
-//            let _ = try  db.collection("users")
-//                .addDocument(from: UserModel(name: name, url: url.absoluteString, userId: currentUser.uid))
-//                completion(nil)
-//        } catch let error {
-//            completion(error)
-//        }
-//
-//    }
-  func uploadPhoto(data: Data, completion: @escaping (URL?) -> Void) {
-        //create unique image names
-       let imageName = UUID().uuidString
-        //reference to Storage
+    @Published var photoModel: [PhotoModelObject] = []
+    
+    var stockPhotoModel: PhotoModel = PhotoModel()
+    var url: URL?
+    //var test: PhotoModelObject = PhotoModelObject(photoModel: testphotoModel)
+
+    
+    func savePhoto(originalImage: UIImage?) {
+        
+        if let originalImage = originalImage{
+            if let resizedImage = originalImage.resized(width:1024) {
+                if let data = resizedImage.pngData() {
+                    uploadUserPhoto(data:data) { [self] (url) in
+                        if let url = url {
+                            savePhotoUrlToFirestore(url: url) { error in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                } else {
+                                    //getAllPhotosFromUser(completionHandler: (Bool) -> Void)
+                                }
+                                
+                                
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            
+        }
+    }
+    
+    
+    //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
+    func uploadUserPhoto(data: Data, completion: @escaping (URL?) -> Void) {
+        
+        let imageName = UUID().uuidString
         let storageRef = storage.reference()
-        //access to photo ref
         let photoRef = storageRef.child("UserImages/\(imageName).png")
         
-       //Upload the data and get the url
-       photoRef.putData(data, metadata: nil) { metadata, error in
+        photoRef.putData(data, metadata: nil) { metadata, error in
             photoRef.downloadURL { (url, error) in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
-                   completion(url)
+                    completion(url)
                 }
             }
         }
-
+        
     }
-
-//    private func savePhoto() {
+    
+    //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
+    func savePhotoUrlToFirestore(url: URL, completion: (Error?) -> Void) {
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        
+        do {
+            let _ = try db.collection("UserPhotos")
+                .addDocument(from: PhotoModel(url: url.absoluteString, userId: currentUser.uid))
+                completion(nil)
+        } catch let error {
+            completion(error)
+        }
+        
+        
+    }
+    
+    func getAllPhotosFromUser(completionHandler: (Bool) -> Void) {
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        var flag = true
+        db.collection("UserPhotos")
+            .whereField("userId", isEqualTo: currentUser.uid)
+            .getDocuments { (snapshot,error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    flag = false
+                } else {
+                    if let snapshot = snapshot {
+                        let photoModel: [PhotoModelObject] = snapshot.documents.compactMap { doc in
+                            var photoModel = try? doc.data(as: PhotoModel.self)
+                            photoModel?.id = doc.documentID
+                            if let photoModel = photoModel {
+                                print(photoModel)
+                                return PhotoModelObject(photoModel: photoModel)
+                            }
+                            flag = false
+                            return nil
+                            
+                        }
+                        DispatchQueue.main.async {
+                            self.photoModel = photoModel
+                            
+                        }
+                    }
+                }
+            }
+        completionHandler(flag)
+    }
+ 
+    
+//    //ACHTUNG nochmal bearbeiten
+//    func getProfilePhoto() -> URL {
+//        getAllPhotosFromUser()
+//        if photoModel.count > 0{
+//            url = URL(string: photoModel[0].url)!
+//            return url!
+//        } else {
+//            let photoModelObject = PhotoModelObject(photoModel: stockPhotoModel)
+//            url = URL(string: photoModelObject.url)!
+//            return url!
 //
-//        DispatchQueue.main.async {
-//            fungiListVM.loadingState = .loading
-//        }
-//
-//
-//        if let originalImage = originalImage {
-//            if let resizedImage = originalImage.resized(width: 1024) {
-//                if let data = resizedImage.pngData() {
-//                    fungiListVM.uploadPhoto(data: data) { (url) in
-//                        if let url = url {
-//                            fungiListVM.save(name: name, url: url) {error in
-//                                if let error = error {
-//                                    print(error.localizedDescription)
-//                                } else {
-//                                    DispatchQueue.main.async {
-//                                        fungiListVM.loadingState = .success
-//                                    }
-//                                    fungiListVM.getAllFungiForUser()
-//                                }
-//                                image = nil
-//                            }
-//                        }
-//
-//                    }
-//                }
-//
-//            }
 //        }
 //    }
-//
-//}
+    
+
 }

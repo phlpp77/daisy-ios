@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct MeProfileView: View {
     
@@ -16,6 +17,8 @@ struct MeProfileView: View {
     private var gender: String
     private var searchingFor: String
     private var url: String
+    private var firestoreFotoManager: FirestoreFotoManager = FirestoreFotoManager()
+    @State private var showProfilePhoto: Bool = false
     
     init(user: UserModel) {
         userId = user.userId
@@ -25,7 +28,8 @@ struct MeProfileView: View {
         gender = user.gender
         searchingFor = user.searchingFor
         url = user.url
-        print(user)
+        
+        
     }
     
     var body: some View {
@@ -33,18 +37,25 @@ struct MeProfileView: View {
             Text("That's me!")
                 .font(.largeTitle)
                 .frame(width: 340, alignment: .leading)
+            if showProfilePhoto {
+            URLImage(url: URL(string: firestoreFotoManager.photoModel[0].url)!) { image
+                in
+                image.resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
+            }
             
-            Image("Philipp")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .overlay(
-                    Circle()
-                        .stroke(Color.white.opacity(0.9), lineWidth: 15)
-                )
-                .clipShape(Circle())
-                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 12)
-                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+//            Image("Philipp")
+//                .resizable()
+//                .aspectRatio(contentMode: .fill)
+//                .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+//                .overlay(
+//                    Circle()
+//                        .stroke(Color.white.opacity(0.9), lineWidth: 15)
+//                )
+//                .clipShape(Circle())
+//                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 12)
+//                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
             
             Spacer()
             
@@ -96,6 +107,22 @@ struct MeProfileView: View {
             
             
             
+        }
+        .onAppear(){
+            
+            firestoreFotoManager.getAllPhotosFromUser(completionHandler: { success in
+                if success {
+                    // yeah picture
+                    showProfilePhoto = firestoreFotoManager.photoModel.count > 0
+                    
+                } else {
+                    // ohh, no picture
+                }
+                
+            }
+            )
+            print(firestoreFotoManager.photoModel.count)
+            print(showProfilePhoto)
         }
         .frame(width: 340, height: 450, alignment: .center)
     }

@@ -22,13 +22,14 @@ class ProfileCreationModel: ObservableObject {
     var searchingFor: String = ""
     var startProcessDone: Bool = true
     
+    let storage = Storage.storage()
+    
     
     init() {
         firestoreManager = FirestoreManager()
     }
     
-    func save() {
-        
+    func saveUserSettings() {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
@@ -49,4 +50,11 @@ class ProfileCreationModel: ObservableObject {
             }
         }
     }
+    
+
+    
+    
+    //@State private var originalImage: UIImage? = nil
+
+
 }
