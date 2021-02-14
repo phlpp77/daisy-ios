@@ -90,7 +90,7 @@ class FirestoreFotoManager: ObservableObject {
         
     }
     
-    func getAllPhotosFromUser(completionHandler: (Bool) -> Void) {
+    func getAllPhotosFromUser(completionHandler: @escaping (Bool) -> Void) {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
@@ -107,7 +107,9 @@ class FirestoreFotoManager: ObservableObject {
                             var photoModel = try? doc.data(as: PhotoModel.self)
                             photoModel?.id = doc.documentID
                             if let photoModel = photoModel {
+                                print("User Bilder")
                                 print(photoModel)
+                                
                                 return PhotoModelObject(photoModel: photoModel)
                             }
                             flag = false
@@ -116,12 +118,16 @@ class FirestoreFotoManager: ObservableObject {
                         }
                         DispatchQueue.main.async {
                             self.photoModel = photoModel
+                            print("now completion ")
+                            completionHandler(flag)
                             
                         }
                     }
                 }
             }
-        completionHandler(flag)
+        
+        
+        
     }
  
     

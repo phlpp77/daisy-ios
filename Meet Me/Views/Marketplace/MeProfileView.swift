@@ -17,10 +17,11 @@ struct MeProfileView: View {
     private var gender: String
     private var searchingFor: String
     private var url: String
-    private var firestoreFotoManager: FirestoreFotoManager = FirestoreFotoManager()
     @State private var showProfilePhoto: Bool = false
+    private var profilePictureURL: URL
     
-    init(user: UserModel) {
+    
+    init(user: UserModel, URL: URL) {
         userId = user.userId
         name = user.name
         birthdayDate = user.birthdayDate
@@ -28,8 +29,7 @@ struct MeProfileView: View {
         gender = user.gender
         searchingFor = user.searchingFor
         url = user.url
-        
-        
+        profilePictureURL = URL
     }
     
     var body: some View {
@@ -37,13 +37,13 @@ struct MeProfileView: View {
             Text("That's me!")
                 .font(.largeTitle)
                 .frame(width: 340, alignment: .leading)
-            if showProfilePhoto {
-            URLImage(url: URL(string: firestoreFotoManager.photoModel[0].url)!) { image
+            
+                URLImage(url: profilePictureURL) { image
                 in
                 image.resizable()
                     .aspectRatio(contentMode: .fit)
             }
-            }
+            
             
 //            Image("Philipp")
 //                .resizable()
@@ -108,22 +108,6 @@ struct MeProfileView: View {
             
             
         }
-        .onAppear(){
-            
-            firestoreFotoManager.getAllPhotosFromUser(completionHandler: { success in
-                if success {
-                    // yeah picture
-                    showProfilePhoto = firestoreFotoManager.photoModel.count > 0
-                    
-                } else {
-                    // ohh, no picture
-                }
-                
-            }
-            )
-            print(firestoreFotoManager.photoModel.count)
-            print(showProfilePhoto)
-        }
         .frame(width: 340, height: 450, alignment: .center)
     }
 }
@@ -132,7 +116,7 @@ struct MeProfileView: View {
 
 struct MeProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        MeProfileView(user: testUser)
+        MeProfileView(user: testUser, URL: stockURL)
     }
 }
 

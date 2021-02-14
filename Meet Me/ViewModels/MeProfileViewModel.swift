@@ -8,11 +8,14 @@
 import Foundation
 
 
-class UserListModel: ObservableObject {
+class MeProfileViewModel: ObservableObject {
     private var firestoreManager: FirestoreManager
+    private var firestoreFotoManager: FirestoreFotoManager = FirestoreFotoManager()
     var user: [MeProfileModel] = []
     @Published var userModel: UserModel = testUser
+    @Published var userPictureURL: URL = stockURL
 
+    
     
     init() {
         firestoreManager = FirestoreManager()
@@ -51,6 +54,23 @@ class UserListModel: ObservableObject {
         return user
             
          
+    }
+    
+    func getUserProfilePictureURL() {
+        firestoreFotoManager.getAllPhotosFromUser(completionHandler: { success in
+            if success {
+                // yeah picture
+                print(URL(string: self.firestoreFotoManager.photoModel[0].url)!)
+                let url = URL(string: self.firestoreFotoManager.photoModel[0].url)!
+                self.userPictureURL = url
+            } else {
+                print("else completion")
+                // ohh, no picture
+                self.userPictureURL = stockURL
+            }
+            
+        }
+        )
     }
         
     

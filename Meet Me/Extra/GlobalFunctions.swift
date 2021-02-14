@@ -34,3 +34,6 @@ func createSampleDate() -> Date {
 
 // MARK: stock user to use as default
 let testUser: UserModel = UserModel(userId: "007", name: "Philipp", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Female")
+
+// TODO: Need to be changed to a stock photo
+let stockURL: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/UserImages%2F13F2F426-CA65-4E9E-A433-A7B8E866B55B.png?alt=media&token=acbe4056-8993-479d-99f5-bcac9185548b")!
