@@ -35,6 +35,7 @@ struct Meet_MeApp: App {
 
             } else {
                 StartView(startProcessDone: $startProcessDone)
+                    .ignoresSafeArea(.keyboard, edges: .bottom)
 
             }
 

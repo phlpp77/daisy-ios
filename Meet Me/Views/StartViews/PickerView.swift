@@ -9,15 +9,18 @@ import SwiftUI
 
 struct PickerView: View {
     
-    @State var position: CGSize = .zero
+    @State var position: String = ""
     
     var body: some View {
-        List {
-            ForEach(0 ..< 5) { item in
-                YouEventView(dragPosition: $position)
-//                Text("Test")
+        HStack(alignment: .center) {
+            VStack {
+                TextField("Test", text: $position)
+                    .background(Color.black.opacity(0.6))
+                    
             }
         }
+        .position(x: screen.width/2, y: screen.height/2)
+            .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 
