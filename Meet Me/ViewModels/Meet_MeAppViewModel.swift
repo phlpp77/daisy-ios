@@ -10,13 +10,13 @@
 //import FirebaseFirestoreSwift
 //
 //class Meet_MeAppViewModel: ObservableObject {
-//    
+//
 //    var startProcessDone: Bool = false
 //    var firestoreManager: FirestoreManager = FirestoreManager()
-//    
-//    
-//    
-//    
+//
+//
+//
+//
 //    func checkCurrentUserAuth(){
 //        if Auth.auth().currentUser != nil {
 //            print("User have Auth")
@@ -25,17 +25,12 @@
 //
 //        }
 //    }
-//    
-//    func check ProfilCreationProcess() -> Bool{
-//        firestoreManager.getUserItem { (Result<[UserModel]?, Error>) in
-//            <#code#>
-//        }
-//    
-//        
-//        
-//        
+//
+//
+//
+//
 //    }
-    
-
-    
+//
+//
+//
 //}

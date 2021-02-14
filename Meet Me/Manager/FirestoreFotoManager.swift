@@ -72,17 +72,15 @@ class FirestoreFotoManager: ObservableObject {
         
         print("now start to put data ")
         photoRef.putData(data, metadata: nil) { metadata, error in
-            print("put data done")
-            print("metadata of putdata: \(metadata)")
+            
             if let err = error {
                 print(err.localizedDescription)
             }
             photoRef.downloadURL { (url, error) in
-                print("URL of putdata: \(String(describing: url))")
+                
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
-                    print("photo is uploaded in storage")
                     completion(url)
                 }
             }
