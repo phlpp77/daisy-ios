@@ -5,32 +5,40 @@
 //  Created by Lukas Dech on 14.02.21.
 //
 //
-//import Foundation
-//import Firebase
-//import FirebaseFirestoreSwift
-//
-//class Meet_MeAppViewModel: ObservableObject {
-//
-//    var startProcessDone: Bool = false
-//    var firestoreManager: FirestoreManager = FirestoreManager()
-//
-//
-//
-//
-//    func checkCurrentUserAuth(){
-//        if Auth.auth().currentUser != nil {
-//            print("User have Auth")
-//        } else {
-//            print("User dosen't exist")
-//
-//        }
-//    }
-//
-//
-//
-//
-//    }
-//
-//
-//
-//}
+import Foundation
+import Firebase
+import FirebaseFirestoreSwift
+
+class Meet_MeAppViewModel: ObservableObject {
+    var firestoreManagerUser: FirestoreManagerUser = FirestoreManagerUser()
+
+
+
+
+    func CheckUserAccForAutoLogin() -> Bool{
+        if Auth.auth().currentUser != nil && getUser() {
+            return true
+            
+        } else {
+            return false
+
+        }
+    }
+
+    func getUser() -> Bool {
+        var userStartProcessDone = false
+            firestoreManagerUser.getUserModel { result in
+            switch result {
+            case .success(let user):
+                if let user = user {
+                    userStartProcessDone = user.startProcessDone
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        return userStartProcessDone
+    }
+
+
+}

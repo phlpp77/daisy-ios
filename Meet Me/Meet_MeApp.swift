@@ -15,7 +15,7 @@ import Firebase
 struct Meet_MeApp: App {
     
     @State var startProcessDone: Bool = false
-//    private var Meet_MeAppVM: Meet_MeAppViewModel = Meet_MeAppViewModel()
+   private var meet_MeAppVM: Meet_MeAppViewModel = Meet_MeAppViewModel()
 
     
     init() {
@@ -31,7 +31,7 @@ struct Meet_MeApp: App {
             
 //            Copy into if for autologin
 //            ||  autoLogin()
-            if startProcessDone {
+            if meet_MeAppVM.CheckUserAccForAutoLogin() {
 
                 MainControllerView()
 
