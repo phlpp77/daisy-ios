@@ -189,7 +189,7 @@ struct ProfileCreationView: View {
                             if value {
                                 //if save succssful
                                 profileCreationFinished = true
-                                print("saveddddd")
+                                print("saved profile creation VM")
                             } else {
                                 //if profile settings didnt uploded
                                 print("Problems")

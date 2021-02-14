@@ -27,14 +27,16 @@ class FirestoreFotoManager: ObservableObject {
     var url: URL?
     //var test: PhotoModelObject = PhotoModelObject(photoModel: testphotoModel)
 
-    
+    // function is called inside the main code
     func savePhoto(originalImage: UIImage?) {
         
-        if let originalImage = originalImage{
-            if let resizedImage = originalImage.resized(width:1024) {
+        print("func start savePhoto")
+        if let originalImage = originalImage {
+            if let resizedImage = originalImage.resized(width: 1024) {
                 if let data = resizedImage.pngData() {
                     uploadUserPhoto(data:data) { [self] (url) in
                         if let url = url {
+                            print("write url to database")
                             savePhotoUrlToFirestore(url: url) { error in
                                 if let error = error {
                                     print(error.localizedDescription)
@@ -66,6 +68,7 @@ class FirestoreFotoManager: ObservableObject {
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
+                    print("photo is uploaded in storage")
                     completion(url)
                 }
             }
