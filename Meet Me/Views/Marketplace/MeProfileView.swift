@@ -110,12 +110,19 @@ struct MeProfileView: View {
         }
         .onAppear(){
             
-            firestoreFotoManager.getAllPhotosFromUser(completionHandler: { success in (Bool) -> Void)
+            firestoreFotoManager.getAllPhotosFromUser(completionHandler: { success in
+                if success {
+                    // yeah picture
+                    showProfilePhoto = firestoreFotoManager.photoModel.count > 0
+                    
+                } else {
+                    // ohh, no picture
+                }
                 
             }
+            )
             print(firestoreFotoManager.photoModel.count)
             print(showProfilePhoto)
-            showProfilePhoto = firestoreFotoManager.photoModel.count > 0
         }
         .frame(width: 340, height: 450, alignment: .center)
     }

@@ -90,7 +90,7 @@ class FirestoreFotoManager: ObservableObject {
         
     }
     
-    func getAllPhotosFromUser(completionHandler: (success: Bool) -> Void) {
+    func getAllPhotosFromUser(completionHandler: (Bool) -> Void) {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
