@@ -9,7 +9,7 @@ import Foundation
 
 
 class MeProfileViewModel: ObservableObject {
-    private var firestoreManager: FirestoreManager
+    private var firestoreManagerUser: FirestoreManagerUser
     private var firestoreFotoManager: FirestoreFotoManager = FirestoreFotoManager()
     var user: [MeProfileModel] = []
     @Published var userModel: UserModel = testUser
@@ -18,11 +18,11 @@ class MeProfileViewModel: ObservableObject {
     
     
     init() {
-        firestoreManager = FirestoreManager()
+        firestoreManagerUser = FirestoreManagerUser()
     }
     
     func getUser(){
-        firestoreManager.getUserItem { result in
+        firestoreManagerUser.getUserItem { result in
             switch result {
             case .success(let user):
                 if let user = user {

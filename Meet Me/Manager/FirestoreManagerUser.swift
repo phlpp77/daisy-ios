@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-class FirestoreManager {
+class FirestoreManagerUser {
     
     private var db: Firestore
     @Published var user: [UserModel] = []

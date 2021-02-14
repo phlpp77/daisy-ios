@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 
 class ProfileCreationModel: ObservableObject {
     
-    private var firestoreManager: FirestoreManager
+    private var firestoreManagerUser: FirestoreManagerUser
     @Published var saved: Bool = false
     @Published var message: String = ""
     
@@ -26,7 +26,7 @@ class ProfileCreationModel: ObservableObject {
     
     
     init() {
-        firestoreManager = FirestoreManager()
+        firestoreManagerUser = FirestoreManagerUser()
     }
     
     func saveUserSettings() {
@@ -35,7 +35,7 @@ class ProfileCreationModel: ObservableObject {
         }
         
         let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor)
-        firestoreManager.saveUser(userModel: userModel){ result in
+        firestoreManagerUser.saveUser(userModel: userModel){ result in
             switch result {
             case .success(let userModel):
                 DispatchQueue.main.async {
