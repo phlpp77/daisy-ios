@@ -18,7 +18,6 @@ struct MeProfileView: View {
     private var searchingFor: String
     private var url: String
     @State private var showProfilePhoto: Bool = false
-    //URL(string: firestoreFotoManager.photoModel[0].url) ??
     private var profilePictureURL: URL
     
     
@@ -38,13 +37,13 @@ struct MeProfileView: View {
             Text("That's me!")
                 .font(.largeTitle)
                 .frame(width: 340, alignment: .leading)
-            if showProfilePhoto {
+            
                 URLImage(url: profilePictureURL) { image
                 in
                 image.resizable()
                     .aspectRatio(contentMode: .fit)
             }
-            }
+            
             
 //            Image("Philipp")
 //                .resizable()
