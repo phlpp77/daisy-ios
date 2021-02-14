@@ -176,6 +176,14 @@
 			path = StartViews;
 			sourceTree = "<group>";
 		};
+		174423AC25D9A86E00D25EDD /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				177F681825D8409200BC345B /* MeProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		175E40DC25B4320E00ADC9BF /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +194,7 @@
 				17C0C1CD25BF67D60021987D /* AlertBoxView.swift */,
 				179B27C425D476F7007F64D6 /* Marketplace */,
 				1774B67C25D1E7A200D1D2F1 /* MainController */,
+				174423AC25D9A86E00D25EDD /* Profile */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -247,7 +256,6 @@
 				179B27C525D477F1007F64D6 /* YouEventView.swift */,
 				179B27C925D48788007F64D6 /* EventLineView.swift */,
 				17AC8C8325D8315100252875 /* YouProfileView.swift */,
-				177F681825D8409200BC345B /* MeProfileView.swift */,
 			);
 			path = Marketplace;
 			sourceTree = "<group>";

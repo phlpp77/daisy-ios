@@ -11,21 +11,25 @@ struct YouEventView: View {
     
     // Bindings
     @Binding var dragPosition: CGSize
-    @Binding var eventModelObject: EventModelObject
     
     // vars
-    var category: String = "Café"
-    var date: Date = Date()
-    var startTime: Date = Date()
-    // test purpose add 30 minutes
-    var endTime: Date = Date() + 30 * 60
-    // not used due to prototyping
-    var picture: Image = Image("")
-    // user image needs to be added to the UserModel
-    // sample user and birthday
-        
-//    var userProfile: UserModel = UserModel(userId: "007", name: "Philipp", birthdayDate: createSampleDate(YouEventView(dragPosition: .constant(.zero)))(), gender: "Male", searchingFor: "Female")
+    private var category: String
+    private var date: Date
+    private var startTime: Date
+    private var endTime: Date
+    private var pictureURL: URL
 
+    init(dragPosition: Binding<CGSize>, eventModelObject: EventModelObject) {
+        
+        // binding set (that is why there is a underscore _ in the front
+        self._dragPosition = dragPosition
+        
+        category = eventModelObject.category
+        date = eventModelObject.date
+        startTime = eventModelObject.startTime
+        endTime = eventModelObject.endTime
+        pictureURL = eventModelObject.pictureURL
+    }
     
     var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
