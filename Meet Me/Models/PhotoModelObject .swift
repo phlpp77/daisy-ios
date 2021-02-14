@@ -8,6 +8,7 @@
 import Foundation
 
 struct PhotoModelObject {
+    
     let photoModel: PhotoModel
     
     var id: String {
@@ -17,5 +18,6 @@ struct PhotoModelObject {
     var url: String {
         photoModel.url
     }
+    
 }
 

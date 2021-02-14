@@ -8,7 +8,9 @@
 import Foundation
 
 struct PhotoModel: Codable {
+    
     var id: String?
     var url: String = ""
     var userId = ""
+    
 }

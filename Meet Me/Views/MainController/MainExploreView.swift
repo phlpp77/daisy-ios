@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct MainExploreView: View {
+    
+    // create VM here for market and co
+    
+    
     var body: some View {
         VStack {
             Text("Meet Me Market")

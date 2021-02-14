@@ -18,7 +18,4 @@ struct UserModel: Codable {
     var searchingFor: String = ""
     var url: String = ""
     
-    
-    
-
 }

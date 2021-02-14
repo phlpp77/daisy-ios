@@ -9,16 +9,7 @@ import SwiftUI
 
 struct MainSettingsView: View {
     
-    var user: UserModel = testUser
     @ObservedObject private var meProfileVM = MeProfileViewModel()
-
-    
-    
-  
-    
-  
-    
-    
     
     var body: some View {
         
