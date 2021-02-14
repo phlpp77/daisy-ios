@@ -8,16 +8,23 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import URLImage
 
 
 class FirestoreFotoManager: ObservableObject {
     
     let storage = Storage.storage()
-    let db = Firestore.firestore()
+    private var db: Firestore
+     
+    init() {
+          db = Firestore.firestore()
+    }
     
     @Published var photoModel: [PhotoModelObject] = []
     
-    
+    var stockPhotoModel: PhotoModel = PhotoModel()
+    var url: URL?
+    //var test: PhotoModelObject = PhotoModelObject(photoModel: testphotoModel)
 
     
     func savePhoto(originalImage: UIImage?) {
@@ -87,6 +94,7 @@ class FirestoreFotoManager: ObservableObject {
             .getDocuments { (snapshot,error) in
                 if let error = error {
                     print(error.localizedDescription)
+                    print("Konnte FOTTO NICHT runterladen")
                 } else {
                     
                     if let snapshot = snapshot {
@@ -94,17 +102,34 @@ class FirestoreFotoManager: ObservableObject {
                             var photoModel = try? doc.data(as: PhotoModel.self)
                             photoModel?.id = doc.documentID
                             if let photoModel = photoModel {
+                                print(photoModel)
                                 return PhotoModelObject(photoModel: photoModel)
                             }
+                            print("getAllUser return nil")
                             return nil
                             
                         }
                         DispatchQueue.main.async {
                             self.photoModel = photoModel
+                            
                         }
                     }
                 }
             }
     }
-}
+    
+    func getProfilePhoto() -> URL {
+        getAllPhotosFromUser()
+        if photoModel.count > 0{
+            url = URL(string: photoModel[0].url)!
+            return url!
+        } else {
+            let photoModelObject = PhotoModelObject(photoModel: stockPhotoModel)
+            url = URL(string: photoModelObject.url)!
+            return url!
+            
+        }
+    }
+    
 
+}
