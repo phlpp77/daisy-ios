@@ -9,7 +9,7 @@ import SwiftUI
 import URLImage
 
 struct EventCreationView: View {
-    
+    @StateObject private var eventCreationVM = EventCreationViewModel()
     // binding for presentation
     @Binding var presentation: Bool
     
@@ -167,7 +167,8 @@ struct EventCreationView: View {
                 .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
                 .onTapGesture {
                     // update handling
-                    
+                    prepareUpload()
+                    eventCreationVM.saveEventSettings()
                     // button animation start
                     buttonPressed.toggle()
                     
@@ -214,10 +215,13 @@ struct EventCreationView: View {
     }
     
     // function to convert strings into dates for upload into the database
-    func datesForUpload() {
-        self.date = dateFormatter.date(from: dateAsString)!
-        self.startTime = timeFormatter.date(from: startTimeAsString)!
-        self.endTime = timeFormatter.date(from: endTimeAsString)!
+    func prepareUpload() {
+        eventCreationVM.category = category
+        eventCreationVM.pictureURL = pictureURL
+        eventCreationVM.date = dateFormatter.date(from: dateAsString)!
+        eventCreationVM.startTime = timeFormatter.date(from: startTimeAsString)!
+        eventCreationVM.endTime = timeFormatter.date(from: endTimeAsString)!
+        
     }
 }
 
