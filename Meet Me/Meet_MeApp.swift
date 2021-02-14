@@ -27,18 +27,18 @@ struct Meet_MeApp: App {
         WindowGroup {
             ProfileCreationView(profileCreationFinished: .constant(false))
             
-            //Copy into if for autologin
-            //||  autoLogin()
-//            if startProcessDone {
-//
-//                MainControllerView()
-//
-//            } else {
-//                StartView(startProcessDone: $startProcessDone)
-//
-//            }
+//            Copy into if for autologin
+//            ||  autoLogin()
+            if startProcessDone ||  autoLogin() {
 
-//            PickerView()
+                MainControllerView()
+
+            } else {
+                StartView(startProcessDone: $startProcessDone)
+
+            }
+
+            PickerView()
         }
     }
     
