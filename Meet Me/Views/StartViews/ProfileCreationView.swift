@@ -153,24 +153,19 @@ struct ProfileCreationView: View {
                         
                         // update button
                         Button(action: {
-                            addProfileCreationVM.saveUserSettings()
-                            firestoreFotoManger.savePhoto(originalImage: uiImage)
+                            firestoreFotoManger.savePhoto(originalImage: uiImage, completion: { success in
+                                if success {
+                                    let bDate = convertStringToDate(date: birthdayDate)
+                                    
+                                    addProfileCreationVM.birthdayDate = bDate
+                                    
+                                    addProfileCreationVM.saveUserSettings()
+                                } else {
+                                    print("Katastrophe")
+                                }
+                            })
                             // haptic feedback when button is tapped
                             hapticPulse(feedback: .rigid)
-                            print(birthdayDate)
-                            // convert birthday date from string to date and hand it over to the VM for storage in database
-                            let bDate = convertStringToDate(date: birthdayDate)
-                            
-                            addProfileCreationVM.birthdayDate = bDate
-                            
-                            addProfileCreationVM.saveUserSettings()
-                            // haptic feedback when button is tapped
-                            hapticPulse(feedback: .rigid)
-                            
-                            
-                            
-                            // process is done
-                            //profileCreationFinished = true
                             
                         }, label: {
                             HStack {

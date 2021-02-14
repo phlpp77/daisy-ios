@@ -28,20 +28,26 @@ class FirestoreFotoManager: ObservableObject {
     //var test: PhotoModelObject = PhotoModelObject(photoModel: testphotoModel)
 
     // function is called inside the main code
-    func savePhoto(originalImage: UIImage?) {
+    func savePhoto(originalImage: UIImage?, completion: @escaping (Bool) -> Void) {
+        var completionFlag = false
         
         print("func start savePhoto")
         if let originalImage = originalImage {
             if let resizedImage = originalImage.resized(width: 1024) {
+                print("image resizing")
                 if let data = resizedImage.pngData() {
-                    uploadUserPhoto(data:data) { [self] (url) in
+                    print("image resized")
+                    uploadUserPhoto(data:data) { (url) in
                         if let url = url {
                             print("write url to database")
-                            savePhotoUrlToFirestore(url: url) { error in
+                            self.savePhotoUrlToFirestore(url: url) { error in
                                 if let error = error {
                                     print(error.localizedDescription)
+                                    completion(completionFlag)
                                 } else {
                                     //getAllPhotosFromUser(completionHandler: (Bool) -> Void)
+                                    completionFlag = true
+                                    completion(completionFlag)
                                 }
                                 
                                 
@@ -59,12 +65,20 @@ class FirestoreFotoManager: ObservableObject {
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
     func uploadUserPhoto(data: Data, completion: @escaping (URL?) -> Void) {
         
+        print("func start uploaded user photo")
         let imageName = UUID().uuidString
         let storageRef = storage.reference()
         let photoRef = storageRef.child("UserImages/\(imageName).png")
         
+        print("now start to put data ")
         photoRef.putData(data, metadata: nil) { metadata, error in
+            print("put data done")
+            print("metadata of putdata: \(metadata)")
+            if let err = error {
+                print(err.localizedDescription)
+            }
             photoRef.downloadURL { (url, error) in
+                print("URL of putdata: \(String(describing: url))")
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
@@ -97,7 +111,7 @@ class FirestoreFotoManager: ObservableObject {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
-        var flag = true
+        var flag = false
         db.collection("UserPhotos")
             .whereField("userId", isEqualTo: currentUser.uid)
             .getDocuments { (snapshot,error) in
@@ -112,7 +126,7 @@ class FirestoreFotoManager: ObservableObject {
                             if let photoModel = photoModel {
                                 print("User Bilder")
                                 print(photoModel)
-                                
+                                flag = true
                                 return PhotoModelObject(photoModel: photoModel)
                             }
                             flag = false
@@ -121,6 +135,7 @@ class FirestoreFotoManager: ObservableObject {
                         }
                         DispatchQueue.main.async {
                             self.photoModel = photoModel
+                            print(self.photoModel)
                             print("now completion ")
                             completionHandler(flag)
                             
