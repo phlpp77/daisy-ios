@@ -14,12 +14,17 @@ struct MainExploreView: View {
     
     var body: some View {
         VStack {
+            
+            
             Text("Meet Me Market")
                 .font(.largeTitle)
                 .foregroundColor(.accentColor)
                 .padding(.bottom, 50)
             
-            EventLineView()
+            EventCreationView()
+
+            
+//            EventLineView()
         }
     }
 }

@@ -73,7 +73,6 @@ class FirestoreFotoManager: ObservableObject {
         print("now start to put data ")
         photoRef.putData(data, metadata: nil) { metadata, error in
             print("put data done")
-            print("metadata of putdata: \(metadata)")
             if let err = error {
                 print(err.localizedDescription)
             }

@@ -1,35 +1,27 @@
 //
-//  YouEventView.swift
+//  EventCreationView.swift
 //  Meet Me
 //
-//  Created by Philipp Hemkemeyer on 10.02.21.
+//  Created by Philipp Hemkemeyer on 14.02.21.
 //
 
 import SwiftUI
 
-struct YouEventView: View {
-    
-    // Bindings
-    @Binding var dragPosition: CGSize
+struct EventCreationView: View {
     
     // vars to show in the screen
-    private var category: String
-    private var date: Date
-    private var startTime: Date
-    private var endTime: Date
-    private var pictureURL: URL
-
-    init(dragPosition: Binding<CGSize>, eventModelObject: EventModelObject) {
-        
-        // binding set (that is why there is a underscore _ in the front
-        self._dragPosition = dragPosition
-        
-        category = eventModelObject.category
-        date = eventModelObject.date
-        startTime = eventModelObject.startTime
-        endTime = eventModelObject.endTime
-        pictureURL = eventModelObject.pictureURL
-    }
+    @State private var category: String = "Café"
+    @State private var date: Date = Date()
+    @State private var startTime: Date = Date()
+    @State private var endTime: Date = Date() + 60*30
+    @State private var pictureURL: URL = stockURL
+    
+    // animation of alertboxes
+    @State private var showAlertBox: Bool = false
+    @State private var pathNumber: Int = 0
+    @State private var accepted: Bool = false
+    // legacy handling of date as a string
+    @State private var dateAsString = ""
     
     var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -44,8 +36,7 @@ struct YouEventView: View {
         formatter.timeStyle = .short
         return formatter
     }()
-       
-    
+
     
     var body: some View {
         ZStack {
@@ -57,11 +48,19 @@ struct YouEventView: View {
             VStack(alignment: .leading) {
                 HStack {
                     Text(category)
+                        .onTapGesture {
+                            self.showAlertBox = true
+                            self.pathNumber = 0
+                        }
                     
                     Spacer()
                     Divider()
                     
                     Text(dateFormatter.string(from: date))
+                        .onTapGesture {
+                            self.showAlertBox = true
+                            self.pathNumber = 1
+                        }
                     
                 }
                 .padding(.horizontal, 8)
@@ -102,8 +101,25 @@ struct YouEventView: View {
                 .frame(width: 250)
                 .background(BlurView(style: .systemUltraThinMaterial))
             }
+            
+            if showAlertBox {
+                switch pathNumber {
+                
+                // AlertBox to define the category
+                case 0:
+                    AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", output: $category, show: $showAlertBox, accepted: $accepted)
+                
+                // AlertBox to define the date
+                case 1:
+                    AlertBoxView(title: "Choose a date", placeholder: dateFormatter.string(from: date), defaultText: dateFormatter.string(from: date), output: $dateAsString, show: $showAlertBox, accepted: $accepted)
+                    
+                default:
+                    AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", output: $category, show: $showAlertBox, accepted: $accepted)
+                }
+            }
         }
-        .frame(width: 250, height: 250, alignment: .center)
+//        .frame(width: 250, height: 250, alignment: .center)
+        .frame(width: 400, height: 500, alignment: .center)
         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 15)
         .background(
@@ -113,14 +129,10 @@ struct YouEventView: View {
               }
             )
     }
-    
 }
 
-//struct YouEventView_Previews: PreviewProvider {
-//    
-//    @State var cgsize: CGSize = .zero
-//    
-//    static var previews: some View {
-//        YouEventView(dragPosition: $cgsize)
-//    }
-//}
+struct EventCreationView_Previews: PreviewProvider {
+    static var previews: some View {
+        EventCreationView()
+    }
+}

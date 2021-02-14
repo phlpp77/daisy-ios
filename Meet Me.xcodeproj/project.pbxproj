@@ -11,6 +11,7 @@
 		17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EE825A8C5C30072CE83 /* Assets.xcassets */; };
 		17153EEC25A8C5C30072CE83 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EEB25A8C5C30072CE83 /* Preview Assets.xcassets */; };
 		174423AA25D9A0DF00D25EDD /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174423A925D9A0DF00D25EDD /* EventModel.swift */; };
+		174423AE25D9A93000D25EDD /* EventCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174423AD25D9A93000D25EDD /* EventCreationView.swift */; };
 		175E40E025B43BB200ADC9BF /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40DF25B43BB200ADC9BF /* StartView.swift */; };
 		175E40E325B4670800ADC9BF /* StartBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40E225B4670800ADC9BF /* StartBackgroundView.swift */; };
 		175E40E625B46ABB00ADC9BF /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40E525B46ABB00ADC9BF /* BlurView.swift */; };
@@ -59,6 +60,7 @@
 		17153EEB25A8C5C30072CE83 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		17153EED25A8C5C30072CE83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		174423A925D9A0DF00D25EDD /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		174423AD25D9A93000D25EDD /* EventCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationView.swift; sourceTree = "<group>"; };
 		175E40DF25B43BB200ADC9BF /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		175E40E225B4670800ADC9BF /* StartBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartBackgroundView.swift; sourceTree = "<group>"; };
 		175E40E525B46ABB00ADC9BF /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
@@ -245,8 +247,9 @@
 		179B27C425D476F7007F64D6 /* Marketplace */ = {
 			isa = PBXGroup;
 			children = (
-				179B27C525D477F1007F64D6 /* YouEventView.swift */,
 				179B27C925D48788007F64D6 /* EventLineView.swift */,
+				174423AD25D9A93000D25EDD /* EventCreationView.swift */,
+				179B27C525D477F1007F64D6 /* YouEventView.swift */,
 				17AC8C8325D8315100252875 /* YouProfileView.swift */,
 			);
 			path = Marketplace;
@@ -419,6 +422,7 @@
 				179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */,
 				17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */,
 				905485A125C48B0A00E2024D /* FirestoreManager.swift in Sources */,
+				174423AE25D9A93000D25EDD /* EventCreationView.swift in Sources */,
 				90F2334D25D58481003FB1D9 /* ImagePicker.swift in Sources */,
 				1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */,
 				17AC8C8425D8315100252875 /* YouProfileView.swift in Sources */,
