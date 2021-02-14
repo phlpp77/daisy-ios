@@ -15,6 +15,7 @@ class FirestoreFotoManager: ObservableObject {
     
     let storage = Storage.storage()
     private var db: Firestore
+    //typealias CompletionHandler = (_ success: Bool) -> Void
      
     init() {
           db = Firestore.firestore()
@@ -35,7 +36,11 @@ class FirestoreFotoManager: ObservableObject {
                     uploadUserPhoto(data:data) { [self] (url) in
                         if let url = url {
                             savePhotoUrlToFirestore(url: url) { error in
-                                
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                } else {
+                                    //getAllPhotosFromUser(completionHandler: (Bool) -> Void)
+                                }
                                 
                                 
                             }
@@ -85,18 +90,18 @@ class FirestoreFotoManager: ObservableObject {
         
     }
     
-    func getAllPhotosFromUser() {
+    func getAllPhotosFromUser(completionHandler: (success: Bool) -> Void) {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
+        var flag = true
         db.collection("UserPhotos")
             .whereField("userId", isEqualTo: currentUser.uid)
             .getDocuments { (snapshot,error) in
                 if let error = error {
                     print(error.localizedDescription)
-                    print("Konnte FOTTO NICHT runterladen")
+                    flag = false
                 } else {
-                    
                     if let snapshot = snapshot {
                         let photoModel: [PhotoModelObject] = snapshot.documents.compactMap { doc in
                             var photoModel = try? doc.data(as: PhotoModel.self)
@@ -105,7 +110,7 @@ class FirestoreFotoManager: ObservableObject {
                                 print(photoModel)
                                 return PhotoModelObject(photoModel: photoModel)
                             }
-                            print("getAllUser return nil")
+                            flag = false
                             return nil
                             
                         }
@@ -116,20 +121,23 @@ class FirestoreFotoManager: ObservableObject {
                     }
                 }
             }
+        completionHandler(flag)
     }
+ 
     
-    func getProfilePhoto() -> URL {
-        getAllPhotosFromUser()
-        if photoModel.count > 0{
-            url = URL(string: photoModel[0].url)!
-            return url!
-        } else {
-            let photoModelObject = PhotoModelObject(photoModel: stockPhotoModel)
-            url = URL(string: photoModelObject.url)!
-            return url!
-            
-        }
-    }
+//    //ACHTUNG nochmal bearbeiten
+//    func getProfilePhoto() -> URL {
+//        getAllPhotosFromUser()
+//        if photoModel.count > 0{
+//            url = URL(string: photoModel[0].url)!
+//            return url!
+//        } else {
+//            let photoModelObject = PhotoModelObject(photoModel: stockPhotoModel)
+//            url = URL(string: photoModelObject.url)!
+//            return url!
+//
+//        }
+//    }
     
 
 }

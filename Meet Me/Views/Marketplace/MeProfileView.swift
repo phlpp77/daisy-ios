@@ -17,7 +17,7 @@ struct MeProfileView: View {
     private var gender: String
     private var searchingFor: String
     private var url: String
-    private var firestoreFotoManager: FirestoreFotoManager
+    private var firestoreFotoManager: FirestoreFotoManager = FirestoreFotoManager()
     @State private var showProfilePhoto: Bool = false
     
     init(user: UserModel) {
@@ -28,8 +28,8 @@ struct MeProfileView: View {
         gender = user.gender
         searchingFor = user.searchingFor
         url = user.url
-        firestoreFotoManager = FirestoreFotoManager()
-        firestoreFotoManager.getAllPhotosFromUser()
+        
+        
     }
     
     var body: some View {
@@ -108,10 +108,14 @@ struct MeProfileView: View {
             
             
         }
-        .onTapGesture {
-            showProfilePhoto = firestoreFotoManager.photoModel.count > 0
+        .onAppear(){
+            
+            firestoreFotoManager.getAllPhotosFromUser(completionHandler: { success in (Bool) -> Void)
+                
+            }
             print(firestoreFotoManager.photoModel.count)
             print(showProfilePhoto)
+            showProfilePhoto = firestoreFotoManager.photoModel.count > 0
         }
         .frame(width: 340, height: 450, alignment: .center)
     }
