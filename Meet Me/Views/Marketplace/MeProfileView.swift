@@ -19,6 +19,8 @@ struct MeProfileView: View {
     private var url: String
     private var firestoreFotoManager: FirestoreFotoManager = FirestoreFotoManager()
     @State private var showProfilePhoto: Bool = false
+    //URL(string: firestoreFotoManager.photoModel[0].url) ??
+    private let testUrl: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/UserImages%2F13F2F426-CA65-4E9E-A433-A7B8E866B55B.png?alt=media&token=acbe4056-8993-479d-99f5-bcac9185548b" )!
     
     init(user: UserModel) {
         userId = user.userId
@@ -38,7 +40,7 @@ struct MeProfileView: View {
                 .font(.largeTitle)
                 .frame(width: 340, alignment: .leading)
             if showProfilePhoto {
-            URLImage(url: URL(string: firestoreFotoManager.photoModel[0].url)!) { image
+                URLImage(url: testUrl) { image
                 in
                 image.resizable()
                     .aspectRatio(contentMode: .fit)
@@ -108,20 +110,25 @@ struct MeProfileView: View {
             
             
         }
-        .onAppear(){
+        .onAppear{
             
             firestoreFotoManager.getAllPhotosFromUser(completionHandler: { success in
                 if success {
                     // yeah picture
                     showProfilePhoto = firestoreFotoManager.photoModel.count > 0
-                    
+                    print(firestoreFotoManager.photoModel)
+                    print("Erfolg")
+                    print(showProfilePhoto)
+                    print("\(firestoreFotoManager.photoModel.count) Bei Success")
+                    print(firestoreFotoManager.photoModel[0].url)
                 } else {
+                    print("else completion")
                     // ohh, no picture
                 }
                 
             }
             )
-            print(firestoreFotoManager.photoModel.count)
+            print("\(firestoreFotoManager.photoModel.count) Unter Appear")
             print(showProfilePhoto)
         }
         .frame(width: 340, height: 450, alignment: .center)
