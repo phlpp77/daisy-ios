@@ -15,6 +15,8 @@ import Firebase
 struct Meet_MeApp: App {
     
     @State var startProcessDone: Bool = false
+//    private var Meet_MeAppVM: Meet_MeAppViewModel = Meet_MeAppViewModel()
+
     
     init() {
         FirebaseApp.configure()
@@ -29,7 +31,7 @@ struct Meet_MeApp: App {
             
 //            Copy into if for autologin
 //            ||  autoLogin()
-            if startProcessDone ||  autoLogin() {
+            if startProcessDone {
 
                 MainControllerView()
 
@@ -43,17 +45,7 @@ struct Meet_MeApp: App {
         }
     }
     
-    func autoLogin() -> Bool{
-        if Auth.auth().currentUser != nil {
-            print("login successfully")
-            return true
-            
-            
-        } else {
-            print("no user")
-            return false
-        }
-    }
+
     
     
     

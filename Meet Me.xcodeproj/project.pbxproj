@@ -38,6 +38,7 @@
 		902EF6BD25D896E3004464F0 /* UIImageResized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6BC25D896E3004464F0 /* UIImageResized.swift */; };
 		902EF6C225D8A13B004464F0 /* PhotoModelObject .swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6C125D8A13B004464F0 /* PhotoModelObject .swift */; };
 		902EF6C625D92112004464F0 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 902EF6C525D92112004464F0 /* URLImage */; };
+		902EF6E225D985F0004464F0 /* Meet_MeAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6E125D985F0004464F0 /* Meet_MeAppViewModel.swift */; };
 		905485A125C48B0A00E2024D /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485A025C48B0A00E2024D /* FirestoreManager.swift */; };
 		905485D625C4B44F00E2024D /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485D525C4B44F00E2024D /* ErrorMessages.swift */; };
 		90B1BFD625B8DB9200F8FBF7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1BFD525B8DB9200F8FBF7 /* LoginViewModel.swift */; };
@@ -84,6 +85,7 @@
 		902EF6B825D89213004464F0 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		902EF6BC25D896E3004464F0 /* UIImageResized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageResized.swift; sourceTree = "<group>"; };
 		902EF6C125D8A13B004464F0 /* PhotoModelObject .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoModelObject .swift"; sourceTree = "<group>"; };
+		902EF6E125D985F0004464F0 /* Meet_MeAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meet_MeAppViewModel.swift; sourceTree = "<group>"; };
 		905485A025C48B0A00E2024D /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		905485D525C4B44F00E2024D /* ErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessages.swift; sourceTree = "<group>"; };
 		90B1BFD525B8DB9200F8FBF7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = "Meet Me/ViewModels/LoginViewModel.swift"; sourceTree = SOURCE_ROOT; };
@@ -199,6 +201,7 @@
 				90F2336625D84736003FB1D9 /* MeProfileViewModel.swift */,
 				90F2336225D830E7003FB1D9 /* ProfileCreationViewModel.swift */,
 				90B1BFDA25B8DBB700F8FBF7 /* RegisterViewModel.swift */,
+				902EF6E125D985F0004464F0 /* Meet_MeAppViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				90F8AB4625BF5CDA00E969E0 /* UserModel.swift in Sources */,
 				90B1BFDB25B8DBB700F8FBF7 /* RegisterViewModel.swift in Sources */,
 				179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */,
+				902EF6E225D985F0004464F0 /* Meet_MeAppViewModel.swift in Sources */,
 				17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */,
 				905485A125C48B0A00E2024D /* FirestoreManager.swift in Sources */,
 				90F2334D25D58481003FB1D9 /* ImagePicker.swift in Sources */,
