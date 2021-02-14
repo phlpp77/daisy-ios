@@ -50,11 +50,5 @@ class ProfileCreationModel: ObservableObject {
             }
         }
     }
-    
-
-    
-    
-    //@State private var originalImage: UIImage? = nil
-
 
 }
