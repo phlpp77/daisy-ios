@@ -10,7 +10,7 @@ import SwiftUI
 struct MainSettingsView: View {
     
     var user: UserModel = testUser
-    @ObservedObject private var userListVM = UserListModel()
+    @ObservedObject private var meProfileVM = MeProfileViewModel()
 
     
     
@@ -22,9 +22,10 @@ struct MainSettingsView: View {
     
     var body: some View {
         
-        MeProfileView(user: userListVM.userModel)
+        MeProfileView(user: meProfileVM.userModel, URL: meProfileVM.userPictureURL)
             .onAppear {
-                userListVM.getUser()
+                meProfileVM.getUser()
+                meProfileVM.getUserProfilePictureURL()
             }
     }
 }

@@ -17,12 +17,12 @@ struct MeProfileView: View {
     private var gender: String
     private var searchingFor: String
     private var url: String
-    private var firestoreFotoManager: FirestoreFotoManager = FirestoreFotoManager()
     @State private var showProfilePhoto: Bool = false
     //URL(string: firestoreFotoManager.photoModel[0].url) ??
-    private let testUrl: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/UserImages%2F13F2F426-CA65-4E9E-A433-A7B8E866B55B.png?alt=media&token=acbe4056-8993-479d-99f5-bcac9185548b" )!
+    private var profilePictureURL: URL
     
-    init(user: UserModel) {
+    
+    init(user: UserModel, URL: URL) {
         userId = user.userId
         name = user.name
         birthdayDate = user.birthdayDate
@@ -30,6 +30,7 @@ struct MeProfileView: View {
         gender = user.gender
         searchingFor = user.searchingFor
         url = user.url
+        profilePictureURL = URL
     }
     
     var body: some View {
@@ -38,7 +39,7 @@ struct MeProfileView: View {
                 .font(.largeTitle)
                 .frame(width: 340, alignment: .leading)
             if showProfilePhoto {
-                URLImage(url: getProfilePictureURL(url: firestoreFotoManager.photoModel[0].url)) { image
+                URLImage(url: profilePictureURL) { image
                 in
                 image.resizable()
                     .aspectRatio(contentMode: .fit)
@@ -108,34 +109,7 @@ struct MeProfileView: View {
             
             
         }
-        .onAppear{
-            
-            firestoreFotoManager.getAllPhotosFromUser(completionHandler: { success in
-                if success {
-                    // yeah picture
-                    showProfilePhoto = firestoreFotoManager.photoModel.count > 0
-                    print(firestoreFotoManager.photoModel)
-                    print("Erfolg")
-                    print(showProfilePhoto)
-                    print("\(firestoreFotoManager.photoModel.count) Bei Success")
-//                    getProfilePictureURL(url: firestoreFotoManager.photoModel[0].url)
-                } else {
-                    print("else completion")
-                    // ohh, no picture
-                }
-                
-            }
-            )
-            print("\(firestoreFotoManager.photoModel.count) Unter Appear")
-            print(showProfilePhoto)
-        }
         .frame(width: 340, height: 450, alignment: .center)
-    }
-    
-    func getProfilePictureURL(url: String) -> URL {
-        let url = URL(string: url)
-        return url!
-        
     }
 }
 
@@ -143,7 +117,7 @@ struct MeProfileView: View {
 
 struct MeProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        MeProfileView(user: testUser)
+        MeProfileView(user: testUser, URL: stockURL)
     }
 }
 
