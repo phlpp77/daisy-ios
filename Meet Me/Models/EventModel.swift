@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 
 // event model to define each event
@@ -26,9 +27,10 @@ struct EventModelObject {
     
     let eventModel: EventModel
     
-    var eventId: String {
-        eventModel.eventId
-    }
+//    var eventId: String {
+//        eventModel.eventId
+//    }
+    var eventId = UUID()
     
     var userId: String {
         eventModel.userId
@@ -57,5 +59,7 @@ struct EventModelObject {
     var pictureURL: URL {
         eventModel.pictureURL
     }
+    
+    @Binding var position: CGSize
     
 }

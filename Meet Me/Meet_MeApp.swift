@@ -28,19 +28,21 @@ struct Meet_MeApp: App {
         
         WindowGroup {
             
+            EventLineView()
+            
             //ProfileCreationView(profileCreationFinished: .constant(false))
             //meet_MeAppVM.CheckUserAccForAutoLogin()
 //            Copy into if for autologin
 //            ||  autoLogin()
-            if startProcessDone || checkUserAccForAutoLogin() {
-
-                MainControllerView()
-
-            } else {
-                StartView(startProcessDone: $startProcessDone)
-                    .ignoresSafeArea(.keyboard, edges: .bottom)
-
-            }
+//            if startProcessDone || checkUserAccForAutoLogin() {
+//
+//                MainControllerView()
+//
+//            } else {
+//                StartView(startProcessDone: $startProcessDone)
+//                    .ignoresSafeArea(.keyboard, edges: .bottom)
+//
+//            }
 
             //PickerView()
         }

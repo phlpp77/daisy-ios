@@ -9,11 +9,17 @@ import SwiftUI
 
 struct EventLineView: View {
     
+    // data transfer form database
+    private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
+//    private var eventViewArray: [YouEventView] = [YouEventView(eventModelObject: stockEventObject), YouEventView(eventModelObject: stockEventObject)]
+    
     @State var dragPosition: CGSize = .zero
+    @State var position: CGSize = .zero
     
     var body: some View {
         ZStack {
             
+            // dashed rectangle for dragging
             Color.white
                 .frame(width: 150, height: 150, alignment: .center)
                 .overlay(
@@ -26,19 +32,39 @@ struct EventLineView: View {
                 )
                 .offset(y: 140)
             
+            // horizontal event list
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 10) {
-                        ForEach(0 ..< 5) { item in
+                        
+                        // create a view for each event in the array
+                        ForEach(eventArray, id: \.eventId) { event in
                             GeometryReader { geometry in
                                 VStack {
-                                    YouEventView(dragPosition: $dragPosition, eventModelObject: stockEventObject)
+                                    YouEventView(dragPosition: $dragPosition, eventModelObject: event)
                                         .rotation3DEffect(
                                             // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
                                             Angle(
                                                 degrees: Double(geometry.frame(in: .global).minX - 30) / -40),
                                                 axis: (x: 0, y: 10, z: 0)
                                             )
+                                        .gesture(
+                                            DragGesture()
+                                                .onChanged { value in
+                                                    print("changed position")
+//                                                    event.position = value.translation
+                                                    dragPosition = value.translation
+                                                    print(value.translation)
+//                                                    print(event.position)
+                                                    print(dragPosition)
+                                                    
+                                                }
+                                                .onEnded { value in
+                                                    print("ended")
+//                                                    event.position = .zero
+                                                    dragPosition = .zero
+                                                }
+                                        )
                                     }
                             }
                             .frame(width: 250, height: 250)
