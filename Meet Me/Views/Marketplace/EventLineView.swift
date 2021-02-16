@@ -12,7 +12,6 @@ struct EventLineView: View {
     // data transfer form database
     @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
 //    private var eventViewArray: [YouEventView] = [YouEventView(eventModelObject: stockEventObject), YouEventView(eventModelObject: stockEventObject)]
-    @State var draggedDown: Bool = false
     
     var body: some View {
         ZStack {
@@ -39,27 +38,21 @@ struct EventLineView: View {
                         ForEach(eventArray.indices, id: \.self) { event in
                             GeometryReader { geometry in
                                 VStack {
-                                    YouEventView(eventModelObject: eventArray[event], draggedDown: $draggedDown)
+                                    YouEventView(eventModelObject: eventArray[event], eventArray: $eventArray, eventIndex: event)
                                         .rotation3DEffect(
                                             // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
                                             Angle(
                                                 degrees: Double(geometry.frame(in: .global).minX - 30) / -40),
                                                 axis: (x: 0, y: 10, z: 0)
                                             )
-                                        .onAppear {
-                                            print("appeaarr")
-                                            if draggedDown {
-                                                print(event)
-                                                eventArray.remove(at: event)
-                                            }
-                                            
-                                        }
                                     }
                             }
                             .frame(width: 250, height: 250)
                             .padding(.bottom, 190)
                             .padding(.leading, 30)                                                        
                         }
+                        // needed to refresh the ForEach after a change is made in the array
+                        .id(UUID())
                         
                     }
                 }

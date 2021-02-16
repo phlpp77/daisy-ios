@@ -10,7 +10,8 @@ import SwiftUI
 struct YouEventView: View {
     
     // Bindings
-    @Binding var draggedDown: Bool
+    @Binding var eventArray: [EventModelObject]
+    var eventIndex: Int
     
     // States
     @State var dragPosition: CGSize = .zero
@@ -26,10 +27,11 @@ struct YouEventView: View {
     private var pictureURL: URL
 
     //
-    init(eventModelObject: EventModelObject, draggedDown: Binding<Bool>) {
+    init(eventModelObject: EventModelObject, eventArray: Binding<[EventModelObject]>, eventIndex: Int) {
         
 //        self.eventId = eventId
-        self._draggedDown = draggedDown
+        self._eventArray = eventArray
+        self.eventIndex = eventIndex
         
         category = eventModelObject.category
         date = eventModelObject.date
@@ -121,8 +123,11 @@ struct YouEventView: View {
                 .onEnded { value in
                     if value.translation.height > 100 {
                         self.dragPosition = .init(width: 0, height: 500)
+                        // delete the item at the position from the Array
+                        print(eventIndex)
+                        self.eventArray.remove(at: eventIndex)
                     } else {
-                        self.draggedDown = true
+                        
                         self.dragPosition = .zero
                     }
                 }
@@ -137,6 +142,6 @@ struct YouEventView_Previews: PreviewProvider {
     @State var cgsize: CGSize = .zero
     
     static var previews: some View {
-        YouEventView(eventModelObject: stockEventObject, draggedDown: .constant(false))
+        YouEventView(eventModelObject: stockEventObject, eventArray: .constant([stockEventObject]), eventIndex: 0)
     }
 }
