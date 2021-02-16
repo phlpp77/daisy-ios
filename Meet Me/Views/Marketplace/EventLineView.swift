@@ -10,11 +10,9 @@ import SwiftUI
 struct EventLineView: View {
     
     // data transfer form database
-    private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
+    @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
 //    private var eventViewArray: [YouEventView] = [YouEventView(eventModelObject: stockEventObject), YouEventView(eventModelObject: stockEventObject)]
-    
-    @State var dragPosition: CGSize = .zero
-    @State var position: CGSize = .zero
+    @State var draggedDown: Bool = false
     
     var body: some View {
         ZStack {
@@ -38,39 +36,31 @@ struct EventLineView: View {
                     HStack(spacing: 10) {
                         
                         // create a view for each event in the array
-                        ForEach(eventArray, id: \.eventId) { event in
+                        ForEach(eventArray.indices, id: \.self) { event in
                             GeometryReader { geometry in
                                 VStack {
-                                    YouEventView(dragPosition: $dragPosition, eventModelObject: event)
+                                    YouEventView(eventModelObject: eventArray[event], draggedDown: $draggedDown)
                                         .rotation3DEffect(
                                             // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
                                             Angle(
                                                 degrees: Double(geometry.frame(in: .global).minX - 30) / -40),
                                                 axis: (x: 0, y: 10, z: 0)
                                             )
-                                        .gesture(
-                                            DragGesture()
-                                                .onChanged { value in
-                                                    print("changed position")
-//                                                    event.position = value.translation
-                                                    dragPosition = value.translation
-                                                    print(value.translation)
-//                                                    print(event.position)
-                                                    print(dragPosition)
-                                                    
-                                                }
-                                                .onEnded { value in
-                                                    print("ended")
-//                                                    event.position = .zero
-                                                    dragPosition = .zero
-                                                }
-                                        )
+                                        .onAppear {
+                                            print("appeaarr")
+                                            if draggedDown {
+                                                print(event)
+                                                eventArray.remove(at: event)
+                                            }
+                                            
+                                        }
                                     }
                             }
                             .frame(width: 250, height: 250)
                             .padding(.bottom, 190)
                             .padding(.leading, 30)                                                        
                         }
+                        
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -84,6 +74,8 @@ struct EventLineView: View {
         .frame(height: 440)
         
     }
+
+    
 }
 
 struct EventLineView_Previews: PreviewProvider {

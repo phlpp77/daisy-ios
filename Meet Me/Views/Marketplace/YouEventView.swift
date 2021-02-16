@@ -10,7 +10,10 @@ import SwiftUI
 struct YouEventView: View {
     
     // Bindings
-    @Binding var dragPosition: CGSize
+    @Binding var draggedDown: Bool
+    
+    // States
+    @State var dragPosition: CGSize = .zero
     
     // event id
 //    private var eventId: UUID
@@ -23,12 +26,10 @@ struct YouEventView: View {
     private var pictureURL: URL
 
     //
-    init(dragPosition: Binding<CGSize>, eventModelObject: EventModelObject) {
-        
-        // binding set (that is why there is a underscore _ in the front
-        self._dragPosition = dragPosition
+    init(eventModelObject: EventModelObject, draggedDown: Binding<Bool>) {
         
 //        self.eventId = eventId
+        self._draggedDown = draggedDown
         
         category = eventModelObject.category
         date = eventModelObject.date
@@ -112,12 +113,21 @@ struct YouEventView: View {
         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 15)
         .offset(x: dragPosition.width, y: dragPosition.height)
-        .background(
-              GeometryReader { proxy in
-                Color.clear
-                  
-              }
+        .gesture(
+            DragGesture()
+                .onChanged { value in
+                    self.dragPosition = value.translation
+                }
+                .onEnded { value in
+                    if value.translation.height > 100 {
+                        self.dragPosition = .init(width: 0, height: 500)
+                    } else {
+                        self.draggedDown = true
+                        self.dragPosition = .zero
+                    }
+                }
             )
+        .animation(.interactiveSpring(), value: dragPosition)
     }
     
 }
@@ -127,6 +137,6 @@ struct YouEventView_Previews: PreviewProvider {
     @State var cgsize: CGSize = .zero
     
     static var previews: some View {
-        YouEventView(dragPosition: .constant(CGSize.zero), eventModelObject: stockEventObject)
+        YouEventView(eventModelObject: stockEventObject, draggedDown: .constant(false))
     }
 }
