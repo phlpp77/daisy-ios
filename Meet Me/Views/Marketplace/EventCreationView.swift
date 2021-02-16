@@ -56,6 +56,12 @@ struct EventCreationView: View {
     
     var body: some View {
         ZStack {
+            
+            // background
+            BlurView(style: .systemUltraThinMaterial)
+                .opacity(0.9)
+                .ignoresSafeArea()
+            
             VStack {
                 ZStack {
                     // Main image as a backgrond of the event
@@ -147,12 +153,6 @@ struct EventCreationView: View {
                 .frame(width: 250, height: 250, alignment: .center)
                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 15)
-                .background(
-                      GeometryReader { proxy in
-                        Color.clear
-                          
-                      }
-            )
                 
                 // update button
                 HStack {
@@ -218,6 +218,28 @@ struct EventCreationView: View {
                 }
             }
             
+            Image(systemName: "xmark.circle")
+                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                .padding(10)
+                .background(BlurView(style: .systemMaterial))
+                .clipShape(Circle())
+                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+                .scaleEffect(buttonPressed ? 0.8 : 1)
+                .opacity(buttonPressed ? 0.5 : 1)
+                .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
+                .onTapGesture {
+                    // button animation start
+                    buttonPressed.toggle()
+                    
+                    // haptic feedback when button is tapped
+                    hapticPulse(feedback: .rigid)
+                    
+                    // close view
+                    presentation = false
+                }
+                .offset(x: 130, y: -320)
+            
         }
         
     }
@@ -226,9 +248,9 @@ struct EventCreationView: View {
     func prepareUpload() {
         eventCreationVM.category = category
         eventCreationVM.pictureURL = pictureURL
-        eventCreationVM.date = dateFormatter.date(from: dateAsString)!
-        eventCreationVM.startTime = timeFormatter.date(from: startTimeAsString)!
-        eventCreationVM.endTime = timeFormatter.date(from: endTimeAsString)!
+        eventCreationVM.date = dateFormatter.date(from: dateAsString) ?? Date()
+        eventCreationVM.startTime = timeFormatter.date(from: startTimeAsString) ?? Date()
+        eventCreationVM.endTime = timeFormatter.date(from: endTimeAsString) ?? Date()
         
     }
 }
