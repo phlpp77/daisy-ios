@@ -15,13 +15,14 @@ class FirestoreFotoManager: ObservableObject {
     
     let storage = Storage.storage()
     private var db: Firestore
+    @Published var photoModel: [PhotoModelObject] = []
     //typealias CompletionHandler = (_ success: Bool) -> Void
      
     init() {
           db = Firestore.firestore()
     }
     
-    @Published var photoModel: [PhotoModelObject] = []
+    
     
     var stockPhotoModel: PhotoModel = PhotoModel()
     var url: URL?

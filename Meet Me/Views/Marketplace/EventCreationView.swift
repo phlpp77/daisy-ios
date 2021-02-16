@@ -9,7 +9,9 @@ import SwiftUI
 import URLImage
 
 struct EventCreationView: View {
+    @StateObject private var youEventVM = YouEventViewModel()
     @StateObject private var eventCreationVM = EventCreationViewModel()
+    
     // binding for presentation
     @Binding var presentation: Bool
     
@@ -168,6 +170,10 @@ struct EventCreationView: View {
                 .onTapGesture {
                     // update handling
                     prepareUpload()
+                    youEventVM.getUserEvents()
+                    print("ich bin wichtig das wichtigste\(youEventVM.event)")
+                    
+                    
                     eventCreationVM.saveEventSettings()
                     // button animation start
                     buttonPressed.toggle()
@@ -179,6 +185,8 @@ struct EventCreationView: View {
                     presentation = false
                 }
                 
+            }.onAppear {
+                youEventVM.getUserEvents()
             }
             
             
