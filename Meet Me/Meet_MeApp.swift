@@ -7,8 +7,8 @@
 //
 import SwiftUI
 import Firebase
-
-
+import FirebaseFirestore
+import FirebaseAuth
 
 
 @main
@@ -20,7 +20,6 @@ struct Meet_MeApp: App {
     
     init() {
         FirebaseApp.configure()
-
     }
 
     
@@ -32,7 +31,7 @@ struct Meet_MeApp: App {
             //meet_MeAppVM.CheckUserAccForAutoLogin()
 //            Copy into if for autologin
 //            ||  autoLogin()
-            if startProcessDone || checkUserAccForAutoLogin() {
+            if startProcessDone ||  checkUserAccForAutoLogin()  {
 
                 MainControllerView()
 

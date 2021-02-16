@@ -8,11 +8,10 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseAuth
 
 class Meet_MeAppViewModel: ObservableObject {
     var firestoreManagerUser: FirestoreManagerUser = FirestoreManagerUser()
-
- 
 
 
     func CheckUserAccForAutoLogin() -> Bool{

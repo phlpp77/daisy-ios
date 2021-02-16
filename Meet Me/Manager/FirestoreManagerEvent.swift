@@ -6,13 +6,15 @@
 //
 
 import Foundation
+import FirebaseFirestore
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseAuth
 
 class FireStoreManagerEvent {
     
     private var db: Firestore
-    @Published var eventModel: [EventModelObject] = []
+    private var event: [EventModelObject] = []
     
     init() {
         db = Firestore.firestore()
@@ -36,7 +38,89 @@ class FireStoreManagerEvent {
                 completion(.failure(error))
             }
         }
+
     
+    
+//    func getUserEvent(completion: @escaping (Result<[EventModelObject]?, Error>) -> Void) {
+//
+//        guard let currentUser = Auth.auth().currentUser else {
+//            return
+//        }
+//
+//        db.collection("events")
+//            .whereField("userId", isNotEqualTo: currentUser.uid)
+//            .getDocuments() { (snapshot, error) in
+//                if let error = error {
+//                    completion(.failure(error))
+//                } else {
+//                    if let snapshot = snapshot {
+//                        let events: [EventModelObject]? = snapshot.documents.compactMap { doc in
+//                            var event = try? doc.data(as: EventModel.self)
+//                            event?.eventId = doc.documentID
+//                            if let event = event {
+//                                return EventModelObject(eventModel: eventModel)
+//                            }
+//                            return event
+//                        }
+//
+//                        completion(.success(events))
+//                    }
+//
+//                }
+//            }
+//    }
+    
+    func getUserEvent(completionHandler: @escaping (Bool) -> Void) {
+
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+         var flag = false
+        db.collection("events")
+            .whereField("userId", isEqualTo: currentUser.uid)
+            .getDocuments { [weak self] (snapshot, error) in
+                if let error = error {
+                    flag = false
+                    print(error.localizedDescription)
+                } else {
+                    
+                    if let snapshot = snapshot {
+                        let event: [EventModelObject]? = snapshot.documents.compactMap { doc in
+                            var event = try? doc.data(as: EventModel.self)
+                            event?.eventId = doc.documentID
+                            if let event = event {
+                                return EventModelObject(eventModel: event)
+                            }
+                            return nil
+                            
+                            
+                        }
+                        print("hey")
+                        print(event)
+                        flag = true
+                        completionHandler(flag)
+                        DispatchQueue.main.async {
+                            self?.event = event!
+                        }
+                        
+                    }
+
+                }
+            }
+    
+        
+    }
+    
+    func getEvents() -> [EventModelObject] {
+        return event
+    }
+    
+    
+    //im View einfügen
+    //@StateObject private var FirestoreManagerEvent = fireStoreManagerEvent()
+    //.onAppear(perform: {
+    //firestoreMangerEvent.getUserEvent
+    //})
     
 }
     

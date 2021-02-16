@@ -8,11 +8,17 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseFirestore
+import FirebaseAuth
 
 class FirestoreManagerUser {
     
     private var db: Firestore
     @Published var user: UserModel?
+    
+    //wird aktuell nicht verwendet variable ist im Meet_MeAppVM drin muss noch geändert werden
+    //muss in ProfilMNodelObject geändert werden
+    //@Published var users: [MeProfilModel] = []
     
     init() {
         db = Firestore.firestore()
@@ -45,7 +51,7 @@ class FirestoreManagerUser {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
-        
+      
         db.collection("users")
             .whereField("userId", isEqualTo: currentUser.uid)
             .getDocuments() { (snapshot, error) in
@@ -66,6 +72,7 @@ class FirestoreManagerUser {
 
                 }
             }
+        
     }
         
         
