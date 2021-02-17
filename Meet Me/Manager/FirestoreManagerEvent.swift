@@ -96,7 +96,7 @@ class FireStoreManagerEvent {
                             
                         }
                         print("hey")
-                        print(event)
+                        
                         flag = true
                         completionHandler(flag)
                         DispatchQueue.main.async {
