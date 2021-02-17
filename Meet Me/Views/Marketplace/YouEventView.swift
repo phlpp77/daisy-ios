@@ -10,7 +10,15 @@ import SwiftUI
 struct YouEventView: View {
     
     // Bindings
-    @Binding var dragPosition: CGSize
+    @Binding var eventArray: [EventModelObject]
+    var eventIndex: Int
+    var dragPossible: Bool = true
+    
+    // States
+    @State var dragPosition: CGSize = .zero
+    
+    // event id
+//    private var eventId: UUID
     
     // vars to show in the screen
     private var category: String
@@ -19,10 +27,13 @@ struct YouEventView: View {
     private var endTime: Date
     private var pictureURL: URL
 
-    init(dragPosition: Binding<CGSize>, eventModelObject: EventModelObject) {
+    //
+    init(eventModelObject: EventModelObject, eventArray: Binding<[EventModelObject]>, eventIndex: Int, dragPossible: Bool) {
         
-        // binding set (that is why there is a underscore _ in the front
-        self._dragPosition = dragPosition
+//        self.eventId = eventId
+        self._eventArray = eventArray
+        self.eventIndex = eventIndex
+        self.dragPossible = dragPossible
         
         category = eventModelObject.category
         date = eventModelObject.date
@@ -45,7 +56,6 @@ struct YouEventView: View {
         return formatter
     }()
        
-    
     
     var body: some View {
         ZStack {
@@ -106,21 +116,39 @@ struct YouEventView: View {
         .frame(width: 250, height: 250, alignment: .center)
         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 15)
-        .background(
-              GeometryReader { proxy in
-                Color.clear
-                  
-              }
+        .offset(x: dragPosition.width, y: dragPosition.height)
+        .gesture(
+            DragGesture()
+                .onChanged { value in
+                    if dragPossible {
+                        self.dragPosition = value.translation
+                    }
+                }
+                .onEnded { value in
+                    if dragPossible {
+                        if value.translation.height > 100 {
+                            self.dragPosition = .init(width: 0, height: 500)
+                            // delete the item at the position from the Array
+                            print(eventIndex)
+                            self.eventArray.remove(at: eventIndex)
+                        } else {
+                            
+                            self.dragPosition = .zero
+                        }
+                    }
+                    
+                }
             )
+        .animation(.interactiveSpring(), value: dragPosition)
     }
     
 }
 
-//struct YouEventView_Previews: PreviewProvider {
-//    
-//    @State var cgsize: CGSize = .zero
-//    
-//    static var previews: some View {
-//        YouEventView(dragPosition: $cgsize)
-//    }
-//}
+struct YouEventView_Previews: PreviewProvider {
+    
+    @State var cgsize: CGSize = .zero
+    
+    static var previews: some View {
+        YouEventView(eventModelObject: stockEventObject, eventArray: .constant([stockEventObject]), eventIndex: 0, dragPossible: true)
+    }
+}

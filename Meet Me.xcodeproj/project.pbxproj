@@ -26,6 +26,7 @@
 		1778E41325D0904100C5D343 /* DateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1778E41225D0904000C5D343 /* DateTextField.swift */; };
 		177F681925D8409200BC345B /* MeProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F681825D8409200BC345B /* MeProfileView.swift */; };
 		177F682A25D8937F00BC345B /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F682925D8937F00BC345B /* KeyboardHandler.swift */; };
+		1795DF9525DD6998002D537F /* MeEventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1795DF9425DD6998002D537F /* MeEventLineView.swift */; };
 		179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C525D477F1007F64D6 /* YouEventView.swift */; };
 		179B27CA25D48788007F64D6 /* EventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C925D48788007F64D6 /* EventLineView.swift */; };
 		17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67225C2093D00E4DA78 /* PickerTextField.swift */; };
@@ -79,6 +80,7 @@
 		1778E41225D0904000C5D343 /* DateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTextField.swift; sourceTree = "<group>"; };
 		177F681825D8409200BC345B /* MeProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileView.swift; sourceTree = "<group>"; };
 		177F682925D8937F00BC345B /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
+		1795DF9425DD6998002D537F /* MeEventLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventLineView.swift; sourceTree = "<group>"; };
 		179B27C525D477F1007F64D6 /* YouEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventView.swift; sourceTree = "<group>"; };
 		179B27C925D48788007F64D6 /* EventLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLineView.swift; sourceTree = "<group>"; };
 		17A1E67225C2093D00E4DA78 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 		179B27C425D476F7007F64D6 /* Marketplace */ = {
 			isa = PBXGroup;
 			children = (
+				1795DF9425DD6998002D537F /* MeEventLineView.swift */,
 				179B27C925D48788007F64D6 /* EventLineView.swift */,
 				174423AD25D9A93000D25EDD /* EventCreationView.swift */,
 				179B27C525D477F1007F64D6 /* YouEventView.swift */,
@@ -440,6 +443,7 @@
 				90F2334D25D58481003FB1D9 /* ImagePicker.swift in Sources */,
 				1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */,
 				17AC8C8425D8315100252875 /* YouProfileView.swift in Sources */,
+				1795DF9525DD6998002D537F /* MeEventLineView.swift in Sources */,
 				1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */,
 				902EF6BD25D896E3004464F0 /* UIImageResized.swift in Sources */,
 				174423AA25D9A0DF00D25EDD /* EventModel.swift in Sources */,
@@ -587,7 +591,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -612,7 +616,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
