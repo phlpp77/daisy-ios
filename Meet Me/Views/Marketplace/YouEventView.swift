@@ -125,7 +125,11 @@ struct YouEventView: View {
             DragGesture()
                 .onChanged { value in
                     if dragPossible {
-                        self.dragPosition = value.translation
+                        // drag is not allowed to be higher than 20 upwards
+                        if value.translation.height > -20 {
+                            self.dragPosition = value.translation
+                        }
+                        
                     }
                 }
                 .onEnded { value in

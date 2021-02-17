@@ -12,10 +12,35 @@ struct MeEventLineView: View {
     @StateObject private var youEventVM = YouEventViewModel()
     @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject, stockEventObject]
     
+    @State var buttonPressed: Bool = true
+    @Binding var showCreationView: Bool
+    
     var body: some View {
             GeometryReader { geometry in
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
+                        Image(systemName: "plus.circle")
+                            .font(.title)
+                            .padding(10)
+                            .background(BlurView(style: .systemMaterial))
+                            .clipShape(Circle())
+                            .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+                            .padding(.leading, 10)
+                            .scaleEffect(buttonPressed ? 0.8 : 1)
+                            .opacity(buttonPressed ? 0.5 : 1)
+                            .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
+                            .onTapGesture {
+                                // button animation start
+                                buttonPressed.toggle()
+                                
+                                // haptic feedback when button is tapped
+                                hapticPulse(feedback: .rigid)
+                                
+                                // close view
+                                showCreationView = true
+                            }
+                            
                         ForEach(eventArray.indices, id: \.self) { event in
                             HStack {
                                 //
@@ -27,7 +52,7 @@ struct MeEventLineView: View {
                                             axis: (x: 0, y: 10, z: 0)
                                         )
                                     .scaleEffect(0.5)
-                                    .frame(width: 140, height: 140, alignment: .center)
+                                    .frame(width: 140, height: 160, alignment: .center)
                             }
                         }
                     }
@@ -35,13 +60,13 @@ struct MeEventLineView: View {
             }        
             .onAppear {
                 youEventVM.getUserEvents()
-                eventArray = youEventVM.event
+//                eventArray = youEventVM.event
         }
     }
 }
 
 struct MeEventLineView_Previews: PreviewProvider {
     static var previews: some View {
-        MeEventLineView()
+        MeEventLineView(showCreationView: .constant(false))
     }
 }
