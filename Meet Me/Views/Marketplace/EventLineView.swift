@@ -11,14 +11,9 @@ struct EventLineView: View {
     
     //Muss in die View
     @StateObject private var youEventVM = YouEventViewModel()
-    //am besten dann funktion getUserEvent() über onAppear aufrufen
-
-    //danach kann auf das Array auf das array über
-    //eventCreationVM.event zugegriffen werden
     
     // data transfer form database
-    @State private var eventArray: [EventModelObject] = [stockEventObject]
-//    private var eventViewArray: [YouEventView] = [YouEventView(eventModelObject: stockEventObject), YouEventView(eventModelObject: stockEventObject)]
+    @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
     
     var body: some View {
         ZStack {

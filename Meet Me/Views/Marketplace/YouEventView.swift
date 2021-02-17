@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct YouEventView: View {
     
@@ -60,9 +61,11 @@ struct YouEventView: View {
     var body: some View {
         ZStack {
             // Main image as a backgrond of the event
-            Image(uiImage: #imageLiteral(resourceName: "cafe"))
-                .resizable()
-                .aspectRatio(contentMode: .fill)
+            URLImage(url: pictureURL) { image in
+                image.resizable()
+                    .aspectRatio(contentMode: .fill)
+            }
+                
             
             VStack(alignment: .leading) {
                 HStack {
@@ -140,6 +143,9 @@ struct YouEventView: View {
                 }
             )
         .animation(.interactiveSpring(), value: dragPosition)
+        .onAppear {
+            print("URL current pic:", pictureURL)
+        }
     }
     
 }
