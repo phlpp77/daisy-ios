@@ -45,7 +45,7 @@ struct EventLineView: View {
                         ForEach(eventArray.indices, id: \.self) { event in
                             GeometryReader { geometry in
                                 VStack {
-                                    YouEventView(eventModelObject: eventArray[event], eventArray: $eventArray, eventIndex: event)
+                                    YouEventView(eventModelObject: eventArray[event], eventArray: $eventArray, eventIndex: event, dragPossible: true)
                                         .rotation3DEffect(
                                             // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
                                             Angle(

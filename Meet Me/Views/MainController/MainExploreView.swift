@@ -27,6 +27,8 @@ struct MainExploreView: View {
                     .foregroundColor(.accentColor)
                     .padding(.bottom, 50)
                 
+                MeEventLineView()
+                
                 EventLineView()
             }
             

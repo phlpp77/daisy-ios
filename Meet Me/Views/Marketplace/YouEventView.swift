@@ -12,6 +12,7 @@ struct YouEventView: View {
     // Bindings
     @Binding var eventArray: [EventModelObject]
     var eventIndex: Int
+    var dragPossible: Bool = true
     
     // States
     @State var dragPosition: CGSize = .zero
@@ -27,11 +28,12 @@ struct YouEventView: View {
     private var pictureURL: URL
 
     //
-    init(eventModelObject: EventModelObject, eventArray: Binding<[EventModelObject]>, eventIndex: Int) {
+    init(eventModelObject: EventModelObject, eventArray: Binding<[EventModelObject]>, eventIndex: Int, dragPossible: Bool) {
         
 //        self.eventId = eventId
         self._eventArray = eventArray
         self.eventIndex = eventIndex
+        self.dragPossible = dragPossible
         
         category = eventModelObject.category
         date = eventModelObject.date
@@ -118,18 +120,23 @@ struct YouEventView: View {
         .gesture(
             DragGesture()
                 .onChanged { value in
-                    self.dragPosition = value.translation
+                    if dragPossible {
+                        self.dragPosition = value.translation
+                    }
                 }
                 .onEnded { value in
-                    if value.translation.height > 100 {
-                        self.dragPosition = .init(width: 0, height: 500)
-                        // delete the item at the position from the Array
-                        print(eventIndex)
-                        self.eventArray.remove(at: eventIndex)
-                    } else {
-                        
-                        self.dragPosition = .zero
+                    if dragPossible {
+                        if value.translation.height > 100 {
+                            self.dragPosition = .init(width: 0, height: 500)
+                            // delete the item at the position from the Array
+                            print(eventIndex)
+                            self.eventArray.remove(at: eventIndex)
+                        } else {
+                            
+                            self.dragPosition = .zero
+                        }
                     }
+                    
                 }
             )
         .animation(.interactiveSpring(), value: dragPosition)
@@ -142,6 +149,6 @@ struct YouEventView_Previews: PreviewProvider {
     @State var cgsize: CGSize = .zero
     
     static var previews: some View {
-        YouEventView(eventModelObject: stockEventObject, eventArray: .constant([stockEventObject]), eventIndex: 0)
+        YouEventView(eventModelObject: stockEventObject, eventArray: .constant([stockEventObject]), eventIndex: 0, dragPossible: true)
     }
 }
