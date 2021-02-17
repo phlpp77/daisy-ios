@@ -64,6 +64,7 @@ struct YouEventView: View {
             URLImage(url: pictureURL) { image in
                 image.resizable()
                     .aspectRatio(contentMode: .fill)
+                    .frame(width: 250, height: 250, alignment: .center)
             }
                 
             
