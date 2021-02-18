@@ -24,22 +24,23 @@ class Meet_MeAppViewModel: ObservableObject {
         }
     }
 
-    func getUser() -> Bool {
-        var userStartProcessDone = false
-            firestoreManagerUser.getCurrentUserModel { result in
-            switch result {
-            case .success(let user):
-                if let user = user {
-                    if user.startProcessDone != nil {
-                        userStartProcessDone = true 
-                    }
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-        return userStartProcessDone
-    }
-
-
+//    func getUser() -> Bool {
+//        var userStartProcessDone = false
+//            firestoreManagerUser.currentUserModel{ result in
+//            switch result {
+//            case .success(let user):
+//                if let user = user {
+//                    if user.startProcessDone != nil {
+//                        userStartProcessDone = true
+//                    }
+//                }
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//        return userStartProcessDone
+//    }
+//
+//
+//}
 }

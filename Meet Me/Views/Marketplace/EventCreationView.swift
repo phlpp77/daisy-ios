@@ -171,7 +171,7 @@ struct EventCreationView: View {
                     // update handling
                     prepareUpload()
                     youEventVM.getUserEvents()
-                    print("ich bin wichtig das wichtigste\(youEventVM.event)")
+                    
                     
                     
                     eventCreationVM.saveEventSettings()

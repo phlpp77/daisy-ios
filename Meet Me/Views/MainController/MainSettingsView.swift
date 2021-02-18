@@ -13,11 +13,8 @@ struct MainSettingsView: View {
     
     var body: some View {
         
-        MeProfileView(user: meProfileVM.userModel, URL: meProfileVM.userPictureURL)
-            .onAppear {
-                meProfileVM.fillUserModel()
-                meProfileVM.getUserProfilePictureURL()
-            }
+        MeProfileView()
+
     }
 }
 

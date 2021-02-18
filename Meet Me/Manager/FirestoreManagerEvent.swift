@@ -37,6 +37,7 @@ class FireStoreManagerEvent {
     
     
     func getEvents() -> [EventModelObject] {
+        print("aufgerufene Events: \(meEvents)")
         return meEvents
     }
     

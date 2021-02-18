@@ -9,54 +9,49 @@ import Foundation
 
 
 class MeProfileViewModel: ObservableObject {
-    private var firestoreManagerUser: FirestoreManagerUser
+    private var firestoreManagerUser: FirestoreManagerUser = FirestoreManagerUser()
     private var firestoreFotoManager: FirestoreFotoManager = FirestoreFotoManager()
-    var user: [MeProfileModel] = []
+    var user: [UserModelObject] = []
     @Published var userModel: UserModel = testUser
     @Published var userPictureURL: URL = stockURL
     
 
-    
-    
-    init() {
-        firestoreManagerUser = FirestoreManagerUser()
-    }
-    
-    func getUser(){
-        firestoreManagerUser.getAllUsers { result in
-            switch result {
-            case .success(let user):
-                if let user = user {
-                    DispatchQueue.main.async {
-                        self.user = user.map(MeProfileModel.init)
-                        self.userModel = self.convertModels(userArray: self.user)
-                        
-                        
-                    }
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    func convertModels(userArray: [MeProfileModel]) -> UserModel {
-        
-        var user: UserModel = testUser
-        
-            user.name = userArray[0].name
-            user.gender = userArray[0].gender
-            user.startProcessDone = userArray[0].startProcessDone
-            user.searchingFor = userArray[0].searchingFor
-            user.url = userArray[0].url
-            user.userId = userArray[0].userId
-            user.birthdayDate = userArray[0].birthdayDate
-            
-        return user
-            
-         
-    }
-    
+//
+//    func getUser(){
+//        firestoreManagerUser.getAllUsers { result in
+//            switch result {
+//            case .success(let user):
+//                if let user = user {
+//                    DispatchQueue.main.async {
+//                        self.user = user.map(UserModelObject.init)
+//                        self.userModel = self.convertModels(userArray: self.user)
+//
+//
+//                    }
+//                }
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//    }
+//
+//    func convertModels(userArray: [UserModelObject]) -> UserModel {
+//
+//        var user: UserModel = testUser
+//
+//            user.name = userArray[0].name
+//            user.gender = userArray[0].gender
+//            user.startProcessDone = userArray[0].startProcessDone
+//            user.searchingFor = userArray[0].searchingFor
+//            user.url = userArray[0].url
+//            user.userId = userArray[0].userId
+//            user.birthdayDate = userArray[0].birthdayDate
+//
+//        return user
+//
+//
+//    }
+//
     func getUserProfilePictureURL() {
         firestoreFotoManager.getAllPhotosFromUser(completionHandler: { success in
             if success {
@@ -66,71 +61,18 @@ class MeProfileViewModel: ObservableObject {
                 let url = URL(string: self.firestoreFotoManager.photoModel[0].url)!
                 self.userPictureURL = url
             } else {
-                print("else completion")
                 // ohh, no picture
                 self.userPictureURL = stockURL
             }
             
-        }
-        )
+        })
     }
     
-    func fillUserModel() {
-        firestoreManagerUser.getCurrentUserModel(completion: { result in
-            switch result {
-            case .success(let user):
-                if let user = user {
-                    DispatchQueue.main.async {
-                        self.userModel = user
-                        print("got userModel")
-                        // ohh, no picture
-                        
-                    }
-                    
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-                
-                
-            }
-        }
-        )
+    func getUserModel() {
+        self.userModel = firestoreManagerUser.getCurrentUserModel()
     }
     
 
-    struct MeProfileModel {
-        
-        let user: UserModel
-        
-        var name: String {
-            user.name
-        }
-        
-        var birthdayDate: Date {
-            user.birthdayDate
-        }
-        
-        var gender: String {
-            user.gender
-        }
-        
-        var startProcessDone: Bool {
-            user.startProcessDone
-        }
-        
-        var searchingFor: String {
-            user.searchingFor
-        }
-        
-        var userId: String {
-            user.userId
-        }
-        
-        var url: String {
-            user.url
-        }
-        
-    }
     
     
 

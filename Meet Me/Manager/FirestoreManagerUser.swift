@@ -28,7 +28,7 @@ import FirebaseAuth
 class FirestoreManagerUser {
     
     private var db: Firestore
-    @Published var user: UserModel?
+    private var currentUserModel: UserModel?
     
     //wird aktuell nicht verwendet variable ist im Meet_MeAppVM drin muss noch geändert werden
     //muss in ProfilMNodelObject geändert werden
@@ -37,6 +37,8 @@ class FirestoreManagerUser {
     init() {
         db = Firestore.firestore()
     }
+    
+    
     
     
     
@@ -89,29 +91,59 @@ class FirestoreManagerUser {
         
     }
         
+    
+    func currentUserModel(completion: @escaping (Result<UserModel?, Error>) -> Void) {
         
-        func getCurrentUserModel(completion: @escaping (Result<UserModel?, Error>) -> Void){
-            guard let currentUser = Auth.auth().currentUser?.uid else {
-                return
-            }
-            
-            db.collection("users").document(currentUser).getDocument { snapshot, error in
-                if let error = error {
-                    completion(.failure(error))
-                } else {
-                    if let snapshot = snapshot {
-                        let user = try? snapshot.data(as: UserModel.self)
-                        completion(.success(user))
-                        }
-                            
-                        }
-
-                
+        guard let currentUser = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        db.collection("users").document(currentUser).getDocument { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                if let snapshot = snapshot {
+                    let userModel = try? snapshot.data(as: UserModel.self)
+                    if userModel != nil {
+                        completion(.success(userModel))
                     }
-
+                }
+                
             }
             
+            
+        }
         
+    }
+    
+    
+    func saveCurrentUserModelToVariabel(){
+        currentUserModel(completion: { success in
+                switch success {
+                case .success(let userModel):
+                    DispatchQueue.main.async {
+                        self.currentUserModel = userModel
+                    }
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        print("Download User Failed")
+                    }
+                    
+                
+                }
+            })
+        }
+    
+    func getCurrentUserModel() -> UserModel {
+        saveCurrentUserModelToVariabel()
+        if currentUserModel != nil {
+            return currentUserModel!
+        } else {
+            return testUser
+        }
+    }
+    
+    
     
     
 }

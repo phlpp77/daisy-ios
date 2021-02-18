@@ -70,9 +70,7 @@ struct EventLineView: View {
         .frame(height: 420)
         .onAppear {
             youEventVM.getUserEvents()
-            print("events in the db")
-            print(youEventVM.event)
-//            eventArray = youEventVM.event
+            eventArray = youEventVM.event
         }
         
     }

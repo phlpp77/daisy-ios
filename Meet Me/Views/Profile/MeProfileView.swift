@@ -9,28 +9,11 @@ import SwiftUI
 import URLImage
 
 struct MeProfileView: View {
-    
-    private var userId: String?
-    private var name: String
-    private var birthdayDate: Date
-    private var age: Int
-    private var gender: String
-    private var searchingFor: String
-    private var url: String
+    @ObservedObject private var meProfileVM = MeProfileViewModel()
     @State private var showProfilePhoto: Bool = false
-    private var profilePictureURL: URL
+    private var profilePictureURL: URL = stockURL
     
-    
-    init(user: UserModel, URL: URL) {
-        userId = user.userId
-        name = user.name
-        birthdayDate = user.birthdayDate
-        age = dateToAge(date: birthdayDate)
-        gender = user.gender
-        searchingFor = user.searchingFor
-        url = user.url
-        profilePictureURL = URL
-    }
+
     
     var body: some View {
         VStack {
@@ -63,12 +46,12 @@ struct MeProfileView: View {
                 
                 // First Line with data
                 HStack {
-                    Text(name)
+                    Text(meProfileVM.userModel.name)
                     
                     Spacer()
                     
                     HStack {
-                        Text(String(age))
+                        Text(String(dateToAge(date: meProfileVM.userModel.birthdayDate)))
                             .foregroundColor(.accentColor)
                         Text("Years old")
                     }
@@ -81,18 +64,22 @@ struct MeProfileView: View {
                 HStack {
                     HStack {
                         Text("I am")
-                        Text(gender)
+                        Text(meProfileVM.userModel.gender)
                     }
                     
                     Spacer()
                     
                     HStack {
                         Text("Show me")
-                        Text(searchingFor)
+                        Text(meProfileVM.userModel.searchingFor)
                             .foregroundColor(.accentColor)
                         Text("users")
                     }
                 }
+            }.onAppear {
+                meProfileVM.getUserModel()
+                meProfileVM.getUserProfilePictureURL()
+                print(meProfileVM.getUserModel())
             }
             .padding()
             .frame(height: 80)
@@ -115,7 +102,7 @@ struct MeProfileView: View {
 
 struct MeProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        MeProfileView(user: testUser, URL: stockURL)
+        MeProfileView()
     }
 }
 
