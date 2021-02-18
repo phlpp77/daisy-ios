@@ -29,6 +29,7 @@ class FireStoreManagerEvent {
     
     private var db: Firestore
     private var meEvents: [EventModelObject] = []
+    private var youEvents: [EventModelObject] = []
     
     init() {
         db = Firestore.firestore()
@@ -36,9 +37,14 @@ class FireStoreManagerEvent {
     
     
     
-    func getEvents() -> [EventModelObject] {
-        print("aufgerufene Events: \(meEvents)")
+    func getMeEvents() -> [EventModelObject] {
+        print(meEvents)
         return meEvents
+    }
+    
+    func getYouEvents()-> [EventModelObject] {
+        print(youEvents)
+        return youEvents
     }
     
     
@@ -63,7 +69,7 @@ class FireStoreManagerEvent {
 
 
     
-    func getMeEvents(completionHandler: @escaping (Bool) -> Void) {
+    func firebaseGetMeEvents(completionHandler: @escaping (Bool) -> Void) {
 
         guard let currentUser = Auth.auth().currentUser else {
             return
@@ -92,6 +98,45 @@ class FireStoreManagerEvent {
                         completionHandler(flag)
                         DispatchQueue.main.async {
                             self?.meEvents = event!
+                        }
+                        
+                    }
+
+                }
+            }
+    
+        
+    }
+    
+    func firebaseGetYouEvents(completionHandler: @escaping (Bool) -> Void) {
+
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        var flag = false
+        db.collection("events")
+            .whereField("userId", isNotEqualTo: currentUser.uid)
+            .getDocuments { [weak self] (snapshot, error) in
+                if let error = error {
+                    flag = false
+                    print(error.localizedDescription)
+                } else {
+                    
+                    if let snapshot = snapshot {
+                        let event: [EventModelObject]? = snapshot.documents.compactMap { doc in
+                            var event = try? doc.data(as: EventModel.self)
+                            event?.eventId = doc.documentID
+                            if let event = event {
+                                // Philipp added the .constant to handle the error of the needed position
+                                return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
+                            }
+                            return nil
+                        
+                        }
+                        flag = true
+                        completionHandler(flag)
+                        DispatchQueue.main.async {
+                            self?.youEvents = event!
                         }
                         
                     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MeEventLineView: View {
     
-    @StateObject private var youEventVM = YouEventViewModel()
+    @StateObject private var meEventLineVM = MeEventLineViewModel()
     @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject, stockEventObject]
     
     @State var buttonPressed: Bool = true
@@ -59,8 +59,10 @@ struct MeEventLineView: View {
                 }
             }        
             .onAppear {
-                youEventVM.getUserEvents()
-                eventArray = youEventVM.event
+                meEventLineVM.getMeEvents()
+                eventArray = meEventLineVM.meEvents
+                
+                print("DEBUG: ALLMeEvents\(eventArray)")
         }
     }
 }

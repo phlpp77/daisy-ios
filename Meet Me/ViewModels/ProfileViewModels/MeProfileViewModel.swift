@@ -18,14 +18,14 @@ class MeProfileViewModel: ObservableObject {
 
 
     func getUserProfilePictureURL() {
-        firestoreFotoManager.getAllPhotosFromUser(completionHandler: { success in
+        firestoreFotoManager.getAllPhotosFromUser(collection: "UserPhotos", completionHandler: { success in
             if success {
                 // yeah picture
-                print(self.firestoreFotoManager.photoModel)
-                print(URL(string: self.firestoreFotoManager.photoModel[0].url)!)
+
+
                 let url = URL(string: self.firestoreFotoManager.photoModel[0].url)!
                 self.userPictureURL = url
-                print("\(self.userPictureURL) USER URL")
+
             } else {
                 // ohh, no picture
                 self.userPictureURL = stockURL
@@ -38,7 +38,6 @@ class MeProfileViewModel: ObservableObject {
         firestoreManagerUser.downloadCurrentUserModel(completion: { success in
                 if success {
                     DispatchQueue.main.async {
-                        print("user to variable success")
                         self.userModel = self.firestoreManagerUser.getCurrentUserModel()
                     }
                 } else {

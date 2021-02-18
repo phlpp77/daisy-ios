@@ -9,9 +9,9 @@ import SwiftUI
 import URLImage
 
 struct EventCreationView: View {
-    @StateObject private var youEventVM = YouEventViewModel()
+    //@StateObject private var youEventLineVM = YouEventLineViewModel()
     @StateObject private var eventCreationVM = EventCreationViewModel()
-    
+    @StateObject private var firestoreFotoManger = FirestoreFotoManager()
     // binding for presentation
     @Binding var presentation: Bool
     
@@ -64,6 +64,8 @@ struct EventCreationView: View {
             VStack {
                 ZStack {
                     // Main image as a backgrond of the event
+                    
+                    //BILD EVENT
                     Image(uiImage: uiImage!)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -167,25 +169,27 @@ struct EventCreationView: View {
                 .scaleEffect(buttonPressed ? 0.8 : 1)
                 .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
                 .onTapGesture {
-                    // update handling
-                    prepareUpload()
-                    youEventVM.getUserEvents()
-                    
-                    
-                    
-                    eventCreationVM.saveEventSettings()
-                    // button animation start
-                    buttonPressed.toggle()
-                    
-                    // haptic feedback when button is tapped
-                    hapticPulse(feedback: .rigid)
-                    
-                    // close view
-                    presentation = false
+                    firestoreFotoManger.savePhoto(originalImage: uiImage, collection: "EventPhotos", childFolder: "EventImages", completion: { success in
+                        if success {
+                            // update handling
+                            prepareUpload()
+                            //youEventLineVM.getYouEvents()
+                            eventCreationVM.saveEventSettings()
+                            // button animation start
+                            buttonPressed.toggle()
+                            // haptic feedback when button is tapped
+                            hapticPulse(feedback: .rigid)
+                            // close view
+                            presentation = false
+                        } else {
+                            print("error by save User Seetings to Firebase")
+                        }
+                    })
+
                 }
                 
             }.onAppear {
-                youEventVM.getUserEvents()
+                //youEventLineVM.getYouEvents()
             }
             
             

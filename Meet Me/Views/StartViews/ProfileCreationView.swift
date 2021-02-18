@@ -153,7 +153,7 @@ struct ProfileCreationView: View {
                         
                         // update button
                         Button(action: {
-                            firestoreFotoManger.savePhoto(originalImage: uiImage, completion: { success in
+                            firestoreFotoManger.savePhoto(originalImage: uiImage,collection: "UserPhotos",childFolder:"UserImages",  completion: { success in
                                 if success {
                                     let bDate = convertStringToDate(date: birthdayDate)
                                     

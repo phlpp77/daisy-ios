@@ -80,7 +80,7 @@ struct MeProfileView: View {
 //                meProfileVM.getUser()
                 meProfileVM.getUserModel()
                 meProfileVM.getUserProfilePictureURL()
-                print("Ausgabe bei funktions aufruf für das userModel in MEProfilView:\(meProfileVM.getUserModel())")
+            
             }
             .padding()
             .frame(height: 80)

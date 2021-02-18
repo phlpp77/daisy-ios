@@ -10,7 +10,7 @@ import SwiftUI
 struct EventLineView: View {
     
     //Muss in die View
-    @StateObject private var youEventVM = YouEventViewModel()
+    @StateObject private var youEventLineVM = YouEventLineViewModel()
     
     // data transfer form database
     @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
@@ -69,8 +69,9 @@ struct EventLineView: View {
         }
         .frame(height: 380)
         .onAppear {
-            youEventVM.getUserEvents()
-            eventArray = youEventVM.event
+            youEventLineVM.getYouEvents()
+            eventArray = youEventLineVM.youEvents
+            print("DEBUG: ALLYouEvents\(eventArray)")
         }
         
     }

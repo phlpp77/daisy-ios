@@ -7,20 +7,20 @@
 
 import Foundation
 
-class YouEventViewModel: ObservableObject {
+class YouEventLineViewModel: ObservableObject {
     
     private var firestoreManagerEvent = FireStoreManagerEvent()
-    @Published var event: [EventModelObject] = []
+    @Published var youEvents: [EventModelObject] = []
     
     
-    func getUserEvents() {
-        firestoreManagerEvent.getMeEvents(completionHandler: { success in
+    func getYouEvents() {
+        firestoreManagerEvent.firebaseGetYouEvents(completionHandler: { success in
             if success {
                 DispatchQueue.main.async {
-                self.event = self.firestoreManagerEvent.getEvents()
+                self.youEvents = self.firestoreManagerEvent.getYouEvents()
                 }
             } else {
-                print("error by downloading events")
+                print("error by downloading YOU events")
                 // ohh, no picture
                 
             }
