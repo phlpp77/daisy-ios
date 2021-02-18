@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct YouEventView: View {
     
@@ -60,9 +61,12 @@ struct YouEventView: View {
     var body: some View {
         ZStack {
             // Main image as a backgrond of the event
-            Image(uiImage: #imageLiteral(resourceName: "cafe"))
-                .resizable()
-                .aspectRatio(contentMode: .fill)
+            URLImage(url: pictureURL) { image in
+                image.resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 250, height: 250, alignment: .center)
+            }
+                
             
             VStack(alignment: .leading) {
                 HStack {
@@ -121,7 +125,11 @@ struct YouEventView: View {
             DragGesture()
                 .onChanged { value in
                     if dragPossible {
-                        self.dragPosition = value.translation
+                        // drag is not allowed to be higher than 20 upwards
+                        if value.translation.height > -20 {
+                            self.dragPosition = value.translation
+                        }
+                        
                     }
                 }
                 .onEnded { value in
@@ -140,6 +148,9 @@ struct YouEventView: View {
                 }
             )
         .animation(.interactiveSpring(), value: dragPosition)
+        .onAppear {
+            print("URL current pic:", pictureURL)
+        }
     }
     
 }

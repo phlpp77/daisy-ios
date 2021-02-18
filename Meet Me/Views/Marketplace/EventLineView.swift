@@ -11,30 +11,25 @@ struct EventLineView: View {
     
     //Muss in die View
     @StateObject private var youEventVM = YouEventViewModel()
-    //am besten dann funktion getUserEvent() über onAppear aufrufen
-
-    //danach kann auf das Array auf das array über
-    //eventCreationVM.event zugegriffen werden
     
     // data transfer form database
-    @State private var eventArray: [EventModelObject] = [stockEventObject]
-//    private var eventViewArray: [YouEventView] = [YouEventView(eventModelObject: stockEventObject), YouEventView(eventModelObject: stockEventObject)]
+    @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
     
     var body: some View {
         ZStack {
             
             // dashed rectangle for dragging
             Color.white
-                .frame(width: 150, height: 150, alignment: .center)
+                .frame(width: 150, height: 50, alignment: .center)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
                         .strokeBorder(style: StrokeStyle(
                             lineWidth: 2,
-                            dash: [15]
+                            dash: [10]
                         ))
                         .foregroundColor(Color.black.opacity(0.5))
                 )
-                .offset(y: 140)
+                .offset(y: 120)
             
             // horizontal event list
             VStack {
@@ -55,8 +50,9 @@ struct EventLineView: View {
                                     }
                             }
                             .frame(width: 250, height: 250)
-                            .padding(.bottom, 190)
-                            .padding(.leading, 30)                                                        
+                            .padding(.bottom, 150)
+                            .padding(.leading, 30)
+                            .padding(.top, 30)
                         }
                         // needed to refresh the ForEach after a change is made in the array
                         .id(UUID())
@@ -68,15 +64,15 @@ struct EventLineView: View {
                 
                 Spacer()
             }
-            .frame(height: 440)
+            .frame(height: 420)
             
         }
-        .frame(height: 440)
+        .frame(height: 420)
         .onAppear {
             youEventVM.getUserEvents()
             print("events in the db")
             print(youEventVM.event)
-            eventArray = youEventVM.event
+//            eventArray = youEventVM.event
         }
         
     }

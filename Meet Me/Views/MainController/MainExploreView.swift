@@ -18,16 +18,26 @@ struct MainExploreView: View {
         ZStack {
             VStack {
                 
-                Button("New Event") {
-                    showCreationView.toggle()
-                }
-                
                 Text("Meet Me Market")
                     .font(.largeTitle)
                     .foregroundColor(.accentColor)
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 12)
                 
-                MeEventLineView()
+                Text("Me Events")
+                    .font(.subheadline)
+                    .bold()
+                    .textCase(.uppercase)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 12)
+                
+                MeEventLineView(showCreationView: $showCreationView)
+                
+                Text("You Events")
+                    .font(.subheadline)
+                    .bold()
+                    .textCase(.uppercase)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 12)
                 
                 EventLineView()
             }

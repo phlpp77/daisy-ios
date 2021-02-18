@@ -41,7 +41,7 @@ struct EventCreationView: View {
     var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_DE")
-        formatter.dateFormat = "d. MMM yyyy"
+        formatter.dateFormat = "dd/mm/yy"
         formatter.dateStyle = .medium
         return formatter
     }()
