@@ -1,9 +1,23 @@
 //
-//  ProfileCreationModel.swift
-//  Meet Me
+//ProfileCreationModel.swift
+//Meet Me
 //
-//  Created by Lukas Dech on 29.01.21.
+//Created by Lukas Dech on 29.01.21.
 //
+//
+//Funktions Beschreibung
+//
+//- saveUser()
+// saved ein Event Model zur collection User
+// wird aufgerufen in --> EventCreationViewModel
+
+//- getAllUsers()
+// ladet alle Events des aktuellen Nutzers herunter und speichert alle im Array meEvents vom Typ EventModelObject
+// wird aufgerufen in --> YouEventViewModel
+
+//- getCurrentUserModel
+// return das Array meEvents welches von getMeEvent() objekte bekommt
+// wird aufgerufen in --> YouEventViewModel
 
 import Foundation
 import Firebase
@@ -46,7 +60,7 @@ class FirestoreManagerUser {
     
     
     
-    func getUserItem(completion: @escaping (Result<[UserModel]?, Error>) -> Void) {
+    func getAllUsers(completion: @escaping (Result<[UserModel]?, Error>) -> Void) {
 
         guard let currentUser = Auth.auth().currentUser else {
             return
@@ -76,7 +90,7 @@ class FirestoreManagerUser {
     }
         
         
-        func getUserModel(completion: @escaping (Result<UserModel?, Error>) -> Void){
+        func getCurrentUserModel(completion: @escaping (Result<UserModel?, Error>) -> Void){
             guard let currentUser = Auth.auth().currentUser?.uid else {
                 return
             }

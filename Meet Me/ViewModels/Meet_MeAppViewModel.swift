@@ -26,7 +26,7 @@ class Meet_MeAppViewModel: ObservableObject {
 
     func getUser() -> Bool {
         var userStartProcessDone = false
-            firestoreManagerUser.getUserModel { result in
+            firestoreManagerUser.getCurrentUserModel { result in
             switch result {
             case .success(let user):
                 if let user = user {

@@ -1,10 +1,29 @@
-////
-////  FirestoreFotoManager.swift
-////  Meet Me
-////
-////  Created by Lukas Dech on 11.02.21.
-////
 //
+//FirestoreFotoManager.swift
+//Meet Me
+//
+//Created by Lukas Dech on 11.02.21.
+//
+//
+//Funktions Beschreibung
+//
+//- savePhoto()
+// saved ein Event Model zur collection User
+// wird aufgerufen in --> EventCreationViewModel
+
+//- UploadUserPhoto()
+// ladet alle Events des aktuellen Nutzers herunter und speichert alle im Array meEvents vom Typ EventModelObject
+// wird aufgerufen in --> YouEventViewModel
+
+//- savePhotoUrlToFirestore()
+// return das Array meEvents welches von getMeEvent() objekte bekommt
+// wird aufgerufen in --> YouEventViewModel
+
+//- getAllPhotosFromUser()
+// return das Array meEvents welches von getMeEvent() objekte bekommt
+// wird aufgerufen in --> YouEventViewModel
+
+
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
@@ -16,37 +35,30 @@ class FirestoreFotoManager: ObservableObject {
     let storage = Storage.storage()
     private var db: Firestore
     @Published var photoModel: [PhotoModelObject] = []
-    //typealias CompletionHandler = (_ success: Bool) -> Void
+    var stockPhotoModel: PhotoModel = PhotoModel()
+    var url: URL?
+
      
     init() {
           db = Firestore.firestore()
     }
     
-    
-    
-    var stockPhotoModel: PhotoModel = PhotoModel()
-    var url: URL?
-    //var test: PhotoModelObject = PhotoModelObject(photoModel: testphotoModel)
+
 
     // function is called inside the main code
     func savePhoto(originalImage: UIImage?, completion: @escaping (Bool) -> Void) {
         var completionFlag = false
         
-        print("func start savePhoto")
         if let originalImage = originalImage {
             if let resizedImage = originalImage.resized(width: 360) {
-                print("image resizing")
                 if let data = resizedImage.pngData() {
-                    print("image resized")
                     uploadUserPhoto(data:data) { (url) in
                         if let url = url {
-                            print("write url to database")
                             self.savePhotoUrlToFirestore(url: url) { error in
                                 if let error = error {
                                     print(error.localizedDescription)
                                     completion(completionFlag)
                                 } else {
-                                    //getAllPhotosFromUser(completionHandler: (Bool) -> Void)
                                     completionFlag = true
                                     completion(completionFlag)
                                 }
@@ -66,12 +78,10 @@ class FirestoreFotoManager: ObservableObject {
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
     func uploadUserPhoto(data: Data, completion: @escaping (URL?) -> Void) {
         
-        print("func start uploaded user photo")
         let imageName = UUID().uuidString
         let storageRef = storage.reference()
         let photoRef = storageRef.child("UserImages/\(imageName).png")
         
-        print("now start to put data ")
         photoRef.putData(data, metadata: nil) { metadata, error in
             
             if let err = error {
@@ -88,6 +98,7 @@ class FirestoreFotoManager: ObservableObject {
         }
         
     }
+    
     
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
     func savePhotoUrlToFirestore(url: URL, completion: (Error?) -> Void) {
@@ -106,6 +117,7 @@ class FirestoreFotoManager: ObservableObject {
         
     }
     
+    
     func getAllPhotosFromUser(completionHandler: @escaping (Bool) -> Void) {
         guard let currentUser = Auth.auth().currentUser else {
             return
@@ -123,7 +135,6 @@ class FirestoreFotoManager: ObservableObject {
                             var photoModel = try? doc.data(as: PhotoModel.self)
                             photoModel?.id = doc.documentID
                             if let photoModel = photoModel {
-                                print("User Bilder")
                                 print(photoModel)
                                 flag = true
                                 return PhotoModelObject(photoModel: photoModel)
@@ -135,7 +146,6 @@ class FirestoreFotoManager: ObservableObject {
                         DispatchQueue.main.async {
                             self.photoModel = photoModel
                             print(self.photoModel)
-                            print("now completion ")
                             completionHandler(flag)
                             
                         }

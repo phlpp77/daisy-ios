@@ -15,7 +15,7 @@ class YouEventViewModel: ObservableObject {
     
     func getUserEvents() {
         print("hey")
-        firestoreManagerEvent.getUserEvent(completionHandler: { success in
+        firestoreManagerEvent.getMeEvents(completionHandler: { success in
             if success {
                 // yeah picture
                 self.event = self.firestoreManagerEvent.getEvents()

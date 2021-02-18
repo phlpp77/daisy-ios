@@ -14,3 +14,17 @@ struct PhotoModel: Codable {
     var userId = ""
     
 }
+
+struct PhotoModelObject {
+    
+    let photoModel: PhotoModel
+    
+    var id: String {
+        photoModel.id ?? ""
+    }
+    
+    var url: String {
+        photoModel.url
+    }
+    
+}

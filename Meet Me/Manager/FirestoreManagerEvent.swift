@@ -1,9 +1,23 @@
 //
-//  FirestoreManagerEvent.swift
-//  Meet Me
+//FirestoreManagerEvent.swift
+//Meet Me
 //
-//  Created by Lukas Dech on 14.02.21.
+//Created by Lukas Dech on 14.02.21.
 //
+//
+//Funktions Beschreibung
+//
+//- saveEvent()
+// saved ein Event Model zur collection User
+// wird aufgerufen in --> EventCreationViewModel
+
+//- getMeEvents()
+// ladet alle Events des aktuellen Nutzers herunter und speichert alle im Array meEvents vom Typ EventModelObject
+// wird aufgerufen in --> YouEventViewModel
+
+//-getEvents
+// return das Array meEvents welches von getMeEvent() objekte bekommt
+// wird aufgerufen in --> YouEventViewModel
 
 import Foundation
 import FirebaseFirestore
@@ -14,11 +28,18 @@ import FirebaseAuth
 class FireStoreManagerEvent {
     
     private var db: Firestore
-    private var event: [EventModelObject] = []
+    private var meEvents: [EventModelObject] = []
     
     init() {
         db = Firestore.firestore()
     }
+    
+    
+    
+    func getEvents() -> [EventModelObject] {
+        return meEvents
+    }
+    
     
     
     func saveEvent(eventModel: EventModel, completion: @escaping (Result<EventModel?, Error>) -> Void) {
@@ -39,43 +60,14 @@ class FireStoreManagerEvent {
             }
         }
 
+
     
-    
-//    func getUserEvent(completion: @escaping (Result<[EventModelObject]?, Error>) -> Void) {
-//
-//        guard let currentUser = Auth.auth().currentUser else {
-//            return
-//        }
-//
-//        db.collection("events")
-//            .whereField("userId", isNotEqualTo: currentUser.uid)
-//            .getDocuments() { (snapshot, error) in
-//                if let error = error {
-//                    completion(.failure(error))
-//                } else {
-//                    if let snapshot = snapshot {
-//                        let events: [EventModelObject]? = snapshot.documents.compactMap { doc in
-//                            var event = try? doc.data(as: EventModel.self)
-//                            event?.eventId = doc.documentID
-//                            if let event = event {
-//                                return EventModelObject(eventModel: eventModel)
-//                            }
-//                            return event
-//                        }
-//
-//                        completion(.success(events))
-//                    }
-//
-//                }
-//            }
-//    }
-    
-    func getUserEvent(completionHandler: @escaping (Bool) -> Void) {
+    func getMeEvents(completionHandler: @escaping (Bool) -> Void) {
 
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
-         var flag = false
+        var flag = false
         db.collection("events")
             .whereField("userId", isEqualTo: currentUser.uid)
             .getDocuments { [weak self] (snapshot, error) in
@@ -93,15 +85,12 @@ class FireStoreManagerEvent {
                                 return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
                             }
                             return nil
-                            
-                            
-                        }
-                        print("hey")
                         
+                        }
                         flag = true
                         completionHandler(flag)
                         DispatchQueue.main.async {
-                            self?.event = event!
+                            self?.meEvents = event!
                         }
                         
                     }
@@ -112,9 +101,7 @@ class FireStoreManagerEvent {
         
     }
     
-    func getEvents() -> [EventModelObject] {
-        return event
-    }
+
     
     
     //im View einfügen

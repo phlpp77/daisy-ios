@@ -15,7 +15,7 @@ struct MainSettingsView: View {
         
         MeProfileView(user: meProfileVM.userModel, URL: meProfileVM.userPictureURL)
             .onAppear {
-                meProfileVM.getUser()
+                meProfileVM.fillUserModel()
                 meProfileVM.getUserProfilePictureURL()
             }
     }

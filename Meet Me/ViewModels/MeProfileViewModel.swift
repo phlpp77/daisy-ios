@@ -14,6 +14,7 @@ class MeProfileViewModel: ObservableObject {
     var user: [MeProfileModel] = []
     @Published var userModel: UserModel = testUser
     @Published var userPictureURL: URL = stockURL
+    
 
     
     
@@ -22,7 +23,7 @@ class MeProfileViewModel: ObservableObject {
     }
     
     func getUser(){
-        firestoreManagerUser.getUserItem { result in
+        firestoreManagerUser.getAllUsers { result in
             switch result {
             case .success(let user):
                 if let user = user {
@@ -73,7 +74,28 @@ class MeProfileViewModel: ObservableObject {
         }
         )
     }
-        
+    
+    func fillUserModel() {
+        firestoreManagerUser.getCurrentUserModel(completion: { result in
+            switch result {
+            case .success(let user):
+                if let user = user {
+                    DispatchQueue.main.async {
+                        self.userModel = user
+                        print("got userModel")
+                        // ohh, no picture
+                        
+                    }
+                    
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+                
+                
+            }
+        }
+        )
+    }
     
 
     struct MeProfileModel {
