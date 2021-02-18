@@ -17,41 +17,6 @@ class MeProfileViewModel: ObservableObject {
     
 
 
-    func getUser(){
-        firestoreManagerUser.getAllUsers { result in
-            switch result {
-            case .success(let user):
-                if let user = user {
-                    DispatchQueue.main.async {
-                        self.user = user.map(UserModelObject.init)
-                        self.userModel = self.convertModels(userArray: self.user)
-
-
-                    }
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-
-    func convertModels(userArray: [UserModelObject]) -> UserModel {
-
-        var user: UserModel = testUser
-
-            user.name = userArray[0].name
-            user.gender = userArray[0].gender
-            user.startProcessDone = userArray[0].startProcessDone
-            user.searchingFor = userArray[0].searchingFor
-            user.url = userArray[0].url
-            user.userId = userArray[0].userId
-            user.birthdayDate = userArray[0].birthdayDate
-
-        return user
-
-
-    }
-
     func getUserProfilePictureURL() {
         firestoreFotoManager.getAllPhotosFromUser(completionHandler: { success in
             if success {
@@ -60,6 +25,7 @@ class MeProfileViewModel: ObservableObject {
                 print(URL(string: self.firestoreFotoManager.photoModel[0].url)!)
                 let url = URL(string: self.firestoreFotoManager.photoModel[0].url)!
                 self.userPictureURL = url
+                print("\(self.userPictureURL) USER URL")
             } else {
                 // ohh, no picture
                 self.userPictureURL = stockURL
@@ -69,7 +35,7 @@ class MeProfileViewModel: ObservableObject {
     }
     
     func getUserModel(){
-        firestoreManagerUser.downloadcurrentUserModel(completion: { success in
+        firestoreManagerUser.downloadCurrentUserModel(completion: { success in
                 if success {
                     DispatchQueue.main.async {
                         print("user to variable success")
@@ -84,10 +50,5 @@ class MeProfileViewModel: ObservableObject {
 }
     
 
-
-
-
-//@ObservedObject private var UserListVM = UserListModel()
-//UserListVM.getUser
 
 

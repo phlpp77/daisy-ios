@@ -30,37 +30,13 @@ class FirestoreManagerUser {
     private var db: Firestore
     private var currentUserModel: UserModel?
     
-    //wird aktuell nicht verwendet variable ist im Meet_MeAppVM drin muss noch geändert werden
-    //muss in ProfilMNodelObject geändert werden
-    //@Published var users: [MeProfilModel] = []
     
     init() {
         db = Firestore.firestore()
     }
     
-    
-    
-    
-    
-    func saveUser(userModel: UserModel, completion: @escaping (Result<UserModel?, Error>) -> Void) {
 
-        do {
-            let ref = try db.collection("users").addDocument(from: userModel)
-            ref.getDocument { (snapshot, error) in
-                guard let snapshot = snapshot, error == nil else {
-                    completion(.failure(error!))
-                    return
-                }
-                
-                let userModel = try? snapshot.data(as: UserModel.self)
-                completion(.success(userModel))
-            }
-        } catch let error {
-                completion(.failure(error))
-            }
-        }
-    
-    func saveUserTest(userModel: UserModel, completion: @escaping (Result<UserModel?, Error>) -> Void) {
+    func saveUser(userModel: UserModel, completion: @escaping (Result<UserModel?, Error>) -> Void) {
         guard let currentUser = Auth.auth().currentUser?.uid else {
             return
         }
@@ -107,7 +83,7 @@ class FirestoreManagerUser {
     }
     
     
-    func downloadcurrentUserModel(completion: @escaping (Bool) -> Void) {
+    func downloadCurrentUserModel(completion: @escaping (Bool) -> Void) {
        
         var flag = false
         guard let currentUser = Auth.auth().currentUser else {
@@ -122,16 +98,12 @@ class FirestoreManagerUser {
                     var userModel = try? snapshot.data(as: UserModel.self)
                     if userModel != nil {
                         userModel!.userId = snapshot.documentID
-                    } else {
-                        print("user is nil")
                     }
 
-                        
                         self.currentUserModel = userModel
                         print(currentUser)
                         flag = true
                         completion(flag)
-                        print("Got USer")
                     }
                 }
                 

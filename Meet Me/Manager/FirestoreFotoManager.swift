@@ -157,20 +157,6 @@ class FirestoreFotoManager: ObservableObject {
         
     }
  
-    
-//    //ACHTUNG nochmal bearbeiten
-//    func getProfilePhoto() -> URL {
-//        getAllPhotosFromUser()
-//        if photoModel.count > 0{
-//            url = URL(string: photoModel[0].url)!
-//            return url!
-//        } else {
-//            let photoModelObject = PhotoModelObject(photoModel: stockPhotoModel)
-//            url = URL(string: photoModelObject.url)!
-//            return url!
-//
-//        }
-//    }
-    
+
 
 }

@@ -11,7 +11,7 @@ import URLImage
 struct MeProfileView: View {
     @ObservedObject private var meProfileVM = MeProfileViewModel()
     @State private var showProfilePhoto: Bool = false
-    private var profilePictureURL: URL = stockURL
+   
     
 
     
@@ -21,7 +21,7 @@ struct MeProfileView: View {
                 .font(.largeTitle)
                 .frame(width: 340, alignment: .leading)
             
-            URLImage(url: profilePictureURL) { image in
+            URLImage(url: meProfileVM.userPictureURL) { image in
                 image.resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -77,7 +77,7 @@ struct MeProfileView: View {
                     }
                 }
             }.onAppear {
-                meProfileVM.getUser()
+//                meProfileVM.getUser()
                 meProfileVM.getUserModel()
                 meProfileVM.getUserProfilePictureURL()
                 print("Ausgabe bei funktions aufruf für das userModel in MEProfilView:\(meProfileVM.getUserModel())")

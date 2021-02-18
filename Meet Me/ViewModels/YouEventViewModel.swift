@@ -30,10 +30,5 @@ class YouEventViewModel: ObservableObject {
     }
 }
 
-//Muss in die View
-//@StateObject private var eventCreationVM = EventCreationViewModel()
-//am besten dann funktion getUserEvent() über onAppear aufrufen
 
-//danach kann auf das Array auf das array über
-//eventCreationVM.event zugegriffen werden
 

@@ -102,14 +102,5 @@ class FireStoreManagerEvent {
         
     }
     
-
-    
-    
-    //im View einfügen
-    //@StateObject private var FirestoreManagerEvent = fireStoreManagerEvent()
-    //.onAppear(perform: {
-    //firestoreMangerEvent.getUserEvent
-    //})
-    
 }
     
