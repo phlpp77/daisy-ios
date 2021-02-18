@@ -154,6 +154,8 @@ struct ProfileCreationView: View {
                         // update button
                         Button(action: {
                             firestoreFotoManger.savePhoto(originalImage: uiImage, completion: { success in
+                                
+                                // TODO: integrate the loading view when the picture is uploading
                                 if success {
                                     let bDate = convertStringToDate(date: birthdayDate)
                                     
