@@ -19,7 +19,7 @@ struct MainExploreView: View {
             VStack {
                 
                 Text("Meet Me Market")
-                    .font(.largeTitle)
+                    .font(.system(.largeTitle, design: .rounded))
                     .foregroundColor(.accentColor)
                     .padding(.bottom, 12)
                 
@@ -52,6 +52,8 @@ struct MainExploreView: View {
 
 struct MainExploreView_Previews: PreviewProvider {
     static var previews: some View {
-        MainExploreView()
+        TabView {
+            MainExploreView()
+        }
     }
 }
