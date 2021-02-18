@@ -16,42 +16,42 @@ class MeProfileViewModel: ObservableObject {
     @Published var userPictureURL: URL = stockURL
     
 
-//
-//    func getUser(){
-//        firestoreManagerUser.getAllUsers { result in
-//            switch result {
-//            case .success(let user):
-//                if let user = user {
-//                    DispatchQueue.main.async {
-//                        self.user = user.map(UserModelObject.init)
-//                        self.userModel = self.convertModels(userArray: self.user)
-//
-//
-//                    }
-//                }
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//    }
-//
-//    func convertModels(userArray: [UserModelObject]) -> UserModel {
-//
-//        var user: UserModel = testUser
-//
-//            user.name = userArray[0].name
-//            user.gender = userArray[0].gender
-//            user.startProcessDone = userArray[0].startProcessDone
-//            user.searchingFor = userArray[0].searchingFor
-//            user.url = userArray[0].url
-//            user.userId = userArray[0].userId
-//            user.birthdayDate = userArray[0].birthdayDate
-//
-//        return user
-//
-//
-//    }
-//
+
+    func getUser(){
+        firestoreManagerUser.getAllUsers { result in
+            switch result {
+            case .success(let user):
+                if let user = user {
+                    DispatchQueue.main.async {
+                        self.user = user.map(UserModelObject.init)
+                        self.userModel = self.convertModels(userArray: self.user)
+
+
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    func convertModels(userArray: [UserModelObject]) -> UserModel {
+
+        var user: UserModel = testUser
+
+            user.name = userArray[0].name
+            user.gender = userArray[0].gender
+            user.startProcessDone = userArray[0].startProcessDone
+            user.searchingFor = userArray[0].searchingFor
+            user.url = userArray[0].url
+            user.userId = userArray[0].userId
+            user.birthdayDate = userArray[0].birthdayDate
+
+        return user
+
+
+    }
+
     func getUserProfilePictureURL() {
         firestoreFotoManager.getAllPhotosFromUser(completionHandler: { success in
             if success {

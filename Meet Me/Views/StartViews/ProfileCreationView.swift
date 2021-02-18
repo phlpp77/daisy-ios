@@ -149,7 +149,7 @@ struct ProfileCreationView: View {
                         .frame(width: 268.58)
                         
                         // button is disabled until the user set at least the name, the gender and the birthday
-                        let enoughInformation = !(accpetedAction[0] && accpetedAction[1] && accpetedAction[2])
+                        let enoughInformation = (accpetedAction[0] && accpetedAction[1] && accpetedAction[2])
                         
                         // update button
                         Button(action: {
@@ -161,7 +161,7 @@ struct ProfileCreationView: View {
                                     
                                     addProfileCreationVM.saveUserSettings()
                                 } else {
-                                    print("Katastrophe")
+                                    print("error by save User Seetings to Firebase")
                                 }
                             })
                             // haptic feedback when button is tapped

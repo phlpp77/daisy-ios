@@ -60,6 +60,19 @@ class FirestoreManagerUser {
             }
         }
     
+    func saveUserTest(userModel: UserModel, completion: @escaping (Result<UserModel?, Error>) -> Void) {
+        guard let currentUser = Auth.auth().currentUser?.uid else {
+            return
+        }
+        do {
+            try db.collection("users").document(currentUser).setData(from: userModel)
+            completion(.success(userModel))
+        } catch let error {
+            print("fail")
+            completion(.failure(error))
+        }
+    }
+    
     
     
     func getAllUsers(completion: @escaping (Result<[UserModel]?, Error>) -> Void) {
@@ -78,7 +91,9 @@ class FirestoreManagerUser {
                         let users: [UserModel]? = snapshot.documents.compactMap { doc in
                             var user = try? doc.data(as: UserModel.self)
                             if user != nil {
+                                print("ALLUSER: \(snapshot)")
                                 user!.userId = doc.documentID
+                                print("ALLUSER: \(user!.userId)")
                             }
                             return user
                         }
@@ -90,31 +105,27 @@ class FirestoreManagerUser {
             }
         
     }
-        
+    
     
     func downloadcurrentUserModel(completion: @escaping (Bool) -> Void) {
-        test()
+       
         var flag = false
-        print("called currentUserModel")
-        guard let currentUser = Auth.auth().currentUser?.uid else {
-            print("current user not exist")
+        guard let currentUser = Auth.auth().currentUser else {
             return
         }
-        
-        db.collection("users").document("VXNj3PEdYsMpfiIAGxneS7dGHau2").getDocument { snapshot, error in
-            print("conclusion handler")
+        db.collection("users").document(currentUser.uid).getDocument { snapshot, error in
             if let error = error {
                 print(error.localizedDescription)
                 completion(flag)
-                print("didnt get user")
             } else {
-                print("no error")
                 if let snapshot = snapshot {
-                    print("haave snapshot")
-                    print(snapshot)
-                    let userModel = try? snapshot.data(as: UserModel.self)
-                    //userModel!.userId = snapshot.documentID
-                    print(userModel)
+                    var userModel = try? snapshot.data(as: UserModel.self)
+                    if userModel != nil {
+                        userModel!.userId = snapshot.documentID
+                    } else {
+                        print("user is nil")
+                    }
+
                         
                         self.currentUserModel = userModel
                         print(currentUser)

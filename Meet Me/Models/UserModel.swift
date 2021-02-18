@@ -23,7 +23,7 @@ struct UserModel: Codable {
 struct UserModelObject {
     
     let user: UserModel
-    var userId = UUID()
+
     
     var name: String {
         user.name
@@ -45,10 +45,10 @@ struct UserModelObject {
         user.searchingFor
     }
     
-//    var userId: String {
-//        user.userId
-//    }
-//    
+    var userId: String {
+        user.userId
+    }
+    
     var url: String {
         user.url
     }

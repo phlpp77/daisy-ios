@@ -12,6 +12,7 @@ struct MeProfileView: View {
     @ObservedObject private var meProfileVM = MeProfileViewModel()
     @State private var showProfilePhoto: Bool = false
     private var profilePictureURL: URL = stockURL
+    
 
     
     var body: some View {
@@ -76,7 +77,7 @@ struct MeProfileView: View {
                     }
                 }
             }.onAppear {
-                
+                meProfileVM.getUser()
                 meProfileVM.getUserModel()
                 meProfileVM.getUserProfilePictureURL()
                 print("Ausgabe bei funktions aufruf für das userModel in MEProfilView:\(meProfileVM.getUserModel())")
