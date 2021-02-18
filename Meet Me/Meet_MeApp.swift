@@ -31,7 +31,8 @@ struct Meet_MeApp: App {
             //meet_MeAppVM.CheckUserAccForAutoLogin()
 //            Copy into if for autologin
 //            ||  autoLogin()
-            if startProcessDone ||  checkUserAccForAutoLogin()  {
+//            ||  checkUserAccForAutoLogin()
+            if startProcessDone ||  checkUserAccForAutoLogin() {
 
                 MainControllerView()
 

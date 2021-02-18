@@ -60,7 +60,7 @@ struct MeEventLineView: View {
             }        
             .onAppear {
                 youEventVM.getUserEvents()
-//                eventArray = youEventVM.event
+                eventArray = youEventVM.event
         }
     }
 }

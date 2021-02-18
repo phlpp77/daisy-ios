@@ -68,15 +68,23 @@ class MeProfileViewModel: ObservableObject {
         })
     }
     
-    func getUserModel() {
-        self.userModel = firestoreManagerUser.getCurrentUserModel()
-    }
-    
-
-    
-    
-
+    func getUserModel(){
+        firestoreManagerUser.downloadcurrentUserModel(completion: { success in
+                if success {
+                    DispatchQueue.main.async {
+                        print("user to variable success")
+                        self.userModel = self.firestoreManagerUser.getCurrentUserModel()
+                    }
+                } else {
+                    print("Download User Failed")
+                }
+            }
+            )
+        }
 }
+    
+
+
 
 
 //@ObservedObject private var UserListVM = UserListModel()

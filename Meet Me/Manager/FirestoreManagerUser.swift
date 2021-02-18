@@ -92,20 +92,35 @@ class FirestoreManagerUser {
     }
         
     
-    func currentUserModel(completion: @escaping (Result<UserModel?, Error>) -> Void) {
-        
+    func downloadcurrentUserModel(completion: @escaping (Bool) -> Void) {
+        test()
+        var flag = false
+        print("called currentUserModel")
         guard let currentUser = Auth.auth().currentUser?.uid else {
+            print("current user not exist")
             return
         }
         
-        db.collection("users").document(currentUser).getDocument { snapshot, error in
+        db.collection("users").document("VXNj3PEdYsMpfiIAGxneS7dGHau2").getDocument { snapshot, error in
+            print("conclusion handler")
             if let error = error {
-                completion(.failure(error))
+                print(error.localizedDescription)
+                completion(flag)
+                print("didnt get user")
             } else {
+                print("no error")
                 if let snapshot = snapshot {
+                    print("haave snapshot")
+                    print(snapshot)
                     let userModel = try? snapshot.data(as: UserModel.self)
-                    if userModel != nil {
-                        completion(.success(userModel))
+                    //userModel!.userId = snapshot.documentID
+                    print(userModel)
+                        
+                        self.currentUserModel = userModel
+                        print(currentUser)
+                        flag = true
+                        completion(flag)
+                        print("Got USer")
                     }
                 }
                 
@@ -114,31 +129,19 @@ class FirestoreManagerUser {
             
         }
         
-    }
+
+        
     
     
-    func saveCurrentUserModelToVariabel(){
-        currentUserModel(completion: { success in
-                switch success {
-                case .success(let userModel):
-                    DispatchQueue.main.async {
-                        self.currentUserModel = userModel
-                    }
-                case .failure(_):
-                    DispatchQueue.main.async {
-                        print("Download User Failed")
-                    }
-                    
-                
-                }
-            })
-        }
+    
+
     
     func getCurrentUserModel() -> UserModel {
-        saveCurrentUserModelToVariabel()
+        print("called get current user Model")
         if currentUserModel != nil {
             return currentUserModel!
         } else {
+            print("test user currentUserModel == nil")
             return testUser
         }
     }
@@ -146,7 +149,7 @@ class FirestoreManagerUser {
     
     
     
+
+
+
 }
-
-
-

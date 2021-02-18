@@ -42,7 +42,6 @@ class EventCreationViewModel: ObservableObject {
             case .success(let eventModel):
                 DispatchQueue.main.async {
                     self.saved = eventModel == nil ? false: true
-                    print("savvvedd evvent ")
                 }
             case .failure(_):
                 DispatchQueue.main.async {

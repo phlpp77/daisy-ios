@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>503341725027-o2bod27eo8irc7mldhdreesfugb8dnt6.apps.googleusercontent.com</string>
+	<string>503341725027-2q1p2jaerqmmp3ulgr25uokg262ho6qq.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.503341725027-o2bod27eo8irc7mldhdreesfugb8dnt6</string>
+	<string>com.googleusercontent.apps.503341725027-2q1p2jaerqmmp3ulgr25uokg262ho6qq</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBGPCJFOf0KmQmOXx7OYMXyq9IIh3VINgw</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>de.philipphemkemeyer.Meet-Me</string>
+	<string>de.philipphemkemeyer.Meet-Meee</string>
 	<key>PROJECT_ID</key>
 	<string>meetme-1c961</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:503341725027:ios:b1220f0e16167a612b8f56</string>
+	<string>1:503341725027:ios:e50cc6c835b998412b8f56</string>
 </dict>
 </plist>
