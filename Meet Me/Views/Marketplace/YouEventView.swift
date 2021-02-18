@@ -138,6 +138,7 @@ struct YouEventView: View {
                             self.dragPosition = .init(width: 0, height: 500)
                             // delete the item at the position from the Array
                             print(eventIndex)
+                            // TODO: @budni - add the participant user to the event here and delete from the array, number in array with "eventIndex"
                             self.eventArray.remove(at: eventIndex)
                         } else {
                             

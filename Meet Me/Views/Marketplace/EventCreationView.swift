@@ -58,8 +58,7 @@ struct EventCreationView: View {
         ZStack {
             
             // background
-            BlurView(style: .systemUltraThinMaterial)
-                .opacity(0.9)
+            BlurView(style: .systemMaterial)
                 .ignoresSafeArea()
             
             VStack {

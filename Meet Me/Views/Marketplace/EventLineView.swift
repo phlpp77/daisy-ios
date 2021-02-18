@@ -29,7 +29,7 @@ struct EventLineView: View {
                         ))
                         .foregroundColor(Color.black.opacity(0.5))
                 )
-                .offset(y: 120)
+                .offset(y: 150)
             
             // horizontal event list
             VStack {
@@ -50,7 +50,7 @@ struct EventLineView: View {
                                     }
                             }
                             .frame(width: 250, height: 250)
-                            .padding(.bottom, 150)
+                            .padding(.bottom, 120)
                             .padding(.leading, 30)
                             .padding(.top, 30)
                         }
@@ -64,10 +64,10 @@ struct EventLineView: View {
                 
                 Spacer()
             }
-            .frame(height: 420)
+            .frame(height: 380)
             
         }
-        .frame(height: 420)
+        .frame(height: 380)
         .onAppear {
             youEventVM.getUserEvents()
             eventArray = youEventVM.event
