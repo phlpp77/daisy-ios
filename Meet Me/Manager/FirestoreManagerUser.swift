@@ -35,7 +35,7 @@ class FirestoreManagerUser {
         db = Firestore.firestore()
     }
     
-
+    // MARK: - Functions to Save userModel to Firebase
     func saveUser(userModel: UserModel, completion: @escaping (Result<UserModel?, Error>) -> Void) {
         guard let currentUser = Auth.auth().currentUser?.uid else {
             return
@@ -49,7 +49,13 @@ class FirestoreManagerUser {
         }
     }
     
+    // MARK: - Functions to Update current User
     
+    
+    
+    
+    
+    // MARK: - Functions to get User Profiles
     
     func getAllUsers(completion: @escaping (Result<[UserModel]?, Error>) -> Void) {
 
@@ -67,9 +73,7 @@ class FirestoreManagerUser {
                         let users: [UserModel]? = snapshot.documents.compactMap { doc in
                             var user = try? doc.data(as: UserModel.self)
                             if user != nil {
-                                print("ALLUSER: \(snapshot)")
                                 user!.userId = doc.documentID
-                                print("ALLUSER: \(user!.userId)")
                             }
                             return user
                         }

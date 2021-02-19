@@ -44,8 +44,13 @@ class FirestoreFotoManager: ObservableObject {
     }
     
 
+    
+    
+    // MARK: - Functions to save Photos to Storage or to save URL to Firebase
 
     // function is called inside the main code
+    //in dem Paramter collection wird ein Document mit Url und User Id erstellt
+    //paramter childfolder lädt das dokument in den Storage
     func savePhoto(originalImage: UIImage?,collection: String, childFolder: String, completion: @escaping (Bool) -> Void) {
         var completionFlag = false
         
@@ -116,6 +121,16 @@ class FirestoreFotoManager: ObservableObject {
         
         
     }
+    
+    
+    
+    // MARK: - Functions to update Photos in the Storage
+    
+    
+    
+    
+    // MARK: - Functions to dowload fotos or Url from Storage or firebase
+    
     
     
     

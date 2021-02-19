@@ -30,7 +30,9 @@ struct EventModelObject {
 //    var eventId: String {
 //        eventModel.eventId
 //    }
-    var eventId = UUID()
+    var eventId: String {
+        eventModel.eventId
+    }
     
     var userId: String {
         eventModel.userId

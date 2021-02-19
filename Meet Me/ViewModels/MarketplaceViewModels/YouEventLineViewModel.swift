@@ -20,7 +20,7 @@ class YouEventLineViewModel: ObservableObject {
                 self.youEvents = self.firestoreManagerEvent.getYouEvents()
                 }
             } else {
-                print("error by downloading YOU events")
+                //print("error by downloading YOU events")
                 // ohh, no picture
                 
             }

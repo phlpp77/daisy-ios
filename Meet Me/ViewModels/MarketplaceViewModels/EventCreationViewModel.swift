@@ -44,14 +44,14 @@ class EventCreationViewModel: ObservableObject {
                 
                 
                 let url = URL(string: self.firestoreFotoManager.photoModel[0].url)!
-                print("PHOTO: right url load by savin event URL: \(url)")
+                //print("PHOTO: right url load by savin event URL: \(url)")
                 
                 
                 self.pictureURL = url
-                print("PHOTO: pictureURL at the moment: \(self.pictureURL)")
+                //print("PHOTO: pictureURL at the moment: \(self.pictureURL)")
                 
             } else {
-                print("stockUrl load by saving event")
+                //print("stockUrl load by saving event")
                 self.pictureURL = stockURL
             }
             
@@ -68,7 +68,7 @@ class EventCreationViewModel: ObservableObject {
             case .success(let eventModel):
                 DispatchQueue.main.async {
                     
-                    print("PHOTO: in eventModel \(self.pictureURL)")
+                    //print("PHOTO: in eventModel \(self.pictureURL)")
                     self.saved = eventModel == nil ? false: true
                 }
             case .failure(_):

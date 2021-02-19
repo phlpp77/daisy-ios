@@ -48,6 +48,8 @@ class FireStoreManagerEvent {
     }
     
     
+    // MARK: - Functions to Save events to Firebase
+    
     
     func saveEvent(eventModel: EventModel, completion: @escaping (Result<EventModel?, Error>) -> Void) {
 
@@ -66,9 +68,20 @@ class FireStoreManagerEvent {
                 completion(.failure(error))
             }
         }
-
-
+    // MARK: - Functions to update events
     
+    func addLikeToEvent(eventId: String, userModel: UserModel, completion: @escaping (Result<EventModel?, Error>) -> Void){
+        
+        do {
+            let _ = try db.collection("events")
+                    .document(eventId)
+                    .collection("likedUser").addDocument(from: userModel)
+        } catch let error {
+            completion(.failure(error))
+        }
+    }
+
+    // MARK: - Functions to get events 
     func firebaseGetMeEvents(completionHandler: @escaping (Bool) -> Void) {
 
         guard let currentUser = Auth.auth().currentUser else {

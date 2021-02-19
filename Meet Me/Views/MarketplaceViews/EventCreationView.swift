@@ -169,7 +169,7 @@ struct EventCreationView: View {
                 .scaleEffect(buttonPressed ? 0.8 : 1)
                 .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
                 .onTapGesture {
-                    firestoreFotoManger.savePhoto(originalImage: uiImage, collection: "EventPhotos", childFolder: "EventImages", completion: { success in
+                    firestoreFotoManger.savePhoto(originalImage: uiImage, collection: "eventPhotos", childFolder: "EventImages", completion: { success in
                         if success {
                             // update handling
                             prepareUpload()
