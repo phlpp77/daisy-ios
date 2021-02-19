@@ -10,13 +10,13 @@ import Foundation
 class YouEventViewModel: ObservableObject {
     
     private var firestoreManagerUser: FirestoreManagerUser
-    private var firestoreMangaerEvent: FireStoreManagerEvent
+    private var firestoreManagerEvent: FireStoreManagerEvent
     private var currentUserModel: UserModel = testUser
     
     
     init(){
         firestoreManagerUser = FirestoreManagerUser()
-        firestoreMangaerEvent = FireStoreManagerEvent()
+        firestoreManagerEvent = FireStoreManagerEvent()
     }
     
     
@@ -40,7 +40,7 @@ class YouEventViewModel: ObservableObject {
         } else {
             //print("testUserUploaded")
         }
-        firestoreMangaerEvent.addLikeToEvent(eventId: eventId, userModel: currentUserModel) { result in
+        firestoreManagerEvent.addLikeToEvent(eventId: eventId, userModel: currentUserModel) { result in
             switch result {
             case.success(_):
                 completion(nil)
