@@ -28,7 +28,7 @@ struct YouEventView: View {
     private var date: Date
     private var startTime: Date
     private var endTime: Date
-    private var pictureURL: URL
+    private var pictureURL: String
 
     //
     init(eventModelObject: EventModelObject, eventArray: Binding<[EventModelObject]>, eventIndex: Int, dragPossible: Bool) {
@@ -43,6 +43,7 @@ struct YouEventView: View {
         startTime = eventModelObject.startTime
         endTime = eventModelObject.endTime
         pictureURL = eventModelObject.pictureURL
+        
     }
     
     var dateFormatter: DateFormatter = {
@@ -63,7 +64,7 @@ struct YouEventView: View {
     var body: some View {
         ZStack {
             // Main image as a backgrond of the event
-            URLImage(url: pictureURL) { image in
+            URLImage(url: stockURL) { image in
                 image.resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 250, height: 250, alignment: .center)
@@ -156,7 +157,11 @@ struct YouEventView: View {
             )
         .animation(.interactiveSpring(), value: dragPosition)
         .onAppear {
-          
+            print("DEBUG: \(category)")
+            print("DEBUG: \(date)")
+            print("DEBUG: \(startTime)")
+            print("DEBUG \(endTime)")
+            print("DEBUG: \(pictureURL)")
         }
     }
     

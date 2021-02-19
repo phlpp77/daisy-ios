@@ -19,6 +19,8 @@ class YouEventViewModel: ObservableObject {
         firestoreManagerEvent = FireStoreManagerEvent()
     }
     
+
+    
     
     func getUserModel(){
         firestoreManagerUser.downloadCurrentUserModel(completion: { success in

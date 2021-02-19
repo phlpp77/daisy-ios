@@ -30,9 +30,10 @@ class FireStoreManagerEvent {
     private var db: Firestore
     private var meEvents: [EventModelObject] = []
     private var youEvents: [EventModelObject] = []
-    
+    private var createdID: String = UUID().uuidString
     init() {
         db = Firestore.firestore()
+
     }
     
     
@@ -47,27 +48,26 @@ class FireStoreManagerEvent {
         return youEvents
     }
     
+    func getID() -> String {
+        return createdID
+    }
+    
+    
     
     // MARK: - Functions to Save events to Firebase
     
     
     func saveEvent(eventModel: EventModel, completion: @escaping (Result<EventModel?, Error>) -> Void) {
 
+
         do {
-            let ref = try db.collection("events").addDocument(from: eventModel)
-            ref.getDocument { (snapshot, error) in
-                guard let snapshot = snapshot, error == nil else {
-                    completion(.failure(error!))
-                    return
-                }
-                
-                let eventModel = try? snapshot.data(as: EventModel.self)
-                completion(.success(eventModel))
-            }
+            try db.collection("events").document(createdID).setData(from: eventModel)
+            completion(.success(eventModel))
         } catch let error {
-                completion(.failure(error))
-            }
+            print("fail")
+            completion(.failure(error))
         }
+    }
     // MARK: - Functions to update events
     
     func addLikeToEvent(eventId: String, userModel: UserModel, completion: @escaping (Result<EventModel?, Error>) -> Void){

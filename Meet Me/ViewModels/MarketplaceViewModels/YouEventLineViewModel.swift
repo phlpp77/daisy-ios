@@ -29,6 +29,6 @@ class YouEventLineViewModel: ObservableObject {
         )
     }
 }
-
+//URL(string: self.pictureURL)!
 
 

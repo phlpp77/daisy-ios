@@ -18,7 +18,7 @@ struct ProfileCreationView: View {
     
     
     @StateObject private var addProfileCreationVM = ProfileCreationModel()
-    @StateObject private var firestoreFotoManger = FirestoreFotoManager()
+    @StateObject private var firestoreFotoMangerUser = FirestoreFotoManagerUser()
     
     // binding to show the main controller that the proccess is finished
     @Binding var profileCreationFinished: Bool
@@ -153,7 +153,7 @@ struct ProfileCreationView: View {
                         
                         // update button
                         Button(action: {
-                            firestoreFotoManger.savePhoto(originalImage: uiImage,collection: "UserPhotos",childFolder:"UserImages",  completion: { success in
+                            firestoreFotoMangerUser.savePhoto(originalImage: uiImage,  completion: { success in
                                 if success {
                                     let bDate = convertStringToDate(date: birthdayDate)
                                     

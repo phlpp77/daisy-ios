@@ -39,5 +39,5 @@ let testUser: UserModel = UserModel(userId: "007", name: "Philipp", birthdayDate
 let stockURL: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/UserImages%2FE0E6E182-1625-4519-9315-531980665268.png?alt=media&token=a77b552b-d687-4367-bee2-76b625fe8e48")!
 
 // MARK: stock event for marketplace and eventObject (length: half an hour - 30*60 seconds)
-let stockEvent: EventModel = EventModel(eventId: "008", userId: "007", name: "Nice Event", category: "Café", date: Date(), startTime: Date(), endTime: Date() + 30 * 60, pictureURL: stockURL)
+let stockEvent: EventModel = EventModel(eventId: "008", userId: "007", name: "Nice Event", category: "Café", date: Date(), startTime: Date(), endTime: Date() + 30 * 60, pictureURL: "")
 let stockEventObject: EventModelObject = EventModelObject(eventModel: stockEvent, position: .constant(.zero))

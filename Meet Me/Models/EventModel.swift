@@ -19,7 +19,7 @@ struct EventModel: Codable {
     var date: Date
     var startTime: Date
     var endTime: Date
-    var pictureURL: URL
+    var pictureURL: String
     
 }
 
@@ -58,7 +58,7 @@ struct EventModelObject {
         eventModel.endTime
     }
     
-    var pictureURL: URL {
+    var pictureURL: String {
         eventModel.pictureURL
     }
     

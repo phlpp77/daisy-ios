@@ -34,7 +34,7 @@ struct Meet_MeApp: App {
 //            Copy into if for autologin
 //            ||  autoLogin()
 //            ||  checkUserAccForAutoLogin()
-            if startProcessDone  {
+            if startProcessDone ||  checkUserAccForAutoLogin()  {
 
                 MainControllerView()
 

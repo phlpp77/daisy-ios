@@ -11,7 +11,7 @@ import URLImage
 struct EventCreationView: View {
     //@StateObject private var youEventLineVM = YouEventLineViewModel()
     @StateObject private var eventCreationVM = EventCreationViewModel()
-    @StateObject private var firestoreFotoManger = FirestoreFotoManager()
+    @StateObject private var firestoreFotoMangerUser = FirestoreFotoManagerUser()
     // binding for presentation
     @Binding var presentation: Bool
     
@@ -20,7 +20,7 @@ struct EventCreationView: View {
     @State private var date: Date = Date()
     @State private var startTime: Date = Date()
     @State private var endTime: Date = Date() + 60*30
-    @State private var pictureURL: URL = stockURL
+    @State private var pictureURL: String = ""
     
     // image handling
     @State private var image: Image? = Image("cafe")
@@ -169,22 +169,17 @@ struct EventCreationView: View {
                 .scaleEffect(buttonPressed ? 0.8 : 1)
                 .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
                 .onTapGesture {
-                    firestoreFotoManger.savePhoto(originalImage: uiImage, collection: "eventPhotos", childFolder: "EventImages", completion: { success in
-                        if success {
+
                             // update handling
                             prepareUpload()
                             //youEventLineVM.getYouEvents()
-                            eventCreationVM.saveEventSettings()
+                            eventCreationVM.saveEventSettings(uiImage: uiImage!)
                             // button animation start
                             buttonPressed.toggle()
                             // haptic feedback when button is tapped
                             hapticPulse(feedback: .rigid)
                             // close view
                             presentation = false
-                        } else {
-                            print("error by save User Seetings to Firebase")
-                        }
-                    })
 
                 }
                 

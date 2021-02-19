@@ -1,28 +1,9 @@
 //
-//FirestoreFotoManager.swift
-//Meet Me
+//  FirestoreFotoMangerEvent.swift
+//  Meet Me
 //
-//Created by Lukas Dech on 11.02.21.
+//  Created by Lukas Dech on 19.02.21.
 //
-//
-//Funktions Beschreibung
-//
-//- savePhoto()
-// saved ein Event Model zur collection User
-// wird aufgerufen in --> EventCreationViewModel
-
-//- UploadUserPhoto()
-// ladet alle Events des aktuellen Nutzers herunter und speichert alle im Array meEvents vom Typ EventModelObject
-// wird aufgerufen in --> YouEventViewModel
-
-//- savePhotoUrlToFirestore()
-// return das Array meEvents welches von getMeEvent() objekte bekommt
-// wird aufgerufen in --> YouEventViewModel
-
-//- getAllPhotosFromUser()
-// return das Array meEvents welches von getMeEvent() objekte bekommt
-// wird aufgerufen in --> YouEventViewModel
-
 
 import Foundation
 import Firebase
@@ -30,7 +11,7 @@ import FirebaseFirestoreSwift
 import URLImage
 
 
-class FirestoreFotoManager: ObservableObject {
+class FirestoreFotoManagerEvent: ObservableObject {
     
     let storage = Storage.storage()
     private var db: Firestore
@@ -44,22 +25,20 @@ class FirestoreFotoManager: ObservableObject {
     }
     
 
-    
-    
-    // MARK: - Functions to save Photos to Storage or to save URL to Firebase
+    // MARK: - Functions to save User Photos to Storage and the URL to Firestore
 
     // function is called inside the main code
     //in dem Paramter collection wird ein Document mit Url und User Id erstellt
     //paramter childfolder lädt das dokument in den Storage
-    func savePhoto(originalImage: UIImage?,collection: String, childFolder: String, completion: @escaping (Bool) -> Void) {
+    func savePhoto(originalImage: UIImage?, eventModel: EventModel, completion: @escaping (Bool) -> Void) {
         var completionFlag = false
         
         if let originalImage = originalImage {
             if let resizedImage = originalImage.resized(width: 360) {
                 if let data = resizedImage.pngData() {
-                    uploadUserPhoto(data:data, childFolder: childFolder) { (url) in
+                    uploadEventPhoto(data:data) { (url) in
                         if let url = url {
-                            self.savePhotoUrlToFirestore(url: url, collection: collection) { error in
+                            self.saveEventPhotoUrlToFirestore(url: url, eventModel: eventModel) { error in
                                 if let error = error {
                                     print(error.localizedDescription)
                                     completion(completionFlag)
@@ -81,11 +60,11 @@ class FirestoreFotoManager: ObservableObject {
     
     
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
-    func uploadUserPhoto(data: Data, childFolder: String, completion: @escaping (URL?) -> Void) {
+    func uploadEventPhoto(data: Data, completion: @escaping (URL?) -> Void) {
         
         let imageName = UUID().uuidString
         let storageRef = storage.reference()
-        let photoRef = storageRef.child("\(childFolder)/\(imageName).png")
+        let photoRef = storageRef.child("EventImagesTest/\(imageName).png")
         
         photoRef.putData(data, metadata: nil) { metadata, error in
             
@@ -106,41 +85,28 @@ class FirestoreFotoManager: ObservableObject {
     
     
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
-    func savePhotoUrlToFirestore(url: URL, collection: String, completion: (Error?) -> Void) {
-        guard let currentUser = Auth.auth().currentUser else {
-            return
-        }
-        
+    func saveEventPhotoUrlToFirestore(url: URL,eventModel : EventModel, completion: (Error?) -> Void) {
+//        guard let currentUser = Auth.auth().currentUser else {
+//            return
+
+//        }        
         do {
-            let _ = try db.collection(collection)
-                .addDocument(from: PhotoModel(url: url.absoluteString, userId: currentUser.uid))
+            let _ = db.collection("events")
+                .document(eventModel.eventId)
+                .updateData(["pictureURL" : url.absoluteString])
+                //.updateData(["name": "right"])
                 completion(nil)
-        } catch let error {
-            completion(error)
         }
         
         
     }
     
-    
-    
-    // MARK: - Functions to update Photos in the Storage
-    
-    
-    
-    
-    // MARK: - Functions to dowload fotos or Url from Storage or firebase
-    
-    
-    
-    
-    
-    func getAllPhotosFromUser(collection:String, completionHandler: @escaping (Bool) -> Void) {
+    func getAllPhotosFromEvent(completionHandler: @escaping (Bool) -> Void) {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
         var flag = false
-        db.collection(collection)
+        db.collection("users")
             .whereField("userId", isEqualTo: currentUser.uid)
             .getDocuments { (snapshot,error) in
                 if let error = error {
@@ -173,7 +139,4 @@ class FirestoreFotoManager: ObservableObject {
         
         
     }
- 
-
-
 }

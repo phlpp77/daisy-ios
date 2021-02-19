@@ -10,7 +10,7 @@ import Foundation
 class MeEventLineViewModel: ObservableObject {
     
     private var firestoreManagerEvent = FireStoreManagerEvent()
-    private var firestoreFotoManager: FirestoreFotoManager = FirestoreFotoManager()
+    private var firestoreFotoManagerEvent: FirestoreFotoManagerEvent = FirestoreFotoManagerEvent()
     @Published var meEvents: [EventModelObject] = []
     
 
