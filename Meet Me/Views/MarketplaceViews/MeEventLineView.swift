@@ -60,7 +60,7 @@ struct MeEventLineView: View {
                                         .scaleEffect(0.5)
                                         .frame(width: 140, height: 160, alignment: .center)
                                     
-                                    // TODO: @budni - instead of event put array.count here to see how many people are intressed in this event
+                                    // TODO: @budni - instead of event put array.count here to see how many people are interested in this event
                                     Text("\(event)")
                                         .foregroundColor(.white)
                                         .frame(width: 30, height: 30, alignment: .center)
