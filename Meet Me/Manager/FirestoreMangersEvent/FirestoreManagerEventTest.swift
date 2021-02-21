@@ -33,6 +33,10 @@ class FireStoreManagerEventTest {
     private var meEvents: [EventModelObject] = []
     private var youEvents: [EventModelObject] = []
     private var createdID: String = UUID().uuidString
+    private var currentUserModel = testUser
+    
+    
+    
     init() {
         db = Firestore.firestore()
 
@@ -59,104 +63,154 @@ class FireStoreManagerEventTest {
     // MARK: - Functions to Save events to Firebase
 
     
-    func saveEvent(eventModel: EventModel) -> Promise<EventModel> {
+    func saveEvent(eventModel: EventModel, eventId: String) -> Promise<Void> {
         return Promise { seal in
-            db.collection("events").document(createdID).setData(from: eventModel)
-            seal.fulfill(eventModel)
+        do {
+            try db.collection("events").document(eventId).setData(from: eventModel)
+            seal.fulfill(())
+            }
+        catch let error{
+            seal.reject(error)
         }
     }
+}
 
     // MARK: - Functions to update events
-    
-    func addLikeToEvent(eventId: String, userModel: UserModel, completion: @escaping (Result<EventModel?, Error>) -> Void){
-        
-        do {
-            let _ = try db.collection("events")
+
+    func addLikeToEvent(eventId: String, userModel: UserModel) -> Promise<UserModel>{
+        return Promise { seal in
+            do {
+                let _ = try db.collection("events")
                     .document(eventId)
                     .collection("likedUser").addDocument(from: userModel)
-        } catch let error {
-            completion(.failure(error))
+                seal.fulfill(userModel)
+            } catch let error {
+                seal.reject(error)
+            }
         }
     }
 
     // MARK: - Functions to get events
-    func firebaseGetMeEvents(completionHandler: @escaping (Bool) -> Void) {
-
-        guard let currentUser = Auth.auth().currentUser else {
-            return
-        }
-        var flag = false
-        db.collection("events")
-            .whereField("userId", isEqualTo: currentUser.uid)
-            .getDocuments { [weak self] (snapshot, error) in
-                if let error = error {
-                    flag = false
-                    print(error.localizedDescription)
-                } else {
-                    
-                    if let snapshot = snapshot {
-                        let event: [EventModelObject]? = snapshot.documents.compactMap { doc in
-                            var event = try? doc.data(as: EventModel.self)
-                            event?.eventId = doc.documentID
-                            if let event = event {
-                                // Philipp added the .constant to handle the error of the needed position
-                                return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
-                            }
-                            return nil
+    func firebaseGetMeEvents() -> Promise<[EventModelObject]> {
+        return Promise { seal in
+            
+            guard let currentUser = Auth.auth().currentUser else {
+                let error: Error = "No current User" as! Error
+                seal.reject(error)
+                return
+            }
+        
+            
+            db.collection("events")
+                .whereField("userId", isEqualTo: currentUser.uid)
+                .getDocuments {(snapshot, error) in
+                    if let error = error {
+                        //print(error.localizedDescription)
+                        seal.reject(error)
+                    } else {
                         
-                        }
-                        flag = true
-                        completionHandler(flag)
-                        DispatchQueue.main.async {
-                            self?.meEvents = event!
+                        if let snapshot = snapshot {
+                            let event: [EventModelObject]? = snapshot.documents.compactMap { doc in
+                                var event = try? doc.data(as: EventModel.self)
+                                event?.eventId = doc.documentID
+                                if let event = event {
+                                    // Philipp added the .constant to handle the error of the needed position
+                                    return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
+                                }
+                                return nil
+                                
+                            }
+                            DispatchQueue.main.async {
+                                seal.fulfill(event!)
+                            }
+                            
                         }
                         
                     }
-
                 }
-            }
-    
-        
-    }
-    
-    func firebaseGetYouEvents(completionHandler: @escaping (Bool) -> Void) {
-
-        guard let currentUser = Auth.auth().currentUser else {
-            return
+            
+            
         }
-        var flag = false
-        db.collection("events")
-            .whereField("userId", isNotEqualTo: currentUser.uid)
-            .getDocuments { [weak self] (snapshot, error) in
-                if let error = error {
-                    flag = false
-                    print(error.localizedDescription)
-                } else {
-                    
-                    if let snapshot = snapshot {
-                        let event: [EventModelObject]? = snapshot.documents.compactMap { doc in
-                            var event = try? doc.data(as: EventModel.self)
-                            event?.eventId = doc.documentID
-                            if let event = event {
-                                // Philipp added the .constant to handle the error of the needed position
-                                return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
-                            }
-                            return nil
+    }
+
+    // MARK: - Functions to get events
+    func firebaseGetYouEvents() -> Promise<[EventModelObject]> {
+        return Promise { seal in
+            
+            guard let currentUser = Auth.auth().currentUser else {
+                let error: Error = "No current User" as! Error
+                seal.reject(error)
+                return
+            }
+        
+            
+            db.collection("events")
+                .whereField("userId", isNotEqualTo: currentUser.uid)
+                .getDocuments {(snapshot, error) in
+                    if let error = error {
+                        //print(error.localizedDescription)
+                        seal.reject(error)
+                    } else {
                         
-                        }
-                        flag = true
-                        completionHandler(flag)
-                        DispatchQueue.main.async {
-                            self?.youEvents = event!
+                        if let snapshot = snapshot {
+                            let event: [EventModelObject]? = snapshot.documents.compactMap { doc in
+                                var event = try? doc.data(as: EventModel.self)
+                                event?.eventId = doc.documentID
+                                if let event = event {
+                                    // Philipp added the .constant to handle the error of the needed position
+                                    return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
+                                }
+                                return nil
+                                
+                            }
+                            DispatchQueue.main.async {
+                                seal.fulfill(event!)
+                            }
+                            
                         }
                         
                     }
-
                 }
-            }
-    
-        
+            
+            
+        }
     }
     
+
+
+        
+        //Fire StoremanagerUser
+    func downloadCurrentUserModel() -> Promise<UserModel> {
+        return Promise { seal in
+            
+            guard let currentUser = Auth.auth().currentUser else {
+                let error: Error = "No current User" as! Error
+                seal.reject(error)
+                return
+            }
+            db.collection("users").document(currentUser.uid).getDocument { snapshot, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    seal.reject(error)
+                } else {
+                    if let snapshot = snapshot {
+                        var userModel = try? snapshot.data(as: UserModel.self)
+                        if userModel != nil {
+                            userModel!.userId = snapshot.documentID
+                        }
+                        
+                        self.currentUserModel = userModel!
+                        seal.fulfill(userModel!)
+                    }
+                }
+                
+            }
+            
+            
+        }
+        
+    }
 }
+
     
+
