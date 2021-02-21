@@ -26,7 +26,7 @@ struct EventCreationView: View {
     @State private var image: Image? = Image("cafe")
     @State private var uiImage: UIImage? = UIImage(named: "cafe")
     
-    // animation of alertboxes
+    // animation of alert-boxes
     @State private var showAlertBox: Bool = false
     @State private var pathNumber: Int = 0
     @State private var accepted: Bool = false

@@ -21,6 +21,7 @@
 		175E40F025B4CD3300ADC9BF /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40EF25B4CD3300ADC9BF /* RegisterView.swift */; };
 		175E40F425B4CD9400ADC9BF /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40F325B4CD9400ADC9BF /* Modifiers.swift */; };
 		175E40FA25B4D26A00ADC9BF /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40F925B4D26A00ADC9BF /* Information.swift */; };
+		17681BDC25E3198E0023F450 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17681BDB25E3198E0023F450 /* GoogleService-Info.plist */; };
 		1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */; };
 		1774B67225D1E2E500D1D2F1 /* MainSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */; };
 		1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67425D1E31400D1D2F1 /* MainExploreView.swift */; };
@@ -55,7 +56,6 @@
 		903E020A25DFF6FB005BB173 /* FirestoreFotoMangerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903E020925DFF6FB005BB173 /* FirestoreFotoMangerEvent.swift */; };
 		905485A125C48B0A00E2024D /* FirestoreManagerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485A025C48B0A00E2024D /* FirestoreManagerUser.swift */; };
 		905485D625C4B44F00E2024D /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485D525C4B44F00E2024D /* ErrorMessages.swift */; };
-		90779AE625E2BDD80070D794 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90779AE525E2BDD70070D794 /* GoogleService-Info.plist */; };
 		90779AEA25E2C7250070D794 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 90779AE925E2C7250070D794 /* PromiseKit */; };
 		90779AED25E2C8CD0070D794 /* FirestoreManagerEventTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */; };
 		90779B0725E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779B0625E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift */; };
@@ -91,6 +91,7 @@
 		175E40EF25B4CD3300ADC9BF /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		175E40F325B4CD9400ADC9BF /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		175E40F925B4D26A00ADC9BF /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
+		17681BDB25E3198E0023F450 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerView.swift; sourceTree = "<group>"; };
 		1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSettingsView.swift; sourceTree = "<group>"; };
 		1774B67425D1E31400D1D2F1 /* MainExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainExploreView.swift; sourceTree = "<group>"; };
@@ -123,7 +124,6 @@
 		903E020925DFF6FB005BB173 /* FirestoreFotoMangerEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreFotoMangerEvent.swift; sourceTree = "<group>"; };
 		905485A025C48B0A00E2024D /* FirestoreManagerUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerUser.swift; sourceTree = "<group>"; };
 		905485D525C4B44F00E2024D /* ErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessages.swift; sourceTree = "<group>"; };
-		90779AE525E2BDD70070D794 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerEventTest.swift; sourceTree = "<group>"; };
 		90779B0625E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreFotoMangerEventTest.swift; sourceTree = "<group>"; };
 		90779B0925E305D40070D794 /* MeMatchStartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchStartViewModel.swift; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 		17153EE325A8C5C30072CE83 /* Meet Me */ = {
 			isa = PBXGroup;
 			children = (
-				90779AE525E2BDD70070D794 /* GoogleService-Info.plist */,
+				17681BDB25E3198E0023F450 /* GoogleService-Info.plist */,
 				17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */,
 				905485D025C4AA6100E2024D /* Manager */,
 				175E40DC25B4320E00ADC9BF /* Views */,
@@ -477,7 +477,7 @@
 			files = (
 				17153EEC25A8C5C30072CE83 /* Preview Assets.xcassets in Resources */,
 				1795DFBA25DF252C002D537F /* heard-loading.json in Resources */,
-				90779AE625E2BDD80070D794 /* GoogleService-Info.plist in Resources */,
+				17681BDC25E3198E0023F450 /* GoogleService-Info.plist in Resources */,
 				17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */,
 				1795DFBF25DF25DD002D537F /* planet-loading.json in Resources */,
 			);
@@ -720,7 +720,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -728,7 +728,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Meee";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Me";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -746,7 +746,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -754,7 +754,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Meee";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Me";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
