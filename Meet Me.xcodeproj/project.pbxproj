@@ -57,6 +57,10 @@
 		905485D625C4B44F00E2024D /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485D525C4B44F00E2024D /* ErrorMessages.swift */; };
 		90779AE625E2BDD80070D794 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90779AE525E2BDD70070D794 /* GoogleService-Info.plist */; };
 		90779AEA25E2C7250070D794 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 90779AE925E2C7250070D794 /* PromiseKit */; };
+		90779AED25E2C8CD0070D794 /* FirestoreManagerEventTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */; };
+		90779B0725E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779B0625E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift */; };
+		90779B0A25E305D40070D794 /* MeMatchStartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779B0925E305D40070D794 /* MeMatchStartViewModel.swift */; };
+		90779B0D25E308220070D794 /* FirestoreManagerUserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779B0C25E308220070D794 /* FirestoreManagerUserTest.swift */; };
 		90B0F4C725DF086B00AB8EF9 /* TrahedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4C625DF086B00AB8EF9 /* TrahedCode.swift */; };
 		90B0F4D425DF0EA000AB8EF9 /* MeEventLinieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4D325DF0EA000AB8EF9 /* MeEventLinieViewModel.swift */; };
 		90B0F4F125DFC63400AB8EF9 /* YouEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */; };
@@ -120,6 +124,10 @@
 		905485A025C48B0A00E2024D /* FirestoreManagerUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerUser.swift; sourceTree = "<group>"; };
 		905485D525C4B44F00E2024D /* ErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessages.swift; sourceTree = "<group>"; };
 		90779AE525E2BDD70070D794 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerEventTest.swift; sourceTree = "<group>"; };
+		90779B0625E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreFotoMangerEventTest.swift; sourceTree = "<group>"; };
+		90779B0925E305D40070D794 /* MeMatchStartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchStartViewModel.swift; sourceTree = "<group>"; };
+		90779B0C25E308220070D794 /* FirestoreManagerUserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerUserTest.swift; sourceTree = "<group>"; };
 		90B0F4C625DF086B00AB8EF9 /* TrahedCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrahedCode.swift; sourceTree = "<group>"; };
 		90B0F4D325DF0EA000AB8EF9 /* MeEventLinieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventLinieViewModel.swift; sourceTree = "<group>"; };
 		90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventViewModel.swift; sourceTree = "<group>"; };
@@ -326,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				905485A025C48B0A00E2024D /* FirestoreManagerUser.swift */,
+				90779B0C25E308220070D794 /* FirestoreManagerUserTest.swift */,
 				90F2334625D57BE5003FB1D9 /* FirestoreFotoManagerUser.swift */,
 			);
 			path = FirestoreManagersUser;
@@ -335,7 +344,9 @@
 			isa = PBXGroup;
 			children = (
 				902EF70225D9A5B7004464F0 /* FirestoreManagerEvent.swift */,
+				90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */,
 				903E020925DFF6FB005BB173 /* FirestoreFotoMangerEvent.swift */,
+				90779B0625E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift */,
 			);
 			path = FirestoreMangersEvent;
 			sourceTree = "<group>";
@@ -367,6 +378,7 @@
 				902EF6FE25D9A51B004464F0 /* EventCreationViewModel.swift */,
 				90B0F4D325DF0EA000AB8EF9 /* MeEventLinieViewModel.swift */,
 				90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */,
+				90779B0925E305D40070D794 /* MeMatchStartViewModel.swift */,
 			);
 			path = MarketplaceViewModels;
 			sourceTree = "<group>";
@@ -541,6 +553,8 @@
 				1778E41325D0904100C5D343 /* DateTextField.swift in Sources */,
 				90F8AB4625BF5CDA00E969E0 /* UserModel.swift in Sources */,
 				90B1BFDB25B8DBB700F8FBF7 /* RegisterViewModel.swift in Sources */,
+				90779B0725E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift in Sources */,
+				90779AED25E2C8CD0070D794 /* FirestoreManagerEventTest.swift in Sources */,
 				179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */,
 				173F361C25E2FF0D002E9EE6 /* MeMatchView.swift in Sources */,
 				902EF6E225D985F0004464F0 /* Meet_MeAppViewModel.swift in Sources */,
@@ -550,9 +564,11 @@
 				90B0F4C725DF086B00AB8EF9 /* TrahedCode.swift in Sources */,
 				905485A125C48B0A00E2024D /* FirestoreManagerUser.swift in Sources */,
 				174423AE25D9A93000D25EDD /* EventCreationView.swift in Sources */,
+				90779B0D25E308220070D794 /* FirestoreManagerUserTest.swift in Sources */,
 				90F2334D25D58481003FB1D9 /* ImagePicker.swift in Sources */,
 				90B0F4D425DF0EA000AB8EF9 /* MeEventLinieViewModel.swift in Sources */,
 				1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */,
+				90779B0A25E305D40070D794 /* MeMatchStartViewModel.swift in Sources */,
 				17AC8C8425D8315100252875 /* YouProfileView.swift in Sources */,
 				1795DF9525DD6998002D537F /* MeEventLineView.swift in Sources */,
 				1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */,

@@ -108,12 +108,13 @@ class FireStoreManagerEvent {
                             return nil
                         
                         }
-                        flag = true
-                        completionHandler(flag)
+
                         DispatchQueue.main.async {
                             self?.meEvents = event!
+                            flag = true
+                            completionHandler(flag)
                         }
-                        
+
                     }
 
                 }
@@ -147,10 +148,11 @@ class FireStoreManagerEvent {
                             return nil
                         
                         }
-                        flag = true
-                        completionHandler(flag)
+
                         DispatchQueue.main.async {
                             self?.youEvents = event!
+                            flag = true
+                            completionHandler(flag)
                         }
                         
                     }

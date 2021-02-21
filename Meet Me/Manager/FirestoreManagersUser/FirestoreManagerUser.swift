@@ -25,6 +25,7 @@ import FirebaseFirestoreSwift
 import FirebaseFirestore
 import FirebaseAuth
 
+
 class FirestoreManagerUser {
     
     private var db: Firestore
@@ -115,6 +116,9 @@ class FirestoreManagerUser {
             
             
         }
+    
+    
+
         
 
         
