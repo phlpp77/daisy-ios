@@ -54,6 +54,7 @@
 		905485A125C48B0A00E2024D /* FirestoreManagerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485A025C48B0A00E2024D /* FirestoreManagerUser.swift */; };
 		905485D625C4B44F00E2024D /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485D525C4B44F00E2024D /* ErrorMessages.swift */; };
 		90779AE625E2BDD80070D794 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90779AE525E2BDD70070D794 /* GoogleService-Info.plist */; };
+		90779AEA25E2C7250070D794 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 90779AE925E2C7250070D794 /* PromiseKit */; };
 		90B0F4C725DF086B00AB8EF9 /* TrahedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4C625DF086B00AB8EF9 /* TrahedCode.swift */; };
 		90B0F4D425DF0EA000AB8EF9 /* MeEventLinieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4D325DF0EA000AB8EF9 /* MeEventLinieViewModel.swift */; };
 		90B0F4F125DFC63400AB8EF9 /* YouEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */; };
@@ -136,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				902EF6C625D92112004464F0 /* URLImage in Frameworks */,
+				90779AEA25E2C7250070D794 /* PromiseKit in Frameworks */,
 				3C4632628DFAFFCA3B1B6674 /* Pods_Meet_Me.framework in Frameworks */,
 				1795DFA625DF1805002D537F /* Lottie in Frameworks */,
 			);
@@ -399,6 +401,7 @@
 			packageProductDependencies = (
 				902EF6C525D92112004464F0 /* URLImage */,
 				1795DFA525DF1805002D537F /* Lottie */,
+				90779AE925E2C7250070D794 /* PromiseKit */,
 			);
 			productName = "Meet Me";
 			productReference = 17153EE125A8C5C30072CE83 /* Meet Me.app */;
@@ -430,6 +433,7 @@
 			packageReferences = (
 				902EF6C425D92112004464F0 /* XCRemoteSwiftPackageReference "url-image" */,
 				1795DFA425DF1805002D537F /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				90779AE825E2C7250070D794 /* XCRemoteSwiftPackageReference "PromiseKit" */,
 			);
 			productRefGroup = 17153EE225A8C5C30072CE83 /* Products */;
 			projectDirPath = "";
@@ -766,6 +770,14 @@
 				minimumVersion = 2.2.3;
 			};
 		};
+		90779AE825E2C7250070D794 /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.13.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -778,6 +790,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 902EF6C425D92112004464F0 /* XCRemoteSwiftPackageReference "url-image" */;
 			productName = URLImage;
+		};
+		90779AE925E2C7250070D794 /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 90779AE825E2C7250070D794 /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

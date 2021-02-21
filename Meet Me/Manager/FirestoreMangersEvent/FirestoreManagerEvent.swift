@@ -25,6 +25,7 @@ import Firebase
 import FirebaseFirestoreSwift
 import FirebaseAuth
 
+
 class FireStoreManagerEvent {
     
     private var db: Firestore
