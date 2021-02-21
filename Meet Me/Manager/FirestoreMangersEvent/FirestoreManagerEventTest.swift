@@ -61,11 +61,8 @@ class FireStoreManagerEventTest {
     
     func saveEvent(eventModel: EventModel) -> Promise<EventModel> {
         return Promise { seal in
-            try db.collection("events").document(createdID).setData(from: eventModel)
+            db.collection("events").document(createdID).setData(from: eventModel)
             seal.fulfill(eventModel)
-        } catch var error {
-            print("fail")
-            seal.reject(error)
         }
     }
 
