@@ -11,7 +11,7 @@ struct MeMatchStartView: View {
     
     @State var buttonPressed: Bool = false
     @Binding var showMeMatchView: Bool
-    
+    @StateObject private var meMatchStartVM : MeMatchStartViewModel = MeMatchStartViewModel()
     var body: some View {
         ZStack {
             
@@ -54,6 +54,7 @@ struct MeMatchStartView: View {
                     .scaleEffect(buttonPressed ? 0.8 : 1)
                     .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
                     .onTapGesture {
+                        print(meMatchStartVM.likedUsers)
                         // button animation start
                         buttonPressed.toggle()
                         
@@ -67,7 +68,11 @@ struct MeMatchStartView: View {
             }
             .frame(width: 340, height: 620, alignment: .center)
             .modifier(FrozenWindowModifier())
+            .onAppear {
+                meMatchStartVM.getLikedUsers(eventId: "81C40095-1C28-4B30-84F4-C105BE4A9C9B")
+            }
         }
+        
     }
 }
 

@@ -13,8 +13,7 @@ import PromiseKit
 
 class EventCreationViewModel: ObservableObject {
     
-    private var firestoreFotoManagerEvent: FirestoreFotoManagerEvent = FirestoreFotoManagerEvent()
-    private var fireStoreManagerEvent: FireStoreManagerEvent
+
     @Published var saved: Bool = false
     @Published var message: String = ""
     
@@ -34,17 +33,16 @@ class EventCreationViewModel: ObservableObject {
     
 
     init() {
-        fireStoreManagerEvent = FireStoreManagerEvent()
         firestoreFotoManagerEventTest = FirestoreFotoManagerEventTest()
         fireStoreManagerEventTest = FireStoreManagerEventTest()
     }
 
 
-    func saveEventTest(uiImage: UIImage) {
+    func saveEvent(uiImage: UIImage) {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
-        let eventId = fireStoreManagerEvent.getID()
+        let eventId = fireStoreManagerEventTest.getID()
         let eventModel = EventModel(eventId: eventId, userId: currentUser.uid, name: name, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"")
         DispatchQueue.main.async {
             firstly{

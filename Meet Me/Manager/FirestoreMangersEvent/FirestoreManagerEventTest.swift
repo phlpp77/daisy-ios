@@ -36,22 +36,9 @@ class FireStoreManagerEventTest {
     private var currentUserModel = testUser
     
     
-    
     init() {
         db = Firestore.firestore()
 
-    }
-    
-    
-    
-    func getMeEvents() -> [EventModelObject] {
-        print(meEvents)
-        return meEvents
-    }
-    
-    func getYouEvents()-> [EventModelObject] {
-        print(youEvents)
-        return youEvents
     }
     
     func getID() -> String {
