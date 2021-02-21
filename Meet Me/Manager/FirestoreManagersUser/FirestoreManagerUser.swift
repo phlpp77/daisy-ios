@@ -129,7 +129,7 @@ class FirestoreManagerUser {
             return currentUserModel!
         } else {
             print("test user currentUserModel == nil")
-            return testUser
+            return stockUser
         }
     }
     

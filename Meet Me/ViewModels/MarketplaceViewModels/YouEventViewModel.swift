@@ -11,7 +11,7 @@ class YouEventViewModel: ObservableObject {
     
     private var firestoreManagerUser: FirestoreManagerUser
     private var firestoreManagerEvent: FireStoreManagerEvent
-    private var currentUserModel: UserModel = testUser
+    private var currentUserModel: UserModel = stockUser
     
     
     init(){
@@ -37,7 +37,7 @@ class YouEventViewModel: ObservableObject {
     
     func addCurrentUserToMatchedEvent(eventId: String, completion: @escaping (Error?) -> Void) {
         getUserModel()
-        if currentUserModel.userId != testUser.userId {
+        if currentUserModel.userId != stockUser.userId {
            // print("right User Uploaded ")
         } else {
             //print("testUserUploaded")

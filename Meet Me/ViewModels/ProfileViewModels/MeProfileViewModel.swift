@@ -12,7 +12,7 @@ class MeProfileViewModel: ObservableObject {
     private var firestoreManagerUser: FirestoreManagerUser = FirestoreManagerUser()
     private var firestoreFotoManagerUser: FirestoreFotoManagerUser = FirestoreFotoManagerUser()
     var user: [UserModelObject] = []
-    @Published var userModel: UserModel = testUser
+    @Published var userModel: UserModel = stockUser
     @Published var userPictureURL: URL = stockURL
     
 

@@ -26,7 +26,7 @@
 
 //    func convertModels(userArray: [UserModelObject]) -> UserModel {
 //
-//        var user: UserModel = testUser
+//        var user: UserModel = stockUser
 //
 //            user.name = userArray[0].name
 //            user.gender = userArray[0].gender

@@ -10,7 +10,8 @@
 		17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */; };
 		17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EE825A8C5C30072CE83 /* Assets.xcassets */; };
 		17153EEC25A8C5C30072CE83 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EEB25A8C5C30072CE83 /* Preview Assets.xcassets */; };
-		173F361225E2D72D002E9EE6 /* MeMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F361125E2D72D002E9EE6 /* MeMatchView.swift */; };
+		173F361225E2D72D002E9EE6 /* MeMatchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F361125E2D72D002E9EE6 /* MeMatchCardView.swift */; };
+		173F361C25E2FF0D002E9EE6 /* MeMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F361B25E2FF0D002E9EE6 /* MeMatchView.swift */; };
 		174423AA25D9A0DF00D25EDD /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174423A925D9A0DF00D25EDD /* EventModel.swift */; };
 		174423AE25D9A93000D25EDD /* EventCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174423AD25D9A93000D25EDD /* EventCreationView.swift */; };
 		175E40E025B43BB200ADC9BF /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40DF25B43BB200ADC9BF /* StartView.swift */; };
@@ -75,7 +76,8 @@
 		17153EE825A8C5C30072CE83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17153EEB25A8C5C30072CE83 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		17153EED25A8C5C30072CE83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		173F361125E2D72D002E9EE6 /* MeMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchView.swift; sourceTree = "<group>"; };
+		173F361125E2D72D002E9EE6 /* MeMatchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchCardView.swift; sourceTree = "<group>"; };
+		173F361B25E2FF0D002E9EE6 /* MeMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchView.swift; sourceTree = "<group>"; };
 		174423A925D9A0DF00D25EDD /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		174423AD25D9A93000D25EDD /* EventCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationView.swift; sourceTree = "<group>"; };
 		175E40DF25B43BB200ADC9BF /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -304,8 +306,9 @@
 				174423AD25D9A93000D25EDD /* EventCreationView.swift */,
 				179B27C525D477F1007F64D6 /* YouEventView.swift */,
 				17AC8C8325D8315100252875 /* YouProfileView.swift */,
+				173F361B25E2FF0D002E9EE6 /* MeMatchView.swift */,
 				1795DF9D25DF0E22002D537F /* MeMatchStartView.swift */,
-				173F361125E2D72D002E9EE6 /* MeMatchView.swift */,
+				173F361125E2D72D002E9EE6 /* MeMatchCardView.swift */,
 			);
 			path = MarketplaceViews;
 			sourceTree = "<group>";
@@ -519,7 +522,7 @@
 			files = (
 				17BC5FE025BE0B5900F35075 /* ProfileCreationView.swift in Sources */,
 				175E40FA25B4D26A00ADC9BF /* Information.swift in Sources */,
-				173F361225E2D72D002E9EE6 /* MeMatchView.swift in Sources */,
+				173F361225E2D72D002E9EE6 /* MeMatchCardView.swift in Sources */,
 				90F2335125D5943B003FB1D9 /* PhotoCaptureView.swift in Sources */,
 				90F2336725D84736003FB1D9 /* MeProfileViewModel.swift in Sources */,
 				175E40E025B43BB200ADC9BF /* StartView.swift in Sources */,
@@ -539,6 +542,7 @@
 				90F8AB4625BF5CDA00E969E0 /* UserModel.swift in Sources */,
 				90B1BFDB25B8DBB700F8FBF7 /* RegisterViewModel.swift in Sources */,
 				179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */,
+				173F361C25E2FF0D002E9EE6 /* MeMatchView.swift in Sources */,
 				902EF6E225D985F0004464F0 /* Meet_MeAppViewModel.swift in Sources */,
 				17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */,
 				90B0F4F125DFC63400AB8EF9 /* YouEventViewModel.swift in Sources */,

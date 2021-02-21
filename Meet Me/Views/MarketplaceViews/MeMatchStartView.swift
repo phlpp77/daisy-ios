@@ -15,11 +15,12 @@ struct MeMatchStartView: View {
     var body: some View {
         ZStack {
             
+            // TODO: FIX the background to the main screen
             // MARK: Background (blurred)
             BlurView(style: .systemMaterial)
                 .ignoresSafeArea()
                 .onTapGesture {
-                    showMeMatchView = false
+//                    showMeMatchView = 
                 }
             
             VStack {
@@ -56,6 +57,8 @@ struct MeMatchStartView: View {
                     .onTapGesture {
                         // button animation start
                         buttonPressed.toggle()
+                        
+                        showMeMatchView = true
                         
                         // haptic feedback when button is tapped
                         hapticPulse(feedback: .rigid)
