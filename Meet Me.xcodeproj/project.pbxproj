@@ -53,7 +53,7 @@
 		903E020A25DFF6FB005BB173 /* FirestoreFotoMangerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903E020925DFF6FB005BB173 /* FirestoreFotoMangerEvent.swift */; };
 		905485A125C48B0A00E2024D /* FirestoreManagerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485A025C48B0A00E2024D /* FirestoreManagerUser.swift */; };
 		905485D625C4B44F00E2024D /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485D525C4B44F00E2024D /* ErrorMessages.swift */; };
-		90B0F4BA25DEA6C300AB8EF9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90B0F4B925DEA6C300AB8EF9 /* GoogleService-Info.plist */; };
+		90779AE625E2BDD80070D794 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90779AE525E2BDD70070D794 /* GoogleService-Info.plist */; };
 		90B0F4C725DF086B00AB8EF9 /* TrahedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4C625DF086B00AB8EF9 /* TrahedCode.swift */; };
 		90B0F4D425DF0EA000AB8EF9 /* MeEventLinieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4D325DF0EA000AB8EF9 /* MeEventLinieViewModel.swift */; };
 		90B0F4F125DFC63400AB8EF9 /* YouEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */; };
@@ -114,7 +114,7 @@
 		903E020925DFF6FB005BB173 /* FirestoreFotoMangerEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreFotoMangerEvent.swift; sourceTree = "<group>"; };
 		905485A025C48B0A00E2024D /* FirestoreManagerUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerUser.swift; sourceTree = "<group>"; };
 		905485D525C4B44F00E2024D /* ErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessages.swift; sourceTree = "<group>"; };
-		90B0F4B925DEA6C300AB8EF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		90779AE525E2BDD70070D794 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		90B0F4C625DF086B00AB8EF9 /* TrahedCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrahedCode.swift; sourceTree = "<group>"; };
 		90B0F4D325DF0EA000AB8EF9 /* MeEventLinieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventLinieViewModel.swift; sourceTree = "<group>"; };
 		90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventViewModel.swift; sourceTree = "<group>"; };
@@ -165,8 +165,8 @@
 		17153EE325A8C5C30072CE83 /* Meet Me */ = {
 			isa = PBXGroup;
 			children = (
+				90779AE525E2BDD70070D794 /* GoogleService-Info.plist */,
 				17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */,
-				90B0F4B925DEA6C300AB8EF9 /* GoogleService-Info.plist */,
 				905485D025C4AA6100E2024D /* Manager */,
 				175E40DC25B4320E00ADC9BF /* Views */,
 				175E40DE25B4322000ADC9BF /* ViewModels */,
@@ -201,12 +201,12 @@
 			path = StartViews;
 			sourceTree = "<group>";
 		};
-		174423AC25D9A86E00D25EDD /* Profile */ = {
+		174423AC25D9A86E00D25EDD /* ProfileViews */ = {
 			isa = PBXGroup;
 			children = (
 				177F681825D8409200BC345B /* MeProfileView.swift */,
 			);
-			path = Profile;
+			path = ProfileViews;
 			sourceTree = "<group>";
 		};
 		175E40DC25B4320E00ADC9BF /* Views */ = {
@@ -220,7 +220,7 @@
 				1795DFA925DF1923002D537F /* LottieView.swift */,
 				179B27C425D476F7007F64D6 /* Marketplace */,
 				1774B67C25D1E7A200D1D2F1 /* MainController */,
-				174423AC25D9A86E00D25EDD /* Profile */,
+				174423AC25D9A86E00D25EDD /* ProfileViews */,
 				1795DFAD25DF20AD002D537F /* LoadingView.swift */,
 			);
 			path = Views;
@@ -447,9 +447,9 @@
 			files = (
 				17153EEC25A8C5C30072CE83 /* Preview Assets.xcassets in Resources */,
 				1795DFBA25DF252C002D537F /* heard-loading.json in Resources */,
+				90779AE625E2BDD80070D794 /* GoogleService-Info.plist in Resources */,
 				17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */,
 				1795DFBF25DF25DD002D537F /* planet-loading.json in Resources */,
-				90DB66B425B8D412006D2C4E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
