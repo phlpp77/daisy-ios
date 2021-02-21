@@ -203,6 +203,18 @@
 			path = StartViews;
 			sourceTree = "<group>";
 		};
+		173F361025E2CEAE002E9EE6 /* ViewHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				175E40E525B46ABB00ADC9BF /* BlurView.swift */,
+				90F2334C25D58481003FB1D9 /* ImagePicker.swift */,
+				90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */,
+				17C0C1CD25BF67D60021987D /* AlertBoxView.swift */,
+				1795DFA925DF1923002D537F /* LottieView.swift */,
+			);
+			path = ViewHelpers;
+			sourceTree = "<group>";
+		};
 		174423AC25D9A86E00D25EDD /* ProfileViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,16 +226,11 @@
 		175E40DC25B4320E00ADC9BF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				173F361025E2CEAE002E9EE6 /* ViewHelpers */,
+				1774B67C25D1E7A200D1D2F1 /* MainControllerViews */,
 				1724D0FB25BE1EAF007F3277 /* StartViews */,
-				175E40E525B46ABB00ADC9BF /* BlurView.swift */,
-				90F2334C25D58481003FB1D9 /* ImagePicker.swift */,
-				90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */,
-				17C0C1CD25BF67D60021987D /* AlertBoxView.swift */,
-				1795DFA925DF1923002D537F /* LottieView.swift */,
-				179B27C425D476F7007F64D6 /* Marketplace */,
-				1774B67C25D1E7A200D1D2F1 /* MainController */,
+				179B27C425D476F7007F64D6 /* MarketplaceViews */,
 				174423AC25D9A86E00D25EDD /* ProfileViews */,
-				1795DFAD25DF20AD002D537F /* LoadingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -266,15 +273,16 @@
 			path = Extra;
 			sourceTree = "<group>";
 		};
-		1774B67C25D1E7A200D1D2F1 /* MainController */ = {
+		1774B67C25D1E7A200D1D2F1 /* MainControllerViews */ = {
 			isa = PBXGroup;
 			children = (
+				1795DFAD25DF20AD002D537F /* LoadingView.swift */,
 				1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */,
 				1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */,
 				1774B67425D1E31400D1D2F1 /* MainExploreView.swift */,
 				1774B67825D1E35200D1D2F1 /* MainChatView.swift */,
 			);
-			path = MainController;
+			path = MainControllerViews;
 			sourceTree = "<group>";
 		};
 		1795DFA025DF1753002D537F /* Lottie */ = {
@@ -286,7 +294,7 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
-		179B27C425D476F7007F64D6 /* Marketplace */ = {
+		179B27C425D476F7007F64D6 /* MarketplaceViews */ = {
 			isa = PBXGroup;
 			children = (
 				1795DF9425DD6998002D537F /* MeEventLineView.swift */,
@@ -296,7 +304,7 @@
 				17AC8C8325D8315100252875 /* YouProfileView.swift */,
 				1795DF9D25DF0E22002D537F /* MeMatchStartView.swift */,
 			);
-			path = Marketplace;
+			path = MarketplaceViews;
 			sourceTree = "<group>";
 		};
 		5249E9C9E4879C62B0DE99B3 /* Pods */ = {
