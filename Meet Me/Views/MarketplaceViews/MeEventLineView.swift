@@ -15,6 +15,7 @@ struct MeEventLineView: View {
     @State var buttonPressed: Bool = true
     @Binding var showCreationView: Bool
     @Binding var showMeMatchView: Bool
+    @Binding var tappedEvent: EventModelObject
     
     var body: some View {
             GeometryReader { geometry in
@@ -70,6 +71,10 @@ struct MeEventLineView: View {
                                 }
                                 // tap on each of the events does that
                                 .onTapGesture {
+                                    
+                                    // save UserModelObject
+                                    tappedEvent = eventArray[event]
+                                    
                                     // shows the MeMatch
                                     showMeMatchView.toggle()
                                 }
@@ -89,6 +94,6 @@ struct MeEventLineView: View {
 
 struct MeEventLineView_Previews: PreviewProvider {
     static var previews: some View {
-        MeEventLineView(showCreationView: .constant(false), showMeMatchView: .constant(false))
+        MeEventLineView(showCreationView: .constant(false), showMeMatchView: .constant(false), tappedEvent: .constant(stockEventObject))
     }
 }

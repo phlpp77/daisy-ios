@@ -15,6 +15,8 @@ struct MainExploreView: View {
     @State private var showCreationView: Bool = false
     @State private var showMeMatchView: Bool = false
     
+    @State private var tappedEvent: EventModelObject = stockEventObject
+    
     var body: some View {
         ZStack {
             VStack {
@@ -31,7 +33,7 @@ struct MainExploreView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 12)
                 
-                MeEventLineView(showCreationView: $showCreationView, showMeMatchView: $showMeMatchView)
+                MeEventLineView(showCreationView: $showCreationView, showMeMatchView: $showMeMatchView, tappedEvent: $tappedEvent)
                 
                 Text("You Events")
                     .font(.subheadline)
@@ -47,7 +49,7 @@ struct MainExploreView: View {
             if showCreationView {
                 EventCreationView(presentation: $showCreationView)
             } else if showMeMatchView {
-                MeMatchStartView(showMeMatchView: $showMeMatchView)
+                MeMatchView(showMeMatchMainView: $showMeMatchView, tappedEvent: $tappedEvent)
             }
         }
     }

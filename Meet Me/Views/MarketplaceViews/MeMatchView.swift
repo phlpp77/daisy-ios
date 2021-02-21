@@ -9,7 +9,10 @@ import SwiftUI
 
 struct MeMatchView: View {
     
+    @StateObject private var meMatchStartVM: MeMatchStartViewModel = MeMatchStartViewModel()
+    
     @Binding var showMeMatchMainView: Bool
+    @Binding var tappedEvent: EventModelObject
     
     // database data
     @State var likedUsers: [UserModelObject] = [stockUserObject]
@@ -31,11 +34,15 @@ struct MeMatchView: View {
             MeMatchStartView(showMeMatchView: $showMeMatchView)
                 .opacity(showMeMatchView ? 0 : 1)
         }
+        .onAppear {
+            meMatchStartVM.getLikedUsers(eventId: tappedEvent.eventId)
+            likedUsers = meMatchStartVM.likedUsers
+        }
     }
 }
 
 struct MeMatchView_Previews: PreviewProvider {
     static var previews: some View {
-        MeMatchView(showMeMatchMainView: .constant(false), likedUsers: [stockUserObject, stockUserObject])
+        MeMatchView(showMeMatchMainView: .constant(false), tappedEvent: .constant(stockEventObject), likedUsers: [stockUserObject, stockUserObject])
     }
 }

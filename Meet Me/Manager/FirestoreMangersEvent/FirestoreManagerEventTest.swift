@@ -33,7 +33,7 @@ class FireStoreManagerEventTest {
     private var meEvents: [EventModelObject] = []
     private var youEvents: [EventModelObject] = []
     private var createdID: String = UUID().uuidString
-    private var currentUserModel = testUser
+    private var currentUserModel = stockUser
     
     
     init() {
