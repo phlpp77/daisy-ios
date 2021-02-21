@@ -13,6 +13,7 @@ struct MainExploreView: View {
     
     // states for animation
     @State private var showCreationView: Bool = false
+    @State private var showMeMatchView: Bool = false
     
     var body: some View {
         ZStack {
@@ -30,7 +31,7 @@ struct MainExploreView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 12)
                 
-                MeEventLineView(showCreationView: $showCreationView)
+                MeEventLineView(showCreationView: $showCreationView, showMeMatchView: $showMeMatchView)
                 
                 Text("You Events")
                     .font(.subheadline)
@@ -45,6 +46,8 @@ struct MainExploreView: View {
             // create the setup EventView on top of the rest
             if showCreationView {
                 EventCreationView(presentation: $showCreationView)
+            } else if showMeMatchView {
+                MeMatchStartView(showMeMatchView: $showMeMatchView)
             }
         }
     }
