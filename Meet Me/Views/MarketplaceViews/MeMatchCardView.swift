@@ -13,14 +13,16 @@ struct MeMatchCardView: View {
     // binding vars
     @Binding var userChosen: Bool
     @Binding var users: [UserModelObject]
+    @Binding var showMeMatchMainView: Bool
     var user: UserModelObject
     var userNumber: Int
     
-    init(userChosen: Binding<Bool>, users: Binding<[UserModelObject]>, user: UserModelObject, userNumber: Int) {
+    init(userChosen: Binding<Bool>, users: Binding<[UserModelObject]>, user: UserModelObject, userNumber: Int, showMeMatchMainView: Binding<Bool>) {
         self._userChosen = userChosen
         self._users = users
         self.user = user
         self.userNumber = userNumber
+        self._showMeMatchMainView = showMeMatchMainView
     }
     
     // internal vars
@@ -154,12 +156,14 @@ struct MeMatchCardView: View {
         userAccepted = true
         
         userChosen = true
+        
+        showMeMatchMainView = false
     }
     
 }
 
 struct MeMatchCardView_Previews: PreviewProvider {
     static var previews: some View {
-        MeMatchCardView(userChosen: .constant(false), users: .constant([stockUserObject, stockUserObject]), user: stockUserObject, userNumber: 1)
+        MeMatchCardView(userChosen: .constant(false), users: .constant([stockUserObject, stockUserObject]), user: stockUserObject, userNumber: 1, showMeMatchMainView: .constant(false))
     }
 }
