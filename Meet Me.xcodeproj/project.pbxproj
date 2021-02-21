@@ -55,6 +55,7 @@
 		905485D625C4B44F00E2024D /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905485D525C4B44F00E2024D /* ErrorMessages.swift */; };
 		90779AE625E2BDD80070D794 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90779AE525E2BDD70070D794 /* GoogleService-Info.plist */; };
 		90779AEA25E2C7250070D794 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 90779AE925E2C7250070D794 /* PromiseKit */; };
+		90779AED25E2C8CD0070D794 /* FirestoreManagerEventTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */; };
 		90B0F4C725DF086B00AB8EF9 /* TrahedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4C625DF086B00AB8EF9 /* TrahedCode.swift */; };
 		90B0F4D425DF0EA000AB8EF9 /* MeEventLinieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4D325DF0EA000AB8EF9 /* MeEventLinieViewModel.swift */; };
 		90B0F4F125DFC63400AB8EF9 /* YouEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */; };
@@ -116,6 +117,7 @@
 		905485A025C48B0A00E2024D /* FirestoreManagerUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerUser.swift; sourceTree = "<group>"; };
 		905485D525C4B44F00E2024D /* ErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessages.swift; sourceTree = "<group>"; };
 		90779AE525E2BDD70070D794 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerEventTest.swift; sourceTree = "<group>"; };
 		90B0F4C625DF086B00AB8EF9 /* TrahedCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrahedCode.swift; sourceTree = "<group>"; };
 		90B0F4D325DF0EA000AB8EF9 /* MeEventLinieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventLinieViewModel.swift; sourceTree = "<group>"; };
 		90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventViewModel.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				902EF70225D9A5B7004464F0 /* FirestoreManagerEvent.swift */,
+				90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */,
 				903E020925DFF6FB005BB173 /* FirestoreFotoMangerEvent.swift */,
 			);
 			path = FirestoreMangersEvent;
@@ -526,6 +529,7 @@
 				1778E41325D0904100C5D343 /* DateTextField.swift in Sources */,
 				90F8AB4625BF5CDA00E969E0 /* UserModel.swift in Sources */,
 				90B1BFDB25B8DBB700F8FBF7 /* RegisterViewModel.swift in Sources */,
+				90779AED25E2C8CD0070D794 /* FirestoreManagerEventTest.swift in Sources */,
 				179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */,
 				902EF6E225D985F0004464F0 /* Meet_MeAppViewModel.swift in Sources */,
 				17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */,
