@@ -23,7 +23,7 @@ class FirestoreManagerUserTest {
     }
     
     
-    func getAllMatchedUsers(eventId: String) -> Promise<[UserModel]> {
+    func getAllMatchedUsers(eventId: String) -> Promise<[UserModelObject]> {
         return Promise { seal in
             
             db.collection("events")
@@ -31,22 +31,23 @@ class FirestoreManagerUserTest {
                 .collection("likedUser")
                 .getDocuments() { (snapshot, error) in
                     if let error = error {
+                        print(error.localizedDescription)
                         seal.reject(error)
                     } else {
                         if let snapshot = snapshot {
-                            let users: [UserModel]? = snapshot.documents.compactMap { doc in
+                            let user: [UserModelObject] = snapshot.documents.compactMap { doc in
                                 var user = try? doc.data(as: UserModel.self)
-                                if user != nil {
-                                    user!.userId = doc.documentID
+                                user?.userId = doc.documentID
+                                if let user = user {
+                                    return UserModelObject(user: user)
                                 }
-                                return user
+                                return nil
+                                
                             }
-                            if users?.isEmpty != true {
-                                seal.fulfill(users!)
-                            } else {
-                                let error: Error = "DEBUG: Keine Matched User vorhanden" as! Error
-                                print(error)
-                                seal.reject(error)
+                            DispatchQueue.main.async {
+                            seal.fulfill(user)
+                            }
+
                             }
                         }
                         
@@ -55,4 +56,4 @@ class FirestoreManagerUserTest {
             
         }
     }
-}
+
