@@ -63,7 +63,7 @@ struct YouEventView: View {
     
     var body: some View {
         ZStack {
-            // Main image as a backgrond of the event
+            // Main image as a background of the event
             URLImage(url: URL(string: pictureURL) ?? stockURL) { image in
                 image.resizable()
                     .aspectRatio(contentMode: .fill)
