@@ -36,7 +36,7 @@ struct MeMatchView: View {
         }
         .onAppear {
             meMatchStartVM.getLikedUsers(eventId: tappedEvent.eventId)
-//            likedUsers = meMatchStartVM.likedUsers
+            likedUsers = meMatchStartVM.likedUsers
         }
     }
 }

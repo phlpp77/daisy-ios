@@ -69,7 +69,7 @@ struct MeMatchCardView: View {
         
         ZStack {
             
-            URLImage(url: URL(string: user.url) ?? stockURL) { image in
+            URLImage(url: URL(string: user.UserPhotos.url) ?? stockURL) { image in
                 image.resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: screenWidth, height: 620, alignment: .center)
