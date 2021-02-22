@@ -9,23 +9,23 @@ import Foundation
 import PromiseKit
 
 class YouEventLineViewModel: ObservableObject {
-    
     private var firestoreManagerEventTest: FireStoreManagerEventTest = FireStoreManagerEventTest()
-    @Published var youEvents: [EventModelObject] = []
-    
-  
-    func getYouEvents() {
-        firstly {
-            self.firestoreManagerEventTest.firebaseGetYouEvents()
-        }.done { events in
-            self.youEvents = events
-        }.catch { error in
-            print("DEBUG: error in GetYouEventChain: \(error)")
-            print("DEBUG: \(error.localizedDescription)")
+
+    func getYouEvents() -> Promise<[EventModelObject]>{
+        return Promise { seal in
+            firstly {
+                self.firestoreManagerEventTest.firebaseGetYouEvents()
+            }.done { events in
+                seal.fulfill(events)
+            }.catch { error in
+                seal.reject(error)
+            }
         }
     }
     
 }
+
+
 
 
 

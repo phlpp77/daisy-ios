@@ -12,17 +12,18 @@ class MeEventLineViewModel: ObservableObject {
     
     private var firestoreManagerEventTest = FireStoreManagerEventTest()
     private var firestoreFotoManagerEventTest: FirestoreFotoManagerEventTest = FirestoreFotoManagerEventTest()
-    @Published var meEvents: [EventModelObject] = []
+   
     
 
-    func getMeEvents() {
-        firstly {
-            self.firestoreManagerEventTest.firebaseGetMeEvents()
-        }.done { events in
-            self.meEvents = events
-        }.catch { error in
-            print("DEBUG: error in GetYouEventChain: \(error)")
-            print("DEBUG: \(error.localizedDescription)")
+    func getMeEvents() -> Promise<[EventModelObject]>{
+        return Promise { seal in
+            firstly {
+                self.firestoreManagerEventTest.firebaseGetMeEvents()
+            }.done { events in
+                seal.fulfill(events)
+            }.catch { error in
+                seal.reject(error)
+            }
         }
     }
     
