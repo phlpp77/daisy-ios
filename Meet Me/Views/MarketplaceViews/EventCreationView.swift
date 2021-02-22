@@ -11,7 +11,7 @@ import URLImage
 struct EventCreationView: View {
     //@StateObject private var youEventLineVM = YouEventLineViewModel()
     @StateObject private var eventCreationVM = EventCreationViewModel()
-    @StateObject private var firestoreFotoMangerUser = FirestoreFotoManagerUser()
+    @StateObject private var firestoreFotoMangerUserTest = FirestoreFotoManagerUserTest()
     // binding for presentation
     @Binding var presentation: Bool
     

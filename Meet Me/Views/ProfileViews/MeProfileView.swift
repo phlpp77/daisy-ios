@@ -77,9 +77,7 @@ struct MeProfileView: View {
                     }
                 }
             }.onAppear {
-//                meProfileVM.getUser()
-                meProfileVM.getUserModel()
-                meProfileVM.getUserProfilePictureURL()
+                meProfileVM.getUserProfileAndPicture()
             
             }
             .padding()

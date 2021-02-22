@@ -6,48 +6,34 @@
 //
 
 import Foundation
+import PromiseKit
+
 
 
 class MeProfileViewModel: ObservableObject {
-    private var firestoreManagerUser: FirestoreManagerUser = FirestoreManagerUser()
-    private var firestoreFotoManagerUser: FirestoreFotoManagerUser = FirestoreFotoManagerUser()
+    private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
+    private var firestoreFotoManagerUserTest: FirestoreFotoManagerUserTest = FirestoreFotoManagerUserTest()
     var user: [UserModelObject] = []
     @Published var userModel: UserModel = stockUser
     @Published var userPictureURL: URL = stockURL
+
     
 
-
-    func getUserProfilePictureURL() {
-        firestoreFotoManagerUser.getAllPhotosFromUser( completionHandler: { success in
-            if success {
-                // yeah picture
-
-
-                let url = URL(string: self.firestoreFotoManagerUser.photoModel[0].url)!
-                self.userPictureURL = url
-
-            } else {
-                // ohh, no picture
-                self.userPictureURL = stockURL
-            }
-            
-        })
-    }
     
-    func getUserModel(){
-        firestoreManagerUser.downloadCurrentUserModel(completion: { success in
-                if success {
-                    DispatchQueue.main.async {
-                        self.userModel = self.firestoreManagerUser.getCurrentUserModel()
-                    }
-                } else {
-                    print("Download User Failed")
-                }
-            }
-            )
+    func getUserProfileAndPicture() {
+        firstly {
+            when(fulfilled: self.firestoreManagerUserTest.downloadCurrentUserModel(), self.firestoreFotoManagerUserTest.getAllPhotosFromUser())
+        }.done { userModel, allPhotos in
+            self.userModel = userModel
+            self.userPictureURL = URL(string: allPhotos[0].url)!
+        }.catch { error in
+                print("DEBUG: error in getUserProfileChain \(error)")
+                print("DEBUG: \(error.localizedDescription)")
         }
+    }
 }
-    
+            
+            
 
-
-
+        
+ 
