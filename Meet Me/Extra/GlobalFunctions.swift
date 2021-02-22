@@ -29,8 +29,7 @@ func createSampleDate() -> Date {
     let someDateTime = userCalendar.date(from: dateComponents)!
     return someDateTime
 }
-
-var createdID: String = UUID().uuidString
+var createdId = UUID().uuidString
 // MARK - Stockdata
 
 // MARK: stock user to use as default
