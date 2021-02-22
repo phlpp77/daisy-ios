@@ -30,10 +30,10 @@ import PromiseKit
 class FireStoreManagerEventTest {
     
     private var db: Firestore
-    private var meEvents: [EventModelObject] = []
-    private var youEvents: [EventModelObject] = []
-    private var createdID: String = UUID().uuidString
-    private var currentUserModel = stockUser
+//    private var meEvents: [EventModelObject] = []
+//    private var youEvents: [EventModelObject] = []
+//    //private var createdID: String = UUID().uuidString
+//    private var currentUserModel = stockUser
     
     
     init() {
@@ -41,9 +41,7 @@ class FireStoreManagerEventTest {
 
     }
     
-    func getID() -> String {
-        return createdID
-    }
+
     
     
     

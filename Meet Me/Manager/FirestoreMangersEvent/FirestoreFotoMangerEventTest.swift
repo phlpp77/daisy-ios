@@ -16,9 +16,9 @@ class FirestoreFotoManagerEventTest: ObservableObject {
     
     let storage = Storage.storage()
     private var db: Firestore
-    @Published var photoModel: [PhotoModelObject] = []
-    var stockPhotoModel: PhotoModel = PhotoModel()
-    var url: URL?
+//    @Published var photoModel: [PhotoModelObject] = []
+//    var stockPhotoModel: PhotoModel = PhotoModel()
+//    var url: URL?
 
      
     init() {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import URLImage
+import PromiseKit
 
 struct MeProfileView: View {
     @ObservedObject private var meProfileVM = MeProfileViewModel()
@@ -77,8 +78,19 @@ struct MeProfileView: View {
                     }
                 }
             }.onAppear {
-                meProfileVM.getUserProfileAndPicture()
-            
+                
+                firstly {
+                    self.meProfileVM.getUserProfile()
+                }.map { userModel in
+                    meProfileVM.userModel = userModel
+                }.then {
+                    self.meProfileVM.getUserPicture()
+                }.done { url in
+                    meProfileVM.userPictureURL = url
+                }.catch { error in
+                        print("DEBUG: error in getUserProfileChain \(error)")
+                        print("DEBUG: \(error.localizedDescription)")
+                }
             }
             .padding()
             .frame(height: 80)

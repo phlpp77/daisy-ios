@@ -154,11 +154,7 @@ struct YouEventView: View {
             )
         .animation(.interactiveSpring(), value: dragPosition)
         .onAppear {
-            print("DEBUG: \(category)")
-            print("DEBUG: \(date)")
-            print("DEBUG: \(startTime)")
-            print("DEBUG \(endTime)")
-            print("DEBUG: \(pictureURL)")
+
         }
     }
     

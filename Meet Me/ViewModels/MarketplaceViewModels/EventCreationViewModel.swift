@@ -42,7 +42,7 @@ class EventCreationViewModel: ObservableObject {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
-        let eventId = fireStoreManagerEventTest.getID()
+        let eventId = createdID
         let eventModel = EventModel(eventId: eventId, userId: currentUser.uid, name: name, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"")
         DispatchQueue.main.async {
             firstly{

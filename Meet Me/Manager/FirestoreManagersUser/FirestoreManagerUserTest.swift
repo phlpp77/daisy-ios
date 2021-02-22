@@ -15,7 +15,7 @@ import PromiseKit
 class FirestoreManagerUserTest {
     
     private var db: Firestore
-    private var currentUserModel: UserModel?
+    //private var currentUserModel: UserModel?
     
     
     init() {
