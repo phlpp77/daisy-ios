@@ -35,7 +35,7 @@ struct MeMatchView: View {
                 .opacity(showMeMatchView ? 0 : 1)
         }
         .onAppear {
-            meMatchStartVM.getLikedUsers(eventId: tappedEvent.eventId)
+            meMatchStartVM.getLikedUsers(eventId: "81C40095-1C28-4B30-84F4-C105BE4A9C9B")
             likedUsers = meMatchStartVM.likedUsers
         }
     }
