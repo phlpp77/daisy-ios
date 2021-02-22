@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 import FirebaseAuth
 
 class Meet_MeAppViewModel: ObservableObject {
-    var firestoreManagerUser: FirestoreManagerUser = FirestoreManagerUser()
+    var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
 
 
     func CheckUserAccForAutoLogin() -> Bool{

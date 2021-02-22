@@ -11,7 +11,7 @@ import PromiseKit
 class MeMatchStartViewModel: ObservableObject {
     
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
-    @Published var likedUsers: [UserModel] = []
+    @Published var likedUsers: [UserModelObject] = []
     
     func getLikedUsers (eventId: String) {
         firstly{

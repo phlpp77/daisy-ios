@@ -18,7 +18,7 @@ struct ProfileCreationView: View {
     
     
     @StateObject private var addProfileCreationVM = ProfileCreationModel()
-    @StateObject private var firestoreFotoMangerUser = FirestoreFotoManagerUser()
+    @StateObject private var firestoreFotoMangerUserTest = FirestoreFotoManagerUserTest()
     
     // binding to show the main controller that the proccess is finished
     @Binding var profileCreationFinished: Bool
@@ -153,17 +153,7 @@ struct ProfileCreationView: View {
                         
                         // update button
                         Button(action: {
-                            firestoreFotoMangerUser.savePhoto(originalImage: uiImage,  completion: { success in
-                                if success {
-                                    let bDate = convertStringToDate(date: birthdayDate)
-                                    
-                                    addProfileCreationVM.birthdayDate = bDate
-                                    
-                                    addProfileCreationVM.saveUserSettings()
-                                } else {
-                                    print("error by save User Seetings to Firebase")
-                                }
-                            })
+                            addProfileCreationVM.createUser(originalImage: uiImage!, bDate: birthdayDate)
                             // haptic feedback when button is tapped
                             hapticPulse(feedback: .rigid)
                             
@@ -258,15 +248,15 @@ struct ProfileCreationView: View {
     }
     
     
-    func convertStringToDate(date: String) -> Date {
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.locale = Locale(identifier: "en_DE")
-        dateFormatter.dateFormat = "dd/MM/y"
-        
-        let date = dateFormatter.date(from: date)!
-        return date
-    }
+//    func convertStringToDate(date: String) -> Date {
+//        let dateFormatter = DateFormatter()
+//
+//        dateFormatter.locale = Locale(identifier: "en_DE")
+//        dateFormatter.dateFormat = "dd/MM/y"
+//
+//        let date = dateFormatter.date(from: date)!
+//        return date
+//    }
     
 }
 

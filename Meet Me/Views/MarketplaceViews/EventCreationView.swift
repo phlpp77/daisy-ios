@@ -11,7 +11,7 @@ import URLImage
 struct EventCreationView: View {
     //@StateObject private var youEventLineVM = YouEventLineViewModel()
     @StateObject private var eventCreationVM = EventCreationViewModel()
-    @StateObject private var firestoreFotoMangerUser = FirestoreFotoManagerUser()
+    @StateObject private var firestoreFotoMangerUserTest = FirestoreFotoManagerUserTest()
     // binding for presentation
     @Binding var presentation: Bool
     
@@ -173,7 +173,7 @@ struct EventCreationView: View {
                             // update handling
                             prepareUpload()
                             //youEventLineVM.getYouEvents()
-                            eventCreationVM.saveEvent(uiImage: uiImage!)
+                    eventCreationVM.saveEvent(uiImage: uiImage!, id: createdId)
                             // button animation start
                             buttonPressed.toggle()
                             // haptic feedback when button is tapped

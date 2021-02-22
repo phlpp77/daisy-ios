@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PromiseKit
 
 struct MeEventLineView: View {
     
@@ -85,10 +86,16 @@ struct MeEventLineView: View {
                 }
             }        
             .onAppear {
-                meEventLineVM.getMeEvents()
-                eventArray = meEventLineVM.meEvents
-                
-                print("DEBUG: ALLMeEvents\(eventArray)")
+                firstly {
+                    self.meEventLineVM.getMeEvents()
+                }.done { events in
+                    self.eventArray = events
+                }.catch { error in
+                    print("DEBUG: error in GetYouEventChain: \(error)")
+                    print("DEBUG: \(error.localizedDescription)")
+                }
+
+
         }
     }
 }

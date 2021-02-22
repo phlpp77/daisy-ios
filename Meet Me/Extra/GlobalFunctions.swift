@@ -29,7 +29,7 @@ func createSampleDate() -> Date {
     let someDateTime = userCalendar.date(from: dateComponents)!
     return someDateTime
 }
-
+var createdId = UUID().uuidString
 // MARK - Stockdata
 
 // MARK: stock user to use as default
@@ -43,3 +43,4 @@ let stockURL: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/mee
 // MARK: stock event for marketplace and eventObject (length: half an hour - 30*60 seconds)
 let stockEvent: EventModel = EventModel(eventId: "008", userId: "007", name: "Nice Event", category: "Café", date: Date(), startTime: Date(), endTime: Date() + 30 * 60, pictureURL: "")
 let stockEventObject: EventModelObject = EventModelObject(eventModel: stockEvent, position: .constant(.zero))
+

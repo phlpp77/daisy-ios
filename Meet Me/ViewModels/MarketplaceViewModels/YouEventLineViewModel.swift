@@ -6,29 +6,26 @@
 //
 
 import Foundation
+import PromiseKit
 
 class YouEventLineViewModel: ObservableObject {
-    
-    private var firestoreManagerEvent = FireStoreManagerEvent()
-    @Published var youEvents: [EventModelObject] = []
-    
-    
-    func getYouEvents() {
-        firestoreManagerEvent.firebaseGetYouEvents(completionHandler: { success in
-            if success {
-                DispatchQueue.main.async {
-                self.youEvents = self.firestoreManagerEvent.getYouEvents()
-                }
-            } else {
-                //print("error by downloading YOU events")
-                // ohh, no picture
-                
+    private var firestoreManagerEventTest: FireStoreManagerEventTest = FireStoreManagerEventTest()
+
+    func getYouEvents() -> Promise<[EventModelObject]>{
+        return Promise { seal in
+            firstly {
+                self.firestoreManagerEventTest.firebaseGetYouEvents()
+            }.done { events in
+                seal.fulfill(events)
+            }.catch { error in
+                seal.reject(error)
             }
-            
         }
-        )
     }
+    
 }
-//URL(string: self.pictureURL)!
+
+
+
 
 

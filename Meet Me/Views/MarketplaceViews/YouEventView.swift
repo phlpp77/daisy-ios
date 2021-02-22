@@ -142,10 +142,7 @@ struct YouEventView: View {
                             // delete the item at the position from the Array
                             //print(eventIndex)
                             // TODO: @budni - add the participant user to the event here and delete from the array, number in array with "eventIndex"
-                            youEventVM.addCurrentUserToMatchedEvent(eventId: eventArray[eventIndex].eventId) {
-                                error in
-                            }
-                            
+                            youEventVM.addLikeToEvent(eventId: eventArray[eventIndex].eventId)
                             self.eventArray.remove(at: eventIndex)
                         } else {
                             
@@ -157,11 +154,7 @@ struct YouEventView: View {
             )
         .animation(.interactiveSpring(), value: dragPosition)
         .onAppear {
-            print("DEBUG: \(category)")
-            print("DEBUG: \(date)")
-            print("DEBUG: \(startTime)")
-            print("DEBUG \(endTime)")
-            print("DEBUG: \(pictureURL)")
+
         }
     }
     

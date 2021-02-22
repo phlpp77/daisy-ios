@@ -6,32 +6,45 @@
 //
 
 import Foundation
+import PromiseKit
 
 class MeEventLineViewModel: ObservableObject {
     
-    private var firestoreManagerEvent = FireStoreManagerEvent()
-    private var firestoreFotoManagerEvent: FirestoreFotoManagerEvent = FirestoreFotoManagerEvent()
-    @Published var meEvents: [EventModelObject] = []
+    private var firestoreManagerEventTest = FireStoreManagerEventTest()
+    private var firestoreFotoManagerEventTest: FirestoreFotoManagerEventTest = FirestoreFotoManagerEventTest()
+   
     
 
-    
-    
-    func getMeEvents() {
-        firestoreManagerEvent.firebaseGetMeEvents(completionHandler: { success in
-            if success {
-                DispatchQueue.main.async {
-                self.meEvents = self.firestoreManagerEvent.getMeEvents()
-                }
-            } else {
-                print("error by downloading ME events")
-                // ohh, no picture
-                
+    func getMeEvents() -> Promise<[EventModelObject]>{
+        return Promise { seal in
+            firstly {
+                self.firestoreManagerEventTest.firebaseGetMeEvents()
+            }.done { events in
+                seal.fulfill(events)
+            }.catch { error in
+                seal.reject(error)
             }
-            
         }
-        )
     }
     
 }
+    
+//    func getMeEvents() {
+//        firestoreManagerEvent.firebaseGetMeEvents(completionHandler: { success in
+//            if success {
+//                DispatchQueue.main.async {
+//                self.meEvents = self.firestoreManagerEvent.getMeEvents()
+//                }
+//            } else {
+//                print("error by downloading ME events")
+//                // ohh, no picture
+//
+//            }
+//
+//        }
+//        )
+//    }
+//
+//}
     
 

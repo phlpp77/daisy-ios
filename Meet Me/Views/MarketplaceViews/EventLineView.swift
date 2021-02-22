@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import PromiseKit
 
 struct EventLineView: View {
     
     //Muss in die View
     @StateObject private var youEventLineVM = YouEventLineViewModel()
-    
+    var firestoreManagerEventTest: FireStoreManagerEventTest = FireStoreManagerEventTest()
+
     // data transfer form database
     @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
     
@@ -69,10 +71,17 @@ struct EventLineView: View {
         }
         .frame(height: 380)
         .onAppear {
-            youEventLineVM.getYouEvents()
-            eventArray = youEventLineVM.youEvents
-            print("DEBUG: ALLYouEvents\(eventArray)")
+            firstly {
+                self.youEventLineVM.getYouEvents()
+            }.done { events in
+                self.eventArray = events
+            }.catch { error in
+                print("DEBUG: error in GetYouEventChain: \(error)")
+                print("DEBUG: \(error.localizedDescription)")
+            }
+
         }
+        
         
     }
 

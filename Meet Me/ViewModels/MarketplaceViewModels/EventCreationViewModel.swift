@@ -38,11 +38,11 @@ class EventCreationViewModel: ObservableObject {
     }
 
 
-    func saveEvent(uiImage: UIImage) {
+    func saveEvent(uiImage: UIImage, id: String) {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
-        let eventId = fireStoreManagerEventTest.getID()
+        let eventId = id
         let eventModel = EventModel(eventId: eventId, userId: currentUser.uid, name: name, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"")
         DispatchQueue.main.async {
             firstly{

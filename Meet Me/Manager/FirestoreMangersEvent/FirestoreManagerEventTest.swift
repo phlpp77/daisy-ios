@@ -30,10 +30,10 @@ import PromiseKit
 class FireStoreManagerEventTest {
     
     private var db: Firestore
-    private var meEvents: [EventModelObject] = []
-    private var youEvents: [EventModelObject] = []
-    private var createdID: String = UUID().uuidString
-    private var currentUserModel = stockUser
+//    private var meEvents: [EventModelObject] = []
+//    private var youEvents: [EventModelObject] = []
+//    //private var createdID: String = UUID().uuidString
+//    private var currentUserModel = stockUser
     
     
     init() {
@@ -41,9 +41,7 @@ class FireStoreManagerEventTest {
 
     }
     
-    func getID() -> String {
-        return createdID
-    }
+
     
     
     
@@ -162,42 +160,12 @@ class FireStoreManagerEventTest {
             
         }
     }
+}
     
 
 
         
-        //Fire StoremanagerUser
-    func downloadCurrentUserModel() -> Promise<UserModel> {
-        return Promise { seal in
-            
-            guard let currentUser = Auth.auth().currentUser else {
-                let error: Error = "No current User" as! Error
-                seal.reject(error)
-                return
-            }
-            db.collection("users").document(currentUser.uid).getDocument { snapshot, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    seal.reject(error)
-                } else {
-                    if let snapshot = snapshot {
-                        var userModel = try? snapshot.data(as: UserModel.self)
-                        if userModel != nil {
-                            userModel!.userId = snapshot.documentID
-                        }
-                        
-                        self.currentUserModel = userModel!
-                        seal.fulfill(userModel!)
-                    }
-                }
-                
-            }
-            
-            
-        }
-        
-    }
-}
+ 
 
     
 
