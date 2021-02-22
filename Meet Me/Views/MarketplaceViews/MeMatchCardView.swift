@@ -28,8 +28,8 @@ struct MeMatchCardView: View {
     // internal vars
     var screenWidth: CGFloat? = 340
     
-    @GestureState var translation: CGSize = .zero
-    @GestureState var degrees: Double = 0
+    @State var translation: CGSize = .zero
+    @State var degrees: Double = 0
     
     @State var userDenied: Bool = false
     @State var userAccepted: Bool = false
@@ -37,21 +37,32 @@ struct MeMatchCardView: View {
     var body: some View {
         
         let dragGesture = DragGesture()
-            .updating($translation) { (value, state, _) in
-                state = value.translation
+            .onChanged{ (value) in
+                translation = value.translation
             }
-            .updating($degrees) { (value, state, _) in
+            .onChanged { (value) in
                 
                 // state is change to 2 if the drag is to the right and -2 if to the left
                 if value.translation.width > 0 {
-                    state = 2
-                    if value.translation.width > 100 {
-                        setAcceptedUser()
+                    degrees = 2
+                    if value.translation.width > 80 {
+                        print("user accepted swiped")
+                        
+                        userAccepted = true
+                        
+                        userChosen = true
+                        
+                        showMeMatchMainView = false
                     }
                 } else {
-                    state = -2
-                    if value.translation.width < 100 {
-                        setDeniedUser()
+                    degrees = -2
+                    if value.translation.width < -80 {
+                        print("user denied swiped")
+                        
+                        userDenied = true
+                        
+                        
+//                        self.users.remove(at: userNumber)
                     }
                 }
             }
@@ -104,7 +115,10 @@ struct MeMatchCardView: View {
                         .background(Color.red.opacity(0.3))
                         .onTapGesture {
                             // update database - user not
-                            setDeniedUser()
+                            print("user denied tapped")
+                            userDenied = true
+                            
+                            self.users.remove(at: userNumber)
                         }
                     
                             
@@ -119,7 +133,12 @@ struct MeMatchCardView: View {
                         .background(Color.green.opacity(0.3))
                         .onTapGesture {
                             // user was taken
-                            setAcceptedUser()
+                            print("user accepted tapped")
+                            userAccepted = true
+                            
+                            userChosen = true
+                            
+                            showMeMatchMainView = false
                         }
                         
                         
@@ -144,20 +163,6 @@ struct MeMatchCardView: View {
         .rotationEffect(.degrees(degrees))
         .gesture(dragGesture)
         .animation(.interactiveSpring())
-    }
-    
-    func setDeniedUser() {
-        userDenied = true
-        
-        self.users.remove(at: userNumber)
-    }
-    
-    func setAcceptedUser() {
-        userAccepted = true
-        
-        userChosen = true
-        
-        showMeMatchMainView = false
     }
     
 }

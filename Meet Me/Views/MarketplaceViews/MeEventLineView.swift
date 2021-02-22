@@ -10,7 +10,7 @@ import SwiftUI
 struct MeEventLineView: View {
     
     @StateObject private var meEventLineVM = MeEventLineViewModel()
-    @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject, stockEventObject]
+    @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject]
     
     @State var buttonPressed: Bool = true
     @Binding var showCreationView: Bool
@@ -26,6 +26,7 @@ struct MeEventLineView: View {
                         Image(systemName: "plus.circle")
                             .font(.title)
                             .padding(10)
+                            .padding(.vertical, 40)
                             .background(BlurView(style: .systemMaterial))
                             .clipShape(Circle())
                             .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
