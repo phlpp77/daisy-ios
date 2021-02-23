@@ -44,7 +44,6 @@ class EventCreationViewModel: ObservableObject {
         }
         let eventId = id
         let eventModel = EventModel(eventId: eventId, userId: currentUser.uid, name: name, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"")
-        DispatchQueue.main.async {
             firstly{
                 self.fireStoreManagerEventTest.saveEvent(eventModel: eventModel, eventId: eventId)
             }.then {
@@ -59,7 +58,7 @@ class EventCreationViewModel: ObservableObject {
                 print("DEBUG: catch, Fehler in EventCreationChain\(error)")
                 print(error.localizedDescription)
             }
-        }
+        
         
     }
 }

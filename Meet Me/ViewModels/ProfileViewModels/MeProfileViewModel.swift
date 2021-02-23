@@ -37,7 +37,7 @@ class MeProfileViewModel: ObservableObject {
         return Promise { seal in
            
             firstly {
-                self.firestoreFotoManagerUserTest.getAllPhotosFromUser()
+                self.firestoreFotoManagerUserTest.getAllPhotosFromCurrentUser()
             }.done { allPhotos in
                 seal.fulfill(URL(string: allPhotos[0].url)!)
             }.catch { error in

@@ -65,3 +65,4 @@ struct EventModelObject {
     @Binding var position: CGSize
     
 }
+

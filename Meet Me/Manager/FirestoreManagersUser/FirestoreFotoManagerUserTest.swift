@@ -105,11 +105,17 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     
     // MARK: - Functions to dowload fotos or Url from Storage or firebase
     
+    func getProfilePhoto() -> Promise<PhotoModel> {
+        return Promise { seal in
+            
+        }
+    }
     
     
     
     
-    func getAllPhotosFromUser() ->Promise<[PhotoModelObject]> {
+    
+    func getAllPhotosFromCurrentUser() ->Promise<[PhotoModelObject]> {
         return Promise { seal in
             
         guard let currentUser = Auth.auth().currentUser else {
@@ -123,6 +129,38 @@ class FirestoreFotoManagerUserTest: ObservableObject {
             .getDocuments { (snapshot,error) in
                 if let error = error {
                     print(error.localizedDescription)
+                    seal.reject(error)
+                } else {
+                    if let snapshot = snapshot {
+                        let photoModel: [PhotoModelObject] = snapshot.documents.compactMap { doc in
+                            var photoModel = try? doc.data(as: PhotoModel.self)
+                            photoModel?.id = doc.documentID
+                            if let photoModel = photoModel {
+                                return PhotoModelObject(photoModel: photoModel)
+                            }
+                            return nil
+                            
+                        }
+                        DispatchQueue.main.async {
+                            seal.fulfill(photoModel)
+                            
+                        }
+                    }
+                }
+            }
+        }
+                        
+    }
+    
+    func getAllPhotosFromEventUser(eventModel: EventModel) ->Promise<[PhotoModelObject]> {
+        return Promise { seal in
+            
+            db.collection("users")
+                .document(eventModel.userId)
+            .collection("UserPhotos")
+                .whereField("userId", isEqualTo: eventModel.userId)
+            .getDocuments { (snapshot,error) in
+                if let error = error {
                     seal.reject(error)
                 } else {
                     if let snapshot = snapshot {
