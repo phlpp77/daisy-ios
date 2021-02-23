@@ -30,19 +30,12 @@ import PromiseKit
 class FireStoreManagerEventTest {
     
     private var db: Firestore
-//    private var meEvents: [EventModelObject] = []
-//    private var youEvents: [EventModelObject] = []
-//    //private var createdID: String = UUID().uuidString
-//    private var currentUserModel = stockUser
-    
+
     
     init() {
         db = Firestore.firestore()
 
     }
-    
-
-    
     
     
     // MARK: - Functions to Save events to Firebase
@@ -90,7 +83,6 @@ class FireStoreManagerEventTest {
                 .whereField("userId", isEqualTo: currentUser.uid)
                 .getDocuments {(snapshot, error) in
                     if let error = error {
-                        //print(error.localizedDescription)
                         seal.reject(error)
                     } else {
                         
@@ -99,7 +91,6 @@ class FireStoreManagerEventTest {
                                 var event = try? doc.data(as: EventModel.self)
                                 event?.eventId = doc.documentID
                                 if let event = event {
-                                    // Philipp added the .constant to handle the error of the needed position
                                     return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
                                 }
                                 return nil
@@ -133,7 +124,6 @@ class FireStoreManagerEventTest {
                 .whereField("userId", isNotEqualTo: currentUser.uid)
                 .getDocuments {(snapshot, error) in
                     if let error = error {
-                        //print(error.localizedDescription)
                         seal.reject(error)
                     } else {
                         
@@ -142,7 +132,6 @@ class FireStoreManagerEventTest {
                                 var event = try? doc.data(as: EventModel.self)
                                 event?.eventId = doc.documentID
                                 if let event = event {
-                                    // Philipp added the .constant to handle the error of the needed position
                                     return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
                                 }
                                 return nil

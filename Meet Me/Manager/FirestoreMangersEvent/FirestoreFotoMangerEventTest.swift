@@ -27,40 +27,6 @@ class FirestoreFotoManagerEventTest: ObservableObject {
     
 
     // MARK: - Functions to save User Photos to Storage and the URL to Firestore
-
-    // function is called inside the main code
-//    //in dem Paramter collection wird ein Document mit Url und User Id erstellt
-//    //paramter childfolder lädt das dokument in den Storage
-//    func savePhoto(originalImage: UIImage?, eventModel: EventModel, completion: @escaping (Bool) -> Void) {
-//        var completionFlag = false
-//
-//        if let originalImage = originalImage {
-//            if let resizedImage = originalImage.resized(width: 360) {
-//                if let data = resizedImage.pngData() {
-//                    uploadEventPhoto(data:data) { (url) in
-//                        if let url = url {
-//                            self.saveEventPhotoUrlToFirestore(url: url, eventModel: eventModel) { error in
-//                                if let error = error {
-//                                    print(error.localizedDescription)
-//                                    completion(completionFlag)
-//                                } else {
-//                                    completionFlag = true
-//                                    completion(completionFlag)
-//                                }
-//
-//
-//                            }
-//                        }
-//                    }
-//
-//                }
-//            }
-//
-//        }
-//    }
-    
-    
-
     
     func resizeImage(originalImage: UIImage?) -> Promise<Data> {
         return Promise { seal in
@@ -73,9 +39,6 @@ class FirestoreFotoManagerEventTest: ObservableObject {
             }
         }
     }
-    
-    
-    
     
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
     func uploadEventPhoto(data: Data) -> Promise<URL> {
@@ -106,11 +69,7 @@ class FirestoreFotoManagerEventTest: ObservableObject {
     
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
     func saveEventPhotoUrlToFirestore(url: URL,eventId: String) -> Promise<Void> {
-//        guard let currentUser = Auth.auth().currentUser else {
-//            return
-
-//        }
-        
+ 
         return Promise { seal in
             do {
                 let _ = db.collection("events")
@@ -120,8 +79,6 @@ class FirestoreFotoManagerEventTest: ObservableObject {
                 seal.fulfill(())
             }
         }
-        
-        
     }
     
     func getAllPhotosFromEvent() -> Promise<[PhotoModelObject]> {

@@ -101,8 +101,10 @@ class FirestoreManagerUserTest {
                             }
                             return user
                         }
-
-                        seal.fulfill(users!)
+                        DispatchQueue.main.async {
+                            seal.fulfill(users!)
+                        }
+                        
                     }
 
                 }
