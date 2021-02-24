@@ -135,10 +135,10 @@ struct MeMatchCardView: View {
                             // user was taken
                             print("user accepted tapped")
                             userAccepted = true
-                            
                             userChosen = true
-                            
                             showMeMatchMainView = false
+                            
+                            
                         }
                         
                         
