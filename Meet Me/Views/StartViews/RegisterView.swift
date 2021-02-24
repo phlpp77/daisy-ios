@@ -16,6 +16,7 @@ struct RegisterView: View {
     @Binding var showLoginView: Bool
     
     @Binding var userIsLoggedIn: Bool
+    @Binding var userHasNoAccount: Bool
     
     //wird nur gebraucht wenn man die View über sheet anzeigt
     //kann man implementieren für das registrieren
@@ -129,6 +130,10 @@ struct RegisterView: View {
                     // type register func here
                     registerVM.register {
                         //if register was succsesful
+                        
+                        // TODO: @Budni wenn account schon in der DB dann:
+                        // userHasNoAccount = false
+                        
                         userIsLoggedIn = true
                         presentationMode.wrappedValue.dismiss()
                     }
@@ -159,6 +164,6 @@ struct RegisterView: View {
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView(showLoginView: .constant(false), userIsLoggedIn: .constant(false))
+        RegisterView(showLoginView: .constant(false), userIsLoggedIn: .constant(false), userHasNoAccount: .constant(true))
     }
 }
