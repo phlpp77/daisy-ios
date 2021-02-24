@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import PromiseKit
 struct MeMatchView: View {
     
     @StateObject private var meMatchStartVM: MeMatchStartViewModel = MeMatchStartViewModel()
@@ -31,12 +31,18 @@ struct MeMatchView: View {
                 }
             }
             
-            MeMatchStartView(showMeMatchView: $showMeMatchView, showMeMatchMainView: $showMeMatchMainView)
+            MeMatchStartView(showMeMatchView: $showMeMatchView, showMeMatchMainView: $showMeMatchMainView, likedUsers: $likedUsers)
                 .opacity(showMeMatchView ? 0 : 1)
         }
         .onAppear {
-            meMatchStartVM.getLikedUsers(eventId: tappedEvent.eventId)
-            likedUsers = meMatchStartVM.likedUsers
+            firstly {
+                self.meMatchStartVM.getLikedUsers(eventId: tappedEvent.eventId)
+            }.done { user in
+                self.likedUsers = user
+            }.catch { error in
+                print("DEBUG: error in GetYouEventChain: \(error)")
+                print("DEBUG: \(error.localizedDescription)")
+            }
         }
     }
 }

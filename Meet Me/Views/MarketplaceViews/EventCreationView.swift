@@ -173,7 +173,7 @@ struct EventCreationView: View {
                             // update handling
                             prepareUpload()
                             //youEventLineVM.getYouEvents()
-                            eventCreationVM.saveEvent(uiImage: uiImage!, id: createdId)
+                            eventCreationVM.saveEvent(uiImage: uiImage!)
                             // button animation start
                             buttonPressed.toggle()
                             // haptic feedback when button is tapped

@@ -14,6 +14,7 @@ struct MeMatchStartView: View {
     @Binding var showMeMatchView: Bool
     // the whole match view
     @Binding var showMeMatchMainView: Bool
+    @Binding var likedUsers : [UserModelObject]
     @StateObject private var meMatchStartVM : MeMatchStartViewModel = MeMatchStartViewModel()
     
     var body: some View {
@@ -59,12 +60,12 @@ struct MeMatchStartView: View {
                     .scaleEffect(buttonPressed ? 0.8 : 1)
                     .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
                     .onTapGesture {
-                        print("array with users who liked the event: \(meMatchStartVM.likedUsers)")
+                        print("array with users who liked the event: \(likedUsers)")
                         // button animation start
                         buttonPressed.toggle()
                         
                         // show me match view now
-                        if meMatchStartVM.likedUsers.count != 0 {
+                        if likedUsers.count != 0 {
                             print("no matches - no match view")
                             showMeMatchView = true
                         } else {
@@ -83,7 +84,6 @@ struct MeMatchStartView: View {
             .frame(width: 340, height: 620, alignment: .center)
             .modifier(FrozenWindowModifier())
             .onAppear {
-                meMatchStartVM.getLikedUsers(eventId: "81C40095-1C28-4B30-84F4-C105BE4A9C9B")
             }
         }
         
@@ -92,6 +92,6 @@ struct MeMatchStartView: View {
 
 struct MeMatchStartView_Previews: PreviewProvider {
     static var previews: some View {
-        MeMatchStartView(showMeMatchView: .constant(true), showMeMatchMainView: .constant(true))
+        MeMatchStartView(showMeMatchView: .constant(true), showMeMatchMainView: .constant(true), likedUsers: .constant([stockUserObject]))
     }
 }

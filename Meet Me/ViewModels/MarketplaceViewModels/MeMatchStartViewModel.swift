@@ -11,18 +11,18 @@ import PromiseKit
 class MeMatchStartViewModel: ObservableObject {
     
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
-    @Published var likedUsers: [UserModelObject] = []
     
-    func getLikedUsers (eventId: String) {
-        firstly{
-            self.firestoreManagerUserTest.getAllMatchedUsers(eventId: eventId)
-        }.done { likes in
-            self.likedUsers = likes
-            print("DEBUG: done, GetLikedUsers Chain erfolgreich")
-        }.catch { error in
-            print("DEBUG: catch, Fehler in GetLikedUsers Chain\(error)")
-            print(error.localizedDescription)
+    func getLikedUsers (eventId: String) -> Promise<[UserModelObject]> {
+        return Promise { seal in
+            firstly{
+                self.firestoreManagerUserTest.getAllMatchedUsers(eventId: eventId)
+            }.done { likes in
+                seal.fulfill(likes)
+                print("DEBUG: done, GetLikedUsers Chain erfolgreich")
+            }.catch { error in
+                seal.reject(error)
+            }
         }
-        
     }
 }
+

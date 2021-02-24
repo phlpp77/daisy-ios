@@ -38,7 +38,7 @@ class EventCreationViewModel: ObservableObject {
     }
 
 
-    func saveEvent(uiImage: UIImage, id: String) {
+    func saveEvent(uiImage: UIImage) {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
