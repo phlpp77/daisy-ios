@@ -34,15 +34,15 @@ struct Meet_MeApp: App {
 //            Copy into if for autologin
 //            ||  autoLogin()
 //            ||  checkUserAccForAutoLogin()startProcessDone ||  checkUserAccForAutoLogin()
-            if startProcessDone ||  checkUserAccForAutoLogin() {
+//            if startProcessDone ||  checkUserAccForAutoLogin() {
 
-                MainControllerView(startProcessDone: $startProcessDone)
+                MainControllerView()
 
-            } else {
-                StartView(startProcessDone: $startProcessDone)
-                    .ignoresSafeArea(.keyboard, edges: .bottom)
-
-            }
+//            } else {
+//                StartView(startProcessDone: $startProcessDone)
+//                    .ignoresSafeArea(.keyboard, edges: .bottom)
+//
+//            }
 
             //PickerView()
         }

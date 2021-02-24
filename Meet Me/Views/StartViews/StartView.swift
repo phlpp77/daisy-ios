@@ -58,7 +58,7 @@ struct StartView: View {
                 .opacity(userIsLoggedIn ? 0 : 1)
             
             // show the login view
-            LoginView(userIsLoggedIn: $userIsLoggedIn, userHasNoAccount: $userHasNoAccount)
+            LoginView(userIsLoggedIn: $userIsLoggedIn, userHasNoAccount: $userHasNoAccount, startProcessDone: $startProcessDone)
                 // animation from register to login view
                 .opacity(showLoginView ? 1 : 0)
                 // animation from login to profile creation

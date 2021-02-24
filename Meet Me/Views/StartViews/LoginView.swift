@@ -19,6 +19,7 @@ struct LoginView: View {
     // change the var for the main animation
     @Binding var userIsLoggedIn: Bool
     @Binding var userHasNoAccount: Bool
+    @Binding var startProcessDone: Bool
     
     // if a problem happens during the login process a message can be shown
     @State var problemAccured = false
@@ -83,14 +84,16 @@ struct LoginView: View {
                     isActive = true
                     print("Login succeeded \(isActive)")
                     
-                    
-                    //false if user has acc in db
-                    userHasNoAccount = loginVM.checkUserAcc()
+                    // true when user is in DB
+                    if loginVM.checkUserAcc() {
+                        userHasNoAccount = false
+                        startProcessDone = true
+                    }
                     
                     userIsLoggedIn = true
                 }
                 
-                // Show textfield if errors accure
+                // Show textfield if errors accrue
                 problemAccured = loginVM.checkErrors()
                 // Set Problem Message to ErrorMessage
                 problemMessage = loginVM.errorMessage
@@ -115,6 +118,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(userIsLoggedIn: .constant(false), userHasNoAccount: .constant(true))
+        LoginView(userIsLoggedIn: .constant(false), userHasNoAccount: .constant(true), startProcessDone: .constant(false))
     }
 }
