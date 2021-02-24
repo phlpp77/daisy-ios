@@ -36,7 +36,7 @@ struct Meet_MeApp: App {
 //            ||  checkUserAccForAutoLogin()
             if startProcessDone ||  checkUserAccForAutoLogin() {
 
-                MainControllerView()
+                MainControllerView(startProcessDone: $startProcessDone)
 
             } else {
                 StartView(startProcessDone: $startProcessDone)

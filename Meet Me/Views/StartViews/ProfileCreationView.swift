@@ -148,14 +148,16 @@ struct ProfileCreationView: View {
                         }
                         .frame(width: 268.58)
                         
-                        // button is disabled until the user set at least the name, the gender and the birthday
-                        let enoughInformation = !(accpetedAction[0] && accpetedAction[1] && accpetedAction[2])
+                        // button is disabled until the user set at least the name, the gender, the birthday and photos
+                        let enoughInformation = !(accpetedAction[0] && accpetedAction[1] && accpetedAction[2] && accpetedAction[5])
                         
                         // update button
                         Button(action: {
                             addProfileCreationVM.createUser(originalImage: uiImage!, bDate: birthdayDate)
                             // haptic feedback when button is tapped
                             hapticPulse(feedback: .rigid)
+                            
+                            profileCreationFinished = true
                             
                         }, label: {
                             HStack {

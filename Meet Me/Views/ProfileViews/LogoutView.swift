@@ -8,15 +8,20 @@
 import SwiftUI
 
 struct LogoutView: View {
+    
+    @Binding var startProcessDone: Bool
+    
     var body: some View {
         Button("Logout") {
-            //
+            startProcessDone = false
         }
+        .padding()
+        .modifier(FrozenWindowModifier())
     }
 }
 
 struct LogoutView_Previews: PreviewProvider {
     static var previews: some View {
-        LogoutView()
+        LogoutView(startProcessDone: .constant(true))
     }
 }

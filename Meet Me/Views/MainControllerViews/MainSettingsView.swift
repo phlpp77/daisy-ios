@@ -9,17 +9,24 @@ import SwiftUI
 
 struct MainSettingsView: View {
     
+    @Binding var startProcessDone: Bool
+    
     @ObservedObject private var meProfileVM = MeProfileViewModel()
     
     var body: some View {
         
-        MeProfileView()
+        ZStack {
+            MeProfileView()
+            
+            LogoutView(startProcessDone: $startProcessDone)
+                .offset(x: screen.width / 2 - 60, y: -screen.height / 2 + 80)
+        }
 
     }
 }
 
 struct MainSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        MainSettingsView()
+        MainSettingsView(startProcessDone: .constant(true))
     }
 }
