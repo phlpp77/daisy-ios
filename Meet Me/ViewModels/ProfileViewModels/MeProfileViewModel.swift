@@ -39,7 +39,11 @@ class MeProfileViewModel: ObservableObject {
             firstly {
                 self.firestoreFotoManagerUserTest.getAllPhotosFromCurrentUser()
             }.done { allPhotos in
-                seal.fulfill(URL(string: allPhotos[0].url)!)
+                if allPhotos != nil {
+                    seal.fulfill(URL(string: allPhotos![0].url)!)
+                } else {
+                    seal.fulfill(stockURL)
+                }
             }.catch { error in
                 seal.reject(error)
             }
