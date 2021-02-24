@@ -43,9 +43,9 @@ class LoginViewModel: ObservableObject {
 //Check if user has a UserModel
     func checkUserAcc() -> Bool {
         guard let _ = Auth.auth().currentUser?.uid else {
-            return true
+            return false
         }
-        return false
+        return true
         
         
     }

@@ -10,7 +10,7 @@ import FirebaseAuth
 
 struct MainControllerView: View {
     
-    @Binding var startProcessDone: Bool
+    @State var startProcessDone: Bool = false
     
     var body: some View {
         
@@ -50,6 +50,6 @@ struct MainControllerView: View {
 
 struct MainControllerView_Previews: PreviewProvider {
     static var previews: some View {
-        MainControllerView(startProcessDone: .constant(true))
+        MainControllerView()
     }
 }
