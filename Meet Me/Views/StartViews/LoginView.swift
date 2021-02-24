@@ -18,6 +18,7 @@ struct LoginView: View {
     
     // change the var for the main animation
     @Binding var userIsLoggedIn: Bool
+    @Binding var userHasNoAccount: Bool
     
     // if a problem happens during the login process a message can be shown
     @State var problemAccured = false
@@ -83,7 +84,8 @@ struct LoginView: View {
                     print("Login succeeded \(isActive)")
                     
                     
-                    // TODO: @Budni userIsLoggedIn erzeugt den Creation Path, wenn dieser schon existiert nicht aufrufen
+                    // TODO: @Budni wenn account schon in der DB dann:
+                    // userHasNoAccount = false
                     
                     userIsLoggedIn = true
                 }
@@ -113,6 +115,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(userIsLoggedIn: .constant(false))
+        LoginView(userIsLoggedIn: .constant(false), userHasNoAccount: .constant(true))
     }
 }

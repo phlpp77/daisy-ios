@@ -22,6 +22,9 @@ struct StartView: View {
     // user is logged in
     @State var userIsLoggedIn = false
     
+    // user has no account
+    @State var userHasNoAccount = true
+    
     // animation to show the second line of text after the used read the first line
     @State var showSecondLine = false
     
@@ -43,10 +46,10 @@ struct StartView: View {
             
             ProfileCreationView(profileCreationFinished: $startProcessDone)
                 // animation from login to profile creation
-                .opacity(userIsLoggedIn ? 1 : 0)
+                .opacity(userIsLoggedIn && userHasNoAccount ? 1 : 0)
             
             // show the register form
-            RegisterView(showLoginView: $showLoginView, userIsLoggedIn: $userIsLoggedIn)
+            RegisterView(showLoginView: $showLoginView, userIsLoggedIn: $userIsLoggedIn, userHasNoAccount: $userHasNoAccount)
                 // animate from welcome to register view
                 .opacity(showWelcomeView ? 0 : 1)
                 // animation from register to login view
@@ -55,7 +58,7 @@ struct StartView: View {
                 .opacity(userIsLoggedIn ? 0 : 1)
             
             // show the login view
-            LoginView(userIsLoggedIn: $userIsLoggedIn)
+            LoginView(userIsLoggedIn: $userIsLoggedIn, userHasNoAccount: $userHasNoAccount)
                 // animation from register to login view
                 .opacity(showLoginView ? 1 : 0)
                 // animation from login to profile creation
