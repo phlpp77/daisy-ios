@@ -10,7 +10,10 @@ import SwiftUI
 struct MeMatchStartView: View {
     
     @State var buttonPressed: Bool = false
+    // start the matching
     @Binding var showMeMatchView: Bool
+    // the whole match view
+    @Binding var showMeMatchMainView: Bool
     @StateObject private var meMatchStartVM : MeMatchStartViewModel = MeMatchStartViewModel()
     
     var body: some View {
@@ -61,7 +64,13 @@ struct MeMatchStartView: View {
                         buttonPressed.toggle()
                         
                         // show me match view now
-                        showMeMatchView = true
+                        if meMatchStartVM.likedUsers.count != 0 {
+                            print("no matches - no match view")
+                            showMeMatchView = true
+                        } else {
+                            showMeMatchMainView = false
+                        }
+                        
                         
                         // haptic feedback when button is tapped
                         hapticPulse(feedback: .rigid)
@@ -83,6 +92,6 @@ struct MeMatchStartView: View {
 
 struct MeMatchStartView_Previews: PreviewProvider {
     static var previews: some View {
-        MeMatchStartView(showMeMatchView: .constant(true))
+        MeMatchStartView(showMeMatchView: .constant(true), showMeMatchMainView: .constant(true))
     }
 }
