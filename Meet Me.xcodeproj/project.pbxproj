@@ -220,6 +220,7 @@
 				90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */,
 				17C0C1CD25BF67D60021987D /* AlertBoxView.swift */,
 				1795DFA925DF1923002D537F /* LottieView.swift */,
+				1795DFAD25DF20AD002D537F /* LoadingView.swift */,
 			);
 			path = ViewHelpers;
 			sourceTree = "<group>";
@@ -286,7 +287,6 @@
 		1774B67C25D1E7A200D1D2F1 /* MainControllerViews */ = {
 			isa = PBXGroup;
 			children = (
-				1795DFAD25DF20AD002D537F /* LoadingView.swift */,
 				1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */,
 				1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */,
 				1774B67425D1E31400D1D2F1 /* MainExploreView.swift */,
