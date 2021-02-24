@@ -84,8 +84,8 @@ struct LoginView: View {
                     print("Login succeeded \(isActive)")
                     
                     
-                    // TODO: @Budni wenn account schon in der DB dann:
-                    // userHasNoAccount = false
+                    //false if user has acc in db
+                    userHasNoAccount = loginVM.checkUserAcc()
                     
                     userIsLoggedIn = true
                 }

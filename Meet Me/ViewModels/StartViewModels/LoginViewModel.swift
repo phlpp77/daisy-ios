@@ -7,9 +7,12 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestoreSwift
 
 class LoginViewModel: ObservableObject {
     
+    
+    private var db: Firestore = Firestore.firestore()
     var email: String = ""
     var password: String = ""
     var errorMessage: String = ""
@@ -38,7 +41,14 @@ class LoginViewModel: ObservableObject {
         
     }
 
-    
+    func checkUserAcc() -> Bool {
+        guard let _ = Auth.auth().currentUser?.uid else {
+            return true
+        }
+        return false
+        
+        
+    }
 
     
 }
