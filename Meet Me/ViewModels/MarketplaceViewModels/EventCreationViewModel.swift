@@ -42,7 +42,7 @@ class EventCreationViewModel: ObservableObject {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
-        let eventId = id
+        let eventId = UUID().uuidString
         var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, name: name, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"", profilePicture: "")
             firstly{
                 self.firestoreFotoManagerEventTest.getProfilePhotoForEvent()
