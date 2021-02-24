@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoadingView: View {
+    
     var body: some View {
         LottieView(filename: "planet-loading", loopMode: .loop)
             .frame(width: 100, height: 100, alignment: .center)

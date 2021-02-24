@@ -38,12 +38,13 @@
 		179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C525D477F1007F64D6 /* YouEventView.swift */; };
 		179B27CA25D48788007F64D6 /* EventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C925D48788007F64D6 /* EventLineView.swift */; };
 		17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67225C2093D00E4DA78 /* PickerTextField.swift */; };
-		17A1E67625C20DD200E4DA78 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67525C20DD200E4DA78 /* PickerView.swift */; };
 		17AC8C8425D8315100252875 /* YouProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AC8C8325D8315100252875 /* YouProfileView.swift */; };
 		17BC5FE025BE0B5900F35075 /* ProfileCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */; };
 		17C0C1CE25BF67D60021987D /* AlertBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C0C1CD25BF67D60021987D /* AlertBoxView.swift */; };
 		17DAD7E325D934D600DBE60B /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DAD7E225D934D600DBE60B /* GlobalFunctions.swift */; };
 		17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E45ABA25B74F6600B9A93B /* LoginView.swift */; };
+		17EDA6F025E6C974004BC651 /* LogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EDA6EF25E6C974004BC651 /* LogoutView.swift */; };
+		17EDA6F625E6E0E7004BC651 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17EDA6F525E6E0E7004BC651 /* GoogleService-Info.plist */; };
 		3C4632628DFAFFCA3B1B6674 /* Pods_Meet_Me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6866AE96A8202B7FCBDD60 /* Pods_Meet_Me.framework */; };
 		902EF6B925D89213004464F0 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6B825D89213004464F0 /* PhotoModel.swift */; };
 		902EF6BD25D896E3004464F0 /* UIImageResized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6BC25D896E3004464F0 /* UIImageResized.swift */; };
@@ -58,7 +59,6 @@
 		90779B0D25E308220070D794 /* FirestoreManagerUserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779B0C25E308220070D794 /* FirestoreManagerUserTest.swift */; };
 		90779B2F25E3BFEB0070D794 /* FirestoreFotoManagerUserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779B2E25E3BFEB0070D794 /* FirestoreFotoManagerUserTest.swift */; };
 		90779B6025E41CC60070D794 /* MainControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779B5F25E41CC50070D794 /* MainControllerViewModel.swift */; };
-		90779B6525E596130070D794 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90779B6425E596120070D794 /* GoogleService-Info.plist */; };
 		90779B6D25E5A3F40070D794 /* MeMatchCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779B6C25E5A3F40070D794 /* MeMatchCardViewModel.swift */; };
 		90779B7325E5BA7C0070D794 /* Err.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779B7225E5BA7C0070D794 /* Err.swift */; };
 		90B0F4C725DF086B00AB8EF9 /* TrahedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4C625DF086B00AB8EF9 /* TrahedCode.swift */; };
@@ -106,12 +106,13 @@
 		179B27C525D477F1007F64D6 /* YouEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventView.swift; sourceTree = "<group>"; };
 		179B27C925D48788007F64D6 /* EventLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLineView.swift; sourceTree = "<group>"; };
 		17A1E67225C2093D00E4DA78 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
-		17A1E67525C20DD200E4DA78 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		17AC8C8325D8315100252875 /* YouProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouProfileView.swift; sourceTree = "<group>"; };
 		17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationView.swift; sourceTree = "<group>"; };
 		17C0C1CD25BF67D60021987D /* AlertBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBoxView.swift; sourceTree = "<group>"; };
 		17DAD7E225D934D600DBE60B /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		17E45ABA25B74F6600B9A93B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		17EDA6EF25E6C974004BC651 /* LogoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutView.swift; sourceTree = "<group>"; };
+		17EDA6F525E6E0E7004BC651 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8CC506F59200740347A6B95E /* Pods-Meet Me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Me.debug.xcconfig"; path = "Target Support Files/Pods-Meet Me/Pods-Meet Me.debug.xcconfig"; sourceTree = "<group>"; };
 		902EF6B825D89213004464F0 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		902EF6BC25D896E3004464F0 /* UIImageResized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageResized.swift; sourceTree = "<group>"; };
@@ -124,7 +125,6 @@
 		90779B0C25E308220070D794 /* FirestoreManagerUserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerUserTest.swift; sourceTree = "<group>"; };
 		90779B2E25E3BFEB0070D794 /* FirestoreFotoManagerUserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreFotoManagerUserTest.swift; sourceTree = "<group>"; };
 		90779B5F25E41CC50070D794 /* MainControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerViewModel.swift; sourceTree = "<group>"; };
-		90779B6425E596120070D794 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		90779B6C25E5A3F40070D794 /* MeMatchCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchCardViewModel.swift; sourceTree = "<group>"; };
 		90779B7225E5BA7C0070D794 /* Err.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Err.swift; sourceTree = "<group>"; };
 		90B0F4C625DF086B00AB8EF9 /* TrahedCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrahedCode.swift; sourceTree = "<group>"; };
@@ -159,6 +159,7 @@
 		17153ED825A8C5C30072CE83 = {
 			isa = PBXGroup;
 			children = (
+				17EDA6F525E6E0E7004BC651 /* GoogleService-Info.plist */,
 				17153EE325A8C5C30072CE83 /* Meet Me */,
 				17153EE225A8C5C30072CE83 /* Products */,
 				5249E9C9E4879C62B0DE99B3 /* Pods */,
@@ -177,7 +178,6 @@
 		17153EE325A8C5C30072CE83 /* Meet Me */ = {
 			isa = PBXGroup;
 			children = (
-				90779B6425E596120070D794 /* GoogleService-Info.plist */,
 				17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */,
 				905485D025C4AA6100E2024D /* Manager */,
 				175E40DC25B4320E00ADC9BF /* Views */,
@@ -208,7 +208,6 @@
 				17E45ABA25B74F6600B9A93B /* LoginView.swift */,
 				17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */,
 				175E40E225B4670800ADC9BF /* StartBackgroundView.swift */,
-				17A1E67525C20DD200E4DA78 /* PickerView.swift */,
 			);
 			path = StartViews;
 			sourceTree = "<group>";
@@ -221,6 +220,7 @@
 				90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */,
 				17C0C1CD25BF67D60021987D /* AlertBoxView.swift */,
 				1795DFA925DF1923002D537F /* LottieView.swift */,
+				1795DFAD25DF20AD002D537F /* LoadingView.swift */,
 			);
 			path = ViewHelpers;
 			sourceTree = "<group>";
@@ -229,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				177F681825D8409200BC345B /* MeProfileView.swift */,
+				17EDA6EF25E6C974004BC651 /* LogoutView.swift */,
 			);
 			path = ProfileViews;
 			sourceTree = "<group>";
@@ -286,7 +287,6 @@
 		1774B67C25D1E7A200D1D2F1 /* MainControllerViews */ = {
 			isa = PBXGroup;
 			children = (
-				1795DFAD25DF20AD002D537F /* LoadingView.swift */,
 				1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */,
 				1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */,
 				1774B67425D1E31400D1D2F1 /* MainExploreView.swift */,
@@ -474,7 +474,7 @@
 			files = (
 				17153EEC25A8C5C30072CE83 /* Preview Assets.xcassets in Resources */,
 				1795DFBA25DF252C002D537F /* heard-loading.json in Resources */,
-				90779B6525E596130070D794 /* GoogleService-Info.plist in Resources */,
+				17EDA6F625E6E0E7004BC651 /* GoogleService-Info.plist in Resources */,
 				17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */,
 				1795DFBF25DF25DD002D537F /* planet-loading.json in Resources */,
 			);
@@ -538,7 +538,6 @@
 				175E40E025B43BB200ADC9BF /* StartView.swift in Sources */,
 				90F2336325D830E7003FB1D9 /* ProfileCreationViewModel.swift in Sources */,
 				17C0C1CE25BF67D60021987D /* AlertBoxView.swift in Sources */,
-				17A1E67625C20DD200E4DA78 /* PickerView.swift in Sources */,
 				175E40E325B4670800ADC9BF /* StartBackgroundView.swift in Sources */,
 				175E40F425B4CD9400ADC9BF /* Modifiers.swift in Sources */,
 				175E40E625B46ABB00ADC9BF /* BlurView.swift in Sources */,
@@ -569,6 +568,7 @@
 				90779B0A25E305D40070D794 /* MeMatchStartViewModel.swift in Sources */,
 				17AC8C8425D8315100252875 /* YouProfileView.swift in Sources */,
 				1795DF9525DD6998002D537F /* MeEventLineView.swift in Sources */,
+				17EDA6F025E6C974004BC651 /* LogoutView.swift in Sources */,
 				1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */,
 				902EF6BD25D896E3004464F0 /* UIImageResized.swift in Sources */,
 				174423AA25D9A0DF00D25EDD /* EventModel.swift in Sources */,
@@ -716,7 +716,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -724,7 +724,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Meee";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Me";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -742,7 +742,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -750,7 +750,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Meee";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Me";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
