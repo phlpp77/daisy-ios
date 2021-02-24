@@ -29,6 +29,7 @@ struct YouEventView: View {
     private var startTime: Date
     private var endTime: Date
     private var pictureURL: String
+    private var profilePictureUrl: String
 
     //
     init(eventModelObject: EventModelObject, eventArray: Binding<[EventModelObject]>, eventIndex: Int, dragPossible: Bool) {
@@ -43,6 +44,7 @@ struct YouEventView: View {
         startTime = eventModelObject.startTime
         endTime = eventModelObject.endTime
         pictureURL = eventModelObject.pictureURL
+        profilePictureUrl = eventModelObject.profilePicture
         
     }
     
@@ -89,8 +91,8 @@ struct YouEventView: View {
                 Spacer()
                 
                 HStack {
-                    Image(uiImage: #imageLiteral(resourceName: "Philipp"))
-                        .resizable()
+                    URLImage(url: URL(string: profilePictureUrl) ?? stockURL) { image in
+                        image.resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 60, height: 60, alignment: .center)
                         .overlay(
@@ -100,6 +102,7 @@ struct YouEventView: View {
                         .clipShape(Circle())
                         .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 12)
                         .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                    }
                     
                     Spacer()
                     
