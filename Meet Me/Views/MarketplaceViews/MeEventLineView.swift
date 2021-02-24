@@ -50,7 +50,6 @@ struct MeEventLineView: View {
                         // MARK: List with own events
                         ForEach(eventArray.indices, id: \.self) { event in
                             HStack {
-                                //
                                 ZStack {
                                     YouEventView(eventModelObject: eventArray[event], eventArray: $eventArray, eventIndex: event, dragPossible: false)
                                         .rotation3DEffect(
@@ -73,7 +72,7 @@ struct MeEventLineView: View {
                                 }
                                 // tap on each of the events does that
                                 .onTapGesture {
-                                    
+                                    print("event was tapped")
                                     // save UserModelObject
                                     tappedEvent = eventArray[event]
                                     

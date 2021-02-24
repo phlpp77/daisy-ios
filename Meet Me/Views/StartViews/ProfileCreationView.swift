@@ -133,7 +133,7 @@ struct ProfileCreationView: View {
                             .frame(width: 268.58, height: 92.92, alignment: .center)
                         
                         // upload image to database
-                        PictureLineView(pictureText: accpetedAction[5] ? .constant("You look good today") : .constant("No picture"), showPicker: $showImagePicker, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: $iconName, backgroundColor: $backgroundColor)
+                        PictureLineView(pictureText: accpetedAction[5] ? .constant("You look good today") : .constant("No picture"), showPicker: $showImagePicker, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[5] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[5] ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         // create image for the end pathway to the update profile button
                         VStack(alignment: .trailing) {
@@ -174,11 +174,11 @@ struct ProfileCreationView: View {
                         
                         .onChange(of: addProfileCreationVM.saved, perform: { value in
                             if value {
-                                //if save succssful
+                                //if save successful
                                 profileCreationFinished = true
                                 print("saved profile creation VM")
                             } else {
-                                //if profile settings didnt uploded
+                                //if profile settings didn't uploaded
                                 print("Problems")
                             }
                         })
@@ -194,7 +194,7 @@ struct ProfileCreationView: View {
                 .frame(width: 340, height: 620, alignment: .center)
                 
                 
-                // creating pop-up alertboxes
+                // creating pop-up alert-boxes
                 if showAlertBox {
                     
                     // switch case to show the correct alertbox for each step in the pathway
@@ -224,11 +224,12 @@ struct ProfileCreationView: View {
                     case 4:
                         // add alertbox to ask user for location services
                         AlertBoxView(title: "Allow app to use your current location", placeholder: "", defaultText: "", output: $acceptLocation, show: $showAlertBox, accepted: $accpetedAction[4])
-                    
+                            .zIndex(1.0)
+                        
                     // image picker view
                     case 5:
                         if showImagePicker {
-                            ImagePicker(isShown: $showImagePicker, image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
+                            ImagePicker(isShown: $showImagePicker, isDone: $accpetedAction[5], image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
                         }
                         
 //                        AlertBoxView(title: "Choose a picture of yourself", placeholder: "", defaultText: "", output: $acceptLocation, show: $showAlertBox, accepted: $accpetedAction[4])

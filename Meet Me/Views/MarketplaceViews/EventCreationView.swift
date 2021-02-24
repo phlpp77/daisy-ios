@@ -209,7 +209,7 @@ struct EventCreationView: View {
                 
                 // AlertBox to define the picture
                 case 99:
-                    ImagePicker(isShown: $showAlertBox, image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
+                    ImagePicker(isShown: $showAlertBox, isDone: $accepted, image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
                     
                 default:
                     AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", output: $category, show: $showAlertBox, accepted: $accepted)

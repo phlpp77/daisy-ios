@@ -13,11 +13,13 @@ import SwiftUI
 class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @Binding var isShown: Bool
+    @Binding var isDone: Bool
     @Binding var image: Image?
     @Binding var originalImage: UIImage?
     
-    init(isShown: Binding<Bool>, image: Binding<Image?>, originalImage: Binding<UIImage?>) {
+    init(isShown: Binding<Bool>, isDone: Binding<Bool>, image: Binding<Image?>, originalImage: Binding<UIImage?>) {
         _isShown = isShown
+        _isDone = isDone
         _image = image
         _originalImage = originalImage
     }
@@ -28,7 +30,7 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
         image = Image(uiImage: uiImage)
         isShown = false
         originalImage = uiImage
-        
+        isDone = true
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -40,6 +42,7 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
 struct ImagePicker: UIViewControllerRepresentable {
     
     @Binding var isShown: Bool
+    @Binding var isDone: Bool
     @Binding var image: Image?
     @Binding var originalImage: UIImage?
     var sourceType: SourceType
@@ -48,7 +51,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> ImagePickerCoordinator {
-        return ImagePickerCoordinator(isShown: $isShown, image: $image, originalImage: $originalImage)
+        return ImagePickerCoordinator(isShown: $isShown, isDone: $isDone, image: $image, originalImage: $originalImage)
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
