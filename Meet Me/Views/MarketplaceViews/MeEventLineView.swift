@@ -72,12 +72,12 @@ struct MeEventLineView: View {
                                 }
                                 // tap on each of the events does that
                                 .onTapGesture {
-                                    print("event was tapped")
+                                    print("event \(event) was tapped")
                                     // save UserModelObject
                                     tappedEvent = eventArray[event]
                                     
                                     // shows the MeMatch
-                                    showMeMatchView.toggle()
+                                    showMeMatchView = true
                                 }
                             }
                         }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct MainControllerView: View {
     
@@ -13,7 +14,7 @@ struct MainControllerView: View {
     
     var body: some View {
         
-        if startProcessDone {
+        if startProcessDone ||  checkUserAccForAutoLogin() {
             TabView {
                 MainSettingsView(startProcessDone: $startProcessDone).tabItem {
                     Image(systemName: "person.circle")
@@ -34,6 +35,16 @@ struct MainControllerView: View {
             StartView(startProcessDone: $startProcessDone)
         }
         
+    }
+    
+    func checkUserAccForAutoLogin() -> Bool{
+        if Auth.auth().currentUser != nil{
+            return true
+            
+        } else {
+            return false
+
+        }
     }
 }
 
