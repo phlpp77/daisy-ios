@@ -44,6 +44,8 @@ class EventCreationViewModel: ObservableObject {
         }
         let eventId = UUID().uuidString
         var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, name: name, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"", profilePicture: "")
+        
+            loadingScreen(visible: true)
             firstly{
                 self.firestoreFotoManagerEventTest.getProfilePhotoForEvent()
             }.map { profilePicture in
@@ -61,6 +63,8 @@ class EventCreationViewModel: ObservableObject {
             }.catch { error in
                 print("DEBUG: catch, Fehler in EventCreationChain\(error)")
                 print(error.localizedDescription)
+            }.finally {
+                loadingScreen(visible: false)
             }
         
         
