@@ -114,9 +114,7 @@ class FireStoreManagerEventTest {
         return Promise { seal in
             
             guard let currentUser = Auth.auth().currentUser else {
-                let error: Error = "No current User" as! Error
-                seal.reject(error)
-                return
+                throw Err("No User Profile")
             }
         
             

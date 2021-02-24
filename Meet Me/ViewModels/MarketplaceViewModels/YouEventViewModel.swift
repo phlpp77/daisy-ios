@@ -22,20 +22,7 @@ class YouEventViewModel: ObservableObject {
     
 
     
-    
-//    func getUserModel(){
-//        firestoreManagerUserTest.downloadCurrentUserModel(completion: { success in
-//                if success {
-//                    DispatchQueue.main.async {
-//                        self.currentUserModel = self.firestoreManagerUser.getCurrentUserModel()
-//                    }
-//                } else {
-//                    print("Download User Failed")
-//                }
-//            }
-//            )
-//        }
-//
+
     func addLikeToEvent(eventId: String){
         firstly {
             self.firestoreManagerUserTest.downloadCurrentUserModel()
@@ -47,25 +34,6 @@ class YouEventViewModel: ObservableObject {
         }
     }
 }
-    
-//    func addCurrentUserToMatchedEvent(eventId: String, completion: @escaping (Error?) -> Void) {
-//        getUserModel()
-//        if currentUserModel.userId != stockUser.userId {
-//           // print("right User Uploaded ")
-//        } else {
-//            //print("testUserUploaded")
-//        }
-//        firestoreManagerEventTest.addLikeToEvent(eventId: eventId, userModel: currentUserModel) { result in
-//            switch result {
-//            case.success(_):
-//                completion(nil)
-//            case .failure(let error):
-//                completion(error)
-//            }
-//        }
-//
-//    }
-//}
 
 
 

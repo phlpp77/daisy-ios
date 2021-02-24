@@ -20,6 +20,7 @@ struct EventModel: Codable {
     var startTime: Date
     var endTime: Date
     var pictureURL: String
+    var profilePicture: String
     
 }
 
@@ -60,6 +61,10 @@ struct EventModelObject {
     
     var pictureURL: String {
         eventModel.pictureURL
+    }
+    
+    var profilePicture: String {
+        eventModel.profilePicture
     }
     
     @Binding var position: CGSize

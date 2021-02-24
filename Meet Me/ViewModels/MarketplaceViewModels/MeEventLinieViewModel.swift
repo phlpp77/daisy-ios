@@ -28,23 +28,3 @@ class MeEventLineViewModel: ObservableObject {
     }
     
 }
-    
-//    func getMeEvents() {
-//        firestoreManagerEvent.firebaseGetMeEvents(completionHandler: { success in
-//            if success {
-//                DispatchQueue.main.async {
-//                self.meEvents = self.firestoreManagerEvent.getMeEvents()
-//                }
-//            } else {
-//                print("error by downloading ME events")
-//                // ohh, no picture
-//
-//            }
-//
-//        }
-//        )
-//    }
-//
-//}
-    
-
