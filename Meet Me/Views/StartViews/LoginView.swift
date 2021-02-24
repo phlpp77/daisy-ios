@@ -81,6 +81,10 @@ struct LoginView: View {
                 loginVM.login {
                     isActive = true
                     print("Login succeeded \(isActive)")
+                    
+                    
+                    // TODO: @Budni userIsLoggedIn erzeugt den Creation Path, wenn dieser schon existiert nicht aufrufen
+                    
                     userIsLoggedIn = true
                 }
                 
