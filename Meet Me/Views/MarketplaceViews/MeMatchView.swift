@@ -31,7 +31,7 @@ struct MeMatchView: View {
                 }
             }
             
-            MeMatchStartView(showMeMatchView: $showMeMatchView)
+            MeMatchStartView(showMeMatchView: $showMeMatchView, showMeMatchMainView: $showMeMatchMainView)
                 .opacity(showMeMatchView ? 0 : 1)
         }
         .onAppear {
