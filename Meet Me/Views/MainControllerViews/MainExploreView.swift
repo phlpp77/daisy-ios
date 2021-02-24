@@ -48,7 +48,10 @@ struct MainExploreView: View {
             // create the setup EventView on top of the rest
             if showCreationView {
                 EventCreationView(presentation: $showCreationView)
-            } else if showMeMatchView {
+            }
+            
+            // start the MeMatch process
+            if showMeMatchView {
                 MeMatchView(showMeMatchMainView: $showMeMatchView, tappedEvent: $tappedEvent)
             }
         }

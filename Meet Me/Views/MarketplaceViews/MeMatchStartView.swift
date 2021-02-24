@@ -12,6 +12,7 @@ struct MeMatchStartView: View {
     @State var buttonPressed: Bool = false
     @Binding var showMeMatchView: Bool
     @StateObject private var meMatchStartVM : MeMatchStartViewModel = MeMatchStartViewModel()
+    
     var body: some View {
         ZStack {
             
@@ -55,10 +56,11 @@ struct MeMatchStartView: View {
                     .scaleEffect(buttonPressed ? 0.8 : 1)
                     .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
                     .onTapGesture {
-                        print(meMatchStartVM.likedUsers)
+                        print("array with users who liked the event: \(meMatchStartVM.likedUsers)")
                         // button animation start
                         buttonPressed.toggle()
                         
+                        // show me match view now
                         showMeMatchView = true
                         
                         // haptic feedback when button is tapped
