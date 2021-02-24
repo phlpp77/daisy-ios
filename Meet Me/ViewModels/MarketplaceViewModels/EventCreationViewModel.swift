@@ -43,8 +43,12 @@ class EventCreationViewModel: ObservableObject {
             return
         }
         let eventId = id
-        let eventModel = EventModel(eventId: eventId, userId: currentUser.uid, name: name, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"")
+        var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, name: name, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"", profilePicture: "")
             firstly{
+                self.firestoreFotoManagerEventTest.getProfilePhotoForEvent()
+            }.map { profilePicture in
+                eventModel.profilePicture = profilePicture.url
+            }.then {
                 self.fireStoreManagerEventTest.saveEvent(eventModel: eventModel, eventId: eventId)
             }.then {
                 self.firestoreFotoManagerEventTest.resizeImage(originalImage: uiImage)

@@ -211,7 +211,7 @@ class FirestoreManagerUserTest {
     }
     
     //Muss noch implementiert werden 
-    func delteMatchFromUserProfile(userModel: UserModel) -> Promise<Void> {
+    func deleteMatchFromUserProfile(userModel: UserModel) -> Promise<Void> {
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
                 return

@@ -105,15 +105,6 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     
     // MARK: - Functions to dowload fotos or Url from Storage or firebase
     
-    func getProfilePhoto() -> Promise<PhotoModel> {
-        return Promise { seal in
-            
-        }
-    }
-    
-    
-    
-    
     
     func getAllPhotosFromCurrentUser() ->Promise<[PhotoModelObject]> {
         return Promise { seal in
