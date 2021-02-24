@@ -9,14 +9,20 @@ import SwiftUI
 
 struct LoadingView: View {
     
+    @Binding var showLoadingScreen: Bool
+    
     var body: some View {
-        LottieView(filename: "planet-loading", loopMode: .loop)
-            .frame(width: 100, height: 100, alignment: .center)
+        
+        if showLoadingScreen {
+            LottieView(filename: "planet-loading", loopMode: .loop)
+                .frame(width: 100, height: 100, alignment: .center)
+        }
+        
     }
 }
 
 struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        LoadingView()
+        LoadingView(showLoadingScreen: .constant(true))
     }
 }
