@@ -19,7 +19,7 @@ struct MainSettingsView: View {
             MeProfileView()
             
             LogoutView(startProcessDone: $startProcessDone)
-                .offset(x: screen.width / 2 - 60, y: -screen.height / 2 + 80)
+                .offset(x: screen.width / 2 - (screen.width * 0.1), y: -screen.height / 2 + 80)
         }
 
     }

@@ -14,7 +14,7 @@ struct MainControllerView: View {
     
     var body: some View {
         
-        if startProcessDone ||  checkUserAccForAutoLogin() {
+        if startProcessDone &&  checkUserAccForAutoLogin() {
             TabView {
                 MainSettingsView(startProcessDone: $startProcessDone).tabItem {
                     Image(systemName: "person.circle")
