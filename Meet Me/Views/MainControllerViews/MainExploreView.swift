@@ -15,6 +15,7 @@ struct MainExploreView: View {
     @State private var showCreationView: Bool = false
     @State private var showMeMatchView: Bool = false
     
+    @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject]
     @State private var tappedEvent: EventModelObject = stockEventObject
     
     var body: some View {
@@ -33,7 +34,7 @@ struct MainExploreView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 12)
                 
-                MeEventLineView(showCreationView: $showCreationView, showMeMatchView: $showMeMatchView, tappedEvent: $tappedEvent)
+                MeEventLineView(eventArray: $eventArray, showCreationView: $showCreationView, showMeMatchView: $showMeMatchView, tappedEvent: $tappedEvent)
                 
                 Text("You Events")
                     .font(.subheadline)
@@ -47,7 +48,7 @@ struct MainExploreView: View {
             
             // create the setup EventView on top of the rest
             if showCreationView {
-                EventCreationView(presentation: $showCreationView)
+                EventCreationView(presentation: $showCreationView, eventArray: $eventArray)
             }
             
             // start the MeMatch process

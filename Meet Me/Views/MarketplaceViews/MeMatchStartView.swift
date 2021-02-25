@@ -25,7 +25,8 @@ struct MeMatchStartView: View {
             BlurView(style: .systemMaterial)
                 .ignoresSafeArea()
                 .onTapGesture {
-//                    showMeMatchView = 
+                    print("cancel me match tapped")
+                    showMeMatchMainView = false
                 }
             
             VStack {
@@ -60,7 +61,7 @@ struct MeMatchStartView: View {
                     .scaleEffect(buttonPressed ? 0.8 : 1)
                     .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
                     .onTapGesture {
-                        print("array with users who liked the event: \(likedUsers)")
+                        print("array.cound with users who liked the event: \(likedUsers.count)")
                         // button animation start
                         buttonPressed.toggle()
                         

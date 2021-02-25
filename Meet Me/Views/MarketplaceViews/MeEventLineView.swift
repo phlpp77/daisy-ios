@@ -11,7 +11,7 @@ import PromiseKit
 struct MeEventLineView: View {
     
     @StateObject private var meEventLineVM = MeEventLineViewModel()
-    @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject]
+    @Binding var eventArray: [EventModelObject]
     
     @State var buttonPressed: Bool = true
     @Binding var showCreationView: Bool
@@ -32,11 +32,13 @@ struct MeEventLineView: View {
                             .clipShape(Circle())
                             .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
                             .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
-                            .padding(.leading, 10)
+                            .padding(.leading, 15)
+                            .padding(.trailing, 10)
                             .scaleEffect(buttonPressed ? 0.8 : 1)
                             .opacity(buttonPressed ? 0.5 : 1)
                             .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
                             .onTapGesture {
+                                print("new event creation tapped")
                                 // button animation start
                                 buttonPressed.toggle()
                                 
@@ -101,6 +103,6 @@ struct MeEventLineView: View {
 
 struct MeEventLineView_Previews: PreviewProvider {
     static var previews: some View {
-        MeEventLineView(showCreationView: .constant(false), showMeMatchView: .constant(false), tappedEvent: .constant(stockEventObject))
+        MeEventLineView(eventArray: .constant([stockEventObject]), showCreationView: .constant(false), showMeMatchView: .constant(false), tappedEvent: .constant(stockEventObject))
     }
 }
