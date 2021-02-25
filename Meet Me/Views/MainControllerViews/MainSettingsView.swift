@@ -19,7 +19,7 @@ struct MainSettingsView: View {
             MeProfileView()
             
             LogoutView(startProcessDone: $startProcessDone)
-                .offset(x: screen.width / 2 - (screen.width * 0.1), y: -screen.height / 2 + 80)
+                .offset(x: screen.width / 2 - (screen.width * 0.15), y: -screen.height / 2 + (screen.width * 0.22))
         }
 
     }
@@ -27,6 +27,9 @@ struct MainSettingsView: View {
 
 struct MainSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        MainSettingsView(startProcessDone: .constant(true))
+        TabView {
+            MainSettingsView(startProcessDone: .constant(true))
+        }
+        
     }
 }

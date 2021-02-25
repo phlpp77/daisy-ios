@@ -14,7 +14,8 @@ struct MainControllerView: View {
     
     var body: some View {
         
-        if startProcessDone &&  checkUserAccForAutoLogin() {
+        // shows the main screen if the startProcess (user-creation) is done AND logged into firebase
+        if startProcessDone || checkUserAccForAutoLogin() {
             TabView {
                 MainSettingsView(startProcessDone: $startProcessDone).tabItem {
                     Image(systemName: "person.circle")

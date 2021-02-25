@@ -62,7 +62,7 @@ struct MeMatchCardView: View {
                         userDenied = true
                         
                         
-//                        self.users.remove(at: userNumber)
+                        self.users.remove(at: userNumber)
                     }
                 }
             }
@@ -162,7 +162,7 @@ struct MeMatchCardView: View {
         .offset(x: translation.width, y: 0)
         .rotationEffect(.degrees(degrees))
         .gesture(dragGesture)
-        .animation(.interactiveSpring())
+        .animation(Animation.interactiveSpring().speed(0.2))
     }
     
 }

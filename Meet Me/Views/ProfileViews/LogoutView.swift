@@ -15,12 +15,13 @@ struct LogoutView: View {
     var body: some View {
         Button("Logout") {
             
-            startProcessDone = false
+            
             do {
                 try Auth.auth().signOut()
             } catch { let error = error
                 print(error.localizedDescription)
             }
+            startProcessDone = false
             
         }
         .padding()
