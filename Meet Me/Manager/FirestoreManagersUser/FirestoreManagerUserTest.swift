@@ -41,6 +41,23 @@ class FirestoreManagerUserTest {
         }
     }
     
+    func createLikedEventsArray() -> Promise<Void>{
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                return
+            }
+            do {
+                let _ =  db.collection("users")
+                    .document(currentUser.uid)
+                    .collection("likedEvents")
+                    .document("likedEvents").setData(["likedEvens": []])
+                    
+                seal.fulfill(())
+                    
+                }
+            }
+        }
+    
     // MARK: - Functions to Update current User
     
     
@@ -61,13 +78,14 @@ class FirestoreManagerUserTest {
                     seal.reject(error)
                 } else {
                     if let snapshot = snapshot {
-                        var userModel = try? snapshot.data(as: UserModel.self)
-                        if userModel != nil {
-                            userModel!.userId = snapshot.documentID
-                            seal.fulfill(userModel!)
-                        }else {
-                            let err = Err("userModel")
-                            seal.reject(err)
+                        let userModel = try? snapshot.data(as: UserModel.self)
+                        DispatchQueue.main.async {
+                            if userModel != nil {
+                                seal.fulfill(userModel!)
+                            }else {
+                                let err = Err("userModel")
+                                seal.reject(err)
+                            }
                         }
                         
                         
@@ -89,8 +107,13 @@ class FirestoreManagerUserTest {
                 } else {
                     if let snapshot = snapshot {
                         let userModel = try? snapshot.data(as: UserModel.self)
-                        if userModel != nil{
-                            seal.fulfill(userModel!)
+                        DispatchQueue.main.async {
+                            if userModel != nil{
+                                seal.fulfill(userModel!)
+                            } else {
+                                let error = Err("Cant get UserProfil from Creator")
+                                seal.reject(error)
+                            }
                         }
                         
                     }
@@ -113,11 +136,10 @@ class FirestoreManagerUserTest {
                         if let snapshot = snapshot {
                             let likedUser = try? snapshot.data(as: LikedUser.self)
                             if likedUser != nil {
+                                
                                 DispatchQueue.main.async {
                                     if likedUser?.likedUser.count != 0 {
-                                        print(likedUser!.likedUser)
                                         seal.fulfill(likedUser!.likedUser)
-                                        
                                 } else {
                                     let error = Err("No Liked Availibale")
                                     seal.reject(error)
@@ -165,15 +187,25 @@ class FirestoreManagerUserTest {
             
             
         }
-    } 
+    }
+    
+    // MARK: -Funtion to add like to Event to UserProfil
+    
+    func addLikedEventToCurrentUser(eventId: String) -> Promise<Void> {
+        return Promise { seal in
+            
+            
+        }
+        
+    }
+    
+    
+    
 
     
     
-
     
-    
-    
-    // MARK: - Functions to get add or delete a Match to User
+    // MARK: - Functions to get add a Match to User
     
     func addMatchToCurrentUser(userModel: UserModel) -> Promise<Void> {
         return Promise { seal in
@@ -208,6 +240,8 @@ class FirestoreManagerUserTest {
             seal.fulfill(())
         }
     }
+    
+    // MARK: -  delete a like from User
     
     func deleteLikedUser(eventModel: EventModel, userModel: UserModel) -> Promise<Void> {
         return Promise { seal in

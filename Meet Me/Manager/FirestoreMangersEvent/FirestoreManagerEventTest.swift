@@ -94,9 +94,8 @@ class FirestoreManagerEventTest {
         return Promise { seal in
             
             guard let currentUser = Auth.auth().currentUser else {
-                // FIXME: @budni pls fix the error handling at this point, when there is no user, we get an error
-//                let error: Error = "No current User" as! Error
-//                seal.reject(error)
+                let error = Err("No User Profil")
+                seal.reject(error)
                 return
             }
         

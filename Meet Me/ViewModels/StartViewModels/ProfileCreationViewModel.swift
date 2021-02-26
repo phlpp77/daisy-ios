@@ -32,27 +32,7 @@ class ProfileCreationModel: ObservableObject {
         firestoreFotoMangerUserTest = FirestoreFotoManagerUserTest()
     }
     
-//    func saveUserSettings() {
-//        guard let currentUser = Auth.auth().currentUser else {
-//            return
-//        }
-//
-//        let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor)
-//        firestoreManagerUser.saveUser(userModel: userModel){ result in
-//            switch result {
-//            case .success(let userModel):
-//                DispatchQueue.main.async {
-//                    self.saved = userModel == nil ? false: true
-//                }
-//            case .failure(_):
-//                DispatchQueue.main.async {
-//                    self .message = ErrorMessages.userSaveFailed
-//                }
-//
-//
-//            }
-//        }
-//    }
+
     
     func createUser(originalImage: UIImage, bDate: String) {
         guard let currentUser = Auth.auth().currentUser else {
@@ -70,6 +50,8 @@ class ProfileCreationModel: ObservableObject {
             self.firestoreFotoMangerUserTest.uploadUserPhoto(data: picture)
         }.then { url in
             self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url: url, fotoPlace: 1)
+        }.then {
+            self.firestoreManagerUserTest.createLikedEventsArray()
         }.done {
             print("DEBUG: done, User Creation erfolgreich")
         }.catch { error in
