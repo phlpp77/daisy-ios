@@ -21,6 +21,7 @@ struct EventModel: Codable {
     var endTime: Date
     var pictureURL: String
     var profilePicture: String
+
     
 }
 
@@ -66,6 +67,7 @@ struct EventModelObject {
     var profilePicture: String {
         eventModel.profilePicture
     }
+    
     
     @Binding var position: CGSize
     

@@ -10,12 +10,14 @@ import PromiseKit
 
 struct EventLineView: View {
     
-    //Muss in die View
+
     @StateObject private var youEventLineVM = YouEventLineViewModel()
+    
     var firestoreManagerEventTest: FireStoreManagerEventTest = FireStoreManagerEventTest()
 
     // data transfer form database
     @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
+    @State private var loading: Bool = false
     
     var body: some View {
         ZStack {
@@ -67,17 +69,22 @@ struct EventLineView: View {
                 Spacer()
             }
             .frame(height: 380)
-            
+        
+            LoadingView(showLoadingScreen: $loading)
         }
         .frame(height: 380)
         .onAppear {
+            loading = true
             firstly {
                 self.youEventLineVM.getYouEvents()
             }.done { events in
                 self.eventArray = events
+               
             }.catch { error in
                 print("DEBUG: error in GetYouEventChain: \(error)")
                 print("DEBUG: \(error.localizedDescription)")
+            }.finally {
+                loading = false
             }
 
         }

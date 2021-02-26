@@ -45,13 +45,15 @@ class EventCreationViewModel: ObservableObject {
         let eventId = UUID().uuidString
         var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, name: name, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"", profilePicture: "")
         
-            loadingScreen(visible: true)
+
             firstly{
                 self.firestoreFotoManagerEventTest.getProfilePhotoForEvent()
             }.map { profilePicture in
                 eventModel.profilePicture = profilePicture.url
             }.then {
                 self.fireStoreManagerEventTest.saveEvent(eventModel: eventModel, eventId: eventId)
+            }.then {
+                self.fireStoreManagerEventTest.createLikedUserArray(eventId: eventId)
             }.then {
                 self.firestoreFotoManagerEventTest.resizeImage(originalImage: uiImage)
             }.then { picture in
@@ -63,8 +65,6 @@ class EventCreationViewModel: ObservableObject {
             }.catch { error in
                 print("DEBUG: catch, Fehler in EventCreationChain\(error)")
                 print(error.localizedDescription)
-            }.finally {
-                loadingScreen(visible: false)
             }
         
         

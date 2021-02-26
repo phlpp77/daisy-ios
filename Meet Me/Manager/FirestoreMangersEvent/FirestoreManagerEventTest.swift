@@ -54,19 +54,36 @@ class FireStoreManagerEventTest {
 }
 
     // MARK: - Functions to update events
-
-    func addLikeToEvent(eventId: String, userModel: UserModel) -> Promise<UserModel>{
+    
+    func createLikedUserArray(eventId: String) -> Promise<Void>{
         return Promise { seal in
             do {
-                let _ = try db.collection("events")
+                let _ =  db.collection("events")
                     .document(eventId)
-                    .collection("likedUser").addDocument(from: userModel)
-                seal.fulfill(userModel)
-            } catch let error {
-                seal.reject(error)
+                    .collection("likedUser")
+                    .document("likedUser").setData(["likedUser": []])
+                    
+                seal.fulfill(())
+                    
+                }
             }
         }
-    }
+
+    func addLikeToEventArray(eventId: String, userModel: UserModel) -> Promise<UserModel>{
+        return Promise { seal in
+            do {
+                let _ =  db.collection("events")
+                    .document(eventId)
+                    .collection("likedUser")
+                    .document("likedUser")
+                    .updateData(["likedUser" : FieldValue.arrayUnion([userModel.userId])])
+                seal.fulfill(userModel)
+                    
+                }
+            }
+        }
+    
+
 
     // MARK: - Functions to get events
     func firebaseGetMeEvents() -> Promise<[EventModelObject]> {

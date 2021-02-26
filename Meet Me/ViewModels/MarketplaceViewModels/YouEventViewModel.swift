@@ -27,7 +27,7 @@ class YouEventViewModel: ObservableObject {
         firstly {
             self.firestoreManagerUserTest.downloadCurrentUserModel()
         }.then { userModel in
-            self.firestoreManagerEventTest.addLikeToEvent(eventId: eventId, userModel: userModel)
+            self.firestoreManagerEventTest.addLikeToEventArray(eventId: eventId, userModel: userModel)
         }.catch { error in
             print("DEBUG: error in getUserModelChain \(error)")
             print("DEBUG \(error.localizedDescription)")
