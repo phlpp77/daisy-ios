@@ -141,7 +141,8 @@ class FirestoreManagerEventTest {
             
             //db.collection("events").whereField("eventId", notIn: likedEvents)
             db.collection("events").whereField("userId", isNotEqualTo: currentUser.uid)
-                .getDocuments {(snapshot, error) in
+            .addSnapshotListener
+            {(snapshot, error) in
                     if let error = error {
                         seal.reject(error)
                     } else {

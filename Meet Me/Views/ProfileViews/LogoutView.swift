@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import PromiseKit
 
 struct LogoutView: View {
     
@@ -14,14 +15,17 @@ struct LogoutView: View {
     
     var body: some View {
         Button("Logout") {
-            
+
+
             
             do {
                 try Auth.auth().signOut()
+                startProcessDone = false
             } catch { let error = error
                 print(error.localizedDescription)
             }
-            startProcessDone = false
+            //startProcessDone = false
+    
             
         }
         .padding()
