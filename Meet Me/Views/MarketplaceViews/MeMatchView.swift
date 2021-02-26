@@ -17,6 +17,7 @@ struct MeMatchView: View {
     // database data
     @State var likedUsers: [UserModelObject] = [stockUserObject]
     
+    // local data
     @State var userChosen: Bool = false
     @State var showMeMatchView: Bool = false
     
@@ -26,7 +27,7 @@ struct MeMatchView: View {
             
             ZStack {
                 ForEach(likedUsers.indices, id: \.self ) { userNumber in
-                    MeMatchCardView(userChosen: $userChosen, users: $likedUsers, user: likedUsers[userNumber], userNumber: userNumber, showMeMatchMainView: $showMeMatchMainView)
+                    MeMatchCardView(userChosen: $userChosen, users: $likedUsers, event: $tappedEvent, user: likedUsers[userNumber], userNumber: userNumber, showMeMatchMainView: $showMeMatchMainView)
                         .opacity(showMeMatchView ? 1 : 0)
                 }
             }
