@@ -19,6 +19,8 @@ struct EventLineView: View {
     @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
     @State private var loading: Bool = false
     
+    @Binding var showYouProfileView: Bool
+    
     var body: some View {
         ZStack {
             
@@ -52,6 +54,9 @@ struct EventLineView: View {
                                                 axis: (x: 0, y: 10, z: 0)
                                             )
                                     }
+                                .onTapGesture {
+                                    print("show profile")
+                                }
                             }
                             .frame(width: 250, height: 250)
                             .padding(.bottom, 120)

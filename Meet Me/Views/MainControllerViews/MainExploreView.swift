@@ -14,6 +14,7 @@ struct MainExploreView: View {
     // states for animation
     @State private var showCreationView: Bool = false
     @State private var showMeMatchView: Bool = false
+    @State private var showYouProfileView: Bool = false
     
     @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject]
     @State private var tappedEvent: EventModelObject = stockEventObject
@@ -22,10 +23,15 @@ struct MainExploreView: View {
         ZStack {
             VStack {
                 
-                Text("Meet Me Market")
-                    .font(.system(.largeTitle, design: .rounded))
-                    .foregroundColor(.accentColor)
-                    .padding(.bottom, 12)
+                HStack(spacing: 0.0) {
+                    Text("Meet ")
+                    Text("ME")
+                        .font(.system(.largeTitle, design: .rounded))
+                        .foregroundColor(.accentColor)
+                    Text(" Market")
+                }
+                .font(.largeTitle)
+                .padding(.vertical, 12)
                 
                 Text("Me Events")
                     .font(.subheadline)

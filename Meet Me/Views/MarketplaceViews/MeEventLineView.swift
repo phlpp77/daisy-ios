@@ -14,8 +14,10 @@ struct MeEventLineView: View {
     @Binding var eventArray: [EventModelObject]
     
     @State var buttonPressed: Bool = true
+    
     @Binding var showCreationView: Bool
     @Binding var showMeMatchView: Bool
+    
     @Binding var tappedEvent: EventModelObject
     
     var body: some View {

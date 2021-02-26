@@ -2,25 +2,22 @@
 //  YouProfileView.swift
 //  Meet Me
 //
-//  Created by Philipp Hemkemeyer on 13.02.21.
+//  Created by Philipp Hemkemeyer on 26.02.21.
 //
 
 import SwiftUI
 
 struct YouProfileView: View {
     
-    var id: String
-    var name: String
-    var birthdayDate: Date
-    var gender: String
-    
     var body: some View {
-        Text("Hello, World!")
+        
+        MeProfileView(totalHeight: 620)
+            .modifier(FrozenWindowModifier())
     }
 }
 
 struct YouProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        YouProfileView(id: "1", name: "Philipp", birthdayDate: Date(), gender: "Male")
+        YouProfileView()
     }
 }
