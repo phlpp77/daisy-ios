@@ -11,14 +11,14 @@ import URLImage
 struct MeMatchCardView: View {
     
     // binding vars
-    @Binding var userChosen: Bool
+    @Binding var userAccepted: Bool
     @Binding var users: [UserModelObject]
     @Binding var showMeMatchMainView: Bool
     var user: UserModelObject
     var userNumber: Int
     
     init(userChosen: Binding<Bool>, users: Binding<[UserModelObject]>, user: UserModelObject, userNumber: Int, showMeMatchMainView: Binding<Bool>) {
-        self._userChosen = userChosen
+        self._userAccepted = userChosen
         self._users = users
         self.user = user
         self.userNumber = userNumber
@@ -32,7 +32,6 @@ struct MeMatchCardView: View {
     @State var degrees: Double = 0
     
     @State var userDenied: Bool = false
-    @State var userAccepted: Bool = false
     
     var body: some View {
         
@@ -47,22 +46,13 @@ struct MeMatchCardView: View {
                     degrees = 2
                     if value.translation.width > 80 {
                         print("user accepted swiped")
-                        
-                        userAccepted = true
-                        
-                        userChosen = true
-                        
-                        showMeMatchMainView = false
+                        userWasAccepted()
                     }
                 } else {
                     degrees = -2
                     if value.translation.width < -80 {
                         print("user denied swiped")
-                        
-                        userDenied = true
-                        
-                        
-//                        self.users.remove(at: userNumber)
+                        userWasDenied()
                     }
                 }
             }
@@ -116,9 +106,7 @@ struct MeMatchCardView: View {
                         .onTapGesture {
                             // update database - user not
                             print("user denied tapped")
-                            userDenied = true
-                            
-                            self.users.remove(at: userNumber)
+                            userWasDenied()
                         }
                     
                             
@@ -134,11 +122,7 @@ struct MeMatchCardView: View {
                         .onTapGesture {
                             // user was taken
                             print("user accepted tapped")
-                            userAccepted = true
-                            userChosen = true
-                            showMeMatchMainView = false
-                            
-                            
+                            userWasAccepted()
                         }
                         
                         
@@ -160,9 +144,35 @@ struct MeMatchCardView: View {
         .offset(x: userDenied ? -400 : 0)
         .offset(x: userAccepted ? 400 : 0)
         .offset(x: translation.width, y: 0)
+        
         .rotationEffect(.degrees(degrees))
+        
         .gesture(dragGesture)
-        .animation(.interactiveSpring())
+        .animation(Animation.interactiveSpring().speed(0.2))
+    }
+    
+    // MARK: - functions
+    
+    // MARK: function which gets called after user accepted the profile
+    func userWasAccepted() {
+        userAccepted = true
+        
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.1) {
+            showMeMatchMainView = false
+        }
+    }
+    
+    // MARK: function which gets called after user denied the profile
+    func userWasDenied() {
+        userDenied = true
+        
+        // if the last user (which is the first in the array) is denied the view gets canceled
+        if self.users.first!.userId == user.userId {
+            print("last profile denied")
+            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.1) {
+                showMeMatchMainView = false
+            }
+        }
     }
     
 }

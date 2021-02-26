@@ -14,6 +14,9 @@ struct EventCreationView: View {
     @StateObject private var firestoreFotoMangerUserTest = FirestoreFotoManagerUserTest()
     // binding for presentation
     @Binding var presentation: Bool
+    // binding for updating the array
+    @Binding var eventArray: [EventModelObject]
+//    @State private var event: EventModelObject = stockEventObject
     
     // vars to show in the screen
     @State private var category: String = "Café"
@@ -60,10 +63,14 @@ struct EventCreationView: View {
             // background
             BlurView(style: .systemMaterial)
                 .ignoresSafeArea()
+                .onTapGesture {
+                    print("cancel me match tapped")
+                    presentation = false
+                }
             
             VStack {
                 ZStack {
-                    // Main image as a backgrond of the event
+                    // Main image as a background of the event
                     
                     //BILD EVENT
                     Image(uiImage: uiImage!)
@@ -170,17 +177,23 @@ struct EventCreationView: View {
                 .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
                 .onTapGesture {
 
-                            // update handling
-                            prepareUpload()
-                            //youEventLineVM.getYouEvents()
-                            eventCreationVM.saveEvent(uiImage: uiImage!)
-                            // button animation start
-                            buttonPressed.toggle()
-                            // haptic feedback when button is tapped
-                            hapticPulse(feedback: .rigid)
-                            // close view
-                            presentation = false
+                    // update handling
+                    prepareUpload()
+                    //youEventLineVM.getYouEvents()
+                    eventCreationVM.saveEvent(uiImage: uiImage!)
+                    // button animation start
+                    buttonPressed.toggle()
+                    // haptic feedback when button is tapped
+                    hapticPulse(feedback: .rigid)
+                    
+                    // update event array
+                    eventArray.append(createUpdateEvent())
+                                        
+                    // close view
+                    presentation = false
 
+                    
+                    
                 }
                 
             }.onAppear {
@@ -242,6 +255,14 @@ struct EventCreationView: View {
         
     }
     
+    func createUpdateEvent() -> EventModelObject {
+        let event = EventModel(eventId: "", userId: "", name: "", category: category, date: date, startTime: startTime, endTime: endTime, pictureURL: pictureURL, profilePicture: "")
+        
+        let eventObject = EventModelObject(eventModel: event, position: .constant(.zero))
+
+        return eventObject
+    }
+    
     // function to convert strings into dates for upload into the database
     func prepareUpload() {
         eventCreationVM.category = category
@@ -255,6 +276,6 @@ struct EventCreationView: View {
 
 struct EventCreationView_Previews: PreviewProvider {
     static var previews: some View {
-        EventCreationView(presentation: .constant(true))
+        EventCreationView(presentation: .constant(true), eventArray: .constant([stockEventObject]))
     }
 }

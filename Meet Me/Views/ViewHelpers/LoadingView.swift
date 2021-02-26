@@ -15,7 +15,9 @@ struct LoadingView: View {
         
         if showLoadingScreen {
             LottieView(filename: "planet-loading", loopMode: .loop)
-                .frame(width: 100, height: 100, alignment: .center)
+                .frame(width: 150, height: 150, alignment: .center)
+                .padding()
+                .modifier(FrozenWindowModifier())
         }
         
     }
