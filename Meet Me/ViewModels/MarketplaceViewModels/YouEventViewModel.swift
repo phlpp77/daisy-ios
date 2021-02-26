@@ -25,8 +25,8 @@ class YouEventViewModel: ObservableObject {
 
     func addLikeToEvent(eventId: String){
         firstly {
-            self.firestoreManagerUserTest.getCurrentUser()
-        }.then { userModel in
+            self.firestoreManagerUserTest.addLikeToEventArray(eventId: eventId)
+        }.then {
             self.firestoreManagerEventTest.addLikeToEventArray(eventId: eventId)
         }.catch { error in
             print("DEBUG: error in getUserModelChain \(error)")

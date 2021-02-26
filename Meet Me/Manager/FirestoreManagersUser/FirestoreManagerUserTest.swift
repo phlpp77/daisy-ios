@@ -49,14 +49,68 @@ class FirestoreManagerUserTest {
             do {
                 let _ =  db.collection("users")
                     .document(currentUser.uid)
-                    .collection("likedEvents")
-                    .document("likedEvents").setData(["likedEvens": []])
+                    .collection("likedEvent")
+                    .document("likedEvent").setData(["likedEvent": ["Platzhalter"]])
                     
                 seal.fulfill(())
                     
                 }
             }
         }
+    
+    func addLikeToEventArray(eventId: String) -> Promise<Void>{
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                throw Err("No User Profile")
+            }
+            
+            do {
+                let _ =  db.collection("users")
+                    .document(currentUser.uid)
+                    .collection("likedEvent")
+                    .document("likedEvent")
+                    .updateData(["likedEvent" : FieldValue.arrayUnion([eventId])])
+                seal.fulfill(())
+                    
+                }
+            }
+        }
+    
+    func getAllLikedEvents() -> Promise<[String]> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                throw Err("No User Profile")
+            }
+            
+            db.collection("users")
+                .document(currentUser.uid)
+                .collection("likedEvent")
+                .document("likedEvent")
+                .getDocument { (snapshot, error) in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        if let snapshot = snapshot {
+                            let likedEvent = try? snapshot.data(as: LikedEvent.self)
+                            if likedEvent != nil {
+                                
+                                DispatchQueue.main.async {
+                                    if likedEvent?.likedEvent.count != 0 {
+                                        seal.fulfill(likedEvent!.likedEvent)
+                                } else {
+                                    let error = Err("No Liked Availibale")
+                                    seal.reject(error)
+                                }
+                            }
+                            }
+                            
+                        }
+                        
+                        
+                    }
+                }
+        }
+    }
     
     // MARK: - Functions to Update current User
     
@@ -122,88 +176,7 @@ class FirestoreManagerUserTest {
         }
     }
     
-    func getAllLikedUserDocument(eventId: String) -> Promise<[String]> {
-        return Promise { seal in
-            
-            db.collection("events")
-                .document(eventId)
-                .collection("likedUser")
-                .document("likedUser")
-                .getDocument { (snapshot, error) in
-                    if let error = error {
-                        seal.reject(error)
-                    } else {
-                        if let snapshot = snapshot {
-                            let likedUser = try? snapshot.data(as: LikedUser.self)
-                            if likedUser != nil {
-                                
-                                DispatchQueue.main.async {
-                                    if likedUser?.likedUser.count != 0 {
-                                        seal.fulfill(likedUser!.likedUser)
-                                } else {
-                                    let error = Err("No Liked Availibale")
-                                    seal.reject(error)
-                                }
-                            }
-                            }
-                            
-                        }
-                        
-                        
-                    }
-                }
-        }
-    }
-    
-    
-    func getAllLikedUserModels(likedUser: [String]) -> Promise<[UserModelObject]> {
-        return Promise { seal in
-            print(likedUser)
-            db.collection("users")
-                .whereField("userId", in: likedUser)
-                .getDocuments {(snapshot, error) in
-                    if let error = error {
-                        seal.reject(error)
-                    } else {
-                        
-                        if let snapshot = snapshot {
-                            let userModel: [UserModelObject] = snapshot.documents.compactMap { doc in
-                                let userModel = try? doc.data(as: UserModel.self)
-                                if let userModel = userModel {
-                                    return UserModelObject(user: userModel)
-                                }
-                                return nil
-                                
-                            }
-                            DispatchQueue.main.async {
-                                print(userModel)
-                                seal.fulfill(userModel)
-                            }
-                            
-                        }
-                        
-                    }
-                }
-            
-            
-        }
-    }
-    
-    // MARK: -Funtion to add like to Event to UserProfil
-    
-    func addLikedEventToCurrentUser(eventId: String) -> Promise<Void> {
-        return Promise { seal in
-            
-            
-        }
-        
-    }
-    
-    
-    
 
-    
-    
     
     // MARK: - Functions to get add a Match to User
     
@@ -279,3 +252,4 @@ class FirestoreManagerUserTest {
     
     
 }
+

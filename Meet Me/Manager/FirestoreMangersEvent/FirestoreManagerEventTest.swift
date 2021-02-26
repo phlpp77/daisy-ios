@@ -131,7 +131,7 @@ class FirestoreManagerEventTest {
     }
 
     // MARK: - Functions to get events
-    func firebaseGetYouEvents() -> Promise<[EventModelObject]> {
+    func firebaseGetYouEvents(likedEvents : [String]) -> Promise<[EventModelObject]> {
         return Promise { seal in
             
             guard let currentUser = Auth.auth().currentUser else {
@@ -139,8 +139,8 @@ class FirestoreManagerEventTest {
             }
         
             
-            db.collection("events")
-                .whereField("userId", isNotEqualTo: currentUser.uid)
+            //db.collection("events").whereField("eventId", notIn: likedEvents)
+            db.collection("events").whereField("userId", isNotEqualTo: currentUser.uid)
                 .getDocuments {(snapshot, error) in
                     if let error = error {
                         seal.reject(error)
@@ -157,7 +157,79 @@ class FirestoreManagerEventTest {
                                 
                             }
                             DispatchQueue.main.async {
+                                if event != nil {
                                 seal.fulfill(event!)
+                                } else {
+                                    let error = Err("No Events in GetYouEvents")
+                                    seal.reject(error)
+                                }
+                            }
+                            
+                        }
+                        
+                    }
+                }
+            
+            
+        }
+    }
+    
+    func getAllLikedUserDocument(eventId: String) -> Promise<[String]> {
+        return Promise { seal in
+            
+            db.collection("events")
+                .document(eventId)
+                .collection("likedUser")
+                .document("likedUser")
+                .getDocument { (snapshot, error) in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        if let snapshot = snapshot {
+                            let likedUser = try? snapshot.data(as: LikedUser.self)
+                            if likedUser != nil {
+                                
+                                DispatchQueue.main.async {
+                                    if likedUser?.likedUser.count != 0 {
+                                        seal.fulfill(likedUser!.likedUser)
+                                } else {
+                                    let error = Err("No Liked Availibale")
+                                    seal.reject(error)
+                                }
+                            }
+                            }
+                            
+                        }
+                        
+                        
+                    }
+                }
+        }
+    }
+    
+    
+    func getAllLikedUserModels(likedUser: [String]) -> Promise<[UserModelObject]> {
+        return Promise { seal in
+            print(likedUser)
+            db.collection("users")
+                .whereField("userId", in: likedUser)
+                .getDocuments {(snapshot, error) in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        
+                        if let snapshot = snapshot {
+                            let userModel: [UserModelObject] = snapshot.documents.compactMap { doc in
+                                let userModel = try? doc.data(as: UserModel.self)
+                                if let userModel = userModel {
+                                    return UserModelObject(user: userModel)
+                                }
+                                return nil
+                                
+                            }
+                            DispatchQueue.main.async {
+                                print(userModel)
+                                seal.fulfill(userModel)
                             }
                             
                         }

@@ -10,11 +10,14 @@ import PromiseKit
 
 class YouEventLineViewModel: ObservableObject {
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
+    private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
 
     func getYouEvents() -> Promise<[EventModelObject]>{
         return Promise { seal in
             firstly {
-                self.firestoreManagerEventTest.firebaseGetYouEvents()
+                self.firestoreManagerUserTest.getAllLikedEvents()
+            }.then { likedEvents in
+                self.firestoreManagerEventTest.firebaseGetYouEvents(likedEvents: likedEvents)
             }.done { events in
                 seal.fulfill(events)
             }.catch { error in
