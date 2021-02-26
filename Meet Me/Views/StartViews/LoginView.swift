@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import PromiseKit
 struct LoginView: View {
     
     // needed to get keyboard height when keyboard is shown
@@ -84,11 +84,16 @@ struct LoginView: View {
                     isActive = true
                     print("Login succeeded \(isActive)")
                     
-                    // true when user is in DB
-                    if loginVM.checkUserAcc() {
+                    firstly {
+                        loginVM.checkUserAcc()
+                    }.done { acc in
+                        userHasNoAccount = !acc
+                        startProcessDone = acc
+                    }.catch { error in
                         userHasNoAccount = false
-                        startProcessDone = true
+                        print("DEGUB: error in getUserProfile by login")
                     }
+                    // true when user is in DB
                     
                     userIsLoggedIn = true
                 }

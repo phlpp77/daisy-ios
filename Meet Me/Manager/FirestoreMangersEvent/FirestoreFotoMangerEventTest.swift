@@ -81,80 +81,74 @@ class FirestoreFotoManagerEventTest: ObservableObject {
         }
     }
     
-    func getAllPhotosFromEvent(eventModel: EventModel) -> Promise<[PhotoModelObject]> {
-        return Promise { seal in
-            
-            
-            
-            guard let currentUser = Auth.auth().currentUser else {
-                let error: Error = "No current User" as! Error
-                seal.reject(error)
-                return
-            }
-            db.collection("users")
-                .whereField("userId", isEqualTo: currentUser.uid)
-                .getDocuments { (snapshot,error) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                        seal.reject(error)
-                    } else {
-                        if let snapshot = snapshot {
-                            let photoModel: [PhotoModelObject] = snapshot.documents.compactMap { doc in
-                                var photoModel = try? doc.data(as: PhotoModel.self)
-                                photoModel?.id = doc.documentID
-                                if let photoModel = photoModel {
-                                    return PhotoModelObject(photoModel: photoModel)
-                                }
-                                return nil
-                                
-                            }
-                            DispatchQueue.main.async {
-                                seal.fulfill(photoModel)
-                                
-                            }
-                        }
-                    }
-                }
-            
-            
-            
-        }
-    }
-    
-    func getProfilePhotoForEvent() -> Promise<PhotoModel> {
-        return Promise { seal in
-            
-            guard let currentUser = Auth.auth().currentUser else {
-                return
-            }
-            
-            db.collection("users")
-                .document(currentUser.uid)
-                .collection("UserPhotos")
-                .limit(to: 1).getDocuments { (snapshot, error) in
-                    if let error = error {
-                        seal.reject(error)
-                    } else {
-                        if let snapshot = snapshot {
-                            let photoModel : [PhotoModel] = snapshot.documents.compactMap { doc in
-                                let photoModel = try? doc.data(as: PhotoModel.self)
-                                if let photoModel = photoModel{
-                                    return photoModel
-                                }
-                                return nil
-                            }
-                            DispatchQueue.main.async {
-                                seal.fulfill(photoModel[0])
-                            }
-                        }
-                        
-                        
-                    }
-                    
-                    
-                }
+//    func getAllPhotosFromEvent(eventModel: EventModel) -> Promise<PhotoModelObject> {
+//        return Promise { seal in
+//            guard let currentUser = Auth.auth().currentUser else {
+//                let error = Err ("no current UserModel")
+//                seal.reject(error)
+//                return
+//            }
+//            db.collection("events")
+//                .document(eventModel.eventId)
+//                .getDocument { (snapshot,error) in
+//                    if let error = error {
+//                        print(error.localizedDescription)
+//                        seal.reject(error)
+//                    } else {
+//                        if let snapshot = snapshot {
+//                            let photoModel = try? snapshot.data(as: PhotoModel.self)
+//                                photoModel?.id = doc.documentID
+//                                if let photoModel = photoModel {
+//                                    return PhotoModelObject(photoModel: photoModel)
+//                                }
+//                                return nil
+//                                
+//                            }
+//                            DispatchQueue.main.async {
+//                                seal.fulfill(photoModel)
+//                                
+//                            }
+//                        }
+//                    }
+//                }
+//            
+//            
+//            
+//        }
+//    }
+//    
+//    func getProfilePhotoForEvent() -> Promise<PhotoModel> {
+//        return Promise { seal in
+//            
+//            guard let currentUser = Auth.auth().currentUser else {
+//                return
+//            }
+//            
+//            db.collection("users")
+//                .document(currentUser.uid)
+//                .getDocument { (snapshot, error) in
+//                    if let error = error {
+//                        seal.reject(error)
+//                    } else {
+//                        if let snapshot = snapshot {
+//                            let userModel = snapshot
+//                                let userModel = try? doc.data(as: PhotoModel.self)
+//                                if let photoModel = photoModel{
+//                                    return photoModel
+//                                }
+//                                return nil
+//                            }
+//                            DispatchQueue.main.async {
+//                                seal.fulfill(photoModel[0])
+//                            }
+//                        }
+//                        
+//                        
+//                    }
+//                    
+//                    
+//                }
             
             
         }
-    }
-}
+

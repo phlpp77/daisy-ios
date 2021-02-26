@@ -35,6 +35,7 @@ struct MeMatchView: View {
                 .opacity(showMeMatchView ? 0 : 1)
         }
         .onAppear {
+            
             firstly {
                 self.meMatchStartVM.getLikedUsers(eventId: tappedEvent.eventId)
             }.done { user in
@@ -43,6 +44,7 @@ struct MeMatchView: View {
                 print("DEBUG: error in GetYouEventChain: \(error)")
                 print("DEBUG: \(error.localizedDescription)")
             }
+            
         }
     }
 }

@@ -33,12 +33,14 @@ var createdId = UUID().uuidString
 // MARK - Stockdata
 
 // MARK: stock user to use as default
-let stockUser: UserModel = UserModel(userId: "007", name: "Philipp", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Female")
+let stockUser: UserModel = UserModel(userId: "007", name: "Philipp", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Female", userPhotos: [1: stockUrlString])
 
 let stockUserObject: UserModelObject = UserModelObject(user: stockUser)
 
 // TODO: Need to be changed to a stock photo
 let stockURL: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/UserImages%2FE0E6E182-1625-4519-9315-531980665268.png?alt=media&token=a77b552b-d687-4367-bee2-76b625fe8e48")!
+
+let stockUrlString: String = "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/UserImages%2FE0E6E182-1625-4519-9315-531980665268.png?alt=media&token=a77b552b-d687-4367-bee2-76b625fe8e48"
 
 // MARK: stock event for marketplace and eventObject (length: half an hour - 30*60 seconds)
 let stockEvent: EventModel = EventModel(eventId: "008", userId: "007", name: "Nice Event", category: "Café", date: Date(), startTime: Date(), endTime: Date() + 30 * 60, pictureURL: "", profilePicture: "")

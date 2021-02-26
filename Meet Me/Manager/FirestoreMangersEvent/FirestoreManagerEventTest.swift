@@ -27,7 +27,7 @@ import FirebaseFirestoreSwift
 import FirebaseAuth
 import PromiseKit
 
-class FireStoreManagerEventTest {
+class FirestoreManagerEventTest {
     
     private var db: Firestore
 
@@ -69,15 +69,19 @@ class FireStoreManagerEventTest {
             }
         }
 
-    func addLikeToEventArray(eventId: String, userModel: UserModel) -> Promise<UserModel>{
+    func addLikeToEventArray(eventId: String) -> Promise<Void>{
         return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                throw Err("No User Profile")
+            }
+            
             do {
                 let _ =  db.collection("events")
                     .document(eventId)
                     .collection("likedUser")
                     .document("likedUser")
-                    .updateData(["likedUser" : FieldValue.arrayUnion([userModel.userId])])
-                seal.fulfill(userModel)
+                    .updateData(["likedUser" : FieldValue.arrayUnion([currentUser.uid])])
+                seal.fulfill(())
                     
                 }
             }

@@ -9,7 +9,7 @@ import Foundation
 import PromiseKit
 
 class YouEventLineViewModel: ObservableObject {
-    private var firestoreManagerEventTest: FireStoreManagerEventTest = FireStoreManagerEventTest()
+    private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
 
     func getYouEvents() -> Promise<[EventModelObject]>{
         return Promise { seal in

@@ -66,6 +66,7 @@
 		90B1BFD625B8DB9200F8FBF7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1BFD525B8DB9200F8FBF7 /* LoginViewModel.swift */; };
 		90B1BFDB25B8DBB700F8FBF7 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1BFDA25B8DBB700F8FBF7 /* RegisterViewModel.swift */; };
 		90D42A9325E7091D0060311B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90D42A9225E7091D0060311B /* GoogleService-Info.plist */; };
+		90D42A9E25E937630060311B /* LikedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42A9D25E937630060311B /* LikedUser.swift */; };
 		90F2334D25D58481003FB1D9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2334C25D58481003FB1D9 /* ImagePicker.swift */; };
 		90F2335125D5943B003FB1D9 /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */; };
 		90F2336325D830E7003FB1D9 /* ProfileCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2336225D830E7003FB1D9 /* ProfileCreationViewModel.swift */; };
@@ -132,6 +133,7 @@
 		90B1BFD525B8DB9200F8FBF7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = "Meet Me/ViewModels/StartViewModels/LoginViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		90B1BFDA25B8DBB700F8FBF7 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterViewModel.swift; path = "Meet Me/ViewModels/StartViewModels/RegisterViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		90D42A9225E7091D0060311B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		90D42A9D25E937630060311B /* LikedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUser.swift; sourceTree = "<group>"; };
 		90F2334C25D58481003FB1D9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
 		90F2336225D830E7003FB1D9 /* ProfileCreationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCreationViewModel.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				90F8AB4525BF5CDA00E969E0 /* UserModel.swift */,
+				90D42A9D25E937630060311B /* LikedUser.swift */,
 				902EF6B825D89213004464F0 /* PhotoModel.swift */,
 				174423A925D9A0DF00D25EDD /* EventModel.swift */,
 			);
@@ -547,6 +550,7 @@
 				17DAD7E325D934D600DBE60B /* GlobalFunctions.swift in Sources */,
 				1778E41325D0904100C5D343 /* DateTextField.swift in Sources */,
 				90F8AB4625BF5CDA00E969E0 /* UserModel.swift in Sources */,
+				90D42A9E25E937630060311B /* LikedUser.swift in Sources */,
 				90B1BFDB25B8DBB700F8FBF7 /* RegisterViewModel.swift in Sources */,
 				90779B0725E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift in Sources */,
 				90779AED25E2C8CD0070D794 /* FirestoreManagerEventTest.swift in Sources */,

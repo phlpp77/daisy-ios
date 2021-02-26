@@ -13,7 +13,7 @@ struct EventLineView: View {
 
     @StateObject private var youEventLineVM = YouEventLineViewModel()
     
-    var firestoreManagerEventTest: FireStoreManagerEventTest = FireStoreManagerEventTest()
+    var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
 
     // data transfer form database
     @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]

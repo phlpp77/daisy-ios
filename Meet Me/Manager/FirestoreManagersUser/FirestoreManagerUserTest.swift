@@ -23,38 +23,7 @@ class FirestoreManagerUserTest {
     }
     
     
-    func getAllMatchedUsers(eventId: String) -> Promise<[UserModelObject]> {
-        return Promise { seal in
-            
-            db.collection("events")
-                .document(eventId)
-                .collection("likedUser")
-                .getDocuments() { (snapshot, error) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                        seal.reject(error)
-                    } else {
-                        if let snapshot = snapshot {
-                            let user: [UserModelObject] = snapshot.documents.compactMap { doc in
-                                var user = try? doc.data(as: UserModel.self)
-                                user?.userId = doc.documentID
-                                if let user = user {
-                                    return UserModelObject(user: user)
-                                }
-                                return nil
-                                
-                            }
-                            DispatchQueue.main.async {
-                                seal.fulfill(user)
-                            }
-                            
-                        }
-                    }
-                    
-                }
-        }
-        
-    }
+
     
     // MARK: - Functions to Save userModel to Firebase
     func saveUser(userModel: UserModel) -> Promise<UserModel>{
@@ -80,35 +49,33 @@ class FirestoreManagerUserTest {
     
     // MARK: - Functions to get User Profiles
     
-    func getAllUsers() -> Promise<[UserModel]>{
+    func getCurrentUser() -> Promise<UserModel> {
         return Promise { seal in
             
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
-            
-            db.collection("users")
-                .whereField("userId", isEqualTo: currentUser.uid)
-                .getDocuments() { (snapshot, error) in
-                    if let error = error {
-                        seal.reject(error)
-                    } else {
-                        if let snapshot = snapshot {
-                            let users: [UserModel]? = snapshot.documents.compactMap { doc in
-                                var user = try? doc.data(as: UserModel.self)
-                                if user != nil {
-                                    user!.userId = doc.documentID
-                                }
-                                return user
-                            }
-                            DispatchQueue.main.async {
-                                seal.fulfill(users!)
-                            }
-                            
+            db.collection("users").document(currentUser.uid).getDocument { snapshot, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    seal.reject(error)
+                } else {
+                    if let snapshot = snapshot {
+                        var userModel = try? snapshot.data(as: UserModel.self)
+                        if userModel != nil {
+                            userModel!.userId = snapshot.documentID
+                            seal.fulfill(userModel!)
+                        }else {
+                            let err = Err("userModel")
+                            seal.reject(err)
                         }
+                        
                         
                     }
                 }
+                
+            }
+            
             
         }
     }
@@ -131,34 +98,81 @@ class FirestoreManagerUserTest {
             }
         }
     }
-            
     
-    func downloadCurrentUserModel() -> Promise<UserModel> {
+    func getAllLikedUserDocument(eventId: String) -> Promise<[String]> {
         return Promise { seal in
             
-            guard let currentUser = Auth.auth().currentUser else {
-                return
-            }
-            db.collection("users").document(currentUser.uid).getDocument { snapshot, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    seal.reject(error)
-                } else {
-                    if let snapshot = snapshot {
-                        var userModel = try? snapshot.data(as: UserModel.self)
-                        if userModel != nil {
-                            userModel!.userId = snapshot.documentID
+            db.collection("events")
+                .document(eventId)
+                .collection("likedUser")
+                .document("likedUser")
+                .getDocument { (snapshot, error) in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        if let snapshot = snapshot {
+                            let likedUser = try? snapshot.data(as: LikedUser.self)
+                            if likedUser != nil {
+                                DispatchQueue.main.async {
+                                    if likedUser?.likedUser.count != 0 {
+                                        print(likedUser!.likedUser)
+                                        seal.fulfill(likedUser!.likedUser)
+                                        
+                                } else {
+                                    let error = Err("No Liked Availibale")
+                                    seal.reject(error)
+                                }
+                            }
+                            }
+                            
                         }
                         
-                        seal.fulfill(userModel!)
+                        
                     }
                 }
-                
-            }
+        }
+    }
+    
+    
+    func getAllLikedUserModels(likedUser: [String]) -> Promise<[UserModelObject]> {
+        return Promise { seal in
+            print(likedUser)
+            db.collection("users")
+                .whereField("userId", in: likedUser)
+                .getDocuments {(snapshot, error) in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        
+                        if let snapshot = snapshot {
+                            let userModel: [UserModelObject] = snapshot.documents.compactMap { doc in
+                                let userModel = try? doc.data(as: UserModel.self)
+                                if let userModel = userModel {
+                                    return UserModelObject(user: userModel)
+                                }
+                                return nil
+                                
+                            }
+                            DispatchQueue.main.async {
+                                print(userModel)
+                                seal.fulfill(userModel)
+                            }
+                            
+                        }
+                        
+                    }
+                }
             
             
         }
-    }
+    } 
+
+    
+    
+
+    
+    
+    
     // MARK: - Functions to get add or delete a Match to User
     
     func addMatchToCurrentUser(userModel: UserModel) -> Promise<Void> {

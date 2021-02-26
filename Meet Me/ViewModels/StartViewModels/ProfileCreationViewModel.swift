@@ -60,7 +60,7 @@ class ProfileCreationModel: ObservableObject {
         }
         self.birthdayDate = convertStringToDate(date: bDate)
         
-        let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor)
+        let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor, userPhotos: [1: stockUrlString])
         
         firstly {
             self.firestoreManagerUserTest.saveUser(userModel: userModel)
@@ -69,7 +69,7 @@ class ProfileCreationModel: ObservableObject {
         }.then { picture in
             self.firestoreFotoMangerUserTest.uploadUserPhoto(data: picture)
         }.then { url in
-            self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url: url)
+            self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url: url, fotoPlace: 1)
         }.done {
             print("DEBUG: done, User Creation erfolgreich")
         }.catch { error in

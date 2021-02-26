@@ -8,11 +8,13 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import PromiseKit
 
 class LoginViewModel: ObservableObject {
     
     
     private var db: Firestore = Firestore.firestore()
+    private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     var email: String = ""
     var password: String = ""
     var errorMessage: String = ""
@@ -41,15 +43,18 @@ class LoginViewModel: ObservableObject {
         
     }
 //Check if user has a UserModel
-    func checkUserAcc() -> Bool {
-        guard let _ = Auth.auth().currentUser?.uid else {
-            return false
+    func checkUserAcc() -> Promise<Bool> {
+        return Promise { seal in
+            firstly {
+                firestoreManagerUserTest.getCurrentUser()
+            }.done { userModel in
+                seal.fulfill(userModel.startProcessDone)
+            }.catch { error in
+                seal.reject(error)
+            }
         }
-        return true
-        
         
     }
 
-    
 }
 

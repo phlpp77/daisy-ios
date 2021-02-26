@@ -81,20 +81,15 @@ struct MeProfileView: View {
                     }
                 }.onAppear {
                     
-                    loading = true
+                    
                     firstly {
                         self.meProfileVM.getUserProfile()
                     }.map { userModel in
                         meProfileVM.userModel = userModel
-                    }.then {
-                        self.meProfileVM.getUserPicture()
-                    }.done { url in
-                        meProfileVM.userPictureURL = url
+                        meProfileVM.userPictureURL = URL(string: userModel.userPhotos[1]!)!
                     }.catch { error in
                             print("DEBUG: error in getUserProfileChain \(error)")
                             print("DEBUG: \(error.localizedDescription)")
-                    }.finally {
-                        loading = false
                     }
                 }
                 .padding()
@@ -112,11 +107,10 @@ struct MeProfileView: View {
             }
             .frame(width: 340, height: 450, alignment: .center)
             
-            LoadingView(showLoadingScreen: $loading)
+            
         }
     }
 }
-
 
 
 struct MeProfileView_Previews: PreviewProvider {

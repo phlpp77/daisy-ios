@@ -15,14 +15,16 @@ class MeMatchStartViewModel: ObservableObject {
     func getLikedUsers (eventId: String) -> Promise<[UserModelObject]> {
         return Promise { seal in
             firstly{
-                self.firestoreManagerUserTest.getAllMatchedUsers(eventId: eventId)
-            }.done { likes in
-                seal.fulfill(likes)
-                print("DEBUG: done, GetLikedUsers Chain erfolgreich")
+                self.firestoreManagerUserTest.getAllLikedUserDocument(eventId: eventId)
+            }.then { likedUser in
+                self.firestoreManagerUserTest.getAllLikedUserModels(likedUser: likedUser)
+            }.done { userModels in
+                seal.fulfill(userModels)
             }.catch { error in
                 seal.reject(error)
             }
         }
     }
+    
 }
 
