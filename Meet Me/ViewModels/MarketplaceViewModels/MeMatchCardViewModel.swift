@@ -12,12 +12,15 @@ class MeMatchCardViewModel: ObservableObject {
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     
     
-    func addMatch(userModel: UserModel) ->Promise<Bool> {
+    func addMatch(eventModel: EventModel, userModel: UserModel) ->Promise<Bool> {
         return Promise { seal in
             firstly {
                 self.firestoreManagerUserTest.addMatchToCurrentUser(userModel: userModel)
             }.then { 
                 self.firestoreManagerUserTest.addMatchToMatchedUser(userModel: userModel)
+            }.then {
+                self.firestoreManagerUserTest.deleteLikedUser(eventModel: eventModel, userModel: userModel)
+            
             }.done {
                 seal.fulfill(true)
             }.catch { error in

@@ -10,7 +10,7 @@ import PromiseKit
 
 class MeEventLineViewModel: ObservableObject {
     
-    private var firestoreManagerEventTest = FireStoreManagerEventTest()
+    private var firestoreManagerEventTest = FirestoreManagerEventTest()
     private var firestoreFotoManagerEventTest: FirestoreFotoManagerEventTest = FirestoreFotoManagerEventTest()
    
     

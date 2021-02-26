@@ -11,13 +11,13 @@ import PromiseKit
 class YouEventViewModel: ObservableObject {
     
     private var firestoreManagerUserTest: FirestoreManagerUserTest
-    private var firestoreManagerEventTest: FireStoreManagerEventTest
+    private var firestoreManagerEventTest: FirestoreManagerEventTest
     private var currentUserModel: UserModel = stockUser
     
     
     init(){
         firestoreManagerUserTest = FirestoreManagerUserTest()
-        firestoreManagerEventTest = FireStoreManagerEventTest()
+        firestoreManagerEventTest = FirestoreManagerEventTest()
     }
     
 
@@ -25,9 +25,9 @@ class YouEventViewModel: ObservableObject {
 
     func addLikeToEvent(eventId: String){
         firstly {
-            self.firestoreManagerUserTest.downloadCurrentUserModel()
-        }.then { userModel in
-            self.firestoreManagerEventTest.addLikeToEvent(eventId: eventId, userModel: userModel)
+            self.firestoreManagerUserTest.addLikeToEventArray(eventId: eventId)
+        }.then {
+            self.firestoreManagerEventTest.addLikeToEventArray(eventId: eventId)
         }.catch { error in
             print("DEBUG: error in getUserModelChain \(error)")
             print("DEBUG \(error.localizedDescription)")

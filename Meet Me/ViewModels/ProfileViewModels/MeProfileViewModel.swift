@@ -24,7 +24,7 @@ class MeProfileViewModel: ObservableObject {
         return Promise { seal in
             
             firstly {
-                self.firestoreManagerUserTest.downloadCurrentUserModel()
+                self.firestoreManagerUserTest.getCurrentUser()
             }.done { userModel in
                 seal.fulfill(userModel)
             }.catch { error in
@@ -32,24 +32,25 @@ class MeProfileViewModel: ObservableObject {
             }
         }
     }
-    
-    func getUserPicture() -> Promise<URL> {
-        return Promise { seal in
-           
-            firstly {
-                self.firestoreFotoManagerUserTest.getAllPhotosFromCurrentUser()
-            }.done { allPhotos in
-                if allPhotos != nil {
-                    seal.fulfill(URL(string: allPhotos![0].url)!)
-                } else {
-                    seal.fulfill(stockURL)
-                }
-            }.catch { error in
-                seal.reject(error)
-            }
-        }
-    }
 }
+    
+//    func getUserPicture() -> Promise<URL> {
+//        return Promise { seal in
+//
+//            firstly {
+//                self.firestoreFotoManagerUserTest.getAllPhotosFromCurrentUser()
+//            }.done { allPhotos in
+//                if allPhotos != nil {
+//                    seal.fulfill(URL(string: allPhotos![0].url)!)
+//                } else {
+//                    seal.fulfill(stockURL)
+//                }
+//            }.catch { error in
+//                seal.reject(error)
+//            }
+//        }
+//    }
+//}
             
             
 

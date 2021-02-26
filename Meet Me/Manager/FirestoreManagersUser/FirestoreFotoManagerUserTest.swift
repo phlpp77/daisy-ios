@@ -28,14 +28,9 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     
     // MARK: - Functions to save User Photos to Storage and the URL to Firestore
     
-    // function is called inside the main code
-    //in dem Paramter collection wird ein Document mit Url und User Id erstellt
-    //paramter childfolder lädt das dokument in den Storage
 
     
-    
-    
-    
+
     func resizeImage(originalImage: UIImage?) -> Promise<Data> {
         return Promise { seal in
             if let originalImage = originalImage {
@@ -76,102 +71,21 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     
     
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
-    func savePhotoUrlToFirestore(url: URL) ->Promise<Void>{
+    func savePhotoUrlToFirestore(url: URL, fotoPlace: Int) ->Promise<Void>{
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
-            
-            do {
-                let _ = try db.collection("users")
-                    .document(currentUser.uid)
-                    .collection("UserPhotos")
-                    .addDocument(from: PhotoModel(url: url.absoluteString, userId: currentUser.uid))
+                let _ =  db.collection("users")
+                    .document(currentUser.uid).updateData(["userPhotos.1" : url.absoluteString])
                 seal.fulfill(())
-            } catch let error {
-                seal.reject(error)
             }
+
         }
-        
-        
-    }
-    
-    
-    
-    // MARK: - Functions to update Photos in the Storage
-    
-    
-    
-    
-    // MARK: - Functions to dowload fotos or Url from Storage or firebase
-    
-    
-    func getAllPhotosFromCurrentUser() ->Promise<[PhotoModelObject]?> {
-        return Promise { seal in
-            
-        guard let currentUser = Auth.auth().currentUser else {
-            return
-        }
-        
-            db.collection("users")
-            .document(currentUser.uid)
-            .collection("UserPhotos")
-            .whereField("userId", isEqualTo: currentUser.uid)
-            .getDocuments { (snapshot,error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                    seal.reject(error)
-                } else {
-                    if let snapshot = snapshot {
-                        let photoModel: [PhotoModelObject] = snapshot.documents.compactMap { doc in
-                            var photoModel = try? doc.data(as: PhotoModel.self)
-                            photoModel?.id = doc.documentID
-                            if let photoModel = photoModel {
-                                return PhotoModelObject(photoModel: photoModel)
-                            }
-                            return nil
-                            
-                        }
-                        DispatchQueue.main.async {
-                            seal.fulfill(photoModel)
-                            
-                        }
-                    }
-                }
-            }
-        }
-                        
-    }
-    
-    func getAllPhotosFromEventUser(eventModel: EventModel) ->Promise<[PhotoModelObject]> {
-        return Promise { seal in
-            
-            db.collection("users")
-                .document(eventModel.userId)
-            .collection("UserPhotos")
-                .whereField("userId", isEqualTo: eventModel.userId)
-            .getDocuments { (snapshot,error) in
-                if let error = error {
-                    seal.reject(error)
-                } else {
-                    if let snapshot = snapshot {
-                        let photoModel: [PhotoModelObject] = snapshot.documents.compactMap { doc in
-                            var photoModel = try? doc.data(as: PhotoModel.self)
-                            photoModel?.id = doc.documentID
-                            if let photoModel = photoModel {
-                                return PhotoModelObject(photoModel: photoModel)
-                            }
-                            return nil
-                            
-                        }
-                        DispatchQueue.main.async {
-                            seal.fulfill(photoModel)
-                            
-                        }
-                    }
-                }
-            }
-        }
-                        
-    }
 }
+        
+        
+    
+    
+    
+    

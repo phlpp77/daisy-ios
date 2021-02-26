@@ -18,7 +18,8 @@ class EventCreationViewModel: ObservableObject {
     @Published var message: String = ""
     
     private var firestoreFotoManagerEventTest: FirestoreFotoManagerEventTest
-    private var fireStoreManagerEventTest: FireStoreManagerEventTest
+    private var firestoreManagerEventTest: FirestoreManagerEventTest
+    private var firestoreManagerUserTest: FirestoreManagerUserTest
     
     
     var userId: String = "111"
@@ -34,7 +35,8 @@ class EventCreationViewModel: ObservableObject {
 
     init() {
         firestoreFotoManagerEventTest = FirestoreFotoManagerEventTest()
-        fireStoreManagerEventTest = FireStoreManagerEventTest()
+        firestoreManagerEventTest = FirestoreManagerEventTest()
+        firestoreManagerUserTest = FirestoreManagerUserTest()
     }
 
 
@@ -44,12 +46,16 @@ class EventCreationViewModel: ObservableObject {
         }
         let eventId = UUID().uuidString
         var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, name: name, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"", profilePicture: "")
+        
+
             firstly{
-                self.firestoreFotoManagerEventTest.getProfilePhotoForEvent()
-            }.map { profilePicture in
-                eventModel.profilePicture = profilePicture.url
+                self.firestoreManagerUserTest.getCurrentUser()
+            }.map { userModel in
+                eventModel.profilePicture = userModel.userPhotos[1]!
             }.then {
-                self.fireStoreManagerEventTest.saveEvent(eventModel: eventModel, eventId: eventId)
+                self.firestoreManagerEventTest.saveEvent(eventModel: eventModel, eventId: eventId)
+            }.then {
+                self.firestoreManagerEventTest.createLikedUserArray(eventId: eventId)
             }.then {
                 self.firestoreFotoManagerEventTest.resizeImage(originalImage: uiImage)
             }.then { picture in

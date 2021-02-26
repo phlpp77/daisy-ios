@@ -16,6 +16,8 @@ struct UserModel: Codable {
     var gender: String = ""
     var startProcessDone: Bool = true
     var searchingFor: String = ""
+    var userPhotos: [Int: String]
+
     //var UserPhotos: [UserPhotoModel] = UserPhotoModel()
     
 }
@@ -47,6 +49,10 @@ struct UserModelObject {
     
     var userId: String {
         user.userId
+    }
+    
+    var userPhotos: [Int: String] {
+        user.userPhotos
     }
     
 //    var UserPhotos: [UserPhotoModel] {

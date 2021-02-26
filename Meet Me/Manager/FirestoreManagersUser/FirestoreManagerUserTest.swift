@@ -23,38 +23,7 @@ class FirestoreManagerUserTest {
     }
     
     
-    func getAllMatchedUsers(eventId: String) -> Promise<[UserModelObject]> {
-        return Promise { seal in
-            
-            db.collection("events")
-                .document(eventId)
-                .collection("likedUser")
-                .getDocuments() { (snapshot, error) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                        seal.reject(error)
-                    } else {
-                        if let snapshot = snapshot {
-                            let user: [UserModelObject] = snapshot.documents.compactMap { doc in
-                                var user = try? doc.data(as: UserModel.self)
-                                user?.userId = doc.documentID
-                                if let user = user {
-                                    return UserModelObject(user: user)
-                                }
-                                return nil
-                                
-                            }
-                            DispatchQueue.main.async {
-                                seal.fulfill(user)
-                            }
-                            
-                        }
-                    }
-                    
-                }
-        }
-        
-    }
+
     
     // MARK: - Functions to Save userModel to Firebase
     func saveUser(userModel: UserModel) -> Promise<UserModel>{
@@ -72,6 +41,77 @@ class FirestoreManagerUserTest {
         }
     }
     
+    func createLikedEventsArray() -> Promise<Void>{
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                return
+            }
+            do {
+                let _ =  db.collection("users")
+                    .document(currentUser.uid)
+                    .collection("likedEvent")
+                    .document("likedEvent").setData(["likedEvent": ["Platzhalter"]])
+                    
+                seal.fulfill(())
+                    
+                }
+            }
+        }
+    
+    func addLikeToEventArray(eventId: String) -> Promise<Void>{
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                throw Err("No User Profile")
+            }
+            
+            do {
+                let _ =  db.collection("users")
+                    .document(currentUser.uid)
+                    .collection("likedEvent")
+                    .document("likedEvent")
+                    .updateData(["likedEvent" : FieldValue.arrayUnion([eventId])])
+                seal.fulfill(())
+                    
+                }
+            }
+        }
+    
+    func getAllLikedEvents() -> Promise<[String]> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                throw Err("No User Profile")
+            }
+            
+            db.collection("users")
+                .document(currentUser.uid)
+                .collection("likedEvent")
+                .document("likedEvent")
+                .getDocument { (snapshot, error) in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        if let snapshot = snapshot {
+                            let likedEvent = try? snapshot.data(as: LikedEvent.self)
+                            if likedEvent != nil {
+                                
+                                DispatchQueue.main.async {
+                                    if likedEvent?.likedEvent.count != 0 {
+                                        seal.fulfill(likedEvent!.likedEvent)
+                                } else {
+                                    let error = Err("No Liked Availibale")
+                                    seal.reject(error)
+                                }
+                            }
+                            }
+                            
+                        }
+                        
+                        
+                    }
+                }
+        }
+    }
+    
     // MARK: - Functions to Update current User
     
     
@@ -80,35 +120,34 @@ class FirestoreManagerUserTest {
     
     // MARK: - Functions to get User Profiles
     
-    func getAllUsers() -> Promise<[UserModel]>{
+    func getCurrentUser() -> Promise<UserModel> {
         return Promise { seal in
             
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
-            
-            db.collection("users")
-                .whereField("userId", isEqualTo: currentUser.uid)
-                .getDocuments() { (snapshot, error) in
-                    if let error = error {
-                        seal.reject(error)
-                    } else {
-                        if let snapshot = snapshot {
-                            let users: [UserModel]? = snapshot.documents.compactMap { doc in
-                                var user = try? doc.data(as: UserModel.self)
-                                if user != nil {
-                                    user!.userId = doc.documentID
-                                }
-                                return user
+            db.collection("users").document(currentUser.uid).getDocument { snapshot, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    seal.reject(error)
+                } else {
+                    if let snapshot = snapshot {
+                        let userModel = try? snapshot.data(as: UserModel.self)
+                        DispatchQueue.main.async {
+                            if userModel != nil {
+                                seal.fulfill(userModel!)
+                            }else {
+                                let err = Err("userModel")
+                                seal.reject(err)
                             }
-                            DispatchQueue.main.async {
-                                seal.fulfill(users!)
-                            }
-                            
                         }
+                        
                         
                     }
                 }
+                
+            }
+            
             
         }
     }
@@ -122,8 +161,13 @@ class FirestoreManagerUserTest {
                 } else {
                     if let snapshot = snapshot {
                         let userModel = try? snapshot.data(as: UserModel.self)
-                        if userModel != nil{
-                            seal.fulfill(userModel!)
+                        DispatchQueue.main.async {
+                            if userModel != nil{
+                                seal.fulfill(userModel!)
+                            } else {
+                                let error = Err("Cant get UserProfil from Creator")
+                                seal.reject(error)
+                            }
                         }
                         
                     }
@@ -131,35 +175,10 @@ class FirestoreManagerUserTest {
             }
         }
     }
-            
     
-    func downloadCurrentUserModel() -> Promise<UserModel> {
-        return Promise { seal in
-            
-            guard let currentUser = Auth.auth().currentUser else {
-                return
-            }
-            db.collection("users").document(currentUser.uid).getDocument { snapshot, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    seal.reject(error)
-                } else {
-                    if let snapshot = snapshot {
-                        var userModel = try? snapshot.data(as: UserModel.self)
-                        if userModel != nil {
-                            userModel!.userId = snapshot.documentID
-                        }
-                        
-                        seal.fulfill(userModel!)
-                    }
-                }
-                
-            }
-            
-            
-        }
-    }
-    // MARK: - Functions to get add or delete a Match to User
+
+    
+    // MARK: - Functions to get add a Match to User
     
     func addMatchToCurrentUser(userModel: UserModel) -> Promise<Void> {
         return Promise { seal in
@@ -194,6 +213,8 @@ class FirestoreManagerUserTest {
             seal.fulfill(())
         }
     }
+    
+    // MARK: -  delete a like from User
     
     func deleteLikedUser(eventModel: EventModel, userModel: UserModel) -> Promise<Void> {
         return Promise { seal in
@@ -231,3 +252,4 @@ class FirestoreManagerUserTest {
     
     
 }
+
