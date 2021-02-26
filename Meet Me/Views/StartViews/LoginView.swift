@@ -23,7 +23,7 @@ struct LoginView: View {
     @Binding var showLoginView: Bool
     
     // if a problem happens during the login process a message can be shown
-    @State var problemAccured = false
+    @State var problemOccurred = false
     
     // message to present the user when error happend
     @State var problemMessage = "Wrong password"
@@ -36,7 +36,7 @@ struct LoginView: View {
             // stack with textfields
             VStack(alignment: .leading) {
                 
-                if problemAccured {
+                if problemOccurred {
                     Text(problemMessage)
                         .font(.footnote)
                         .padding(.leading, 35)
@@ -113,7 +113,7 @@ struct LoginView: View {
                 }
                 
                 // Show textfield if errors accrue
-                problemAccured = loginVM.checkErrors()
+                problemOccurred = loginVM.checkErrors()
                 // Set Problem Message to ErrorMessage
                 problemMessage = loginVM.errorMessage
                 

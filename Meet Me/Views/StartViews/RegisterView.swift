@@ -49,7 +49,7 @@ struct RegisterView: View {
                             .font(.footnote)
                             .padding(.leading, 35)
                         // spring animation not working at this stage -> normal blend animation is used
-//                            .scaleEffect(problemAccured ? 1.0 : 0.1)
+//                            .scaleEffect(problemOccurred ? 1.0 : 0.1)
 //                            .animation(.spring(response: 0.6, dampingFraction: 0.4, blendDuration: 5))
                     }
                     
