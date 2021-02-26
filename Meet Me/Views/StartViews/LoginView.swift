@@ -20,6 +20,7 @@ struct LoginView: View {
     @Binding var userIsLoggedIn: Bool
     @Binding var userHasNoAccount: Bool
     @Binding var startProcessDone: Bool
+    @Binding var showLoginView: Bool
     
     // if a problem happens during the login process a message can be shown
     @State var problemAccured = false
@@ -59,6 +60,24 @@ struct LoginView: View {
                     
                 }
                 .padding(.top, 3)
+                
+                // no account button
+                Button(action: {
+                    
+                    // change view to LoginView
+                    showLoginView = false
+                    
+                    // type "have account" func here -> to login screen
+                    
+                }) {
+                    Text("I have no account yet")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .padding(3)
+                        .padding(.trailing, 58)
+                        
+                }
+                .padding(.leading, 32)
                 
                 
             }
@@ -118,6 +137,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(userIsLoggedIn: .constant(false), userHasNoAccount: .constant(true), startProcessDone: .constant(false))
+        LoginView(userIsLoggedIn: .constant(false), userHasNoAccount: .constant(true), startProcessDone: .constant(false), showLoginView: .constant(true))
     }
 }
