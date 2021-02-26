@@ -180,7 +180,7 @@ class FirestoreManagerUserTest {
     
     // MARK: - Functions to get add a Match to User
     
-    func addMatchToCurrentUser(userModel: UserModel) -> Promise<Void> {
+    func addMatchToCurrentUser(userModel: UserModelObject) -> Promise<Void> {
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
                 return
@@ -198,7 +198,7 @@ class FirestoreManagerUserTest {
     }
     
     
-    func addMatchToMatchedUser(userModel: UserModel) -> Promise<Void> {
+    func addMatchToMatchedUser(userModel: UserModelObject) -> Promise<Void> {
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
                 return
@@ -216,7 +216,7 @@ class FirestoreManagerUserTest {
     
     // MARK: -  delete a like from User
     
-    func deleteLikedUser(eventModel: EventModel, userModel: UserModel) -> Promise<Void> {
+    func deleteLikedUser(eventModel: EventModelObject, userModel: UserModelObject) -> Promise<Void> {
         return Promise { seal in
             
             db.collection("events")

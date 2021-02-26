@@ -10,6 +10,7 @@ import URLImage
 
 struct MeMatchCardView: View {
     
+    @ObservedObject var meMatchCardVM: MeMatchCardViewModel = MeMatchCardViewModel()
     // binding vars
     @Binding var userAccepted: Bool
     @Binding var users: [UserModelObject]
@@ -61,7 +62,7 @@ struct MeMatchCardView: View {
         
         ZStack {
             //user.UserPhotos.url
-            URLImage(url: stockURL ) { image in
+            URLImage(url: URL(string: user.userPhotos[1]!) ?? stockURL ) { image in
                 image.resizable()
                    .aspectRatio(contentMode: .fill)
                    .frame(width: screenWidth, height: 620, alignment: .center)
@@ -157,6 +158,7 @@ struct MeMatchCardView: View {
     
     // MARK: function which gets called after user accepted the profile
     func userWasAccepted() {
+        meMatchCardVM.addMatch(eventModel: event, userModel: user)
         userAccepted = true
         DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.1) {
             showMeMatchMainView = false
@@ -166,7 +168,7 @@ struct MeMatchCardView: View {
     // MARK: function which gets called after user denied the profile
     func userWasDenied() {
         userDenied = true
-        
+        meMatchCardVM.deleteLikedUser(eventModel: event, userModel: user)
         // if the last user (which is the first in the array) is denied the view gets canceled
         if self.users.first!.userId == user.userId {
             print("last profile denied")
