@@ -9,12 +9,17 @@ import SwiftUI
 import URLImage
 import PromiseKit
 
+enum ProfileUsageType {
+    case me
+    case you
+}
+
 struct MeProfileView: View {
     
     @ObservedObject private var meProfileVM = MeProfileViewModel()
     
     // changed when not used inside the profile tab
-    @State var totalHeight: CGFloat = 480
+    @State var profileUsageType: ProfileUsageType = ProfileUsageType.me
 
     var body: some View {
         
@@ -23,7 +28,7 @@ struct MeProfileView: View {
             // MARK: title
             HStack(spacing: 0.0) {
                 Text("That's ")
-                Text("ME")
+                Text(profileUsageType == .me ? "ME" : meProfileVM.userModel.name)
                     .font(.system(.largeTitle, design: .rounded))
                     .foregroundColor(.accentColor)
                 Text("!")
@@ -31,6 +36,7 @@ struct MeProfileView: View {
             }
             .font(.largeTitle)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal)
                 
             
             Spacer()
@@ -39,9 +45,8 @@ struct MeProfileView: View {
             URLImage(url: meProfileVM.userPictureURL) { image in
                 image.resizable()
                     .aspectRatio(contentMode: .fill)
-//                    .frame(maxWidth: .infinity)
-                    
-                    .frame(height: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+
+                    .frame(width: 300, height: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .overlay(
                         Circle()
                             .stroke(
@@ -67,14 +72,17 @@ struct MeProfileView: View {
                     Spacer()
                     
                     HStack {
-                        Text("I am")
+                        if profileUsageType == .me {
+                            Text("I am")
+                        }
                         Text(meProfileVM.userModel.gender)
                     }
                     
                 }
                 
-                
+                Spacer()
                 Divider()
+                Spacer()
                 
                 // second line with data
                 VStack(alignment: .trailing) {
@@ -88,27 +96,17 @@ struct MeProfileView: View {
                     Spacer()
                     
                     HStack {
-                        Text("Show me")
+                        Text(profileUsageType == .me ? "Show me" : "Searching for")
                         Text(meProfileVM.userModel.searchingFor)
                             .foregroundColor(.accentColor)
                         Text("users")
                     }
                 }
-            }.onAppear {
-                
-                
-                firstly {
-                    self.meProfileVM.getUserProfile()
-                }.map { userModel in
-                    meProfileVM.userModel = userModel
-                    meProfileVM.userPictureURL = URL(string: userModel.userPhotos[1]!)!
-                }.catch { error in
-                    print("DEBUG: error in getUserProfileChain \(error)")
-                    print("DEBUG: \(error.localizedDescription)")
-                }
             }
             .padding()
+            .background(Color("BackgroundSecondary").opacity(0.1))
             .frame(height: 80)
+            .frame(maxWidth: .infinity)
             .overlay(
                 RoundedRectangle(cornerRadius: 12, style: .continuous)
                     .stroke(Color.black.opacity(0.2), lineWidth: 5)
@@ -116,12 +114,26 @@ struct MeProfileView: View {
             .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
             .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 12)
             .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+            .padding(.horizontal)
             
             
             
         }
         .padding()
-        .frame(width: 340, height: totalHeight, alignment: .center)
+        .frame(width: 340, height: profileUsageType == .me ? 480 : 620, alignment: .center)
+        
+        // MARK: Get data from database
+        .onAppear {
+            firstly {
+                self.meProfileVM.getUserProfile()
+            }.map { userModel in
+                meProfileVM.userModel = userModel
+                meProfileVM.userPictureURL = URL(string: userModel.userPhotos[1]!)!
+            }.catch { error in
+                print("DEBUG: error in getUserProfileChain \(error)")
+                print("DEBUG: \(error.localizedDescription)")
+            }
+        }
         
     }
 }

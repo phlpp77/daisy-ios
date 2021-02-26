@@ -49,7 +49,7 @@ struct MainExploreView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 12)
                 
-                EventLineView()
+                EventLineView(showYouProfileView: $showYouProfileView)
             }
             
             // create the setup EventView on top of the rest
@@ -60,6 +60,10 @@ struct MainExploreView: View {
             // start the MeMatch process
             if showMeMatchView {
                 MeMatchView(showMeMatchMainView: $showMeMatchView, tappedEvent: $tappedEvent)
+            }
+            
+            if showYouProfileView {
+                YouProfileView(showYouProfileView: $showYouProfileView)
             }
         }
     }

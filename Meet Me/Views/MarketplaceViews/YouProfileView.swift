@@ -9,15 +9,28 @@ import SwiftUI
 
 struct YouProfileView: View {
     
+    @Binding var showYouProfileView: Bool
+    
     var body: some View {
         
-        MeProfileView(totalHeight: 620)
-            .modifier(FrozenWindowModifier())
+        ZStack {
+            
+            // MARK: Background (blurred)
+            BlurView(style: .systemMaterial)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    showYouProfileView = false
+                }
+            
+            // MARK: Profile shown
+            MeProfileView(profileUsageType: .you)
+                .modifier(FrozenWindowModifier())
+        }
     }
 }
 
 struct YouProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        YouProfileView()
+        YouProfileView(showYouProfileView: .constant(true))
     }
 }

@@ -55,7 +55,7 @@ struct EventLineView: View {
                                             )
                                     }
                                 .onTapGesture {
-                                    print("show profile")
+                                    showYouProfileView = true
                                 }
                             }
                             .frame(width: 250, height: 250)
@@ -102,6 +102,6 @@ struct EventLineView: View {
 
 struct EventLineView_Previews: PreviewProvider {
     static var previews: some View {
-        EventLineView()
+        EventLineView(showYouProfileView: .constant(true))
     }
 }
