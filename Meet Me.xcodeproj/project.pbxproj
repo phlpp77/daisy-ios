@@ -183,6 +183,7 @@
 		17153EE325A8C5C30072CE83 /* Meet Me */ = {
 			isa = PBXGroup;
 			children = (
+				17153EED25A8C5C30072CE83 /* Info.plist */,
 				17DE52E125E9844B000D0B4D /* GoogleService-Info.plist */,
 				17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */,
 				905485D025C4AA6100E2024D /* Manager */,
@@ -192,7 +193,6 @@
 				175E40F225B4CD8100ADC9BF /* Extra */,
 				17153EE825A8C5C30072CE83 /* Assets.xcassets */,
 				1795DFA025DF1753002D537F /* Lottie */,
-				17153EED25A8C5C30072CE83 /* Info.plist */,
 				17153EEA25A8C5C30072CE83 /* Preview Content */,
 			);
 			path = "Meet Me";
