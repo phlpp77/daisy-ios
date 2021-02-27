@@ -15,7 +15,7 @@ struct MainChatView: View {
     @State var events: [EventModel] = [stockEvent2, stockEvent]
     
     init() {
-        self.users = matches.users
+        self.users = matches.users  
         self.events = matches.events
     }
     

@@ -16,7 +16,26 @@ struct MainSettingsView: View {
     var body: some View {
         
         ZStack {
-            MeProfileView()
+            VStack {
+                
+                // MARK: Title
+                HStack(spacing: 0.0) {
+                    Text("That's ")
+                    Text("ME")
+                        .font(.system(.largeTitle, design: .rounded))
+                        .foregroundColor(.accentColor)
+                    Text("!")
+                        
+                }
+                .font(.largeTitle)
+                .padding(.vertical, 12)
+                
+                
+                // MARK: Profile details
+                MeProfileView()
+                
+                Spacer()
+            }
             
             LogoutView(startProcessDone: $startProcessDone)
                 .offset(x: screen.width / 2 - (screen.width * 0.15), y: -screen.height / 2 + (screen.width * 0.22))

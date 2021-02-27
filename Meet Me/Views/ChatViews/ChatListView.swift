@@ -18,10 +18,14 @@ struct ChatListView: View {
         
         ZStack {
             NavigationView {
+                
+                
                 ScrollView {
                     ForEach(users.indices) { userNumber in
                         
                         VStack {
+                            
+                            Color.clear
                             
                             NavigationLink(
                                 destination: MessagesView(),
@@ -31,7 +35,7 @@ struct ChatListView: View {
                                 ChatListRowView(user: $users[userNumber], event: $events[userNumber], chatTapped: $chatTapped)
                             }
                             
-                            Color.clear
+                            
                         }
                     }
                 }

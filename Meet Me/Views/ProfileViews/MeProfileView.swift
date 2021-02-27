@@ -25,21 +25,10 @@ struct MeProfileView: View {
         
         VStack {
             
-            // MARK: title
-            HStack(spacing: 0.0) {
-                Text("That's ")
-                Text(profileUsageType == .me ? "ME" : meProfileVM.userModel.name)
-                    .font(.system(.largeTitle, design: .rounded))
-                    .foregroundColor(.accentColor)
-                Text("!")
-                    
-            }
-            .font(.largeTitle)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal)
+            
                 
             
-            Spacer()
+            
             
             // MARK: profile picture
             URLImage(url: meProfileVM.userPictureURL) { image in

@@ -194,11 +194,10 @@ struct EventCreationView: View {
                     // close view
                     presentation = false
 
-                    
-                    
                 }
                 
             }
+            .scaleEffect(1.3)
             .sheet(isPresented: $showImagePicker, content: {
                 ImagePicker(images: $images, showPicker: $showImagePicker, limit: 1)
             })
