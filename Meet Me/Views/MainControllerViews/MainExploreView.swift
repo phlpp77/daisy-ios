@@ -17,7 +17,8 @@ struct MainExploreView: View {
     @State private var showYouProfileView: Bool = false
     
     @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject]
-    @State private var tappedEvent: EventModelObject = stockEventObject
+    @State private var tappedMeEvent: EventModelObject = stockEventObject
+    @State private var tappedYouEvent: EventModelObject = stockEventObject
     
     var body: some View {
         ZStack {
@@ -40,7 +41,7 @@ struct MainExploreView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 12)
                 
-                MeEventLineView(eventArray: $eventArray, showCreationView: $showCreationView, showMeMatchView: $showMeMatchView, tappedEvent: $tappedEvent)
+                MeEventLineView(eventArray: $eventArray, showCreationView: $showCreationView, showMeMatchView: $showMeMatchView, tappedEvent: $tappedMeEvent)
                 
                 Text("You Events")
                     .font(.subheadline)
@@ -49,7 +50,7 @@ struct MainExploreView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 12)
                 
-                EventLineView(showYouProfileView: $showYouProfileView)
+                EventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView)
             }
             
             // create the setup EventView on top of the rest
@@ -59,11 +60,11 @@ struct MainExploreView: View {
             
             // start the MeMatch process
             if showMeMatchView {
-                MeMatchView(showMeMatchMainView: $showMeMatchView, tappedEvent: $tappedEvent)
+                MeMatchView(showMeMatchMainView: $showMeMatchView, tappedEvent: $tappedMeEvent)
             }
             
             if showYouProfileView {
-                YouProfileView(showYouProfileView: $showYouProfileView)
+                YouProfileView(showYouProfileView: $showYouProfileView, tappedYouEvent: $tappedYouEvent)
             }
         }
     }

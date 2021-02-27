@@ -19,6 +19,7 @@ struct EventLineView: View {
     @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
     @State private var loading: Bool = false
     
+    @Binding var tappedYouEvent: EventModelObject
     @Binding var showYouProfileView: Bool
     
     var body: some View {
@@ -55,6 +56,7 @@ struct EventLineView: View {
                                             )
                                     }
                                 .onTapGesture {
+                                    tappedYouEvent = eventArray[event]
                                     showYouProfileView = true
                                 }
                             }
@@ -94,14 +96,12 @@ struct EventLineView: View {
 
         }
         
-        
     }
 
-    
 }
 
 struct EventLineView_Previews: PreviewProvider {
     static var previews: some View {
-        EventLineView(showYouProfileView: .constant(true))
+        EventLineView(tappedYouEvent: .constant(stockEventObject), showYouProfileView: .constant(true))
     }
 }
