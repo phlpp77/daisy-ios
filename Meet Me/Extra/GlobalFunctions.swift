@@ -34,6 +34,7 @@ var createdId = UUID().uuidString
 
 // MARK: stock user to use as default
 let stockUser: UserModel = UserModel(userId: "007", name: "Philipp", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Female", userPhotos: [1: stockUrlString])
+let stockUser2: UserModel = UserModel(userId: "008", name: "Lisa", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [1: stockUrlString])
 
 let stockUserObject: UserModelObject = UserModelObject(user: stockUser)
 
@@ -44,5 +45,7 @@ let stockUrlString: String = "https://firebasestorage.googleapis.com/v0/b/meetme
 
 // MARK: stock event for marketplace and eventObject (length: half an hour - 30*60 seconds)
 let stockEvent: EventModel = EventModel(eventId: "008", userId: "007", name: "Nice Event", category: "Café", date: Date(), startTime: Date(), endTime: Date() + 30 * 60, pictureURL: "", profilePicture: "")
+let stockEvent2: EventModel = EventModel(eventId: "009", userId: "008", name: "Nice Event", category: "Walk", date: Date(), startTime: Date(), endTime: Date() + 30 * 60, pictureURL: "", profilePicture: "")
+
 let stockEventObject: EventModelObject = EventModelObject(eventModel: stockEvent, position: .constant(.zero))
 
