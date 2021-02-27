@@ -67,9 +67,14 @@
 		90B0F4F125DFC63400AB8EF9 /* YouEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */; };
 		90B1BFD625B8DB9200F8FBF7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1BFD525B8DB9200F8FBF7 /* LoginViewModel.swift */; };
 		90B1BFDB25B8DBB700F8FBF7 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1BFDA25B8DBB700F8FBF7 /* RegisterViewModel.swift */; };
-		90D42A9E25E937630060311B /* LikedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42A9D25E937630060311B /* LikedUser.swift */; };
-		90D42ACF25E966220060311B /* LikedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42ACE25E966220060311B /* LikedEvent.swift */; };
+		90D42A9E25E937630060311B /* LikedUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42A9D25E937630060311B /* LikedUserModel.swift */; };
+		90D42ACF25E966220060311B /* LikedEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42ACE25E966220060311B /* LikedEventModel.swift */; };
 		90D42AD525EA59350060311B /* YouProfilViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42AD425EA59350060311B /* YouProfilViewModel.swift */; };
+		90D42AEF25EAAD110060311B /* MatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42AEE25EAAD110060311B /* MatchModel.swift */; };
+		90D42AF225EAAD250060311B /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42AF125EAAD250060311B /* ChatModel.swift */; };
+		90D42AF725EABC400060311B /* AllMatchInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42AF625EABC400060311B /* AllMatchInformationModel.swift */; };
+		90D42AFA25EABC590060311B /* FirestoreManagerMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42AF925EABC590060311B /* FirestoreManagerMatches.swift */; };
+		90D42B0125EAC0DC0060311B /* FirestoreManagerChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B0025EAC0DC0060311B /* FirestoreManagerChat.swift */; };
 		90F2334D25D58481003FB1D9 /* ImageOldP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2334C25D58481003FB1D9 /* ImageOldP.swift */; };
 		90F2335125D5943B003FB1D9 /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */; };
 		90F2336325D830E7003FB1D9 /* ProfileCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2336225D830E7003FB1D9 /* ProfileCreationViewModel.swift */; };
@@ -137,9 +142,14 @@
 		90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventViewModel.swift; sourceTree = "<group>"; };
 		90B1BFD525B8DB9200F8FBF7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = "Meet Me/ViewModels/StartViewModels/LoginViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		90B1BFDA25B8DBB700F8FBF7 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterViewModel.swift; path = "Meet Me/ViewModels/StartViewModels/RegisterViewModel.swift"; sourceTree = SOURCE_ROOT; };
-		90D42A9D25E937630060311B /* LikedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUser.swift; sourceTree = "<group>"; };
-		90D42ACE25E966220060311B /* LikedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedEvent.swift; sourceTree = "<group>"; };
+		90D42A9D25E937630060311B /* LikedUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUserModel.swift; sourceTree = "<group>"; };
+		90D42ACE25E966220060311B /* LikedEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedEventModel.swift; sourceTree = "<group>"; };
 		90D42AD425EA59350060311B /* YouProfilViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouProfilViewModel.swift; sourceTree = "<group>"; };
+		90D42AEE25EAAD110060311B /* MatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchModel.swift; sourceTree = "<group>"; };
+		90D42AF125EAAD250060311B /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		90D42AF625EABC400060311B /* AllMatchInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMatchInformationModel.swift; sourceTree = "<group>"; };
+		90D42AF925EABC590060311B /* FirestoreManagerMatches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerMatches.swift; sourceTree = "<group>"; };
+		90D42B0025EAC0DC0060311B /* FirestoreManagerChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerChat.swift; sourceTree = "<group>"; };
 		90F2334C25D58481003FB1D9 /* ImageOldP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOldP.swift; sourceTree = "<group>"; };
 		90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
 		90F2336225D830E7003FB1D9 /* ProfileCreationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCreationViewModel.swift; sourceTree = "<group>"; };
@@ -259,8 +269,11 @@
 			isa = PBXGroup;
 			children = (
 				90F8AB4525BF5CDA00E969E0 /* UserModel.swift */,
-				90D42A9D25E937630060311B /* LikedUser.swift */,
-				90D42ACE25E966220060311B /* LikedEvent.swift */,
+				90D42A9D25E937630060311B /* LikedUserModel.swift */,
+				90D42AF125EAAD250060311B /* ChatModel.swift */,
+				90D42AEE25EAAD110060311B /* MatchModel.swift */,
+				90D42AF625EABC400060311B /* AllMatchInformationModel.swift */,
+				90D42ACE25E966220060311B /* LikedEventModel.swift */,
 				902EF6B825D89213004464F0 /* PhotoModel.swift */,
 				174423A925D9A0DF00D25EDD /* EventModel.swift */,
 			);
@@ -360,8 +373,10 @@
 		905485D025C4AA6100E2024D /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				90D42AFB25EABC600060311B /* FirestoreManagerMatches */,
 				903E020225DFF669005BB173 /* FirestoreManagersUser */,
 				903E020525DFF681005BB173 /* FirestoreMangersEvent */,
+				90D42B0325EAC0E00060311B /* FirestoreManagerChat */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -405,6 +420,22 @@
 				90779B5F25E41CC50070D794 /* MainControllerViewModel.swift */,
 			);
 			path = MainControllerViewModels;
+			sourceTree = "<group>";
+		};
+		90D42AFB25EABC600060311B /* FirestoreManagerMatches */ = {
+			isa = PBXGroup;
+			children = (
+				90D42AF925EABC590060311B /* FirestoreManagerMatches.swift */,
+			);
+			path = FirestoreManagerMatches;
+			sourceTree = "<group>";
+		};
+		90D42B0325EAC0E00060311B /* FirestoreManagerChat */ = {
+			isa = PBXGroup;
+			children = (
+				90D42B0025EAC0DC0060311B /* FirestoreManagerChat.swift */,
+			);
+			path = FirestoreManagerChat;
 			sourceTree = "<group>";
 		};
 		A99606559D29C5E8C75383F5 /* Frameworks */ = {
@@ -542,8 +573,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				17BC5FE025BE0B5900F35075 /* ProfileCreationView.swift in Sources */,
+				90D42AEF25EAAD110060311B /* MatchModel.swift in Sources */,
 				175E40FA25B4D26A00ADC9BF /* Information.swift in Sources */,
 				173F361225E2D72D002E9EE6 /* MeMatchCardView.swift in Sources */,
+				90D42AF725EABC400060311B /* AllMatchInformationModel.swift in Sources */,
 				90F2335125D5943B003FB1D9 /* PhotoCaptureView.swift in Sources */,
 				90F2336725D84736003FB1D9 /* MeProfileViewModel.swift in Sources */,
 				90779B6025E41CC60070D794 /* MainControllerViewModel.swift in Sources */,
@@ -558,20 +591,23 @@
 				177F681925D8409200BC345B /* MeProfileView.swift in Sources */,
 				1795DFAE25DF20AD002D537F /* LoadingView.swift in Sources */,
 				17DAD7E325D934D600DBE60B /* GlobalFunctions.swift in Sources */,
-				90D42ACF25E966220060311B /* LikedEvent.swift in Sources */,
+				90D42ACF25E966220060311B /* LikedEventModel.swift in Sources */,
 				1778E41325D0904100C5D343 /* DateTextField.swift in Sources */,
 				90F8AB4625BF5CDA00E969E0 /* UserModel.swift in Sources */,
-				90D42A9E25E937630060311B /* LikedUser.swift in Sources */,
+				90D42AFA25EABC590060311B /* FirestoreManagerMatches.swift in Sources */,
+				90D42A9E25E937630060311B /* LikedUserModel.swift in Sources */,
 				90B1BFDB25B8DBB700F8FBF7 /* RegisterViewModel.swift in Sources */,
 				90779B0725E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift in Sources */,
 				90779AED25E2C8CD0070D794 /* FirestoreManagerEventTest.swift in Sources */,
 				179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */,
+				90D42AF225EAAD250060311B /* ChatModel.swift in Sources */,
 				90779B6D25E5A3F40070D794 /* MeMatchCardViewModel.swift in Sources */,
 				173F361C25E2FF0D002E9EE6 /* MeMatchView.swift in Sources */,
 				902EF6E225D985F0004464F0 /* Meet_MeAppViewModel.swift in Sources */,
 				17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */,
 				90B0F4F125DFC63400AB8EF9 /* YouEventViewModel.swift in Sources */,
 				902EF7AA25DC439D004464F0 /* YouEventLineViewModel.swift in Sources */,
+				90D42B0125EAC0DC0060311B /* FirestoreManagerChat.swift in Sources */,
 				90B0F4C725DF086B00AB8EF9 /* TrahedCode.swift in Sources */,
 				90779B7325E5BA7C0070D794 /* Err.swift in Sources */,
 				90779B2F25E3BFEB0070D794 /* FirestoreFotoManagerUserTest.swift in Sources */,

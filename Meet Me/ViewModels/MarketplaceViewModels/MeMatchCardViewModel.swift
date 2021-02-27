@@ -9,16 +9,17 @@ import Foundation
 import PromiseKit
 
 class MeMatchCardViewModel: ObservableObject {
-    private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
+    private var firestoreManagerMatches: FirestoreManagerMatches = FirestoreManagerMatches()
     
     
     func addMatch(eventModel: EventModelObject, userModel: UserModelObject) {
+        let chatId = UUID().uuidString
             firstly {
-                self.firestoreManagerUserTest.addMatchToCurrentUser(userModel: userModel)
+                self.firestoreManagerMatches.addMatchToCurrentUser(userModel: userModel, eventModel: eventModel, chatId: chatId)
             }.then { 
-                self.firestoreManagerUserTest.addMatchToMatchedUser(userModel: userModel)
+                self.firestoreManagerMatches.addMatchToMatchedUser(userModel: userModel, eventModel: eventModel, chatId: chatId)
             }.then {
-                self.firestoreManagerUserTest.deleteLikedUser(eventModel: eventModel, userModel: userModel)
+                self.firestoreManagerMatches.createChatRoom(userModel: userModel, eventModel: eventModel, chatId: chatId)
             }.catch { error in
                 print("DEBUG: Fehler in addMatchChain Error: \(error)")
                 print("DEBUG: Error in addMatchChain localized: \(error.localizedDescription)")
@@ -29,7 +30,7 @@ class MeMatchCardViewModel: ObservableObject {
     
     func deleteLikedUser(eventModel : EventModelObject, userModel: UserModelObject){
             firstly {
-                firestoreManagerUserTest.deleteLikedUser(eventModel: eventModel, userModel: userModel)
+                firestoreManagerMatches.deleteLikedUser(eventModel: eventModel, userModel: userModel)
             }.catch { error in
                 print("DEBUG: Fehler in deleteLikedUser Error: \(error)")
                 print("DEBUG: Error in deleteLikedUser localized: \(error.localizedDescription)")

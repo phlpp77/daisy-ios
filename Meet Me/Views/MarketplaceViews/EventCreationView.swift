@@ -17,7 +17,7 @@ struct EventCreationView: View {
     // binding for updating the array
     @Binding var eventArray: [EventModelObject]
 //    @State private var event: EventModelObject = stockEventObject
-    
+    @ObservedObject private var firestoreManagerChat = FirestoreManagerChat()
     // vars to show in the screen
     @State private var category: String = "Café"
     @State private var date: Date = Date()
@@ -203,7 +203,7 @@ struct EventCreationView: View {
                 ImagePicker(images: $images, showPicker: $showImagePicker, limit: 1)
             })
             .onAppear {
-                //youEventLineVM.getYouEvents()
+                firestoreManagerChat.getAllMatchInformation()
             }
             
             

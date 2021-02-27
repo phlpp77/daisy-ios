@@ -12,7 +12,7 @@ import PromiseKit
 struct YouProfileView: View {
     
     // TODO: @budni insert youProfileVM here and rename the vars inside the View
-    @ObservedObject private var meProfileVM = MeProfileViewModel()
+    @ObservedObject var youProfilVM = YouProfilViewModel()
     
     // animate the view
     @Binding var showYouProfileView: Bool
@@ -35,7 +35,7 @@ struct YouProfileView: View {
             // MARK: title
             HStack(spacing: 0.0) {
                 Text("That's ")
-                Text(meProfileVM.userModel.name)
+                Text(youProfilVM.userModel.name)
                     .font(.system(.largeTitle, design: .rounded))
                     .foregroundColor(.accentColor)
                 Text("!")
@@ -49,7 +49,7 @@ struct YouProfileView: View {
             Spacer()
             
             // MARK: profile picture
-            URLImage(url: meProfileVM.userPictureURL) { image in
+            URLImage(url: youProfilVM.userPictureUrl) { image in
                 image.resizable()
                     .aspectRatio(contentMode: .fill)
 
@@ -74,12 +74,12 @@ struct YouProfileView: View {
                 
                 // First Line with data
                 VStack(alignment: .leading) {
-                    Text(meProfileVM.userModel.name)
+                    Text(youProfilVM.userModel.name)
                         .font(.headline)
                     Spacer()
                     
                     HStack {
-                        Text(meProfileVM.userModel.gender)
+                        Text(youProfilVM.userModel.gender)
                     }
                     
                 }
@@ -91,7 +91,7 @@ struct YouProfileView: View {
                 // second line with data
                 VStack(alignment: .trailing) {
                     HStack {
-                        Text(String(dateToAge(date: meProfileVM.userModel.birthdayDate)))
+                        Text(String(dateToAge(date: youProfilVM.userModel.birthdayDate)))
                             .foregroundColor(.accentColor)
                         Text("Years old")
                     }
@@ -101,7 +101,7 @@ struct YouProfileView: View {
                     
                     HStack {
                         Text("Searching for")
-                        Text(meProfileVM.userModel.searchingFor)
+                        Text(youProfilVM.userModel.searchingFor)
                             .foregroundColor(.accentColor)
                         Text("users")
                     }
@@ -128,15 +128,7 @@ struct YouProfileView: View {
         .modifier(FrozenWindowModifier())
         // MARK: Get data from database
         .onAppear {
-            firstly {
-                self.meProfileVM.getUserProfile()
-            }.map { userModel in
-                meProfileVM.userModel = userModel
-                meProfileVM.userPictureURL = URL(string: userModel.userPhotos[1]!)!
-            }.catch { error in
-                print("DEBUG: error in getUserProfileChain \(error)")
-                print("DEBUG: \(error.localizedDescription)")
-            }
+            youProfilVM.getYouProfil(eventModel: tappedYouEvent)
         }
         
         }
