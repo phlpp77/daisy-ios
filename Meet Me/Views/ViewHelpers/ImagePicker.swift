@@ -2,63 +2,82 @@
 //  ImagePicker.swift
 //  Meet Me
 //
-//  Created by Lukas Dech on 11.02.21.
+//  Created by Philipp Hemkemeyer on 27.02.21.
 //
 
-import Foundation
 import SwiftUI
-
-
-
-class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
-    @Binding var isShown: Bool
-    @Binding var isDone: Bool
-    @Binding var image: Image?
-    @Binding var originalImage: UIImage?
-    
-    init(isShown: Binding<Bool>, isDone: Binding<Bool>, image: Binding<Image?>, originalImage: Binding<UIImage?>) {
-        _isShown = isShown
-        _isDone = isDone
-        _image = image
-        _originalImage = originalImage
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        let uiImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        image = Image(uiImage: uiImage)
-        isShown = false
-        originalImage = uiImage
-        isDone = true
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        isShown = false
-    }
-    
-}
+import PhotosUI
 
 struct ImagePicker: UIViewControllerRepresentable {
     
-    @Binding var isShown: Bool
-    @Binding var isDone: Bool
-    @Binding var image: Image?
-    @Binding var originalImage: UIImage?
-    var sourceType: SourceType
     
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
-    }
     
-    func makeCoordinator() -> ImagePickerCoordinator {
-        return ImagePickerCoordinator(isShown: $isShown, isDone: $isDone, image: $image, originalImage: $originalImage)
-    }
+    @Binding var images: [UIImage]
+    @Binding var showPicker: Bool
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.sourceType = sourceType == .camera ? .camera : .photoLibrary
+    // MARK: configuration
+    
+    // config of the filter, which type can be picked inside the picker
+    var filter: PHPickerFilter = .images
+    // config of the limited, how many items can be picked at once
+    var limit: Int = 3
+    
+    func makeUIViewController(context: Context) -> PHPickerViewController {
+        
+        var configuration = PHPickerConfiguration()
+        configuration.filter = filter
+        configuration.selectionLimit = limit
+        
+        // adding the configuration to the picker
+        let picker = PHPickerViewController(configuration: configuration)
+        
+        // adding the delegate
         picker.delegate = context.coordinator
+        
         return picker
     }
     
+    func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {
+        // needed for protocol but not in this case
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        return ImagePicker.Coordinator(parent: self)
+    }
+    
+    class Coordinator: NSObject, PHPickerViewControllerDelegate {
+        
+        var parent: ImagePicker
+        
+        init(parent: ImagePicker) {
+            self.parent = parent
+        }
+        
+        func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+            
+            // closing the picker
+            parent.showPicker.toggle()
+            
+            // getting the results
+            for img in results {
+                
+                // error handling, if items can be loaded
+                if img.itemProvider.canLoadObject(ofClass: UIImage.self) {
+                    
+                    img.itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
+                        guard let img = image else {
+                            print(error!.localizedDescription)
+                            return
+                        }
+                        self.parent.images.append(img as! UIImage)
+//                        self.parent.images[0] = img as! UIImage
+                    }
+                    
+                } else {
+                    print("item from PHPicker cannot be loaded")
+                }
+                
+            }
+        }
+    }
 }

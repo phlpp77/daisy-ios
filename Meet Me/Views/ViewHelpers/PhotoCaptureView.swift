@@ -17,7 +17,7 @@ struct PhotoCaptureView: View {
     var sourceType: SourceType
     
     var body: some View {
-        ImagePicker(isShown: $showImagePicker, isDone: $imagePickerDone, image: $image, originalImage: $originalImage, sourceType: sourceType)
+        ImageOldP(isShown: $showImagePicker, isDone: $imagePickerDone, image: $image, originalImage: $originalImage, sourceType: sourceType)
             .ignoresSafeArea()
            
     }

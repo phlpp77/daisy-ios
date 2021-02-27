@@ -29,6 +29,9 @@ struct EventCreationView: View {
     @State private var image: Image? = Image("cafe")
     @State private var uiImage: UIImage? = UIImage(named: "cafe")
     
+    @State private var images: [UIImage] = [UIImage(named: "cafe")!]
+    @State private var showImagePicker: Bool = false
+    
     // animation of alert-boxes
     @State private var showAlertBox: Bool = false
     @State private var pathNumber: Int = 0
@@ -72,14 +75,13 @@ struct EventCreationView: View {
                 ZStack {
                     // Main image as a background of the event
                     
-                    //BILD EVENT
-                    Image(uiImage: uiImage!)
+                    // event image
+                    Image(uiImage: images.last!)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 250, height: 250, alignment: .center)
                     .onTapGesture {
-                        self.showAlertBox = true
-                        self.pathNumber = 99
+                        self.showImagePicker = true
                     }
                     
                     VStack(alignment: .leading) {
@@ -180,7 +182,7 @@ struct EventCreationView: View {
                     // update handling
                     prepareUpload()
                     //youEventLineVM.getYouEvents()
-                    eventCreationVM.saveEvent(uiImage: uiImage!)
+                    eventCreationVM.saveEvent(uiImage: images.last!)
                     // button animation start
                     buttonPressed.toggle()
                     // haptic feedback when button is tapped
@@ -196,7 +198,11 @@ struct EventCreationView: View {
                     
                 }
                 
-            }.onAppear {
+            }
+            .sheet(isPresented: $showImagePicker, content: {
+                ImagePicker(images: $images, showPicker: $showImagePicker, limit: 1)
+            })
+            .onAppear {
                 //youEventLineVM.getYouEvents()
             }
             
@@ -221,8 +227,9 @@ struct EventCreationView: View {
                     AlertBoxView(title: "Choose the endtime of your event", placeholder: timeFormatter.string(from: endTime), defaultText: timeFormatter.string(from: endTime), dateInput: true, dateFormat: "HH:mm", output: $endTimeAsString, show: $showAlertBox, accepted: $accepted)
                 
                 // AlertBox to define the picture
-                case 99:
-                    ImagePicker(isShown: $showAlertBox, isDone: $accepted, image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
+//                case 99:
+//                    showImagePicker = true
+//                    ImagePicker(isShown: $showAlertBox, isDone: $accepted, image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
                     
                 default:
                     AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", output: $category, show: $showAlertBox, accepted: $accepted)

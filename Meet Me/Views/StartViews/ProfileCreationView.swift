@@ -229,7 +229,7 @@ struct ProfileCreationView: View {
                     // image picker view
                     case 5:
                         if showImagePicker {
-                            ImagePicker(isShown: $showImagePicker, isDone: $accpetedAction[5], image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
+                            ImageOldP(isShown: $showImagePicker, isDone: $accpetedAction[5], image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
                         }
                         
 //                        AlertBoxView(title: "Choose a picture of yourself", placeholder: "", defaultText: "", output: $acceptLocation, show: $showAlertBox, accepted: $accpetedAction[4])
