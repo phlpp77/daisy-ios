@@ -13,45 +13,27 @@ import PromiseKit
 class MeProfileViewModel: ObservableObject {
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     private var firestoreFotoManagerUserTest: FirestoreFotoManagerUserTest = FirestoreFotoManagerUserTest()
-    var user: [UserModelObject] = []
+    //var user: [UserModelObject] = []
     @Published var userModel: UserModel = stockUser
     @Published var userPictureURL: URL = stockURL
 
     
 
     
-    func getUserProfile() -> Promise<UserModel>{
-        return Promise { seal in
-            
+    func getUserProfile() {
             firstly {
                 self.firestoreManagerUserTest.getCurrentUser()
-            }.done { userModel in
-                seal.fulfill(userModel)
+            }.done { user in
+                self.userModel = user
+                self.userPictureURL = URL(string: user.userPhotos[1] ?? stockUrlString)!
             }.catch { error in
-                seal.reject(error)
+                print("DEBUG: error in getUserProfileChain \(error)")
+                print("DEBUG: \(error.localizedDescription)")
             }
         }
     }
-}
-    
-//    func getUserPicture() -> Promise<URL> {
-//        return Promise { seal in
-//
-//            firstly {
-//                self.firestoreFotoManagerUserTest.getAllPhotosFromCurrentUser()
-//            }.done { allPhotos in
-//                if allPhotos != nil {
-//                    seal.fulfill(URL(string: allPhotos![0].url)!)
-//                } else {
-//                    seal.fulfill(stockURL)
-//                }
-//            }.catch { error in
-//                seal.reject(error)
-//            }
-//        }
-//    }
-//}
-            
+
+       
             
 
         

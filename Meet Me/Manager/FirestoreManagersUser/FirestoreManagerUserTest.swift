@@ -155,7 +155,7 @@ class FirestoreManagerUserTest {
     //Muss noch eingefügt werden
     func getUserWhichCreatedEvent(eventModel: EventModel) -> Promise<UserModel> {
         return Promise { seal in
-            db.collection("users").document(eventModel.eventId).getDocument { snapshot, error in
+            db.collection("users").document(eventModel.userId).getDocument { snapshot, error in
                 if let error = error {
                     seal.reject(error)
                 } else {
@@ -180,14 +180,14 @@ class FirestoreManagerUserTest {
     
     // MARK: - Functions to get add a Match to User
     
-    func addMatchToCurrentUser(userModel: UserModelObject) -> Promise<Void> {
+    func addMatchToCurrentUser(userModel: UserModelObject, eventModel: EventModelObject) -> Promise<Void> {
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
             let _ = db.collection("users")
                 .document(currentUser.uid)
-                .collection("matches").document(userModel.userId).setData(["userId": userModel.userId]) { error in
+                .collection("matches").document(userModel.userId).setData(["userId": userModel.userId, "eventId": eventModel.eventId]) { error in
                     if let error = error {
                         seal.reject(error)
                     }
@@ -198,14 +198,14 @@ class FirestoreManagerUserTest {
     }
     
     
-    func addMatchToMatchedUser(userModel: UserModelObject) -> Promise<Void> {
+    func addMatchToMatchedUser(userModel: UserModelObject,eventModel: EventModelObject) -> Promise<Void> {
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
             let _ = db.collection("users")
                 .document(userModel.userId)
-                .collection("matches").document(currentUser.uid).setData(["userId": currentUser.uid]) { error in
+                .collection("matches").document(currentUser.uid).setData(["userId": currentUser.uid], eventModel.eventId) { error in
                     if let error = error {
                         seal.reject(error)
                     }
