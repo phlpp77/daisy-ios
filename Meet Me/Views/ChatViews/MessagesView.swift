@@ -9,7 +9,8 @@ import SwiftUI
 
 struct MessagesView: View {
     
-    // chatModel from the ViewModel with MatchModel.chatId
+    // chatModel from the ViewModel with MatchModel.chatId from the view above
+    @Binding var chatId: String
     
     @State var chat: ChatModel = stockChat
     

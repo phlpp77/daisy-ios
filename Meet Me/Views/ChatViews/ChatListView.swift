@@ -27,7 +27,7 @@ struct ChatListView: View {
                             Color.clear
                             
                             NavigationLink(
-                                destination: MessagesView(),
+                                destination: MessagesView(chatId: $matches[matchNumber].chatId),
                                 isActive: $chatTapped
                             )
                                 {
