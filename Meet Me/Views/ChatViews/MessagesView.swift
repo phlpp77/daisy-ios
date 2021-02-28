@@ -57,6 +57,6 @@ struct MessagesView: View {
 
 struct MessagesView_Previews: PreviewProvider {
     static var previews: some View {
-        MessagesView()
+        MessagesView(chatId: .constant("chadIDDD"))
     }
 }
