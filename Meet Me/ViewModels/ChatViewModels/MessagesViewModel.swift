@@ -29,6 +29,7 @@ class MessagesViewModel: ObservableObject {
         firstly {
             self.firestoreManagerChat.uploadMessage(messageText: messageText, chatId: chatId)
         }.done {
+            self.downloadChat(chatId: chatId)
             print("Upload erfolgreich")
         }.catch { error in
             print("DEBUG: error in MessageUploadChain error: \(error)")

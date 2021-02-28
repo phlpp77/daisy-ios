@@ -114,7 +114,7 @@ class FirestoreManagerChat: ObservableObject  {
         return Promise { seal in
             db.collection("chats")
                 .document(chatId)
-                .getDocument { (snapshot, error) in
+                .addSnapshotListener { (snapshot, error) in
                     if let error = error {
                         seal.reject(error)
                     } else {
@@ -140,7 +140,7 @@ class FirestoreManagerChat: ObservableObject  {
                 return
             }
             
-            let messageModel = MessageModel(userId: currentUser.uid, timeStamp: NSDate().timeIntervalSince1970, messageText: messageText)
+            let messageModel = MessageModel(userId: currentUser.uid, timeStamp: Date(), messageText: messageText)
             
                 let _ = db.collection("chats")
                     .document(chatId)

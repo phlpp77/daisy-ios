@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MessagesView: View {
     
-
+    @StateObject var messagesVM : MessagesViewModel = MessagesViewModel()
     // chatModel from the ViewModel with MatchModel.chatId from the view above
     @Binding var chatId: String
     
@@ -25,7 +25,7 @@ struct MessagesView: View {
                                 
                 // MARK: Message area
                 ScrollView {
-                    ForEach(chat.messages.indices) { messageNumber in
+                    ForEach(messagesVM.chat.messages.indices) { messageNumber in
                         MessageView(message: $chat.messages[messageNumber])
                     }
                 }
@@ -36,7 +36,7 @@ struct MessagesView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     Button(action: {
-                        
+                        messagesVM.UploadChat(chatId: chatId, messageText: newMessage)
                     }, label: {
                         Image(systemName: "paperplane.fill")
                             .padding()
@@ -50,7 +50,7 @@ struct MessagesView: View {
         
         // TODO: @budni onAppear for you to play with
         .onAppear {
-            // VM stuuuufff
+            messagesVM.downloadChat(chatId: chatId)
         }
         
     }

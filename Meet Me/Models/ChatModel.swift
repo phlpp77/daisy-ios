@@ -17,6 +17,6 @@ struct ChatModel: Codable {
 
 struct MessageModel: Codable {
     var userId: String
-    var timeStamp: Double
+    var timeStamp: Date
     var messageText: String
 }
