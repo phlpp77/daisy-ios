@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ChatListView: View {
     
+    @StateObject var chatListVM: ChatListViewModel = ChatListViewModel()
+    
+    
     @State var matches: [AllMatchInformationModel] = [AllMatchInformationModel(chatId: "egal", user: stockUser, event: stockEvent), AllMatchInformationModel(chatId: "egal", user: stockUser2, event: stockEvent2)]
     
     @State var chatTapped: Bool = false
@@ -20,7 +23,7 @@ struct ChatListView: View {
                 
                 
                 ScrollView {
-                    ForEach(matches.indices) { matchNumber in
+                    ForEach(chatListVM.matches.indices) { matchNumber in
                         
                         VStack {
                             
@@ -40,7 +43,11 @@ struct ChatListView: View {
                 }
                 .navigationBarHidden(true)
             }
+        }.onAppear {
+            chatListVM.getMatches()
+            print("getMatches aufgerufen")
         }
+        
     }
 }
 

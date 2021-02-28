@@ -19,11 +19,8 @@ class FirestoreManagerChat: ObservableObject  {
     init() {
         db = Firestore.firestore()
     }
-    private var userModel: UserModel = stockUser
-    private var eventModel: EventModel = stockEvent
-    private var matchDoc : [MatchModel] = []
-    @Published var matches : [AllMatchInformationModel] = []
-    
+
+    // MARK: - Functions to Download Matches
 
     func getAllMatchDocumentsCurrentUser() ->Promise<[MatchModel]> {
         return Promise { seal in
@@ -108,42 +105,57 @@ class FirestoreManagerChat: ObservableObject  {
             }
         }
     }
-
-    func getAllMatchInformation() {
-            for doc in matchDoc {
-                firstly{
-                    self.getEventWithEventId(eventId: doc.eventId)
-                }.map { event in
-                    self.eventModel = event
-                }.then {
-                    self.getUserWithUserId(userId: doc.matchedUserId)
-                }.map { user in
-                    self.userModel = user
-                }.done { [self] in
-                    
-                    let matchInformation = AllMatchInformationModel(chatId: doc.chatId, user: userModel, event: eventModel)
-                    matches.append(matchInformation)
-                }.catch { error in
-                    print(error)
-                }
-            }
-    }
     
-    func getMatchDocument() ->Promise<Void> {
+    
+    // MARK: - Functions to Download Chat and an Upload Messages
+    
+    
+    func downloadChat(chatId: String) -> Promise<ChatModel> {
         return Promise { seal in
-            firstly {
-                self.getAllMatchDocumentsCurrentUser()
-            }.map { matchDocs in
-                self.matchDoc = matchDocs
-            }.done {
-                self.getAllMatchInformation()
-                seal.fulfill(())
-            }.catch { error in
-                seal.reject(error)
-                
-            }
+            db.collection("chats")
+                .document(chatId)
+                .getDocument { (snapshot, error) in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        if let snapshot = snapshot {
+                            let chatModel = try? snapshot.data(as: ChatModel.self)
+                            if chatModel != nil {
+                                DispatchQueue.main.async {
+                                    seal.fulfill(chatModel!)
+                                }
+                            }
+                            
+                        }
+                        
+                        
+                    }
+                }
         }
     }
-}
+    
+    func uploadMessage(messageText: String, chatId: String) -> Promise<Void> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                return
+            }
+            
+            let messageModel = MessageModel(userId: currentUser.uid, timeStamp: NSDate().timeIntervalSince1970, messageText: messageText)
+            
+                let _ = db.collection("chats")
+                    .document(chatId)
+                    .updateData(["messages" : FieldValue.arrayUnion([messageModel])]) { error in
+                        if let error = error {
+                            seal.reject(error)
+                        } else {
+                            seal.fulfill(())
+                        }
+                    }
+            }
+        }
+        
+    }
 
+
+    
 

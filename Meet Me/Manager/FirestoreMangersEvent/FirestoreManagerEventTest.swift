@@ -80,12 +80,18 @@ class FirestoreManagerEventTest {
                     .document(eventId)
                     .collection("likedUser")
                     .document("likedUser")
-                    .updateData(["likedUser" : FieldValue.arrayUnion([currentUser.uid])])
-                seal.fulfill(())
-                    
-                }
+                    .updateData(["likedUser" : FieldValue.arrayUnion([currentUser.uid])]){ error in
+                        if let error = error {
+                            seal.reject(error)
+                        } else {
+                            seal.fulfill(())
+                        }
+                    }
+                
+                
             }
         }
+    }
     
 
 

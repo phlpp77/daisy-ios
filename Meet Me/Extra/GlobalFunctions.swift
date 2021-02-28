@@ -50,5 +50,5 @@ let stockEvent2: EventModel = EventModel(eventId: "009", userId: "008", name: "N
 let stockEventObject: EventModelObject = EventModelObject(eventModel: stockEvent, position: .constant(.zero))
 
 // MARK: stock chat for chat area
-let stockChat: ChatModel = ChatModel(chatId: "egal", eventCreatorId: "creatoRR", matchedUserId: "receiveRR", eventId: "egal2", messages: [MessageModel(userId: "egal3", timeStamp: Date(), messageText: "Test msg1"), MessageModel(userId: "egal3", timeStamp: Date()+30, messageText: "Test msg2")])
+let stockChat: ChatModel = ChatModel(chatId: "egal", eventCreatorId: "creatoRR", matchedUserId: "receiveRR", eventId: "egal2", messages: [MessageModel(userId: "egal3", timeStamp: 150, messageText: "Test msg1"), MessageModel(userId: "egal3", timeStamp: 230, messageText: "Test msg2")])
 

@@ -79,6 +79,8 @@
 		90D42AF725EABC400060311B /* AllMatchInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42AF625EABC400060311B /* AllMatchInformationModel.swift */; };
 		90D42AFA25EABC590060311B /* FirestoreManagerMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42AF925EABC590060311B /* FirestoreManagerMatches.swift */; };
 		90D42B0125EAC0DC0060311B /* FirestoreManagerChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B0025EAC0DC0060311B /* FirestoreManagerChat.swift */; };
+		90D42B1E25EBA7190060311B /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B1D25EBA7190060311B /* ChatListViewModel.swift */; };
+		90D42B2225EBA75C0060311B /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B2125EBA75C0060311B /* MessagesViewModel.swift */; };
 		90F2334D25D58481003FB1D9 /* ImageOldP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2334C25D58481003FB1D9 /* ImageOldP.swift */; };
 		90F2335125D5943B003FB1D9 /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */; };
 		90F2336325D830E7003FB1D9 /* ProfileCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2336225D830E7003FB1D9 /* ProfileCreationViewModel.swift */; };
@@ -158,6 +160,8 @@
 		90D42AF625EABC400060311B /* AllMatchInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMatchInformationModel.swift; sourceTree = "<group>"; };
 		90D42AF925EABC590060311B /* FirestoreManagerMatches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerMatches.swift; sourceTree = "<group>"; };
 		90D42B0025EAC0DC0060311B /* FirestoreManagerChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerChat.swift; sourceTree = "<group>"; };
+		90D42B1D25EBA7190060311B /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
+		90D42B2125EBA75C0060311B /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
 		90F2334C25D58481003FB1D9 /* ImageOldP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOldP.swift; sourceTree = "<group>"; };
 		90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
 		90F2336225D830E7003FB1D9 /* ProfileCreationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCreationViewModel.swift; sourceTree = "<group>"; };
@@ -296,6 +300,7 @@
 				90B0F4D025DF0B6000AB8EF9 /* MainControllerViewModels */,
 				90B0F4CF25DF0B5100AB8EF9 /* ProfileViewModels */,
 				90B0F4CE25DF0B4200AB8EF9 /* MarketplaceViewModels */,
+				90D42B2025EBA71D0060311B /* ChatViewModels */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -456,6 +461,15 @@
 				90D42B0025EAC0DC0060311B /* FirestoreManagerChat.swift */,
 			);
 			path = FirestoreManagerChat;
+			sourceTree = "<group>";
+		};
+		90D42B2025EBA71D0060311B /* ChatViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				90D42B1D25EBA7190060311B /* ChatListViewModel.swift */,
+				90D42B2125EBA75C0060311B /* MessagesViewModel.swift */,
+			);
+			path = ChatViewModels;
 			sourceTree = "<group>";
 		};
 		A99606559D29C5E8C75383F5 /* Frameworks */ = {
@@ -624,6 +638,7 @@
 				179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */,
 				90D42AF225EAAD250060311B /* ChatModel.swift in Sources */,
 				90779B6D25E5A3F40070D794 /* MeMatchCardViewModel.swift in Sources */,
+				90D42B2225EBA75C0060311B /* MessagesViewModel.swift in Sources */,
 				173F361C25E2FF0D002E9EE6 /* MeMatchView.swift in Sources */,
 				17DE531225EAC372000D0B4D /* ChatListRowView.swift in Sources */,
 				902EF6E225D985F0004464F0 /* Meet_MeAppViewModel.swift in Sources */,
@@ -643,6 +658,7 @@
 				90779B0A25E305D40070D794 /* MeMatchStartViewModel.swift in Sources */,
 				1795DF9525DD6998002D537F /* MeEventLineView.swift in Sources */,
 				17EDA6F025E6C974004BC651 /* LogoutView.swift in Sources */,
+				90D42B1E25EBA7190060311B /* ChatListViewModel.swift in Sources */,
 				17DE52EA25E9A2D7000D0B4D /* YouProfileView.swift in Sources */,
 				1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */,
 				902EF6BD25D896E3004464F0 /* UIImageResized.swift in Sources */,
@@ -792,7 +808,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = LTC2Q574RM;
+				DEVELOPMENT_TEAM = SH8L9L3ABL;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -800,7 +816,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Me";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Meee";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -818,7 +834,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = LTC2Q574RM;
+				DEVELOPMENT_TEAM = SH8L9L3ABL;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -826,7 +842,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Me";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Meee";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
