@@ -19,8 +19,8 @@ class FirestoreManagerChat: ObservableObject  {
     init() {
         db = Firestore.firestore()
     }
-    private var u: UserModel = stockUser
-    private var e: EventModel = stockEvent
+    private var userModel: UserModel = stockUser
+    private var eventModel: EventModel = stockEvent
     private var matchDoc : [MatchModel] = []
     @Published var matches : [AllMatchInformationModel] = []
     
@@ -114,23 +114,19 @@ class FirestoreManagerChat: ObservableObject  {
                 firstly{
                     self.getEventWithEventId(eventId: doc.eventId)
                 }.map { event in
-                    self.e = event
+                    self.eventModel = event
                 }.then {
                     self.getUserWithUserId(userId: doc.matchedUserId)
                 }.map { user in
-                    self.u = user
+                    self.userModel = user
                 }.done { [self] in
                     
-                    let matchInformation = AllMatchInformationModel(userId:self.u.userId , name:self.u.name , birthdayDate:u.birthdayDate , gender:self.u.gender , searchingFor:self.u.searchingFor , userPhotos:self.u.userPhotos , eventId: self.e.eventId, category:self.e.category , date:self.e.date , startTime:self.e.startTime , endTime:self.e.endTime , pictureURL:self.e.pictureURL , profilePicture: self.e.profilePicture )
-                    print("ghey")
-                    print(matchInformation)
+                    let matchInformation = AllMatchInformationModel(chatId: doc.chatId, userModel: userModel, eventModel: eventModel)
                     matches.append(matchInformation)
-                    print(matches)
                 }.catch { error in
                     print(error)
                 }
             }
-        print(matches)
     }
     
     func getMatchDocument() ->Promise<Void> {

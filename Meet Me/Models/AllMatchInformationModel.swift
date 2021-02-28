@@ -8,22 +8,10 @@
 import Foundation
 
 struct AllMatchInformationModel: Codable {
-
-//All User Informations
-    var userId: String
-    var name: String
-    var birthdayDate: Date = Date()
-    var gender: String
-    var searchingFor: String
-    var userPhotos: [Int: String]
+    var chatId: String
     
- //All Event Informations
-    var eventId: String
-    var category: String
-    var date: Date
-    var startTime: Date
-    var endTime: Date
-    var pictureURL: String
-    var profilePicture: String
+//All User Informations
+    var userModel: UserModel
+    var eventModel: EventModel
 }
 
