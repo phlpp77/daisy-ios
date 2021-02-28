@@ -30,8 +30,9 @@ class ChatListViewModel: ObservableObject {
             }.then {
                 self.getAllMatchInformation()
             }.done { match in
+                print("DDDD\(match)")
                 self.matches = match
-                print(self.matches)
+                print("DDDD\(self.matches)")
             }.catch { error in
                 print("DEBUG: error in getMatchesChain error: \(error)")
             }
@@ -54,14 +55,18 @@ class ChatListViewModel: ObservableObject {
                 }.done { [self] in
                     
                     let matchInformation = AllMatchInformationModel(chatId: doc.chatId, user: userModel, event: eventModel)
+                    print(matchInformation)
                     match.append(matchInformation)
+                    seal.fulfill(match)
                 }.catch { error in
-                    seal.reject(error)
+                    print(error)
                 }
             }
-            seal.fulfill(match)
         }
     }
 }
-    
+
+
+
+
 
