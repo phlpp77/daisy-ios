@@ -153,9 +153,9 @@ class FirestoreManagerUserTest {
     }
     
     //Muss noch eingefügt werden
-    func getUserWhichCreatedEvent(eventModel: EventModel) -> Promise<UserModel> {
+    func getUserWhichCreatedEvent(eventModel: EventModelObject) -> Promise<UserModel> {
         return Promise { seal in
-            db.collection("users").document(eventModel.eventId).getDocument { snapshot, error in
+            db.collection("users").document(eventModel.userId).getDocument { snapshot, error in
                 if let error = error {
                     seal.reject(error)
                 } else {
@@ -175,81 +175,11 @@ class FirestoreManagerUserTest {
             }
         }
     }
+}
     
 
     
-    // MARK: - Functions to get add a Match to User
+  
     
-    func addMatchToCurrentUser(userModel: UserModelObject) -> Promise<Void> {
-        return Promise { seal in
-            guard let currentUser = Auth.auth().currentUser else {
-                return
-            }
-            let _ = db.collection("users")
-                .document(currentUser.uid)
-                .collection("matches").document(userModel.userId).setData(["userId": userModel.userId]) { error in
-                    if let error = error {
-                        seal.reject(error)
-                    }
-                }
-            seal.fulfill(())
-        }
-        
-    }
-    
-    
-    func addMatchToMatchedUser(userModel: UserModelObject) -> Promise<Void> {
-        return Promise { seal in
-            guard let currentUser = Auth.auth().currentUser else {
-                return
-            }
-            let _ = db.collection("users")
-                .document(userModel.userId)
-                .collection("matches").document(currentUser.uid).setData(["userId": currentUser.uid]) { error in
-                    if let error = error {
-                        seal.reject(error)
-                    }
-                }
-            seal.fulfill(())
-        }
-    }
-    
-    // MARK: -  delete a like from User
-    
-    func deleteLikedUser(eventModel: EventModelObject, userModel: UserModelObject) -> Promise<Void> {
-        return Promise { seal in
-            
-            db.collection("events")
-                .document(eventModel.eventId)
-                .collection("likedUser")
-                .document(userModel.userId).delete() { error in
-                    if let error = error {
-                        seal.reject(error)
-                    }
-                }
-            seal.fulfill(())
-        }
-    }
-    
-    //Muss noch implementiert werden 
-    func deleteMatchFromUserProfile(userModel: UserModel) -> Promise<Void> {
-        return Promise { seal in
-            guard let currentUser = Auth.auth().currentUser else {
-                return
-            }
-            db.collection("users")
-                .document(currentUser.uid)
-                .collection("matches")
-                .document(userModel.userId).delete() { error in
-                    if let error = error {
-                        seal.reject(error)
-                    }
-                }
-            seal.fulfill(())
-        }
-    }
-    
-    
-    
-}
+   
 

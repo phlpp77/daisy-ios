@@ -16,7 +16,7 @@ enum ProfileUsageType {
 
 struct MeProfileView: View {
     
-    @ObservedObject private var meProfileVM = MeProfileViewModel()
+    @ObservedObject var meProfileVM = MeProfileViewModel()
     
     // changed when not used inside the profile tab
     @State var profileUsageType: ProfileUsageType = ProfileUsageType.me
@@ -113,15 +113,8 @@ struct MeProfileView: View {
         
         // MARK: Get data from database
         .onAppear {
-            firstly {
-                self.meProfileVM.getUserProfile()
-            }.map { userModel in
-                meProfileVM.userModel = userModel
-                meProfileVM.userPictureURL = URL(string: userModel.userPhotos[1]!)!
-            }.catch { error in
-                print("DEBUG: error in getUserProfileChain \(error)")
-                print("DEBUG: \(error.localizedDescription)")
-            }
+            self.meProfileVM.getUserProfile()
+
         }
         
     }
