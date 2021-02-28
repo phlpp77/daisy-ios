@@ -13,7 +13,7 @@ struct MessagesView: View {
     // chatModel from the ViewModel with MatchModel.chatId from the view above
     @Binding var chatId: String
     
-    @State var chat: ChatModel = stockChat
+    @State var chat: ChatModel = ChatModel(chatId: "", eventCreatorId: "", matchedUserId: "", eventId: "", messages: [MessageModel(userId: "", timeStamp: Date(), messageText: "TestmsGG")])
     
     // message which needs to be uploaded
     @State var newMessage: String = ""
@@ -25,7 +25,7 @@ struct MessagesView: View {
                                 
                 // MARK: Message area
                 ScrollView {
-                    ForEach(messagesVM.chat.messages.indices) { messageNumber in
+                    ForEach(chat.messages.indices) { messageNumber in
                         MessageView(message: $chat.messages[messageNumber])
                     }
                 }
@@ -36,7 +36,9 @@ struct MessagesView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     Button(action: {
+                        
                         messagesVM.UploadChat(chatId: chatId, messageText: newMessage)
+                        
                     }, label: {
                         Image(systemName: "paperplane.fill")
                             .padding()
@@ -51,6 +53,9 @@ struct MessagesView: View {
         // TODO: @budni onAppear for you to play with
         .onAppear {
             messagesVM.downloadChat(chatId: chatId)
+            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) {
+                chat = messagesVM.chat
+            }
         }
         
     }

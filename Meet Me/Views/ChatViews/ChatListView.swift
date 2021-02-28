@@ -9,10 +9,9 @@ import SwiftUI
 
 struct ChatListView: View {
     
-    @StateObject var chatListVM: ChatListViewModel = ChatListViewModel()
+    @ObservedObject var chatListVM: ChatListViewModel = ChatListViewModel()
     
-    
-   @State var matches: [AllMatchInformationModel] = [AllMatchInformationModel(chatId: "egal", user: stockUser, event: stockEvent), AllMatchInformationModel(chatId: "egal", user: stockUser2, event: stockEvent2)]
+    @State var matches: [AllMatchInformationModel] = [AllMatchInformationModel(chatId: "egal", user: stockUser, event: stockEvent)]
     
     @State var chatTapped: Bool = false
     
@@ -33,7 +32,7 @@ struct ChatListView: View {
                                 destination: MessagesView(chatId: $matches[matchNumber].chatId),
                                 isActive: $chatTapped
                             )
-                                {
+                            {
                                 ChatListRowView(user: $matches[matchNumber].user, event: $matches[matchNumber].event, chatTapped: $chatTapped)
                             }
                             
@@ -45,10 +44,12 @@ struct ChatListView: View {
             }
         }.onAppear {
             chatListVM.getMatches()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {matches = chatListVM.matches
-                print(matches)
-                print(chatListVM.matches)
-            })
+            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) {
+                
+                print("matches after 3 sec \(matches.count)")
+                print(chatListVM.matches.indices)
+                matches = chatListVM.matches
+            }
             print("getMatches aufgerufen")
         }
         
