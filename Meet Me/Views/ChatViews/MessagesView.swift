@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MessagesView: View {
     
+    // chatModel from the ViewModel with MatchModel.chatId
+    
     @State var messages: [MessageModel] = [MessageModel()]
     @State var newMessage: String = "Test here"
     

@@ -27,7 +27,10 @@ struct MessageView: View {
         }
         .frame(maxWidth: .infinity, alignment: messageStyle == .receiver ? .leading : .trailing)
         .padding()
-            
+        // on appear to get MessageStyle
+        .onAppear {
+        //
+        }
     }
 }
 
