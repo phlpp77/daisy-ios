@@ -49,6 +49,7 @@
 		17DE531825EAED20000D0B4D /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE531725EAED20000D0B4D /* MessagesView.swift */; };
 		17DE531E25EAEF51000D0B4D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE531D25EAEF51000D0B4D /* MessageView.swift */; };
 		17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E45ABA25B74F6600B9A93B /* LoginView.swift */; };
+		17E5248625EBC78F0073C191 /* CircleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5248525EBC78F0073C191 /* CircleBackgroundView.swift */; };
 		17EDA6F025E6C974004BC651 /* LogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EDA6EF25E6C974004BC651 /* LogoutView.swift */; };
 		3C4632628DFAFFCA3B1B6674 /* Pods_Meet_Me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6866AE96A8202B7FCBDD60 /* Pods_Meet_Me.framework */; };
 		902EF6B925D89213004464F0 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6B825D89213004464F0 /* PhotoModel.swift */; };
@@ -132,6 +133,7 @@
 		17DE531725EAED20000D0B4D /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		17DE531D25EAEF51000D0B4D /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		17E45ABA25B74F6600B9A93B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		17E5248525EBC78F0073C191 /* CircleBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleBackgroundView.swift; sourceTree = "<group>"; };
 		17EDA6EF25E6C974004BC651 /* LogoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutView.swift; sourceTree = "<group>"; };
 		8CC506F59200740347A6B95E /* Pods-Meet Me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Me.debug.xcconfig"; path = "Target Support Files/Pods-Meet Me/Pods-Meet Me.debug.xcconfig"; sourceTree = "<group>"; };
 		902EF6B825D89213004464F0 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				1795DFA925DF1923002D537F /* LottieView.swift */,
 				1795DFAD25DF20AD002D537F /* LoadingView.swift */,
 				17DE52EC25EA3F9E000D0B4D /* ImagePicker.swift */,
+				17E5248525EBC78F0073C191 /* CircleBackgroundView.swift */,
 			);
 			path = ViewHelpers;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				1795DFAE25DF20AD002D537F /* LoadingView.swift in Sources */,
 				17DAD7E325D934D600DBE60B /* GlobalFunctions.swift in Sources */,
 				90D42ACF25E966220060311B /* LikedEventModel.swift in Sources */,
+				17E5248625EBC78F0073C191 /* CircleBackgroundView.swift in Sources */,
 				1778E41325D0904100C5D343 /* DateTextField.swift in Sources */,
 				90F8AB4625BF5CDA00E969E0 /* UserModel.swift in Sources */,
 				90D42AFA25EABC590060311B /* FirestoreManagerMatches.swift in Sources */,
@@ -808,7 +812,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -816,7 +820,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Meee";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Me";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -834,7 +838,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -842,7 +846,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Meee";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Me";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
