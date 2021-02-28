@@ -12,11 +12,11 @@ struct ChatModel: Codable {
     var eventCreatorId: String
     var matchedUserId: String
     var eventId: String
-    var messages: [Message]
+    var messages: [MessageModel]
 }
 
-struct Message: Codable {
+struct MessageModel: Codable {
     var userId: String
-    var timeStamp: String
-    var message: String
+    var timeStamp: Date
+    var messageText: String
 }

@@ -14,12 +14,12 @@ enum MessageStyle {
 
 struct MessageView: View {
     
-    @Binding var messageText: String
-    @Binding var messageStyle: MessageStyle
+    @Binding var message: MessageModel
+    @State var messageStyle: MessageStyle = .creator
     
     var body: some View {
         VStack {
-            Text(messageText)
+            Text(message.messageText)
                 .padding()
                 .background(messageStyle == .receiver ? Color.gray : Color.green)
                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
@@ -36,6 +36,6 @@ struct MessageView: View {
 
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageView(messageText: .constant("Test Message.."), messageStyle: .constant(.creator))
+        MessageView(message: .constant(stockChat.messages[0]))
     }
 }

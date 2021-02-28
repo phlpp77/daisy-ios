@@ -11,10 +11,10 @@ struct MessagesView: View {
     
     // chatModel from the ViewModel with MatchModel.chatId
     
-    @State var messages: [MessageModel] = [MessageModel()]
-    @State var newMessage: String = "Test here"
+    @State var chat: ChatModel = stockChat
     
-    @State var budni: Bool = false
+    // message which needs to be uploaded
+    @State var newMessage: String = ""
     
     var body: some View {
         
@@ -23,8 +23,8 @@ struct MessagesView: View {
                                 
                 // MARK: Message area
                 ScrollView {
-                    ForEach(messages.indices) { messageNumber in
-                        MessageView(messageText: $newMessage, messageStyle: .constant(.creator))
+                    ForEach(chat.messages.indices) { messageNumber in
+                        MessageView(message: $chat.messages[messageNumber])
                     }
                 }
                 
@@ -34,7 +34,7 @@ struct MessagesView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     Button(action: {
-                        budni.toggle()
+                        
                     }, label: {
                         Image(systemName: "paperplane.fill")
                             .padding()
@@ -44,10 +44,13 @@ struct MessagesView: View {
                 .modifier(FrozenWindowModifier())
             }
             
-            if budni {
-                SwiftUIView()
-            }
         }
+        
+        // TODO: @budni onAppear for you to play with
+        .onAppear {
+            // VM stuuuufff
+        }
+        
     }
 }
 

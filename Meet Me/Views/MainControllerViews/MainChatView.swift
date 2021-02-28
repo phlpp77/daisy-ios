@@ -9,15 +9,7 @@ import SwiftUI
 
 struct MainChatView: View {
     
-    var matches: MatchModelTest = MatchModelTest()
     
-    @State var users: [UserModel] = [stockUser, stockUser2]
-    @State var events: [EventModel] = [stockEvent2, stockEvent]
-    
-    init() {
-        self.users = matches.users  
-        self.events = matches.events
-    }
     
     var body: some View {
         
@@ -35,7 +27,7 @@ struct MainChatView: View {
             .padding(.vertical, 12)
             
             // MARK: List with chats available to the user
-            ChatListView(users: $users, events: $events)
+            ChatListView()
         }
     }
 }

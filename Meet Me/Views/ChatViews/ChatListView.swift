@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ChatListView: View {
     
-    @Binding var users: [UserModel]
-    @Binding var events: [EventModel]
+    @State var matches: [AllMatchInformationModel] = [AllMatchInformationModel(chatId: "egal", user: stockUser, event: stockEvent), AllMatchInformationModel(chatId: "egal", user: stockUser2, event: stockEvent2)]
     
     @State var chatTapped: Bool = false
     
@@ -21,7 +20,7 @@ struct ChatListView: View {
                 
                 
                 ScrollView {
-                    ForEach(users.indices) { userNumber in
+                    ForEach(matches.indices) { matchNumber in
                         
                         VStack {
                             
@@ -32,7 +31,7 @@ struct ChatListView: View {
                                 isActive: $chatTapped
                             )
                                 {
-                                ChatListRowView(user: $users[userNumber], event: $events[userNumber], chatTapped: $chatTapped)
+                                ChatListRowView(user: $matches[matchNumber].user, event: $matches[matchNumber].event, chatTapped: $chatTapped)
                             }
                             
                             
@@ -47,6 +46,6 @@ struct ChatListView: View {
 
 struct ChatListView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatListView(users: .constant([stockUser, stockUser2]), events: .constant([stockEvent]))
+        ChatListView()
     }
 }

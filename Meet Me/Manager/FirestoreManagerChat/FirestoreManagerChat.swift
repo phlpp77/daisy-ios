@@ -121,7 +121,7 @@ class FirestoreManagerChat: ObservableObject  {
                     self.userModel = user
                 }.done { [self] in
                     
-                    let matchInformation = AllMatchInformationModel(chatId: doc.chatId, userModel: userModel, eventModel: eventModel)
+                    let matchInformation = AllMatchInformationModel(chatId: doc.chatId, user: userModel, event: eventModel)
                     matches.append(matchInformation)
                 }.catch { error in
                     print(error)

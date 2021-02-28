@@ -11,7 +11,7 @@ struct AllMatchInformationModel: Codable {
     var chatId: String
     
 //All User Informations
-    var userModel: UserModel
-    var eventModel: EventModel
+    var user: UserModel
+    var event: EventModel
 }
 
