@@ -17,19 +17,39 @@ struct MessageView: View {
     @Binding var message: MessageModel
     @State var messageStyle: MessageStyle = .creator
     
+    var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_DE")
+        formatter.dateFormat = "HH:mm dd/MM/yy"
+        return formatter
+    }()
+    
     var body: some View {
-        VStack {
-            Text(message.messageText)
-                .padding()
-                .background(messageStyle == .receiver ? Color.gray : Color.green)
-                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        VStack(spacing: 0.0) {
+            Text(dateFormatter.string(from: message.timeStamp))
+                .font(.footnote)
+                .foregroundColor(.accentColor)
+                .padding(.top, 8)
+                .frame(maxWidth: 250, alignment: .trailing)
+                .padding(.horizontal, 8)
+                .fixedSize(horizontal: true, vertical: false)
+
             
+            Text(message.messageText)
+                .padding(.horizontal)
+                .padding(.bottom)
+                .frame(maxWidth: 250, alignment: messageStyle == .receiver ? .leading : .trailing)
+                .fixedSize(horizontal: true, vertical: false)
         }
+        .background(messageStyle == .receiver ? Color.gray : Color.green)
+        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         .frame(maxWidth: .infinity, alignment: messageStyle == .receiver ? .leading : .trailing)
         .padding()
-        // on appear to get MessageStyle
+        
+        // on appear to change MessageStyle
         .onAppear {
         //
+            
         }
     }
 }
