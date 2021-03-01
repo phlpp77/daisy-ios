@@ -6,6 +6,11 @@
 //
 
 import Foundation
+import SwiftUI
+
+// MARK: Get information from screen etc
+// get the size of the screen (defined here that it can be used in every View)
+let screen = UIScreen.main.bounds
 
 // MARK: Function to get the age from a date object
 
