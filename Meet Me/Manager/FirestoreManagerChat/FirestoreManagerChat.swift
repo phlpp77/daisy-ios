@@ -119,7 +119,7 @@ class FirestoreManagerChat: ObservableObject  {
                         seal.reject(error)
                     } else {
                         if let snapshot = snapshot {
-                            print(snapshot.data()!)
+//                            print(snapshot.data()!)
                             let chatModel = try? snapshot.data(as: ChatModel.self)
                             if chatModel != nil {
                                 DispatchQueue.main.async {
