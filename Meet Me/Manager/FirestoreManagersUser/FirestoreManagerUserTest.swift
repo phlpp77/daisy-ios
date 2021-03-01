@@ -16,10 +16,11 @@ class FirestoreManagerUserTest {
     
     private var db: Firestore
     //private var currentUserModel: UserModel?
-    
+  
     
     init() {
         db = Firestore.firestore()
+        
     }
     
     

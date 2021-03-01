@@ -119,12 +119,16 @@ class FirestoreManagerChat: ObservableObject  {
                         seal.reject(error)
                     } else {
                         if let snapshot = snapshot {
+                            print(snapshot.data()!)
                             let chatModel = try? snapshot.data(as: ChatModel.self)
                             if chatModel != nil {
                                 DispatchQueue.main.async {
-                                    seal.fulfill(chatModel!)
+                                    if chatModel?.messages.count != 0 {
+                                        seal.fulfill(chatModel!)
+                                    } else {
+                                        seal.fulfill(stockChat)
+                                    }
                                 }
-                            }
                             
                         }
                         
@@ -133,18 +137,19 @@ class FirestoreManagerChat: ObservableObject  {
                 }
         }
     }
+    }
     
     func uploadMessage(messageText: String, chatId: String) -> Promise<Void> {
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
-            
-            let messageModel = MessageModel(userId: currentUser.uid, timeStamp: Date(), messageText: messageText)
-            
+            let timeStamp: Timestamp = Timestamp(date: Date())
+            let messageModel = MessageModel(userId: currentUser.uid,timeStamp: timeStamp, messageText: messageText)
+            print(messageModel)
                 let _ = db.collection("chats")
                     .document(chatId)
-                    .updateData(["messages" : FieldValue.arrayUnion([messageModel])]) { error in
+                    .updateData(["messages" : FieldValue.arrayUnion([messageModel.dictionary])]) { error in
                         if let error = error {
                             seal.reject(error)
                         } else {

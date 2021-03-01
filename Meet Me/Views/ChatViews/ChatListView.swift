@@ -29,11 +29,12 @@ struct ChatListView: View {
                             Color.clear
                             
                             NavigationLink(
-                                destination: MessagesView(chatId: $matches[matchNumber].chatId),
+                                
+                                destination: MessagesView(chatId: $chatListVM.matches[matchNumber].chatId),
                                 isActive: $chatTapped
                             )
                             {
-                                ChatListRowView(user: $matches[matchNumber].user, event: $matches[matchNumber].event, chatTapped: $chatTapped)
+                                ChatListRowView(user: $chatListVM.matches[matchNumber].user, event: $chatListVM.matches[matchNumber].event, chatTapped: $chatTapped)
                             }
                             
                             

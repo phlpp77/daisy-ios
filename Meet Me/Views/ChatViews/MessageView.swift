@@ -26,13 +26,13 @@ struct MessageView: View {
     
     var body: some View {
         VStack(spacing: 0.0) {
-            Text(dateFormatter.string(from: message.timeStamp))
-                .font(.footnote)
-                .foregroundColor(.accentColor)
-                .padding(.top, 8)
-                .frame(maxWidth: 250, alignment: .trailing)
-                .padding(.horizontal, 8)
-                .fixedSize(horizontal: true, vertical: false)
+//            Text(dateFormatter.string(from: Date(timestamp: message.timeStamp))
+//                .font(.footnote)
+//                .foregroundColor(.accentColor)
+//                .padding(.top, 8)
+//                .frame(maxWidth: 250, alignment: .trailing)
+//                .padding(.horizontal, 8)
+//                .fixedSize(horizontal: true, vertical: false)
 
             
             Text(message.messageText)

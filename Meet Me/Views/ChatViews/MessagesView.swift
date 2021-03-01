@@ -12,8 +12,10 @@ struct MessagesView: View {
     @StateObject var messagesVM : MessagesViewModel = MessagesViewModel()
     // chatModel from the ViewModel with MatchModel.chatId from the view above
     @Binding var chatId: String
+    var id: String = "08470AAA-128F-46A3-9D23-1CD48C528938"
+   
     
-    @State var chat: ChatModel = ChatModel(chatId: "", eventCreatorId: "", matchedUserId: "", eventId: "", messages: [MessageModel(userId: "", timeStamp: Date(), messageText: "TestmsGG")])
+    //@State var chat: ChatModel = ChatModel(chatId: "", eventCreatorId: "", matchedUserId: "", eventId: "", messages: [MessageModel(userId: "", timeStamp: Date(), messageText: "TestmsGG")])
     
     // message which needs to be uploaded
     @State var newMessage: String = ""
@@ -25,8 +27,8 @@ struct MessagesView: View {
                                 
                 // MARK: Message area
                 ScrollView {
-                    ForEach(chat.messages.indices) { messageNumber in
-                        MessageView(message: $chat.messages[messageNumber])
+                    ForEach(messagesVM.chat.messages.indices) { messageNumber in
+                        MessageView(message: $messagesVM.chat.messages[messageNumber].messageText)
                     }
                 }
                 
@@ -37,7 +39,7 @@ struct MessagesView: View {
                     
                     Button(action: {
                         
-                        messagesVM.UploadChat(chatId: chatId, messageText: newMessage)
+                        messagesVM.UploadChat(chatId: id, messageText: newMessage)
                         
                     }, label: {
                         Image(systemName: "paperplane.fill")
@@ -53,9 +55,9 @@ struct MessagesView: View {
         // TODO: @budni onAppear for you to play with
         .onAppear {
             messagesVM.downloadChat(chatId: chatId)
-            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) {
-                chat = messagesVM.chat
-            }
+//            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) {
+//                chat = messagesVM.chat
+//            }
         }
         
     }
@@ -63,6 +65,6 @@ struct MessagesView: View {
 
 struct MessagesView_Previews: PreviewProvider {
     static var previews: some View {
-        MessagesView(chatId: .constant("chadIDDD"))
+        MessagesView(chatId: .constant("08470AAA-128F-46A3-9D23-1CD48C528938"))
     }
 }

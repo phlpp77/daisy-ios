@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseFirestoreSwift
 
 // MARK: Function to get the age from a date object
 
@@ -33,8 +35,8 @@ var createdId = UUID().uuidString
 // MARK - Stockdata
 
 // MARK: stock user to use as default
-let stockUser: UserModel = UserModel(userId: "007", name: "Philipp", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Female", userPhotos: [1: stockUrlString])
-let stockUser2: UserModel = UserModel(userId: "008", name: "Lisa", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [1: stockUrlString])
+let stockUser: UserModel = UserModel(userId: "007", name: "stock1", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Female", userPhotos: [1: stockUrlString])
+let stockUser2: UserModel = UserModel(userId: "008", name: "stock2", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [1: stockUrlString])
 
 let stockUserObject: UserModelObject = UserModelObject(user: stockUser)
 
@@ -50,5 +52,5 @@ let stockEvent2: EventModel = EventModel(eventId: "009", userId: "008", name: "N
 let stockEventObject: EventModelObject = EventModelObject(eventModel: stockEvent, position: .constant(.zero))
 
 // MARK: stock chat for chat area
-let stockChat: ChatModel = ChatModel(chatId: "egal", eventCreatorId: "creatoRR", matchedUserId: "receiveRR", eventId: "egal2", messages: [MessageModel(userId: "egal3", timeStamp: Date(), messageText: "Test msg1"), MessageModel(userId: "egal3", timeStamp: Date() + 30, messageText: "Test msg2")])
+let stockChat: ChatModel = ChatModel(chatId: "egal", eventCreatorId: "creatoRR", matchedUserId: "receiveRR", eventId: "egal2", messages: [MessageModel(userId: "egal3", timeStamp: Timestamp(date: Date()), messageText: "Test msg1"), MessageModel(userId: "egal3", timeStamp: Timestamp(date: Date()) , messageText: "Test msg2")])
 

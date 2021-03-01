@@ -18,7 +18,7 @@ class ChatListViewModel: ObservableObject {
     private var userModel: UserModel = stockUser
     private var eventModel: EventModel = stockEvent
     private var matchDoc : [MatchModel] = []
-    @Published var matches : [AllMatchInformationModel] = []
+    @Published var matches : [AllMatchInformationModel] = [AllMatchInformationModel(chatId: "egal", user: stockUser, event: stockEvent)]
     
     
     func getMatches() {
@@ -45,26 +45,41 @@ class ChatListViewModel: ObservableObject {
             var match : [AllMatchInformationModel]  = []
             for doc in matchDoc {
                 firstly{
-                    self.firestoreManagerChat.getEventWithEventId(eventId: doc.eventId)
-                }.map { event in
-                    self.eventModel = event
-                }.then {
-                    self.firestoreManagerChat.getUserWithUserId(userId: doc.matchedUserId)
-                }.map { user in
-                    self.userModel = user
-                }.done { [self] in
-                    
+                    when(fulfilled: self.firestoreManagerChat.getEventWithEventId(eventId: doc.eventId),
+                                    self.firestoreManagerChat.getUserWithUserId(userId: doc.matchedUserId))
+                }.map{ [self] event, user in
                     let matchInformation = AllMatchInformationModel(chatId: doc.chatId, user: userModel, event: eventModel)
-                    print(matchInformation)
                     match.append(matchInformation)
                     seal.fulfill(match)
                 }.catch { error in
                     print(error)
                 }
             }
+            
         }
     }
 }
+
+
+
+    
+//    func getPosts(_ ids: [String]) -> Promise<Void> {
+//        return Promise.value(ids).thenMap { id in
+//            Promise<data> { resolver in
+//                db.collection("data").whereField("id", isEqualTo: id).getDocuments { dataForId, error in
+//                    guard let error = error else { resolver.fulfill(dataForId) }
+//                    resolver.reject(error)
+//                }
+//            }
+//        }
+//        .done { allDataForIds in
+//            self.arr = allDataForIds
+//        }
+//        .catch { error in
+//            // handle error
+//        }
+//    }
+//}
 
 
 
