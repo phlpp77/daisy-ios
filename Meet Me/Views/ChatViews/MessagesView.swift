@@ -28,7 +28,7 @@ struct MessagesView: View {
                 // MARK: Message area
                 ScrollView {
                     ForEach(messagesVM.chat.messages.indices) { messageNumber in
-                        MessageView(message: $messagesVM.chat.messages[messageNumber].messageText)
+                        MessageView(message: $messagesVM.chat.messages[messageNumber])
                     }
                 }
                 
