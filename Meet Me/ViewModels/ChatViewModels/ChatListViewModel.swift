@@ -17,22 +17,17 @@ class ChatListViewModel: ObservableObject {
     
     private var userModel: UserModel = stockUser
     private var eventModel: EventModel = stockEvent
-    private var matchDoc : [MatchModel] = []
+    //private var matchDoc : [MatchModel] = []
     @Published var matches : [AllMatchInformationModel] = [AllMatchInformationModel(chatId: "egal", user: stockUser, event: stockEvent)]
     
     
     func getMatches() {
             firstly {
                 self.firestoreManagerChat.getAllMatchDocumentsCurrentUser()
-            }.map { matchDocs in
-                self.matchDoc = matchDocs
-                print(self.matchDoc)
-            }.then {
-                self.getAllMatchInformation()
+            }.then { matchDocs in
+                self.getAllMatchInformation(docs: matchDocs)
             }.done { match in
-                print("DDDD\(match)")
                 self.matches = match
-                print("DDDD\(self.matches)")
             }.catch { error in
                 print("DEBUG: error in getMatchesChain error: \(error)")
             }
@@ -40,10 +35,10 @@ class ChatListViewModel: ObservableObject {
     
 
     
-    func getAllMatchInformation() -> Promise<[AllMatchInformationModel]> {
+    func getAllMatchInformation(docs: [MatchModel]) -> Promise<[AllMatchInformationModel]> {
         return Promise { seal in
             var match : [AllMatchInformationModel]  = []
-            for doc in matchDoc {
+            for doc in docs {
                 firstly{
                     when(fulfilled: self.firestoreManagerChat.getEventWithEventId(eventId: doc.eventId),
                                     self.firestoreManagerChat.getUserWithUserId(userId: doc.matchedUserId))
