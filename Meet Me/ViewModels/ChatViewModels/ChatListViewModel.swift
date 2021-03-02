@@ -25,7 +25,7 @@ class ChatListViewModel: ObservableObject {
             firstly {
                 self.firestoreManagerChat.getAllMatchDocumentsCurrentUser()
             }.then { matchDocs in
-                self.getAllMatchInformation(docs: matchDocs)
+                self.mapAllMatches(docs: matchDocs)
             }.done { match in
                 self.matches = match
             }.catch { error in
@@ -33,19 +33,19 @@ class ChatListViewModel: ObservableObject {
             }
         }
     
-
-    
-    func getAllMatchInformation(docs: [MatchModel]) -> Promise<[AllMatchInformationModel]> {
+    func mapAllMatches(docs: [MatchModel]) -> Promise <[AllMatchInformationModel]> {
         return Promise { seal in
-            var match : [AllMatchInformationModel]  = []
-            for doc in docs {
+            
+    }
+    
+    func getAllMatchInformation(doc: MatchModel) -> Promise<AllMatchInformationModel> {
+        return Promise { seal in
                 firstly{
                     when(fulfilled: self.firestoreManagerChat.getEventWithEventId(eventId: doc.eventId),
                                     self.firestoreManagerChat.getUserWithUserId(userId: doc.matchedUserId))
-                }.map{ [self] event, user in
-                    let matchInformation = AllMatchInformationModel(chatId: doc.chatId, user: userModel, event: eventModel)
-                    match.append(matchInformation)
-                    seal.fulfill(match)
+                }.done{ event, user in
+                     let matchInformation = AllMatchInformationModel(chatId: doc.chatId, user: user, event: event)
+                    seal.fulfill(matchInformation)
                 }.catch { error in
                     print(error)
                 }
@@ -54,6 +54,24 @@ class ChatListViewModel: ObservableObject {
         }
     }
 }
+
+//func bar() -> Promise<T?> {
+//    //…
+//}
+//
+//func baz() -> Promise<T> {
+//    return bar().then {
+//        if let done = value {
+//            return Promise(value: done)
+//        } else {
+//            return baz()
+//        }
+//    }
+//}
+//
+//baz().then { value in
+//    // all done
+//}
 
 
 
