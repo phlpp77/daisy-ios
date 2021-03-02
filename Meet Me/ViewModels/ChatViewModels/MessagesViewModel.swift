@@ -19,8 +19,10 @@ class MessagesViewModel: ObservableObject {
             self.firestoreManagerChat.downloadChat(chatId: chatId)
         }.done { chatModel in
             self.chat = chatModel
-            //print(self.chat.messages[0].dictionary)
-            //print(self.chat.messages[0].messageText)
+            print("DEBUG:\(self.chat.messages[0].dictionary)")
+            print("DEBUG: \(self.chat.messages[0].messageText)")
+            print("DEBUG: \(self.chat.messages[0]))")
+            
         }.catch { error in
             print("DEBUG: error in MessageDownloadChain error: \(error)")
             print("DEGUB: error localized: \(error.localizedDescription)")

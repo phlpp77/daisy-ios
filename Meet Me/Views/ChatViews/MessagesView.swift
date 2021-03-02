@@ -54,7 +54,7 @@ struct MessagesView: View {
         
         // TODO: @budni onAppear for you to play with
         .onAppear {
-            messagesVM.downloadChat(chatId: chatId)
+            messagesVM.downloadChat(chatId: id)
 //            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) {
 //                chat = messagesVM.chat
 //            }
