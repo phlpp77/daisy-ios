@@ -35,32 +35,32 @@ class ChatListViewModel: ObservableObject {
     
     func mapAllMatches(docs: [MatchModel]) -> Promise <[AllMatchInformationModel]> {
         return Promise { seal in
-            
+            let matches = docs.compactMap { doc in
+                getAllMatchInformation(doc: doc)
+            }
+            seal.fulfill(matches)
+        }
+        
+        
     }
+
+
     
     func getAllMatchInformation(doc: MatchModel) -> Promise<AllMatchInformationModel> {
         return Promise { seal in
-                firstly{
-                    when(fulfilled: self.firestoreManagerChat.getEventWithEventId(eventId: doc.eventId),
-                                    self.firestoreManagerChat.getUserWithUserId(userId: doc.matchedUserId))
-                }.done{ event, user in
-                     let matchInformation = AllMatchInformationModel(chatId: doc.chatId, user: user, event: event)
-                    seal.fulfill(matchInformation)
-                }.catch { error in
-                    print(error)
-                }
+            firstly{
+                when(fulfilled: self.firestoreManagerChat.getEventWithEventId(eventId: doc.eventId),
+                     self.firestoreManagerChat.getUserWithUserId(userId: doc.matchedUserId))
+            }.done{ event, user in
+                let matchInformation = AllMatchInformationModel(chatId: doc.chatId, user: user, event: event)
+                seal.fulfill(matchInformation)
+            }.catch { error in
+                print(error)
             }
-            
         }
+        
     }
-}
 
-//func bar() -> Promise<T?> {
-//    //…
-//}
-//
-//func baz() -> Promise<T> {
-//    return bar().then {
 //        if let done = value {
 //            return Promise(value: done)
 //        } else {
@@ -95,6 +95,6 @@ class ChatListViewModel: ObservableObject {
 //}
 
 
-
+}
 
 
