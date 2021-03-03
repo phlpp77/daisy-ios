@@ -14,6 +14,7 @@ enum MessageStyle {
 
 struct MessageView: View {
     
+    @StateObject var messagesVM: MessagesViewModel = MessagesViewModel()
     @Binding var message: MessageModel
     @State var messageStyle: MessageStyle = .creator
     
@@ -49,7 +50,11 @@ struct MessageView: View {
         // on appear to change MessageStyle
         .onAppear {
         //
-            
+            if message.userId == messagesVM.userId {
+                messageStyle = .creator
+            } else {
+                messageStyle = .receiver
+            }
         }
     }
 }

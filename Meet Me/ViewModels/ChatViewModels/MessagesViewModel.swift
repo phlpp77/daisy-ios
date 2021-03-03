@@ -8,10 +8,12 @@
 //Load Chat 
 import Foundation
 import PromiseKit
+import Firebase
 
 class MessagesViewModel: ObservableObject {
     private var firestoreManagerChat: FirestoreManagerChat = FirestoreManagerChat()
     @Published var chat: ChatModel = stockChat
+    var userId: String = Auth.auth().currentUser!.uid
     
     
     func downloadChat(chatId: String) {
@@ -21,7 +23,7 @@ class MessagesViewModel: ObservableObject {
             self.chat = chatModel
             print("DEBUG:\(self.chat.messages[0].dictionary)")
             print("DEBUG: \(self.chat.messages[0].messageText)")
-            print("DEBUG: \(self.chat.messages[0]))")
+            print("DEBUG: \(self.chat.messages))")
             
         }.catch { error in
             print("DEBUG: error in MessageDownloadChain error: \(error)")
