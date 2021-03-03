@@ -58,7 +58,7 @@ class FirestoreManagerChat: ObservableObject  {
     
     func getUserWithUserId(userId: String) ->Promise<UserModel> {
         return Promise { seal in
-            
+            print("getUserWithUserId aufgerufen")
             db.collection("users").document(userId).getDocument { snapshot, error in
                 if let error = error {
                     seal.reject(error)
@@ -67,7 +67,9 @@ class FirestoreManagerChat: ObservableObject  {
                         let userModel = try? snapshot.data(as: UserModel.self)
                         DispatchQueue.main.async {
                             if userModel != nil{
+                                print("DEBGUG: userModel gefundne gefunden: \(userModel!)")
                                 seal.fulfill(userModel!)
+                                
                             } else {
                                 let error = Err("Cant get UserProfil from Creator")
                                 seal.reject(error)
@@ -85,6 +87,7 @@ class FirestoreManagerChat: ObservableObject  {
     
     func getEventWithEventId(eventId: String) ->Promise<EventModel> {
         return Promise { seal in
+            print("getEventWithEventIdaugerufen")
             db.collection("events").document(eventId).getDocument { snapshot, error in
                 if let error = error {
                     seal.reject(error)
@@ -93,6 +96,7 @@ class FirestoreManagerChat: ObservableObject  {
                         let eventModel = try? snapshot.data(as: EventModel.self)
                         DispatchQueue.main.async {
                             if eventModel != nil{
+                                print("DEBGUG: eventModel gefunden: \(eventModel!)")
                                 seal.fulfill(eventModel!)
                             } else {
                                 let error = Err("Cant get Event from Creator")
