@@ -25,7 +25,6 @@ class ChatListViewModel: ObservableObject {
             firstly {
                 self.firestoreManagerChat.getAllMatchDocumentsCurrentUser()
             }.map { matchDocs in
-                print("DEBUG: matchdokument: \(matchDocs)")
                 self.matchDoc = matchDocs
             }.then {
                 when(fulfilled: self.matchDoc.compactMap(self.getAllMatchInformation)).done { result in
@@ -39,7 +38,6 @@ class ChatListViewModel: ObservableObject {
     
     func getAllMatchInformation(doc: MatchModel) -> Promise<AllMatchInformationModel> {
         return Promise { seal in
-            print("getAllMatchInformationaufegrufen")
             firstly{
                 when(fulfilled: self.firestoreManagerChat.getEventWithEventId(eventId: doc.eventId),
                      self.firestoreManagerChat.getUserWithUserId(userId: doc.matchedUserId))

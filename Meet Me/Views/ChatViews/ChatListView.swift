@@ -45,13 +45,6 @@ struct ChatListView: View {
             }
         }.onAppear {
             chatListVM.getMatches()
-//            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) {
-//                
-//                print("matches after 3 sec \(matches.count)")
-//                print(chatListVM.matches.indices)
-//                matches = chatListVM.matches
-//            }
-            print("getMatches aufgerufen")
         }
         
     }
