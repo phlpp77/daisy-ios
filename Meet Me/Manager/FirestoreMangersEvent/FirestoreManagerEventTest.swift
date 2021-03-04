@@ -95,46 +95,6 @@ class FirestoreManagerEventTest {
     
 
 
-    // MARK: - Functions to get events
-    func firebaseGetMeEvents() -> Promise<[EventModelObject]> {
-        return Promise { seal in
-            
-            guard let currentUser = Auth.auth().currentUser else {
-                let error = Err("No User Profil")
-                seal.reject(error)
-                return
-            }
-        
-            
-            db.collection("events")
-                .whereField("userId", isEqualTo: currentUser.uid)
-                .getDocuments {(snapshot, error) in
-                    if let error = error {
-                        seal.reject(error)
-                    } else {
-                        
-                        if let snapshot = snapshot {
-                            let event: [EventModelObject]? = snapshot.documents.compactMap { doc in
-                                var event = try? doc.data(as: EventModel.self)
-                                event?.eventId = doc.documentID
-                                if let event = event {
-                                    return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
-                                }
-                                return nil
-                                
-                            }
-                            DispatchQueue.main.async {
-                                seal.fulfill(event!)
-                            }
-                            
-                        }
-                        
-                    }
-                }
-            
-            
-        }
-    }
 
     // MARK: - Functions to get events
     func firebaseGetYouEvents(likedEvents : [String]) -> Promise<[EventModelObject]> {

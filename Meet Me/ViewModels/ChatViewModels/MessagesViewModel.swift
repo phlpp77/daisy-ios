@@ -46,9 +46,11 @@ class MessagesViewModel: ObservableObject {
                                 if chatModel?.messages.count != 0 {
                                     DispatchQueue.main.async {
                                         self.chat = chatModel!
+                                        seal.fulfill(())
                                     }
                                 } else {
                                     self.chat = stockChat
+                                    seal.fulfill(())
                                 }
                             }
                         }
