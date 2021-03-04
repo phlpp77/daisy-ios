@@ -128,6 +128,7 @@ class FirestoreManagerEventTest {
         
             
             //db.collection("events").whereField("eventId", notIn: likedEvents)
+            db.collection("events").whereField("eventMatched", isEqualTo: false)
             db.collection("events").whereField("userId", isNotEqualTo: currentUser.uid)
             .addSnapshotListener{(snapshot, error) in
                     if let error = error {
