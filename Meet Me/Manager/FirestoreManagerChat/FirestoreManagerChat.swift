@@ -58,7 +58,6 @@ class FirestoreManagerChat: ObservableObject  {
     
     func getUserWithUserId(userId: String) ->Promise<UserModel> {
         return Promise { seal in
-            
             db.collection("users").document(userId).getDocument { snapshot, error in
                 if let error = error {
                     seal.reject(error)
@@ -68,6 +67,7 @@ class FirestoreManagerChat: ObservableObject  {
                         DispatchQueue.main.async {
                             if userModel != nil{
                                 seal.fulfill(userModel!)
+                                
                             } else {
                                 let error = Err("Cant get UserProfil from Creator")
                                 seal.reject(error)

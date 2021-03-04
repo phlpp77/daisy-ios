@@ -11,7 +11,7 @@ struct ChatListView: View {
     
     @ObservedObject var chatListVM: ChatListViewModel = ChatListViewModel()
     
-    @State var matches: [AllMatchInformationModel] = [AllMatchInformationModel(chatId: "egal", user: stockUser, event: stockEvent)]
+    //@State var matches: [AllMatchInformationModel] = [AllMatchInformationModel(chatId: "egal", user: stockUser, event: stockEvent)]
     
     @State var chatTapped: Bool = false
     
@@ -22,7 +22,7 @@ struct ChatListView: View {
                 
                 
                 ScrollView {
-                    ForEach(matches.indices) { matchNumber in
+                    ForEach(chatListVM.matches.indices, id: \.self) { matchNumber in
                         
                         VStack {
                             
@@ -45,13 +45,6 @@ struct ChatListView: View {
             }
         }.onAppear {
             chatListVM.getMatches()
-            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) {
-                
-                print("matches after 3 sec \(matches.count)")
-                print(chatListVM.matches.indices)
-                matches = chatListVM.matches
-            }
-            print("getMatches aufgerufen")
         }
         
     }
