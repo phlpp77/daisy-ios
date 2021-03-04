@@ -77,7 +77,8 @@ struct EventLineView: View {
             }
             .frame(height: 380)
         
-            LoadingView(showLoadingScreen: $loading)
+            // loading screen deactivated
+//            LoadingView(showLoadingScreen: $loading)
         }
         .frame(height: 380)
         .onAppear {
