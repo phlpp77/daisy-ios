@@ -29,11 +29,12 @@ class FirestoreManagerMatches {
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
+            let eventId = UUID().uuidString
             let matchModel = MatchModel(chatId: chatId, eventId: eventModel.eventId, matchedUserId: userModel.userId)
             do {
                 let _ = try db.collection("users")
                     .document(currentUser.uid)
-                    .collection("matches").document(userModel.userId).setData(from: matchModel) { error in
+                    .collection("matches").document(eventId).setData(from: matchModel) { error in
                         if let error = error {
                             seal.reject(error)
                         }
@@ -52,12 +53,12 @@ class FirestoreManagerMatches {
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
-            
+            let eventId = UUID().uuidString
             let matchModel = MatchModel(chatId: chatId, eventId: eventModel.eventId, matchedUserId: currentUser.uid)
             do {
                 let _ = try db.collection("users")
                     .document(userModel.userId)
-                    .collection("matches").document(currentUser.uid).setData(from: matchModel) { error in
+                    .collection("matches").document(eventId).setData(from: matchModel) { error in
                         if let error = error {
                             seal.reject(error)
                         }
