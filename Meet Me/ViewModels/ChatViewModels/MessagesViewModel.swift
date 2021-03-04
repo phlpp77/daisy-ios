@@ -14,20 +14,46 @@ class MessagesViewModel: ObservableObject {
     private var firestoreManagerChat: FirestoreManagerChat = FirestoreManagerChat()
     @Published var chat: ChatModel = stockChat
     var userId: String = Auth.auth().currentUser!.uid
+    private var db: Firestore
     
+    init() {
+        db = Firestore.firestore()
+    }
     
     func downloadChat(chatId: String) {
         firstly {
-            self.firestoreManagerChat.downloadChat(chatId: chatId)
-        }.done { chatModel in
-            self.chat = chatModel
-            print("DEBUG:\(self.chat.messages[0].dictionary)")
-            print("DEBUG: \(self.chat.messages[0].messageText)")
-            print("DEBUG: \(self.chat.messages))")
-            
+            self.downloadChatModel(chatId: chatId)
+        }.done {
+            print("aufgerufen")
         }.catch { error in
             print("DEBUG: error in MessageDownloadChain error: \(error)")
             print("DEGUB: error localized: \(error.localizedDescription)")
+        }
+    }
+    
+    func downloadChatModel(chatId: String) -> Promise<Void> {
+        return Promise { seal in
+            db.collection("chats")
+                .document(chatId)
+                .addSnapshotListener{ (snapshot, error) in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        if let snapshot = snapshot {
+                            let chatModel = try? snapshot.data(as: ChatModel.self)
+                            if chatModel != nil {
+                                print("downloadChat aufgerufen")
+                                if chatModel?.messages.count != 0 {
+                                    DispatchQueue.main.async {
+                                        self.chat = chatModel!
+                                    }
+                                } else {
+                                    self.chat = stockChat
+                                }
+                            }
+                        }
+                    }
+                }
         }
     }
     
@@ -36,8 +62,8 @@ class MessagesViewModel: ObservableObject {
         firstly {
             self.firestoreManagerChat.uploadMessage(messageText: messageText, chatId: chatId)
         }.done {
-            self.downloadChat(chatId: chatId)
-            print("Upload erfolgreich")
+            print("uploaddone")
+            //self.downloadChat(chatId: chatId)
         }.catch { error in
             print("DEBUG: error in MessageUploadChain error: \(error)")
             print("DEGUB: error localized: \(error.localizedDescription)")

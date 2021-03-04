@@ -110,34 +110,8 @@ class FirestoreManagerChat: ObservableObject  {
     // MARK: - Functions to Download Chat and an Upload Messages
     
     
-    func downloadChat(chatId: String) -> Promise<ChatModel> {
-        return Promise { seal in
-            db.collection("chats")
-                .document(chatId)
-                .addSnapshotListener { (snapshot, error) in
-                    if let error = error {
-                        seal.reject(error)
-                    } else {
-                        if let snapshot = snapshot {
-//                            print(snapshot.data()!)
-                            let chatModel = try? snapshot.data(as: ChatModel.self)
-                            if chatModel != nil {
-                                DispatchQueue.main.async {
-                                    if chatModel?.messages.count != 0 {
-                                        seal.fulfill(chatModel!)
-                                    } else {
-                                        seal.fulfill(stockChat)
-                                    }
-                                }
-                            
-                        }
-                        
-                        
-                    }
-                }
-        }
-    }
-    }
+
+    
     
     func uploadMessage(messageText: String, chatId: String) -> Promise<Void> {
         return Promise { seal in

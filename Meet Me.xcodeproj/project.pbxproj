@@ -40,7 +40,6 @@
 		17BC5FE025BE0B5900F35075 /* ProfileCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */; };
 		17C0C1CE25BF67D60021987D /* AlertBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C0C1CD25BF67D60021987D /* AlertBoxView.swift */; };
 		17DAD7E325D934D600DBE60B /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DAD7E225D934D600DBE60B /* GlobalFunctions.swift */; };
-		17DE52E225E9844B000D0B4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17DE52E125E9844B000D0B4D /* GoogleService-Info.plist */; };
 		17DE52EA25E9A2D7000D0B4D /* YouProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE52E925E9A2D7000D0B4D /* YouProfileView.swift */; };
 		17DE52ED25EA3F9E000D0B4D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE52EC25EA3F9E000D0B4D /* ImagePicker.swift */; };
 		17DE530F25EAC1AA000D0B4D /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE530E25EAC1AA000D0B4D /* ChatListView.swift */; };
@@ -66,6 +65,7 @@
 		90779B6025E41CC60070D794 /* MainControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779B5F25E41CC50070D794 /* MainControllerViewModel.swift */; };
 		90779B6D25E5A3F40070D794 /* MeMatchCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779B6C25E5A3F40070D794 /* MeMatchCardViewModel.swift */; };
 		90779B7325E5BA7C0070D794 /* Err.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779B7225E5BA7C0070D794 /* Err.swift */; };
+		909DF05625F14B00008B93BE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 909DF05525F14B00008B93BE /* GoogleService-Info.plist */; };
 		90B0F4C725DF086B00AB8EF9 /* TrahedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4C625DF086B00AB8EF9 /* TrahedCode.swift */; };
 		90B0F4D425DF0EA000AB8EF9 /* MeEventLinieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4D325DF0EA000AB8EF9 /* MeEventLinieViewModel.swift */; };
 		90B0F4F125DFC63400AB8EF9 /* YouEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */; };
@@ -123,7 +123,6 @@
 		17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationView.swift; sourceTree = "<group>"; };
 		17C0C1CD25BF67D60021987D /* AlertBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBoxView.swift; sourceTree = "<group>"; };
 		17DAD7E225D934D600DBE60B /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
-		17DE52E125E9844B000D0B4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		17DE52E925E9A2D7000D0B4D /* YouProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouProfileView.swift; sourceTree = "<group>"; };
 		17DE52EC25EA3F9E000D0B4D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		17DE530E25EAC1AA000D0B4D /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
@@ -147,6 +146,7 @@
 		90779B5F25E41CC50070D794 /* MainControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerViewModel.swift; sourceTree = "<group>"; };
 		90779B6C25E5A3F40070D794 /* MeMatchCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchCardViewModel.swift; sourceTree = "<group>"; };
 		90779B7225E5BA7C0070D794 /* Err.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Err.swift; sourceTree = "<group>"; };
+		909DF05525F14B00008B93BE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		90B0F4C625DF086B00AB8EF9 /* TrahedCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrahedCode.swift; sourceTree = "<group>"; };
 		90B0F4D325DF0EA000AB8EF9 /* MeEventLinieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventLinieViewModel.swift; sourceTree = "<group>"; };
 		90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventViewModel.swift; sourceTree = "<group>"; };
@@ -207,8 +207,8 @@
 		17153EE325A8C5C30072CE83 /* Meet Me */ = {
 			isa = PBXGroup;
 			children = (
+				909DF05525F14B00008B93BE /* GoogleService-Info.plist */,
 				17153EED25A8C5C30072CE83 /* Info.plist */,
-				17DE52E125E9844B000D0B4D /* GoogleService-Info.plist */,
 				17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */,
 				905485D025C4AA6100E2024D /* Manager */,
 				175E40DC25B4320E00ADC9BF /* Views */,
@@ -551,7 +551,7 @@
 			files = (
 				17153EEC25A8C5C30072CE83 /* Preview Assets.xcassets in Resources */,
 				1795DFBA25DF252C002D537F /* heard-loading.json in Resources */,
-				17DE52E225E9844B000D0B4D /* GoogleService-Info.plist in Resources */,
+				909DF05625F14B00008B93BE /* GoogleService-Info.plist in Resources */,
 				17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */,
 				1795DFBF25DF25DD002D537F /* planet-loading.json in Resources */,
 			);
@@ -816,7 +816,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Meee";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Me";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -842,7 +842,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Meee";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Me";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
