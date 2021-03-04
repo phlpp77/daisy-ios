@@ -27,8 +27,9 @@ struct ChatListRowView: View {
 //                    .aspectRatio(contentMode: .fill)
 //                    .frame(width: 36, height: 36)
 //            }
-            Image("Philipp")
-                .resizable()
+//            Image("Philipp")
+            URLImage(url: URL(string: user.userPhotos[0] ?? stockUrlString)!) { image in
+                image.resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 60, height: 60)
                 .overlay(
@@ -39,6 +40,7 @@ struct ChatListRowView: View {
                         )
                 )
                 .clipShape(Circle())
+            }
             
             HStack(spacing: 0.0) {
                 Text(firstPartString)
