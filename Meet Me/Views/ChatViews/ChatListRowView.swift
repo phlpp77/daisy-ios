@@ -22,12 +22,6 @@ struct ChatListRowView: View {
         // MARK: RowView of one line in the list
         HStack {
             
-//            URLImage(url: URL(string: user.userPhotos[0]!) ?? stockURL) { image in
-//                image.resizable()
-//                    .aspectRatio(contentMode: .fill)
-//                    .frame(width: 36, height: 36)
-//            }
-//            Image("Philipp")
             URLImage(url: URL(string: user.userPhotos[1] ?? stockUrlString)!) { image in
                 image.resizable()
                 .aspectRatio(contentMode: .fill)

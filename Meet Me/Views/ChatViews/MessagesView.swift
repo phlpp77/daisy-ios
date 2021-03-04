@@ -6,33 +6,24 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct MessagesView: View {
     
-    @StateObject var messagesVM : MessagesViewModel = MessagesViewModel()
-    // chatModel from the ViewModel with MatchModel.chatId from the view above
+    @ObservedObject var messagesVM : MessagesViewModel = MessagesViewModel()
     @Binding var match: AllMatchInformationModel
-//    @Binding var chatId: String
-//    var id: String = "08470AAA-128F-46A3-9D23-1CD48C528938"
-   
-    
-    //@State var chat: ChatModel = ChatModel(chatId: "", eventCreatorId: "", matchedUserId: "", eventId: "", messages: [MessageModel(userId: "", timeStamp: Date(), messageText: "TestmsGG")])
     
     // message which needs to be uploaded
     @State var newMessage: String = ""
+    
+    @State var firstPartString: String = ""
+    @State var showYouProfileView: Bool = false
     
     var body: some View {
         
         ZStack {
             VStack {
                 
-                // MARK: Top area
-                VStack {
-                    HStack {
-                        Text(match.user.name)
-                    }
-                }
-                                
                 // MARK: Message area
                 ScrollView {
                     ForEach(messagesVM.chat.messages.indices, id: \.self) { messageNumber in
@@ -59,14 +50,61 @@ struct MessagesView: View {
                 .modifier(FrozenWindowModifier())
             }
             
+            if showYouProfileView {
+                
+                // FIXME: YouProfile needs to be rewritten to take a user and show the profile
+                YouProfileView(showYouProfileView: $showYouProfileView, tappedYouEvent: .constant(EventModelObject(eventModel: match.event, position: .constant(.zero))))
+            }
+            
         }
         
-        // TODO: @budni onAppear for you to play with
+        // MARK: - Top area (inside the toolbar)
+        .toolbar {
+            // MARK: Showing the user
+            ToolbarItem {
+                HStack {
+                    
+                    // event "name" based on category
+                    Text(firstPartString)
+                    
+                    // user clickable
+                    
+                    Button(action: {
+                        showYouProfileView = true
+                    }, label: {
+                        HStack {
+                            // username
+                            Text(match.user.name)
+                            
+                            // profile image of user
+                            URLImage(url: URL(string: match.user.userPhotos[1] ?? stockUrlString)!) { image in
+                                image.resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 30, height: 30)
+                                    .overlay(
+                                        Circle()
+                                            .stroke(
+                                                LinearGradient(gradient: Gradient(colors: [Color.white.opacity(0.9), Color.gray]), startPoint: .topTrailing, endPoint: .bottomLeading),
+                                                lineWidth: 4
+                                            )
+                                    )
+                                    .clipShape(Circle())
+                            }
+                        }
+                    })
+                }
+            }
+            
+        }
+        
         .onAppear {
             messagesVM.downloadChat(chatId: match.chatId)
-//            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) {
-//                chat = messagesVM.chat
-//            }
+            switch match.event.category {
+            case "Café":
+                firstPartString = "Drinking coffee with"
+            default:
+                firstPartString = "Event"
+            }
         }
         
     }

@@ -16,11 +16,24 @@ struct ChatListView: View {
     
     var body: some View {
         
-        ZStack {
-            
-            // chatListView is not created when there is no match
-            if !chatListVM.matches.isEmpty {
-                NavigationView {
+        
+        NavigationView {
+            VStack {
+                
+                // MARK: Header of the chat part
+                HStack(spacing: 0.0) {
+                    Text("Chat ")
+                    Text("ME")
+                        .font(.system(.largeTitle, design: .rounded))
+                        .foregroundColor(.accentColor)
+                    Text(" Area")
+                }
+                .font(.largeTitle)
+                .padding(.vertical, 12)
+                
+                // chatListView is not created when there is no match
+                if !chatListVM.matches.isEmpty {
+                    
                     ScrollView {
                         ForEach(chatListVM.matches.indices, id: \.self) { matchNumber in
                             
@@ -29,7 +42,6 @@ struct ChatListView: View {
                                 Color.clear
                                 
                                 NavigationLink(
-                                    
                                     destination: MessagesView(match: $chatListVM.matches[matchNumber]),
                                     isActive: $chatTapped
                                 )
@@ -40,19 +52,26 @@ struct ChatListView: View {
                                 
                             }
                         }
+                        
                     }
-                    .navigationBarHidden(true)
+                } else {
+                    
+                    Spacer()
+                    
+                    Text("Drag Events and Match!")
+                    
+                    Spacer()
                 }
-            } else {
-                Text("Drag Events and Match!")
             }
+            .navigationBarHidden(true)
             
         }
         .onAppear {
             chatListVM.getMatches()
+            
         }
-        
     }
+    
 }
 
 struct ChatListView_Previews: PreviewProvider {
