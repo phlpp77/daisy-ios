@@ -41,22 +41,35 @@ struct MeMatchCardView: View {
         let dragGesture = DragGesture()
             .onChanged{ (value) in
                 translation = value.translation
-            }
-            .onChanged { (value) in
-                
+            
                 // state is change to 2 if the drag is to the right and -2 if to the left
                 if value.translation.width > 0 {
-                    degrees = 2
+                    degrees = Double(translation.width / 10)
                     if value.translation.width > 80 {
-                        print("user accepted swiped")
-                        userWasAccepted()
+                        // secure that each user is only accepted once
+                        if !userAccepted {
+                            print("user accepted swiped")
+                            userWasAccepted()
+                        }
+                        
                     }
                 } else {
-                    degrees = -2
+                    degrees = (Double((translation.width / 10)))
                     if value.translation.width < -80 {
-                        print("user denied swiped")
-                        userWasDenied()
+                        // secure that each user is only denied once
+                        if !userDenied {
+                            print("user denied swiped")
+                            userWasDenied()
+                        }
+                        
                     }
+                }
+            }
+            .onEnded { value in
+                // go back to the normal view, when not swiped over critical point
+                if !userDenied || !userAccepted {
+                    translation = .zero
+                    degrees = 0
                 }
             }
         

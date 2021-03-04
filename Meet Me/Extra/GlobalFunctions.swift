@@ -40,8 +40,8 @@ var createdId = UUID().uuidString
 // MARK - Stockdata
 
 // MARK: stock user to use as default
-let stockUser: UserModel = UserModel(userId: "007", name: "stock1", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Female", userPhotos: [1: stockUrlString])
-let stockUser2: UserModel = UserModel(userId: "008", name: "stock2", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [1: stockUrlString])
+let stockUser: UserModel = UserModel(userId: "007", name: "Stocky One", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Female", userPhotos: [1: stockUrlString])
+let stockUser2: UserModel = UserModel(userId: "008", name: "Stockise Two", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [1: stockUrlString])
 
 let stockUserObject: UserModelObject = UserModelObject(user: stockUser)
 
