@@ -28,6 +28,8 @@ class YouEventViewModel: ObservableObject {
             self.firestoreManagerUserTest.addLikeToEventArray(eventId: eventId)
         }.then {
             self.firestoreManagerEventTest.addLikeToEventArray(eventId: eventId)
+        }.then {
+            self.firestoreManagerEventTest.setLikedUserToTrue(eventId: eventId)
         }.catch { error in
             print("DEBUG: error in getUserModelChain \(error)")
             print("DEBUG \(error.localizedDescription)")

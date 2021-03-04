@@ -21,7 +21,8 @@ struct EventModel: Codable {
     var endTime: Date
     var pictureURL: String
     var profilePicture: String
-
+    var likedUser: Bool
+    var eventMatched: Bool
     
 }
 
@@ -66,6 +67,12 @@ struct EventModelObject {
     
     var profilePicture: String {
         eventModel.profilePicture
+    }
+    var likedUser: Bool {
+        eventModel.likedUser
+    }
+    var eventMatched: Bool {
+        eventModel.eventMatched
     }
     
     

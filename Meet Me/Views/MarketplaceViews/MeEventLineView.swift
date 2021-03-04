@@ -11,7 +11,7 @@ import PromiseKit
 struct MeEventLineView: View {
     
     @StateObject private var meEventLineVM = MeEventLineViewModel()
-    //@Binding var eventArray: [EventModelObject]
+    @Binding var eventArray: [EventModelObject]
     
     @State var buttonPressed: Bool = true
     
@@ -55,7 +55,7 @@ struct MeEventLineView: View {
                         ForEach(meEventLineVM.eventArray.indices, id: \.self) { event in
                             HStack {
                                 ZStack {
-                                    YouEventView(eventModelObject: meEventLineVM.eventArray[event], meEventLineVM.eventArray: $eventArray, eventIndex: event, dragPossible: false)
+                                    YouEventView(eventModelObject: eventArray[event], eventArray: $eventArray, eventIndex: event, dragPossible: false)
                                         .rotation3DEffect(
                                             // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
                                             Angle(

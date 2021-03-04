@@ -10,6 +10,7 @@ import PromiseKit
 
 class MeMatchCardViewModel: ObservableObject {
     private var firestoreManagerMatches: FirestoreManagerMatches = FirestoreManagerMatches()
+    private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     
     
     func addMatch(eventModel: EventModelObject, userModel: UserModelObject) {
@@ -20,6 +21,8 @@ class MeMatchCardViewModel: ObservableObject {
                 self.firestoreManagerMatches.addMatchToMatchedUser(userModel: userModel, eventModel: eventModel, chatId: chatId)
             }.then {
                 self.firestoreManagerMatches.createChatRoom(userModel: userModel, eventModel: eventModel, chatId: chatId)
+            }.then {
+                self.firestoreManagerEventTest.setEventMatchedToTrue(eventId: eventModel.eventId)
             }.catch { error in
                 print("DEBUG: Fehler in addMatchChain Error: \(error)")
                 print("DEBUG: Error in addMatchChain localized: \(error.localizedDescription)")

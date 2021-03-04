@@ -93,8 +93,30 @@ class FirestoreManagerEventTest {
         }
     }
     
-
-
+    func setLikedUserToTrue(eventId: String) -> Promise<Void> {
+        return Promise{ seal in
+            let _ = db.collection("events").document(eventId).updateData(["likedUser": true]) { error in
+                if let error = error {
+                    seal.reject(error)
+                }else {
+                    seal.fulfill(())
+                }
+            }
+        }
+    }
+    
+    func setEventMatchedToTrue(eventId: String) -> Promise<Void> {
+        return Promise{ seal in
+            let _ = db.collection("events").document(eventId).updateData(["eventMatched": true]) { error in
+                if let error = error {
+                    seal.reject(error)
+                }else {
+                    seal.fulfill(())
+                }
+            }
+        }
+    }
+    
 
     // MARK: - Functions to get events
     func firebaseGetYouEvents(likedEvents : [String]) -> Promise<[EventModelObject]> {
