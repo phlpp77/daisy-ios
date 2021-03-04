@@ -25,11 +25,6 @@ struct MeProfileView: View {
         
         VStack {
             
-            
-                
-            
-            
-            
             // MARK: profile picture
             URLImage(url: meProfileVM.userPictureURL) { image in
                 image.resizable()
