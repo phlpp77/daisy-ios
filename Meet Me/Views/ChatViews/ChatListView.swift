@@ -18,32 +18,38 @@ struct ChatListView: View {
     var body: some View {
         
         ZStack {
-            NavigationView {
-                
-                
-                ScrollView {
-                    ForEach(chatListVM.matches.indices, id: \.self) { matchNumber in
-                        
-                        VStack {
+            
+            // chatListView is not created when there is no match
+            if !chatListVM.matches.isEmpty {
+                NavigationView {
+                    ScrollView {
+                        ForEach(chatListVM.matches.indices, id: \.self) { matchNumber in
                             
-                            Color.clear
-                            
-                            NavigationLink(
+                            VStack {
                                 
-                                destination: MessagesView(chatId: $chatListVM.matches[matchNumber].chatId),
-                                isActive: $chatTapped
-                            )
-                            {
-                                ChatListRowView(user: $chatListVM.matches[matchNumber].user, event: $chatListVM.matches[matchNumber].event, chatTapped: $chatTapped)
+                                Color.clear
+                                
+                                NavigationLink(
+                                    
+                                    destination: MessagesView(match: $chatListVM.matches[matchNumber]),
+                                    isActive: $chatTapped
+                                )
+                                {
+                                    ChatListRowView(user: $chatListVM.matches[matchNumber].user, event: $chatListVM.matches[matchNumber].event, chatTapped: $chatTapped)
+                                }
+                                
+                                
                             }
-                            
-                            
                         }
                     }
+                    .navigationBarHidden(true)
                 }
-                .navigationBarHidden(true)
+            } else {
+                Text("Drag Events and Match!")
             }
-        }.onAppear {
+            
+        }
+        .onAppear {
             chatListVM.getMatches()
         }
         

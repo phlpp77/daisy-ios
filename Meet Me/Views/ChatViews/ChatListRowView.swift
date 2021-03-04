@@ -28,7 +28,7 @@ struct ChatListRowView: View {
 //                    .frame(width: 36, height: 36)
 //            }
 //            Image("Philipp")
-            URLImage(url: URL(string: user.userPhotos[0] ?? stockUrlString)!) { image in
+            URLImage(url: URL(string: user.userPhotos[1] ?? stockUrlString)!) { image in
                 image.resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 60, height: 60)

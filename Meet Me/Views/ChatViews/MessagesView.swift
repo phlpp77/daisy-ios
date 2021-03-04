@@ -11,8 +11,9 @@ struct MessagesView: View {
     
     @StateObject var messagesVM : MessagesViewModel = MessagesViewModel()
     // chatModel from the ViewModel with MatchModel.chatId from the view above
-    @Binding var chatId: String
-    var id: String = "08470AAA-128F-46A3-9D23-1CD48C528938"
+    @Binding var match: AllMatchInformationModel
+//    @Binding var chatId: String
+//    var id: String = "08470AAA-128F-46A3-9D23-1CD48C528938"
    
     
     //@State var chat: ChatModel = ChatModel(chatId: "", eventCreatorId: "", matchedUserId: "", eventId: "", messages: [MessageModel(userId: "", timeStamp: Date(), messageText: "TestmsGG")])
@@ -24,6 +25,13 @@ struct MessagesView: View {
         
         ZStack {
             VStack {
+                
+                // MARK: Top area
+                VStack {
+                    HStack {
+                        Text(match.user.name)
+                    }
+                }
                                 
                 // MARK: Message area
                 ScrollView {
@@ -39,7 +47,8 @@ struct MessagesView: View {
                     
                     Button(action: {
                         
-                        messagesVM.UploadChat(chatId: id, messageText: newMessage)
+                        messagesVM.UploadChat(chatId: match.chatId, messageText: newMessage)
+                        newMessage = ""
                         
                     }, label: {
                         Image(systemName: "paperplane.fill")
@@ -54,7 +63,7 @@ struct MessagesView: View {
         
         // TODO: @budni onAppear for you to play with
         .onAppear {
-            messagesVM.downloadChat(chatId: id)
+            messagesVM.downloadChat(chatId: match.chatId)
 //            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) {
 //                chat = messagesVM.chat
 //            }
@@ -65,6 +74,6 @@ struct MessagesView: View {
 
 struct MessagesView_Previews: PreviewProvider {
     static var previews: some View {
-        MessagesView(chatId: .constant("08470AAA-128F-46A3-9D23-1CD48C528938"))
+        MessagesView(match: .constant(AllMatchInformationModel(chatId: "08470AAA-128F-46A3-9D23-1CD48C528938", user: stockUser, event: stockEvent)))
     }
 }
