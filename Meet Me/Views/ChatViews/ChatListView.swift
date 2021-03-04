@@ -11,7 +11,6 @@ struct ChatListView: View {
     
     @ObservedObject var chatListVM: ChatListViewModel = ChatListViewModel()
     
-    //@State var matches: [AllMatchInformationModel] = [AllMatchInformationModel(chatId: "egal", user: stockUser, event: stockEvent)]
     
     @State var chatTapped: Bool = false
     

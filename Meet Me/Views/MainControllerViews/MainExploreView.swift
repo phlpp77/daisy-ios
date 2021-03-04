@@ -41,7 +41,7 @@ struct MainExploreView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 12)
                 
-                MeEventLineView(eventArray: $eventArray, showCreationView: $showCreationView, showMeMatchView: $showMeMatchView, tappedEvent: $tappedMeEvent)
+                MeEventLineView(showCreationView: $showCreationView, showMeMatchView: $showMeMatchView, tappedEvent: $tappedMeEvent)
                 
                 Text("You Events")
                     .font(.subheadline)

@@ -24,7 +24,7 @@ struct LogoutView: View {
             } catch { let error = error
                 print(error.localizedDescription)
             }
-            //startProcessDone = false
+            startProcessDone = false
     
             
         }
