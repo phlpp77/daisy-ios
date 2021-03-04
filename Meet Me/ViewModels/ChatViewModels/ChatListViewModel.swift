@@ -18,7 +18,7 @@ class ChatListViewModel: ObservableObject {
     private var userModel: UserModel = stockUser
     private var eventModel: EventModel = stockEvent
     private var matchDoc : [MatchModel] = []
-    @Published var matches : [AllMatchInformationModel] = [AllMatchInformationModel(chatId: "egal", user: stockUser, event: stockEvent)]
+    @Published var matches : [AllMatchInformationModel] = []
     
     
     func getMatches() {
