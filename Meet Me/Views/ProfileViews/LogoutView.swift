@@ -20,7 +20,7 @@ struct LogoutView: View {
             
             do {
                 try Auth.auth().signOut()
-                startProcessDone = false
+                //startProcessDone = false
             } catch { let error = error
                 print(error.localizedDescription)
             }
