@@ -11,22 +11,23 @@ import PromiseKit
 class YouEventLineViewModel: ObservableObject {
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
+    @Published var eventArray: [EventModelObject] = []
 
-    func getYouEvents() -> Promise<[EventModelObject]>{
-        return Promise { seal in
+    func getYouEvents(){
             firstly {
                 self.firestoreManagerUserTest.getAllLikedEvents()
             }.then { likedEvents in
                 self.firestoreManagerEventTest.firebaseGetYouEvents(likedEvents: likedEvents)
             }.done { events in
-                seal.fulfill(events)
+                self.eventArray = events
             }.catch { error in
-                seal.reject(error)
+                print("DEBUG: error in getYouEvents error: \(error)" )
+                print("DEBUG: error localized: \(error.localizedDescription)")
             }
         }
     }
     
-}
+
 
 
 

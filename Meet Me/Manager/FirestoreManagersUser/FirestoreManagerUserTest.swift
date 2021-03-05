@@ -51,7 +51,7 @@ class FirestoreManagerUserTest {
                 let _ =  db.collection("users")
                     .document(currentUser.uid)
                     .collection("likedEvent")
-                    .document("likedEvent").setData(["likedEvent": ["Platzhalter"]])
+                    .document("likedEvent").setData(["likedEvent": [currentUser.uid]])
                     
                 seal.fulfill(())
                     
@@ -76,6 +76,15 @@ class FirestoreManagerUserTest {
                 }
             }
         }
+    
+
+    // MARK: - Functions to Update current User
+    
+    
+    
+    
+    
+    // MARK: - Functions to get User Profiles
     
     func getAllLikedEvents() -> Promise<[String]> {
         return Promise { seal in
@@ -113,13 +122,6 @@ class FirestoreManagerUserTest {
         }
     }
     
-    // MARK: - Functions to Update current User
-    
-    
-    
-    
-    
-    // MARK: - Functions to get User Profiles
     
     func getCurrentUser() -> Promise<UserModel> {
         return Promise { seal in

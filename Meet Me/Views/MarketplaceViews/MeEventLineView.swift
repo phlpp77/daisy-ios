@@ -11,7 +11,7 @@ import PromiseKit
 struct MeEventLineView: View {
     
     @StateObject private var meEventLineVM = MeEventLineViewModel()
-    //@Binding var eventArray: [EventModelObject]
+
     
     @State var buttonPressed: Bool = true
     
