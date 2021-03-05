@@ -46,7 +46,16 @@ struct MeMatchStartView: View {
                 
                 // MARK: start-question
                 Text(eventStatus == .matched ? "You already have a Meeter, go to Chats to set the details!" : eventStatus == .liked ? "Ready to find your Meeter?" : "Wait a bit that other Meeters can find YOUr Event")
-                    .padding()
+               
+                // MARK: Show the like count (if premium)
+                if eventStatus == .liked {
+                    HStack(alignment: .top) {
+                        Text("Number of likes:")
+                        Text("Grade up your Meeter to GOLDY to see how many likes you got")
+                            .font(.caption)
+                    }
+                    .padding(.vertical, 10)
+                }
                 
                 Spacer()
                 
@@ -90,18 +99,19 @@ struct MeMatchStartView: View {
                 
             }
             .animation(.easeInOut)
+            .padding()
             .frame(width: 340, height: 620, alignment: .center)
             .modifier(FrozenWindowModifier())
         }
-        .onAppear {
-            if event.eventMatched {
-                eventStatus = .matched
-            } else if event.likedUser {
-                eventStatus = .liked
-            } else {
-                eventStatus = .notLiked
-            }
-        }
+//        .onAppear {
+//            if event.eventMatched {
+//                eventStatus = .matched
+//            } else if event.likedUser {
+//                eventStatus = .liked
+//            } else {
+//                eventStatus = .notLiked
+//            }
+//        }
         
     }
 }
