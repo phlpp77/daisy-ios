@@ -50,7 +50,7 @@ struct MainExploreView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 12)
                 
-                EventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView)
+                YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView)
             }
             
             // create the setup EventView on top of the rest

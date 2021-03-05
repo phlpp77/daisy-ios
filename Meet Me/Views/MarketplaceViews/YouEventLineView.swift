@@ -1,5 +1,5 @@
 //
-//  EventLineView.swift
+//  YouEventLineView.swift
 //  Meet Me
 //
 //  Created by Philipp Hemkemeyer on 10.02.21.
@@ -8,7 +8,7 @@
 import SwiftUI
 import PromiseKit
 
-struct EventLineView: View {
+struct YouEventLineView: View {
     
 
     @StateObject private var youEventLineVM = YouEventLineViewModel()
@@ -92,6 +92,6 @@ struct EventLineView: View {
 
 struct EventLineView_Previews: PreviewProvider {
     static var previews: some View {
-        EventLineView(tappedYouEvent: .constant(stockEventObject), showYouProfileView: .constant(true))
+        YouEventLineView(tappedYouEvent: .constant(stockEventObject), showYouProfileView: .constant(true))
     }
 }
