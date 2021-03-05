@@ -7,6 +7,13 @@
 
 import SwiftUI
 import PromiseKit
+
+enum EventStatus {
+    case notLiked
+    case liked
+    case matched
+}
+
 struct MeMatchView: View {
     
     @StateObject private var meMatchStartVM: MeMatchStartViewModel = MeMatchStartViewModel()
@@ -32,9 +39,12 @@ struct MeMatchView: View {
                 }
             }
             
-            MeMatchStartView(showMeMatchView: $showMeMatchView, showMeMatchMainView: $showMeMatchMainView, likedUsers: $likedUsers)
+            MeMatchStartView(showMeMatchView: $showMeMatchView, showMeMatchMainView: $showMeMatchMainView, eventMatched: tappedEvent.eventMatched, likedUsers: $likedUsers)
+            
+//            MeMatchStartView(showMeMatchView: $showMeMatchView, showMeMatchMainView: $showMeMatchMainView, likedUsers: $likedUsers, eventMatched: tappedEvent.eventMatched)
                 .opacity(showMeMatchView ? 0 : 1)
         }
+        .animation(.easeInOut)
         .onAppear {
             
             firstly {

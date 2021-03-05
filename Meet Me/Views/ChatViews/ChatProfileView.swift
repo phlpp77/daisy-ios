@@ -124,7 +124,7 @@ struct ChatProfileView: View {
                 
             }
             .padding()
-            .frame(width: 340, height: 620, alignment: .center)
+            .frame(width: 340, height: 550, alignment: .center)
             .modifier(FrozenWindowModifier())
             
         }

@@ -14,6 +14,10 @@ struct MeMatchStartView: View {
     @Binding var showMeMatchView: Bool
     // the whole match view
     @Binding var showMeMatchMainView: Bool
+    // user has already a match on this event
+    var eventMatched: Bool = true
+    @State var eventIsMatched: Bool = false
+    
     @Binding var likedUsers : [UserModelObject]
     @StateObject private var meMatchStartVM : MeMatchStartViewModel = MeMatchStartViewModel()
     
@@ -40,52 +44,57 @@ struct MeMatchStartView: View {
 
                 
                 // MARK: start-question
-                Text("Ready to find your Meeter?")
+                Text(eventIsMatched ? "You already have a Meeter, go to Chats to set the details!" : "Ready to find your Meeter?")
+                    .padding()
                 
                 Spacer()
                 
                 // MARK: animation / image
 //                Image(systemName: "at.badge.plus")
 //                    .font(.system(size: 120))
-                LottieView(filename: "heard-loading", loopMode: .autoReverse)
+                LottieView(filename: "heard-loading", loopMode: eventIsMatched ? .playOnce : .autoReverse)
                     .frame(width: 200, height: 200, alignment: .center)
                 
                 Spacer()
                 
+                
                 // MARK: start button
-                Text("Let's go")
-                    .opacity(buttonPressed ? 0.5 : 1)
-                    .padding()
-                    .modifier(FrozenWindowModifier())
-                    .padding(.bottom, 16)
-                    .scaleEffect(buttonPressed ? 0.8 : 1)
-                    .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
-                    .onTapGesture {
-                        print("array.cound with users who liked the event: \(likedUsers.count)")
-                        // button animation start
-                        buttonPressed.toggle()
-                        
-                        // show me match view now
-                        if likedUsers.count != 0 {
-                            print("no matches - no match view")
-                            showMeMatchView = true
-                        } else {
-                            showMeMatchMainView = false
-                        }
-                        
-                        
-                        // haptic feedback when button is tapped
-                        hapticPulse(feedback: .rigid)
-                        
-                        // start process
-                        // TODO: fill in hand-over to start-process
+                
+                Button(action: {
+                    // button animation start
+                    buttonPressed.toggle()
+                    
+                    // show me match view now
+                    if likedUsers.count != 0 {
+                        print("no matches - no match view")
+                        showMeMatchView = true
+                    } else {
+                        showMeMatchMainView = false
                     }
+                    
+                    // haptic feedback when button is tapped
+                    hapticPulse(feedback: .rigid)
+                }, label: {
+                    Text("Let's go")
+                        .opacity(buttonPressed ? 0.5 : 1)
+                        .padding()
+                        .modifier(FrozenWindowModifier())
+                        .padding(.bottom, 16)
+                        .scaleEffect(buttonPressed ? 0.8 : 1)
+                        .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
+                })
+                .disabled(eventIsMatched)
+                .opacity(eventIsMatched ? 0.6 : 1)
+                
+                
                 
             }
+            .animation(.easeInOut)
             .frame(width: 340, height: 620, alignment: .center)
             .modifier(FrozenWindowModifier())
-            .onAppear {
-            }
+        }
+        .onAppear {
+            eventIsMatched = eventMatched
         }
         
     }

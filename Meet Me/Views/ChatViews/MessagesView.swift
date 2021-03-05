@@ -52,7 +52,6 @@ struct MessagesView: View {
             
             if showChatProfileView {
                 
-                // FIXME: YouProfile needs to be rewritten to take a user and show the profile
                 ChatProfileView(user: $match.user, showChatProfileView: $showChatProfileView)
             }
             
