@@ -13,10 +13,10 @@ struct EventLineView: View {
 
     @StateObject private var youEventLineVM = YouEventLineViewModel()
     
-    var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
+    //var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
 
     // data transfer form database
-    @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
+    //@State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
     @State private var loading: Bool = false
     
     @Binding var tappedYouEvent: EventModelObject
@@ -44,10 +44,10 @@ struct EventLineView: View {
                     HStack(spacing: 10) {
                         
                         // create a view for each event in the array
-                        ForEach(eventArray.indices, id: \.self) { event in
+                        ForEach(youEventLineVM.eventArray.indices, id: \.self) { event in
                             GeometryReader { geometry in
                                 VStack {
-                                    YouEventView(eventModelObject: eventArray[event], eventArray: $eventArray, eventIndex: event, dragPossible: true)
+                                    YouEventView(eventModelObject: youEventLineVM.eventArray[event], eventArray: $youEventLineVM.eventArray, eventIndex: event, dragPossible: true)
                                         .rotation3DEffect(
                                             // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
                                             Angle(
@@ -56,7 +56,7 @@ struct EventLineView: View {
                                             )
                                     }
                                 .onTapGesture {
-                                    tappedYouEvent = eventArray[event]
+                                    tappedYouEvent = youEventLineVM.eventArray[event]
                                     showYouProfileView = true
                                 }
                             }
@@ -81,18 +81,7 @@ struct EventLineView: View {
         }
         .frame(height: 380)
         .onAppear {
-            loading = true
-            firstly {
                 self.youEventLineVM.getYouEvents()
-            }.done { events in
-                self.eventArray = events
-               
-            }.catch { error in
-                print("DEBUG: error in GetYouEventChain: \(error)")
-                print("DEBUG: \(error.localizedDescription)")
-            }.finally {
-                loading = false
-            }
 
         }
         

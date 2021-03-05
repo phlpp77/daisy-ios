@@ -150,6 +150,7 @@ class FirestoreManagerEventTest {
                             if event != nil {
                                 for (index, eventModel) in event!.enumerated() {
                                     if likedEvents.contains(eventModel.eventId) {
+                                        print(index)
                                         if index > event!.count {
                                             event!.remove(at: index)
                                         }
