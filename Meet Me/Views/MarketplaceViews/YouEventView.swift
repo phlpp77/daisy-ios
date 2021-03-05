@@ -11,9 +11,10 @@ import URLImage
 struct YouEventView: View {
     
     
-    @StateObject private var youEventVM = YouEventViewModel()
+    @ObservedObject var youEventLineVM = YouEventLineViewModel()
+    @ObservedObject var youEventVM = YouEventViewModel()
     // Bindings
-    @Binding var eventArray: [EventModelObject]
+    //@Binding var eventArray: [EventModelObject]
     var eventIndex: Int
     var dragPossible: Bool = true
     
@@ -35,7 +36,7 @@ struct YouEventView: View {
     init(eventModelObject: EventModelObject, eventArray: Binding<[EventModelObject]>, eventIndex: Int, dragPossible: Bool) {
         
 //        self.eventId = eventId
-        self._eventArray = eventArray
+        //self._eventArray = eventArray
         self.eventIndex = eventIndex
         self.dragPossible = dragPossible
         
@@ -143,10 +144,9 @@ struct YouEventView: View {
                         if value.translation.height > 100 {
                             self.dragPosition = .init(width: 0, height: 500)
                             // delete the item at the position from the Array
-                            //print(eventIndex)
-                            // TODO: @budni - add the participant user to the event here and delete from the array, number in array with "eventIndex"
-                            youEventVM.addLikeToEvent(eventId: eventArray[eventIndex].eventId)
-                            self.eventArray.remove(at: eventIndex)
+
+                            youEventVM.addLikeToEvent(eventId: youEventLineVM.eventArray[eventIndex].eventId)
+                            youEventLineVM.eventArray.remove(at: eventIndex)
                         } else {
                             
                             self.dragPosition = .zero
