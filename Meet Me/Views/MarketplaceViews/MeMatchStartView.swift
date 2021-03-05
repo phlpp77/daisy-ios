@@ -14,9 +14,10 @@ struct MeMatchStartView: View {
     @Binding var showMeMatchView: Bool
     // the whole match view
     @Binding var showMeMatchMainView: Bool
-    // user has already a match on this event
-    var eventMatched: Bool = true
-    @State var eventIsMatched: Bool = false
+    
+    // getting information on the eventStatus
+    @Binding var event: EventModelObject
+    @State var eventStatus: EventStatus = .liked
     
     @Binding var likedUsers : [UserModelObject]
     @StateObject private var meMatchStartVM : MeMatchStartViewModel = MeMatchStartViewModel()
@@ -44,15 +45,14 @@ struct MeMatchStartView: View {
 
                 
                 // MARK: start-question
-                Text(eventIsMatched ? "You already have a Meeter, go to Chats to set the details!" : "Ready to find your Meeter?")
+                Text(eventStatus == .matched ? "You already have a Meeter, go to Chats to set the details!" : eventStatus == .liked ? "Ready to find your Meeter?" : "Wait a bit that other Meeters can find YOUr Event")
                     .padding()
                 
                 Spacer()
                 
                 // MARK: animation / image
-//                Image(systemName: "at.badge.plus")
-//                    .font(.system(size: 120))
-                LottieView(filename: "heard-loading", loopMode: eventIsMatched ? .playOnce : .autoReverse)
+                // FIXME: loopMode not working, playOnce just does not work
+                LottieView(filename: "heard-loading", loopMode: eventStatus == .matched ? .playOnce : .autoReverse)
                     .frame(width: 200, height: 200, alignment: .center)
                 
                 Spacer()
@@ -83,8 +83,8 @@ struct MeMatchStartView: View {
                         .scaleEffect(buttonPressed ? 0.8 : 1)
                         .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
                 })
-                .disabled(eventIsMatched)
-                .opacity(eventIsMatched ? 0.6 : 1)
+                .disabled(eventStatus == .matched ? true : eventStatus == .notLiked ? true : false)
+                .opacity(eventStatus == .matched ? 0.6 : eventStatus == .notLiked ? 0.6 : 1)
                 
                 
                 
@@ -94,7 +94,13 @@ struct MeMatchStartView: View {
             .modifier(FrozenWindowModifier())
         }
         .onAppear {
-            eventIsMatched = eventMatched
+            if event.eventMatched {
+                eventStatus = .matched
+            } else if event.likedUser {
+                eventStatus = .liked
+            } else {
+                eventStatus = .notLiked
+            }
         }
         
     }
@@ -102,6 +108,6 @@ struct MeMatchStartView: View {
 
 struct MeMatchStartView_Previews: PreviewProvider {
     static var previews: some View {
-        MeMatchStartView(showMeMatchView: .constant(true), showMeMatchMainView: .constant(true), likedUsers: .constant([stockUserObject]))
+        MeMatchStartView(showMeMatchView: .constant(true), showMeMatchMainView: .constant(true), event: .constant(stockEventObject), likedUsers: .constant([stockUserObject]))
     }
 }
