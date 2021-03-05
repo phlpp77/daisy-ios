@@ -11,6 +11,7 @@ import PromiseKit
 class YouEventLineViewModel: ObservableObject {
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
+    @Published var eventArray: [EventModelObject] = []
 
     func getYouEvents() -> Promise<[EventModelObject]>{
         return Promise { seal in

@@ -117,7 +117,10 @@ class FirestoreManagerEventTest {
         }
     }
     
+    
+    
 
+    
     // MARK: - Functions to get events
     func firebaseGetYouEvents(likedEvents : [String]) -> Promise<[EventModelObject]> {
         return Promise { seal in
@@ -125,36 +128,45 @@ class FirestoreManagerEventTest {
             guard let currentUser = Auth.auth().currentUser else {
                 throw Err("No User Profile")
             }
-        
             
-            //db.collection("events").whereField("eventId", notIn: likedEvents)
             db.collection("events").whereField("eventMatched", isEqualTo: false)
-            db.collection("events").whereField("userId", isNotEqualTo: currentUser.uid)
-            .addSnapshotListener{(snapshot, error) in
+                .getDocuments{(snapshot, error) in
                     if let error = error {
                         seal.reject(error)
                     } else {
                         
                         if let snapshot = snapshot {
-                            let event: [EventModelObject]? = snapshot.documents.compactMap { doc in
+                            var event: [EventModelObject]? = snapshot.documents.compactMap { doc in
                                 var event = try? doc.data(as: EventModel.self)
                                 event?.eventId = doc.documentID
                                 if let event = event {
-                                    return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
+                                    if event.userId != currentUser.uid {
+                                        return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
+                                    }
                                 }
                                 return nil
                                 
                             }
-                            DispatchQueue.main.async {
-                                if event != nil {
-                                seal.fulfill(event!)
-                                } else {
-                                    let error = Err("No Events in GetYouEvents")
+                            if event != nil {
+                                for (index, eventModel) in event!.enumerated() {
+                                    if likedEvents.contains(eventModel.eventId) {
+                                        if index > event!.count {
+                                            event!.remove(at: index)
+                                        }
+                                    }
+                                }
+                                DispatchQueue.main.async {
+                                    seal.fulfill(event!)
+                                }
+                            } else {
+                                let error = Err("No Events in GetYouEvents")
+                                DispatchQueue.main.async {
                                     seal.reject(error)
                                 }
                             }
-                            
                         }
+                        
+                        
                         
                     }
                 }
