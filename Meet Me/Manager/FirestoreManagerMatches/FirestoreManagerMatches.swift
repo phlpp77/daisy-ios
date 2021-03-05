@@ -29,12 +29,11 @@ class FirestoreManagerMatches {
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
-            let eventId = UUID().uuidString
             let matchModel = MatchModel(chatId: chatId, eventId: eventModel.eventId, matchedUserId: userModel.userId)
             do {
                 let _ = try db.collection("users")
                     .document(currentUser.uid)
-                    .collection("matches").document(eventId).setData(from: matchModel) { error in
+                    .collection("matches").document(chatId).setData(from: matchModel) { error in
                         if let error = error {
                             seal.reject(error)
                         }
@@ -53,12 +52,12 @@ class FirestoreManagerMatches {
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
-            let eventId = UUID().uuidString
+
             let matchModel = MatchModel(chatId: chatId, eventId: eventModel.eventId, matchedUserId: currentUser.uid)
             do {
                 let _ = try db.collection("users")
                     .document(userModel.userId)
-                    .collection("matches").document(eventId).setData(from: matchModel) { error in
+                    .collection("matches").document(chatId).setData(from: matchModel) { error in
                         if let error = error {
                             seal.reject(error)
                         }
@@ -91,7 +90,92 @@ class FirestoreManagerMatches {
         }
     }
     
-    // MARK: -  delete a like from User
+    // MARK: -  delete a Match
+    
+    func deleteMatchFromCurrentUser(chatId: String) ->Promise<Void> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                return
+            }
+            let _ = db.collection("users")
+                .document(currentUser.uid).collection("matches").document(chatId).delete { error in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        seal.fulfill(())
+                    }
+                }
+        }
+    }
+    
+    
+    func deleteMatchFromMatchedUser(chatId: String, matchedUserId: String) ->Promise<Void> {
+        return Promise { seal in
+            let _ = db.collection("users")
+                .document(matchedUserId).collection("matches").document(chatId).delete { error in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        seal.fulfill(())
+                    }
+                }
+        }
+    }
+    
+    func deleteChat(chatId:String) ->Promise<Void> {
+        return Promise { seal in
+            let _ = db.collection("chats").document(chatId).delete { error in
+                if let error = error {
+                    seal.reject(error)
+                } else {
+                    seal.fulfill(())
+                }
+            }
+        }
+    }
+    
+    func deleteEvent(eventId: String) ->Promise<Void> {
+        return Promise { seal in
+            let _ = db.collection("events").document(eventId).delete { error in
+                if let error = error {
+                    seal.reject(error)
+                } else {
+                    seal.fulfill(())
+                }
+            }
+        }
+    }
+    
+    func deleteAllLikedUserFromEvent(eventId: String) ->Promise<Void> {
+        return Promise { seal in
+            let _ = db.collection("events").document(eventId).collection("likedUser").document("likedUser").delete { error in
+                if let error = error {
+                    seal.reject(error)
+                } else {
+                    seal.fulfill(())
+                }
+            }
+        }
+    }
+    
+    func setLikedUserAndMatchedUserToFalse(eventId: String) ->Promise<Void> {
+        return Promise { seal in
+            let _ = db.collection("events").document(eventId).updateData(["likedUser": false, "eventMatched": false]) { error in
+                if let error = error {
+                    seal.reject(error)
+                }else {
+                    seal.fulfill(())
+                }
+            }
+        }
+    }
+
+    
+    
+    
+    
+    
+    
     
     //Aktuel nicht genutzt
     func deleteLikedUser(eventModel: EventModelObject, userModel: UserModelObject) -> Promise<Void> {
@@ -108,22 +192,5 @@ class FirestoreManagerMatches {
             seal.fulfill(())
         }
     }
-    
-    //Muss noch implementiert werden
-    func deleteMatchFromUserProfile(userModel: UserModel) -> Promise<Void> {
-        return Promise { seal in
-            guard let currentUser = Auth.auth().currentUser else {
-                return
-            }
-            db.collection("users")
-                .document(currentUser.uid)
-                .collection("matches")
-                .document(userModel.userId).delete() { error in
-                    if let error = error {
-                        seal.reject(error)
-                    }
-                }
-            seal.fulfill(())
-        }
-    }
 }
+    
