@@ -17,7 +17,7 @@ struct MessagesView: View {
     @State var newMessage: String = ""
     
     @State var firstPartString: String = ""
-    @State var showYouProfileView: Bool = false
+    @State var showChatProfileView: Bool = false
     
     var body: some View {
         
@@ -50,10 +50,10 @@ struct MessagesView: View {
                 .modifier(FrozenWindowModifier())
             }
             
-            if showYouProfileView {
+            if showChatProfileView {
                 
                 // FIXME: YouProfile needs to be rewritten to take a user and show the profile
-                YouProfileView(showYouProfileView: $showYouProfileView, tappedYouEvent: .constant(EventModelObject(eventModel: match.event, position: .constant(.zero))))
+                ChatProfileView(user: $match.user, showChatProfileView: $showChatProfileView)
             }
             
         }
@@ -70,7 +70,7 @@ struct MessagesView: View {
                     // user clickable
                     
                     Button(action: {
-                        showYouProfileView = true
+                        showChatProfileView = true
                     }, label: {
                         HStack {
                             // username
