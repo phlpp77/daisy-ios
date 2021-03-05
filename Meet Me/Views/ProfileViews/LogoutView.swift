@@ -10,21 +10,23 @@ import FirebaseAuth
 import PromiseKit
 
 struct LogoutView: View {
+    @ObservedObject var logoutVM: LogoutViewModel = LogoutViewModel()
     
     @Binding var startProcessDone: Bool
     
     var body: some View {
         Button("Logout") {
+            
+            logoutVM.authSignOut().done {
+                startProcessDone = false
+                print("false")
+            }.catch { error in
+                print("DEBUG: error by Logout error: \(error)")
+            }
 
 
             
-            do {
-                try Auth.auth().signOut()
-                //startProcessDone = false
-            } catch { let error = error
-                print(error.localizedDescription)
-            }
-            startProcessDone = false
+
     
             
         }
