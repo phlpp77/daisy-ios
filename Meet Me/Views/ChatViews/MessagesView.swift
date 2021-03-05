@@ -25,11 +25,20 @@ struct MessagesView: View {
             VStack {
                 
                 // MARK: Message area
+                
                 ScrollView {
-                    ForEach(messagesVM.chat.messages.indices, id: \.self) { messageNumber in
-                        MessageView(message: $messagesVM.chat.messages[messageNumber])
+                    VStack {
+                        ForEach(messagesVM.chat.messages.indices, id: \.self) { messageNumber in
+                            MessageView(message: $messagesVM.chat.messages[messageNumber])
+                                .rotationEffect(.radians(.pi))
+                                .scaleEffect(x: -1, y: 1, anchor: .center)
+                        }
                     }
                 }
+                .rotationEffect(.radians(.pi))
+                .scaleEffect(x: -1, y: 1, anchor: .center)
+                
+                
                 
                 // MARK: Send and type area
                 HStack {

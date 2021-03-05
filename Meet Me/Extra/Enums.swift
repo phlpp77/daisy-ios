@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: Marks the status of an event
+// used in: MeMatchStartView
 enum EventStatus {
     // user has no likes on his event yet (no swipe possible)
     case notLiked

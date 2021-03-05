@@ -103,15 +103,15 @@ struct MeMatchStartView: View {
             .frame(width: 340, height: 620, alignment: .center)
             .modifier(FrozenWindowModifier())
         }
-//        .onAppear {
-//            if event.eventMatched {
-//                eventStatus = .matched
-//            } else if event.likedUser {
-//                eventStatus = .liked
-//            } else {
-//                eventStatus = .notLiked
-//            }
-//        }
+        .onAppear {
+            if event.eventMatched {
+                eventStatus = .matched
+            } else if event.likedUser {
+                eventStatus = .liked
+            } else {
+                eventStatus = .notLiked
+            }
+        }
         
     }
 }
