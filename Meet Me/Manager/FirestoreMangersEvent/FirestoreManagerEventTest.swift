@@ -148,14 +148,12 @@ class FirestoreManagerEventTest {
                                 
                             }
                             if event != nil {
-                                for (index, eventModel) in event!.enumerated() {
+                                for (index, eventModel) in event!.enumerated().reversed() {
                                     if likedEvents.contains(eventModel.eventId) {
-                                        print(index)
-                                        if index > event!.count {
                                             event!.remove(at: index)
-                                        }
                                     }
                                 }
+                                print(event!.count)
                                 DispatchQueue.main.async {
                                     seal.fulfill(event!)
                                 }
