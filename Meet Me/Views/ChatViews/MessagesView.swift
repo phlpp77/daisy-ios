@@ -29,7 +29,7 @@ struct MessagesView: View {
                 
                 ScrollView {
                     VStack {
-                        ForEach(messagesVM.chat.messages.indices, id: \.self) { messageNumber in
+                        ForEach(messagesVM.chat.messages.indices.reversed(), id: \.self) { messageNumber in
                             MessageView(message: $messagesVM.chat.messages[messageNumber])
                                 .rotationEffect(.radians(.pi))
                                 .scaleEffect(x: -1, y: 1, anchor: .center)
