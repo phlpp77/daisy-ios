@@ -47,8 +47,8 @@ struct EventCreationView: View {
     var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_DE")
-        formatter.dateFormat = "dd/mm/yy"
-        formatter.dateStyle = .medium
+        formatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
+        formatter.dateFormat = "dd/MM/yy"
         return formatter
     }()
     
@@ -276,7 +276,8 @@ struct EventCreationView: View {
         eventCreationVM.date = dateFormatter.date(from: dateAsString) ?? Date()
         eventCreationVM.startTime = timeFormatter.date(from: startTimeAsString) ?? Date()
         eventCreationVM.endTime = timeFormatter.date(from: endTimeAsString) ?? Date()
-        
+        print("DEBUG: Date which is in the string \(dateAsString)")
+        print("DEBUG: Date which gets uploaded \(eventCreationVM.date)")
     }
 }
 

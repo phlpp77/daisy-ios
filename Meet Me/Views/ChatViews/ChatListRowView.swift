@@ -79,14 +79,18 @@ struct ChatListRowView: View {
             
             // show soon when Event is in the next 12 hours
             if Date().distance(to: match.event.date) < 43200 {
-                Text(Date().distance(to: match.event.date) < 0 ? "EVENTover" : "Soon!")
-                    .padding(4)
-                    .frame(alignment: .leading)
-                    .foregroundColor(.white)
-                    .background(Color.accentColor)
-                    .mask(Capsule())
-                    .shadow(color: Color.black.opacity(0.3), radius: 4, x: 2, y: 2)
-                    .offset(x: -60, y: -35)
+                HStack {
+                    Text(Date().distance(to: match.event.date) < 0 ? "EVENT over" : "soon!")
+                        .padding(4)
+                        .foregroundColor(.white)
+                        .background(Color.accentColor)
+                        .mask(Capsule())
+                        .shadow(color: Color.black.opacity(0.3), radius: 4, x: 2, y: 2)
+                        .padding(.leading, 80)
+                    Spacer()
+                        
+                }
+                .offset(y: -35)
             }
             
         }
