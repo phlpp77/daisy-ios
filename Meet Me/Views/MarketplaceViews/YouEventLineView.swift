@@ -11,7 +11,7 @@ import PromiseKit
 struct YouEventLineView: View {
     
     
-    @StateObject private var youEventLineVM = YouEventLineViewModel()
+    @ObservedObject private var youEventLineVM = YouEventLineViewModel()
     
     //var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     
@@ -51,7 +51,7 @@ struct YouEventLineView: View {
                             GeometryReader { geometry in
                                 VStack {
                                     // , eventArray: $youEventLineVM.eventArray
-                                    YouEventView(eventModelObject: youEventLineVM.eventArray[eventIndex], eventIndex: eventIndex, eventRemoveIndex: $eventRemoveIndex, dragPossible: true)
+                                    YouEventView(eventModelObject: youEventLineVM.eventArray[eventIndex], eventIndex: eventIndex, eventRemoveIndex: $eventRemoveIndex, dragPossible: true, youEventLineVM: _youEventLineVM)
                                         .rotation3DEffect(
                                             // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
                                             Angle(
@@ -61,6 +61,7 @@ struct YouEventLineView: View {
                                 }
                                 
                                 .onTapGesture {
+                                    print(youEventLineVM.eventArray.indices)
                                     tappedYouEvent = youEventLineVM.eventArray[eventIndex]
                                     withAnimation(.easeIn(duration: 0.1)) {
                                         showYouProfileView = true
@@ -74,17 +75,17 @@ struct YouEventLineView: View {
                             .padding(.leading, 30)
                             .padding(.top, 30)
                         }
-                        .onDelete { indexSet in
-                            print("on delete gets called")
-                            if eventRemoveIndex != -1 {
-                                // remove event from array
-                                youEventLineVM.eventArray.remove(at: eventRemoveIndex)
-                                // add event to likedUsers in DB
-                                // FIXME: @budni Needs to be rewritten do youEventLineVM from youEventVM
-//                                youEventVM.addLikeToEvent(eventId: eventArray[eventRemoveIndex].eventId)
-                            }
-                            
-                        }
+//                        .onDelete { indexSet in
+//                            print("on delete gets called")
+//                            if eventRemoveIndex != -1 {
+//                                // remove event from array
+//                                youEventLineVM.eventArray.remove(at: eventRemoveIndex)
+//                                // add event to likedUsers in DB
+//                                // FIXME: @budni Needs to be rewritten do youEventLineVM from youEventVM
+////                                youEventVM.addLikeToEvent(eventId: eventArray[eventRemoveIndex].eventId)
+//                            }
+//                            
+//                        }
                         // needed to refresh the ForEach after a change is made in the array
                         //.id(UUID())
                         
