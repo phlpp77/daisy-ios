@@ -14,7 +14,7 @@ class DeleteMatchViewModel: ObservableObject {
     
     
     
-    func deleteMatchandEventCompletely(match: AllMatchInformationModel) {
+    func deleteMatchAndEventCompletely(match: AllMatchInformationModel) {
         firstly {
             self.firestoreManagerMatches.deleteMatchFromCurrentUser(chatId: match.chatId)
         }.then {
