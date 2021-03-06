@@ -40,7 +40,6 @@ struct MessagesView: View {
                 .scaleEffect(x: -1, y: 1, anchor: .center)
                 
                 
-                
                 // MARK: Send and type area
                 HStack {
                     TextField("type new message here...", text: $newMessage)
@@ -70,7 +69,7 @@ struct MessagesView: View {
             }
             
         }
-        
+        .navigationBarTitleDisplayMode(.inline)
         // MARK: - Top area (inside the toolbar)
         .toolbar {
             // MARK: Showing the user
@@ -88,7 +87,6 @@ struct MessagesView: View {
                     
                     
                     // user clickable
-                    
                     Button(action: {
                         showChatProfileView = true
                     }, label: {
