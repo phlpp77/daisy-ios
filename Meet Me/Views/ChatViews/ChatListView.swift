@@ -13,6 +13,7 @@ struct ChatListView: View {
     
     
     @State var chatTapped: Bool = false
+    @State var matchTapped: AllMatchInformationModel = AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)
     
     var body: some View {
         
@@ -42,11 +43,11 @@ struct ChatListView: View {
                                 Color.clear
                                 
                                 NavigationLink(
-                                    destination: MessagesView(match: $chatListVM.matches[matchNumber]),
+                                    destination: MessagesView(match: $matchTapped),
                                     isActive: $chatTapped
                                 )
                                 {
-                                    ChatListRowView(user: $chatListVM.matches[matchNumber].user, event: $chatListVM.matches[matchNumber].event, chatTapped: $chatTapped)
+                                    ChatListRowView(match: $chatListVM.matches[matchNumber], chatTapped: $chatTapped, matchTapped: $matchTapped)
                                 }
                                 
                                 

@@ -10,10 +10,10 @@ import URLImage
 
 struct ChatListRowView: View {
     
-    @Binding var user: UserModel
-    @Binding var event: EventModel
+    @Binding var match: AllMatchInformationModel
     
     @Binding var chatTapped: Bool
+    @Binding var matchTapped: AllMatchInformationModel
     
     @State var firstPartString: String = ""
     
@@ -22,7 +22,7 @@ struct ChatListRowView: View {
         // MARK: RowView of one line in the list
         HStack {
             
-            URLImage(url: URL(string: user.userPhotos[1] ?? stockUrlString)!) { image in
+            URLImage(url: URL(string: match.user.userPhotos[1] ?? stockUrlString)!) { image in
                 image.resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 60, height: 60)
@@ -38,7 +38,7 @@ struct ChatListRowView: View {
             
             HStack(spacing: 0.0) {
                 Text(firstPartString)
-                Text(" \(user.name)")
+                Text(" \(match.user.name)")
                     .foregroundColor(.accentColor)
             }
             .font(.system(size: 22))
@@ -52,7 +52,7 @@ struct ChatListRowView: View {
         
         // on appear
         .onAppear {
-            switch event.category {
+            switch match.event.category {
             case "Café":
                 firstPartString = "Drinking coffee with"
             default:
@@ -62,7 +62,8 @@ struct ChatListRowView: View {
         
         // tapping on the item
         .onTapGesture {
-            print("event \(event) with user \(user) tapped")
+            print("event \(match.event) with user \(match.user) tapped")
+            matchTapped = match
             chatTapped = true
         }
     }
@@ -70,6 +71,6 @@ struct ChatListRowView: View {
 
 struct ChatListRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatListRowView(user: .constant(stockUser), event: .constant(stockEvent2), chatTapped: .constant(false))
+        ChatListRowView(match: .constant(AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)), chatTapped: .constant(false), matchTapped: .constant(AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)))
     }
 }
