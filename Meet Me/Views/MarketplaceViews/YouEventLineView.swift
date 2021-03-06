@@ -57,7 +57,10 @@ struct YouEventLineView: View {
                                     }
                                 .onTapGesture {
                                     tappedYouEvent = youEventLineVM.eventArray[event]
-                                    showYouProfileView = true
+                                    withAnimation(.easeIn(duration: 0.1)) {
+                                        showYouProfileView = true
+                                    }
+                                    
                                 }
                             }
                             .frame(width: 250, height: 250)
