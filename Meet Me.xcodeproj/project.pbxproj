@@ -58,6 +58,7 @@
 		902EF6E225D985F0004464F0 /* Meet_MeAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6E125D985F0004464F0 /* Meet_MeAppViewModel.swift */; };
 		902EF6FF25D9A51B004464F0 /* EventCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6FE25D9A51B004464F0 /* EventCreationViewModel.swift */; };
 		902EF7AA25DC439D004464F0 /* YouEventLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF7A925DC439D004464F0 /* YouEventLineViewModel.swift */; };
+		906E352125F2CCF800F0C7C6 /* LogoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906E352025F2CCF800F0C7C6 /* LogoutViewModel.swift */; };
 		90779AEA25E2C7250070D794 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 90779AE925E2C7250070D794 /* PromiseKit */; };
 		90779AED25E2C8CD0070D794 /* FirestoreManagerEventTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */; };
 		90779B0725E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779B0625E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift */; };
@@ -83,6 +84,7 @@
 		90D42B0125EAC0DC0060311B /* FirestoreManagerChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B0025EAC0DC0060311B /* FirestoreManagerChat.swift */; };
 		90D42B1E25EBA7190060311B /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B1D25EBA7190060311B /* ChatListViewModel.swift */; };
 		90D42B2225EBA75C0060311B /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B2125EBA75C0060311B /* MessagesViewModel.swift */; };
+		90ED49A625F2EA1A00843170 /* DeleteMatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ED49A525F2EA1A00843170 /* DeleteMatchViewModel.swift */; };
 		90F2334D25D58481003FB1D9 /* ImageOldP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2334C25D58481003FB1D9 /* ImageOldP.swift */; };
 		90F2335125D5943B003FB1D9 /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */; };
 		90F2336325D830E7003FB1D9 /* ProfileCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2336225D830E7003FB1D9 /* ProfileCreationViewModel.swift */; };
@@ -142,6 +144,7 @@
 		902EF6E125D985F0004464F0 /* Meet_MeAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meet_MeAppViewModel.swift; sourceTree = "<group>"; };
 		902EF6FE25D9A51B004464F0 /* EventCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationViewModel.swift; sourceTree = "<group>"; };
 		902EF7A925DC439D004464F0 /* YouEventLineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventLineViewModel.swift; sourceTree = "<group>"; };
+		906E352025F2CCF800F0C7C6 /* LogoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewModel.swift; sourceTree = "<group>"; };
 		90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerEventTest.swift; sourceTree = "<group>"; };
 		90779B0625E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreFotoMangerEventTest.swift; sourceTree = "<group>"; };
 		90779B0925E305D40070D794 /* MeMatchStartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchStartViewModel.swift; sourceTree = "<group>"; };
@@ -166,6 +169,7 @@
 		90D42B0025EAC0DC0060311B /* FirestoreManagerChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerChat.swift; sourceTree = "<group>"; };
 		90D42B1D25EBA7190060311B /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		90D42B2125EBA75C0060311B /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
+		90ED49A525F2EA1A00843170 /* DeleteMatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMatchViewModel.swift; sourceTree = "<group>"; };
 		90F2334C25D58481003FB1D9 /* ImageOldP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOldP.swift; sourceTree = "<group>"; };
 		90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
 		90F2336225D830E7003FB1D9 /* ProfileCreationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCreationViewModel.swift; sourceTree = "<group>"; };
@@ -441,6 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				90F2336625D84736003FB1D9 /* MeProfileViewModel.swift */,
+				906E352025F2CCF800F0C7C6 /* LogoutViewModel.swift */,
 			);
 			path = ProfileViewModels;
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 			children = (
 				90D42B1D25EBA7190060311B /* ChatListViewModel.swift */,
 				90D42B2125EBA75C0060311B /* MessagesViewModel.swift */,
+				90ED49A525F2EA1A00843170 /* DeleteMatchViewModel.swift */,
 			);
 			path = ChatViewModels;
 			sourceTree = "<group>";
@@ -621,6 +627,7 @@
 				90779B6025E41CC60070D794 /* MainControllerViewModel.swift in Sources */,
 				17DE52ED25EA3F9E000D0B4D /* ImagePicker.swift in Sources */,
 				175E40E025B43BB200ADC9BF /* StartView.swift in Sources */,
+				90ED49A625F2EA1A00843170 /* DeleteMatchViewModel.swift in Sources */,
 				90F2336325D830E7003FB1D9 /* ProfileCreationViewModel.swift in Sources */,
 				17DE531825EAED20000D0B4D /* MessagesView.swift in Sources */,
 				17C0C1CE25BF67D60021987D /* AlertBoxView.swift in Sources */,
@@ -652,6 +659,7 @@
 				90B0F4F125DFC63400AB8EF9 /* YouEventViewModel.swift in Sources */,
 				902EF7AA25DC439D004464F0 /* YouEventLineViewModel.swift in Sources */,
 				90D42B0125EAC0DC0060311B /* FirestoreManagerChat.swift in Sources */,
+				906E352125F2CCF800F0C7C6 /* LogoutViewModel.swift in Sources */,
 				90B0F4C725DF086B00AB8EF9 /* TrahedCode.swift in Sources */,
 				90779B7325E5BA7C0070D794 /* Err.swift in Sources */,
 				90779B2F25E3BFEB0070D794 /* FirestoreFotoManagerUserTest.swift in Sources */,
@@ -816,7 +824,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = LTC2Q574RM;
+				DEVELOPMENT_TEAM = SH8L9L3ABL;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -842,7 +850,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = LTC2Q574RM;
+				DEVELOPMENT_TEAM = SH8L9L3ABL;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
