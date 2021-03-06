@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1711EEBB25F29C6600D87EFA /* ChatProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711EEBA25F29C6600D87EFA /* ChatProfileView.swift */; };
 		17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */; };
 		17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EE825A8C5C30072CE83 /* Assets.xcassets */; };
 		17153EEC25A8C5C30072CE83 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EEB25A8C5C30072CE83 /* Preview Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C525D477F1007F64D6 /* YouEventView.swift */; };
 		179B27CA25D48788007F64D6 /* YouEventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C925D48788007F64D6 /* YouEventLineView.swift */; };
 		17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67225C2093D00E4DA78 /* PickerTextField.swift */; };
+		17A2EBC125F2D669003D1921 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A2EBC025F2D669003D1921 /* Enums.swift */; };
 		17BC5FE025BE0B5900F35075 /* ProfileCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */; };
 		17C0C1CE25BF67D60021987D /* AlertBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C0C1CD25BF67D60021987D /* AlertBoxView.swift */; };
 		17DAD7E325D934D600DBE60B /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DAD7E225D934D600DBE60B /* GlobalFunctions.swift */; };
@@ -91,6 +93,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1711EEBA25F29C6600D87EFA /* ChatProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatProfileView.swift; sourceTree = "<group>"; };
 		17153EE125A8C5C30072CE83 /* Meet Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meet Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meet_MeApp.swift; sourceTree = "<group>"; };
 		17153EE825A8C5C30072CE83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,6 +125,7 @@
 		179B27C525D477F1007F64D6 /* YouEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventView.swift; sourceTree = "<group>"; };
 		179B27C925D48788007F64D6 /* YouEventLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventLineView.swift; sourceTree = "<group>"; };
 		17A1E67225C2093D00E4DA78 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
+		17A2EBC025F2D669003D1921 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationView.swift; sourceTree = "<group>"; };
 		17C0C1CD25BF67D60021987D /* AlertBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBoxView.swift; sourceTree = "<group>"; };
 		17DAD7E225D934D600DBE60B /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
@@ -322,6 +326,7 @@
 				17DAD7E225D934D600DBE60B /* GlobalFunctions.swift */,
 				90B0F4C625DF086B00AB8EF9 /* TrahedCode.swift */,
 				90779B7225E5BA7C0070D794 /* Err.swift */,
+				17A2EBC025F2D669003D1921 /* Enums.swift */,
 			);
 			path = Extra;
 			sourceTree = "<group>";
@@ -368,6 +373,7 @@
 				17DE531125EAC372000D0B4D /* ChatListRowView.swift */,
 				17DE531725EAED20000D0B4D /* MessagesView.swift */,
 				17DE531D25EAEF51000D0B4D /* MessageView.swift */,
+				1711EEBA25F29C6600D87EFA /* ChatProfileView.swift */,
 			);
 			path = ChatViews;
 			sourceTree = "<group>";
@@ -659,6 +665,7 @@
 				90779B2F25E3BFEB0070D794 /* FirestoreFotoManagerUserTest.swift in Sources */,
 				174423AE25D9A93000D25EDD /* EventCreationView.swift in Sources */,
 				90779B0D25E308220070D794 /* FirestoreManagerUserTest.swift in Sources */,
+				1711EEBB25F29C6600D87EFA /* ChatProfileView.swift in Sources */,
 				90F2334D25D58481003FB1D9 /* ImageOldP.swift in Sources */,
 				90B0F4D425DF0EA000AB8EF9 /* MeEventLinieViewModel.swift in Sources */,
 				1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */,
@@ -683,6 +690,7 @@
 				179B27CA25D48788007F64D6 /* YouEventLineView.swift in Sources */,
 				1795DFAA25DF1923002D537F /* LottieView.swift in Sources */,
 				1774B67225D1E2E500D1D2F1 /* MainSettingsView.swift in Sources */,
+				17A2EBC125F2D669003D1921 /* Enums.swift in Sources */,
 				175E40E925B4A31C00ADC9BF /* HapticFeedback.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -816,7 +824,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -842,7 +850,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

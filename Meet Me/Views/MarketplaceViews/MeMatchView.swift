@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PromiseKit
+
 struct MeMatchView: View {
     
     @StateObject private var meMatchStartVM: MeMatchStartViewModel = MeMatchStartViewModel()
@@ -32,9 +33,12 @@ struct MeMatchView: View {
                 }
             }
             
-            MeMatchStartView(showMeMatchView: $showMeMatchView, showMeMatchMainView: $showMeMatchMainView, likedUsers: $likedUsers)
+            MeMatchStartView(showMeMatchView: $showMeMatchView, showMeMatchMainView: $showMeMatchMainView, event: $tappedEvent, likedUsers: $likedUsers)
+            
+//            MeMatchStartView(showMeMatchView: $showMeMatchView, showMeMatchMainView: $showMeMatchMainView, likedUsers: $likedUsers, eventMatched: tappedEvent.eventMatched)
                 .opacity(showMeMatchView ? 0 : 1)
         }
+        .animation(.easeInOut)
         .onAppear {
             
             firstly {

@@ -17,7 +17,7 @@ struct MessagesView: View {
     @State var newMessage: String = ""
     
     @State var firstPartString: String = ""
-    @State var showYouProfileView: Bool = false
+    @State var showChatProfileView: Bool = false
     
     var body: some View {
         
@@ -25,11 +25,20 @@ struct MessagesView: View {
             VStack {
                 
                 // MARK: Message area
+                
                 ScrollView {
-                    ForEach(messagesVM.chat.messages.indices, id: \.self) { messageNumber in
-                        MessageView(message: $messagesVM.chat.messages[messageNumber])
+                    VStack {
+                        ForEach(messagesVM.chat.messages.indices, id: \.self) { messageNumber in
+                            MessageView(message: $messagesVM.chat.messages[messageNumber])
+                                .rotationEffect(.radians(.pi))
+                                .scaleEffect(x: -1, y: 1, anchor: .center)
+                        }
                     }
                 }
+                .rotationEffect(.radians(.pi))
+                .scaleEffect(x: -1, y: 1, anchor: .center)
+                
+                
                 
                 // MARK: Send and type area
                 HStack {
@@ -50,10 +59,9 @@ struct MessagesView: View {
                 .modifier(FrozenWindowModifier())
             }
             
-            if showYouProfileView {
+            if showChatProfileView {
                 
-                // FIXME: YouProfile needs to be rewritten to take a user and show the profile
-                YouProfileView(showYouProfileView: $showYouProfileView, tappedYouEvent: .constant(EventModelObject(eventModel: match.event, position: .constant(.zero))))
+                ChatProfileView(user: $match.user, showChatProfileView: $showChatProfileView)
             }
             
         }
@@ -70,7 +78,7 @@ struct MessagesView: View {
                     // user clickable
                     
                     Button(action: {
-                        showYouProfileView = true
+                        showChatProfileView = true
                     }, label: {
                         HStack {
                             // username

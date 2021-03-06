@@ -22,6 +22,7 @@ struct EventModel: Codable {
     var pictureURL: String
     var profilePicture: String
     var likedUser: Bool
+    // event has matched user - event is closed
     var eventMatched: Bool
     
 }

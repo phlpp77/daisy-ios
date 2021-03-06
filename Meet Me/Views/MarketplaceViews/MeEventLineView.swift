@@ -65,14 +65,32 @@ struct MeEventLineView: View {
                                         .scaleEffect(0.5)
                                         .frame(width: 140, height: 160, alignment: .center)
                                     
-                                    // TODO: @budni - instead of event put array.count here to see how many people are interested in this event
-                                    Text("\(event)")
-                                        .foregroundColor(.white)
-                                        .frame(width: 30, height: 30, alignment: .center)
-                                        .background(Color.accentColor)
-                                        .clipShape(Circle())
-                                        .opacity(0.9)
-                                        .offset(x: -60, y: -60)
+                                    if meEventLineVM.eventArray[event].likedUser && !meEventLineVM.eventArray[event].eventMatched {
+                                        Image(systemName: "rosette")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .padding(4)
+                                            .foregroundColor(.white)
+                                            .frame(width: 30, height: 30, alignment: .center)
+                                            .background(Color.accentColor)
+                                            .clipShape(Circle())
+                                            .opacity(0.9)
+                                            .offset(x: -60, y: -60)
+                                        
+                                    } else if meEventLineVM.eventArray[event].eventMatched {
+                                        Image(systemName: "lock")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .padding(4)
+                                            .foregroundColor(.white)
+                                            .frame(width: 30, height: 30, alignment: .center)
+                                            .background(Color.accentColor)
+                                            .clipShape(Circle())
+                                            .opacity(0.9)
+                                            .offset(x: -60, y: -60)
+                                    }
+                                    
+                                    
                                 }
                                 // tap on each of the events does that
                                 .onTapGesture {
