@@ -55,7 +55,7 @@ struct MeEventLineView: View {
                         ForEach(meEventLineVM.eventArray.indices, id: \.self) { event in
                             HStack {
                                 ZStack {
-                                    YouEventView(eventModelObject: meEventLineVM.eventArray[event], eventArray: $meEventLineVM.eventArray, eventIndex: event, dragPossible: false)
+                                    YouEventView(eventModelObject: meEventLineVM.eventArray[event], eventIndex: event, eventRemoveIndex: .constant(0), dragPossible: false, youEventLineVM: .init(initialValue: YouEventLineViewModel()))
                                         .rotation3DEffect(
                                             // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
                                             Angle(

@@ -12,8 +12,11 @@ struct YouEventView: View {
     
     
     @StateObject var youEventVM = YouEventViewModel()
+    @ObservedObject var youEventLineVM: YouEventLineViewModel
+    @ObservedObject var youEventLVM: YouEventLineViewModel = YouEventLineViewModel()
     // Bindings
-    @Binding var eventArray: [EventModelObject]
+//    @Binding var eventArray: [EventModelObject]
+    @Binding var eventRemoveIndex: Int
     var eventIndex: Int
     var dragPossible: Bool = true
     
@@ -31,12 +34,14 @@ struct YouEventView: View {
     private var pictureURL: String
     private var profilePictureUrl: String
 
-    //
-    init(eventModelObject: EventModelObject, eventArray: Binding<[EventModelObject]>, eventIndex: Int, dragPossible: Bool) {
+    // , eventArray: Binding<[EventModelObject]>
+    init(eventModelObject: EventModelObject, eventIndex: Int, eventRemoveIndex: Binding<Int>, dragPossible: Bool, youEventLineVM: ObservedObject<YouEventLineViewModel>) {
         
 //        self.eventId = eventId
-        self._eventArray = eventArray
+//        self._eventArray = eventArray
+        self._youEventLineVM = youEventLineVM
         self.eventIndex = eventIndex
+        self._eventRemoveIndex = eventRemoveIndex
         self.dragPossible = dragPossible
         
         category = eventModelObject.category
@@ -144,8 +149,14 @@ struct YouEventView: View {
                             self.dragPosition = .init(width: 0, height: 500)
                             // delete the item at the position from the Array
 
-                            youEventVM.addLikeToEvent(eventId: eventArray[eventIndex].eventId)
-                            eventArray.remove(at: eventIndex)
+                            print("DEBUG: eventArray in YouEvent when liked: \(youEventLineVM.eventArray)")
+//                            eventRemoveIndex = eventIndex
+                            youEventVM.addLikeToEvent(eventId: youEventLineVM.eventArray[eventIndex].eventId)
+                            print("DEBUG: removed: \(youEventLineVM.eventArray[eventIndex])")
+                            youEventLineVM.eventArray.remove(at: eventIndex)
+                            
+                            
+//                            eventArray.remove(at: eventIndex)
                         } else {
                             
                             self.dragPosition = .zero
@@ -167,6 +178,6 @@ struct YouEventView_Previews: PreviewProvider {
     @State var cgsize: CGSize = .zero
     
     static var previews: some View {
-        YouEventView(eventModelObject: stockEventObject, eventArray: .constant([stockEventObject]), eventIndex: 0, dragPossible: true)
+        YouEventView(eventModelObject: stockEventObject, eventIndex: 0, eventRemoveIndex: .constant(1), dragPossible: true, youEventLineVM: .init(initialValue: YouEventLineViewModel()))
     }
 }
