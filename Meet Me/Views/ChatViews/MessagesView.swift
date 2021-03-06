@@ -18,6 +18,7 @@ struct MessagesView: View {
     
     @State var firstPartString: String = ""
     @State var showChatProfileView: Bool = false
+    @State var showChatEventView: Bool = false
     
     var body: some View {
         
@@ -64,6 +65,10 @@ struct MessagesView: View {
                 ChatProfileView(user: $match.user, showChatProfileView: $showChatProfileView)
             }
             
+            if showChatEventView {
+                ChatEventView(event: $match.event, showChatEventView: $showChatEventView)
+            }
+            
         }
         
         // MARK: - Top area (inside the toolbar)
@@ -73,7 +78,14 @@ struct MessagesView: View {
                 HStack {
                     
                     // event "name" based on category
-                    Text(firstPartString)
+                    Button(action: {
+                        withAnimation(.easeInOut) {
+                            showChatEventView = true
+                        }
+                    }, label: {
+                        Text(firstPartString)
+                    })
+                    
                     
                     // user clickable
                     
