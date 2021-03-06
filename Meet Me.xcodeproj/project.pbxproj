@@ -356,8 +356,8 @@
 			children = (
 				1795DF9425DD6998002D537F /* MeEventLineView.swift */,
 				179B27C925D48788007F64D6 /* YouEventLineView.swift */,
-				174423AD25D9A93000D25EDD /* EventCreationView.swift */,
 				179B27C525D477F1007F64D6 /* YouEventView.swift */,
+				174423AD25D9A93000D25EDD /* EventCreationView.swift */,
 				173F361B25E2FF0D002E9EE6 /* MeMatchView.swift */,
 				1795DF9D25DF0E22002D537F /* MeMatchStartView.swift */,
 				173F361125E2D72D002E9EE6 /* MeMatchCardView.swift */,
@@ -824,7 +824,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -850,7 +850,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

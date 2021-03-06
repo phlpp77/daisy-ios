@@ -10,17 +10,20 @@ import PromiseKit
 
 struct YouEventLineView: View {
     
-
+    
     @StateObject private var youEventLineVM = YouEventLineViewModel()
     
     //var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
-
+    
     // data transfer form database
     //@State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
     @State private var loading: Bool = false
     
     @Binding var tappedYouEvent: EventModelObject
     @Binding var showYouProfileView: Bool
+    
+    @State var eventRemoveIndex: Int = -1
+    // index which event needs to be removed from the array/scrollview
     
     var body: some View {
         ZStack {
@@ -44,34 +47,47 @@ struct YouEventLineView: View {
                     HStack(spacing: 10) {
                         
                         // create a view for each event in the array
-                        ForEach(youEventLineVM.eventArray.indices, id: \.self) { event in
+                        ForEach(youEventLineVM.eventArray.indices, id: \.self) { eventIndex in
                             GeometryReader { geometry in
                                 VStack {
-                                    YouEventView(eventModelObject: youEventLineVM.eventArray[event], eventArray: $youEventLineVM.eventArray, eventIndex: event, dragPossible: true)
+                                    // , eventArray: $youEventLineVM.eventArray
+                                    YouEventView(eventModelObject: youEventLineVM.eventArray[eventIndex], eventIndex: eventIndex, eventRemoveIndex: $eventRemoveIndex, dragPossible: true)
                                         .rotation3DEffect(
                                             // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
                                             Angle(
                                                 degrees: Double(geometry.frame(in: .global).minX - 30) / -40),
-                                                axis: (x: 0, y: 10, z: 0)
-                                            )
-                                    }
+                                            axis: (x: 0, y: 10, z: 0)
+                                        )
+                                }
+                                
                                 .onTapGesture {
-                                    tappedYouEvent = youEventLineVM.eventArray[event]
+                                    tappedYouEvent = youEventLineVM.eventArray[eventIndex]
                                     withAnimation(.easeIn(duration: 0.1)) {
                                         showYouProfileView = true
                                     }
                                     
                                 }
                             }
+                            
                             .frame(width: 250, height: 250)
                             .padding(.bottom, 120)
                             .padding(.leading, 30)
                             .padding(.top, 30)
-                        }.onDelete { indexSet in
-                            youEventLineVM.eventArray.remove(atOffsets: indexSet)
+                        }
+                        .onDelete { indexSet in
+                            print("on delete gets called")
+                            if eventRemoveIndex != -1 {
+                                // remove event from array
+                                youEventLineVM.eventArray.remove(at: eventRemoveIndex)
+                                // add event to likedUsers in DB
+                                // FIXME: @budni Needs to be rewritten do youEventLineVM from youEventVM
+//                                youEventVM.addLikeToEvent(eventId: eventArray[eventRemoveIndex].eventId)
+                            }
+                            
+                        }
                         // needed to refresh the ForEach after a change is made in the array
                         //.id(UUID())
-                        }
+                        
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -80,18 +96,18 @@ struct YouEventLineView: View {
                 Spacer()
             }
             .frame(height: 380)
-        
+            
             // loading screen deactivated
-//            LoadingView(showLoadingScreen: $loading)
+            //            LoadingView(showLoadingScreen: $loading)
         }
         .frame(height: 380)
         .onAppear {
-                self.youEventLineVM.getYouEvents()
-
+            self.youEventLineVM.getYouEvents()
+            
         }
         
     }
-
+    
 }
 
 struct EventLineView_Previews: PreviewProvider {
