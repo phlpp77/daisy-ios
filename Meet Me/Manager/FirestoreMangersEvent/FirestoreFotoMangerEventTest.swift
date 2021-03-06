@@ -46,7 +46,7 @@ class FirestoreFotoManagerEventTest: ObservableObject {
             
             let imageName = UUID().uuidString
             let storageRef = storage.reference()
-            let photoRef = storageRef.child("EventImagesTest/\(imageName).png")
+            let photoRef = storageRef.child("EventImages/\(imageName).png")
             
             photoRef.putData(data, metadata: nil) { metadata, error in
                 
