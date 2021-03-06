@@ -11,7 +11,7 @@ import URLImage
 struct YouEventView: View {
     
     
-    @ObservedObject var youEventVM = YouEventViewModel()
+    @StateObject var youEventVM = YouEventViewModel()
     // Bindings
     @Binding var eventArray: [EventModelObject]
     var eventIndex: Int

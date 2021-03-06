@@ -64,10 +64,11 @@ struct YouEventLineView: View {
                             .padding(.bottom, 120)
                             .padding(.leading, 30)
                             .padding(.top, 30)
-                        }
+                        }.onDelete { indexSet in
+                            youEventLineVM.eventArray.remove(atOffsets: indexSet)
                         // needed to refresh the ForEach after a change is made in the array
-                        .id(UUID())
-                        
+                        //.id(UUID())
+                        }
                     }
                 }
                 .frame(maxWidth: .infinity)
