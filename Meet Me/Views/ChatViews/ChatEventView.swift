@@ -24,7 +24,7 @@ struct ChatEventView: View {
                     }
                 }
             
-            YouEventView(eventModelObject: EventModelObject(eventModel: event, position: .constant(.zero)), eventIndex: 0, eventRemoveIndex: .constant(0), dragPossible: false, youEventLineVM: .init(initialValue: YouEventLineViewModel()))
+            YouEventView(eventModelObject: EventModelObject(eventModel: event, position: .constant(.zero)), eventIndex: 0, dragPossible: false, eventArray: .constant([stockEventObject]))
                 .scaleEffect(1.2)
         }
     }
