@@ -45,11 +45,12 @@ struct YouEventLineView: View {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 10) {
-                        
+                        Text(String(youEventLineVM.eventArray.count))
                         // create a view for each event in the array
                         ForEach(youEventLineVM.eventArray.indices, id: \.self) { eventIndex in
                             GeometryReader { geometry in
                                 VStack {
+                                    
                                     // , eventArray: $youEventLineVM.eventArray
                                     YouEventView(eventModelObject: youEventLineVM.eventArray[eventIndex], eventIndex: eventIndex, eventRemoveIndex: $eventRemoveIndex, dragPossible: true, youEventLineVM: _youEventLineVM)
                                         .rotation3DEffect(
@@ -87,7 +88,7 @@ struct YouEventLineView: View {
 //                            
 //                        }
                         // needed to refresh the ForEach after a change is made in the array
-                        //.id(UUID())
+                        .id(UUID())
                         
                     }
                 }
