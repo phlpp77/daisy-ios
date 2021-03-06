@@ -51,7 +51,7 @@ class FirestoreManagerUserTest {
                 let _ =  db.collection("users")
                     .document(currentUser.uid)
                     .collection("likedEvent")
-                    .document("likedEvent").setData(["likedEvent": [currentUser.uid]])
+                    .document("likedEvent").setData(["likedEvent": []])
                     
                 seal.fulfill(())
                     
