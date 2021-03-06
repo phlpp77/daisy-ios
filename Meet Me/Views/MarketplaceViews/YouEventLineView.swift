@@ -16,7 +16,7 @@ struct YouEventLineView: View {
     //var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     
     // data transfer form database
-    //@State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
+    @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
     @State private var loading: Bool = false
     
     @Binding var tappedYouEvent: EventModelObject
@@ -45,13 +45,14 @@ struct YouEventLineView: View {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 10) {
-                        
+//                        Text(String(youEventLineVM.eventArray.count))
                         // create a view for each event in the array
-                        ForEach(youEventLineVM.eventArray.indices, id: \.self) { eventIndex in
+                        ForEach(eventArray.indices, id: \.self) { eventIndex in
                             GeometryReader { geometry in
                                 VStack {
+                                    Text(String(eventIndex))
                                     // , eventArray: $youEventLineVM.eventArray
-                                    YouEventView(eventModelObject: youEventLineVM.eventArray[eventIndex], eventIndex: eventIndex, eventRemoveIndex: $eventRemoveIndex, dragPossible: true, youEventLineVM: _youEventLineVM)
+                                    YouEventView(eventModelObject: eventArray[eventIndex], eventIndex: eventIndex, dragPossible: true, eventArray: $eventArray)
                                         .rotation3DEffect(
                                             // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
                                             Angle(
@@ -61,8 +62,8 @@ struct YouEventLineView: View {
                                 }
                                 
                                 .onTapGesture {
-                                    print(youEventLineVM.eventArray.indices)
-                                    tappedYouEvent = youEventLineVM.eventArray[eventIndex]
+//                                    print(youEventLineVM.eventArray.indices)
+                                    tappedYouEvent = eventArray[eventIndex]
                                     withAnimation(.easeIn(duration: 0.1)) {
                                         showYouProfileView = true
                                     }
@@ -87,7 +88,7 @@ struct YouEventLineView: View {
 //                            
 //                        }
                         // needed to refresh the ForEach after a change is made in the array
-                        //.id(UUID())
+                        .id(UUID())
                         
                     }
                 }
@@ -103,8 +104,19 @@ struct YouEventLineView: View {
         }
         .frame(height: 380)
         .onAppear {
-            self.youEventLineVM.getYouEvents()
-            
+            loading = true
+            firstly {
+                self.youEventLineVM.getYouEvents()
+            }.done { events in
+                self.eventArray = events
+               
+            }.catch { error in
+                print("DEBUG: error in GetYouEventChain: \(error)")
+                print("DEBUG: \(error.localizedDescription)")
+            }.finally {
+                loading = false
+            }
+
         }
         
     }
