@@ -180,16 +180,20 @@ class FirestoreManagerMatches {
     //Aktuel nicht genutzt
     func deleteLikedUser(eventModel: EventModelObject, userModel: UserModelObject) -> Promise<Void> {
         return Promise { seal in
-            
+            print("delete liked User in Firestore aufgerufen")
+            print("evetnId: \(eventModel.eventId)")
+            print("userId: \(userModel.userId)")
             db.collection("events")
                 .document(eventModel.eventId)
                 .collection("likedUser")
-                .document(userModel.userId).delete() { error in
+                .document("likedUser").updateData(["likedUser" : FieldValue.arrayRemove([userModel.userId])]) { error in
                     if let error = error {
                         seal.reject(error)
+                    } else {
+                        seal.fulfill(())
                     }
                 }
-            seal.fulfill(())
+
         }
     }
 }
