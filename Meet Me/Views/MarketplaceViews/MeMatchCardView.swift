@@ -185,6 +185,7 @@ struct MeMatchCardView: View {
         // if the last user (which is the first in the array) is denied the view gets canceled
         if self.users.first!.userId == user.userId {
             print("last profile denied")
+            meMatchCardVM.setLikedUserToFalse(eventId: event.eventId)
             DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.1) {
                 showMeMatchMainView = false
             }

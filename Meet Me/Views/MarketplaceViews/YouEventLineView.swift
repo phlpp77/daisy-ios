@@ -16,7 +16,7 @@ struct YouEventLineView: View {
     //var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     
     // data transfer form database
-    @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject, stockEventObject]
+    @State private var eventArray: [EventModelObject] = []
     @State private var loading: Bool = false
     
     @Binding var tappedYouEvent: EventModelObject
