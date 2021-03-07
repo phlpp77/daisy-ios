@@ -24,7 +24,7 @@ class FirestoreManagerUserTest {
     }
     
     
-
+        
     
     // MARK: - Functions to Save userModel to Firebase
     func saveUser(userModel: UserModel) -> Promise<UserModel>{
@@ -76,7 +76,21 @@ class FirestoreManagerUserTest {
             }
         }
     
-
+    func setRadius(radius: Double) -> Promise<Void>{
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                throw Err("No User Profile")
+            }
+            let _ = db.collection("users")
+                .document(currentUser.uid).updateData(["radiusInKilometer": radius]) { error in
+                    if let error = error {
+                        seal.reject(error)
+                    }else {
+                        seal.fulfill(())
+                    }
+                }
+        }
+    }
     // MARK: - Functions to Update current User
     
     

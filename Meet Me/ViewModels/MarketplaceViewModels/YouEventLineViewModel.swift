@@ -8,21 +8,25 @@
 import Foundation
 import PromiseKit
 import MapKit
+import GeoFire
+import Firebase
 
 class YouEventLineViewModel: ObservableObject {
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     private var locationManager: LocationManager = LocationManager()
     @Published var region = MKCoordinateRegion.defaultRegion
-    
-   
+    private var geo: GeoQuery = GeoQuery()
+
 
     func getYouEvents() -> Promise<[EventModelObject]>{
         return Promise { seal in
             firstly {
-                self.firestoreManagerUserTest.getAllLikedEvents()
-            }.then { likedEvents in
-                self.firestoreManagerEventTest.firebaseGetYouEvents(likedEvents: likedEvents)
+                when(fulfilled: self.firestoreManagerUserTest.getAllLikedEvents(), self.getLocation())
+            }.then { likedEvents, location in
+                self.geo.queryColletion(center: self.region.center).map { ($0, likedEvents) }
+            }.then { queries, likedEvents in
+                self.geo.querysInEvent(likedEvents: likedEvents , queries: queries, center: self.region.center)
             }.done { events in
                 seal.fulfill(events)
             }.catch { error in
@@ -31,19 +35,32 @@ class YouEventLineViewModel: ObservableObject {
         }
     }
     
-    func getLocation() {
+    
+    func getLocation() ->Promise<Void>{
+        return Promise { seal in
         _ = locationManager.$location.sink { location in
             self.region = MKCoordinateRegion(center: location?.coordinate ?? CLLocationCoordinate2D(), latitudinalMeters: 200, longitudinalMeters: 200)
-            
-            print("LocationInManager: \(self.region.center)")
-
-
         }
+            seal.fulfill(())
+        }
+        
     }
     
 }
 
 
-
+//func getYouEvents() -> Promise<[EventModelObject]>{
+//    return Promise { seal in
+//        firstly {
+//            when(fulfilled: self.firestoreManagerUserTest.getAllLikedEvents(), self.getLocation())
+//        }.then { likedEvents, location in
+//            self.firestoreManagerEventTest.firebaseGetYouEvents(likedEvents: likedEvents)
+//        }.done { events in
+//            seal.fulfill(events)
+//        }.catch { error in
+//            seal.reject(error)
+//        }
+//    }
+//}
 
 

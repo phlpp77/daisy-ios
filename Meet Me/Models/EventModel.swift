@@ -27,6 +27,7 @@ struct EventModel: Codable {
     var latitude: Double
     var longitude: Double
     var hash: String
+    var distance: Double
     
 }
 
@@ -86,6 +87,9 @@ struct EventModelObject {
     }
     var hash: String {
         eventModel.hash
+    }
+    var distance: Double {
+        eventModel.distance
     }
 
     

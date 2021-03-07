@@ -55,8 +55,11 @@ class EventCreationViewModel: ObservableObject {
         let longtiude = region.center.longitude
         let hash = GFUtils.geoHash(forLocation: region.center)
         
+        let latitude2 = 10.0
+        let longtiude2 = 10.0
+        
         let eventId = UUID().uuidString
-        var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, name: name, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"", profilePicture: "",likedUser: false, eventMatched: false,latitude: latitude,longitude: longtiude,hash: hash)
+        var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, name: name, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"", profilePicture: "",likedUser: false, eventMatched: false,latitude: latitude2,longitude: longtiude2,hash: hash, distance: 0)
         
 
             firstly{

@@ -54,6 +54,7 @@
 		17EDA6F025E6C974004BC651 /* LogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EDA6EF25E6C974004BC651 /* LogoutView.swift */; };
 		3C4632628DFAFFCA3B1B6674 /* Pods_Meet_Me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6866AE96A8202B7FCBDD60 /* Pods_Meet_Me.framework */; };
 		9012001E25F4E8CC006E7DF4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9012001D25F4E8CC006E7DF4 /* LocationManager.swift */; };
+		901CCB5225F5438000A11A98 /* GeoQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901CCB5125F5438000A11A98 /* GeoQuery.swift */; };
 		902EF6B925D89213004464F0 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6B825D89213004464F0 /* PhotoModel.swift */; };
 		902EF6BD25D896E3004464F0 /* UIImageResized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6BC25D896E3004464F0 /* UIImageResized.swift */; };
 		902EF6C625D92112004464F0 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 902EF6C525D92112004464F0 /* URLImage */; };
@@ -142,6 +143,7 @@
 		17EDA6EF25E6C974004BC651 /* LogoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutView.swift; sourceTree = "<group>"; };
 		8CC506F59200740347A6B95E /* Pods-Meet Me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Me.debug.xcconfig"; path = "Target Support Files/Pods-Meet Me/Pods-Meet Me.debug.xcconfig"; sourceTree = "<group>"; };
 		9012001D25F4E8CC006E7DF4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		901CCB5125F5438000A11A98 /* GeoQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoQuery.swift; sourceTree = "<group>"; };
 		902EF6B825D89213004464F0 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		902EF6BC25D896E3004464F0 /* UIImageResized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageResized.swift; sourceTree = "<group>"; };
 		902EF6E125D985F0004464F0 /* Meet_MeAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meet_MeAppViewModel.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */,
+				901CCB5125F5438000A11A98 /* GeoQuery.swift */,
 				90779B0625E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift */,
 			);
 			path = FirestoreMangersEvent;
@@ -639,6 +642,7 @@
 				175E40F425B4CD9400ADC9BF /* Modifiers.swift in Sources */,
 				175E40E625B46ABB00ADC9BF /* BlurView.swift in Sources */,
 				175E40F025B4CD3300ADC9BF /* RegisterView.swift in Sources */,
+				901CCB5225F5438000A11A98 /* GeoQuery.swift in Sources */,
 				177F681925D8409200BC345B /* MeProfileView.swift in Sources */,
 				1795DFAE25DF20AD002D537F /* LoadingView.swift in Sources */,
 				17DAD7E325D934D600DBE60B /* GlobalFunctions.swift in Sources */,

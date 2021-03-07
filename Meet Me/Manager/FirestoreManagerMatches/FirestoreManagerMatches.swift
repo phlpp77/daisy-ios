@@ -177,7 +177,7 @@ class FirestoreManagerMatches {
     
     
     
-    //Aktuel nicht genutzt
+
     func deleteLikedUser(eventModel: EventModelObject, userModel: UserModelObject) -> Promise<Void> {
         return Promise { seal in
             db.collection("events")
