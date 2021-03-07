@@ -40,7 +40,7 @@ struct MeEventLineView: View {
                             .opacity(buttonPressed ? 0.5 : 1)
                             .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
                             .onTapGesture {
-                                print("new event creation tapped")
+
                                 // button animation start
                                 buttonPressed.toggle()
                                 
@@ -94,7 +94,7 @@ struct MeEventLineView: View {
                                 }
                                 // tap on each of the events does that
                                 .onTapGesture {
-                                    print("event \(event) was tapped")
+                                    
                                     // save UserModelObject
                                     tappedEvent = meEventLineVM.eventArray[event]
                                     

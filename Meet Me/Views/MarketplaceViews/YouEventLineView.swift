@@ -75,18 +75,7 @@ struct YouEventLineView: View {
                             .padding(.leading, 30)
                             .padding(.top, 30)
                         }
-                        //                        .onDelete { indexSet in
-                        //                            print("on delete gets called")
-                        //                            if eventRemoveIndex != -1 {
-                        //                                // remove event from array
-                        //                                youEventLineVM.eventArray.remove(at: eventRemoveIndex)
-                        //                                // add event to likedUsers in DB
-                        //                                // FIXME: @budni Needs to be rewritten do youEventLineVM from youEventVM
-                        ////                                youEventVM.addLikeToEvent(eventId: eventArray[eventRemoveIndex].eventId)
-                        //                            }
-                        //
-                        //                        }
-                        // needed to refresh the ForEach after a change is made in the array
+
                         .id(UUID())
                         
                     }

@@ -48,7 +48,7 @@ struct MeMatchCardView: View {
                     if value.translation.width > 80 {
                         // secure that each user is only accepted once
                         if !userAccepted {
-                            print("user accepted swiped")
+                        
                             userWasAccepted()
                         }
                         
@@ -58,7 +58,6 @@ struct MeMatchCardView: View {
                     if value.translation.width < -80 {
                         // secure that each user is only denied once
                         if !userDenied {
-                            print("user denied swiped")
                             userWasDenied()
                         }
                         
@@ -121,7 +120,6 @@ struct MeMatchCardView: View {
                         .background(Color.red.opacity(0.3))
                         .onTapGesture {
                             // update database - user not
-                            print("user denied tapped")
                             userWasDenied()
                         }
                     
@@ -137,7 +135,7 @@ struct MeMatchCardView: View {
                         .background(Color.green.opacity(0.3))
                         .onTapGesture {
                             // user was taken
-                            print("user accepted tapped")
+
                             userWasAccepted()
                         }
                         
@@ -184,7 +182,6 @@ struct MeMatchCardView: View {
         meMatchCardVM.deleteLikedUser(eventModel: event, userModel: user)
         // if the last user (which is the first in the array) is denied the view gets canceled
         if self.users.first!.userId == user.userId {
-            print("last profile denied")
             meMatchCardVM.setLikedUserToFalse(eventId: event.eventId)
             DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.1) {
                 showMeMatchMainView = false

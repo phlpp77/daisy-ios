@@ -67,7 +67,7 @@ struct EventCreationView: View {
             BlurView(style: .systemMaterial)
                 .ignoresSafeArea()
                 .onTapGesture {
-                    print("cancel me match tapped")
+
                     presentation = false
                 }
             
