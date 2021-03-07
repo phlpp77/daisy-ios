@@ -53,6 +53,7 @@
 		17E5248625EBC78F0073C191 /* CircleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5248525EBC78F0073C191 /* CircleBackgroundView.swift */; };
 		17EDA6F025E6C974004BC651 /* LogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EDA6EF25E6C974004BC651 /* LogoutView.swift */; };
 		3C4632628DFAFFCA3B1B6674 /* Pods_Meet_Me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6866AE96A8202B7FCBDD60 /* Pods_Meet_Me.framework */; };
+		9012001E25F4E8CC006E7DF4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9012001D25F4E8CC006E7DF4 /* LocationManager.swift */; };
 		902EF6B925D89213004464F0 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6B825D89213004464F0 /* PhotoModel.swift */; };
 		902EF6BD25D896E3004464F0 /* UIImageResized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6BC25D896E3004464F0 /* UIImageResized.swift */; };
 		902EF6C625D92112004464F0 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 902EF6C525D92112004464F0 /* URLImage */; };
@@ -141,6 +142,7 @@
 		17E5248525EBC78F0073C191 /* CircleBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleBackgroundView.swift; sourceTree = "<group>"; };
 		17EDA6EF25E6C974004BC651 /* LogoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutView.swift; sourceTree = "<group>"; };
 		8CC506F59200740347A6B95E /* Pods-Meet Me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Me.debug.xcconfig"; path = "Target Support Files/Pods-Meet Me/Pods-Meet Me.debug.xcconfig"; sourceTree = "<group>"; };
+		9012001D25F4E8CC006E7DF4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		902EF6B825D89213004464F0 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		902EF6BC25D896E3004464F0 /* UIImageResized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageResized.swift; sourceTree = "<group>"; };
 		902EF6E125D985F0004464F0 /* Meet_MeAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meet_MeAppViewModel.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				903E020225DFF669005BB173 /* FirestoreManagersUser */,
 				903E020525DFF681005BB173 /* FirestoreMangersEvent */,
 				90D42B0325EAC0E00060311B /* FirestoreManagerChat */,
+				9012001D25F4E8CC006E7DF4 /* LocationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				90779B6D25E5A3F40070D794 /* MeMatchCardViewModel.swift in Sources */,
 				90D42B2225EBA75C0060311B /* MessagesViewModel.swift in Sources */,
 				173F361C25E2FF0D002E9EE6 /* MeMatchView.swift in Sources */,
+				9012001E25F4E8CC006E7DF4 /* LocationManager.swift in Sources */,
 				17DE531225EAC372000D0B4D /* ChatListRowView.swift in Sources */,
 				902EF6E225D985F0004464F0 /* Meet_MeAppViewModel.swift in Sources */,
 				17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */,

@@ -12,6 +12,7 @@ struct YouEventLineView: View {
     
     
     @ObservedObject private var youEventLineVM = YouEventLineViewModel()
+
     
     //var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     
@@ -114,6 +115,8 @@ struct YouEventLineView: View {
             }.finally {
                 loading = false
             }
+
+
             
         }
         
