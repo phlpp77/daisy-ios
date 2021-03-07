@@ -17,8 +17,8 @@ struct UserModel: Codable {
     var startProcessDone: Bool = true
     var searchingFor: String = ""
     var userPhotos: [Int: String]
+//    var location: [String: String]
 
-    //var UserPhotos: [UserPhotoModel] = UserPhotoModel()
     
 }
 
@@ -55,13 +55,15 @@ struct UserModelObject {
         user.userPhotos
     }
     
-//    var UserPhotos: [UserPhotoModel] {
-//        user.UserPhotos
+//    var location: [String: String] {
+//        user.location
 //    }
+    
+
     
 }
 
-struct UserPhotoModel: Codable {
-    var userId: String = ""
-    var url: String = ""
-}
+//struct UserPhotoModel: Codable {
+//    var userId: String = ""
+//    var url: String = ""
+//}

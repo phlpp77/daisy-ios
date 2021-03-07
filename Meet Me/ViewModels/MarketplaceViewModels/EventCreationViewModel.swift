@@ -9,7 +9,8 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 import PromiseKit
-
+import MapKit
+import GeoFire
 
 class EventCreationViewModel: ObservableObject {
     
@@ -20,6 +21,8 @@ class EventCreationViewModel: ObservableObject {
     private var firestoreFotoManagerEventTest: FirestoreFotoManagerEventTest
     private var firestoreManagerEventTest: FirestoreManagerEventTest
     private var firestoreManagerUserTest: FirestoreManagerUserTest
+    private var locationManager: LocationManager = LocationManager()
+    @Published var region = MKCoordinateRegion.defaultRegion
     
     
     var userId: String = "111"
@@ -44,8 +47,16 @@ class EventCreationViewModel: ObservableObject {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
+        
+        _ = locationManager.$location.sink { location in
+            self.region = MKCoordinateRegion(center: location?.coordinate ?? CLLocationCoordinate2D(), latitudinalMeters: 200, longitudinalMeters: 200)
+        }
+        let latitude = region.center.latitude
+        let longtiude = region.center.longitude
+        let hash = GFUtils.geoHash(forLocation: region.center)
+        
         let eventId = UUID().uuidString
-        var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, name: name, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"", profilePicture: "",likedUser: false, eventMatched: false)
+        var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, name: name, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"", profilePicture: "",likedUser: false, eventMatched: false,latitude: latitude,longitude: longtiude,hash: hash)
         
 
             firstly{
