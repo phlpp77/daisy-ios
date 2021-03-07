@@ -101,8 +101,6 @@ struct LoginView: View {
                 // login handleling
                 loginVM.login {
                     isActive = true
-                    print("Login succeeded \(isActive)")
-                    
                     firstly {
                         loginVM.checkUserAcc()
                     }.done { acc in

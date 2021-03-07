@@ -36,7 +36,6 @@ class FirestoreManagerUserTest {
                 try db.collection("users").document(currentUser).setData(from: userModel)
                 seal.fulfill(userModel)
             } catch let error {
-                print("fail")
                 seal.reject(error)
             }
         }
@@ -131,7 +130,6 @@ class FirestoreManagerUserTest {
             }
             db.collection("users").document(currentUser.uid).getDocument { snapshot, error in
                 if let error = error {
-                    print(error.localizedDescription)
                     seal.reject(error)
                 } else {
                     if let snapshot = snapshot {

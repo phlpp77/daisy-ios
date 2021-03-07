@@ -62,8 +62,6 @@ class EventCreationViewModel: ObservableObject {
                 self.firestoreFotoManagerEventTest.uploadEventPhoto(data: picture)
             }.then { url in
                 self.firestoreFotoManagerEventTest.saveEventPhotoUrlToFirestore(url: url, eventId: eventId)
-            }.done {
-                print("DEGUB: done, EventCreationChain erfolgreich")
             }.catch { error in
                 print("DEBUG: catch, Fehler in EventCreationChain\(error)")
                 print(error.localizedDescription)

@@ -32,7 +32,6 @@ class MeMatchCardViewModel: ObservableObject {
         
     
     func deleteLikedUser(eventModel : EventModelObject, userModel: UserModelObject){
-        print("delteLikedUser VM aufegrufen")
             firstly {
                 firestoreManagerMatches.deleteLikedUser(eventModel: eventModel, userModel: userModel)
             }.catch { error in

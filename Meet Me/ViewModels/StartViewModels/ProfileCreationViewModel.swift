@@ -52,8 +52,6 @@ class ProfileCreationModel: ObservableObject {
             self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url: url, fotoPlace: 1)
         }.then {
             self.firestoreManagerUserTest.createLikedEventsArray()
-        }.done {
-            print("DEBUG: done, User Creation erfolgreich")
         }.catch { error in
             print("DEBUG: catch, fehler in event creation \(error)")
             print(error.localizedDescription)

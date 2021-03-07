@@ -92,7 +92,6 @@ struct ChatListRowView: View {
         }
         // tapping on the item
         .onTapGesture {
-            print("event \(match.event) with user \(match.user) tapped")
             matchTapped = match
             chatTapped = true
         }

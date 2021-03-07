@@ -19,7 +19,6 @@ struct LogoutView: View {
             
             logoutVM.authSignOut().done {
                 startProcessDone = false
-                print("false")
             }.catch { error in
                 print("DEBUG: error by Logout error: \(error)")
             }

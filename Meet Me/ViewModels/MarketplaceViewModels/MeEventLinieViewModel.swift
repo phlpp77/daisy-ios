@@ -25,8 +25,6 @@ class MeEventLineViewModel: ObservableObject {
     func getMeEvents() {
         firstly {
             firebaseGetMeEvents()
-        }.done {
-            print("getMeEvents")
         }.catch { error in
             print("DEBUG: error in getMeEvents error: \(error)")
             print("DEGUB: error localized \(error.localizedDescription)")
@@ -64,7 +62,6 @@ class MeEventLineViewModel: ObservableObject {
                             }
                             DispatchQueue.main.async {
                                 if let event = event {
-                                    print(event)
                                     self.eventArray = event
                                     seal.fulfill(())
                                 }

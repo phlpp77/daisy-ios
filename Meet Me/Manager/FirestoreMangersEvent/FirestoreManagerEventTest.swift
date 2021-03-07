@@ -153,7 +153,6 @@ class FirestoreManagerEventTest {
                                             event!.remove(at: index)
                                     }
                                 }
-                                print(event!.count)
                                 DispatchQueue.main.async {
                                     seal.fulfill(event!)
                                 }
@@ -210,7 +209,6 @@ class FirestoreManagerEventTest {
     
     func getAllLikedUserModels(likedUser: [String]) -> Promise<[UserModelObject]> {
         return Promise { seal in
-            print(likedUser)
             db.collection("users")
                 .whereField("userId", in: likedUser)
                 .getDocuments {(snapshot, error) in
@@ -228,7 +226,6 @@ class FirestoreManagerEventTest {
                                 
                             }
                             DispatchQueue.main.async {
-                                print(userModel)
                                 seal.fulfill(userModel)
                             }
                             
