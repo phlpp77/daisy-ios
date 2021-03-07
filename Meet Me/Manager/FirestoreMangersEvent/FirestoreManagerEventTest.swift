@@ -26,33 +26,36 @@ import Firebase
 import FirebaseFirestoreSwift
 import FirebaseAuth
 import PromiseKit
+import MapKit
+import GeoFire
 
 class FirestoreManagerEventTest {
     
     private var db: Firestore
-
+    
     
     init() {
         db = Firestore.firestore()
-
+        
     }
     
-    
+    private var locationManager: LocationManager = LocationManager()
+    var region = MKCoordinateRegion.defaultRegion
     // MARK: - Functions to Save events to Firebase
-
+    
     
     func saveEvent(eventModel: EventModel, eventId: String) -> Promise<Void> {
         return Promise { seal in
-        do {
-            try db.collection("events").document(eventId).setData(from: eventModel)
-            seal.fulfill(())
+            do {
+                try db.collection("events").document(eventId).setData(from: eventModel)
+                seal.fulfill(())
             }
-        catch let error{
-            seal.reject(error)
+            catch let error{
+                seal.reject(error)
+            }
         }
     }
-}
-
+    
     // MARK: - Functions to update events
     
     func createLikedUserArray(eventId: String) -> Promise<Void>{
@@ -62,13 +65,13 @@ class FirestoreManagerEventTest {
                     .document(eventId)
                     .collection("likedUser")
                     .document("likedUser").setData(["likedUser": []])
-                    
+                
                 seal.fulfill(())
-                    
-                }
+                
             }
         }
-
+    }
+    
     func addLikeToEventArray(eventId: String) -> Promise<Void>{
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
@@ -118,12 +121,18 @@ class FirestoreManagerEventTest {
     }
     
     
-    
 
+    
+    
+    
+    
+    
+    
     
     // MARK: - Functions to get events
     func firebaseGetYouEvents(likedEvents : [String]) -> Promise<[EventModelObject]> {
         return Promise { seal in
+            
             
             guard let currentUser = Auth.auth().currentUser else {
                 throw Err("No User Profile")
@@ -140,7 +149,7 @@ class FirestoreManagerEventTest {
                                 var event = try? doc.data(as: EventModel.self)
                                 event?.eventId = doc.documentID
                                 if let event = event {
-                                    if event.userId != currentUser.uid {
+                                    if event.userId != currentUser.uid && event.eventMatched == false {
                                         return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
                                     }
                                 }
@@ -150,10 +159,9 @@ class FirestoreManagerEventTest {
                             if event != nil {
                                 for (index, eventModel) in event!.enumerated().reversed() {
                                     if likedEvents.contains(eventModel.eventId) {
-                                            event!.remove(at: index)
+                                        event!.remove(at: index)
                                     }
                                 }
-                                print(event!.count)
                                 DispatchQueue.main.async {
                                     seal.fulfill(event!)
                                 }
@@ -192,11 +200,11 @@ class FirestoreManagerEventTest {
                                 DispatchQueue.main.async {
                                     if likedUser?.likedUser.count != 0 {
                                         seal.fulfill(likedUser!.likedUser)
-                                } else {
-                                    let error = Err("No Liked Availibale")
-                                    seal.reject(error)
+                                    } else {
+                                        let error = Err("No Liked Availibale")
+                                        seal.reject(error)
+                                    }
                                 }
-                            }
                             }
                             
                         }
@@ -210,7 +218,6 @@ class FirestoreManagerEventTest {
     
     func getAllLikedUserModels(likedUser: [String]) -> Promise<[UserModelObject]> {
         return Promise { seal in
-            print(likedUser)
             db.collection("users")
                 .whereField("userId", in: likedUser)
                 .getDocuments {(snapshot, error) in
@@ -228,7 +235,6 @@ class FirestoreManagerEventTest {
                                 
                             }
                             DispatchQueue.main.async {
-                                print(userModel)
                                 seal.fulfill(userModel)
                             }
                             
@@ -241,11 +247,11 @@ class FirestoreManagerEventTest {
         }
     }
 }
-    
 
 
-        
- 
 
-    
+
+
+
+
 

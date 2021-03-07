@@ -24,7 +24,7 @@ class FirestoreManagerUserTest {
     }
     
     
-
+        
     
     // MARK: - Functions to Save userModel to Firebase
     func saveUser(userModel: UserModel) -> Promise<UserModel>{
@@ -36,7 +36,6 @@ class FirestoreManagerUserTest {
                 try db.collection("users").document(currentUser).setData(from: userModel)
                 seal.fulfill(userModel)
             } catch let error {
-                print("fail")
                 seal.reject(error)
             }
         }
@@ -77,7 +76,21 @@ class FirestoreManagerUserTest {
             }
         }
     
-
+    func setRadius(radius: Double) -> Promise<Void>{
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                throw Err("No User Profile")
+            }
+            let _ = db.collection("users")
+                .document(currentUser.uid).updateData(["radiusInKilometer": radius]) { error in
+                    if let error = error {
+                        seal.reject(error)
+                    }else {
+                        seal.fulfill(())
+                    }
+                }
+        }
+    }
     // MARK: - Functions to Update current User
     
     
@@ -131,7 +144,6 @@ class FirestoreManagerUserTest {
             }
             db.collection("users").document(currentUser.uid).getDocument { snapshot, error in
                 if let error = error {
-                    print(error.localizedDescription)
                     seal.reject(error)
                 } else {
                     if let snapshot = snapshot {

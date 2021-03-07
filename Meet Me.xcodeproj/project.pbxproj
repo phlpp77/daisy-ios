@@ -54,6 +54,8 @@
 		17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E45ABA25B74F6600B9A93B /* LoginView.swift */; };
 		17EDA6F025E6C974004BC651 /* LogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EDA6EF25E6C974004BC651 /* LogoutView.swift */; };
 		3C4632628DFAFFCA3B1B6674 /* Pods_Meet_Me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6866AE96A8202B7FCBDD60 /* Pods_Meet_Me.framework */; };
+		9012001E25F4E8CC006E7DF4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9012001D25F4E8CC006E7DF4 /* LocationManager.swift */; };
+		901CCB5225F5438000A11A98 /* GeoQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901CCB5125F5438000A11A98 /* GeoQuery.swift */; };
 		902EF6B925D89213004464F0 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6B825D89213004464F0 /* PhotoModel.swift */; };
 		902EF6BD25D896E3004464F0 /* UIImageResized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6BC25D896E3004464F0 /* UIImageResized.swift */; };
 		902EF6C625D92112004464F0 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 902EF6C525D92112004464F0 /* URLImage */; };
@@ -71,7 +73,6 @@
 		90779B6D25E5A3F40070D794 /* MeMatchCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779B6C25E5A3F40070D794 /* MeMatchCardViewModel.swift */; };
 		90779B7325E5BA7C0070D794 /* Err.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779B7225E5BA7C0070D794 /* Err.swift */; };
 		909DF05625F14B00008B93BE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 909DF05525F14B00008B93BE /* GoogleService-Info.plist */; };
-		90B0F4C725DF086B00AB8EF9 /* TrahedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4C625DF086B00AB8EF9 /* TrahedCode.swift */; };
 		90B0F4D425DF0EA000AB8EF9 /* MeEventLinieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4D325DF0EA000AB8EF9 /* MeEventLinieViewModel.swift */; };
 		90B0F4F125DFC63400AB8EF9 /* YouEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */; };
 		90B1BFD625B8DB9200F8FBF7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1BFD525B8DB9200F8FBF7 /* LoginViewModel.swift */; };
@@ -143,6 +144,8 @@
 		17E45ABA25B74F6600B9A93B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		17EDA6EF25E6C974004BC651 /* LogoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutView.swift; sourceTree = "<group>"; };
 		8CC506F59200740347A6B95E /* Pods-Meet Me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Me.debug.xcconfig"; path = "Target Support Files/Pods-Meet Me/Pods-Meet Me.debug.xcconfig"; sourceTree = "<group>"; };
+		9012001D25F4E8CC006E7DF4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		901CCB5125F5438000A11A98 /* GeoQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoQuery.swift; sourceTree = "<group>"; };
 		902EF6B825D89213004464F0 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		902EF6BC25D896E3004464F0 /* UIImageResized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageResized.swift; sourceTree = "<group>"; };
 		902EF6E125D985F0004464F0 /* Meet_MeAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meet_MeAppViewModel.swift; sourceTree = "<group>"; };
@@ -158,7 +161,6 @@
 		90779B6C25E5A3F40070D794 /* MeMatchCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchCardViewModel.swift; sourceTree = "<group>"; };
 		90779B7225E5BA7C0070D794 /* Err.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Err.swift; sourceTree = "<group>"; };
 		909DF05525F14B00008B93BE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		90B0F4C625DF086B00AB8EF9 /* TrahedCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrahedCode.swift; sourceTree = "<group>"; };
 		90B0F4D325DF0EA000AB8EF9 /* MeEventLinieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventLinieViewModel.swift; sourceTree = "<group>"; };
 		90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventViewModel.swift; sourceTree = "<group>"; };
 		90B1BFD525B8DB9200F8FBF7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = "Meet Me/ViewModels/StartViewModels/LoginViewModel.swift"; sourceTree = SOURCE_ROOT; };
@@ -329,7 +331,6 @@
 				902EF6BC25D896E3004464F0 /* UIImageResized.swift */,
 				177F682925D8937F00BC345B /* KeyboardHandler.swift */,
 				17DAD7E225D934D600DBE60B /* GlobalFunctions.swift */,
-				90B0F4C625DF086B00AB8EF9 /* TrahedCode.swift */,
 				90779B7225E5BA7C0070D794 /* Err.swift */,
 				17A2EBC025F2D669003D1921 /* Enums.swift */,
 			);
@@ -406,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */,
+				901CCB5125F5438000A11A98 /* GeoQuery.swift */,
 				90779B0625E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift */,
 			);
 			path = FirestoreMangersEvent;
@@ -418,6 +420,7 @@
 				903E020225DFF669005BB173 /* FirestoreManagersUser */,
 				903E020525DFF681005BB173 /* FirestoreMangersEvent */,
 				90D42B0325EAC0E00060311B /* FirestoreManagerChat */,
+				9012001D25F4E8CC006E7DF4 /* LocationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				175E40F425B4CD9400ADC9BF /* Modifiers.swift in Sources */,
 				175E40E625B46ABB00ADC9BF /* BlurView.swift in Sources */,
 				175E40F025B4CD3300ADC9BF /* RegisterView.swift in Sources */,
+				901CCB5225F5438000A11A98 /* GeoQuery.swift in Sources */,
 				177F681925D8409200BC345B /* MeProfileView.swift in Sources */,
 				1795DFAE25DF20AD002D537F /* LoadingView.swift in Sources */,
 				17DAD7E325D934D600DBE60B /* GlobalFunctions.swift in Sources */,
@@ -659,6 +663,7 @@
 				90779B6D25E5A3F40070D794 /* MeMatchCardViewModel.swift in Sources */,
 				90D42B2225EBA75C0060311B /* MessagesViewModel.swift in Sources */,
 				173F361C25E2FF0D002E9EE6 /* MeMatchView.swift in Sources */,
+				9012001E25F4E8CC006E7DF4 /* LocationManager.swift in Sources */,
 				17DE531225EAC372000D0B4D /* ChatListRowView.swift in Sources */,
 				902EF6E225D985F0004464F0 /* Meet_MeAppViewModel.swift in Sources */,
 				17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */,
@@ -666,7 +671,6 @@
 				902EF7AA25DC439D004464F0 /* YouEventLineViewModel.swift in Sources */,
 				90D42B0125EAC0DC0060311B /* FirestoreManagerChat.swift in Sources */,
 				906E352125F2CCF800F0C7C6 /* LogoutViewModel.swift in Sources */,
-				90B0F4C725DF086B00AB8EF9 /* TrahedCode.swift in Sources */,
 				90779B7325E5BA7C0070D794 /* Err.swift in Sources */,
 				90779B2F25E3BFEB0070D794 /* FirestoreFotoManagerUserTest.swift in Sources */,
 				174423AE25D9A93000D25EDD /* EventCreationView.swift in Sources */,

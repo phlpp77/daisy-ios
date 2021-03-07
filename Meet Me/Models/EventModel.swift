@@ -24,6 +24,10 @@ struct EventModel: Codable {
     var likedUser: Bool
     // event has matched user - event is closed
     var eventMatched: Bool
+    var latitude: Double
+    var longitude: Double
+    var hash: String
+    var distance: Double
     
 }
 
@@ -75,6 +79,20 @@ struct EventModelObject {
     var eventMatched: Bool {
         eventModel.eventMatched
     }
+    var latitude: Double {
+        eventModel.latitude
+    }
+    var longitude: Double {
+        eventModel.longitude
+    }
+    var hash: String {
+        eventModel.hash
+    }
+    var distance: Double {
+        eventModel.distance
+    }
+
+    
     
     
     @Binding var position: CGSize

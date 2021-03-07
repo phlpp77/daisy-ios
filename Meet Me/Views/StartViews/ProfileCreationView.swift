@@ -176,10 +176,8 @@ struct ProfileCreationView: View {
                             if value {
                                 //if save successful
                                 profileCreationFinished = true
-                                print("saved profile creation VM")
                             } else {
-                                //if profile settings didn't uploaded
-                                print("Problems")
+                                //if profile settings didn't uploade
                             }
                         })
                         
@@ -530,7 +528,7 @@ struct PictureLineView: View {
                 pathwayStep = 5
                 showPicker = true
                 showAlertBox = true
-                print("show")
+
             }) {
                 Image(systemName: iconName)
                     .font(.title)

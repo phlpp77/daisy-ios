@@ -43,7 +43,6 @@ class ChatListViewModel: ObservableObject {
                      self.firestoreManagerChat.getUserWithUserId(userId: doc.matchedUserId))
             }.done{ event, user in
                 let matchInformation = AllMatchInformationModel(chatId: doc.chatId, user: user, event: event)
-                print("DEBUG: MatchInforamtonModel created \(matchInformation)")
                 seal.fulfill(matchInformation)
             }.catch { error in
                 print(error)

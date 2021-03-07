@@ -139,7 +139,6 @@ struct YouEventView: View {
                             self.dragPosition = .init(width: 0, height: 500)
                             // delete the item at the position from the Array
                             youEventVM.addLikeToEvent(eventId: eventArray[eventIndex].eventId)
-//                            print("DEBUG: removed at: \(eventIndex)")
                             self.eventArray.remove(at: eventIndex)
 
                         } else {

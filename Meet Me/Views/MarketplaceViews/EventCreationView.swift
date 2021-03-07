@@ -67,7 +67,7 @@ struct EventCreationView: View {
             BlurView(style: .systemMaterial)
                 .ignoresSafeArea()
                 .onTapGesture {
-                    print("cancel me match tapped")
+
                     presentation = false
                 }
             
@@ -262,7 +262,7 @@ struct EventCreationView: View {
     }
     
     func createUpdateEvent() -> EventModelObject {
-        let event = EventModel(eventId: "", userId: "", name: "", category: category, date: date, startTime: startTime, endTime: endTime, pictureURL: pictureURL, profilePicture: "", likedUser: false,eventMatched: false)
+        let event = EventModel(eventId: "", userId: "", name: "", category: category, date: date, startTime: startTime, endTime: endTime, pictureURL: pictureURL, profilePicture: "", likedUser: false,eventMatched: false, latitude: 0.0, longitude: 0.0, hash: "", distance: 0)
         
         let eventObject = EventModelObject(eventModel: event, position: .constant(.zero))
 

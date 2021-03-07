@@ -74,7 +74,6 @@ struct ImagePicker: UIViewControllerRepresentable {
                     }
                     
                 } else {
-                    print("item from PHPicker cannot be loaded")
                 }
                 
             }

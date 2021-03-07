@@ -120,7 +120,6 @@ class FirestoreManagerChat: ObservableObject  {
             }
             let timeStamp: Timestamp = Timestamp(date: Date())
             let messageModel = MessageModel(userId: currentUser.uid,timeStamp: timeStamp, messageText: messageText)
-            print(messageModel)
                 let _ = db.collection("chats")
                     .document(chatId)
                     .updateData(["messages" : FieldValue.arrayUnion([messageModel.dictionary])]) { error in

@@ -40,7 +40,7 @@ class ProfileCreationModel: ObservableObject {
         }
         self.birthdayDate = convertStringToDate(date: bDate)
         
-        let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor, userPhotos: [1: stockUrlString])
+        let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor, userPhotos: [1: stockUrlString], radiusInKilometers: 1000)
         
         firstly {
             self.firestoreManagerUserTest.saveUser(userModel: userModel)
@@ -52,8 +52,6 @@ class ProfileCreationModel: ObservableObject {
             self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url: url, fotoPlace: 1)
         }.then {
             self.firestoreManagerUserTest.createLikedEventsArray()
-        }.done {
-            print("DEBUG: done, User Creation erfolgreich")
         }.catch { error in
             print("DEBUG: catch, fehler in event creation \(error)")
             print(error.localizedDescription)

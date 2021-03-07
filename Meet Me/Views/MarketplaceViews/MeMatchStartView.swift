@@ -30,7 +30,6 @@ struct MeMatchStartView: View {
             BlurView(style: .systemMaterial)
                 .ignoresSafeArea()
                 .onTapGesture {
-                    print("cancel me match tapped")
                     showMeMatchMainView = false
                 }
             
@@ -75,7 +74,6 @@ struct MeMatchStartView: View {
                     
                     // show me match view now
                     if likedUsers.count != 0 {
-                        print("no matches - no match view")
                         showMeMatchView = true
                     } else {
                         showMeMatchMainView = false
