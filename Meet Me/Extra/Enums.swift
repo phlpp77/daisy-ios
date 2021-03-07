@@ -17,3 +17,14 @@ enum EventStatus {
     // user has matched someone (further swiping not possible)
     case matched
 }
+
+// MARK: Each tabView has its own identifier
+// used in: TabBarView
+enum Tab {
+    // tabView for the profile page/tab
+    case profile
+    // tabView for the marketplace page/tab
+    case marketplace
+    // tabView for the chat page/tab
+    case chat
+}
