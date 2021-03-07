@@ -41,6 +41,7 @@ class YouEventLineViewModel: ObservableObject {
         _ = locationManager.$location.sink { location in
             self.region = MKCoordinateRegion(center: location?.coordinate ?? CLLocationCoordinate2D(), latitudinalMeters: 200, longitudinalMeters: 200)
         }
+            print(region.center)
             seal.fulfill(())
         }
         
