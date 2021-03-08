@@ -55,6 +55,8 @@ struct TabBarView: View {
                 .ignoresSafeArea(.all, edges: .bottom)
                 .background(
                     Image("background")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
                         .ignoresSafeArea()
                 )
                 
