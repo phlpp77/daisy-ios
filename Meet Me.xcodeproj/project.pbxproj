@@ -53,7 +53,8 @@
 		17DE531E25EAEF51000D0B4D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE531D25EAEF51000D0B4D /* MessageView.swift */; };
 		17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E45ABA25B74F6600B9A93B /* LoginView.swift */; };
 		17EDA6F025E6C974004BC651 /* LogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EDA6EF25E6C974004BC651 /* LogoutView.swift */; };
-		17F34F1025F6CF5400690122 /* MeEventN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F34F0F25F6CF5400690122 /* MeEventN.swift */; };
+		17F34F1025F6CF5400690122 /* MeEventNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F34F0F25F6CF5400690122 /* MeEventNView.swift */; };
+		17F34F1325F8EAEB00690122 /* YouEventNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F34F1225F8EAEB00690122 /* YouEventNView.swift */; };
 		3C4632628DFAFFCA3B1B6674 /* Pods_Meet_Me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6866AE96A8202B7FCBDD60 /* Pods_Meet_Me.framework */; };
 		9012001E25F4E8CC006E7DF4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9012001D25F4E8CC006E7DF4 /* LocationManager.swift */; };
 		901CCB5225F5438000A11A98 /* GeoQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901CCB5125F5438000A11A98 /* GeoQuery.swift */; };
@@ -144,7 +145,8 @@
 		17DE531D25EAEF51000D0B4D /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		17E45ABA25B74F6600B9A93B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		17EDA6EF25E6C974004BC651 /* LogoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutView.swift; sourceTree = "<group>"; };
-		17F34F0F25F6CF5400690122 /* MeEventN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventN.swift; sourceTree = "<group>"; };
+		17F34F0F25F6CF5400690122 /* MeEventNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventNView.swift; sourceTree = "<group>"; };
+		17F34F1225F8EAEB00690122 /* YouEventNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventNView.swift; sourceTree = "<group>"; };
 		8CC506F59200740347A6B95E /* Pods-Meet Me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Me.debug.xcconfig"; path = "Target Support Files/Pods-Meet Me/Pods-Meet Me.debug.xcconfig"; sourceTree = "<group>"; };
 		9012001D25F4E8CC006E7DF4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		901CCB5125F5438000A11A98 /* GeoQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoQuery.swift; sourceTree = "<group>"; };
@@ -370,7 +372,8 @@
 				1795DF9D25DF0E22002D537F /* MeMatchStartView.swift */,
 				173F361125E2D72D002E9EE6 /* MeMatchCardView.swift */,
 				17DE52E925E9A2D7000D0B4D /* YouProfileView.swift */,
-				17F34F0F25F6CF5400690122 /* MeEventN.swift */,
+				17F34F0F25F6CF5400690122 /* MeEventNView.swift */,
+				17F34F1225F8EAEB00690122 /* YouEventNView.swift */,
 			);
 			path = MarketplaceViews;
 			sourceTree = "<group>";
@@ -699,13 +702,14 @@
 				90D42AD525EA59350060311B /* YouProfilViewModel.swift in Sources */,
 				1795DF9E25DF0E22002D537F /* MeMatchStartView.swift in Sources */,
 				17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */,
-				17F34F1025F6CF5400690122 /* MeEventN.swift in Sources */,
+				17F34F1025F6CF5400690122 /* MeEventNView.swift in Sources */,
 				17B0B61525F546810014B0FD /* TabButtonView.swift in Sources */,
 				902EF6B925D89213004464F0 /* PhotoModel.swift in Sources */,
 				179B27CA25D48788007F64D6 /* YouEventLineView.swift in Sources */,
 				17B0B61125F543F70014B0FD /* TabBarView.swift in Sources */,
 				1795DFAA25DF1923002D537F /* LottieView.swift in Sources */,
 				1774B67225D1E2E500D1D2F1 /* MainSettingsView.swift in Sources */,
+				17F34F1325F8EAEB00690122 /* YouEventNView.swift in Sources */,
 				17A2EBC125F2D669003D1921 /* Enums.swift in Sources */,
 				175E40E925B4A31C00ADC9BF /* HapticFeedback.swift in Sources */,
 			);

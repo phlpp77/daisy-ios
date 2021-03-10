@@ -1,5 +1,5 @@
 //
-//  MeEventN.swift
+//  MeEventNView.swift
 //  Meet Me
 //
 //  Created by Philipp Hemkemeyer on 08.03.21.
@@ -8,7 +8,7 @@
 import SwiftUI
 import URLImage
 
-struct MeEventN: View {
+struct MeEventNView: View {
     
     @Binding var event: EventModel
     
@@ -49,6 +49,7 @@ struct MeEventN: View {
                     )
                 
                 // MARK: Image downloaded from the Database
+                // FIXME: Needs to be changed to URL Image
                 Image("cafe")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -132,8 +133,8 @@ struct MeEventN: View {
                 .offset(x: 70, y: -70)
             }
             
-            
         }
+        .shadow(color: Color.black.opacity(0.25), radius: 6, x: 0, y: 4)
         
         // MARK: - OnAppear to get the current EventStatus
         .onAppear {
@@ -150,6 +151,6 @@ struct MeEventN: View {
 
 struct MeEventN_Previews: PreviewProvider {
     static var previews: some View {
-        MeEventN(event: .constant(stockEvent))
+        MeEventNView(event: .constant(stockEvent))
     }
 }
