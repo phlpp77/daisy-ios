@@ -119,9 +119,9 @@ class LoginViewModel: ObservableObject {
                 seal.fulfill(())
             }
             if password != password2 && password != "" {
-                seal.fulfill(())
-            } else {
                 self.errorMessage = "Passwords are not the same"
+                seal.reject(Err("Passwords are not the same"))
+            } else {
                 seal.reject(Err("Passwords are not the same"))
             }
         }

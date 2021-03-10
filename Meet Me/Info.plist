@@ -25,7 +25,9 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This App want to track your Location</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>The app let's you pick profile pictures.</string>
+	<string>The app let&apos;s you pick profile pictures.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>The want permission to use your camera </string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

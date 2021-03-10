@@ -29,6 +29,11 @@ class ChatListViewModel: ObservableObject {
             }.then {
                 when(fulfilled: self.matchDoc.compactMap(self.getAllMatchInformation)).done { result in
                     self.matches = result
+                }.done{
+                    self.matches = self.matches.sorted{
+                        $0.event.distance < $1.event.distance
+
+                    }
                 }
             }.catch { error in
                 print("DEBUG: error in getMatchesChain error: \(error)")
