@@ -121,14 +121,6 @@ class FirestoreManagerEventTest {
     }
     
     
-
-    
-    
-    
-    
-    
-    
-    
     // MARK: - Functions to get events
     func firebaseGetYouEvents(likedEvents : [String]) -> Promise<[EventModelObject]> {
         return Promise { seal in
@@ -246,7 +238,89 @@ class FirestoreManagerEventTest {
             
         }
     }
+    
+    func queryColletion(center : CLLocationCoordinate2D) -> Promise<[Query]> {
+        return Promise { seal in
+            let center = CLLocationCoordinate2D(latitude: 53.5466399, longitude: 9.93079)
+            let radiusInKilometers: Double = 50
+            
+            let queryBounds = GFUtils.queryBounds(forLocation: center,
+                                                  withRadius: radiusInKilometers)
+            let queries = queryBounds.compactMap { (any) -> Query? in
+                guard let bound = any as? GFGeoQueryBounds else { return nil }
+                return db.collection("events")
+                    .order(by: "hash")
+                    .start(at: [bound.startValue])
+                    .end(at: [bound.endValue])
+            }
+            seal.fulfill(queries)
+            
+        }
+    }
+    
+    func querysInEvent(likedEvents: [String], queries: [Query], center : CLLocationCoordinate2D, user: UserModel) ->Promise<[EventModelObject]> {
+        return Promise { seal in
+            
+            
+            let userPoint = CLLocation(latitude: center.latitude, longitude: center.longitude)
+            
+            
+            guard let currentUser = Auth.auth().currentUser else {
+                seal.reject(Err("No User Profile"))
+                return
+            }
+            
+            for query in queries {
+                query.getDocuments {(snapshot, error) in
+                    if let error = error {
+                        seal.reject(error)
+                    }else {
+                        
+                        if let snapshot = snapshot {
+                            var event: [EventModelObject]? = snapshot.documents.compactMap { doc in
+                                var event = try? doc.data(as: EventModel.self)
+                                event?.eventId = doc.documentID
+                                if var event = event {
+                                    if event.userId != currentUser.uid && event.eventMatched == false {
+                                        if event.searchingFor == user.gender && event.genderFromCreator == user.searchingFor {
+                                            
+                                            let eventPoint = CLLocation(latitude: event.latitude, longitude: event.longitude)
+                                            event.distance = GFUtils.distance(from: userPoint, to: eventPoint)
+                                            print("EventDistance: \(event.distance)")
+                                            return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
+                                        }
+                                    }
+                                }
+                                return nil
+                            }
+                            if event != nil {
+                                for (index, eventModel) in event!.enumerated().reversed() {
+                                    if likedEvents.contains(eventModel.eventId) {
+                                        event!.remove(at: index)
+                                    }
+                                }
+                                DispatchQueue.main.async {
+                                    seal.fulfill(event!)
+                                }
+                            } else {
+                                let error = Err("No Events in GetYouEvents")
+                                DispatchQueue.main.async {
+                                    seal.reject(error)
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+
+
+
+
+
 
 
 

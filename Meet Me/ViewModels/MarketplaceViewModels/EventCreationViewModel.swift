@@ -26,7 +26,6 @@ class EventCreationViewModel: ObservableObject {
     
     
     var userId: String = "111"
-    var name: String = "Nice Event"
     var eventId: String = "222"
     var category: String = "Café"
     var date: Date = Date()
@@ -56,13 +55,15 @@ class EventCreationViewModel: ObservableObject {
         let hash = GFUtils.geoHash(forLocation: region.center)
         
         let eventId = UUID().uuidString
-        var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, name: name, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"", profilePicture: "",likedUser: false, eventMatched: false,latitude: latitude,longitude: longtiude,hash: hash, distance: 0)
+        var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"", profilePicture: "",likedUser: false, eventMatched: false,latitude: latitude,longitude: longtiude,hash: hash, distance: 0,searchingFor: "",genderFromCreator: "")
         
 
             firstly{
                 self.firestoreManagerUserTest.getCurrentUser()
             }.map { userModel in
                 eventModel.profilePicture = userModel.userPhotos[1]!
+                eventModel.searchingFor = userModel.searchingFor
+                eventModel.genderFromCreator = userModel.gender
             }.then {
                 self.firestoreManagerEventTest.saveEvent(eventModel: eventModel, eventId: eventId)
             }.then {
