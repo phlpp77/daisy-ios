@@ -83,7 +83,7 @@ class FirestoreFotoManagerUserTest: ObservableObject {
                 return
             }
                 let _ =  db.collection("users")
-                    .document(currentUser.uid).updateData(["userPhotos.1" : url.absoluteString])
+                    .document(currentUser.uid).updateData(["userPhotos.\(fotoPlace)" : url.absoluteString])
                 seal.fulfill(())
             }
 

@@ -35,11 +35,9 @@ class LoginViewModel: ObservableObject {
                 //True wenn erfolgreich
                 self.startProcessDone = acc
                 seal.fulfill(())
-                print(self.email)
-                print(self.password)
-                print(acc)
             }.catch { error in
                 self.errorMessage = error.localizedDescription
+                print(error.localizedDescription)
             }
         }
     }
@@ -52,7 +50,8 @@ class LoginViewModel: ObservableObject {
             }.done { userModel in
                 seal.fulfill(userModel.startProcessDone)
             }.catch { error in
-                seal.reject(error)
+                self.errorMessage = error.localizedDescription
+                print(error.localizedDescription)
             }
         }
         
@@ -63,7 +62,7 @@ class LoginViewModel: ObservableObject {
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if let error = error {
                     self.errorMessage = error.localizedDescription
-                    seal.reject(error)
+                    print(error.localizedDescription)
                 } else {
                     seal.fulfill(())
                 }
@@ -85,6 +84,7 @@ class LoginViewModel: ObservableObject {
                 seal.fulfill(())
             }.catch { error in
                 self.errorMessage = error.localizedDescription
+                print(error.localizedDescription)
             }
         }
     }
@@ -98,7 +98,7 @@ class LoginViewModel: ObservableObject {
             Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                 if let error = error {
                     self.errorMessage = error.localizedDescription
-                    seal.reject(error)
+                    print(error.localizedDescription)
                 } else {
                     seal.fulfill(())
                 }
@@ -114,8 +114,11 @@ class LoginViewModel: ObservableObject {
     
     func checkErrorsRegister() ->Promise<Void>{
         return Promise { seal in
+            print("checkErrorsaufgerufen")
+            print(password)
+            print(password2)
             if self.errorMessage != "" {
-                seal.reject(Err(self.errorMessage))
+                print(errorMessage)
             }
             if password != password2 && password != "" {
                 self.errorMessage = "Passwords are not the same"

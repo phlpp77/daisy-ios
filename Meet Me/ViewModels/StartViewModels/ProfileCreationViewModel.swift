@@ -60,6 +60,8 @@ class ProfileCreationModel: ObservableObject {
             when(fulfilled: images!.compactMap(self.uploadUserPhotos)).done {
                 print("FINISH")
             }
+        }.done {
+            print(images!)
         }.catch { error in
             print("DEBUG: catch, fehler in event creation \(error)")
             print(error.localizedDescription)
@@ -95,6 +97,7 @@ class ProfileCreationModel: ObservableObject {
             }.then { url in
                 self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url: url, fotoPlace: self.counter)
             }.done {
+                print(self.counter)
                 self.counter = self.counter + 1
                 seal.fulfill(())
             }.catch { error in
