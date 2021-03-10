@@ -256,13 +256,13 @@ class FirestoreManagerEventTest {
         }
     }
     
-    func queryColletion(center : CLLocationCoordinate2D) -> Promise<[Query]> {
+    func queryColletion(center : CLLocationCoordinate2D, user: UserModel) -> Promise<[Query]> {
         return Promise { seal in
-            let center = CLLocationCoordinate2D(latitude: 53.5466399, longitude: 9.93079)
-            let radiusInKilometers: Double = 50
+            //let center = CLLocationCoordinate2D(latitude: 53.5466399, longitude: 9.93079)
+            //let radiusInKilometers: Double = 50
             
             let queryBounds = GFUtils.queryBounds(forLocation: center,
-                                                  withRadius: radiusInKilometers)
+                                                  withRadius: user.radiusInKilometers)
             let queries = queryBounds.compactMap { (any) -> Query? in
                 guard let bound = any as? GFGeoQueryBounds else { return nil }
                 return db.collection("events")

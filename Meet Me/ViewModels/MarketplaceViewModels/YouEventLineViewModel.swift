@@ -16,7 +16,6 @@ class YouEventLineViewModel: ObservableObject {
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     private var locationManager: LocationManager = LocationManager()
     @Published var region = MKCoordinateRegion.defaultRegion
-    //private var geo: GeoQuery = GeoQuery()
     private var userModel: UserModel = stockUser
 
 
@@ -29,7 +28,7 @@ class YouEventLineViewModel: ObservableObject {
             }.then {
                 when(fulfilled: self.firestoreManagerUserTest.getAllLikedEvents(), self.getLocation())
             }.then { likedEvents, location in
-                self.firestoreManagerEventTest.queryColletion(center: self.region.center).map { ($0, likedEvents) }
+                self.firestoreManagerEventTest.queryColletion(center: self.region.center, user: self.userModel).map { ($0, likedEvents) }
             }.then { queries, likedEvents in
                 self.firestoreManagerEventTest.querysInEvent(likedEvents: likedEvents , queries: queries, center: self.region.center, user: self.userModel)
             }.done { events in
