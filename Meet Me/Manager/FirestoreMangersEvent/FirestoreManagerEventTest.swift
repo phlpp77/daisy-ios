@@ -120,6 +120,23 @@ class FirestoreManagerEventTest {
         }
     }
     
+    func setUpdatedEvent(eventModel: EventModel) -> Promise<Void> {
+        return Promise { seal in
+            let _ = db.collection("events")
+                .document(eventModel.eventId)
+                .updateData(["category": eventModel.category,
+                             "date": eventModel.date,
+                            "endTime": eventModel.endTime,
+                            "startTime": eventModel.startTime]){ error in
+                    if let error = error {
+                        seal.reject(error)
+                    }else {
+                        seal.fulfill(())
+                    }
+                }
+        }
+    }
+    
     
     // MARK: - Functions to get events
     func firebaseGetYouEvents(likedEvents : [String]) -> Promise<[EventModelObject]> {

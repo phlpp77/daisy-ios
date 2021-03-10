@@ -15,9 +15,9 @@ struct LoginNView: View {
     @Binding var nextPosition: StartPosition
     @Binding var startUpDone: Bool
     
-    @State var emailFieldOutput: String = ""
-    @State var passwordField1Output: String = ""
-    @State var passwordField2Output: String = ""
+    //@State var emailFieldOutput: String = ""
+    //@State var passwordField1Output: String = ""
+    //@State var passwordField2Output: String = ""
     
     @State var passwordField1WasEdited: Bool = false
     @State var showPresentTermsAndConditionsSheet: Bool = false
@@ -63,10 +63,10 @@ struct LoginNView: View {
                     }
                     
                     // MARK: Input for Registration
-                    TextField("E-Mail", text: $emailFieldOutput)
+                    TextField("E-Mail", text: $loginVM.email)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.emailAddress)
-                    TextField("Password", text: $passwordField1Output) { (editingChanged) in
+                    TextField("Password", text: $loginVM.password) { (editingChanged) in
                         withAnimation(.easeInOut) {
                             passwordField1WasEdited = true
                         }
@@ -74,7 +74,7 @@ struct LoginNView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     if passwordField1WasEdited && !loginMode {
-                        TextField("Repeat password", text: $passwordField2Output)
+                        TextField("Repeat password", text: $loginVM.password2)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                     

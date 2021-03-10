@@ -35,9 +35,11 @@ class LoginViewModel: ObservableObject {
                 //True wenn erfolgreich
                 self.startProcessDone = acc
                 seal.fulfill(())
+                print(self.email)
+                print(self.password)
+                print(acc)
             }.catch { error in
                 self.errorMessage = error.localizedDescription
-                print("DEGUB: error in getUserProfile by login")
             }
         }
     }
@@ -58,7 +60,6 @@ class LoginViewModel: ObservableObject {
     
     func loginAuth() ->Promise<Void>{
         return Promise { seal in
-            
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if let error = error {
                     self.errorMessage = error.localizedDescription

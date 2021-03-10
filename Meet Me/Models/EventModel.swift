@@ -29,6 +29,7 @@ struct EventModel: Codable {
     var distance: Double
     var searchingFor: String
     var genderFromCreator: String
+    var birthdayDate: Date
     
 }
 
@@ -93,6 +94,9 @@ struct EventModelObject {
     }
     var genderFromCreator: String {
         eventModel.genderFromCreator
+    }
+    var birthdayDate: Date {
+        eventModel.birthdayDate
     }
 
     

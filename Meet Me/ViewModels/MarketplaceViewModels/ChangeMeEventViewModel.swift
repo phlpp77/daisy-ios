@@ -7,32 +7,42 @@
 
 import Foundation
 import PromiseKit
+import SwiftUI
 
 
 class ChangeMeEventViewModel: ObservableObject {
     
     @Published var event: EventModel = stockEvent
     private var firestoreManagerMatches: FirestoreManagerMatches = FirestoreManagerMatches()
+    private var firestoreEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
+    private var firestoreFotoManagerEventTest: FirestoreFotoManagerEventTest = FirestoreFotoManagerEventTest()
     private var chatModel: ChatModel = stockChat
     
-    func changeMeEventSettings(eventModel: EventModel) {
-        event.likedUser = eventModel.likedUser
-        event.eventMatched = eventModel.eventMatched
-        event.eventId = eventModel.eventId
-        event.userId = eventModel.userId
-        event.hash = eventModel.hash
-        event.latitude = eventModel.latitude
-        event.longitude = event.longitude
-        event.profilePicture = eventModel.profilePicture
-        
-        
-        
-        
-        
-        
-        
-    }
     
+    //Wenn EventPicture nicht geändert wurde nil übergeben
+    func changeMeEventSettings(eventModel: EventModel, eventPicture: UIImage?) {
+        firstly{
+            firestoreEventTest.setUpdatedEvent(eventModel: eventModel)
+        }.catch { error in
+            print("DEBUG: Error in changeMeEventSettings, error: \(error) ")
+            print("DEBUG: error localized: \(error.localizedDescription)")
+        }
+        
+        if eventPicture != nil {
+            firstly{
+                self.firestoreFotoManagerEventTest.resizeImage(originalImage: eventPicture)
+            }.then { picture in
+                self.firestoreFotoManagerEventTest.uploadEventPhoto(data: picture)
+            }.then { url in
+                self.firestoreFotoManagerEventTest.saveEventPhotoUrlToFirestore(url: url, eventId: eventModel.eventId)
+            }.catch { error in
+                print("DEBUG: catch, Fehler in EventCreationChain\(error)")
+                print(error.localizedDescription)
+            }
+            
+        }
+    }
+        
     func deleteMeEvent(eventModel: EventModel) {
         firstly {
             firestoreManagerMatches.deleteEvent(eventId: eventModel.eventId)
