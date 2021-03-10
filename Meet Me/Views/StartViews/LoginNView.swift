@@ -22,7 +22,7 @@ struct LoginNView: View {
     @State var passwordField1WasEdited: Bool = false
     @State var showPresentTermsAndConditionsSheet: Bool = false
     @State var loginMode: Bool = false
-    @State var problemOccurred: Bool = false
+    @State var problemMessage = ""
     
     var body: some View {
         
@@ -56,8 +56,8 @@ struct LoginNView: View {
                     }
                     
                     // MARK: Error-message can be presented here
-                    if problemOccurred {
-                        Text("Errormessage")
+                    if problemMessage != "" {
+                        Text(problemMessage)
                             .foregroundColor(.accentColor)
                             .font(.caption)
                     }
@@ -119,8 +119,9 @@ struct LoginNView: View {
                                     print(error)
                                 }
                             }
-                                
                             
+                            // error handling
+                            self.problemMessage = loginVM.errorMessage
                             
                         }, label: {
                             Text(loginMode ? "Login" : "Register")

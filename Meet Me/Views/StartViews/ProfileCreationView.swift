@@ -44,7 +44,7 @@ struct ProfileCreationView: View {
     // image handling
     
     // show
-    @State var showImagePicker = true
+    @State var showImagePicker = false
     // images in array
     @State var images: [UIImage] = [UIImage(named: "cafe")!]
     
@@ -154,7 +154,7 @@ struct ProfileCreationView: View {
                         
                         // update button
                         Button(action: {
-                            addProfileCreationVM.createUser(images: [uiImage!], bDate: birthdayDate)
+                            addProfileCreationVM.createUser(images: images, bDate: birthdayDate)
                             // haptic feedback when button is tapped
                             hapticPulse(feedback: .rigid)
                             
@@ -230,9 +230,15 @@ struct ProfileCreationView: View {
                         
                     // image picker view
                     case 5:
-                        Color.clear.sheet(isPresented: $showImagePicker, content: {
+                        Color.clear
+                            .sheet(isPresented: $showImagePicker, content: {
                             ImagePicker(images: $images, showPicker: $showImagePicker, limit: 3)
+                                
                         })
+                            .onAppear {
+                                print("PH Picker open")
+                                acceptedAction[5] = true
+                            }
 //                        if showImagePicker {
 //                            ImageOldP(isShown: $showImagePicker, isDone: $acceptedAction[5], image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
 //                        }

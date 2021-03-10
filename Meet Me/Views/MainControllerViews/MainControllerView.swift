@@ -39,7 +39,8 @@ struct MainControllerView: View {
                 .tag(3)
             }
         } else {
-            StartView(startProcessDone: $startProcessDone)
+//            StartView(startProcessDone: $startProcessDone)
+            MainStartView(startUpDone: $startProcessDone)
         }
         
     }
