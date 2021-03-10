@@ -14,47 +14,32 @@ class RegisterViewModel: ObservableObject {
     private var db: Firestore = Firestore.firestore()
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     
-    var email: String = ""
-    var password: String = ""
-    var password2: String = ""
-    var errorMessage: String = ""
+    @Published var email: String = ""
+    @Published var password: String = ""
+    @Published var password2: String = ""
+    @Published var errorMessage: String = ""
+    @Published var startProcessDone: Bool = false
     
-    func register(completion: @escaping () -> Void){
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-            if let error = error {
-                self.errorMessage = error.localizedDescription
-            } else {
-                completion()
-            }
+    
+    
+    
+    //login
+    
+    func login() {
+        firstly {
+            loginAuth()
+        }.then {
+            self.checkUserAcc()
+        }.done { acc in
+            //True wenn erfolgreich
+            self.startProcessDone = acc
+        }.catch { error in
+            self.errorMessage = error.localizedDescription
+            print("DEGUB: error in getUserProfile by login")
         }
     }
     
     
-    func login(completion: @escaping () -> Void) {
-        
-        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            if let error = error {
-                self.errorMessage = error.localizedDescription
-                print(error.localizedDescription)
-            } else {
-                completion()
-            }
-            
-        }
-        
-    }
-    
-    func checkErrorsLogin() -> Bool {
-        
-        if self.errorMessage != "" {
-            return true
-        } else {
-            return false
-        }
-        
-    }
-    
-//Check if user has a UserModel
     func checkUserAcc() -> Promise<Bool> {
         return Promise { seal in
             firstly {
@@ -67,20 +52,71 @@ class RegisterViewModel: ObservableObject {
         }
         
     }
-
-
     
-    
-    func checkErrorsRegister() -> Bool {
-        
-        if self.errorMessage != "" {
-            return true
+    func loginAuth() ->Promise<Void>{
+        return Promise { seal in
+            
+            Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+                if let error = error {
+                    self.errorMessage = error.localizedDescription
+                    seal.reject(error)
+                } else {
+                    seal.fulfill(())
+                }
+            }
+            
         }
-        if password != password2 && password != "" {
-            self.errorMessage = "Passwords are not the same"
-            return true
-        } else {
-            return false
+        
+    }
+    
+    
+    //register
+    func register(){
+        
+        firstly {
+            self.checkErrorsRegister()
+        }.then {
+            self.registerAuth()
+        }.catch { error in
+            self.errorMessage = error.localizedDescription
+        }
+    }
+    
+    
+    
+    
+    
+    func registerAuth() -> Promise<Void> {
+        return Promise{ seal in
+            Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+                if let error = error {
+                    self.errorMessage = error.localizedDescription
+                    seal.reject(error)
+                } else {
+                    seal.fulfill(())
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    func checkErrorsRegister() ->Promise<Void>{
+        return Promise { seal in
+            
+            if self.errorMessage != "" {
+                seal.fulfill(())
+            }
+            if password != password2 && password != "" {
+                seal.fulfill(())
+            } else {
+                self.errorMessage = "Passwords are not the same"
+                seal.reject(Err("Passwords are not the same"))
+            }
         }
         
     }
