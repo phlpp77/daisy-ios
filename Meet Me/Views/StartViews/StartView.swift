@@ -36,8 +36,8 @@ struct StartView: View {
         ZStack {
             
             // apply backgroundcolor
-            StartBackgroundView()
-                .blur(radius: 1)
+//            StartBackgroundView()
+//                .blur(radius: 1)
             
             // show the welcome message, the question and then the button to start
             WelcomeView(showWelcomeView: $showWelcomeView, showSecondLine: $showSecondLine, showStartButton: $showStartButton)

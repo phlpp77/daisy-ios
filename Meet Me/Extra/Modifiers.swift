@@ -23,3 +23,15 @@ struct FrozenWindowModifier: ViewModifier {
             .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
     }
 }
+
+struct offWhiteShadow: ViewModifier {
+    
+    var cornerRadius: CGFloat
+    
+    func body(content: Content) -> some View {
+        content
+            .background(Color("Offwhite"))
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 5)
+    }
+}
