@@ -299,9 +299,11 @@ struct NameLineView: View {
                     .padding(4)
                     .background(Color(backgroundColor))
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                
+                Text(name)
             }
             
-            Text(name)
+            
         }
         .padding(.horizontal, 16)
         .frame(width: 340, alignment: .leading)

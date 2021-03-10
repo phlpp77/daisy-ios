@@ -11,7 +11,7 @@ struct MainStartView: View {
     
     @Binding var startUpDone: Bool
     
-    @State var currentPosition: StartPosition = .splash
+    @State var currentPosition: StartPosition = .profileCreation
     
     var startPosition = [StartPosition.splash, StartPosition.onboarding, StartPosition.registerLogin, StartPosition.profileCreation]
     

@@ -66,15 +66,17 @@ struct LoginNView: View {
                     TextField("E-Mail", text: $loginVM.email)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.emailAddress)
-                    TextField("Password", text: $loginVM.password) { (editingChanged) in
-                        withAnimation(.easeInOut) {
-                            passwordField1WasEdited = true
+                    
+                    SecureField("Password", text: $loginVM.password)
+                        .onTapGesture {
+                            withAnimation(.easeInOut) {
+                                passwordField1WasEdited = true
+                            }
                         }
-                    }
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     if passwordField1WasEdited && !loginMode {
-                        TextField("Repeat password", text: $loginVM.password2)
+                        SecureField("Repeat password", text: $loginVM.password2)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                     
@@ -86,6 +88,7 @@ struct LoginNView: View {
                     }, label: {
                         Text(loginMode ? "Don't have an account? Create one" : "I already have an account")
                             .font(.caption)
+                            .gradientForeground(gradient: secondaryGradient)
                     })
                     
                     // MARK: Button to Login/register
@@ -164,6 +167,12 @@ struct LoginNView: View {
                         .foregroundColor(.accentColor)
                 }
                 .offset(x: bounds.size.width / 2 - 44, y: -bounds.size.height / 2 + bounds.size.height * 0.33)
+                // when the circle is tapped the login/register mode is toggled
+                .onTapGesture {
+                    withAnimation(.easeInOut) {
+                        loginMode.toggle()
+                    }
+                }
                 
             }
             .padding(.top, bounds.size.height * 0.33)

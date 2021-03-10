@@ -37,6 +37,19 @@ func createSampleDate() -> Date {
     return someDateTime
 }
 var createdId = UUID().uuidString
+
+// MARK: - Colors
+
+// MARK: Gradient which is the secondary color (blueish) and marks cancel and abort actions
+let secondaryGradient = LinearGradient(
+    gradient: Gradient(stops: [
+                        .init(color: Color(#colorLiteral(red: 0.0313725508749485, green: 0.45490196347236633, blue: 0.5490196347236633, alpha: 1)), location: 0),
+                        .init(color: Color(#colorLiteral(red: 0.0313725471496582, green: 0.4549018144607544, blue: 0.5490196347236633, alpha: 0.6299999952316284)), location: 1)]),
+    startPoint: UnitPoint(x: 0.9999999999999999, y: 7.105427357601002e-15),
+    endPoint: UnitPoint(x: -2.220446049250313e-16, y: -1.7763568394002505e-15)
+)
+
+
 // MARK - Stockdata
 
 // MARK: stock user to use as default
