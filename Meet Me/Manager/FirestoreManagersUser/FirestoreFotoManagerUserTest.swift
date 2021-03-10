@@ -16,6 +16,7 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     
     let storage = Storage.storage()
     private var db: Firestore
+    private var images: [Data]?
     //@Published var photoModel: [PhotoModelObject] = []
 //    var stockPhotoModel: PhotoModel = PhotoModel()
 //    var url: URL?
@@ -30,60 +31,93 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     
 
     
-
-    func resizeImage(originalImage: UIImage?) -> Promise<Data> {
+    
+    func resizeImage(originalImages: [UIImage]?) -> Promise<[Data]> {
         return Promise { seal in
-            if let originalImage = originalImage {
-                if let resizedImage = originalImage.resized(width: 360) {
-                    if let data = resizedImage.pngData() {
-                        seal.fulfill(data)
+            if let originalImages = originalImages {
+                for originalImage in originalImages {
+                    if let resizedImage = originalImage.resized(width: 360) {
+                        if let data = resizedImage.pngData() {
+                            images?.append(data)
+                        }
                     }
                 }
+                seal.fulfill(images!)
             }
+            
         }
     }
     
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
-    func uploadUserPhoto(data: Data) -> Promise<URL> {
+    func uploadUserPhoto(data: [Data]) -> Promise<[URL]> {
         return Promise { seal in
-        
+        var urls: [URL] = []
         let imageName = UUID().uuidString
         let storageRef = storage.reference()
         let photoRef = storageRef.child("UserImages/\(imageName).png")
-        
-        photoRef.putData(data, metadata: nil) { metadata, error in
-            
-            if let err = error {
-                seal.reject(err)
-            }
-            photoRef.downloadURL { (url, error) in
-                
-                if let error = error {
-                    seal.reject(error)
-                } else {
-                    seal.fulfill(url!)
+            for ref in data {
+                photoRef.putData(ref, metadata: nil) { metadata, error in
+                    
+                    if let err = error {
+                        seal.reject(err)
+                    }
+                    photoRef.downloadURL { (url, error) in
+                        
+                        if let error = error {
+                            seal.reject(error)
+                        } else {
+                            urls.append(url!)
+                        }
+                    }
                 }
             }
+            seal.fulfill(urls)
+
         }
-        }
+        
         
     }
     
     
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
-    func savePhotoUrlToFirestore(url: URL, fotoPlace: Int) ->Promise<Void>{
+    func savePhotoUrlToFirestore(url1: URL?, url2: URL?, url3: URL?) ->Promise<Void>{
         return Promise { seal in
-            guard let currentUser = Auth.auth().currentUser else {
-                return
-            }
+           
+            guard let currentUser = Auth.auth().currentUser else {return}
+            if  url1 != nil {
                 let _ =  db.collection("users")
-                    .document(currentUser.uid).updateData(["userPhotos.1" : url.absoluteString])
-                seal.fulfill(())
+                    .document(currentUser.uid).updateData(["userPhotos.1" : url1!.absoluteString]){ error in
+                        if let error = error {
+                            seal.reject(error)
+                        }
+                    }
             }
-
+            
+            if url2 != nil {
+                let _ =  db.collection("users")
+                    .document(currentUser.uid).updateData(["userPhotos.2" : url2!.absoluteString]){ error in
+                        if let error = error {
+                            seal.reject(error)
+                        }
+                    }
+            }
+            
+            if url3 != nil {
+                let _ =  db.collection("users")
+                    .document(currentUser.uid).updateData(["userPhotos.3" : url3!.absoluteString]){ error in
+                        if let error = error  {
+                            seal.reject(error)
+                        }
+                    }
+                
+                
+            }
+            seal.fulfill(())
+            
         }
+    }
 }
-        
+
         
     
     

@@ -153,7 +153,7 @@ struct ProfileCreationView: View {
                         
                         // update button
                         Button(action: {
-                            addProfileCreationVM.createUser(originalImage: uiImage!, bDate: birthdayDate)
+                            addProfileCreationVM.createUser(images: [uiImage!], bDate: birthdayDate)
                             // haptic feedback when button is tapped
                             hapticPulse(feedback: .rigid)
                             

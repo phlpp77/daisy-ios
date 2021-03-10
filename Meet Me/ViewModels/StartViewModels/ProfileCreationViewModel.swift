@@ -9,11 +9,14 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 import PromiseKit
+import MapKit
+import GeoFire
 
 class ProfileCreationModel: ObservableObject {
     
     private var firestoreManagerUserTest: FirestoreManagerUserTest
     private var firestoreFotoMangerUserTest: FirestoreFotoManagerUserTest
+    private var locationManager: LocationManager = LocationManager()
     @Published var saved: Bool = false
     @Published var message: String = ""
     
@@ -32,9 +35,15 @@ class ProfileCreationModel: ObservableObject {
         firestoreFotoMangerUserTest = FirestoreFotoManagerUserTest()
     }
     
+    func askLocation() {
+        _ = locationManager.$location.sink { location in
+            _ = MKCoordinateRegion(center: location?.coordinate ?? CLLocationCoordinate2D(), latitudinalMeters: 200, longitudinalMeters: 200)
+        }
+    }
+
 
     
-    func createUser(originalImage: UIImage, bDate: String) {
+    func createUser(images: [UIImage]?, bDate: String) {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
@@ -45,11 +54,11 @@ class ProfileCreationModel: ObservableObject {
         firstly {
             self.firestoreManagerUserTest.saveUser(userModel: userModel)
         }.then { userModel in
-            self.firestoreFotoMangerUserTest.resizeImage(originalImage: originalImage)
+            self.firestoreFotoMangerUserTest.resizeImage(originalImages: images)
         }.then { picture in
             self.firestoreFotoMangerUserTest.uploadUserPhoto(data: picture)
-        }.then { url in
-            self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url: url, fotoPlace: 1)
+        }.then { urls in
+            self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url1: urls[0], url2: urls[1], url3: urls[2])
         }.then {
             self.firestoreManagerUserTest.createLikedEventsArray()
         }.catch { error in
