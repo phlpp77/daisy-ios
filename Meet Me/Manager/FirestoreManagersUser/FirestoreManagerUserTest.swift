@@ -99,7 +99,7 @@ class FirestoreManagerUserTest {
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {return}
             
-            let _ =  db.collection("users").document(currentUser.uid).updateData(["serachingFor" : searchingFor]){ error in
+            let _ =  db.collection("users").document(currentUser.uid).updateData(["searchingFor" : searchingFor]){ error in
                 if let error = error {
                     seal.reject(error)
                 }else {

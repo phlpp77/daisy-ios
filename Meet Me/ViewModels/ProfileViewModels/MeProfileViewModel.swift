@@ -61,12 +61,23 @@ class MeProfileViewModel: ObservableObject {
         
     }
     
-    func changedSearchingFor(){
-        
+    func changedSearchingFor(searchingFor: String){
+        firstly {
+            firestoreManagerUserTest.setSearchingFor(searchingFor: searchingFor)
+        }.catch { error in
+            print("DEBUG: Error in chagedSerachingFor: \(error)")
+            print("DEBUG: Error localized in: \(error.localizedDescription)")
+        }
     }
     
-    func changedRange(){
-        
+    func changedRange(radius: Double){
+        firstly {
+            firestoreManagerUserTest.setRadius(radius: radius)
+        }.catch { error in
+            print("DEBUG: Error in changedRadius: \(error)")
+            print("DEBUG: Error localized in: \(error.localizedDescription)")
+            
+        }
     }
 }
        
