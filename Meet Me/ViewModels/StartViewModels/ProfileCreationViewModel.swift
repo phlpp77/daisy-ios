@@ -19,6 +19,7 @@ class ProfileCreationModel: ObservableObject {
     private var locationManager: LocationManager = LocationManager()
     @Published var saved: Bool = false
     @Published var message: String = ""
+    private var counter = 1
     
     var userId: String = ""
     var name: String = "Name"
@@ -53,20 +54,54 @@ class ProfileCreationModel: ObservableObject {
         
         firstly {
             self.firestoreManagerUserTest.saveUser(userModel: userModel)
-        }.then { userModel in
-            self.firestoreFotoMangerUserTest.resizeImage(originalImages: images)
-        }.then { picture in
-            self.firestoreFotoMangerUserTest.uploadUserPhoto(data: picture)
-        }.then { urls in
-            self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url1: urls[0], url2: urls[1], url3: urls[2])
         }.then {
             self.firestoreManagerUserTest.createLikedEventsArray()
+        }.then {
+            when(fulfilled: images!.compactMap(self.uploadUserPhotos)).done {
+                print("FINISH")
+            }
         }.catch { error in
             print("DEBUG: catch, fehler in event creation \(error)")
             print(error.localizedDescription)
         }
         
         
+        
+        
+    }
+        
+//}.then {
+//    when(fulfilled: self.matchDoc.compactMap(self.getAllMatchInformation)).done { result in
+//        self.matches = result
+//    }.done{
+//        self.matches = self.matches.sorted{
+//            $0.event.distance < $1.event.distance
+//
+//        }
+    
+    //        }.then { userModel in
+    //            self.firestoreFotoMangerUserTest.resizeImage(originalImages: images)
+    //        }.then { picture in
+    //            self.firestoreFotoMangerUserTest.uploadUserPhoto(data: picture)
+    //        }.then { urls in
+    //            self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url1: urls[0], url2: urls[1], url3: urls[2])
+    
+    func uploadUserPhotos(originalImage: UIImage) -> Promise<Void> {
+        return Promise { seal in
+            firstly{
+                self.firestoreFotoMangerUserTest.resizeImage(originalImage: originalImage)
+            }.then { picture in
+                self.firestoreFotoMangerUserTest.uploadUserPhoto(data: picture)
+            }.then { url in
+                self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url: url, fotoPlace: self.counter)
+            }.done {
+                self.counter = self.counter + 1
+                seal.fulfill(())
+            }.catch { error in
+                seal.reject(error)
+                
+            }
+        }
     }
     
     

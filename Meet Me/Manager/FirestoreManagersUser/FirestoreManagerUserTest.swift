@@ -27,14 +27,14 @@ class FirestoreManagerUserTest {
         
     
     // MARK: - Functions to Save userModel to Firebase
-    func saveUser(userModel: UserModel) -> Promise<UserModel>{
+    func saveUser(userModel: UserModel) -> Promise<Void>{
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser?.uid else {
                 throw Err("no current User")
             }
             do {
                 try db.collection("users").document(currentUser).setData(from: userModel)
-                seal.fulfill(userModel)
+                seal.fulfill(())
             } catch let error {
                 seal.reject(error)
             }
