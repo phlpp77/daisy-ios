@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import PromiseKit
 
 struct LoginNView: View {
     
-    @ObservedObject var loginVM: RegisterViewModel = RegisterViewModel()
+    @ObservedObject var loginVM: LoginViewModel = LoginViewModel()
     
     @Binding var nextPosition: StartPosition
     @Binding var startUpDone: Bool
@@ -93,13 +94,23 @@ struct LoginNView: View {
                             
                             // if button shows login
                             if loginMode {
-                                
-                                // switches view to main app
-                                self.startUpDone = true
+                                self.loginVM.login().done {
+                                    
+                                    if self.loginVM.startProcessDone {
+                                        // switches view to main app
+                                        self.startUpDone = true
+                                    } else {
+                                        // switches view to profileCreation
+                                        self.nextPosition = .profileCreation
+                                    }
+                                    
+                                }.catch { error in
+                                    print(error)
+                                }
                             }
                             // if button shows register
                             else {
-                                
+                                self.loginVM.register()
                                 // switches view to the profile Creation
                                 self.nextPosition = .profileCreation
                             }
