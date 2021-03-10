@@ -38,7 +38,9 @@ struct Meet_MeApp: App {
 
 //            TabBarView()
             
-            LoginNView()
+            MainStartView(startUpDone: $startProcessDone)
+            
+//            LoginNView()
 //                MainControllerView()
 
 //            } else {

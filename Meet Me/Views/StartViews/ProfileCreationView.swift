@@ -60,13 +60,11 @@ struct ProfileCreationView: View {
     @State var backgroundColor = "BackgroundMain"
     
     // var to see if the action in the alert was accepted or not
-    @State var accpetedAction = [false, false, false, false, false, false]
+    @State var acceptedAction = [false, false, false, false, false, false]
     
     
     var body: some View {
         ZStack {
-            // background with animation - for testing background is handled in the main startView
-//            StartBackgroundView()
             
             // box where all items are in with fixed size
             ZStack {
@@ -84,7 +82,7 @@ struct ProfileCreationView: View {
                         
                         // view to fill in the name
                         VStack {
-                            NameLineView(name: $addProfileCreationVM.name, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[0] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[0] ? .constant("Clear") : .constant("BackgroundMain"))
+                            NameLineView(name: $addProfileCreationVM.name, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[0] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[0] ? .constant("Clear") : .constant("BackgroundMain"))
                             
                             // create image for the first to second step pathway
                             Image("Pathway-ProfileCreation")
@@ -92,7 +90,7 @@ struct ProfileCreationView: View {
                                 .frame(width: 268.58, height: 92.92, alignment: .center)
                             
                             // get the gender of the user
-                            GenderLineView(gender: $addProfileCreationVM.gender, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[1] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[1] ? .constant("Clear") : .constant("BackgroundMain"))
+                            GenderLineView(gender: $addProfileCreationVM.gender, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[1] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[1] ? .constant("Clear") : .constant("BackgroundMain"))
                             
                             // create image for the second to the third step of the pathway
                             Image("Pathway-ProfileCreation")
@@ -105,7 +103,7 @@ struct ProfileCreationView: View {
                         }
                         
                         // get the birthday date of the user
-                        BirthdayLineView(birthday: $birthdayDate, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[2] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[2] ? .constant("Clear") : .constant("BackgroundMain"))
+                        BirthdayLineView(birthday: $birthdayDate, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[2] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[2] ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         // create image for the third to the fourth step of the pathway
                         Image("Pathway-ProfileCreation")
@@ -113,7 +111,7 @@ struct ProfileCreationView: View {
                             .frame(width: 268.58, height: 92.92, alignment: .center)
                         
                         // get for what the user is searching (women, men, both)
-                        SearchingLineView(searchingFor: $addProfileCreationVM.searchingFor, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[3] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[3] ? .constant("Clear") : .constant("BackgroundMain"))
+                        SearchingLineView(searchingFor: $addProfileCreationVM.searchingFor, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[3] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[3] ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         // create image for the fourth to the fifth step of the pathway
                         Image("Pathway-ProfileCreation")
@@ -125,7 +123,7 @@ struct ProfileCreationView: View {
                             )
                         
                         // get the user permission to use the current position
-                        LocationLineView(acceptLocation: $acceptLocation, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[4] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[4] ? .constant("Clear") : .constant("BackgroundMain"))
+                        LocationLineView(acceptLocation: $acceptLocation, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[4] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[4] ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         // create image for the fifth to the sixth step of the pathway
                         Image("Pathway-ProfileCreation")
@@ -133,7 +131,7 @@ struct ProfileCreationView: View {
                             .frame(width: 268.58, height: 92.92, alignment: .center)
                         
                         // upload image to database
-                        PictureLineView(pictureText: accpetedAction[5] ? .constant("You look good today") : .constant("No picture"), showPicker: $showImagePicker, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: accpetedAction[5] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: accpetedAction[5] ? .constant("Clear") : .constant("BackgroundMain"))
+                        PictureLineView(pictureText: acceptedAction[5] ? .constant("You look good today") : .constant("No picture"), showPicker: $showImagePicker, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[5] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[5] ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         // create image for the end pathway to the update profile button
                         VStack(alignment: .trailing) {
@@ -149,7 +147,7 @@ struct ProfileCreationView: View {
                         .frame(width: 268.58)
                         
                         // button is disabled until the user set at least the name, the gender, the birthday and photos
-                        let enoughInformation = !(accpetedAction[0] && accpetedAction[1] && accpetedAction[2] && accpetedAction[5])
+                        let enoughInformation = !(acceptedAction[0] && acceptedAction[1] && acceptedAction[2] && acceptedAction[5])
                         
                         // update button
                         Button(action: {
@@ -177,7 +175,7 @@ struct ProfileCreationView: View {
                                 //if save successful
                                 profileCreationFinished = true
                             } else {
-                                //if profile settings didn't uploade
+                                //if profile settings didn't upload
                             }
                         })
                         
@@ -200,41 +198,41 @@ struct ProfileCreationView: View {
                     
                     // case 0 is the first step -> name creation
                     case 0:
-                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", textFieldInput: true, output: $addProfileCreationVM.name, show: $showAlertBox, accepted: $accpetedAction[0])
+                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", textFieldInput: true, output: $addProfileCreationVM.name, show: $showAlertBox, accepted: $acceptedAction[0])
                             // z index 1 == the top layer -> this is needed due to animation processes
                             .zIndex(1.0)
                     
                     // case 1 is the second step -> gender creation
                     case 1:
-                        AlertBoxView(title: "Choose your gender", placeholder: "Tap here to choose..", defaultText: "Gender", pickerInput: true, pickerInputArray: ["Male", "Female", "Other"], output: $addProfileCreationVM.gender, show: $showAlertBox, accepted: $accpetedAction[1])
+                        AlertBoxView(title: "Choose your gender", placeholder: "Tap here to choose..", defaultText: "Gender", pickerInput: true, pickerInputArray: ["Male", "Female", "Other"], output: $addProfileCreationVM.gender, show: $showAlertBox, accepted: $acceptedAction[1])
                             .zIndex(1.0)
                         
                     // case 2 is the third step -> birthday date
                     case 2:
-                        AlertBoxView(title: "Select your birthday date", placeholder: "Tap here to choose..", defaultText: "Birthday", dateInput: true, output: $birthdayDate, show: $showAlertBox, accepted: $accpetedAction[2])
+                        AlertBoxView(title: "Select your birthday date", placeholder: "Tap here to choose..", defaultText: "Birthday", dateInput: true, output: $birthdayDate, show: $showAlertBox, accepted: $acceptedAction[2])
                             .zIndex(1.0)
                         
                     // case 3 is the fourth step -> searching for creation
                     case 3:
-                        AlertBoxView(title: "Choose for whom you are searching", placeholder: "Tap here to choose..", defaultText: "Searching for", pickerInput: true, pickerInputArray: ["Male", "Female", "Both"], output: $addProfileCreationVM.searchingFor, show: $showAlertBox, accepted: $accpetedAction[3])
+                        AlertBoxView(title: "Choose for whom you are searching", placeholder: "Tap here to choose..", defaultText: "Searching for", pickerInput: true, pickerInputArray: ["Male", "Female", "Both"], output: $addProfileCreationVM.searchingFor, show: $showAlertBox, accepted: $acceptedAction[3])
                             .zIndex(1.0)
                         
                     case 4:
                         // add alertbox to ask user for location services
-                        AlertBoxView(title: "Allow app to use your current location", placeholder: "", defaultText: "", output: $acceptLocation, show: $showAlertBox, accepted: $accpetedAction[4])
+                        AlertBoxView(title: "Allow app to use your current location", placeholder: "", defaultText: "", output: $acceptLocation, show: $showAlertBox, accepted: $acceptedAction[4])
                             .zIndex(1.0)
                         
                     // image picker view
                     case 5:
                         if showImagePicker {
-                            ImageOldP(isShown: $showImagePicker, isDone: $accpetedAction[5], image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
+                            ImageOldP(isShown: $showImagePicker, isDone: $acceptedAction[5], image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
                         }
                         
-//                        AlertBoxView(title: "Choose a picture of yourself", placeholder: "", defaultText: "", output: $acceptLocation, show: $showAlertBox, accepted: $accpetedAction[4])
+//                        AlertBoxView(title: "Choose a picture of yourself", placeholder: "", defaultText: "", output: $acceptLocation, show: $showAlertBox, accepted: $acceptedAction[4])
                     
                     // the default is 0 which is the first step in the pathway -> name creation
                     default:
-                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", output: $outputAlertBox, show: $showAlertBox, accepted: $accpetedAction[2])
+                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", output: $outputAlertBox, show: $showAlertBox, accepted: $acceptedAction[2])
                             // z index 1 == the top layer -> this is needed due to animation processes
                             .zIndex(1.0)
                     }
@@ -247,17 +245,6 @@ struct ProfileCreationView: View {
             
         }
     }
-    
-    
-//    func convertStringToDate(date: String) -> Date {
-//        let dateFormatter = DateFormatter()
-//
-//        dateFormatter.locale = Locale(identifier: "en_DE")
-//        dateFormatter.dateFormat = "dd/MM/y"
-//
-//        let date = dateFormatter.date(from: date)!
-//        return date
-//    }
     
 }
 
@@ -346,31 +333,6 @@ struct GenderLineView: View {
         .frame(width: 340, alignment: .trailing)
     }
 }
-
-
-
-
-
-
-
-
-//
-//struct GenderXLineView: View {
-//
-//    // Binding from main View
-//    @Binding var gender: String
-//
-//    var body: some View {
-//        HStack {
-//            Text("Gender")
-//            TextField("", text: $gender)
-//                .textFieldStyle(RoundedBorderTextFieldStyle())
-//                .frame(width: 35)
-//        }
-//        .padding(.horizontal, 16)
-//        .frame(width: 340, alignment: .trailing)
-//    }
-//}
 
 struct BirthdayLineView: View {
     

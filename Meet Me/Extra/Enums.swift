@@ -28,3 +28,16 @@ enum Tab {
     // tabView for the chat page/tab
     case chat
 }
+
+// MARK: Each StartView has its own identifier
+// used in: MainStartView
+enum StartPosition {
+    // StartView for the first picture of the app
+    case splash
+    // StartView for the onboarding slides
+    case onboarding
+    // StartView for the login and register view
+    case registerLogin
+    // StartView for the profileCreation of the user
+    case profileCreation
+}

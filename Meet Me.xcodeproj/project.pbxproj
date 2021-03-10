@@ -21,6 +21,8 @@
 		175E40E925B4A31C00ADC9BF /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40E825B4A31C00ADC9BF /* HapticFeedback.swift */; };
 		175E40F025B4CD3300ADC9BF /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40EF25B4CD3300ADC9BF /* RegisterView.swift */; };
 		175E40F425B4CD9400ADC9BF /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40F325B4CD9400ADC9BF /* Modifiers.swift */; };
+		176745BD25F9381700FF28F2 /* MainStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176745BC25F9381700FF28F2 /* MainStartView.swift */; };
+		176745C025F939D400FF28F2 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176745BF25F939D400FF28F2 /* SplashView.swift */; };
 		176A5AC725F3C0A000C857E8 /* ChatEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176A5AC625F3C0A000C857E8 /* ChatEventView.swift */; };
 		1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */; };
 		1774B67225D1E2E500D1D2F1 /* MainSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */; };
@@ -115,6 +117,8 @@
 		175E40E825B4A31C00ADC9BF /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
 		175E40EF25B4CD3300ADC9BF /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		175E40F325B4CD9400ADC9BF /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		176745BC25F9381700FF28F2 /* MainStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStartView.swift; sourceTree = "<group>"; };
+		176745BF25F939D400FF28F2 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		176A5AC625F3C0A000C857E8 /* ChatEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEventView.swift; sourceTree = "<group>"; };
 		1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerView.swift; sourceTree = "<group>"; };
 		1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSettingsView.swift; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 				17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */,
 				175E40E225B4670800ADC9BF /* StartBackgroundView.swift */,
 				17F34F1725F90D2A00690122 /* LoginNView.swift */,
+				176745BF25F939D400FF28F2 /* SplashView.swift */,
 			);
 			path = StartViews;
 			sourceTree = "<group>";
@@ -351,6 +356,7 @@
 				1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */,
 				1774B67425D1E31400D1D2F1 /* MainExploreView.swift */,
 				1774B67825D1E35200D1D2F1 /* MainChatView.swift */,
+				176745BC25F9381700FF28F2 /* MainStartView.swift */,
 			);
 			path = MainControllerViews;
 			sourceTree = "<group>";
@@ -647,6 +653,7 @@
 				175E40E025B43BB200ADC9BF /* StartView.swift in Sources */,
 				90ED49A625F2EA1A00843170 /* DeleteMatchViewModel.swift in Sources */,
 				90F2336325D830E7003FB1D9 /* ProfileCreationViewModel.swift in Sources */,
+				176745C025F939D400FF28F2 /* SplashView.swift in Sources */,
 				17DE531825EAED20000D0B4D /* MessagesView.swift in Sources */,
 				17C0C1CE25BF67D60021987D /* AlertBoxView.swift in Sources */,
 				17DE531E25EAEF51000D0B4D /* MessageView.swift in Sources */,
@@ -693,6 +700,7 @@
 				90779B0A25E305D40070D794 /* MeMatchStartViewModel.swift in Sources */,
 				1795DF9525DD6998002D537F /* MeEventLineView.swift in Sources */,
 				17EDA6F025E6C974004BC651 /* LogoutView.swift in Sources */,
+				176745BD25F9381700FF28F2 /* MainStartView.swift in Sources */,
 				90D42B1E25EBA7190060311B /* ChatListViewModel.swift in Sources */,
 				17DE52EA25E9A2D7000D0B4D /* YouProfileView.swift in Sources */,
 				1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */,

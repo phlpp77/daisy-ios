@@ -20,7 +20,7 @@ struct TabBarView: View {
         GeometryReader { bounds in
             
             VStack(spacing: 0.0) {
-                    
+                
                     ZStack {
                         
                         // MARK: Tabs
