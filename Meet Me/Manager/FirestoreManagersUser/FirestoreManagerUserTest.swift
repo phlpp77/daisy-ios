@@ -76,6 +76,8 @@ class FirestoreManagerUserTest {
             }
         }
     
+
+    // MARK: - Functions to Update current User
     func setRadius(radius: Double) -> Promise<Void>{
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
@@ -91,10 +93,25 @@ class FirestoreManagerUserTest {
                 }
         }
     }
-    // MARK: - Functions to Update current User
     
     
+    func setSearchingFor(searchingFor: String) -> Promise<Void> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {return}
+            
+            let _ =  db.collection("users").document(currentUser.uid).updateData(["serachingFor" : searchingFor]){ error in
+                if let error = error {
+                    seal.reject(error)
+                }else {
+                    seal.fulfill(())
+                }
+            }
+        }
+        
+    }
     
+    
+        
     
     
     // MARK: - Functions to get User Profiles

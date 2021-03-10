@@ -31,8 +31,44 @@ class MeProfileViewModel: ObservableObject {
                 print("DEBUG: \(error.localizedDescription)")
             }
         }
-    }
+    
 
+
+    func changedOrderOfPictures(changed: Bool) {
+        firstly {
+        firestoreFotoManagerUserTest.savePhotoUrlToFirestore(url1: URL(string: userModel.userPhotos[1]!),
+                                                             url2: URL(string: userModel.userPhotos[2]!),
+                                                             url3: URL(string: userModel.userPhotos[3]!))
+        }.catch { error in
+            print("DEBUG: Error in changeOrderOfPictures, error: \(error)")
+            print("DEBUG: Error localized in: \(error.localizedDescription)")
+        }
+    }
+    
+    func changedProfilPicture(newUrl: URL) {
+        firstly {
+            //Update all Events
+            firestoreFotoManagerUserTest.changedProfilPicture(newProfilePicture: newUrl)
+        }.catch { error in
+            print("DEBUG: Error in changedProfilPicture, error: \(error)")
+            print("DEBUG: Error localized in: \(error.localizedDescription)")
+        }
+        
+        
+    }
+    
+    func addNewPicture(){
+        
+    }
+    
+    func changedSearchingFor(){
+        
+    }
+    
+    func changedRange(){
+        
+    }
+}
        
             
 
