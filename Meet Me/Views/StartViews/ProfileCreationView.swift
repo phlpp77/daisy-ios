@@ -45,6 +45,9 @@ struct ProfileCreationView: View {
     
     // show
     @State var showImagePicker = true
+    // images in array
+    @State var images: [UIImage] = [UIImage(named: "cafe")!]
+    
     // image (swiftUI)
     @State var image: Image? 
     // image UIKit
@@ -188,6 +191,9 @@ struct ProfileCreationView: View {
                 .padding(.horizontal, 16)
                 // bring the content VStack to the same size as the background shade
                 .frame(width: 340, height: 620, alignment: .center)
+                .sheet(isPresented: $showImagePicker, content: {
+                    ImagePicker(images: $images, showPicker: $showImagePicker, limit: 3)
+                })
                 
                 
                 // creating pop-up alert-boxes
@@ -224,9 +230,12 @@ struct ProfileCreationView: View {
                         
                     // image picker view
                     case 5:
-                        if showImagePicker {
-                            ImageOldP(isShown: $showImagePicker, isDone: $acceptedAction[5], image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
-                        }
+                        Color.clear.sheet(isPresented: $showImagePicker, content: {
+                            ImagePicker(images: $images, showPicker: $showImagePicker, limit: 3)
+                        })
+//                        if showImagePicker {
+//                            ImageOldP(isShown: $showImagePicker, isDone: $acceptedAction[5], image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
+//                        }
                         
 //                        AlertBoxView(title: "Choose a picture of yourself", placeholder: "", defaultText: "", output: $acceptLocation, show: $showAlertBox, accepted: $acceptedAction[4])
                     

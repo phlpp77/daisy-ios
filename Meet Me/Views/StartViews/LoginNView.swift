@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LoginNView: View {
     
+    @ObservedObject var loginVM: RegisterViewModel = RegisterViewModel()
+    
     @Binding var nextPosition: StartPosition
     @Binding var startUpDone: Bool
     
@@ -19,6 +21,7 @@ struct LoginNView: View {
     @State var passwordField1WasEdited: Bool = false
     @State var showPresentTermsAndConditionsSheet: Bool = false
     @State var loginMode: Bool = false
+    @State var problemOccurred: Bool = false
     
     var body: some View {
         
@@ -49,6 +52,13 @@ struct LoginNView: View {
                     })
                     .sheet(isPresented: $showPresentTermsAndConditionsSheet) {
                         Text("AGBs sind langweilig.")
+                    }
+                    
+                    // MARK: Error-message can be presented here
+                    if problemOccurred {
+                        Text("Errormessage")
+                            .foregroundColor(.accentColor)
+                            .font(.caption)
                     }
                     
                     // MARK: Input for Registration

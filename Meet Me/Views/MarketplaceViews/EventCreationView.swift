@@ -201,9 +201,6 @@ struct EventCreationView: View {
             .sheet(isPresented: $showImagePicker, content: {
                 ImagePicker(images: $images, showPicker: $showImagePicker, limit: 1)
             })
-            .onAppear {
-
-            }
             
             
             if showAlertBox {

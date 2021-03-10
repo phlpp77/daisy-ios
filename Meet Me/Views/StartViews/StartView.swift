@@ -48,22 +48,22 @@ struct StartView: View {
                 // animation from login to profile creation
                 .opacity(userIsLoggedIn && userHasNoAccount ? 1 : 0)
             
-            // show the register form
-            RegisterView(showLoginView: $showLoginView, userIsLoggedIn: $userIsLoggedIn, userHasNoAccount: $userHasNoAccount)
-                // animate from welcome to register view
-                .opacity(showWelcomeView ? 0 : 1)
-                // animation from register to login view
-                .opacity(showLoginView ? 0 : 1)
-                // animation from register to profile creation view
-                .opacity(userIsLoggedIn ? 0 : 1)
-            
-            // show the login view
-            LoginView(userIsLoggedIn: $userIsLoggedIn, userHasNoAccount: $userHasNoAccount, startProcessDone: $startProcessDone, showLoginView: $showLoginView)
-                // animation from register to login view
-                .opacity(showLoginView ? 1 : 0)
-                // animation from login to profile creation
-                .opacity(userIsLoggedIn ? 0 : 1)
-            
+//            // show the register form
+//            RegisterView(showLoginView: $showLoginView, userIsLoggedIn: $userIsLoggedIn, userHasNoAccount: $userHasNoAccount)
+//                // animate from welcome to register view
+//                .opacity(showWelcomeView ? 0 : 1)
+//                // animation from register to login view
+//                .opacity(showLoginView ? 0 : 1)
+//                // animation from register to profile creation view
+//                .opacity(userIsLoggedIn ? 0 : 1)
+//            
+//            // show the login view
+//            LoginView(userIsLoggedIn: $userIsLoggedIn, userHasNoAccount: $userHasNoAccount, startProcessDone: $startProcessDone, showLoginView: $showLoginView)
+//                // animation from register to login view
+//                .opacity(showLoginView ? 1 : 0)
+//                // animation from login to profile creation
+//                .opacity(userIsLoggedIn ? 0 : 1)
+//            
             
         }
         .animation(.easeInOut)
