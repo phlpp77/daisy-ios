@@ -89,6 +89,7 @@
 		90D42B0125EAC0DC0060311B /* FirestoreManagerChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B0025EAC0DC0060311B /* FirestoreManagerChat.swift */; };
 		90D42B1E25EBA7190060311B /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B1D25EBA7190060311B /* ChatListViewModel.swift */; };
 		90D42B2225EBA75C0060311B /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B2125EBA75C0060311B /* MessagesViewModel.swift */; };
+		90DFB50025F92C7400E26ED7 /* ChangeMeEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DFB4FF25F92C7400E26ED7 /* ChangeMeEventViewModel.swift */; };
 		90ED49A625F2EA1A00843170 /* DeleteMatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ED49A525F2EA1A00843170 /* DeleteMatchViewModel.swift */; };
 		90F2334D25D58481003FB1D9 /* ImageOldP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2334C25D58481003FB1D9 /* ImageOldP.swift */; };
 		90F2335125D5943B003FB1D9 /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */; };
@@ -179,6 +180,7 @@
 		90D42B0025EAC0DC0060311B /* FirestoreManagerChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerChat.swift; sourceTree = "<group>"; };
 		90D42B1D25EBA7190060311B /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		90D42B2125EBA75C0060311B /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
+		90DFB4FF25F92C7400E26ED7 /* ChangeMeEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeMeEventViewModel.swift; sourceTree = "<group>"; };
 		90ED49A525F2EA1A00843170 /* DeleteMatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMatchViewModel.swift; sourceTree = "<group>"; };
 		90F2334C25D58481003FB1D9 /* ImageOldP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOldP.swift; sourceTree = "<group>"; };
 		90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 			children = (
 				902EF7A925DC439D004464F0 /* YouEventLineViewModel.swift */,
 				902EF6FE25D9A51B004464F0 /* EventCreationViewModel.swift */,
+				90DFB4FF25F92C7400E26ED7 /* ChangeMeEventViewModel.swift */,
 				90B0F4D325DF0EA000AB8EF9 /* MeEventLinieViewModel.swift */,
 				90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */,
 				90779B0925E305D40070D794 /* MeMatchStartViewModel.swift */,
@@ -646,6 +649,7 @@
 				90F2336325D830E7003FB1D9 /* ProfileCreationViewModel.swift in Sources */,
 				17DE531825EAED20000D0B4D /* MessagesView.swift in Sources */,
 				17C0C1CE25BF67D60021987D /* AlertBoxView.swift in Sources */,
+				90DFB50025F92C7400E26ED7 /* ChangeMeEventViewModel.swift in Sources */,
 				17DE531E25EAEF51000D0B4D /* MessageView.swift in Sources */,
 				175E40E325B4670800ADC9BF /* StartBackgroundView.swift in Sources */,
 				175E40F425B4CD9400ADC9BF /* Modifiers.swift in Sources */,

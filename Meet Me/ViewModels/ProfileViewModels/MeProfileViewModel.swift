@@ -7,6 +7,7 @@
 
 import Foundation
 import PromiseKit
+import SwiftUI
 
 
 
@@ -57,9 +58,19 @@ class MeProfileViewModel: ObservableObject {
         
     }
     
-    func addNewPicture(){
-        
+    func addNewPicture(images: [UIImage]){
+        firstly{
+            self.firestoreFotoManagerUserTest.resizeImage(originalImages: images)
+        }.then { picture in
+            self.firestoreFotoManagerUserTest.uploadUserPhoto(data: picture)
+        }.then { urls in
+            self.firestoreFotoManagerUserTest.savePhotoUrlToFirestore(url1: urls[0], url2: nil, url3: nil)
+        }.catch { error in
+            print("DEBUG: catch, fehler in event creation \(error)")
+            print(error.localizedDescription)
+        }
     }
+    
     
     func changedSearchingFor(searchingFor: String){
         firstly {

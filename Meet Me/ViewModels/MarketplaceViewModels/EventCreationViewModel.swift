@@ -80,6 +80,8 @@ class EventCreationViewModel: ObservableObject {
         
         
     }
+    
+
 }
 
 
