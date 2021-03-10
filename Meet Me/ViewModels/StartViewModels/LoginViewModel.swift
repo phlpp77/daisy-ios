@@ -114,15 +114,14 @@ class LoginViewModel: ObservableObject {
     
     func checkErrorsRegister() ->Promise<Void>{
         return Promise { seal in
-            
             if self.errorMessage != "" {
-                seal.fulfill(())
+                seal.reject(Err(self.errorMessage))
             }
             if password != password2 && password != "" {
                 self.errorMessage = "Passwords are not the same"
                 seal.reject(Err("Passwords are not the same"))
             } else {
-                seal.reject(Err("Passwords are not the same"))
+                seal.fulfill(())
             }
         }
         

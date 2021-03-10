@@ -49,9 +49,9 @@ struct ProfileCreationView: View {
     @State var images: [UIImage] = [UIImage(named: "cafe")!]
     
     // image (swiftUI)
-    @State var image: Image? 
+    //@State var image: Image?
     // image UIKit
-    @State var uiImage: UIImage?
+    //@State var uiImage: UIImage?
     
     // var to check at which step the user wants to hand in data
     @State var pathwayStep = 0
@@ -154,7 +154,7 @@ struct ProfileCreationView: View {
                         
                         // update button
                         Button(action: {
-                            addProfileCreationVM.createUser(images: [uiImage!], bDate: birthdayDate)
+                            addProfileCreationVM.createUser(images: images, bDate: birthdayDate)
                             // haptic feedback when button is tapped
                             hapticPulse(feedback: .rigid)
                             
