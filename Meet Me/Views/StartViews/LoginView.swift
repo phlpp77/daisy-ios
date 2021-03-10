@@ -100,11 +100,12 @@ struct LoginView: View {
                 
                 // login handleling
                 loginVM.login {
-                    isActive = true
                     firstly {
                         loginVM.checkUserAcc()
                     }.done { acc in
+                        //False wenn nicht erfolgreich
                         userHasNoAccount = !acc
+                        //True wenn erfolgreich
                         startProcessDone = acc
                     }.catch { error in
                         userHasNoAccount = false
