@@ -118,8 +118,9 @@ class FirestoreManagerChat: ObservableObject  {
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
-            let timeStamp: Timestamp = Timestamp(date: Date())
-            let messageModel = MessageModel(userId: currentUser.uid,timeStamp: timeStamp, messageText: messageText)
+            if messageText != "" {
+                let timeStamp: Timestamp = Timestamp(date: Date())
+                let messageModel = MessageModel(userId: currentUser.uid,timeStamp: timeStamp, messageText: messageText)
                 let _ = db.collection("chats")
                     .document(chatId)
                     .updateData(["messages" : FieldValue.arrayUnion([messageModel.dictionary])]) { error in
@@ -129,10 +130,13 @@ class FirestoreManagerChat: ObservableObject  {
                             seal.fulfill(())
                         }
                     }
+            }else {
+                seal.reject(Err("message was empty"))
             }
         }
-        
     }
+    
+}
 
 
     

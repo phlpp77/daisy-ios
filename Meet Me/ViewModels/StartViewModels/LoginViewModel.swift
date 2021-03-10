@@ -74,14 +74,17 @@ class LoginViewModel: ObservableObject {
     
     
     //register
-    func register(){
-        
-        firstly {
-            self.checkErrorsRegister()
-        }.then {
-            self.registerAuth()
-        }.catch { error in
-            self.errorMessage = error.localizedDescription
+    func register() ->Promise<Void>{
+        return Promise { seal in
+            firstly {
+                self.checkErrorsRegister()
+            }.then {
+                self.registerAuth()
+            }.done {
+                seal.fulfill(())
+            }.catch { error in
+                self.errorMessage = error.localizedDescription
+            }
         }
     }
     

@@ -110,10 +110,14 @@ struct LoginNView: View {
                             }
                             // if button shows register
                             else {
-                                self.loginVM.register()
-                                // switches view to the profile Creation
-                                self.nextPosition = .profileCreation
+                                self.loginVM.register().done {
+                                    // switches view to the profile Creation
+                                    self.nextPosition = .profileCreation
+                                }.catch { error in 
+                                    print(error)
+                                }
                             }
+                                
                             
                             
                         }, label: {
