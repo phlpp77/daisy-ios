@@ -113,9 +113,7 @@ struct LoginNView: View {
                             }
                             // if button shows register
                             else {
-                                print("button gedrückt")
                                 self.loginVM.register().done {
-                                    print("register done")
                                     // switches view to the profile Creation
                                     self.nextPosition = .profileCreation
                                 }.catch { error in 
