@@ -14,7 +14,6 @@ struct EventModel: Codable {
     
     var eventId: String
     var userId: String
-    var name: String
     var category: String
     var date: Date
     var startTime: Date
@@ -28,6 +27,8 @@ struct EventModel: Codable {
     var longitude: Double
     var hash: String
     var distance: Double
+    var searchingFor: String
+    var genderFromCreator: String
     
 }
 
@@ -44,10 +45,6 @@ struct EventModelObject {
     
     var userId: String {
         eventModel.userId
-    }
-    
-    var name: String {
-        eventModel.name
     }
     
     var category: String {
@@ -90,6 +87,12 @@ struct EventModelObject {
     }
     var distance: Double {
         eventModel.distance
+    }
+    var searchingFor: String {
+        eventModel.searchingFor
+    }
+    var genderFromCreator: String {
+        eventModel.genderFromCreator
     }
 
     

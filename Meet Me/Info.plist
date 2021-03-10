@@ -20,8 +20,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This App want to track your Location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This App want to track your Location</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>The app let&apos;s you pick profile pictures.</string>
+	<string>The app let's you pick profile pictures.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -48,9 +52,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This App want to track your Location</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This App want to track your Location</string>
 </dict>
 </plist>

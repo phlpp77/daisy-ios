@@ -16,17 +16,22 @@ class YouEventLineViewModel: ObservableObject {
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     private var locationManager: LocationManager = LocationManager()
     @Published var region = MKCoordinateRegion.defaultRegion
-    private var geo: GeoQuery = GeoQuery()
+    //private var geo: GeoQuery = GeoQuery()
+    private var userModel: UserModel = stockUser
 
 
     func getYouEvents() -> Promise<[EventModelObject]>{
         return Promise { seal in
-            firstly {
+            firstly{
+                firestoreManagerUserTest.getCurrentUser()
+            }.map { user in
+                self.userModel = user
+            }.then {
                 when(fulfilled: self.firestoreManagerUserTest.getAllLikedEvents(), self.getLocation())
             }.then { likedEvents, location in
-                self.geo.queryColletion(center: self.region.center).map { ($0, likedEvents) }
+                self.firestoreManagerEventTest.queryColletion(center: self.region.center).map { ($0, likedEvents) }
             }.then { queries, likedEvents in
-                self.geo.querysInEvent(likedEvents: likedEvents , queries: queries, center: self.region.center)
+                self.firestoreManagerEventTest.querysInEvent(likedEvents: likedEvents , queries: queries, center: self.region.center, user: self.userModel)
             }.done { events in
                 seal.fulfill(events)
             }.catch { error in

@@ -90,6 +90,39 @@ class FirestoreManagerMatches {
         }
     }
     
+    func getChatWithEventId(eventId: String) ->Promise<ChatModel> {
+        return Promise { seal in
+            db.collection("chats").whereField("eventId", isEqualTo: eventId).getDocuments { (snapshot, error) in
+                if let error = error {
+                    seal.reject(error)
+                } else {
+                    
+                    if let snapshot = snapshot {
+                        let chat: [ChatModel] = snapshot.documents.compactMap { doc in
+                            let chat = try? doc.data(as: ChatModel.self)
+                            if let chat = chat {
+                                return chat
+                            }
+                            return nil
+                            
+                        }
+                        DispatchQueue.main.async {
+                            if chat.count >= 0 {
+                                seal.fulfill(chat[0])
+                            } else {
+                                seal.reject(Err("No Chat Found"))
+                            }
+                            
+                        }
+                        
+                    }
+                }
+                
+                
+            }
+        }
+    }
+    
     // MARK: -  delete a Match
     
     func deleteMatchFromCurrentUser(chatId: String) ->Promise<Void> {
