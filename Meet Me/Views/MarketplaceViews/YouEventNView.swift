@@ -11,11 +11,14 @@ import URLImage
 struct YouEventNView: View {
     
     @Binding var events: [EventModel]
-    @Binding var eventIndex: Int
-    @Binding var currentEvent: EventModel
+    var eventIndex: Int
+    var currentEvent: EventModel
     
     @State var user: UserModel = stockUser
     @State var distanceIndicator: Distance = .near
+    
+    @State var dragPosition: CGSize = .zero
+    @State var likePercentage: Double = 0
     
     // to configure the date which is showing in the second line of the row
     var dateFormatter: DateFormatter = {
@@ -37,15 +40,57 @@ struct YouEventNView: View {
             
             // event-picture incl. the white border
             base
+                .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 5)
             
             // information-box with important data
             informationBox
                 .offset(x: 20, y: 278 / 2 - 20)
             
+            // profile picture of user in the top-right corner
             userCircle
                 .offset(x: 278 / 2 - 30, y: -278 / 2 + 30)
             
+            Image(systemName: "hand.thumbsup.fill")
+                .foregroundColor(.green)
+                .font(.system(size: 120))
+                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 4)
+                .opacity(likePercentage)
         }
+        
+        
+        // MARK: - Drag Gesture
+        .offset(y: dragPosition.height)
+        .gesture(
+            DragGesture()
+                .onChanged { value in
+                
+                    // drag is not allowed to be higher than 20 upwards
+                    if value.translation.height > 0 {
+                        self.dragPosition = value.translation
+                    }
+                    
+                    // change percentage of thumbsup
+                    if value.translation.height > 0 && value.translation.height < 100{
+                        self.likePercentage = Double(value.translation.height / 100)
+                    }
+                }
+                .onEnded { value in
+                    
+                    // drag needs to be down a bit to trigger the deletion / liking
+                    if value.translation.height > 100 {
+                        self.dragPosition = .init(width: 0, height: 500)
+                        
+                        // delete the item at the position from the Array
+                        //                            youEventVM.addLikeToEvent(eventId: eventArray[eventIndex].eventId)
+                        self.events.remove(at: eventIndex)
+                        
+                    } else {
+                        
+                        self.dragPosition = .zero
+                        self.likePercentage = 0
+                    }
+                }
+        )
         
         // MARK: - OnAppear
         .onAppear {
@@ -64,6 +109,7 @@ struct YouEventNView: View {
             
             // TODO: @budni - space for you
         }
+        
     }
     
     
@@ -174,7 +220,7 @@ struct YouEventNView: View {
                         )
                 )
                 .clipShape(Circle())
-                .shadow(color: Color.black.opacity(0.25), radius: 11, x: 0, y: 4)
+//                .shadow(color: Color.black.opacity(0.25), radius: 11, x: 0, y: 4)
             
             
             // Actual Image
@@ -200,6 +246,6 @@ struct YouEventNView: View {
 
 struct YouEventN_Previews: PreviewProvider {
     static var previews: some View {
-        YouEventNView(events: .constant([stockEvent]), eventIndex: .constant(0), currentEvent: .constant(stockEvent))
+        YouEventNView(events: .constant([stockEvent]), eventIndex: 0, currentEvent: stockEvent)
     }
 }
