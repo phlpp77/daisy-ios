@@ -15,8 +15,13 @@ import Firebase
 class MeProfileViewModel: ObservableObject {
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     private var firestoreFotoManagerUserTest: FirestoreFotoManagerUserTest = FirestoreFotoManagerUserTest()
+    
     @Published var userModel: UserModel = stockUser
-    @Published var userPictureURL: URL = stockURL
+    @Published var genders: [String: Int] = ["Female": 0, "Male": 1, "Other": 2]
+    @Published var picked = 0
+    
+    
+    private var gender: [String] = ["Female", "Male", "Other"]
     private var url: URL = stockURL
     private var db: Firestore
     private var listener: ListenerRegistration?
@@ -60,14 +65,15 @@ class MeProfileViewModel: ObservableObject {
                     }
                 }
             }
+            self.picked = self.genders[self.userModel.searchingFor]!
         }
     }
 
-    func changedSearchingFor(searchingFor: String){
+    func changedSearchingFor(searchingFor: Int){
         firstly {
-            self.firestoreManagerUserTest.setSearchingForUserProfile(searchingFor: searchingFor)
+            self.firestoreManagerUserTest.setSearchingForUserProfile(searchingFor: self.gender[searchingFor])
         }.then {
-            self.firestoreManagerUserTest.setSearchingForEvents(searchingFor: searchingFor)
+            self.firestoreManagerUserTest.setSearchingForEvents(searchingFor: self.gender[searchingFor])
         }.catch { error in
             print("DEBUG: Error in chagedSerachingFor: \(error)")
             print("DEBUG: Error localized in: \(error.localizedDescription)")
@@ -85,9 +91,9 @@ class MeProfileViewModel: ObservableObject {
     }
     
     func addPhotoInPosition(image: UIImage, position: Int) {
+//        firstly {
+//            self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: self.userModel.userPhotosId[position])
         firstly {
-            self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: self.userModel.userPhotosId[position]!)
-        }.then {
             self.firestoreFotoManagerUserTest.resizeImage(originalImage: image)
         }.then { picture in
             self.firestoreFotoManagerUserTest.uploadUserPhoto(data: picture)
@@ -110,9 +116,9 @@ class MeProfileViewModel: ObservableObject {
     }
     
     func deletePhoto(position: Int) {
-        firstly {
-            self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: self.userModel.userPhotosId[position]!)
-        }.then  {
+//        firstly {
+//            self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: self.userModel.userPhotosId[position]!)
+        firstly  {
             self.firestoreFotoManagerUserTest.deleteImageFromUser(fotoPlace: position)
         }.catch { error in
             print("DEBUG: error in deletePhoto error: \(error)")

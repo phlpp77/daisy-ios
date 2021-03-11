@@ -61,7 +61,7 @@ class EventCreationViewModel: ObservableObject {
             firstly{
                 self.firestoreManagerUserTest.getCurrentUser()
             }.map { userModel in
-                eventModel.profilePicture = userModel.userPhotos[1]!
+                eventModel.profilePicture = userModel.userPhotos[0]!
                 eventModel.searchingFor = userModel.searchingFor
                 eventModel.genderFromCreator = userModel.gender
                 eventModel.birthdayDate = userModel.birthdayDate

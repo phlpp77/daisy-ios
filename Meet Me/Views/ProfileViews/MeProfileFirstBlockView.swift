@@ -52,6 +52,9 @@ struct MeProfileFirstBlockView: View {
                 .aspectRatio(contentMode: .fill)
         )
         .modifier(offWhiteShadow(cornerRadius: 14))
+        .onAppear {
+            meProfileVM.getCurrentUser()
+        }
     }
 }
 
@@ -65,6 +68,7 @@ struct MeProfileFirstBlockView_Previews: PreviewProvider {
 // MARK: - View which is used to replicate the user photos
 struct PictureCircle: View {
     
+    @StateObject var meProfileVM: MeProfileViewModel = MeProfileViewModel()
     @Binding var userPhotos: [Int: String]
     
     @State var showPHPicker: Bool = false
@@ -143,7 +147,9 @@ struct PictureCircle: View {
                 ImagePicker(images: $imagesFromPHPicker, showPicker: $showPHPicker, limit: 1) { (imagesPicked) in
                     if imagesPicked {
                         // TODO: @budni hier .first hochladen
+                        // tag
                         print("images in picked Array \(imagesFromPHPicker)")
+                        meProfileVM.addPhotoInPosition(image: imagesFromPHPicker.first!, position: tag)
                         
                     }
                 }
@@ -167,7 +173,7 @@ struct PictureCircle: View {
     func deletePicture(pictureIndex: Int) {
         
         print("delete \(pictureIndex)")
-        
+        meProfileVM.deletePhoto(position: pictureIndex)
         // TODO: @budni delete picture with index here
     }
 }
