@@ -7,12 +7,14 @@
 
 import SwiftUI
 
+
 struct MeProfileSecondBlockView: View {
+    @StateObject var meProfileVM: MeProfileViewModel = MeProfileViewModel()
     
-    @State private var range: Double = 150
-    @State private var pickedGender = 1
-    
+    //@State private var range: Double = 150
+    //@State private var pickedGender = 1
     private var genders = ["Female", "Male", "Other"]
+    
     
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color("BackgroundSecondary"))
@@ -40,13 +42,13 @@ struct MeProfileSecondBlockView: View {
                 // title
                 HStack(spacing: 0.0) {
                     Text("Show me YOUs within ")
-                    Text(String(Int(range)))
+                    Text(String(Int(meProfileVM.userModel.radiusInKilometer)))
                     Text(" km")
                         .foregroundColor(.accentColor)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 // slider
-                Slider(value: $range, in: 5...150) { (editingChanged) in
+                Slider(value: $meProfileVM.userModel.radiusInKilometer, in: 5...150) { (editingChanged) in
                     //
                 }
                 .accentColor(Color("BackgroundSecondary"))
@@ -58,13 +60,13 @@ struct MeProfileSecondBlockView: View {
                 // title
                 HStack(spacing: 0.0) {
                     Text("Show me ")
-                    Text("\(genders[pickedGender])")
+                    Text(meProfileVM.userModel.searchingFor)
                         .foregroundColor(.accentColor)
                     Text(" YOUs")
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 // segmented picker
-                Picker("Test", selection: $pickedGender) {
+                Picker("Test", selection: $meProfileVM.picked) {
                     Text("Female").tag(0)
                     Text("Male").tag(1)
                     Text("Both").tag(2)
@@ -76,8 +78,19 @@ struct MeProfileSecondBlockView: View {
         .padding()
         .frame(width: 327, height: 200)
         .modifier(offWhiteShadow(cornerRadius: 14))
+        .onAppear {
+            meProfileVM.getCurrentUser()
+ 
+            }
+        .onDisappear{
+            print("disaper")
+            meProfileVM.changedSearchingFor(searchingFor: meProfileVM.picked)
+            meProfileVM.changedRange(radius: meProfileVM.userModel.radiusInKilometer)
+            
+        }
+        }
     }
-}
+
 
 struct MeProfileSecondBlockView_Previews: PreviewProvider {
     static var previews: some View {

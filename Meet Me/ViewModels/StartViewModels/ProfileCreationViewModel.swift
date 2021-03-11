@@ -19,7 +19,7 @@ class ProfileCreationModel: ObservableObject {
     private var locationManager: LocationManager = LocationManager()
     @Published var saved: Bool = false
     @Published var message: String = ""
-    private var counter = 1
+    private var counter = 0
     
     var userId: String = ""
     var name: String = "Name"
@@ -48,45 +48,28 @@ class ProfileCreationModel: ObservableObject {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
+        var uiImages = images
+        
+        if uiImages!.count < 0 {
+            uiImages!.append(UIImage(named: "Philipp")!)
+        }
+        
         self.birthdayDate = convertStringToDate(date: bDate)
         
-        let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor, userPhotos: [1: stockUrlString], radiusInKilometers: 1000)
+        let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor, userPhotos: [1: ""], userPhotosId: [1: ""], radiusInKilometer: 150)
         
         firstly {
             self.firestoreManagerUserTest.saveUser(userModel: userModel)
         }.then {
             self.firestoreManagerUserTest.createLikedEventsArray()
         }.then {
-            when(fulfilled: images!.compactMap(self.uploadUserPhotos)).done {
-                print("FINISH")
-            }
-        }.done {
-            print(images!)
+            when(fulfilled: uiImages!.compactMap(self.uploadUserPhotos))
         }.catch { error in
             print("DEBUG: catch, fehler in event creation \(error)")
             print(error.localizedDescription)
         }
-        
-        
-        
-        
     }
-        
-//}.then {
-//    when(fulfilled: self.matchDoc.compactMap(self.getAllMatchInformation)).done { result in
-//        self.matches = result
-//    }.done{
-//        self.matches = self.matches.sorted{
-//            $0.event.distance < $1.event.distance
-//
-//        }
-    
-    //        }.then { userModel in
-    //            self.firestoreFotoMangerUserTest.resizeImage(originalImages: images)
-    //        }.then { picture in
-    //            self.firestoreFotoMangerUserTest.uploadUserPhoto(data: picture)
-    //        }.then { urls in
-    //            self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url1: urls[0], url2: urls[1], url3: urls[2])
+
     
     func uploadUserPhotos(originalImage: UIImage) -> Promise<Void> {
         return Promise { seal in
@@ -97,8 +80,8 @@ class ProfileCreationModel: ObservableObject {
             }.then { url in
                 self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url: url, fotoPlace: self.counter)
             }.done {
-                print(self.counter)
                 self.counter = self.counter + 1
+                _ = self.firestoreFotoMangerUserTest.saveStorageIds(fotoPlace: 0)
                 seal.fulfill(())
             }.catch { error in
                 seal.reject(error)

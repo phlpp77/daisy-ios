@@ -12,21 +12,20 @@ import FirebaseAuth
 
 
 class LogoutViewModel: ObservableObject {
-    @Published  var loggedIn = true
     
     func authSignOut() -> Promise<Void> {
         return Promise { seal in
+            let firebaseAuth = Auth.auth()
             do {
-                try Auth.auth().signOut()
-                seal.fulfill(())
-                //startProcessDone = false
+                try firebaseAuth.signOut()
             } catch { let error = error
                 seal.reject(error)
             }
+            seal.fulfill(())
             
         }
     
     }
 }
-    
+
 

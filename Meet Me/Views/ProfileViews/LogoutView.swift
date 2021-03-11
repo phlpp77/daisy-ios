@@ -24,9 +24,7 @@ struct LogoutView: View {
             }
 
 
-            
 
-    
             
         }
         .padding()

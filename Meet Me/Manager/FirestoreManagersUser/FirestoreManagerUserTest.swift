@@ -95,7 +95,7 @@ class FirestoreManagerUserTest {
     }
     
     
-    func setSearchingFor(searchingFor: String) -> Promise<Void> {
+    func setSearchingForUserProfile(searchingFor: String) -> Promise<Void> {
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {return}
             
@@ -106,6 +106,33 @@ class FirestoreManagerUserTest {
                     seal.fulfill(())
                 }
             }
+        }
+        
+    }
+    func setSearchingForEvents(searchingFor: String) ->Promise<Void> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                throw Err("No User Profile")
+            }
+            db.collection("events").whereField("userId", isEqualTo: currentUser.uid).getDocuments{ (snapshot, error) in
+                if let error = error {
+                    seal.reject(error)
+                } else {
+                    let ids: [String]! = snapshot?.documents.compactMap { doc in
+                        return doc.documentID
+                    }
+                    for id in ids {
+                        self.db.collection("events").document(id).updateData(["searchingFor" : searchingFor]){ error in
+                            if let error = error {
+                                seal.reject(error)
+                            }
+                        }
+                    }
+                    seal.fulfill(())
+                    
+                }
+            }
+
         }
         
     }

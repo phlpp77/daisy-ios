@@ -262,7 +262,7 @@ class FirestoreManagerEventTest {
             //let radiusInKilometers: Double = 50
             
             let queryBounds = GFUtils.queryBounds(forLocation: center,
-                                                  withRadius: user.radiusInKilometers)
+                                                  withRadius: user.radiusInKilometer)
             let queries = queryBounds.compactMap { (any) -> Query? in
                 guard let bound = any as? GFGeoQueryBounds else { return nil }
                 return db.collection("events")
@@ -302,7 +302,7 @@ class FirestoreManagerEventTest {
                                         if event.searchingFor == user.gender && event.genderFromCreator == user.searchingFor {
                                             
                                             let eventPoint = CLLocation(latitude: event.latitude, longitude: event.longitude)
-                                            event.distance = GFUtils.distance(from: userPoint, to: eventPoint)
+                                            event.distance = GFUtils.distance(from: userPoint, to: eventPoint) / 1000
                                             print("EventDistance: \(event.distance)")
                                             return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
                                         }

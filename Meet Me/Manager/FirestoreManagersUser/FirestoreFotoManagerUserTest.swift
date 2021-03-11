@@ -16,9 +16,8 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     
     let storage = Storage.storage()
     private var db: Firestore
-    //@Published var photoModel: [PhotoModelObject] = []
-//    var stockPhotoModel: PhotoModel = PhotoModel()
-//    var url: URL?
+    private var storageIds: [String] = []
+
     
     
     init() {
@@ -51,9 +50,10 @@ class FirestoreFotoManagerUserTest: ObservableObject {
 
             
             let imageName = UUID().uuidString
+            storageIds.append(imageName)
             let storageRef = storage.reference()
             let photoRef = storageRef.child("UserImages/\(imageName).png")
-            
+
             photoRef.putData(data, metadata: nil) { metadata, error in
                 
                 if let err = error {
@@ -65,12 +65,32 @@ class FirestoreFotoManagerUserTest: ObservableObject {
                         seal.reject(error)
                     } else {
                         seal.fulfill(url!)
+                        
                     }
                 }
             }
             }
             
         }
+    
+    func saveStorageIds(fotoPlace: Int) ->Promise<Void> {
+        return Promise{ seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                return
+            }
+            var counter = fotoPlace
+            let dbRef = db.collection("users").document(currentUser.uid)
+            let _ = storageIds.compactMap { id in
+                dbRef.updateData(["userPhotosId.\(counter)" : id ])
+                counter = counter + 1
+                return
+                
+            }
+            storageIds = []
+            seal.fulfill(())
+        }
+    }
+    
 
         
     
@@ -79,6 +99,7 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
     func savePhotoUrlToFirestore(url: URL, fotoPlace: Int) ->Promise<Void>{
         return Promise { seal in
+            
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
@@ -92,18 +113,25 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     
     func changedProfilPicture(newProfilePicture: URL) ->Promise<Void> {
         return Promise { seal in
+            print("changedProfilPicture aufgerufen")
+            print("new event url \(newProfilePicture)")
             guard let currentUser = Auth.auth().currentUser else {
                 throw Err("No User Profile")
             }
-            db.collection("events").whereField("userId", isEqualTo: currentUser.uid).getDocuments{ (snapshot, error) in
+             db.collection("events").whereField("userId", isEqualTo: currentUser.uid).getDocuments{ (snapshot, error) in
                 if let error = error {
                     seal.reject(error)
                 } else {
                     let ids: [String]! = snapshot?.documents.compactMap { doc in
                         return doc.documentID
                     }
+
                     for id in ids {
-                        self.db.collection("events").document(id).updateData(["profilePicture" : newProfilePicture.absoluteString])
+                        self.db.collection("events").document(id).updateData(["profilePicture" : newProfilePicture.absoluteString]) { error in
+                            if let error = error {
+                                seal.reject(error)
+                            }
+                        }
                     }
                     seal.fulfill(())
                     
@@ -113,7 +141,72 @@ class FirestoreFotoManagerUserTest: ObservableObject {
         }
         
     }
+//    func setSearchingForEvents(searchingFor: String) ->Promise<Void> {
+//        return Promise { seal in
+//            guard let currentUser = Auth.auth().currentUser else {
+//                throw Err("No User Profile")
+//            }
+//            db.collection("events").whereField("userId", isEqualTo: currentUser.uid).getDocuments{ (snapshot, error) in
+//                if let error = error {
+//                    seal.reject(error)
+//                } else {
+//                    let ids: [String]! = snapshot?.documents.compactMap { doc in
+//                        return doc.documentID
+//                    }
+//                    for id in ids {
+//                        self.db.collection("events").document(id).updateData(["searchingFor" : searchingFor]){ error in
+//                            if let error = error {
+//                                seal.reject(error)
+//                            }
+//                        }
+//                    }
+//                    seal.fulfill(())
+//
+//                }
+//            }
+//
+//        }
+//
+//    }
+    
+ 
+    func deleteImageFromStorage(storageId: String) ->Promise<Void> {
+        return Promise { seal in
+
+            let storageRef = storage.reference()
+            let photoRef = storageRef.child("UserImages/\(storageId).png")
+            
+            photoRef.delete { error in
+                if let error = error {
+                    seal.reject(error)
+                } else {
+                    seal.fulfill(())
+                }
+            }
+        }
+    }
+    
+    
+    func deleteImageFromUser(fotoPlace: Int) -> Promise<Void> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                return
+            }
+            
+            let _ = db.collection("users").document(currentUser.uid)
+                .updateData(["userPhotos.\(fotoPlace)" : FieldValue.delete(),
+                             "userPhotosId.\(fotoPlace)" : FieldValue.delete()]) { error in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        seal.fulfill(())
+                    }
+                }
+        }
+    }
+    
 }
+    
 
 
         

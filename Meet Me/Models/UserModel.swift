@@ -17,7 +17,8 @@ struct UserModel: Codable {
     var startProcessDone: Bool = true
     var searchingFor: String = ""
     var userPhotos: [Int: String]
-    var radiusInKilometers: Double
+    var userPhotosId: [Int: String]
+    var radiusInKilometer: Double
 
     
 }
@@ -53,6 +54,12 @@ struct UserModelObject {
     
     var userPhotos: [Int: String] {
         user.userPhotos
+    }
+    var userPhotosId: [Int: String] {
+        user.userPhotosId
+    }
+    var radiusInKilometer: Double {
+        user.radiusInKilometer
     }
 
     
