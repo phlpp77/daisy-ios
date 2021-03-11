@@ -158,7 +158,7 @@ struct ProfileCreationView: View {
                             // haptic feedback when button is tapped
                             hapticPulse(feedback: .rigid)
                             
-                            profileCreationFinished = true
+                            profileCreationFinished = true      
                             
                         }, label: {
                             HStack {
