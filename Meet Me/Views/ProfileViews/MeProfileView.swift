@@ -108,7 +108,7 @@ struct MeProfileView: View {
         
         // MARK: Get data from database
         .onAppear {
-            self.meProfileVM.getUserProfile()
+            self.meProfileVM.getCurrentUser()
 
         }
         

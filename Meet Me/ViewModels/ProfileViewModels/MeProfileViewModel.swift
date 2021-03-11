@@ -8,31 +8,62 @@
 import Foundation
 import PromiseKit
 import SwiftUI
+import Firebase
 
 
 
 class MeProfileViewModel: ObservableObject {
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     private var firestoreFotoManagerUserTest: FirestoreFotoManagerUserTest = FirestoreFotoManagerUserTest()
-    //var user: [UserModelObject] = []
     @Published var userModel: UserModel = stockUser
     @Published var userPictureURL: URL = stockURL
     private var url: URL = stockURL
-
+    private var db: Firestore
+    
+    init() {
+        db = Firestore.firestore()
+    }
     
 
     
-    func getUserProfile() {
-            firstly {
-                self.firestoreManagerUserTest.getCurrentUser()
-            }.done { user in
-                self.userModel = user
-                self.userPictureURL = URL(string: user.userPhotos[1] ?? stockUrlString)!
-            }.catch { error in
-                print("DEBUG: error in getUserProfileChain \(error)")
-                print("DEBUG: \(error.localizedDescription)")
-            }
+//    func getUserProfile() {
+//            firstly {
+//                self.firestoreManagerUserTest.getCurrentUser()
+//            }.done { user in
+//                self.userModel = user
+//                self.userPictureURL = URL(string: user.userPhotos[1] ?? stockUrlString)!
+//            }.catch { error in
+//                print("DEBUG: error in getUserProfileChain \(error)")
+//                print("DEBUG: \(error.localizedDescription)")
+//            }
+//        }
+    
+    func getCurrentUser() {
+        guard let currentUser = Auth.auth().currentUser else {
+            return
         }
+        db.collection("users").document(currentUser.uid).addSnapshotListener { snapshot, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                if let snapshot = snapshot {
+                    let userModel = try? snapshot.data(as: UserModel.self)
+                    DispatchQueue.main.async {
+                        if userModel != nil {
+                            self.userModel = userModel!
+                        }else {
+                            print(Err("cant get userProfil"))
+                        }
+                    }
+                    
+                    
+                }
+            }
+            
+        }
+        
+        
+    }
 
     func changedSearchingFor(searchingFor: String){
         firstly {
