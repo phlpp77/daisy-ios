@@ -46,13 +46,15 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     
     
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
-    func uploadUserPhoto(data: Data) -> Promise<URL> {
+    func uploadUserPhoto(data: Data, fotoPlace: Int) -> Promise<URL> {
         return Promise { seal in
-
+            guard let currentUser = Auth.auth().currentUser else {
+                return
+            }
             
-            let imageName = UUID().uuidString
+            //let imageName = UUID().uuidString
             let storageRef = storage.reference()
-            let photoRef = storageRef.child("UserImages/\(imageName).png")
+            let photoRef = storageRef.child("UserImages/\(currentUser.uid + String(fotoPlace)).png")
             
             photoRef.putData(data, metadata: nil) { metadata, error in
                 
@@ -113,7 +115,44 @@ class FirestoreFotoManagerUserTest: ObservableObject {
         }
         
     }
+    
+    func deleteImageFromStorage(fotoPlace: Int) ->Promise<Void> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                return
+            }
+            let storageRef = storage.reference()
+            let photoRef = storageRef.child("UserImages/\(currentUser.uid + String(fotoPlace)).png")
+            
+            photoRef.delete { error in
+                if let error = error {
+                    seal.reject(error)
+                } else {
+                    seal.fulfill(())
+                }
+            }
+        }
+    }
+    
+    
+    func delteImageFromUser(fotoPlace: Int) -> Promise<Void> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                return
+            }
+            
+            let _ = db.collection("users").document(currentUser.uid)
+                .updateData(["userPhotos.\(fotoPlace)" : FieldValue.delete()]) { error in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        seal.fulfill(())
+                    }
+                }
+        }
+    }
 }
+    
 
 
         
