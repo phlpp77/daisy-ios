@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct MeProfileFirstBlockView: View {
+    
+    @StateObject var meProfileVM: MeProfileViewModel = MeProfileViewModel()
+    
     var body: some View {
         VStack {
             
@@ -26,15 +30,15 @@ struct MeProfileFirstBlockView: View {
             HStack {
                 // left column
                 VStack {
-                    PictureCircle(tag: 0, isProfilePicture: true)
+                    PictureCircle(userPhotos: $meProfileVM.userModel.userPhotos, tag: 0, isProfilePicture: true)
                     Spacer()
-                    PictureCircle(tag: 2, isProfilePicture: false)
+                    PictureCircle(userPhotos: $meProfileVM.userModel.userPhotos, tag: 2, isProfilePicture: false)
                 }
                 // right column
                 VStack {
-                    TextCircle(textContent: "21", textSize: 20)
-                    PictureCircle(tag: 1, isProfilePicture: false)
-                    TextCircle(textContent: "Female", textSize: 14)
+                    TextCircle(textContent: String(dateToAge(date: meProfileVM.userModel.birthdayDate)), textSize: 20)
+                    PictureCircle(userPhotos: $meProfileVM.userModel.userPhotos, tag: 1, isProfilePicture: false)
+                    TextCircle(textContent: meProfileVM.userModel.gender, textSize: 14)
                 }
             }
             .padding()
@@ -57,8 +61,14 @@ struct MeProfileFirstBlockView_Previews: PreviewProvider {
     }
 }
 
+
 // MARK: - View which is used to replicate the user photos
 struct PictureCircle: View {
+    
+    @Binding var userPhotos: [Int: String]
+    
+    @State var showPHPicker: Bool = false
+    @State var imagesFromPHPicker: [UIImage] = [UIImage(named: "cafe")!]
     
     var tag: Int
     var isProfilePicture: Bool
@@ -115,28 +125,50 @@ struct PictureCircle: View {
                 }
                 
                 // MARK: Actual Image
-                // FIXME: need to be changed to URLImage
-                Image("Philipp")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 91, height: 91)
-                    .clipShape(Circle())
+                if userPhotos[tag] != nil {
+                    URLImage(url: URL(string: userPhotos[tag]!)!) { image in
+                        image.resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 91, height: 91)
+                            .clipShape(Circle())
+                    }
+                } else {
+                    Image(systemName: "plus")
+                        .font(.largeTitle)
+                        .frame(width: 91, height: 91)
+                        .clipShape(Circle())
+                }
             }
-            
+            .sheet(isPresented: $showPHPicker, content: {
+                ImagePicker(images: $imagesFromPHPicker, showPicker: $showPHPicker, limit: 1) { (imagesPicked) in
+                    if imagesPicked {
+                        // TODO: @budni hier .first hochladen
+                        print("images in picked Array \(imagesFromPHPicker)")
+                        
+                    }
+                }
+            })
             
         }
     }
     
     // MARK: Function to change the picture
     func changePicture(pictureIndex: Int) {
-        //
+        
         print("change \(pictureIndex)")
+        
+        // show ImagePicker and delete the picking Array
+        imagesFromPHPicker = []
+        showPHPicker = true
+        
     }
     
     // Function to delete the picture
     func deletePicture(pictureIndex: Int) {
-        //
+        
         print("delete \(pictureIndex)")
+        
+        // TODO: @budni delete picture with index here
     }
 }
 

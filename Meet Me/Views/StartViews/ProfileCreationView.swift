@@ -192,7 +192,8 @@ struct ProfileCreationView: View {
                 // bring the content VStack to the same size as the background shade
                 .frame(width: 340, height: 620, alignment: .center)
                 .sheet(isPresented: $showImagePicker, content: {
-                    ImagePicker(images: $images, showPicker: $showImagePicker, limit: 3)
+                    ImagePicker(images: $images, showPicker: $showImagePicker, limit: 3, didFinishPicking: {_ in
+                })
                 })
                 
                 
@@ -232,7 +233,9 @@ struct ProfileCreationView: View {
                     case 5:
                         Color.clear
                             .sheet(isPresented: $showImagePicker, content: {
-                            ImagePicker(images: $images, showPicker: $showImagePicker, limit: 3)
+                                ImagePicker(images: $images, showPicker: $showImagePicker, limit: 3) { (_) in
+                                    //
+                                }
                                 
                         })
                             .onAppear {

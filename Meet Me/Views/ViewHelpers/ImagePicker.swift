@@ -7,9 +7,9 @@
 
 import SwiftUI
 import PhotosUI
+import PromiseKit
 
 struct ImagePicker: UIViewControllerRepresentable {
-    
     
     
     @Binding var images: [UIImage]
@@ -21,6 +21,9 @@ struct ImagePicker: UIViewControllerRepresentable {
     var filter: PHPickerFilter = .images
     // config of the limited, how many items can be picked at once
     var limit: Int = 3
+    
+    // closure which returns true if items/images where selected
+    var didFinishPicking: (_ didSelectItems: Bool) -> Void
     
     func makeUIViewController(context: Context) -> PHPickerViewController {
         
@@ -45,6 +48,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         return ImagePicker.Coordinator(parent: self)
     }
     
+    
     class Coordinator: NSObject, PHPickerViewControllerDelegate {
         
         var parent: ImagePicker
@@ -53,29 +57,42 @@ struct ImagePicker: UIViewControllerRepresentable {
             self.parent = parent
         }
         
+        
         func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             
-            // closing the picker
+            // closing the view of the picker
             parent.showPicker.toggle()
             
             // getting the results
-            for img in results {
+            firstly {
+                when(fulfilled: results.compactMap(loop)).done {
+                    // if we have results push the to the closure
+                    self.parent.didFinishPicking(results.count > 0)
+                    
+                }
                 
+            }.catch { error in
+                print(error.localizedDescription)
+            }
+        }
+        
+        func loop(img: PHPickerResult) -> Promise<Void> {
+            return Promise { seal in
+                print("Img: \(img)")
                 // error handling, if items can be loaded
                 if img.itemProvider.canLoadObject(ofClass: UIImage.self) {
                     
                     img.itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
-                        guard let img = image else {
-                            print(error!.localizedDescription)
-                            return
+                        if let error = error {
+                            seal.reject(error)
+                        }else {
+                            if let img = image {
+                                self.parent.images.append(img as! UIImage)
+                                seal.fulfill(())
+                            }
                         }
-                        self.parent.images.append(img as! UIImage)
-//                        self.parent.images[0] = img as! UIImage
                     }
-                    
-                } else {
                 }
-                
             }
         }
     }
