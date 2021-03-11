@@ -19,7 +19,7 @@ class ProfileCreationModel: ObservableObject {
     private var locationManager: LocationManager = LocationManager()
     @Published var saved: Bool = false
     @Published var message: String = ""
-    private var counter = 1
+    private var counter = 0
     
     var userId: String = ""
     var name: String = "Name"
@@ -56,7 +56,7 @@ class ProfileCreationModel: ObservableObject {
         
         self.birthdayDate = convertStringToDate(date: bDate)
         
-        let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor, userPhotos: [1: stockUrlString], radiusInKilometers: 1000)
+        let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor, userPhotos: [1: ""], userPhotosId: [1: ""], radiusInKilometers: 1000)
         
         firstly {
             self.firestoreManagerUserTest.saveUser(userModel: userModel)
@@ -80,8 +80,8 @@ class ProfileCreationModel: ObservableObject {
             }.then { url in
                 self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url: url, fotoPlace: self.counter)
             }.done {
-                print(self.counter)
                 self.counter = self.counter + 1
+                _ = self.firestoreFotoMangerUserTest.saveStorageIds(fotoPlace: 0)
                 seal.fulfill(())
             }.catch { error in
                 seal.reject(error)

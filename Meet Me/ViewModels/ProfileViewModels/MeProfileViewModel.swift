@@ -21,6 +21,8 @@ class MeProfileViewModel: ObservableObject {
     private var db: Firestore
     private var listener: ListenerRegistration?
     
+    
+    
     init() {
         db = Firestore.firestore()
     }
@@ -63,7 +65,9 @@ class MeProfileViewModel: ObservableObject {
 
     func changedSearchingFor(searchingFor: String){
         firstly {
-            firestoreManagerUserTest.setSearchingFor(searchingFor: searchingFor)
+            self.firestoreManagerUserTest.setSearchingForUserProfile(searchingFor: searchingFor)
+        }.then {
+            self.firestoreManagerUserTest.setSearchingForEvents(searchingFor: searchingFor)
         }.catch { error in
             print("DEBUG: Error in chagedSerachingFor: \(error)")
             print("DEBUG: Error localized in: \(error.localizedDescription)")
@@ -81,8 +85,8 @@ class MeProfileViewModel: ObservableObject {
     }
     
     func addPhotoInPosition(image: UIImage, position: Int) {
-        firstly{
-            self.firestoreFotoManagerUserTest.deleteImageFromUser(fotoPlace: position)
+        firstly {
+            self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: self.userModel.userPhotosId[position]!)
         }.then {
             self.firestoreFotoManagerUserTest.resizeImage(originalImage: image)
         }.then { picture in
@@ -91,6 +95,8 @@ class MeProfileViewModel: ObservableObject {
             self.url = url
         }.then {
             self.firestoreFotoManagerUserTest.savePhotoUrlToFirestore(url: self.url, fotoPlace: position)
+        }.done {
+            _ = self.firestoreFotoManagerUserTest.saveStorageIds(fotoPlace: position)
         }.catch { error in
             print(error )
         }
@@ -105,9 +111,9 @@ class MeProfileViewModel: ObservableObject {
     
     func deletePhoto(position: Int) {
         firstly {
+            self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: self.userModel.userPhotosId[position]!)
+        }.then  {
             self.firestoreFotoManagerUserTest.deleteImageFromUser(fotoPlace: position)
-        }.then {
-            self.firestoreFotoManagerUserTest.deleteImageFromStorage(fotoPlace: position)
         }.catch { error in
             print("DEBUG: error in deletePhoto error: \(error)")
             print("DEBUG: error localized: \(error.localizedDescription)")

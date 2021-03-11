@@ -53,8 +53,8 @@ let secondaryGradient = LinearGradient(
 // MARK - Stockdata
 
 // MARK: stock user to use as default
-let stockUser: UserModel = UserModel(userId: "007", name: "Stocky One", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Female", userPhotos: [1: stockUrlString], radiusInKilometers: 1000)
-let stockUser2: UserModel = UserModel(userId: "008", name: "Stockise Two", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [1: stockUrlString], radiusInKilometers: 1000)
+let stockUser: UserModel = UserModel(userId: "007", name: "Stocky One", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Female", userPhotos: [1: stockUrlString], userPhotosId: [1: ""], radiusInKilometers: 1000)
+let stockUser2: UserModel = UserModel(userId: "008", name: "Stockise Two", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [1: stockUrlString], userPhotosId: [1: ""], radiusInKilometers: 1000)
 
 let stockUserObject: UserModelObject = UserModelObject(user: stockUser)
 
