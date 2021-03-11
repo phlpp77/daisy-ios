@@ -82,11 +82,11 @@ class MeProfileViewModel: ObservableObject {
     
     func addPhotoInPosition(image: UIImage, position: Int) {
         firstly{
-            self.firestoreFotoManagerUserTest.delteImageFromUser(fotoPlace: position)
+            self.firestoreFotoManagerUserTest.deleteImageFromUser(fotoPlace: position)
         }.then {
             self.firestoreFotoManagerUserTest.resizeImage(originalImage: image)
         }.then { picture in
-            self.firestoreFotoManagerUserTest.uploadUserPhoto(data: picture, fotoPlace: position)
+            self.firestoreFotoManagerUserTest.uploadUserPhoto(data: picture)
         }.map { url in
             self.url = url
         }.then {
@@ -105,7 +105,7 @@ class MeProfileViewModel: ObservableObject {
     
     func deletePhoto(position: Int) {
         firstly {
-            self.firestoreFotoManagerUserTest.delteImageFromUser(fotoPlace: position)
+            self.firestoreFotoManagerUserTest.deleteImageFromUser(fotoPlace: position)
         }.then {
             self.firestoreFotoManagerUserTest.deleteImageFromStorage(fotoPlace: position)
         }.catch { error in

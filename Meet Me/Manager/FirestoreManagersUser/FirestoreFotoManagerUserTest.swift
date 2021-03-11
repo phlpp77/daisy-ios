@@ -46,15 +46,16 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     
     
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
-    func uploadUserPhoto(data: Data, fotoPlace: Int) -> Promise<URL> {
+    func uploadUserPhoto(data: Data) -> Promise<URL> {
         return Promise { seal in
-            guard let currentUser = Auth.auth().currentUser else {
-                return
-            }
+
+//            guard let currentUser = Auth.auth().currentUser else {
+//                return
+//            }
             
-            //let imageName = UUID().uuidString
+            let imageName = UUID().uuidString
             let storageRef = storage.reference()
-            let photoRef = storageRef.child("UserImages/\(currentUser.uid + String(fotoPlace)).png")
+            let photoRef = storageRef.child("UserImages/\(imageName).png")
             
             photoRef.putData(data, metadata: nil) { metadata, error in
                 
@@ -81,6 +82,8 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
     func savePhotoUrlToFirestore(url: URL, fotoPlace: Int) ->Promise<Void>{
         return Promise { seal in
+
+            
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
@@ -135,7 +138,7 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     }
     
     
-    func delteImageFromUser(fotoPlace: Int) -> Promise<Void> {
+    func deleteImageFromUser(fotoPlace: Int) -> Promise<Void> {
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
                 return

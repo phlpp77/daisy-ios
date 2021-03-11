@@ -76,7 +76,7 @@ class ProfileCreationModel: ObservableObject {
             firstly{
                 self.firestoreFotoMangerUserTest.resizeImage(originalImage: originalImage)
             }.then { picture in
-                self.firestoreFotoMangerUserTest.uploadUserPhoto(data: picture, fotoPlace: self.counter)
+                self.firestoreFotoMangerUserTest.uploadUserPhoto(data: picture)
             }.then { url in
                 self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url: url, fotoPlace: self.counter)
             }.done {
