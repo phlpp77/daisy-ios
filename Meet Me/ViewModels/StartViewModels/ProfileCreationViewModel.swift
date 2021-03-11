@@ -58,33 +58,13 @@ class ProfileCreationModel: ObservableObject {
             self.firestoreManagerUserTest.createLikedEventsArray()
         }.then {
             when(fulfilled: images!.compactMap(self.uploadUserPhotos)).done {
-                print("FINISH")
             }
         }.catch { error in
             print("DEBUG: catch, fehler in event creation \(error)")
             print(error.localizedDescription)
         }
-        
-        
-        
-        
     }
-        
-//}.then {
-//    when(fulfilled: self.matchDoc.compactMap(self.getAllMatchInformation)).done { result in
-//        self.matches = result
-//    }.done{
-//        self.matches = self.matches.sorted{
-//            $0.event.distance < $1.event.distance
-//
-//        }
-    
-    //        }.then { userModel in
-    //            self.firestoreFotoMangerUserTest.resizeImage(originalImages: images)
-    //        }.then { picture in
-    //            self.firestoreFotoMangerUserTest.uploadUserPhoto(data: picture)
-    //        }.then { urls in
-    //            self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url1: urls[0], url2: urls[1], url3: urls[2])
+
     
     func uploadUserPhotos(originalImage: UIImage) -> Promise<Void> {
         return Promise { seal in

@@ -19,6 +19,7 @@ class MeProfileViewModel: ObservableObject {
     @Published var userPictureURL: URL = stockURL
     private var url: URL = stockURL
     private var db: Firestore
+    private var listener: ListenerRegistration?
     
     init() {
         db = Firestore.firestore()
@@ -42,7 +43,7 @@ class MeProfileViewModel: ObservableObject {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
-        db.collection("users").document(currentUser.uid).addSnapshotListener { snapshot, error in
+        listener = db.collection("users").document(currentUser.uid).addSnapshotListener { snapshot, error in
             if let error = error {
                 print(error.localizedDescription)
             } else {
@@ -55,14 +56,9 @@ class MeProfileViewModel: ObservableObject {
                             print(Err("cant get userProfil"))
                         }
                     }
-                    
-                    
                 }
             }
-            
         }
-        
-        
     }
 
     func changedSearchingFor(searchingFor: String){
@@ -85,7 +81,9 @@ class MeProfileViewModel: ObservableObject {
     }
     
     func addPhotoInPosition(image: UIImage, position: Int) {
-        firstly {
+        firstly{
+            self.firestoreFotoManagerUserTest.delteImageFromUser(fotoPlace: position)
+        }.then {
             self.firestoreFotoManagerUserTest.resizeImage(originalImage: image)
         }.then { picture in
             self.firestoreFotoManagerUserTest.uploadUserPhoto(data: picture, fotoPlace: position)
@@ -103,7 +101,6 @@ class MeProfileViewModel: ObservableObject {
                 print(error)
             }
         }
-        
     }
     
     func deletePhoto(position: Int) {
@@ -117,6 +114,9 @@ class MeProfileViewModel: ObservableObject {
         }
     }
     
+    func stopListening(){
+        listener?.remove()
+    }
 }
        
             
