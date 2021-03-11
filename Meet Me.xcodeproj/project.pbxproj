@@ -19,6 +19,7 @@
 		174423AE25D9A93000D25EDD /* EventCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174423AD25D9A93000D25EDD /* EventCreationView.swift */; };
 		1746097425FA448700726BA1 /* MeProfileFirstBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1746097325FA448700726BA1 /* MeProfileFirstBlockView.swift */; };
 		1746097725FA45A900726BA1 /* MeProfileSecondBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1746097625FA45A900726BA1 /* MeProfileSecondBlockView.swift */; };
+		174EFCD725FABDC40028C04C /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174EFCD625FABDC40028C04C /* RingView.swift */; };
 		175E40E025B43BB200ADC9BF /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40DF25B43BB200ADC9BF /* StartView.swift */; };
 		175E40E325B4670800ADC9BF /* StartBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40E225B4670800ADC9BF /* StartBackgroundView.swift */; };
 		175E40E625B46ABB00ADC9BF /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40E525B46ABB00ADC9BF /* BlurView.swift */; };
@@ -118,6 +119,7 @@
 		174423AD25D9A93000D25EDD /* EventCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationView.swift; sourceTree = "<group>"; };
 		1746097325FA448700726BA1 /* MeProfileFirstBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileFirstBlockView.swift; sourceTree = "<group>"; };
 		1746097625FA45A900726BA1 /* MeProfileSecondBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileSecondBlockView.swift; sourceTree = "<group>"; };
+		174EFCD625FABDC40028C04C /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
 		175E40DF25B43BB200ADC9BF /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		175E40E225B4670800ADC9BF /* StartBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartBackgroundView.swift; sourceTree = "<group>"; };
 		175E40E525B46ABB00ADC9BF /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				17DE52EC25EA3F9E000D0B4D /* ImagePicker.swift */,
 				17B0B61025F543F70014B0FD /* TabBarView.swift */,
 				17B0B61425F546810014B0FD /* TabButtonView.swift */,
+				174EFCD625FABDC40028C04C /* RingView.swift */,
 			);
 			path = ViewHelpers;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				175E40F025B4CD3300ADC9BF /* RegisterView.swift in Sources */,
 				1746097725FA45A900726BA1 /* MeProfileSecondBlockView.swift in Sources */,
 				177F681925D8409200BC345B /* MeProfileView.swift in Sources */,
+				174EFCD725FABDC40028C04C /* RingView.swift in Sources */,
 				1795DFAE25DF20AD002D537F /* LoadingView.swift in Sources */,
 				17DAD7E325D934D600DBE60B /* GlobalFunctions.swift in Sources */,
 				176A5AC725F3C0A000C857E8 /* ChatEventView.swift in Sources */,
