@@ -18,15 +18,12 @@ class LoginViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var password2: String = ""
     @Published var errorMessage: String = ""
-    private var newErrorMessage: String = ""
-    @Published var startProcessDone: Bool = false
     
     
     
     
-    //login
+    //login Functions
         
-    
     func checkUserAcc() -> Promise<Bool> {
         return Promise { seal in
             firstly {
@@ -54,14 +51,13 @@ class LoginViewModel: ObservableObject {
     }
     
     
-
+    //register Functions 
     
     func register() -> Promise<Void> {
         return Promise{ seal in
             if self.password == self.password2 {
                 Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                     if let error = error {
-                        print("VMCatch1")
                         seal.reject(error)
                     } else {
                         seal.fulfill(())
