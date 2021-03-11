@@ -104,17 +104,45 @@ class FirestoreFotoManagerUserTest: ObservableObject {
                 return
             }
                 let _ =  db.collection("users")
-                    .document(currentUser.uid).updateData(["userPhotos.\(fotoPlace)" : url.absoluteString])
-                seal.fulfill(())
+                    .document(currentUser.uid).updateData(["userPhotos.\(fotoPlace)" : url.absoluteString]) { error in
+                        if let error = error {
+                            seal.reject(error)
+                        }else {
+                            seal.fulfill(())
+                        }
+                    }
             }
 
         }
     
+    func reOrderPictures(position:Int, position1:Int, url: String, urlId : String) ->Promise<Void> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                return
+            }
+            let _ = self.db.collection("users")
+                .document(currentUser.uid).updateData(["userPhotos.\(position)" : url,
+                                                       "userPhotosId.\(position)": urlId]) { error in
+                    if let error = error {
+                        seal.reject(error)
+                    }
+                    let _ = self.db.collection("users").document(currentUser.uid)
+                        .updateData(["userPhotos.\(position1)" : FieldValue.delete(),
+                                     "userPhotosId.\(position1)" : FieldValue.delete()]) { error in
+                            if let error = error {
+                                seal.reject(error)
+                            }
+                        }
+                                                       }
+            seal.fulfill(())
+        }
+    }
+
+    
     
     func changedProfilPicture(newProfilePicture: URL) ->Promise<Void> {
         return Promise { seal in
-            print("changedProfilPicture aufgerufen")
-            print("new event url \(newProfilePicture)")
+
             guard let currentUser = Auth.auth().currentUser else {
                 throw Err("No User Profile")
             }
@@ -141,40 +169,14 @@ class FirestoreFotoManagerUserTest: ObservableObject {
         }
         
     }
-//    func setSearchingForEvents(searchingFor: String) ->Promise<Void> {
-//        return Promise { seal in
-//            guard let currentUser = Auth.auth().currentUser else {
-//                throw Err("No User Profile")
-//            }
-//            db.collection("events").whereField("userId", isEqualTo: currentUser.uid).getDocuments{ (snapshot, error) in
-//                if let error = error {
-//                    seal.reject(error)
-//                } else {
-//                    let ids: [String]! = snapshot?.documents.compactMap { doc in
-//                        return doc.documentID
-//                    }
-//                    for id in ids {
-//                        self.db.collection("events").document(id).updateData(["searchingFor" : searchingFor]){ error in
-//                            if let error = error {
-//                                seal.reject(error)
-//                            }
-//                        }
-//                    }
-//                    seal.fulfill(())
-//
-//                }
-//            }
-//
-//        }
-//
-//    }
-    
+
  
-    func deleteImageFromStorage(storageId: String) ->Promise<Void> {
+    func deleteImageFromStorage(storageId: String?) ->Promise<Void> {
         return Promise { seal in
 
+            if storageId != nil {
             let storageRef = storage.reference()
-            let photoRef = storageRef.child("UserImages/\(storageId).png")
+            let photoRef = storageRef.child("UserImages/\(storageId!).png")
             
             photoRef.delete { error in
                 if let error = error {
@@ -183,6 +185,10 @@ class FirestoreFotoManagerUserTest: ObservableObject {
                     seal.fulfill(())
                 }
             }
+            }else {
+                seal.fulfill(())
+            }
+            
         }
     }
     
@@ -192,7 +198,6 @@ class FirestoreFotoManagerUserTest: ObservableObject {
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
-            
             let _ = db.collection("users").document(currentUser.uid)
                 .updateData(["userPhotos.\(fotoPlace)" : FieldValue.delete(),
                              "userPhotosId.\(fotoPlace)" : FieldValue.delete()]) { error in
@@ -202,8 +207,11 @@ class FirestoreFotoManagerUserTest: ObservableObject {
                         seal.fulfill(())
                     }
                 }
+            
         }
     }
+    
+    
     
 }
     

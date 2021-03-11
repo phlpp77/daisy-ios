@@ -91,9 +91,9 @@ class MeProfileViewModel: ObservableObject {
     }
     
     func addPhotoInPosition(image: UIImage, position: Int) {
-//        firstly {
-//            self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: self.userModel.userPhotosId[position])
         firstly {
+            self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: self.userModel.userPhotosId[position])
+        }.then {
             self.firestoreFotoManagerUserTest.resizeImage(originalImage: image)
         }.then { picture in
             self.firestoreFotoManagerUserTest.uploadUserPhoto(data: picture)
@@ -107,7 +107,7 @@ class MeProfileViewModel: ObservableObject {
             print(error )
         }
         if position == 0 {
-            print("eventChange aufgerufen")
+            print("übergebene Url: \(self.url)")
             firstly {
                 firestoreFotoManagerUserTest.changedProfilPicture(newProfilePicture: self.url)
             }.catch { error in
@@ -117,16 +117,30 @@ class MeProfileViewModel: ObservableObject {
     }
     
     func deletePhoto(position: Int) {
+        let position1 = position + 1
         firstly {
-            self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: self.userModel.userPhotosId[position]!)
-        }.then  {
-            self.firestoreFotoManagerUserTest.deleteImageFromUser(fotoPlace: position)
+            self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: self.userModel.userPhotosId[position])
+        }.then  { [self] in
+            self.firestoreFotoManagerUserTest.reOrderPictures(position: position, position1: position1, url: userModel.userPhotos[position]!, urlId: userModel.userPhotos[position]!)
+            //self.firestoreFotoManagerUserTest.deleteImageFromUser(fotoPlace: position)
         }.catch { error in
             print("DEBUG: error in deletePhoto error: \(error)")
             print("DEBUG: error localized: \(error.localizedDescription)")
         }
     }
-    //eventModel.profilePicture = userModel.userPhotos[0]!
+    
+    func changePhoto(position: Int) -> Promise<Void> {
+        return Promise { seal in
+            let position1 = position + 1
+            if self.userModel.userPhotosId[position1] != nil {
+                self.firestoreFotoManagerUserTest.reOrderPictures(position: position, position1: position1, url: userModel.userPhotos[position1]!, urlId: userModel.userPhotos[position1]!)
+            } else {
+                self.firestoreFotoManagerUserTest.deleteImageFromUser(fotoPlace: position)
+            }
+        }
+    }
+    
+    
     
     func stopListening(){
         listener?.remove()
