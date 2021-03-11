@@ -18,51 +18,32 @@ class LoginViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var password2: String = ""
     @Published var errorMessage: String = ""
+    private var newErrorMessage: String = ""
     @Published var startProcessDone: Bool = false
     
     
     
     
     //login
-    
-    func login() -> Promise<Void>{
-        return Promise { seal in
-            firstly {
-                loginAuth()
-            }.then {
-                self.checkUserAcc()
-            }.done { acc in
-                //True wenn erfolgreich
-                self.startProcessDone = acc
-                seal.fulfill(())
-            }.catch { error in
-                self.errorMessage = error.localizedDescription
-                print(error.localizedDescription)
-            }
-        }
-    }
         
     
     func checkUserAcc() -> Promise<Bool> {
         return Promise { seal in
             firstly {
-                firestoreManagerUserTest.getCurrentUser()
+                self.firestoreManagerUserTest.getCurrentUser()
             }.done { userModel in
-                seal.fulfill(userModel.startProcessDone)
+                seal.fulfill(true)
             }.catch { error in
-                self.errorMessage = error.localizedDescription
-                print(error.localizedDescription)
+                seal.fulfill(false)
             }
         }
-        
     }
     
     func loginAuth() ->Promise<Void>{
         return Promise { seal in
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if let error = error {
-                    self.errorMessage = error.localizedDescription
-                    print(error.localizedDescription)
+                    seal.reject(error)
                 } else {
                     seal.fulfill(())
                 }
@@ -73,66 +54,26 @@ class LoginViewModel: ObservableObject {
     }
     
     
-    //register
-    func register() ->Promise<Void>{
-        return Promise { seal in
-            firstly {
-                self.checkErrorsRegister()
-            }.then {
-                self.registerAuth()
-            }.done {
-                seal.fulfill(())
-            }.catch { error in
-                self.errorMessage = error.localizedDescription
-                print(error.localizedDescription)
-            }
-        }
-    }
+
     
-    
-    
-    
-    
-    func registerAuth() -> Promise<Void> {
+    func register() -> Promise<Void> {
         return Promise{ seal in
-            Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-                if let error = error {
-                    self.errorMessage = error.localizedDescription
-                    print(error.localizedDescription)
-                } else {
-                    seal.fulfill(())
+            if self.password == self.password2 {
+                Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+                    if let error = error {
+                        print("VMCatch1")
+                        seal.reject(error)
+                    } else {
+                        seal.fulfill(())
+                    }
                 }
+            }else {
+                seal.reject(Err("passwords are not the same"))
             }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    func checkErrorsRegister() ->Promise<Void>{
-        return Promise { seal in
-            print("checkErrorsaufgerufen")
-            print(password)
-            print(password2)
-            if self.errorMessage != "" {
-                print(errorMessage)
-            }
-            if password != password2 && password != "" {
-                self.errorMessage = "Passwords are not the same"
-                seal.reject(Err("Passwords are not the same"))
-            } else {
-                seal.fulfill(())
-            }
-        }
-        
-    }
-    
-    
-    
-    
 }
+    
+
 
 

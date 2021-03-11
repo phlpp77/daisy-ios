@@ -13,3 +13,11 @@ struct Err: Error {
     self.message = message
     }
 }
+    
+    extension Err: LocalizedError {
+        public var errorDescription: String? {
+            return NSLocalizedString(self.message, comment: "My error")
+            }
+        }
+
+

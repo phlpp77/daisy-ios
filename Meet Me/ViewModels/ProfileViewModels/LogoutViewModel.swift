@@ -18,11 +18,11 @@ class LogoutViewModel: ObservableObject {
         return Promise { seal in
             do {
                 try Auth.auth().signOut()
-                seal.fulfill(())
                 //startProcessDone = false
             } catch { let error = error
                 seal.reject(error)
             }
+            seal.fulfill(())
             
         }
     

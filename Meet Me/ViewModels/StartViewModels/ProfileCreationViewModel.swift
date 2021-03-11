@@ -48,6 +48,12 @@ class ProfileCreationModel: ObservableObject {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
+        var uiImages = images
+        
+        if uiImages!.count < 0 {
+            uiImages!.append(UIImage(named: "Philipp")!)
+        }
+        
         self.birthdayDate = convertStringToDate(date: bDate)
         
         let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor, userPhotos: [1: stockUrlString], radiusInKilometers: 1000)
@@ -57,8 +63,7 @@ class ProfileCreationModel: ObservableObject {
         }.then {
             self.firestoreManagerUserTest.createLikedEventsArray()
         }.then {
-            when(fulfilled: images!.compactMap(self.uploadUserPhotos)).done {
-            }
+            when(fulfilled: uiImages!.compactMap(self.uploadUserPhotos))
         }.catch { error in
             print("DEBUG: catch, fehler in event creation \(error)")
             print(error.localizedDescription)

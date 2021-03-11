@@ -46,7 +46,7 @@ struct ProfileCreationView: View {
     // show
     @State var showImagePicker = false
     // images in array
-    @State var images: [UIImage] = [UIImage(named: "cafe")!]
+    @State var images: [UIImage] = []
     
     // image (swiftUI)
     //@State var image: Image?

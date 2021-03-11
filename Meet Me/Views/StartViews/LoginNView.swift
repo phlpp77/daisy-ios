@@ -22,7 +22,7 @@ struct LoginNView: View {
     @State var passwordField1WasEdited: Bool = false
     @State var showPresentTermsAndConditionsSheet: Bool = false
     @State var loginMode: Bool = false
-    @State var problemMessage = ""
+
     
     var body: some View {
         
@@ -56,8 +56,8 @@ struct LoginNView: View {
                     }
                     
                     // MARK: Error-message can be presented here
-                    if problemMessage != "" {
-                        Text(problemMessage)
+                    if loginVM.errorMessage != "" {
+                        Text(loginVM.errorMessage)
                             .foregroundColor(.accentColor)
                             .font(.caption)
                     }
@@ -97,32 +97,37 @@ struct LoginNView: View {
                             
                             // if button shows login
                             if loginMode {
-                                self.loginVM.login().done {
-                                    
-                                    if self.loginVM.startProcessDone {
-                                        // switches view to main app
-                                        self.startUpDone = true
-                                    } else {
-                                        // switches view to profileCreation
-                                        self.nextPosition = .profileCreation
-                                    }
-                                    
+                                print("button tapped")
+                                DispatchQueue.main.async {
+                                    firstly{
+                                        loginVM.loginAuth()
+                                    }.then {
+                                        loginVM.checkUserAcc()
+                                    }.done { startProcessDone in
+                                        if startProcessDone {
+                                            self.startUpDone = true
+                                        }else {
+                                            self.nextPosition = .profileCreation
+                                        }
                                 }.catch { error in
-                                    print(error)
+                                    loginVM.errorMessage = error.localizedDescription
+                                    }
                                 }
+                                
                             }
                             // if button shows register
                             else {
+                                DispatchQueue.main.async {
                                 self.loginVM.register().done {
+                                    print("viewDone")
                                     // switches view to the profile Creation
                                     self.nextPosition = .profileCreation
-                                }.catch { error in 
-                                    print(error)
+                                }.catch { error in
+                                    loginVM.errorMessage = error.localizedDescription
+                                    }
                                 }
                             }
                             
-                            // error handling
-                            self.problemMessage = loginVM.errorMessage
                             
                         }, label: {
                             Text(loginMode ? "Login" : "Register")
