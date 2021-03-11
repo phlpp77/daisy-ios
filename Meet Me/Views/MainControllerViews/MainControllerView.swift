@@ -18,26 +18,26 @@ struct MainControllerView: View {
         // shows the main screen if the startProcess (user-creation) is done AND logged into firebase
         if startProcessDone || checkUserAccForAutoLogin() {
              
-//            TabBarView(startProcessDone: $startProcessDone)
-            TabView(selection: $startTab) {
-                MainSettingsView(startProcessDone: $startProcessDone).tabItem {
-                    Image(systemName: "person.circle")
-                    Text("Profile")
-                }
-                .tag(1)
-
-                MainExploreView().tabItem {
-                    Image(systemName: "circle.dashed")
-                    Text("Marketplace")
-                }
-                .tag(2)
-
-                MainChatView().tabItem {
-                    Image(systemName: "paperplane.circle")
-                    Text("Chats")
-                }
-                .tag(3)
-            }
+            TabBarView(startProcessDone: $startProcessDone)
+//            TabView(selection: $startTab) {
+//                MainSettingsView(startProcessDone: $startProcessDone).tabItem {
+//                    Image(systemName: "person.circle")
+//                    Text("Profile")
+//                }
+//                .tag(1)
+//
+//                MainExploreView().tabItem {
+//                    Image(systemName: "circle.dashed")
+//                    Text("Marketplace")
+//                }
+//                .tag(2)
+//
+//                MainChatView().tabItem {
+//                    Image(systemName: "paperplane.circle")
+//                    Text("Chats")
+//                }
+//                .tag(3)
+//            }
         } else {
 //            StartView(startProcessDone: $startProcessDone)
             MainStartView(startUpDone: $startProcessDone)

@@ -199,8 +199,8 @@ struct EventCreationView: View {
             }
             .scaleEffect(1.3)
             .sheet(isPresented: $showImagePicker, content: {
-                ImagePicker(images: $images, showPicker: $showImagePicker, limit: 1)
-            })
+                ImagePicker(images: $images, showPicker: $showImagePicker, limit: 1, didFinishPicking: {_ in})
+                })
             
             
             if showAlertBox {

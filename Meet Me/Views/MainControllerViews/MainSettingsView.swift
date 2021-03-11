@@ -18,23 +18,9 @@ struct MainSettingsView: View {
         ZStack {
             VStack {
                 
-                // MARK: Title
-                HStack(spacing: 0.0) {
-                    Text("That's ")
-                    Text("ME")
-                        .font(.system(.largeTitle, design: .rounded))
-                        .foregroundColor(.accentColor)
-                    Text("!")
-                        
-                }
-                .font(.largeTitle)
-                .padding(.vertical, 12)
+                MeProfileNView()
                 
                 
-                // MARK: Profile details
-                MeProfileView()
-                
-                Spacer()
             }
             
             LogoutView(startProcessDone: $startProcessDone)
