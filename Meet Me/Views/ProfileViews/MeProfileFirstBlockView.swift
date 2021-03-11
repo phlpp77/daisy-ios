@@ -154,6 +154,9 @@ struct PictureCircle: View {
                     }
                 }
             })
+            .onAppear {
+                meProfileVM.getCurrentUser()
+            }
             
         }
     }

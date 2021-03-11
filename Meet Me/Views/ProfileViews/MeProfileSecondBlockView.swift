@@ -42,13 +42,13 @@ struct MeProfileSecondBlockView: View {
                 // title
                 HStack(spacing: 0.0) {
                     Text("Show me YOUs within ")
-                    Text(String(Int(meProfileVM.userModel.radiusInKilometers)))
+                    Text(String(Int(meProfileVM.userModel.radiusInKilometer)))
                     Text(" km")
                         .foregroundColor(.accentColor)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 // slider
-                Slider(value: $meProfileVM.userModel.radiusInKilometers, in: 5...150) { (editingChanged) in
+                Slider(value: $meProfileVM.userModel.radiusInKilometer, in: 5...150) { (editingChanged) in
                     //
                 }
                 .accentColor(Color("BackgroundSecondary"))
@@ -82,6 +82,12 @@ struct MeProfileSecondBlockView: View {
             meProfileVM.getCurrentUser()
  
             }
+        .onDisappear{
+            print("disaper")
+            meProfileVM.changedSearchingFor(searchingFor: meProfileVM.picked)
+            meProfileVM.changedRange(radius: meProfileVM.userModel.radiusInKilometer)
+            
+        }
         }
     }
 

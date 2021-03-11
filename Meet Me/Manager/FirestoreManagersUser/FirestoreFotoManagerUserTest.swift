@@ -113,16 +113,19 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     
     func changedProfilPicture(newProfilePicture: URL) ->Promise<Void> {
         return Promise { seal in
+            print("changedProfilPicture aufgerufen")
+            print("new event url \(newProfilePicture)")
             guard let currentUser = Auth.auth().currentUser else {
                 throw Err("No User Profile")
             }
-            db.collection("events").whereField("userId", isEqualTo: currentUser.uid).getDocuments{ (snapshot, error) in
+             db.collection("events").whereField("userId", isEqualTo: currentUser.uid).getDocuments{ (snapshot, error) in
                 if let error = error {
                     seal.reject(error)
                 } else {
                     let ids: [String]! = snapshot?.documents.compactMap { doc in
                         return doc.documentID
                     }
+
                     for id in ids {
                         self.db.collection("events").document(id).updateData(["profilePicture" : newProfilePicture.absoluteString]) { error in
                             if let error = error {
@@ -138,8 +141,35 @@ class FirestoreFotoManagerUserTest: ObservableObject {
         }
         
     }
+//    func setSearchingForEvents(searchingFor: String) ->Promise<Void> {
+//        return Promise { seal in
+//            guard let currentUser = Auth.auth().currentUser else {
+//                throw Err("No User Profile")
+//            }
+//            db.collection("events").whereField("userId", isEqualTo: currentUser.uid).getDocuments{ (snapshot, error) in
+//                if let error = error {
+//                    seal.reject(error)
+//                } else {
+//                    let ids: [String]! = snapshot?.documents.compactMap { doc in
+//                        return doc.documentID
+//                    }
+//                    for id in ids {
+//                        self.db.collection("events").document(id).updateData(["searchingFor" : searchingFor]){ error in
+//                            if let error = error {
+//                                seal.reject(error)
+//                            }
+//                        }
+//                    }
+//                    seal.fulfill(())
+//
+//                }
+//            }
+//
+//        }
+//
+//    }
     
-    //funktioniert noch nicht 
+ 
     func deleteImageFromStorage(storageId: String) ->Promise<Void> {
         return Promise { seal in
 
@@ -165,7 +195,7 @@ class FirestoreFotoManagerUserTest: ObservableObject {
             
             let _ = db.collection("users").document(currentUser.uid)
                 .updateData(["userPhotos.\(fotoPlace)" : FieldValue.delete(),
-                             "userPhotodId.\(fotoPlace)" : FieldValue.delete()]) { error in
+                             "userPhotosId.\(fotoPlace)" : FieldValue.delete()]) { error in
                     if let error = error {
                         seal.reject(error)
                     } else {

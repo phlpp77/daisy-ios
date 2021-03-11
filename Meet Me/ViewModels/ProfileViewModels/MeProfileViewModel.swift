@@ -106,7 +106,8 @@ class MeProfileViewModel: ObservableObject {
         }.catch { error in
             print(error )
         }
-        if position == 1 {
+        if position == 0 {
+            print("eventChange aufgerufen")
             firstly {
                 firestoreFotoManagerUserTest.changedProfilPicture(newProfilePicture: self.url)
             }.catch { error in
@@ -116,15 +117,16 @@ class MeProfileViewModel: ObservableObject {
     }
     
     func deletePhoto(position: Int) {
-//        firstly {
-//            self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: self.userModel.userPhotosId[position]!)
-        firstly  {
+        firstly {
+            self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: self.userModel.userPhotosId[position]!)
+        }.then  {
             self.firestoreFotoManagerUserTest.deleteImageFromUser(fotoPlace: position)
         }.catch { error in
             print("DEBUG: error in deletePhoto error: \(error)")
             print("DEBUG: error localized: \(error.localizedDescription)")
         }
     }
+    //eventModel.profilePicture = userModel.userPhotos[0]!
     
     func stopListening(){
         listener?.remove()
