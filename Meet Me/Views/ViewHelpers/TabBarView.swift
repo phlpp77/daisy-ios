@@ -43,7 +43,7 @@ struct TabBarView: View {
                         }
                     }
                     .frame(width: bounds.size.width - 48, height: 53, alignment: .center)
-                    .background(Color(#colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)))
+                    .background(Color("Offwhite"))
                     .clipShape(
                         RoundedRectangle(cornerRadius: 14, style: .continuous)
                     )

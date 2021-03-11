@@ -17,6 +17,8 @@
 		173F361C25E2FF0D002E9EE6 /* MeMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F361B25E2FF0D002E9EE6 /* MeMatchView.swift */; };
 		174423AA25D9A0DF00D25EDD /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174423A925D9A0DF00D25EDD /* EventModel.swift */; };
 		174423AE25D9A93000D25EDD /* EventCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174423AD25D9A93000D25EDD /* EventCreationView.swift */; };
+		1746097425FA448700726BA1 /* MeProfileFirstBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1746097325FA448700726BA1 /* MeProfileFirstBlockView.swift */; };
+		1746097725FA45A900726BA1 /* MeProfileSecondBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1746097625FA45A900726BA1 /* MeProfileSecondBlockView.swift */; };
 		175E40E025B43BB200ADC9BF /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40DF25B43BB200ADC9BF /* StartView.swift */; };
 		175E40E325B4670800ADC9BF /* StartBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40E225B4670800ADC9BF /* StartBackgroundView.swift */; };
 		175E40E625B46ABB00ADC9BF /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40E525B46ABB00ADC9BF /* BlurView.swift */; };
@@ -114,6 +116,8 @@
 		173F361B25E2FF0D002E9EE6 /* MeMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchView.swift; sourceTree = "<group>"; };
 		174423A925D9A0DF00D25EDD /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		174423AD25D9A93000D25EDD /* EventCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationView.swift; sourceTree = "<group>"; };
+		1746097325FA448700726BA1 /* MeProfileFirstBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileFirstBlockView.swift; sourceTree = "<group>"; };
+		1746097625FA45A900726BA1 /* MeProfileSecondBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileSecondBlockView.swift; sourceTree = "<group>"; };
 		175E40DF25B43BB200ADC9BF /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		175E40E225B4670800ADC9BF /* StartBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartBackgroundView.swift; sourceTree = "<group>"; };
 		175E40E525B46ABB00ADC9BF /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
@@ -292,6 +296,8 @@
 				177F681825D8409200BC345B /* MeProfileView.swift */,
 				17EDA6EF25E6C974004BC651 /* LogoutView.swift */,
 				172CA8F725FA31E4002CAA09 /* MeProfileNView.swift */,
+				1746097325FA448700726BA1 /* MeProfileFirstBlockView.swift */,
+				1746097625FA45A900726BA1 /* MeProfileSecondBlockView.swift */,
 			);
 			path = ProfileViews;
 			sourceTree = "<group>";
@@ -343,6 +349,7 @@
 				17A1E67225C2093D00E4DA78 /* PickerTextField.swift */,
 				1778E41225D0904000C5D343 /* DateTextField.swift */,
 				175E40F325B4CD9400ADC9BF /* Modifiers.swift */,
+				172CA8EA25F98745002CAA09 /* Extentions.swift */,
 				902EF6BC25D896E3004464F0 /* UIImageResized.swift */,
 				177F682925D8937F00BC345B /* KeyboardHandler.swift */,
 				17DAD7E225D934D600DBE60B /* GlobalFunctions.swift */,
@@ -386,7 +393,6 @@
 				17DE52E925E9A2D7000D0B4D /* YouProfileView.swift */,
 				17F34F0F25F6CF5400690122 /* MeEventNView.swift */,
 				17F34F1225F8EAEB00690122 /* YouEventNView.swift */,
-				172CA8EA25F98745002CAA09 /* Extentions.swift */,
 			);
 			path = MarketplaceViews;
 			sourceTree = "<group>";
@@ -665,6 +671,7 @@
 				175E40F425B4CD9400ADC9BF /* Modifiers.swift in Sources */,
 				175E40E625B46ABB00ADC9BF /* BlurView.swift in Sources */,
 				175E40F025B4CD3300ADC9BF /* RegisterView.swift in Sources */,
+				1746097725FA45A900726BA1 /* MeProfileSecondBlockView.swift in Sources */,
 				177F681925D8409200BC345B /* MeProfileView.swift in Sources */,
 				1795DFAE25DF20AD002D537F /* LoadingView.swift in Sources */,
 				17DAD7E325D934D600DBE60B /* GlobalFunctions.swift in Sources */,
@@ -726,6 +733,7 @@
 				1795DFAA25DF1923002D537F /* LottieView.swift in Sources */,
 				1774B67225D1E2E500D1D2F1 /* MainSettingsView.swift in Sources */,
 				17F34F1325F8EAEB00690122 /* YouEventNView.swift in Sources */,
+				1746097425FA448700726BA1 /* MeProfileFirstBlockView.swift in Sources */,
 				17A2EBC125F2D669003D1921 /* Enums.swift in Sources */,
 				175E40E925B4A31C00ADC9BF /* HapticFeedback.swift in Sources */,
 			);
