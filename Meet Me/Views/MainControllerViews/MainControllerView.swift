@@ -17,7 +17,7 @@ struct MainControllerView: View {
         
         // shows the main screen if the startProcess (user-creation) is done AND logged into firebase
         if startProcessDone || checkUserAccForAutoLogin() {
-            
+             
 //            TabBarView(startProcessDone: $startProcessDone)
             TabView(selection: $startTab) {
                 MainSettingsView(startProcessDone: $startProcessDone).tabItem {

@@ -12,6 +12,7 @@
 		17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EE825A8C5C30072CE83 /* Assets.xcassets */; };
 		17153EEC25A8C5C30072CE83 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EEB25A8C5C30072CE83 /* Preview Assets.xcassets */; };
 		172CA8EB25F98745002CAA09 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172CA8EA25F98745002CAA09 /* Extentions.swift */; };
+		172CA8F825FA31E4002CAA09 /* MeProfileNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172CA8F725FA31E4002CAA09 /* MeProfileNView.swift */; };
 		173F361225E2D72D002E9EE6 /* MeMatchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F361125E2D72D002E9EE6 /* MeMatchCardView.swift */; };
 		173F361C25E2FF0D002E9EE6 /* MeMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F361B25E2FF0D002E9EE6 /* MeMatchView.swift */; };
 		174423AA25D9A0DF00D25EDD /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174423A925D9A0DF00D25EDD /* EventModel.swift */; };
@@ -108,6 +109,7 @@
 		17153EEB25A8C5C30072CE83 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		17153EED25A8C5C30072CE83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		172CA8EA25F98745002CAA09 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		172CA8F725FA31E4002CAA09 /* MeProfileNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileNView.swift; sourceTree = "<group>"; };
 		173F361125E2D72D002E9EE6 /* MeMatchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchCardView.swift; sourceTree = "<group>"; };
 		173F361B25E2FF0D002E9EE6 /* MeMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchView.swift; sourceTree = "<group>"; };
 		174423A925D9A0DF00D25EDD /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			children = (
 				177F681825D8409200BC345B /* MeProfileView.swift */,
 				17EDA6EF25E6C974004BC651 /* LogoutView.swift */,
+				172CA8F725FA31E4002CAA09 /* MeProfileNView.swift */,
 			);
 			path = ProfileViews;
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				90D42AFA25EABC590060311B /* FirestoreManagerMatches.swift in Sources */,
 				90D42A9E25E937630060311B /* LikedUserModel.swift in Sources */,
 				90B1BFDB25B8DBB700F8FBF7 /* LoginViewModel.swift in Sources */,
+				172CA8F825FA31E4002CAA09 /* MeProfileNView.swift in Sources */,
 				17F34F1825F90D2A00690122 /* LoginNView.swift in Sources */,
 				90779B0725E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift in Sources */,
 				90779AED25E2C8CD0070D794 /* FirestoreManagerEventTest.swift in Sources */,
