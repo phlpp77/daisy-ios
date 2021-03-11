@@ -86,6 +86,7 @@ class FirestoreFotoManagerUserTest: ObservableObject {
                 return
                 
             }
+            storageIds = []
             seal.fulfill(())
         }
     }
