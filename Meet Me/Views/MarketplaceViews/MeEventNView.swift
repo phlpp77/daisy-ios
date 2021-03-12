@@ -31,11 +31,6 @@ struct MeEventNView: View {
     
     var body: some View {
         
-        //        URLImage(url: URL(string: event.pictureURL) ?? stockURL) { image in
-        //            image.resizable()
-        //                .aspectRatio(contentMode: .fill)
-        //                .frame
-        //        }
         ZStack {
             
             // MARK: - Base (including picture) of the Event
@@ -47,40 +42,44 @@ struct MeEventNView: View {
                     .clipShape(
                         RoundedRectangle(cornerRadius: 26, style: .continuous)
                     )
+                    .shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 4)
                 
                 // MARK: Image downloaded from the Database
-                // FIXME: Needs to be changed to URL Image
-                Image("cafe")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 145, height: 145)
-                    .clipShape(
-                        RoundedRectangle(cornerRadius: 23, style: .continuous)
-                    )
+                URLImage(url: URL(string: event.pictureURL) ?? stockURL) { image in
+                    image.resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 145, height: 145)
+                        .clipShape(
+                            RoundedRectangle(cornerRadius: 23, style: .continuous)
+                        )
+                    
+                }
             }
             
             
-            // MARK: - Information-Box at the bottom of the Event
+            
+            // MARK: Information-Box at the bottom of the Event
             ZStack {
                 
                 // MARK: Background of the Information-Box
                 BlurView(style: .systemUltraThinMaterial)
                     .frame(width: 157, height: 38)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 13, style: .continuous)
+                        RoundedRectangle(cornerRadius: 12, style: .continuous)
                             .stroke(
                                 LinearGradient(
-                                            gradient: Gradient(stops: [
-                                        .init(color: Color(#colorLiteral(red: 0.7791666388511658, green: 0.7791666388511658, blue: 0.7791666388511658, alpha: 0.949999988079071)), location: 0),
-                                        .init(color: Color(#colorLiteral(red: 0.7250000238418579, green: 0.7250000238418579, blue: 0.7250000238418579, alpha: 0)), location: 1)]),
-                                            startPoint: UnitPoint(x: 0.9016393067273221, y: 0.10416647788375455),
-                                            endPoint: UnitPoint(x: 0.035519096038869824, y: 0.85416653880629)),
+                                    gradient: Gradient(stops: [
+                                                        .init(color: Color(#colorLiteral(red: 0.7791666388511658, green: 0.7791666388511658, blue: 0.7791666388511658, alpha: 0.949999988079071)), location: 0),
+                                                        .init(color: Color(#colorLiteral(red: 0.7250000238418579, green: 0.7250000238418579, blue: 0.7250000238418579, alpha: 0)), location: 1)]),
+                                    startPoint: UnitPoint(x: 0.9016393067273221, y: 0.10416647788375455),
+                                    endPoint: UnitPoint(x: 0.035519096038869824, y: 0.85416653880629)),
                                 lineWidth: 0.5
                             )
                     )
                     .clipShape(
-                        RoundedRectangle(cornerRadius: 13, style: .continuous)
-                )
+                        RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    )
+                
                 
                 // MARK: Content of Information-Box
                 HStack {
@@ -102,7 +101,7 @@ struct MeEventNView: View {
             .offset(x: 10.0, y: 60)
             
             
-            // MARK: - EventStatus indicator, only showing if event is liked or matched
+            // MARK: EventStatus indicator, only showing if event is liked or matched
             if eventStatus != .notLiked {
                 ZStack {
                     
@@ -113,11 +112,11 @@ struct MeEventNView: View {
                             Circle()
                                 .stroke(
                                     LinearGradient(
-                                                gradient: Gradient(stops: [
-                                            .init(color: Color(#colorLiteral(red: 0.7791666388511658, green: 0.7791666388511658, blue: 0.7791666388511658, alpha: 0.949999988079071)), location: 0),
-                                            .init(color: Color(#colorLiteral(red: 0.7250000238418579, green: 0.7250000238418579, blue: 0.7250000238418579, alpha: 0)), location: 1)]),
-                                                startPoint: UnitPoint(x: 0.9016393067273221, y: 0.10416647788375455),
-                                                endPoint: UnitPoint(x: 0.035519096038869824, y: 0.85416653880629)),
+                                        gradient: Gradient(stops: [
+                                                            .init(color: Color(#colorLiteral(red: 0.7791666388511658, green: 0.7791666388511658, blue: 0.7791666388511658, alpha: 0.949999988079071)), location: 0),
+                                                            .init(color: Color(#colorLiteral(red: 0.7250000238418579, green: 0.7250000238418579, blue: 0.7250000238418579, alpha: 0)), location: 1)]),
+                                        startPoint: UnitPoint(x: 0.9016393067273221, y: 0.10416647788375455),
+                                        endPoint: UnitPoint(x: 0.035519096038869824, y: 0.85416653880629)),
                                     lineWidth: 0.5
                                 )
                         )
@@ -134,7 +133,10 @@ struct MeEventNView: View {
             }
             
         }
-        .shadow(color: Color.black.opacity(0.25), radius: 6, x: 0, y: 4)
+        // padding to show the shadow
+        .padding(.top, 4)
+        .padding(.bottom, 14)
+        
         
         // MARK: - OnAppear to get the current EventStatus
         .onAppear {
