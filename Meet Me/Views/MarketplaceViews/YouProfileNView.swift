@@ -64,10 +64,13 @@ struct YouProfileNView: View {
                 
             }
             
-            .onAppear {
-                
-                youProfileVM.getYouProfil(eventModel: event)
-            }
+            
+        }
+        .onAppear {
+            print("SUCHE")
+            print("DEGUB11111: aufruf getYouProfil View")
+            print("DEBUG11111: event im View \(event)")
+            youProfileVM.getYouProfil(eventModel: event)
         }
         
     }
@@ -87,7 +90,7 @@ struct YouProfileNView: View {
                 )
             
             // MARK: Image downloaded from the Database
-            URLImage(url: URL(string: youProfileVM.userModel.userPhotos[showPictureIndex]!)!) { image in
+            URLImage(url: URL(string: youProfileVM.userModel.userPhotos[showPictureIndex] ?? stockUrlString)!) { image in
                 image.resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 307, height: 450)
@@ -168,7 +171,7 @@ struct YouProfileNView: View {
                 .clipShape(Circle())
             
             // Actual event image
-            URLImage(url: URL(string: event.profilePicture)!) { image in
+            URLImage(url: URL(string: event.pictureURL)!) { image in
                 image.resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 70, height: 70)
