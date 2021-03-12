@@ -50,21 +50,25 @@ struct YouProfileNView: View {
                         
                         
                         // showing the capsules for switching the pictures
-                        HStack(spacing: 10.0) {
-                            ForEach(youProfileVM.userModel.userPhotos.sorted(by: >), id: \.key) { photoIndex, photoUrlString in
-                                IndicatorCapsule(tappedPhoto: $showPictureIndex, pictureIndex: photoIndex)
+                        if youProfileVM.userModel.userPhotos.count > 1 {
+                            HStack(spacing: 10.0) {
+                                ForEach(youProfileVM.userModel.userPhotos.sorted(by: <), id: \.key) { photoIndex, photoUrlString in
+                                    IndicatorCapsule(tappedPhoto: $showPictureIndex, pictureIndex: photoIndex)
+                                }
                             }
+                            .offset(y: ((bounds.size.width - 48) * 1.33 / 2) - 45)
                         }
-                        .offset(y: 190)
+                        
+                        Image(systemName: "xmark")
+                            .foregroundColor(Color("BackgroundSecondary").opacity(0.5))
+                            .font(.system(size: 30))
+                            .offset(y: ((bounds.size.width - 48) * 1.33 / 2) + 60)
                         
                         
                     }
                     
-                    Image(systemName: "chevron.down")
-                        .foregroundColor(Color("BackgroundSecondary").opacity(0.3))
-                        
-                        
-                        
+                    
+                    
                     
                     // spacer is used to get full area to tap
                     Spacer()
@@ -76,6 +80,7 @@ struct YouProfileNView: View {
             .frame(width: bounds.size.width, height: bounds.size.height, alignment: .center)
             .onAppear {
                 youProfileVM.getYouProfil(eventModel: event)
+                print("DEBUG: userPhots in dic\(youProfileVM.userModel.userPhotos)")
         }
         }
         
@@ -105,6 +110,36 @@ struct YouProfileNView: View {
                             RoundedRectangle(cornerRadius: 20, style: .continuous)
                         )
                 }
+                .onChange(of: showPictureIndex, perform: { value in
+                    print("value changed \(youProfileVM.userModel.userPhotos)")
+                    print(value)
+                })
+                
+                // MARK: Tapping area for changing pictures
+                HStack {
+                    // left tap
+                    Color.black.opacity(0.001)
+                        .onTapGesture {
+                            if showPictureIndex > 0 {
+                                showPictureIndex -= 1
+                            } else {
+                                hapticFeedback(feedBackstyle: .error)
+                            }
+                            
+                        }
+                    
+                    // right tap
+                    Color.black.opacity(0.001)
+                        .onTapGesture {
+                            if showPictureIndex < youProfileVM.userModel.userPhotos.count - 1 {
+                                showPictureIndex += 1
+                            } else {
+                                hapticFeedback(feedBackstyle: .error)
+                            }
+                            
+                        }
+                }
+                .frame(width: bounds.size.width - 48, height: (bounds.size.width - 48) * 1.33)
                 
             }
             .frame(width: bounds.size.width, height: bounds.size.height, alignment: .center)
