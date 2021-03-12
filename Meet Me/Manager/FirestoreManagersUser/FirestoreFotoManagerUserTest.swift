@@ -115,26 +115,39 @@ class FirestoreFotoManagerUserTest: ObservableObject {
 
         }
     
-    func reOrderPictures(position:Int, position1:Int, url: String, urlId : String) ->Promise<Void> {
+    func uploadStockPhotoAsProfilPhoto() ->Promise<Void> {
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
-            let _ = self.db.collection("users")
-                .document(currentUser.uid).updateData(["userPhotos.\(position)" : url,
-                                                       "userPhotosId.\(position)": urlId]) { error in
+            let _ = db.collection("users").document(currentUser.uid).updateData(["userPhotos.0": stockUrlString,
+                                                                                 "userPhotosId.0": "StockPhoto"]) { error in
+                if let error = error {
+                    seal.reject(error)
+                }else {
+                    seal.fulfill(())
+                }
+            }
+        }
+    }
+    
+    
+    func reOrderPictures(position:Int, position1:Int, url1: String, urlId1 : String) ->Promise<Void> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                return
+            }
+            let _ = self.db.collection("users").document(currentUser.uid)
+                .updateData(["userPhotos.\(position)" : url1,
+                             "userPhotosId.\(position)" : urlId1,
+                             "userPhotos.\(position1)" : FieldValue.delete(),
+                             "userPhotosId.\(position1)" : FieldValue.delete()]) { error in
                     if let error = error {
                         seal.reject(error)
+                    }else {
+                        seal.fulfill(())
                     }
-                    let _ = self.db.collection("users").document(currentUser.uid)
-                        .updateData(["userPhotos.\(position1)" : FieldValue.delete(),
-                                     "userPhotosId.\(position1)" : FieldValue.delete()]) { error in
-                            if let error = error {
-                                seal.reject(error)
-                            }
-                        }
-                                                       }
-            seal.fulfill(())
+                }
         }
     }
 
@@ -142,7 +155,6 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     
     func changedProfilPicture(newProfilePicture: URL) ->Promise<Void> {
         return Promise { seal in
-
             guard let currentUser = Auth.auth().currentUser else {
                 throw Err("No User Profile")
             }
@@ -178,19 +190,16 @@ class FirestoreFotoManagerUserTest: ObservableObject {
             let storageRef = storage.reference()
             let photoRef = storageRef.child("UserImages/\(storageId!).png")
             
-            photoRef.delete { error in
-                if let error = error {
-                    seal.reject(error)
+            photoRef.delete()
                 } else {
                     seal.fulfill(())
                 }
-            }
-            }else {
-                seal.fulfill(())
+            seal.fulfill(())
             }
             
+            
         }
-    }
+    
     
     
     func deleteImageFromUser(fotoPlace: Int) -> Promise<Void> {

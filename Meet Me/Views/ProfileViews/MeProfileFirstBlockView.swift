@@ -148,7 +148,6 @@ struct PictureCircle: View {
                     if imagesPicked {
                         // TODO: @budni hier .first hochladen
                         // tag
-                        print("images in picked Array \(imagesFromPHPicker)")
                         meProfileVM.addPhotoInPosition(image: imagesFromPHPicker.first!, position: tag)
                         
                     }
@@ -164,7 +163,7 @@ struct PictureCircle: View {
     // MARK: Function to change the picture
     func changePicture(pictureIndex: Int) {
         
-        print("change \(pictureIndex)")
+
         
         // show ImagePicker and delete the picking Array
         imagesFromPHPicker = []
@@ -175,7 +174,7 @@ struct PictureCircle: View {
     // Function to delete the picture
     func deletePicture(pictureIndex: Int) {
         
-        print("delete \(pictureIndex)")
+        
         meProfileVM.deletePhoto(position: pictureIndex)
         // TODO: @budni delete picture with index here
     }

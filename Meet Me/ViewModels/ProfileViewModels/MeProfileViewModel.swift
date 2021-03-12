@@ -34,18 +34,6 @@ class MeProfileViewModel: ObservableObject {
     
 
     
-//    func getUserProfile() {
-//            firstly {
-//                self.firestoreManagerUserTest.getCurrentUser()
-//            }.done { user in
-//                self.userModel = user
-//                self.userPictureURL = URL(string: user.userPhotos[1] ?? stockUrlString)!
-//            }.catch { error in
-//                print("DEBUG: error in getUserProfileChain \(error)")
-//                print("DEBUG: \(error.localizedDescription)")
-//            }
-//        }
-    
     func getCurrentUser() {
         guard let currentUser = Auth.auth().currentUser else {
             return
@@ -68,7 +56,7 @@ class MeProfileViewModel: ObservableObject {
             self.picked = self.genders[self.userModel.searchingFor]!
         }
     }
-
+    
     func changedSearchingFor(searchingFor: Int){
         firstly {
             self.firestoreManagerUserTest.setSearchingForUserProfile(searchingFor: self.gender[searchingFor])
@@ -79,14 +67,14 @@ class MeProfileViewModel: ObservableObject {
             print("DEBUG: Error localized in: \(error.localizedDescription)")
         }
     }
-
+    
     func changedRange(radius: Double){
         firstly {
             firestoreManagerUserTest.setRadius(radius: radius)
         }.catch { error in
             print("DEBUG: Error in changedRadius: \(error)")
             print("DEBUG: Error localized in: \(error.localizedDescription)")
-
+            
         }
     }
     
@@ -104,25 +92,26 @@ class MeProfileViewModel: ObservableObject {
         }.done {
             _ = self.firestoreFotoManagerUserTest.saveStorageIds(fotoPlace: position)
         }.catch { error in
-            print(error )
+            print("DEBUG: error in addPhoto, error: \(error)")
+            print("DEBUG: error localized \(error.localizedDescription)")
         }
         if position == 0 {
-            print("übergebene Url: \(self.url)")
             firstly {
                 firestoreFotoManagerUserTest.changedProfilPicture(newProfilePicture: self.url)
             }.catch { error in
-                print(error)
+                print("DEBUG: error in addPhoto, error: \(error)")
+                print("DEBUG: error localized \(error.localizedDescription)")
             }
         }
     }
     
     func deletePhoto(position: Int) {
-        let position1 = position + 1
+        //let position1 = position + 1
+        let storageId =  userModel.userPhotosId[position]
         firstly {
-            self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: self.userModel.userPhotosId[position])
-        }.then  { [self] in
-            self.firestoreFotoManagerUserTest.reOrderPictures(position: position, position1: position1, url: userModel.userPhotos[position]!, urlId: userModel.userPhotos[position]!)
-            //self.firestoreFotoManagerUserTest.deleteImageFromUser(fotoPlace: position)
+            self.changePhoto(position: position)
+        }.then  {
+            self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: storageId)
         }.catch { error in
             print("DEBUG: error in deletePhoto error: \(error)")
             print("DEBUG: error localized: \(error.localizedDescription)")
@@ -132,10 +121,58 @@ class MeProfileViewModel: ObservableObject {
     func changePhoto(position: Int) -> Promise<Void> {
         return Promise { seal in
             let position1 = position + 1
+            let position2 = position + 2
+            //Check if it is the last picture from User
             if self.userModel.userPhotosId[position1] != nil {
-                self.firestoreFotoManagerUserTest.reOrderPictures(position: position, position1: position1, url: userModel.userPhotos[position1]!, urlId: userModel.userPhotos[position1]!)
+                //if not set the picture behind it on the position place and delete it on the old place
+                let newUrl = userModel.userPhotos[position1]!
+                firstly {
+                    self.firestoreFotoManagerUserTest.reOrderPictures(position: position,
+                                                                      position1: position1,
+                                                                      url1: userModel.userPhotos[position1]!,
+                                                                      urlId1: userModel.userPhotosId[position1]!)
+                    //if the picture changed on place 0, change event pictures
+                }.done {
+                    if position == 0 {
+                        firstly {
+                            self.firestoreFotoManagerUserTest.changedProfilPicture(newProfilePicture: URL(string: newUrl)!)
+                        }.catch { error in
+                            seal.reject(error)
+                        }
+                    }
+                    //if there are 3 pictures if true set set third picture on the second place
+                    if self.userModel.userPhotosId[position2] != nil {
+                        firstly {
+                            self.firestoreFotoManagerUserTest.reOrderPictures(position: position1,
+                                                                              position1: position2,
+                                                                              url1: self.userModel.userPhotos[position2]!,
+                                                                              urlId1: self.userModel.userPhotosId[position2]!)
+                        }.catch { error in
+                            seal.reject(error)
+                        }
+                    }
+                }.catch { error in
+                    seal.reject(error)
+                }
             } else {
-                self.firestoreFotoManagerUserTest.deleteImageFromUser(fotoPlace: position)
+                //if it is the last picture from user
+                firstly {
+                    //delete the picture from user profil
+                    self.firestoreFotoManagerUserTest.deleteImageFromUser(fotoPlace: position)
+                    
+                }.done {
+                    if position == 0 {
+                        firstly {
+                            self.firestoreFotoManagerUserTest.uploadStockPhotoAsProfilPhoto()
+                        }.then {
+                            self.firestoreFotoManagerUserTest.changedProfilPicture(newProfilePicture: stockURL)
+                        }.catch { error in
+                            seal.reject(error)
+                        }
+                    }
+                }.catch { error in
+                    seal.reject(error)
+                }
             }
         }
     }
@@ -146,8 +183,8 @@ class MeProfileViewModel: ObservableObject {
         listener?.remove()
     }
 }
-       
-            
 
-        
- 
+
+
+
+
