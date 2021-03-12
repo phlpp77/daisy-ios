@@ -12,6 +12,8 @@ struct YouProfileNView: View {
     
     @StateObject var youProfileVM: YouProfilViewModel = YouProfilViewModel()
     
+    @Binding var showYouProfileView: Bool
+    
     @State var showPictureIndex: Int = 1
     
     var event: EventModel = stockEvent
@@ -20,33 +22,53 @@ struct YouProfileNView: View {
         
         ZStack {
             
-            // Base (including picture) of the Profile
-            base
+            Color.black.opacity(0.001)
+                .onTapGesture(perform: {
+                    print("dismiss")
+                    showYouProfileView = false
+                })
             
-            // information-box at the bottom of the base
-            informationBox
-                .offset(y: 470 / 2)
-            
-            // show the event at the top right corner
-            eventCircle
-                .offset(x: 327 / 2 - 30, y: -470 / 2 + 30)
-            
-            
-            // showing the capsules for switching the pictures
-            HStack(spacing: 10.0) {
-                ForEach(youProfileVM.userModel.userPhotos.sorted(by: >), id: \.key) { photoIndex, photoUrlString in
-                    IndicatorCapsule(tappedPhoto: $showPictureIndex, pictureIndex: photoIndex)
+            VStack {
+                
+                // spacer is used to get full area to tap
+                Spacer()
+                    
+                
+                ZStack {
+                    
+                    // Base (including picture) of the Profile
+                    base
+                    
+                    // information-box at the bottom of the base
+                    informationBox
+                        .offset(y: 470 / 2)
+     
+                    // show the event at the top right corner
+                    eventCircle
+                        .offset(x: 327 / 2 - 30, y: -470 / 2 + 30)
+                    
+                    
+                    // showing the capsules for switching the pictures
+                    HStack(spacing: 10.0) {
+                        ForEach(youProfileVM.userModel.userPhotos.sorted(by: >), id: \.key) { photoIndex, photoUrlString in
+                            IndicatorCapsule(tappedPhoto: $showPictureIndex, pictureIndex: photoIndex)
+                        }
+                    }
+                    .offset(y: 190)
+                    
+                    
                 }
+                
+                // spacer is used to get full area to tap
+                Spacer()
+                    
             }
-            .offset(y: 190)
             
+            .onAppear {
+                
+                youProfileVM.getYouProfil(eventModel: event)
         }
-        .onAppear {
-            
-            //youProfileVM.getYouProfil(eventModel: EventModelObject(eventModel: event, position: .constant(.zero)))
-            youProfileVM.getYouProfil(eventModel: event)
         }
-        
         
     }
     
@@ -73,7 +95,7 @@ struct YouProfileNView: View {
                         RoundedRectangle(cornerRadius: 20, style: .continuous)
                     )
             }
-                
+            
         }
     }
     
@@ -166,14 +188,11 @@ struct YouProfileNView: View {
         }
     }
     
-    
-    
-    
 }
 
 struct YouProfileNView_Previews: PreviewProvider {
     static var previews: some View {
-        YouProfileNView()
+        YouProfileNView(showYouProfileView: .constant(true))
     }
 }
 

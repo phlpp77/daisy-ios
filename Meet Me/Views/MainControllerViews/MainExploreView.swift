@@ -52,6 +52,11 @@ struct MainExploreView: View {
                 
                 YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView)
             }
+            .opacity(showYouProfileView ? 0 : 1)
+            
+            // MARK: Show youProfileView when user taps on a YouEvent
+//            YouProfileNView(showYouProfileView: $showYouProfileView)
+//                .opacity(showYouProfileView ? 1 : 0)
             
             // create the setup EventView on top of the rest
             if showCreationView {
@@ -64,7 +69,7 @@ struct MainExploreView: View {
             }
             
             if showYouProfileView {
-                YouProfileView(showYouProfileView: $showYouProfileView, tappedYouEvent: $tappedYouEvent)
+                YouProfileNView(showYouProfileView: $showYouProfileView)
             }
         }
     }

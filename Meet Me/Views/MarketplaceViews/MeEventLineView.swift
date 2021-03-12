@@ -23,7 +23,7 @@ struct MeEventLineView: View {
     var body: some View {
             GeometryReader { geometry in
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
+                    HStack(spacing: 20.0) {
                         
                         // MARK: Button to add new event
                         Image(systemName: "plus.circle")
@@ -54,44 +54,14 @@ struct MeEventLineView: View {
                         // MARK: List with own events
                         ForEach(meEventLineVM.eventArray.indices, id: \.self) { event in
                             HStack {
-                                ZStack {
-                                    YouEventView(eventModelObject: meEventLineVM.eventArray[event], eventIndex: event, dragPossible: false, eventArray: $meEventLineVM.eventArray)
+                                    MeEventNView(event: $meEventLineVM.eventArray[event])
                                         .rotation3DEffect(
                                             // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
                                             Angle(
-                                                degrees: Double(geometry.frame(in: .global).minX - 30) / -40),
+                                                degrees: Double(geometry.frame(in: .global).minX - 30) / -20),
                                                 axis: (x: 0, y: 10, z: 0)
                                             )
-                                        .scaleEffect(0.5)
-                                        .frame(width: 140, height: 160, alignment: .center)
-                                    
-                                    if meEventLineVM.eventArray[event].likedUser && !meEventLineVM.eventArray[event].eventMatched {
-                                        Image(systemName: "rosette")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .padding(4)
-                                            .foregroundColor(.white)
-                                            .frame(width: 30, height: 30, alignment: .center)
-                                            .background(Color.accentColor)
-                                            .clipShape(Circle())
-                                            .opacity(0.9)
-                                            .offset(x: -60, y: -60)
-                                        
-                                    } else if meEventLineVM.eventArray[event].eventMatched {
-                                        Image(systemName: "lock")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .padding(4)
-                                            .foregroundColor(.white)
-                                            .frame(width: 30, height: 30, alignment: .center)
-                                            .background(Color.accentColor)
-                                            .clipShape(Circle())
-                                            .opacity(0.9)
-                                            .offset(x: -60, y: -60)
-                                    }
-                                    
-                                    
-                                }
+
                                 // tap on each of the events does that
                                 .onTapGesture {
                                     
@@ -107,7 +77,7 @@ struct MeEventLineView: View {
                 }
             }        
             .onAppear {
-                    self.meEventLineVM.getMeEvents()
+                self.meEventLineVM.getMeEvents()
         }
     }
 }
