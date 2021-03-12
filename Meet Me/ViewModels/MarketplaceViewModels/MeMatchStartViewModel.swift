@@ -12,7 +12,7 @@ class MeMatchStartViewModel: ObservableObject {
     
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     
-    func getLikedUsers (eventId: String) -> Promise<[UserModelObject]> {
+    func getLikedUsers (eventId: String) -> Promise<[UserModel]> {
         return Promise { seal in
             firstly{
                 self.firestoreManagerEventTest.getAllLikedUserDocument(eventId: eventId)

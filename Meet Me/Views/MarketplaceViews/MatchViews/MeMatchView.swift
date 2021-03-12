@@ -16,7 +16,7 @@ struct MeMatchView: View {
     @Binding var tappedEvent: EventModel
     
     // database data
-    @State var likedUsers: [UserModelObject] = [stockUserObject]
+    @State var likedUsers: [UserModel] = [stockUser]
     
     // local data
     @State var userChosen: Bool = false
@@ -26,6 +26,7 @@ struct MeMatchView: View {
         
         ZStack {
             
+            // MARK: Stack with Users to swipe and like
             ZStack {
                 ForEach(likedUsers.indices, id: \.self ) { userNumber in
                     MeMatchCardView(userChosen: $userChosen, users: $likedUsers, event: $tappedEvent, user: likedUsers[userNumber], userNumber: userNumber, showMeMatchMainView: $showMeMatchMainView)
@@ -34,9 +35,8 @@ struct MeMatchView: View {
             }
             
             MeMatchStartView(showMeMatchView: $showMeMatchView, showMeMatchMainView: $showMeMatchMainView, event: $tappedEvent, likedUsers: $likedUsers)
-            
-//            MeMatchStartView(showMeMatchView: $showMeMatchView, showMeMatchMainView: $showMeMatchMainView, likedUsers: $likedUsers, eventMatched: tappedEvent.eventMatched)
                 .opacity(showMeMatchView ? 0 : 1)
+            
         }
         .animation(.easeInOut)
         .onAppear {
@@ -56,6 +56,6 @@ struct MeMatchView: View {
 
 struct MeMatchView_Previews: PreviewProvider {
     static var previews: some View {
-        MeMatchView(showMeMatchMainView: .constant(false), tappedEvent: .constant(stockEvent), likedUsers: [stockUserObject, stockUserObject])
+        MeMatchView(showMeMatchMainView: .constant(false), tappedEvent: .constant(stockEvent), likedUsers: [stockUser, stockUser])
     }
 }
