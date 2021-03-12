@@ -13,13 +13,13 @@ struct MeMatchCardView: View {
     @ObservedObject var meMatchCardVM: MeMatchCardViewModel = MeMatchCardViewModel()
     // binding vars
     @Binding var userAccepted: Bool
-    @Binding var users: [UserModelObject]
+    @Binding var users: [UserModel]
     @Binding var event: EventModel
     @Binding var showMeMatchMainView: Bool
-    var user: UserModelObject
+    var user: UserModel
     var userNumber: Int
     
-    init(userChosen: Binding<Bool>, users: Binding<[UserModelObject]>, event: Binding<EventModel>, user: UserModelObject, userNumber: Int, showMeMatchMainView: Binding<Bool>) {
+    init(userChosen: Binding<Bool>, users: Binding<[UserModel]>, event: Binding<EventModel>, user: UserModel, userNumber: Int, showMeMatchMainView: Binding<Bool>) {
         self._userAccepted = userChosen
         self._users = users
         self._event = event
@@ -169,7 +169,7 @@ struct MeMatchCardView: View {
     
     // MARK: function which gets called after user accepted the profile
     func userWasAccepted() {
-        meMatchCardVM.addMatch(eventModel: event, userModel: user)
+//        meMatchCardVM.addMatch(eventModel: event, userModel: user)
         userAccepted = true
         DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.1) {
             showMeMatchMainView = false
@@ -179,7 +179,7 @@ struct MeMatchCardView: View {
     // MARK: function which gets called after user denied the profile
     func userWasDenied() {
         userDenied = true
-        meMatchCardVM.deleteLikedUser(eventModel: event, userModel: user)
+//        meMatchCardVM.deleteLikedUser(eventModel: event, userModel: user)
         // if the last user (which is the first in the array) is denied the view gets canceled
         if self.users.first!.userId == user.userId {
             meMatchCardVM.setLikedUserToFalse(eventId: event.eventId)
@@ -193,6 +193,6 @@ struct MeMatchCardView: View {
 
 struct MeMatchCardView_Previews: PreviewProvider {
     static var previews: some View {
-        MeMatchCardView(userChosen: .constant(false), users: .constant([stockUserObject, stockUserObject]), event: .constant(stockEvent), user: stockUserObject, userNumber: 1, showMeMatchMainView: .constant(false))
+        MeMatchCardView(userChosen: .constant(false), users: .constant([stockUser, stockUser]), event: .constant(stockEvent), user: stockUser , userNumber: 1, showMeMatchMainView: .constant(false))
     }
 }
