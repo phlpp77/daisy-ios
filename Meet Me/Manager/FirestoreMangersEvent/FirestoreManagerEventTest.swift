@@ -139,57 +139,57 @@ class FirestoreManagerEventTest {
     
     
     // MARK: - Functions to get events
-    func firebaseGetYouEvents(likedEvents : [String]) -> Promise<[EventModelObject]> {
-        return Promise { seal in
-            
-            
-            guard let currentUser = Auth.auth().currentUser else {
-                throw Err("No User Profile")
-            }
-            
-            db.collection("events").whereField("eventMatched", isEqualTo: false)
-                .getDocuments{(snapshot, error) in
-                    if let error = error {
-                        seal.reject(error)
-                    } else {
-                        
-                        if let snapshot = snapshot {
-                            var event: [EventModelObject]? = snapshot.documents.compactMap { doc in
-                                var event = try? doc.data(as: EventModel.self)
-                                event?.eventId = doc.documentID
-                                if let event = event {
-                                    if event.userId != currentUser.uid && event.eventMatched == false {
-                                        return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
-                                    }
-                                }
-                                return nil
-                                
-                            }
-                            if event != nil {
-                                for (index, eventModel) in event!.enumerated().reversed() {
-                                    if likedEvents.contains(eventModel.eventId) {
-                                        event!.remove(at: index)
-                                    }
-                                }
-                                DispatchQueue.main.async {
-                                    seal.fulfill(event!)
-                                }
-                            } else {
-                                let error = Err("No Events in GetYouEvents")
-                                DispatchQueue.main.async {
-                                    seal.reject(error)
-                                }
-                            }
-                        }
-                        
-                        
-                        
-                    }
-                }
-            
-            
-        }
-    }
+//    func firebaseGetYouEvents(likedEvents : [String]) -> Promise<[EventModelObject]> {
+//        return Promise { seal in
+//
+//
+//            guard let currentUser = Auth.auth().currentUser else {
+//                throw Err("No User Profile")
+//            }
+//
+//            db.collection("events").whereField("eventMatched", isEqualTo: false)
+//                .getDocuments{(snapshot, error) in
+//                    if let error = error {
+//                        seal.reject(error)
+//                    } else {
+//
+//                        if let snapshot = snapshot {
+//                            var event: [EventModelObject]? = snapshot.documents.compactMap { doc in
+//                                var event = try? doc.data(as: EventModel.self)
+//                                event?.eventId = doc.documentID
+//                                if let event = event {
+//                                    if event.userId != currentUser.uid && event.eventMatched == false {
+//                                        return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
+//                                    }
+//                                }
+//                                return nil
+//
+//                            }
+//                            if event != nil {
+//                                for (index, eventModel) in event!.enumerated().reversed() {
+//                                    if likedEvents.contains(eventModel.eventId) {
+//                                        event!.remove(at: index)
+//                                    }
+//                                }
+//                                DispatchQueue.main.async {
+//                                    seal.fulfill(event!)
+//                                }
+//                            } else {
+//                                let error = Err("No Events in GetYouEvents")
+//                                DispatchQueue.main.async {
+//                                    seal.reject(error)
+//                                }
+//                            }
+//                        }
+//
+//
+//
+//                    }
+//                }
+//
+//
+//        }
+//    }
     
     func getAllLikedUserDocument(eventId: String) -> Promise<[String]> {
         return Promise { seal in
@@ -275,7 +275,7 @@ class FirestoreManagerEventTest {
         }
     }
     
-    func querysInEvent(likedEvents: [String], queries: [Query], center : CLLocationCoordinate2D, user: UserModel) ->Promise<[EventModelObject]> {
+    func querysInEvent(likedEvents: [String], queries: [Query], center : CLLocationCoordinate2D, user: UserModel) ->Promise<[EventModel]> {
         return Promise { seal in
             
             
@@ -294,7 +294,7 @@ class FirestoreManagerEventTest {
                     }else {
                         
                         if let snapshot = snapshot {
-                            var event: [EventModelObject]? = snapshot.documents.compactMap { doc in
+                            var event: [EventModel]? = snapshot.documents.compactMap { doc in
                                 var event = try? doc.data(as: EventModel.self)
                                 event?.eventId = doc.documentID
                                 if var event = event {
@@ -304,7 +304,8 @@ class FirestoreManagerEventTest {
                                             let eventPoint = CLLocation(latitude: event.latitude, longitude: event.longitude)
                                             event.distance = GFUtils.distance(from: userPoint, to: eventPoint) / 1000
                                             print("EventDistance: \(event.distance)")
-                                            return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
+                                            //return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
+                                            return event
                                         }
                                     }
                                 }

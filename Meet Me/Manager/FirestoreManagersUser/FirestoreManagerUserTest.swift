@@ -212,7 +212,7 @@ class FirestoreManagerUserTest {
     }
     
     //Muss noch eingefügt werden
-    func getUserWhichCreatedEvent(eventModel: EventModelObject) -> Promise<UserModel> {
+    func getUserWhichCreatedEvent(eventModel: EventModel) -> Promise<UserModel> {
         return Promise { seal in
             db.collection("users").document(eventModel.userId).getDocument { snapshot, error in
                 if let error = error {
