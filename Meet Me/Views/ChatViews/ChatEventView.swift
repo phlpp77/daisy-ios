@@ -24,7 +24,7 @@ struct ChatEventView: View {
                     }
                 }
             
-            YouEventView(eventModelObject: EventModelObject(eventModel: event, position: .constant(.zero)), eventIndex: 0, dragPossible: false, eventArray: .constant([stockEventObject]))
+            YouEventView(eventModelObject: event, eventIndex: 0, dragPossible: false, eventArray: .constant([stockEvent]))
                 .scaleEffect(1.2)
         }
     }

@@ -13,7 +13,7 @@ class YouProfilViewModel: ObservableObject {
     @Published var userModel : UserModel = stockUser
     @Published var userPictureUrl: URL = stockURL
     
-    func getYouProfil(eventModel: EventModelObject) {
+    func getYouProfil(eventModel: EventModel) {
         
         firstly {
             firestoreManagerUser.getUserWhichCreatedEvent(eventModel: eventModel)

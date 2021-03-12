@@ -43,7 +43,8 @@ struct YouProfileNView: View {
         }
         .onAppear {
             
-            youProfileVM.getYouProfil(eventModel: EventModelObject(eventModel: event, position: .constant(.zero)))
+            //youProfileVM.getYouProfil(eventModel: EventModelObject(eventModel: event, position: .constant(.zero)))
+            youProfileVM.getYouProfil(eventModel: event)
         }
         
         

@@ -67,7 +67,7 @@ let stockUrlString: String = "https://firebasestorage.googleapis.com/v0/b/meetme
 let stockEvent: EventModel = EventModel(eventId: "008", userId: "007", category: "Café", date: Date(), startTime: Date(), endTime: Date() + 30 * 60, pictureURL: "", profilePicture: "",likedUser: false,eventMatched: false,latitude: 0.0, longitude: 0.0, hash: "", distance: 0, searchingFor: "Male", genderFromCreator: "Female", birthdayDate: Date())
 let stockEvent2: EventModel = EventModel(eventId: "009", userId: "008", category: "Walk", date: Date(), startTime: Date(), endTime: Date() + 30 * 60, pictureURL: "", profilePicture: "",likedUser: false,eventMatched: false,latitude: 0.0, longitude: 0.0, hash: "", distance: 0,searchingFor: "Male", genderFromCreator: "Female", birthdayDate: Date())
 
-let stockEventObject: EventModelObject = EventModelObject(eventModel: stockEvent, position: .constant(.zero))
+//let stockEventObject: EventModel = EventModelObject(eventModel: stockEvent, position: .constant(.zero))
 
 // MARK: stock chat for chat area
 let stockChat: ChatModel = ChatModel(chatId: "egal", eventCreatorId: "creatoRR", matchedUserId: "receiveRR", eventId: "egal2", messages: [MessageModel(userId: "egal3", timeStamp: Timestamp(date: Date()), messageText: "Hey you got a match, speek with your meeter about your event seetings")])

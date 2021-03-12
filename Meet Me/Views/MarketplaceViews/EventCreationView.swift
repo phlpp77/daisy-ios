@@ -15,7 +15,7 @@ struct EventCreationView: View {
     // binding for presentation
     @Binding var presentation: Bool
     // binding for updating the array
-    @Binding var eventArray: [EventModelObject]
+    @Binding var eventArray: [EventModel]
 //    @State private var event: EventModelObject = stockEventObject
 
     // vars to show in the screen
@@ -258,12 +258,13 @@ struct EventCreationView: View {
         
     }
     
-    func createUpdateEvent() -> EventModelObject {
+    func createUpdateEvent() -> EventModel {
         let event = EventModel(eventId: "", userId: "", category: category, date: date, startTime: startTime, endTime: endTime, pictureURL: pictureURL, profilePicture: "", likedUser: false,eventMatched: false, latitude: 0.0, longitude: 0.0, hash: "", distance: 0, searchingFor: "", genderFromCreator: "", birthdayDate: Date())
         
-        let eventObject = EventModelObject(eventModel: event, position: .constant(.zero))
+        //let eventObject = EventModel(eventModel: event, position: .constant(.zero))
+        
 
-        return eventObject
+        return event
     }
     
     // function to convert strings into dates for upload into the database
@@ -280,6 +281,6 @@ struct EventCreationView: View {
 
 struct EventCreationView_Previews: PreviewProvider {
     static var previews: some View {
-        EventCreationView(presentation: .constant(true), eventArray: .constant([stockEventObject]))
+        EventCreationView(presentation: .constant(true), eventArray: .constant([stockEvent]))
     }
 }

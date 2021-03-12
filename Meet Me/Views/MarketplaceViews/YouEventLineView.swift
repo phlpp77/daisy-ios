@@ -21,7 +21,7 @@ struct YouEventLineView: View {
     @State var eventArray: [EventModel] = [stockEvent, stockEvent2]
     @State private var loading: Bool = false
     
-    @Binding var tappedYouEvent: EventModelObject
+    @Binding var tappedYouEvent: EventModel
     @Binding var showYouProfileView: Bool
     
     @State var eventRemoveIndex: Int = -1
@@ -118,6 +118,6 @@ struct YouEventLineView: View {
 
 struct EventLineView_Previews: PreviewProvider {
     static var previews: some View {
-        YouEventLineView(tappedYouEvent: .constant(stockEventObject), showYouProfileView: .constant(true))
+        YouEventLineView(tappedYouEvent: .constant(stockEvent), showYouProfileView: .constant(true))
     }
 }

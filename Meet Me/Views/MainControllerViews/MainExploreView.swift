@@ -16,9 +16,9 @@ struct MainExploreView: View {
     @State private var showMeMatchView: Bool = false
     @State private var showYouProfileView: Bool = false
     
-    @State private var eventArray: [EventModelObject] = [stockEventObject, stockEventObject]
-    @State private var tappedMeEvent: EventModelObject = stockEventObject
-    @State private var tappedYouEvent: EventModelObject = stockEventObject
+    @State private var eventArray: [EventModel] = [stockEvent, stockEvent]
+    @State private var tappedMeEvent: EventModel = stockEvent
+    @State private var tappedYouEvent: EventModel = stockEvent
     
     var body: some View {
         ZStack {

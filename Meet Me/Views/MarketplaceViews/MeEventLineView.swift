@@ -18,7 +18,7 @@ struct MeEventLineView: View {
     @Binding var showCreationView: Bool
     @Binding var showMeMatchView: Bool
     
-    @Binding var tappedEvent: EventModelObject
+    @Binding var tappedEvent: EventModel
     
     var body: some View {
             GeometryReader { geometry in
@@ -114,6 +114,6 @@ struct MeEventLineView: View {
 
 struct MeEventLineView_Previews: PreviewProvider {
     static var previews: some View {
-        MeEventLineView(showCreationView: .constant(false), showMeMatchView: .constant(false), tappedEvent: .constant(stockEventObject))
+        MeEventLineView(showCreationView: .constant(false), showMeMatchView: .constant(false), tappedEvent: .constant(stockEvent))
     }
 }

@@ -11,7 +11,7 @@ import Firebase
 
 class MeEventLineViewModel: ObservableObject {
     
-    @Published var eventArray: [EventModelObject] = []
+    @Published var eventArray: [EventModel] = []
     private var firestoreManagerEventTest = FirestoreManagerEventTest()
     private var firestoreFotoManagerEventTest: FirestoreFotoManagerEventTest = FirestoreFotoManagerEventTest()
     private var db: Firestore
@@ -51,11 +51,12 @@ class MeEventLineViewModel: ObservableObject {
                     } else {
                         
                         if let snapshot = snapshot {
-                            let event: [EventModelObject]? = snapshot.documents.compactMap { doc in
+                            let event: [EventModel]? = snapshot.documents.compactMap { doc in
                                 var event = try? doc.data(as: EventModel.self)
                                 event?.eventId = doc.documentID
                                 if let event = event {
-                                    return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
+                                    //return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
+                                    return event
                                 }
                                 return nil
                                 

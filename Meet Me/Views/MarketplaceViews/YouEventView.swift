@@ -13,7 +13,7 @@ struct YouEventView: View {
     
     @StateObject var youEventVM = YouEventViewModel()
     // Bindings
-    @Binding var eventArray: [EventModelObject]
+    @Binding var eventArray: [EventModel]
     var eventIndex: Int
     var dragPossible: Bool = true
     
@@ -28,7 +28,7 @@ struct YouEventView: View {
     private var pictureURL: String
     private var profilePictureUrl: String
 
-    init(eventModelObject: EventModelObject, eventIndex: Int, dragPossible: Bool, eventArray: Binding<[EventModelObject]>) {
+    init(eventModelObject: EventModel, eventIndex: Int, dragPossible: Bool, eventArray: Binding<[EventModel]>) {
         
         self._eventArray = eventArray
         self.eventIndex = eventIndex
@@ -162,6 +162,6 @@ struct YouEventView_Previews: PreviewProvider {
     @State var cgsize: CGSize = .zero
     
     static var previews: some View {
-        YouEventView(eventModelObject: stockEventObject, eventIndex: 0, dragPossible: false, eventArray: .constant([stockEventObject]))
+        YouEventView(eventModelObject: stockEvent, eventIndex: 0, dragPossible: false, eventArray: .constant([stockEvent]))
     }
 }

@@ -13,7 +13,7 @@ class MeMatchCardViewModel: ObservableObject {
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
 
     
-    func addMatch(eventModel: EventModelObject, userModel: UserModelObject) {
+    func addMatch(eventModel: EventModel, userModel: UserModelObject) {
         let chatId = UUID().uuidString
             firstly {
                 self.firestoreManagerMatches.addMatchToCurrentUser(userModel: userModel, eventModel: eventModel, chatId: chatId)
@@ -31,7 +31,7 @@ class MeMatchCardViewModel: ObservableObject {
 
         
     
-    func deleteLikedUser(eventModel : EventModelObject, userModel: UserModelObject){
+    func deleteLikedUser(eventModel : EventModel, userModel: UserModelObject){
             firstly {
                 firestoreManagerMatches.deleteLikedUser(eventModel: eventModel, userModel: userModel)
             }.catch { error in

@@ -16,7 +16,7 @@ struct MeMatchStartView: View {
     @Binding var showMeMatchMainView: Bool
     
     // getting information on the eventStatus
-    @Binding var event: EventModelObject
+    @Binding var event: EventModel
     @State var eventStatus: EventStatus = .liked
     
     @Binding var likedUsers : [UserModelObject]
@@ -116,6 +116,6 @@ struct MeMatchStartView: View {
 
 struct MeMatchStartView_Previews: PreviewProvider {
     static var previews: some View {
-        MeMatchStartView(showMeMatchView: .constant(true), showMeMatchMainView: .constant(true), event: .constant(stockEventObject), likedUsers: .constant([stockUserObject]))
+        MeMatchStartView(showMeMatchView: .constant(true), showMeMatchMainView: .constant(true), event: .constant(stockEvent), likedUsers: .constant([stockUserObject]))
     }
 }

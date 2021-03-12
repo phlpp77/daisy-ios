@@ -19,7 +19,7 @@ class YouEventLineViewModel: ObservableObject {
     private var userModel: UserModel = stockUser
 
 
-    func getYouEvents() -> Promise<[EventModelObject]>{
+    func getYouEvents() -> Promise<[EventModel]>{
         return Promise { seal in
             firstly{
                 firestoreManagerUserTest.getCurrentUser()

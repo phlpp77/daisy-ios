@@ -16,7 +16,7 @@ struct YouProfileView: View {
     
     // animate the view
     @Binding var showYouProfileView: Bool
-    @Binding var tappedYouEvent: EventModelObject
+    @Binding var tappedYouEvent: EventModel
 
     var body: some View {
         
@@ -141,7 +141,7 @@ struct YouProfileView: View {
 
 struct YouProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        YouProfileView(showYouProfileView: .constant(false), tappedYouEvent: .constant(stockEventObject))
+        YouProfileView(showYouProfileView: .constant(false), tappedYouEvent: .constant(stockEvent))
     }
 }
 
