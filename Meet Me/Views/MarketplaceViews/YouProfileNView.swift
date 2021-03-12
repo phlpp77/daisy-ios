@@ -13,10 +13,10 @@ struct YouProfileNView: View {
     @StateObject var youProfileVM: YouProfilViewModel = YouProfilViewModel()
     
     @Binding var showYouProfileView: Bool
-    
+    @Binding var event: EventModel
+
     @State var showPictureIndex: Int = 1
     
-    var event: EventModel = stockEvent
     
     var body: some View {
         
@@ -192,7 +192,7 @@ struct YouProfileNView: View {
 
 struct YouProfileNView_Previews: PreviewProvider {
     static var previews: some View {
-        YouProfileNView(showYouProfileView: .constant(true))
+        YouProfileNView(showYouProfileView: .constant(true), event: .constant(stockEvent))
     }
 }
 

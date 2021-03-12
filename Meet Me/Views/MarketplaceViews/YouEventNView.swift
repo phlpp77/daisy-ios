@@ -131,13 +131,14 @@ struct YouEventNView: View {
             
             // MARK: Image downloaded from the Database
             // FIXME: Needs to be changed to URL Image
-            Image("cafe")
-                .resizable()
+            URLImage(url: URL(string: currentEvent.pictureURL) ?? stockURL) { image in
+                image.resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 260 , height: 260)
                 .clipShape(
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
                 )
+            }
         }
     }
     
