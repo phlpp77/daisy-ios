@@ -41,3 +41,14 @@ enum StartPosition {
     // StartView for the profileCreation of the user
     case profileCreation
 }
+
+// MARK: The Distance of each location is shown in words
+// used in: YouEventView
+enum Distance: String {
+    // here distance is 10 km
+    case here
+    // near distance is 30 km
+    case near
+    // far distance is over 30 km until set range
+    case far
+}

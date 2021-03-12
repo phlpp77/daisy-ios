@@ -13,12 +13,14 @@
 		17153EEC25A8C5C30072CE83 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EEB25A8C5C30072CE83 /* Preview Assets.xcassets */; };
 		172CA8EB25F98745002CAA09 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172CA8EA25F98745002CAA09 /* Extentions.swift */; };
 		172CA8F825FA31E4002CAA09 /* MeProfileNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172CA8F725FA31E4002CAA09 /* MeProfileNView.swift */; };
+		173E48F125FB894600D3DA0A /* YouProfileNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E48F025FB894600D3DA0A /* YouProfileNView.swift */; };
 		173F361225E2D72D002E9EE6 /* MeMatchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F361125E2D72D002E9EE6 /* MeMatchCardView.swift */; };
 		173F361C25E2FF0D002E9EE6 /* MeMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F361B25E2FF0D002E9EE6 /* MeMatchView.swift */; };
 		174423AA25D9A0DF00D25EDD /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174423A925D9A0DF00D25EDD /* EventModel.swift */; };
 		174423AE25D9A93000D25EDD /* EventCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174423AD25D9A93000D25EDD /* EventCreationView.swift */; };
 		1746097425FA448700726BA1 /* MeProfileFirstBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1746097325FA448700726BA1 /* MeProfileFirstBlockView.swift */; };
 		1746097725FA45A900726BA1 /* MeProfileSecondBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1746097625FA45A900726BA1 /* MeProfileSecondBlockView.swift */; };
+		174EFCD725FABDC40028C04C /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174EFCD625FABDC40028C04C /* RingView.swift */; };
 		175E40E025B43BB200ADC9BF /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40DF25B43BB200ADC9BF /* StartView.swift */; };
 		175E40E325B4670800ADC9BF /* StartBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40E225B4670800ADC9BF /* StartBackgroundView.swift */; };
 		175E40E625B46ABB00ADC9BF /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40E525B46ABB00ADC9BF /* BlurView.swift */; };
@@ -112,12 +114,14 @@
 		17153EED25A8C5C30072CE83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		172CA8EA25F98745002CAA09 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		172CA8F725FA31E4002CAA09 /* MeProfileNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileNView.swift; sourceTree = "<group>"; };
+		173E48F025FB894600D3DA0A /* YouProfileNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouProfileNView.swift; sourceTree = "<group>"; };
 		173F361125E2D72D002E9EE6 /* MeMatchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchCardView.swift; sourceTree = "<group>"; };
 		173F361B25E2FF0D002E9EE6 /* MeMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchView.swift; sourceTree = "<group>"; };
 		174423A925D9A0DF00D25EDD /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		174423AD25D9A93000D25EDD /* EventCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationView.swift; sourceTree = "<group>"; };
 		1746097325FA448700726BA1 /* MeProfileFirstBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileFirstBlockView.swift; sourceTree = "<group>"; };
 		1746097625FA45A900726BA1 /* MeProfileSecondBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileSecondBlockView.swift; sourceTree = "<group>"; };
+		174EFCD625FABDC40028C04C /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
 		175E40DF25B43BB200ADC9BF /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		175E40E225B4670800ADC9BF /* StartBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartBackgroundView.swift; sourceTree = "<group>"; };
 		175E40E525B46ABB00ADC9BF /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
@@ -274,6 +278,16 @@
 			path = StartViews;
 			sourceTree = "<group>";
 		};
+		173E48EE25FB74E900D3DA0A /* MatchViews */ = {
+			isa = PBXGroup;
+			children = (
+				173F361B25E2FF0D002E9EE6 /* MeMatchView.swift */,
+				1795DF9D25DF0E22002D537F /* MeMatchStartView.swift */,
+				173F361125E2D72D002E9EE6 /* MeMatchCardView.swift */,
+			);
+			path = MatchViews;
+			sourceTree = "<group>";
+		};
 		173F361025E2CEAE002E9EE6 /* ViewHelpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +300,7 @@
 				17DE52EC25EA3F9E000D0B4D /* ImagePicker.swift */,
 				17B0B61025F543F70014B0FD /* TabBarView.swift */,
 				17B0B61425F546810014B0FD /* TabButtonView.swift */,
+				174EFCD625FABDC40028C04C /* RingView.swift */,
 			);
 			path = ViewHelpers;
 			sourceTree = "<group>";
@@ -387,12 +402,11 @@
 				179B27C925D48788007F64D6 /* YouEventLineView.swift */,
 				179B27C525D477F1007F64D6 /* YouEventView.swift */,
 				174423AD25D9A93000D25EDD /* EventCreationView.swift */,
-				173F361B25E2FF0D002E9EE6 /* MeMatchView.swift */,
-				1795DF9D25DF0E22002D537F /* MeMatchStartView.swift */,
-				173F361125E2D72D002E9EE6 /* MeMatchCardView.swift */,
 				17DE52E925E9A2D7000D0B4D /* YouProfileView.swift */,
 				17F34F0F25F6CF5400690122 /* MeEventNView.swift */,
 				17F34F1225F8EAEB00690122 /* YouEventNView.swift */,
+				173E48F025FB894600D3DA0A /* YouProfileNView.swift */,
+				173E48EE25FB74E900D3DA0A /* MatchViews */,
 			);
 			path = MarketplaceViews;
 			sourceTree = "<group>";
@@ -673,6 +687,7 @@
 				175E40F025B4CD3300ADC9BF /* RegisterView.swift in Sources */,
 				1746097725FA45A900726BA1 /* MeProfileSecondBlockView.swift in Sources */,
 				177F681925D8409200BC345B /* MeProfileView.swift in Sources */,
+				174EFCD725FABDC40028C04C /* RingView.swift in Sources */,
 				1795DFAE25DF20AD002D537F /* LoadingView.swift in Sources */,
 				17DAD7E325D934D600DBE60B /* GlobalFunctions.swift in Sources */,
 				176A5AC725F3C0A000C857E8 /* ChatEventView.swift in Sources */,
@@ -720,6 +735,7 @@
 				177F682A25D8937F00BC345B /* KeyboardHandler.swift in Sources */,
 				902EF6FF25D9A51B004464F0 /* EventCreationViewModel.swift in Sources */,
 				1774B67925D1E35200D1D2F1 /* MainChatView.swift in Sources */,
+				173E48F125FB894600D3DA0A /* YouProfileNView.swift in Sources */,
 				17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */,
 				90D42AD525EA59350060311B /* YouProfilViewModel.swift in Sources */,
 				1795DF9E25DF0E22002D537F /* MeMatchStartView.swift in Sources */,
@@ -868,7 +884,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -876,7 +892,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Me";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Mee";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -894,7 +910,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
-				DEVELOPMENT_TEAM = SH8L9L3ABL;
+				DEVELOPMENT_TEAM = LTC2Q574RM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Meet Me/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -902,7 +918,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Me";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Mee";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

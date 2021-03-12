@@ -41,8 +41,8 @@ struct Meet_MeApp: App {
 //            MainStartView(startUpDone: $startProcessDone)
             
 //            LoginNView()
-//            MeProfileNView()
-                MainControllerView()
+            YouProfileNView()
+//                MainControllerView()
 
 //            } else {
 //                StartView(startProcessDone: $startProcessDone)

@@ -145,12 +145,12 @@ struct ProfileCreationView: View {
                                     .resizable()
                                     .frame(width: 137.58, height: 47.6, alignment: .trailing)
                             }
-                                                        
+                            
                         }
                         .frame(width: 268.58)
                         
-                        // button is disabled until the user set at least the name, the gender, the birthday and photos
-                        let enoughInformation = !(acceptedAction[0] && acceptedAction[1] && acceptedAction[2] && acceptedAction[5])
+                        // button is disabled until the user set at least the name, the gender, the birthday 
+                        let enoughInformation = !(acceptedAction[0] && acceptedAction[1] && acceptedAction[2])
                         
                         // update button
                         Button(action: {
@@ -186,15 +186,11 @@ struct ProfileCreationView: View {
                         
                     }
                     .padding(.bottom, 16)
-
+                    
                 }
                 .padding(.horizontal, 16)
                 // bring the content VStack to the same size as the background shade
                 .frame(width: 340, height: 620, alignment: .center)
-                .sheet(isPresented: $showImagePicker, content: {
-                    ImagePicker(images: $images, showPicker: $showImagePicker, limit: 3, didFinishPicking: {_ in
-                })
-                })
                 
                 
                 // creating pop-up alert-boxes
@@ -208,7 +204,7 @@ struct ProfileCreationView: View {
                         AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", textFieldInput: true, output: $addProfileCreationVM.name, show: $showAlertBox, accepted: $acceptedAction[0])
                             // z index 1 == the top layer -> this is needed due to animation processes
                             .zIndex(1.0)
-                    
+                        
                     // case 1 is the second step -> gender creation
                     case 1:
                         AlertBoxView(title: "Choose your gender", placeholder: "Tap here to choose..", defaultText: "Gender", pickerInput: true, pickerInputArray: ["Male", "Female", "Other"], output: $addProfileCreationVM.gender, show: $showAlertBox, accepted: $acceptedAction[1])
@@ -225,7 +221,7 @@ struct ProfileCreationView: View {
                             .zIndex(1.0)
                         
                     case 4:
-                        // add alertbox to ask user for location services
+                        // add alert-box to ask user for location services
                         AlertBoxView(title: "Allow app to use your current location", placeholder: "", defaultText: "", output: $acceptLocation, show: $showAlertBox, accepted: $acceptedAction[4])
                             .zIndex(1.0)
                         
@@ -234,20 +230,11 @@ struct ProfileCreationView: View {
                         Color.clear
                             .sheet(isPresented: $showImagePicker, content: {
                                 ImagePicker(images: $images, showPicker: $showImagePicker, limit: 3) { (_) in
-                                    //
+                                    acceptedAction[5] = true
                                 }
-                                
-                        })
-                            .onAppear {
-                                print("PH Picker open")
-                                acceptedAction[5] = true
-                            }
-//                        if showImagePicker {
-//                            ImageOldP(isShown: $showImagePicker, isDone: $acceptedAction[5], image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
-//                        }
+                            })
                         
-//                        AlertBoxView(title: "Choose a picture of yourself", placeholder: "", defaultText: "", output: $acceptLocation, show: $showAlertBox, accepted: $acceptedAction[4])
-                    
+                        
                     // the default is 0 which is the first step in the pathway -> name creation
                     default:
                         AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", output: $outputAlertBox, show: $showAlertBox, accepted: $acceptedAction[2])
@@ -269,7 +256,7 @@ struct ProfileCreationView: View {
 struct ProfileCreationView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileCreationView(profileCreationFinished: .constant(false))
-//            .previewDevice("iPhone 8")
+        //            .previewDevice("iPhone 8")
     }
 }
 
@@ -317,7 +304,7 @@ struct GenderLineView: View {
     
     // Binding from main View
     @Binding var gender: String
-
+    
     // binding for pathway change
     @Binding var pathwayStep: Int
     
@@ -358,7 +345,7 @@ struct BirthdayLineView: View {
     
     // Binding from main View
     @Binding var birthday: String
-
+    
     // binding for pathway change
     @Binding var pathwayStep: Int
     
@@ -403,7 +390,7 @@ struct SearchingLineView: View {
     
     // Binding from main View
     @Binding var searchingFor: String
-
+    
     // binding for pathway change
     @Binding var pathwayStep: Int
     
@@ -444,7 +431,7 @@ struct LocationLineView: View {
     
     // Binding from main View
     @Binding var acceptLocation: String
-
+    
     // binding for pathway change
     @Binding var pathwayStep: Int
     
@@ -487,7 +474,7 @@ struct PictureLineView: View {
     
     // show imagePicker
     @Binding var showPicker: Bool
-
+    
     // binding for pathway change
     @Binding var pathwayStep: Int
     
@@ -510,7 +497,7 @@ struct PictureLineView: View {
                 pathwayStep = 5
                 showPicker = true
                 showAlertBox = true
-
+                
             }) {
                 Image(systemName: iconName)
                     .font(.title)
