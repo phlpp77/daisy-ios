@@ -80,7 +80,7 @@ class MeProfileViewModel: ObservableObject {
     
     func addPhotoInPosition(image: UIImage, position: Int) {
         var checkPosition = position
-        if userModel.userPhotosId[checkPosition - 1] != nil{
+        if userModel.userPhotosId[checkPosition - 1] == nil && position != 0{
             checkPosition = checkPosition - 1
         }
         
