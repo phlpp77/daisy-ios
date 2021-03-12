@@ -94,7 +94,7 @@ class MeProfileViewModel: ObservableObject {
             self.url = url
         }.then {
             self.firestoreFotoManagerUserTest.savePhotoUrlToFirestore(url: self.url, fotoPlace: checkPosition)
-        }.done {
+        }.done { 
             _ = self.firestoreFotoManagerUserTest.saveStorageIds(fotoPlace: checkPosition)
         }.catch { error in
             print("DEBUG: error in addPhoto, error: \(error)")
