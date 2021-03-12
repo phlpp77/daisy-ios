@@ -79,6 +79,11 @@ class MeProfileViewModel: ObservableObject {
     }
     
     func addPhotoInPosition(image: UIImage, position: Int) {
+        var checkPosition = position
+        if userModel.userPhotosId[checkPosition - 1] != nil{
+            checkPosition = checkPosition - 1
+        }
+        
         firstly {
             self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: self.userModel.userPhotosId[position])
         }.then {
@@ -88,9 +93,9 @@ class MeProfileViewModel: ObservableObject {
         }.map { url in
             self.url = url
         }.then {
-            self.firestoreFotoManagerUserTest.savePhotoUrlToFirestore(url: self.url, fotoPlace: position)
+            self.firestoreFotoManagerUserTest.savePhotoUrlToFirestore(url: self.url, fotoPlace: checkPosition)
         }.done {
-            _ = self.firestoreFotoManagerUserTest.saveStorageIds(fotoPlace: position)
+            _ = self.firestoreFotoManagerUserTest.saveStorageIds(fotoPlace: checkPosition)
         }.catch { error in
             print("DEBUG: error in addPhoto, error: \(error)")
             print("DEBUG: error localized \(error.localizedDescription)")
