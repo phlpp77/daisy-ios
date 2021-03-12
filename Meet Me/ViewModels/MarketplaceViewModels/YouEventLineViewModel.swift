@@ -20,6 +20,7 @@ class YouEventLineViewModel: ObservableObject {
 
 
     func getYouEvents() -> Promise<[EventModel]>{
+
         return Promise { seal in
             firstly{
                 firestoreManagerUserTest.getCurrentUser()

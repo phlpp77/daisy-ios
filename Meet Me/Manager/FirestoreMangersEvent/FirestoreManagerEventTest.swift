@@ -64,7 +64,7 @@ class FirestoreManagerEventTest {
                 let _ =  db.collection("events")
                     .document(eventId)
                     .collection("likedUser")
-                    .document("likedUser").setData(["likedUser": []])
+                    .document("likedUser").setData(["likedUser": ["Im a feature not a bug"]])
                 
                 seal.fulfill(())
                 
@@ -193,6 +193,7 @@ class FirestoreManagerEventTest {
     
     func getAllLikedUserDocument(eventId: String) -> Promise<[String]> {
         return Promise { seal in
+
             
             db.collection("events")
                 .document(eventId)
@@ -210,8 +211,7 @@ class FirestoreManagerEventTest {
                                     if likedUser?.likedUser.count != 0 {
                                         seal.fulfill(likedUser!.likedUser)
                                     } else {
-                                        let error = Err("No Liked Availibale")
-                                        seal.reject(error)
+                                        seal.reject(Err("Liked document is empty"))
                                     }
                                 }
                             }
@@ -277,8 +277,7 @@ class FirestoreManagerEventTest {
     
     func querysInEvent(likedEvents: [String], queries: [Query], center : CLLocationCoordinate2D, user: UserModel) ->Promise<[EventModel]> {
         return Promise { seal in
-            
-            
+
             let userPoint = CLLocation(latitude: center.latitude, longitude: center.longitude)
             
             
@@ -299,33 +298,38 @@ class FirestoreManagerEventTest {
                                 event?.eventId = doc.documentID
                                 if var event = event {
                                     if event.userId != currentUser.uid && event.eventMatched == false {
-                                        if event.searchingFor == user.gender && event.genderFromCreator == user.searchingFor {
-                                            
+                                        print("DEBUG geschlecht abfrage: event.serchingFor: \(event.searchingFor)  == user.gender: \(user.gender) && event.genderFromCreator: \(event.genderFromCreator) ==  user.searchingFor:  \(user.searchingFor)")
+                                        //if event.searchingFor == user.gender && event.genderFromCreator == user.searchingFor {
                                             let eventPoint = CLLocation(latitude: event.latitude, longitude: event.longitude)
                                             event.distance = GFUtils.distance(from: userPoint, to: eventPoint) / 1000
                                             print("EventDistance: \(event.distance)")
                                             //return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
                                             return event
-                                        }
+                                        //}
                                     }
                                 }
                                 return nil
                             }
+                            
                             if event != nil {
-                                for (index, eventModel) in event!.enumerated().reversed() {
-                                    if likedEvents.contains(eventModel.eventId) {
-                                        event!.remove(at: index)
+                                if event!.count > 0 {
+                                    print("COUNT: \(event!.count)")
+                                    for (index, eventModel) in event!.enumerated().reversed() {
+                                        if likedEvents.contains(eventModel.eventId) {
+                                            event!.remove(at: index)
+                                        }
+                                    }
+                                    
+                                    DispatchQueue.main.async {
+                                        seal.fulfill(event!)
                                     }
                                 }
-                                DispatchQueue.main.async {
-                                    seal.fulfill(event!)
-                                }
-                            } else {
+                            }else {
                                 let error = Err("No Events in GetYouEvents")
                                 DispatchQueue.main.async {
                                     seal.reject(error)
+                                    
                                 }
-                                
                             }
                         }
                     }
@@ -334,6 +338,7 @@ class FirestoreManagerEventTest {
         }
     }
 }
+
 
 
 

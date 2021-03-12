@@ -92,7 +92,6 @@ struct YouEventLineView: View {
                 self.youEventLineVM.getYouEvents()
             }.done { events in
                 self.eventArray = events
-                
             }.catch { error in
                 print("DEBUG: error in GetYouEventChain: \(error)")
                 print("DEBUG: \(error.localizedDescription)")
