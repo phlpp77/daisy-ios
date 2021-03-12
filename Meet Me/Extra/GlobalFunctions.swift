@@ -56,7 +56,7 @@ let secondaryGradient = LinearGradient(
 let stockUser: UserModel = UserModel(userId: "007", name: "Stocky One", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Female", userPhotos: [1: stockUrlString], userPhotosId: [1: ""], radiusInKilometer: 1000)
 let stockUser2: UserModel = UserModel(userId: "008", name: "Stockise Two", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [1: stockUrlString], userPhotosId: [1: ""], radiusInKilometer: 1000)
 
-let stockUserObject: UserModelObject = UserModelObject(user: stockUser)
+
 
 // TODO: Need to be changed to a stock photo
 let stockURL: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2FstockPic.jpg?alt=media&token=59dfa4eb-81b0-4845-80f6-33b35f305414")!

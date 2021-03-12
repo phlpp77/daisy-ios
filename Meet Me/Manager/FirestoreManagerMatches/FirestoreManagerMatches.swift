@@ -24,7 +24,7 @@ class FirestoreManagerMatches {
     
     // MARK: - Functions executed by Match
     
-    func addMatchToCurrentUser(userModel: UserModelObject, eventModel: EventModel, chatId: String) -> Promise<Void> {
+    func addMatchToCurrentUser(userModel: UserModel, eventModel: EventModel, chatId: String) -> Promise<Void> {
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
                 return
@@ -47,7 +47,7 @@ class FirestoreManagerMatches {
         
     }
     
-    func addMatchToMatchedUser(userModel: UserModelObject,eventModel: EventModel, chatId: String) -> Promise<Void> {
+    func addMatchToMatchedUser(userModel: UserModel,eventModel: EventModel, chatId: String) -> Promise<Void> {
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
                 return
@@ -69,7 +69,7 @@ class FirestoreManagerMatches {
         }
     }
     
-    func createChatRoom(userModel: UserModelObject, eventModel: EventModel, chatId: String) -> Promise<Void> {
+    func createChatRoom(userModel: UserModel, eventModel: EventModel, chatId: String) -> Promise<Void> {
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
                 return
@@ -211,7 +211,7 @@ class FirestoreManagerMatches {
     
     
 
-    func deleteLikedUser(eventModel: EventModel, userModel: UserModelObject) -> Promise<Void> {
+    func deleteLikedUser(eventModel: EventModel, userModel: UserModel) -> Promise<Void> {
         return Promise { seal in
             db.collection("events")
                 .document(eventModel.eventId)

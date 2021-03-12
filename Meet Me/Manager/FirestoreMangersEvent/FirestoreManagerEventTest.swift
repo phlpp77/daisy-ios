@@ -225,7 +225,7 @@ class FirestoreManagerEventTest {
     }
     
     
-    func getAllLikedUserModels(likedUser: [String]) -> Promise<[UserModelObject]> {
+    func getAllLikedUserModels(likedUser: [String]) -> Promise<[UserModel]> {
         return Promise { seal in
             db.collection("users")
                 .whereField("userId", in: likedUser)
@@ -235,10 +235,10 @@ class FirestoreManagerEventTest {
                     } else {
                         
                         if let snapshot = snapshot {
-                            let userModel: [UserModelObject] = snapshot.documents.compactMap { doc in
+                            let userModel: [UserModel] = snapshot.documents.compactMap { doc in
                                 let userModel = try? doc.data(as: UserModel.self)
                                 if let userModel = userModel {
-                                    return UserModelObject(user: userModel)
+                                    return userModel
                                 }
                                 return nil
                                 

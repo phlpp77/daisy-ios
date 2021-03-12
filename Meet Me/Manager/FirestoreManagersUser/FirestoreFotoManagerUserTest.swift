@@ -155,6 +155,8 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     
     func changedProfilPicture(newProfilePicture: URL) ->Promise<Void> {
         return Promise { seal in
+            print("changed ProfilPicture aufgeerufen")
+            print("url : \(newProfilePicture)")
             guard let currentUser = Auth.auth().currentUser else {
                 throw Err("No User Profile")
             }
@@ -165,7 +167,7 @@ class FirestoreFotoManagerUserTest: ObservableObject {
                     let ids: [String]! = snapshot?.documents.compactMap { doc in
                         return doc.documentID
                     }
-
+                    print("ids \(ids!)")
                     for id in ids {
                         self.db.collection("events").document(id).updateData(["profilePicture" : newProfilePicture.absoluteString]) { error in
                             if let error = error {
@@ -185,7 +187,7 @@ class FirestoreFotoManagerUserTest: ObservableObject {
  
     func deleteImageFromStorage(storageId: String?) ->Promise<Void> {
         return Promise { seal in
-
+            print("delete Storage aufgerufen")
             if storageId != nil {
             let storageRef = storage.reference()
             let photoRef = storageRef.child("UserImages/\(storageId!).png")

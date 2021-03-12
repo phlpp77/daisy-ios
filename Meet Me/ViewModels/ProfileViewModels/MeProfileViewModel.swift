@@ -91,10 +91,9 @@ class MeProfileViewModel: ObservableObject {
         }.then { picture in
             self.firestoreFotoManagerUserTest.uploadUserPhoto(data: picture)
         }.map { url in
+            self.firestoreFotoManagerUserTest.savePhotoUrlToFirestore(url: url, fotoPlace: checkPosition).cauterize()
             self.url = url
-        }.then {
-            self.firestoreFotoManagerUserTest.savePhotoUrlToFirestore(url: self.url, fotoPlace: checkPosition)
-        }.done { 
+        }.done {
             _ = self.firestoreFotoManagerUserTest.saveStorageIds(fotoPlace: checkPosition)
         }.catch { error in
             print("DEBUG: error in addPhoto, error: \(error)")
@@ -114,9 +113,9 @@ class MeProfileViewModel: ObservableObject {
         //let position1 = position + 1
         let storageId =  userModel.userPhotosId[position]
         firstly {
-            self.changePhoto(position: position)
-        }.then  {
             self.firestoreFotoManagerUserTest.deleteImageFromStorage(storageId: storageId)
+        }.then {
+            self.changePhoto(position: position)
         }.catch { error in
             print("DEBUG: error in deletePhoto error: \(error)")
             print("DEBUG: error localized: \(error.localizedDescription)")
@@ -142,6 +141,7 @@ class MeProfileViewModel: ObservableObject {
                         firstly {
                             self.firestoreFotoManagerUserTest.changedProfilPicture(newProfilePicture: URL(string: newUrl)!)
                         }.catch { error in
+                            print("error 1")
                             seal.reject(error)
                         }
                     }
@@ -153,10 +153,12 @@ class MeProfileViewModel: ObservableObject {
                                                                               url1: self.userModel.userPhotos[position2]!,
                                                                               urlId1: self.userModel.userPhotosId[position2]!)
                         }.catch { error in
+                            print("errror 2")
                             seal.reject(error)
                         }
                     }
                 }.catch { error in
+                    print("error 3")
                     seal.reject(error)
                 }
             } else {
@@ -172,10 +174,12 @@ class MeProfileViewModel: ObservableObject {
                         }.then {
                             self.firestoreFotoManagerUserTest.changedProfilPicture(newProfilePicture: stockURL)
                         }.catch { error in
+                            print("error 4")
                             seal.reject(error)
                         }
                     }
                 }.catch { error in
+                    print("error 5")
                     seal.reject(error)
                 }
             }

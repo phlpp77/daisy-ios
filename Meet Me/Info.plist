@@ -23,7 +23,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>The want permission to use your camera </string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This App want to track your Location</string>
+	<string>Enable your Location to find YOU Events nearby</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This App want to track your Location</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
@@ -44,8 +44,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
