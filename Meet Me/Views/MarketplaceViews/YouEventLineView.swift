@@ -10,22 +10,17 @@ import PromiseKit
 
 struct YouEventLineView: View {
     
-    
     @ObservedObject private var youEventLineVM = YouEventLineViewModel()
-
-    
-    //var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     
     // data transfer form database
-//    @State private var eventArray: [EventModelObject] = []
-    @State var eventArray: [EventModel] = [stockEvent, stockEvent2]
+    @State var eventArray: [EventModel] = []
     @State private var loading: Bool = false
     
     @Binding var tappedYouEvent: EventModel
     @Binding var showYouProfileView: Bool
     
-    @State var eventRemoveIndex: Int = -1
     // index which event needs to be removed from the array/scrollview
+    @State var eventRemoveIndex: Int = -1
     
     var body: some View {
         ZStack {
@@ -43,6 +38,7 @@ struct YouEventLineView: View {
                 )
                 .offset(y: 150)
             
+            
             // MARK: Horizontal event list
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -51,10 +47,6 @@ struct YouEventLineView: View {
                         ForEach(eventArray.indices, id: \.self) { eventIndex in
                             GeometryReader { geometry in
                                 
-                                
-                                // , eventArray: $youEventLineVM.eventArray
-//                                YouEventView(eventModelObject: eventArray[eventIndex], eventIndex: eventIndex, dragPossible: true, eventArray: $eventArray)
-//                                YouEventNView(events: $eventArray, eventIndex: eventIndex, currentEvent: $eventArray[eventIndex])
                                 YouEventNView(events: $eventArray, eventIndex: eventIndex, currentEvent: eventArray[eventIndex])
                                     .rotation3DEffect(
                                         // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
@@ -65,7 +57,7 @@ struct YouEventLineView: View {
                                     
                                     
                                     .onTapGesture {
-//                                        tappedYouEvent = eventArray[eventIndex]
+                                        tappedYouEvent = eventArray[eventIndex]
                                         withAnimation(.easeIn(duration: 0.1)) {
                                             showYouProfileView = true
                                         }
@@ -94,23 +86,23 @@ struct YouEventLineView: View {
             //            LoadingView(showLoadingScreen: $loading)
         }
         .frame(height: 380)
-//        .onAppear {
-//            loading = true
-//            firstly {
-//                self.youEventLineVM.getYouEvents()
-//            }.done { events in
-//                self.eventArray = events
-//                
-//            }.catch { error in
-//                print("DEBUG: error in GetYouEventChain: \(error)")
-//                print("DEBUG: \(error.localizedDescription)")
-//            }.finally {
-//                loading = false
-//            }
-//
-//
-//            
-//        }
+        .onAppear {
+            loading = true
+            firstly {
+                self.youEventLineVM.getYouEvents()
+            }.done { events in
+                self.eventArray = events
+                
+            }.catch { error in
+                print("DEBUG: error in GetYouEventChain: \(error)")
+                print("DEBUG: \(error.localizedDescription)")
+            }.finally {
+                loading = false
+            }
+            
+            
+            
+        }
         
     }
     
