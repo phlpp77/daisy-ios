@@ -89,6 +89,8 @@ struct YouEventNView: View {
                         // delete the item at the position from the Array
                         self.events.remove(at: eventIndex)
                         
+                        hapticFeedback(feedBackstyle: .success)
+                        
                     } else {
                         
                         self.dragPosition = .zero
