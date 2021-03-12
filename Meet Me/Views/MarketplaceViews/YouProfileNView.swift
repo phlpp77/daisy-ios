@@ -20,57 +20,68 @@ struct YouProfileNView: View {
     
     var body: some View {
         
-        ZStack {
-            
-            Color.black.opacity(0.001)
-                .onTapGesture(perform: {
-                    print("dismiss")
-                    showYouProfileView = false
-                })
-            
-            VStack {
+        GeometryReader { bounds in
+            ZStack {
                 
-                // spacer is used to get full area to tap
-                Spacer()
+                Color.black.opacity(0.001)
+                    .onTapGesture(perform: {
+                        print("dismiss")
+                        showYouProfileView = false
+                    })
                 
-                
-                ZStack {
+                VStack {
                     
-                    // Base (including picture) of the Profile
-                    base
-                    
-                    // information-box at the bottom of the base
-                    informationBox
-                        .offset(y: 470 / 2)
-                    
-                    // show the event at the top right corner
-                    eventCircle
-                        .offset(x: 327 / 2 - 30, y: -470 / 2 + 30)
+                    // spacer is used to get full area to tap
+                    Spacer()
                     
                     
-                    // showing the capsules for switching the pictures
-                    HStack(spacing: 10.0) {
-                        ForEach(youProfileVM.userModel.userPhotos.sorted(by: >), id: \.key) { photoIndex, photoUrlString in
-                            IndicatorCapsule(tappedPhoto: $showPictureIndex, pictureIndex: photoIndex)
+                    ZStack {
+                        
+                        // Base (including picture) of the Profile
+                        base
+                        
+                        // information-box at the bottom of the base
+                        informationBox
+                            .offset(y: (bounds.size.width - 48) * 1.33 / 2)
+                        
+                        // show the event at the top right corner
+                        eventCircle
+                            .offset(x: (bounds.size.width - 48) / 2 - 30, y: -((bounds.size.width - 48) * 1.33) / 2 + 30)
+                        
+                        
+                        // showing the capsules for switching the pictures
+                        if youProfileVM.userModel.userPhotos.count > 1 {
+                            HStack(spacing: 10.0) {
+                                ForEach(youProfileVM.userModel.userPhotos.sorted(by: <), id: \.key) { photoIndex, photoUrlString in
+                                    IndicatorCapsule(tappedPhoto: $showPictureIndex, pictureIndex: photoIndex)
+                                }
+                            }
+                            .offset(y: ((bounds.size.width - 48) * 1.33 / 2) - 45)
                         }
+                        
+                        Image(systemName: "xmark")
+                            .foregroundColor(Color("BackgroundSecondary").opacity(0.5))
+                            .font(.system(size: 30))
+                            .offset(y: ((bounds.size.width - 48) * 1.33 / 2) + 60)
+                        
+                        
                     }
-                    .offset(y: 190)
                     
+                    
+                    
+                    
+                    // spacer is used to get full area to tap
+                    Spacer()
                     
                 }
                 
-                // spacer is used to get full area to tap
-                Spacer()
                 
             }
-            
-            
+            .frame(width: bounds.size.width, height: bounds.size.height, alignment: .center)
+            .onAppear {
+                youProfileVM.getYouProfil(eventModel: event)
+                print("DEBUG: userPhots in dic\(youProfileVM.userModel.userPhotos)")
         }
-        .onAppear {
-            print("SUCHE")
-            print("DEGUB11111: aufruf getYouProfil View")
-            print("DEBUG11111: event im View \(event)")
-            youProfileVM.getYouProfil(eventModel: event)
         }
         
     }
@@ -80,67 +91,104 @@ struct YouProfileNView: View {
     var base: some View {
         
         // MARK: Base (including picture) of the Profile
-        ZStack {
-            
-            // MARK: White Background
-            Color("Offwhite")
-                .frame(width: 327, height: 470)
-                .clipShape(
-                    RoundedRectangle(cornerRadius: 26, style: .continuous)
-                )
-            
-            // MARK: Image downloaded from the Database
-            URLImage(url: URL(string: youProfileVM.userModel.userPhotos[showPictureIndex] ?? stockUrlString)!) { image in
-                image.resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 307, height: 450)
+        GeometryReader { bounds in
+            ZStack {
+                
+                // MARK: White Background
+                Color("Offwhite")
+                    .frame(width: bounds.size.width - 48, height: (bounds.size.width - 48) * 1.33)
                     .clipShape(
-                        RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        RoundedRectangle(cornerRadius: 26, style: .continuous)
                     )
+                
+                // MARK: Image downloaded from the Database
+                URLImage(url: URL(string: youProfileVM.userModel.userPhotos[showPictureIndex] ?? stockUrlString)!) { image in
+                    image.resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: bounds.size.width - 48 - 20, height: (bounds.size.width - 48) * 1.33 - 20)
+                        .clipShape(
+                            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        )
+                }
+                .onChange(of: showPictureIndex, perform: { value in
+                    print("value changed \(youProfileVM.userModel.userPhotos)")
+                    print(value)
+                })
+                
+                // MARK: Tapping area for changing pictures
+                HStack {
+                    // left tap
+                    Color.black.opacity(0.001)
+                        .onTapGesture {
+                            if showPictureIndex > 0 {
+                                showPictureIndex -= 1
+                            } else {
+                                hapticFeedback(feedBackstyle: .error)
+                            }
+                            
+                        }
+                    
+                    // right tap
+                    Color.black.opacity(0.001)
+                        .onTapGesture {
+                            if showPictureIndex < youProfileVM.userModel.userPhotos.count - 1 {
+                                showPictureIndex += 1
+                            } else {
+                                hapticFeedback(feedBackstyle: .error)
+                            }
+                            
+                        }
+                }
+                .frame(width: bounds.size.width - 48, height: (bounds.size.width - 48) * 1.33)
+                
             }
-            
+            .frame(width: bounds.size.width, height: bounds.size.height, alignment: .center)
         }
     }
     
     
     // MARK: -
     var informationBox: some View {
+        
         // MARK: Information-Box at the bottom of the Profile
-        ZStack {
-            
-            // MARK: Background of the Information-Box
-            BlurView(style: .systemUltraThinMaterial)
+        GeometryReader { bounds in
+            ZStack {
+                
+                // MARK: Background of the Information-Box
+                BlurView(style: .systemUltraThinMaterial)
+                    .frame(width: bounds.size.width - 48 - 26, height: 47)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12, style: .continuous)
+                            .stroke(
+                                LinearGradient(
+                                    gradient: Gradient(stops: [
+                                                        .init(color: Color(#colorLiteral(red: 0.7791666388511658, green: 0.7791666388511658, blue: 0.7791666388511658, alpha: 0.949999988079071)), location: 0),
+                                                        .init(color: Color(#colorLiteral(red: 0.7250000238418579, green: 0.7250000238418579, blue: 0.7250000238418579, alpha: 0)), location: 1)]),
+                                    startPoint: UnitPoint(x: 0.9016393067273221, y: 0.10416647788375455),
+                                    endPoint: UnitPoint(x: 0.035519096038869824, y: 0.85416653880629)),
+                                lineWidth: 0.5
+                            )
+                    )
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    )
+                
+                // MARK: Content of Information-Box
+                HStack {
+                    // name of the YOUser
+                    Text(youProfileVM.userModel.name)
+                    
+                    // Pushing the texts to the ends
+                    Spacer()
+                    
+                    // age of the YOUser
+                    Text(String(dateToAge(date: youProfileVM.userModel.birthdayDate)))
+                }
+                .font(.largeTitle)
+                .padding(.horizontal, 16)
                 .frame(width: 301, height: 47)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12, style: .continuous)
-                        .stroke(
-                            LinearGradient(
-                                gradient: Gradient(stops: [
-                                                    .init(color: Color(#colorLiteral(red: 0.7791666388511658, green: 0.7791666388511658, blue: 0.7791666388511658, alpha: 0.949999988079071)), location: 0),
-                                                    .init(color: Color(#colorLiteral(red: 0.7250000238418579, green: 0.7250000238418579, blue: 0.7250000238418579, alpha: 0)), location: 1)]),
-                                startPoint: UnitPoint(x: 0.9016393067273221, y: 0.10416647788375455),
-                                endPoint: UnitPoint(x: 0.035519096038869824, y: 0.85416653880629)),
-                            lineWidth: 0.5
-                        )
-                )
-                .clipShape(
-                    RoundedRectangle(cornerRadius: 12, style: .continuous)
-                )
-            
-            // MARK: Content of Information-Box
-            HStack {
-                // name of the YOUser
-                Text("Mark")
-                
-                // Pushing the texts to the ends
-                Spacer()
-                
-                // age of the YOUser
-                Text("22")
             }
-            .font(.largeTitle)
-            .padding(.horizontal, 16)
-            .frame(width: 301, height: 47)
+            .frame(width: bounds.size.width, height: bounds.size.height, alignment: .center)
         }
     }
     

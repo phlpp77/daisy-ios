@@ -34,7 +34,7 @@ struct MeEventLineView: View {
                             .clipShape(Circle())
                             .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
                             .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
-                            .padding(.leading, 15)
+                            .padding(.leading, 35)
                             .padding(.trailing, 10)
                             .scaleEffect(buttonPressed ? 0.8 : 1)
                             .opacity(buttonPressed ? 0.5 : 1)

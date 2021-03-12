@@ -134,7 +134,7 @@ struct MeEventNView: View {
             
         }
         // padding to show the shadow
-        .padding(.top, 8)
+        .padding(.top, 10)
         .padding(.bottom, 14)
         
         
