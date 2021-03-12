@@ -10,7 +10,7 @@ import PromiseKit
 
 struct YouEventLineView: View {
     
-    @ObservedObject private var youEventLineVM = YouEventLineViewModel()
+    @StateObject private var youEventLineVM = YouEventLineViewModel()
     
     // data transfer form database
     @State var eventArray: [EventModel] = []

@@ -10,6 +10,8 @@ import URLImage
 
 struct YouEventNView: View {
     
+    @StateObject var youEventVM: YouEventViewModel = YouEventViewModel()
+    
     @Binding var events: [EventModel]
     var eventIndex: Int
     var currentEvent: EventModel
@@ -64,7 +66,7 @@ struct YouEventNView: View {
         .gesture(
             DragGesture()
                 .onChanged { value in
-                
+                    
                     // drag is not allowed to be higher than 20 upwards
                     if value.translation.height > 0 {
                         self.dragPosition = value.translation
@@ -81,8 +83,10 @@ struct YouEventNView: View {
                     if value.translation.height > 100 {
                         self.dragPosition = .init(width: 0, height: 500)
                         
+                        // add like to the database
+                        youEventVM.addLikeToEvent(eventId: events[eventIndex].eventId)
+                        
                         // delete the item at the position from the Array
-                        //                            youEventVM.addLikeToEvent(eventId: eventArray[eventIndex].eventId)
                         self.events.remove(at: eventIndex)
                         
                     } else {
@@ -133,11 +137,11 @@ struct YouEventNView: View {
             // FIXME: Needs to be changed to URL Image
             URLImage(url: URL(string: currentEvent.pictureURL) ?? stockURL) { image in
                 image.resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 260 , height: 260)
-                .clipShape(
-                    RoundedRectangle(cornerRadius: 20, style: .continuous)
-                )
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 260 , height: 260)
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    )
             }
         }
     }
@@ -225,23 +229,17 @@ struct YouEventNView: View {
                         )
                 )
                 .clipShape(Circle())
-//                .shadow(color: Color.black.opacity(0.25), radius: 11, x: 0, y: 4)
             
             
-            // Actual Image
-            if user.userPhotos[0] != nil {
-                URLImage(url: URL(string: user.userPhotos[0]!)!) { image in
-                    image.resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 70, height: 70)
-                        .clipShape(Circle())
-                }
-            } else {
-                Image("Philipp")
-                    .font(.largeTitle)
+            // Actual Image of user
+            
+            URLImage(url: URL(string: currentEvent.profilePicture)!) { image in
+                image.resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: 70, height: 70)
                     .clipShape(Circle())
             }
+            
         }
     }
     
