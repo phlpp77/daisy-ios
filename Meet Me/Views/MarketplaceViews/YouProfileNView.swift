@@ -110,10 +110,6 @@ struct YouProfileNView: View {
                             RoundedRectangle(cornerRadius: 20, style: .continuous)
                         )
                 }
-                .onChange(of: showPictureIndex, perform: { value in
-                    print("value changed \(youProfileVM.userModel.userPhotos)")
-                    print(value)
-                })
                 
                 // MARK: Tapping area for changing pictures
                 HStack {

@@ -48,6 +48,7 @@
 		179B27CA25D48788007F64D6 /* YouEventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C925D48788007F64D6 /* YouEventLineView.swift */; };
 		17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67225C2093D00E4DA78 /* PickerTextField.swift */; };
 		17A2EBC125F2D669003D1921 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A2EBC025F2D669003D1921 /* Enums.swift */; };
+		17AF633525FC2EF100A43BB3 /* MeEventDetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AF633425FC2EF100A43BB3 /* MeEventDetailedView.swift */; };
 		17B0B61125F543F70014B0FD /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B61025F543F70014B0FD /* TabBarView.swift */; };
 		17B0B61525F546810014B0FD /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B61425F546810014B0FD /* TabButtonView.swift */; };
 		17BC5FE025BE0B5900F35075 /* ProfileCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */; };
@@ -149,6 +150,7 @@
 		17A1E67225C2093D00E4DA78 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		17A2EBC025F2D669003D1921 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		17AF632925FBF7E000A43BB3 /* Meet Me.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Meet Me.entitlements"; sourceTree = "<group>"; };
+		17AF633425FC2EF100A43BB3 /* MeEventDetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventDetailedView.swift; sourceTree = "<group>"; };
 		17B0B61025F543F70014B0FD /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		17B0B61425F546810014B0FD /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButtonView.swift; sourceTree = "<group>"; };
 		17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationView.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				174423AD25D9A93000D25EDD /* EventCreationView.swift */,
 				17DE52E925E9A2D7000D0B4D /* YouProfileView.swift */,
 				17F34F0F25F6CF5400690122 /* MeEventNView.swift */,
+				17AF633425FC2EF100A43BB3 /* MeEventDetailedView.swift */,
 				17F34F1225F8EAEB00690122 /* YouEventNView.swift */,
 				173E48F025FB894600D3DA0A /* YouProfileNView.swift */,
 				173E48EE25FB74E900D3DA0A /* MatchViews */,
@@ -754,6 +757,7 @@
 				1746097425FA448700726BA1 /* MeProfileFirstBlockView.swift in Sources */,
 				17A2EBC125F2D669003D1921 /* Enums.swift in Sources */,
 				175E40E925B4A31C00ADC9BF /* HapticFeedback.swift in Sources */,
+				17AF633525FC2EF100A43BB3 /* MeEventDetailedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -895,7 +899,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Mee";
+				PRODUCT_BUNDLE_IDENTIFIER = de.philipphemkemeyer.Daisy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -922,7 +926,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.philipphemkemeyer.Meet-Mee";
+				PRODUCT_BUNDLE_IDENTIFIER = de.philipphemkemeyer.Daisy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
