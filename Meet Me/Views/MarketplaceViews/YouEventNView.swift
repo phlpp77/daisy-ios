@@ -16,6 +16,7 @@ struct YouEventNView: View {
     
     @State var user: UserModel = stockUser
     @State var distanceIndicator: Distance = .near
+    @State var timeDurationInMinutes: Int = 15
     
     @State var dragPosition: CGSize = .zero
     @State var likePercentage: Double = 0
@@ -94,6 +95,9 @@ struct YouEventNView: View {
         
         // MARK: - OnAppear
         .onAppear {
+            
+            // get the time in minutes from the event
+            self.timeDurationInMinutes = Int((currentEvent.startTime.distance(to: currentEvent.endTime)) / 60)
             
             // get the distance and show the range in words
             switch currentEvent.distance {
@@ -187,7 +191,7 @@ struct YouEventNView: View {
                 .padding(.horizontal, 8)
                 
                 // Time of event
-                RingView(timeInMinutes: 45)
+                RingView(timeInMinutes: timeDurationInMinutes)
                     .padding(.trailing, 8)
             }
             .font(.title3)

@@ -30,7 +30,7 @@ struct YouEventLineView: View {
     var body: some View {
         ZStack {
             
-            // dashed rectangle for dragging
+            // MARK: Dashed rectangle for dragging
             Color.clear
                 .frame(width: 250, height: 20, alignment: .center)
                 .overlay(
@@ -43,10 +43,10 @@ struct YouEventLineView: View {
                 )
                 .offset(y: 150)
             
-            // horizontal event list
+            // MARK: Horizontal event list
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 10) {
+                    HStack(spacing: 30) {
                         // create a view for each event in the array
                         ForEach(eventArray.indices, id: \.self) { eventIndex in
                             GeometryReader { geometry in
@@ -78,7 +78,7 @@ struct YouEventLineView: View {
                             .padding(.leading, 30)
                             .padding(.top, 30)
                         }
-
+                        // needed to update dragged event and array
                         .id(UUID())
                         
                     }
