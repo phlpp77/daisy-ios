@@ -73,10 +73,11 @@ class ProfileCreationModel: ObservableObject {
                 self.firestoreFotoMangerUserTest.resizeImage(originalImage: originalImage)
             }.then { picture in
                 self.firestoreFotoMangerUserTest.uploadUserPhoto(data: picture)
-            }.then { url in
-                self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url: url, fotoPlace: self.counter)
-            }.done {
+            }.map { url in
+                self.firestoreFotoMangerUserTest.savePhotoUrlToFirestore(url: url, fotoPlace: self.counter).cauterize()
                 self.counter = self.counter + 1
+            }.done {
+                //self.counter = self.counter + 1
                 _ = self.firestoreFotoMangerUserTest.saveStorageIds(fotoPlace: 0)
                 seal.fulfill(())
             }.catch { error in
