@@ -10,7 +10,7 @@ import PromiseKit
 
 struct YouEventLineView: View {
     
-    @ObservedObject private var youEventLineVM = YouEventLineViewModel()
+    @StateObject private var youEventLineVM = YouEventLineViewModel()
     
     // data transfer form database
     @State var eventArray: [EventModel] = []
@@ -92,6 +92,7 @@ struct YouEventLineView: View {
                 self.youEventLineVM.getYouEvents()
             }.done { events in
                 self.eventArray = events
+                print("done")
             }.catch { error in
                 print("DEBUG: error in GetYouEventChain: \(error)")
                 print("DEBUG: \(error.localizedDescription)")

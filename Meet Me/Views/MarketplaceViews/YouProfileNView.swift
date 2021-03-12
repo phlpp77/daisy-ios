@@ -13,10 +13,10 @@ struct YouProfileNView: View {
     @StateObject var youProfileVM: YouProfilViewModel = YouProfilViewModel()
     
     @Binding var showYouProfileView: Bool
+    @Binding var event: EventModel
     
-    @State var showPictureIndex: Int = 1
+    @State var showPictureIndex: Int = 0
     
-    var event: EventModel = stockEvent
     
     var body: some View {
         
@@ -32,7 +32,7 @@ struct YouProfileNView: View {
                 
                 // spacer is used to get full area to tap
                 Spacer()
-                    
+                
                 
                 ZStack {
                     
@@ -42,7 +42,7 @@ struct YouProfileNView: View {
                     // information-box at the bottom of the base
                     informationBox
                         .offset(y: 470 / 2)
-     
+                    
                     // show the event at the top right corner
                     eventCircle
                         .offset(x: 327 / 2 - 30, y: -470 / 2 + 30)
@@ -61,13 +61,13 @@ struct YouProfileNView: View {
                 
                 // spacer is used to get full area to tap
                 Spacer()
-                    
+                
             }
             
             .onAppear {
                 
                 youProfileVM.getYouProfil(eventModel: event)
-        }
+            }
         }
         
     }
@@ -166,25 +166,15 @@ struct YouProfileNView: View {
                         )
                 )
                 .clipShape(Circle())
-            //                .shadow(color: Color.black.opacity(0.25), radius: 11, x: 0, y: 4)
             
-            
-            // Actual Image
-            if false {
-                //                URLImage(url: URL(string: user.userPhotos[0]!)!) { image in
-                //                    image.resizable()
-                //                        .aspectRatio(contentMode: .fill)
-                //                        .frame(width: 70, height: 70)
-                //                        .clipShape(Circle())
-                //                }
-            } else {
-                Image("cafe")
-                    .resizable()
+            // Actual event image
+            URLImage(url: URL(string: event.profilePicture)!) { image in
+                image.resizable()
                     .aspectRatio(contentMode: .fill)
-                    .font(.largeTitle)
                     .frame(width: 70, height: 70)
                     .clipShape(Circle())
             }
+            
         }
     }
     
@@ -192,7 +182,7 @@ struct YouProfileNView: View {
 
 struct YouProfileNView_Previews: PreviewProvider {
     static var previews: some View {
-        YouProfileNView(showYouProfileView: .constant(true))
+        YouProfileNView(showYouProfileView: .constant(true), event: .constant(stockEvent))
     }
 }
 
