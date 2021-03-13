@@ -94,10 +94,15 @@ struct ChatListRowView: View {
             }
             
         }
-        // tapping on the item
+        // tapping to show the chat
         .onTapGesture {
             matchTapped = match
             chatTapped = true
+        }
+        
+        // long-pressing to delete the event
+        .onLongPressGesture {
+            print("tapped on chat \(match)")
         }
 
         // on appear

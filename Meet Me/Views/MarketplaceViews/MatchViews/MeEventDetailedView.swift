@@ -10,6 +10,8 @@ import URLImage
 
 struct MeEventDetailedView: View {
     
+    @ObservedObject var changeMeEventVM: ChangeMeEventViewModel = ChangeMeEventViewModel()
+    
     @Binding var showMeEventDetailedView: Bool
     
     @Binding var showMeMatchCardView: Bool
@@ -52,7 +54,9 @@ struct MeEventDetailedView: View {
                         
                         // button to delete the current event
                         Button(action: {
-                            // TODO: add action when user taps delete event
+                            // deleting Me Event from Database
+                            changeMeEventVM.deleteMeEvent(eventModel: event)
+                            showMeEventDetailedView = false
                             
                         }, label: {
                             FrozenButton(text: "Delete Event", sfSymbol: "pencil.circle")
