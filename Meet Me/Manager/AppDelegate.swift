@@ -79,7 +79,7 @@ extension AppDelegate: MessagingDelegate {
             return
         }
         let db: Firestore = Firestore.firestore()
-        print("New user Token \(fcmToken)")
+        print("New user Token \(fcmToken )")
         let _ =  db.collection("users")
             .document(currentUser.uid).updateData(["token" : fcmToken]) { error in
                 if let error = error {
