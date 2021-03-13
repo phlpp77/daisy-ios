@@ -12,7 +12,7 @@ struct MeEventControllerView: View {
     
     @StateObject private var meEventControllerVM: MeEventControllerViewModel = MeEventControllerViewModel()
     
-    @Binding var showMeEventDetailedView: Bool
+    @Binding var showMeEventControllerView: Bool
     @Binding var tappedEvent: EventModel
     
     @State var userChosen: Bool = false
@@ -25,14 +25,13 @@ struct MeEventControllerView: View {
             // MARK: Stack with Users to swipe and like
             ZStack {
                 ForEach(meEventControllerVM.likedUsers.indices, id: \.self ) { userNumber in
-//                    MeMatchCardView(userChosen: $userChosen, users: $meEventControllerVM.likedUsers, event: $tappedEvent, user: meEventControllerVM.likedUsers[userNumber], userNumber: userNumber, showMeMatchMainView: $showMeEventDetailedView)
-                    MeMatchNCardView(showMeMatchNCardView: $showMeMatchCardView, likedUsers: $meEventControllerVM.likedUsers, userAccepted: $userChosen, event: tappedEvent, userIndex: userNumber)
+                    MeMatchNCardView(showMeMatchNCardView: $showMeMatchCardView, showMeEventControllerView: $showMeEventControllerView, likedUsers: $meEventControllerVM.likedUsers, userAccepted: $userChosen, event: tappedEvent, userIndex: userNumber)
                         .opacity(showMeMatchCardView ? 1 : 0)
                 }
             }
             
             // MARK: DetailedView to start matching or editing/deleting the event
-            MeEventDetailedView(showMeEventDetailedView: $showMeEventDetailedView, showMeMatchCardView: $showMeMatchCardView, event: $tappedEvent, likedUsers: $meEventControllerVM.likedUsers)
+            MeEventDetailedView(showMeEventDetailedView: $showMeEventControllerView, showMeMatchCardView: $showMeMatchCardView, event: $tappedEvent, likedUsers: $meEventControllerVM.likedUsers)
                 .opacity(showMeMatchCardView ? 0 : 1)
             
         }
@@ -48,6 +47,6 @@ struct MeEventControllerView: View {
 
 struct MeMatchView_Previews: PreviewProvider {
     static var previews: some View {
-        MeEventControllerView(showMeEventDetailedView: .constant(true), tappedEvent: .constant(stockEvent))
+        MeEventControllerView(showMeEventControllerView: .constant(true), tappedEvent: .constant(stockEvent))
     }
 }
