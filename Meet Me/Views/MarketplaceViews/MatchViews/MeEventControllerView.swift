@@ -25,7 +25,8 @@ struct MeEventControllerView: View {
             // MARK: Stack with Users to swipe and like
             ZStack {
                 ForEach(meEventControllerVM.likedUsers.indices, id: \.self ) { userNumber in
-                    MeMatchCardView(userChosen: $userChosen, users: $meEventControllerVM.likedUsers, event: $tappedEvent, user: meEventControllerVM.likedUsers[userNumber], userNumber: userNumber, showMeMatchMainView: $showMeEventDetailedView)
+//                    MeMatchCardView(userChosen: $userChosen, users: $meEventControllerVM.likedUsers, event: $tappedEvent, user: meEventControllerVM.likedUsers[userNumber], userNumber: userNumber, showMeMatchMainView: $showMeEventDetailedView)
+                    MeMatchNCardView(showMeMatchNCardView: $showMeMatchCardView, likedUsers: $meEventControllerVM.likedUsers, userAccepted: $userChosen, event: tappedEvent, userIndex: userNumber)
                         .opacity(showMeMatchCardView ? 1 : 0)
                 }
             }

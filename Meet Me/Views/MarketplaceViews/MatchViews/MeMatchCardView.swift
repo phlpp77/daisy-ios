@@ -169,7 +169,7 @@ struct MeMatchCardView: View {
     
     // MARK: function which gets called after user accepted the profile
     func userWasAccepted() {
-//        meMatchCardVM.addMatch(eventModel: event, userModel: user)
+        meMatchCardVM.addMatch(eventModel: event, userModel: user)
         userAccepted = true
         DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.1) {
             showMeMatchMainView = false
@@ -179,7 +179,7 @@ struct MeMatchCardView: View {
     // MARK: function which gets called after user denied the profile
     func userWasDenied() {
         userDenied = true
-//        meMatchCardVM.deleteLikedUser(eventModel: event, userModel: user)
+        meMatchCardVM.deleteLikedUser(eventModel: event, userModel: user)
         // if the last user (which is the first in the array) is denied the view gets canceled
         if self.users.first!.userId == user.userId {
             meMatchCardVM.setLikedUserToFalse(eventId: event.eventId)

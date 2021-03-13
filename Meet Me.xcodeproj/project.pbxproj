@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1705790E25FCD26400A56CE6 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705790D25FCD26400A56CE6 /* HeaderView.swift */; };
+		1705791125FCE38E00A56CE6 /* MeMatchNCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705791025FCE38E00A56CE6 /* MeMatchNCardView.swift */; };
+		1705791425FCE73800A56CE6 /* MatchButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705791325FCE73800A56CE6 /* MatchButtonView.swift */; };
 		1711EEBB25F29C6600D87EFA /* ChatProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711EEBA25F29C6600D87EFA /* ChatProfileView.swift */; };
 		17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */; };
 		17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EE825A8C5C30072CE83 /* Assets.xcassets */; };
@@ -110,6 +112,8 @@
 
 /* Begin PBXFileReference section */
 		1705790D25FCD26400A56CE6 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		1705791025FCE38E00A56CE6 /* MeMatchNCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchNCardView.swift; sourceTree = "<group>"; };
+		1705791325FCE73800A56CE6 /* MatchButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchButtonView.swift; sourceTree = "<group>"; };
 		1711EEBA25F29C6600D87EFA /* ChatProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatProfileView.swift; sourceTree = "<group>"; };
 		17153EE125A8C5C30072CE83 /* Meet Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meet Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meet_MeApp.swift; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 				17AF633425FC2EF100A43BB3 /* MeEventDetailedView.swift */,
 				1795DF9D25DF0E22002D537F /* MeMatchStartView.swift */,
 				173F361125E2D72D002E9EE6 /* MeMatchCardView.swift */,
+				1705791025FCE38E00A56CE6 /* MeMatchNCardView.swift */,
 			);
 			path = MatchViews;
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 				17B0B61425F546810014B0FD /* TabButtonView.swift */,
 				174EFCD625FABDC40028C04C /* RingView.swift */,
 				1705790D25FCD26400A56CE6 /* HeaderView.swift */,
+				1705791325FCE73800A56CE6 /* MatchButtonView.swift */,
 			);
 			path = ViewHelpers;
 			sourceTree = "<group>";
@@ -676,6 +682,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1705791125FCE38E00A56CE6 /* MeMatchNCardView.swift in Sources */,
 				17BC5FE025BE0B5900F35075 /* ProfileCreationView.swift in Sources */,
 				90D42AEF25EAAD110060311B /* MatchModel.swift in Sources */,
 				173F361225E2D72D002E9EE6 /* MeMatchCardView.swift in Sources */,
@@ -719,6 +726,7 @@
 				173F361C25E2FF0D002E9EE6 /* MeEventControllerView.swift in Sources */,
 				9012001E25F4E8CC006E7DF4 /* LocationManager.swift in Sources */,
 				17DE531225EAC372000D0B4D /* ChatListRowView.swift in Sources */,
+				1705791425FCE73800A56CE6 /* MatchButtonView.swift in Sources */,
 				902EF6E225D985F0004464F0 /* Meet_MeAppViewModel.swift in Sources */,
 				17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */,
 				90B0F4F125DFC63400AB8EF9 /* YouEventViewModel.swift in Sources */,

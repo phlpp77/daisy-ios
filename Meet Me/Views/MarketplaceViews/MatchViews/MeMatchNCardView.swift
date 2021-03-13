@@ -1,22 +1,31 @@
 //
-//  YouProfileNView.swift
+//  MeMatchNCardView.swift
 //  Meet Me
 //
-//  Created by Philipp Hemkemeyer on 12.03.21.
+//  Created by Philipp Hemkemeyer on 13.03.21.
 //
 
 import SwiftUI
 import URLImage
 
-struct YouProfileNView: View {
+struct MeMatchNCardView: View {
     
     @StateObject var youProfileVM: YouProfilViewModel = YouProfilViewModel()
+    @ObservedObject var meMatchCardVM: MeMatchCardViewModel = MeMatchCardViewModel()
     
-    @Binding var showYouProfileView: Bool
-    @Binding var event: EventModel
+    
+    @Binding var showMeMatchNCardView: Bool
+    @Binding var likedUsers: [UserModel]
+    @Binding var userAccepted: Bool
+    
+    var event: EventModel
+    var userIndex: Int
     
     @State var showPictureIndex: Int = 0
     
+    @State var cardTranslation: CGSize = .zero
+    @State var cardRotationDegrees: Double = 0
+    @State var userDenied: Bool = false
     
     var body: some View {
         
@@ -25,7 +34,7 @@ struct YouProfileNView: View {
                 
                 Color.black.opacity(0.001)
                     .onTapGesture(perform: {
-                        showYouProfileView = false
+                        showMeMatchNCardView = false
                     })
                 
                 VStack {
@@ -33,39 +42,40 @@ struct YouProfileNView: View {
                     // spacer is used to get full area to tap
                     Spacer()
                     
-                    
+                    // Content
                     ZStack {
                         
-                        // Base (including picture) of the Profile
-                        base
-                        
-                        // information-box at the bottom of the base
-                        informationBox
-                            .offset(y: (bounds.size.width - 48) * 1.33 / 2)
-                        
-                        // show the event at the top right corner
-                        eventCircle
-                            .offset(x: (bounds.size.width - 48) / 2 - 30, y: -((bounds.size.width - 48) * 1.33) / 2 + 30)
-                        
-                        
-                        // showing the capsules for switching the pictures
-                        if youProfileVM.userModel.userPhotos.count > 1 {
-                            HStack(spacing: 10.0) {
-                                ForEach(youProfileVM.userModel.userPhotos.sorted(by: <), id: \.key) { photoIndex, photoUrlString in
-                                    IndicatorCapsule(tappedPhoto: $showPictureIndex, pictureIndex: photoIndex)
+                        // swipe-able content
+                        ZStack {
+                            
+                            // Base (including picture) of the Profile
+                            base
+                            
+                            // information-box at the bottom of the base
+                            informationBox
+                                .offset(y: (bounds.size.width - 48) * 1.33 / 2)
+                            
+                            // show the event at the top right corner
+                            eventCircle
+                                .offset(x: (bounds.size.width - 48) / 2 - 30, y: -((bounds.size.width - 48) * 1.33) / 2 + 30)
+                            
+                            
+                            // showing the capsules for switching the pictures
+                            if youProfileVM.userModel.userPhotos.count > 1 {
+                                HStack(spacing: 10.0) {
+                                    ForEach(youProfileVM.userModel.userPhotos.sorted(by: <), id: \.key) { photoIndex, photoUrlString in
+                                        IndicatorCapsule(tappedPhoto: $showPictureIndex, pictureIndex: photoIndex)
+                                    }
                                 }
+                                .offset(y: ((bounds.size.width - 48) * 1.33 / 2) - 45)
                             }
-                            .offset(y: ((bounds.size.width - 48) * 1.33 / 2) - 45)
+                            
                         }
                         
-                        // xmark symbol to show the user how to dismiss the view
-                        Image(systemName: "xmark")
-                            .foregroundColor(Color("BackgroundSecondary").opacity(0.5))
-                            .font(.system(size: 30))
+                        // buttons to like and dislike a YOU
+                        buttons
                             .offset(y: ((bounds.size.width - 48) * 1.33 / 2) + 60)
-                        
                     }
-                    
                     
                     
                     
@@ -221,10 +231,125 @@ struct YouProfileNView: View {
         }
     }
     
+    
+    // MARK: -
+    var buttons: some View {
+        
+        // MARK: Buttons to like and dislike a YOU
+        GeometryReader { bounds in
+            HStack {
+                
+                // dislike button
+                Button(action: {
+                    userWasDenied()
+                }, label: {
+                    MatchButtonLabel()
+                })
+                
+                Spacer()
+                
+                // like button
+                Button(action: {
+                    userWasAccepted()
+                }, label: {
+                    MatchButtonLabel(sfSymbol: "checkmark.circle.fill", color: Color.green)
+                })
+                
+            }
+            .frame(width: bounds.size.width - 48, height: bounds.size.height, alignment: .center)
+        }
+    }
+    
+    
+    // MARK: - Functions
+    
+    // MARK: Function which gets called after user accepted the profile
+    func userWasAccepted() {
+        meMatchCardVM.addMatch(eventModel: event, userModel: likedUsers[userIndex])
+        userAccepted = true
+        
+        // close view with a little delay to animate
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.1) {
+            showMeMatchNCardView = false
+        }
+    }
+    
+    // MARK: Function which gets called after user denied the profile
+    func userWasDenied() {
+        userDenied = true
+        meMatchCardVM.deleteLikedUser(eventModel: event, userModel: likedUsers[userIndex])
+        
+        // if the last user (which is the first in the array) is denied the view gets canceled
+        if self.likedUsers.first!.userId == likedUsers[userIndex].userId {
+            meMatchCardVM.setLikedUserToFalse(eventId: event.eventId)
+            
+            // close view with a little delay to animate
+            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.1) {
+                showMeMatchNCardView = false
+            }
+        }
+    }
+    
 }
 
-struct YouProfileNView_Previews: PreviewProvider {
-    static var previews: some View {
-        YouProfileNView(showYouProfileView: .constant(true), event: .constant(stockEvent))
+//struct MeMatchNCardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MeMatchNCardView(showMeMatchNCardView: .constant(true), event: .constant(stockEvent))
+//    }
+//}
+
+
+
+// MARK: -
+struct IndicatorCapsule: View {
+    
+    @Binding var tappedPhoto: Int
+    
+    var pictureIndex: Int
+    
+    var body: some View {
+        // MARK: indicator capsule at the bottom of the picture
+        ZStack {
+            
+            // MARK: Background of the indicator capsule
+            BlurView(style: .systemUltraThinMaterial)
+                .frame(width: 72, height: 30)
+                .overlay(
+                    Capsule()
+                        .stroke(
+                            LinearGradient(
+                                gradient: Gradient(stops: [
+                                                    .init(color: Color(#colorLiteral(red: 0.7791666388511658, green: 0.7791666388511658, blue: 0.7791666388511658, alpha: 0.949999988079071)), location: 0),
+                                                    .init(color: Color(#colorLiteral(red: 0.7250000238418579, green: 0.7250000238418579, blue: 0.7250000238418579, alpha: 0)), location: 1)]),
+                                startPoint: UnitPoint(x: 0.9016393067273221, y: 0.10416647788375455),
+                                endPoint: UnitPoint(x: 0.035519096038869824, y: 0.85416653880629)),
+                            lineWidth: 0.5
+                        )
+                )
+                .clipShape(
+                    Capsule()
+                )
+            
+            // MARK: actual indicator
+            if tappedPhoto == pictureIndex {
+                LinearGradient(
+                    gradient: Gradient(stops: [
+                                        .init(color: Color(#colorLiteral(red: 0.0313725508749485, green: 0.45490196347236633, blue: 0.5490196347236633, alpha: 1)), location: 0),
+                                        .init(color: Color(#colorLiteral(red: 0.0313725471496582, green: 0.4549018144607544, blue: 0.5490196347236633, alpha: 0.1899999976158142)), location: 1)]),
+                    startPoint: UnitPoint(x: 0.9999999999999999, y: 7.105427357601002e-15),
+                    endPoint: UnitPoint(x: -2.220446049250313e-16, y: -1.7763568394002505e-15))
+                    .frame(width: 55, height: 18)
+                    .clipShape(
+                        Capsule()
+                    )
+                
+            }
+            
+        }
+        
+        // MARK: onTap when user taps on capsule the picture is changed
+        .onTapGesture {
+            self.tappedPhoto = pictureIndex
+        }
     }
 }
