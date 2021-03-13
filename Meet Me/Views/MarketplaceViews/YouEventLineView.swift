@@ -89,7 +89,7 @@ struct YouEventLineView: View {
         .onAppear {
             let sender = PushNotificationSender()
 //            sender.push(message: "funktioniert das jetzt endlich ?", token: "e1LKnA1Uj0YlojFaty_MW9:APA91bFcTaMpiNaVgdelwbfL9bJF6SUt4w0QY8sDZRgCXU2gZ57TOWTBObTuUFxM2qs0LotOOYDfiFlqNgOt-npvW7UiHZ0UQkRvVSFkehNOwqPsue202mTWvcRw-vpsRmYLZyU8PIig")
-            sender.sendPushNotification(to: "cQp0TQriaEdygSpCsWam1r:APA91bHMIfB2G83vlWaqB1hrkTdSjxK_DEp8phQ2CCNyiBAaEjeWxMoa1BB7_Q-n3B3aLotXLAbHL7Ju7SmsGzZYwF0o7FglX0jaTnok7AmzbkliKK8ao15RgVbdj00nQKSEeAVLWLyZ", title: "test", body: "funktioniert das jetzt endlich ?")
+            sender.sendPushNotification(to: "e1LKnA1Uj0YlojFaty_MW9:APA91bFcTaMpiNaVgdelwbfL9bJF6SUt4w0QY8sDZRgCXU2gZ57TOWTBObTuUFxM2qs0LotOOYDfiFlqNgOt-npvW7UiHZ0UQkRvVSFkehNOwqPsue202mTWvcRw-vpsRmYLZyU8PIig", title: "test", body: "funktioniert das jetzt endlich ?")
             
             loading = true
             firstly {
