@@ -15,7 +15,7 @@ import Firebase
 class MeProfileViewModel: ObservableObject {
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     private var firestoreFotoManagerUserTest: FirestoreFotoManagerUserTest = FirestoreFotoManagerUserTest()
-    private var pushNotificationManager: PushNotificationManager?
+
     
     @Published var userModel: UserModel = stockUser
     @Published var genders: [String: Int] = ["Female": 0, "Male": 1, "Other": 2]
@@ -39,8 +39,8 @@ class MeProfileViewModel: ObservableObject {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
-        pushNotificationManager = PushNotificationManager(userID: currentUser.uid)
-        pushNotificationManager?.registerForPushNotifications()
+
+
         listener = db.collection("users").document(currentUser.uid).addSnapshotListener { snapshot, error in
             if let error = error {
                 print(error.localizedDescription)

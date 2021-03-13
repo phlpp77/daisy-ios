@@ -11,11 +11,12 @@ import FirebaseFirestore
 import FirebaseAuth
 
 
+
 @main
 struct Meet_MeApp: App {
     
     @State var startProcessDone: Bool = false
-
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     //@ObservedObject private var meet_MeAppVM: Meet_MeAppViewModel = Meet_MeAppViewModel()
 
     
@@ -72,4 +73,13 @@ struct Meet_MeApp: App {
     
     
 }
+
+
+
+
+
+
   
+
+
+

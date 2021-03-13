@@ -40,15 +40,15 @@ struct MeMatchView: View {
         }
         .animation(.easeInOut)
         .onAppear {
-            
-            firstly {
-                self.meMatchStartVM.getLikedUsers(eventId: tappedEvent.eventId)
-            }.done { user in
-                self.likedUsers = user
-            }.catch { error in
-                print("DEBUG: error in GetYouEventChain: \(error)")
-                print("DEBUG: \(error.localizedDescription)")
-            }
+//
+//            firstly {
+//                self.meMatchStartVM.getLikedUsers(eventId: tappedEvent.eventId)
+//            }.done { user in
+//                self.likedUsers = user
+//            }.catch { error in
+//                print("DEBUG: error in GetYouEventChain: \(error)")
+//                print("DEBUG: \(error.localizedDescription)")
+//            }
             
         }
     }
