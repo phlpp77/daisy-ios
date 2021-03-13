@@ -6,7 +6,7 @@ import FirebaseAuth
 
 
 class  AppDelegate: NSObject, UIApplicationDelegate {
-    
+
     let gcmMessageIDKey = "gcm.message_id"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
@@ -39,6 +39,8 @@ class  AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
     
+    
+    // Handle silent Messages
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 
@@ -52,6 +54,10 @@ class  AppDelegate: NSObject, UIApplicationDelegate {
 
       completionHandler(UIBackgroundFetchResult.newData)
     }
+    
+    
+    
+    //extra
     
     func application(_ application: UIApplication,
                      didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -70,13 +76,24 @@ class  AppDelegate: NSObject, UIApplicationDelegate {
 extension AppDelegate: MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-     
-        let dataDict:[String: String] = ["token": fcmToken ?? ""]
-        //store tokens in userModel
-        print(dataDict)
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        let db: Firestore = Firestore.firestore()
+        let _ =  db.collection("users")
+            .document(currentUser.uid).updateData(["token" : fcmToken ?? ""]) { error in
+                if let error = error {
+                    print(error)
+                }
+            }
+        
+//        let dataDict:[String: String] = ["token": fcmToken ?? ""]
+//        //store tokens in userModel
+//        print(dataDict)
     }
 }
 
+//Receive Messages
 //User Notifications... [AKA InApp notification]
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {

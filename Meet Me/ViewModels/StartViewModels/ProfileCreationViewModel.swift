@@ -52,7 +52,7 @@ class ProfileCreationModel: ObservableObject {
 
         self.birthdayDate = convertStringToDate(date: bDate)
         
-        let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor, userPhotos: [0: stockURL.absoluteString], userPhotosId: [0: "stockPhoto"], radiusInKilometer: 150)
+        let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor, userPhotos: [0: stockURL.absoluteString], userPhotosId: [0: "stockPhoto"], radiusInKilometer: 150, token: "")
         
         firstly {
             self.firestoreManagerUserTest.saveUser(userModel: userModel)
