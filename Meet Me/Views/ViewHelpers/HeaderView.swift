@@ -10,8 +10,8 @@ import SwiftUI
 struct HeaderView: View {
     
     var text1: String = "That's "
-    var text2: String = "ME"
-    var highlightText: String = "!"
+    var text2: String = "!"
+    var highlightText: String = "ME!"
     
     var body: some View {
         

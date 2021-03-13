@@ -15,6 +15,8 @@ struct MainChatView: View {
         
         VStack {
 
+            HeaderView(text1: "Chat ", text2: " Area", highlightText: "ME")
+            
             // MARK: List with chats available to the user
             ChatListView()
         }
