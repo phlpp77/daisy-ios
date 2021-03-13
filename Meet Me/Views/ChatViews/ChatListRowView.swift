@@ -14,6 +14,7 @@ struct ChatListRowView: View {
     
     @Binding var chatTapped: Bool
     @Binding var matchTapped: AllMatchInformationModel
+    @Binding var matchLongPressed: AllMatchInformationModel
     
     @State var firstPartString: String = ""
  
@@ -77,8 +78,9 @@ struct ChatListRowView: View {
             .modifier(offWhiteShadow(cornerRadius: 12))
             .padding(.horizontal, 10)
             
-            // show soon when Event is in the next 12 hours
-            if Date().distance(to: match.event.date) < 43200 {
+            // FIXME: add the time back to the if
+            // show soon when Event is in the next 12 hours ------------> Date().distance(to: match.event.date) < 43200
+            if true {
                 HStack {
                     Text(Date().distance(to: match.event.date) < 0 ? "EVENT over" : "soon!")
                         .padding(4)
@@ -94,6 +96,7 @@ struct ChatListRowView: View {
             }
             
         }
+        .padding(.vertical, 10)
         // tapping to show the chat
         .onTapGesture {
             matchTapped = match
@@ -102,7 +105,7 @@ struct ChatListRowView: View {
         
         // long-pressing to delete the event
         .onLongPressGesture {
-            print("tapped on chat \(match)")
+            matchLongPressed = match
         }
 
         // on appear
@@ -119,6 +122,6 @@ struct ChatListRowView: View {
 
 struct ChatListRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatListRowView(match: .constant(AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)), chatTapped: .constant(false), matchTapped: .constant(AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)))
+        ChatListRowView(match: .constant(AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)), chatTapped: .constant(false), matchTapped: .constant(AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)), matchLongPressed: .constant(AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)))
     }
 }
