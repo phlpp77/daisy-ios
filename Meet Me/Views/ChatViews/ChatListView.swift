@@ -23,6 +23,8 @@ struct ChatListView: View {
         NavigationView {
             VStack {
                 
+                HeaderView(text1: "Chat ", text2: " Area", highlightText: "ME")
+                
                 // chatListView is not created when there is no match
                 if !chatListVM.matches.isEmpty {
                     
