@@ -11,20 +11,22 @@ import PromiseKit
 class MeMatchStartViewModel: ObservableObject {
     
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
+    @Published var userModels: [UserModel] = []
     
-    func getLikedUsers (eventId: String) -> Promise<[UserModel]> {
-        return Promise { seal in
+    func getLikedUsers(eventId: String) {
+        
             firstly{
                 self.firestoreManagerEventTest.getAllLikedUserDocument(eventId: eventId)
             }.then { likedUser in
                 self.firestoreManagerEventTest.getAllLikedUserModels(likedUser: likedUser)
-            }.done { userModels in
-                seal.fulfill(userModels)
+            }.done { users in
+                self.userModels = users
             }.catch { error in
-                seal.reject(error)
+                print("DEBUG: error bei gettting likedUsers, error: \(error)")
+                print("DEBUG: error localized \(error.localizedDescription)")
             }
         }
     }
     
-}
+
 
