@@ -47,7 +47,7 @@ struct MessagesView: View {
                     
                     Button(action: {
                         
-                        messagesVM.UploadChat(chatId: match.chatId, messageText: newMessage)
+                        messagesVM.UploadChat(allMatchInformation: match, messageText: newMessage)
                         newMessage = ""
                         
                     }, label: {

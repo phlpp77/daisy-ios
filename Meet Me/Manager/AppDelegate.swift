@@ -80,9 +80,11 @@ extension AppDelegate: MessagingDelegate {
             return
         }
         let db: Firestore = Firestore.firestore()
+        print(fcmToken)
         let _ =  db.collection("users")
             .document(currentUser.uid).updateData(["token" : fcmToken ?? ""]) { error in
                 if let error = error {
+                    print("FEHLER AKTUALISIERUNG CODE")
                     print(error)
                 }
             }
