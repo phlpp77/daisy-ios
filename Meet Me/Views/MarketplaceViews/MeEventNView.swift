@@ -137,16 +137,32 @@ struct MeEventNView: View {
         .padding(.top, 10)
         .padding(.bottom, 14)
         
-        
-        // MARK: - OnAppear to get the current EventStatus
+        // MARK: If the status changes, change the indicator
+        .onChange(of: event.likedUser, perform: { value in
+            checkEventStatus()
+        })
+        .onChange(of: event.eventMatched, perform: { value in
+            checkEventStatus()
+        })
+        // MARK: Initial status check
         .onAppear {
-            
-            // MARK: Check if the event is liked, not liked oder matched to show the right indicator
-            if event.likedUser && !event.eventMatched {
-                eventStatus = .liked
-            } else if event.eventMatched {
-                eventStatus = .matched
-            }
+            checkEventStatus()
+        }
+        
+        
+        
+    }
+    
+    // MARK: - Functions
+    
+    // MARK: Function to change the eventStatus
+    func checkEventStatus() {
+        
+        // Check if the event is liked, not liked oder matched to show the right indicator
+        if event.likedUser && !event.eventMatched {
+            eventStatus = .liked
+        } else if event.eventMatched {
+            eventStatus = .matched
         }
     }
 }

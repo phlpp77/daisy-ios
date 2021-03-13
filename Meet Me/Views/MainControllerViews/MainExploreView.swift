@@ -58,7 +58,7 @@ struct MainExploreView: View {
             
             // start the MeMatch process
             if showMeEventController {
-                MeEventControllerView(showMeEventDetailedView: $showMeEventController, tappedEvent: $tappedMeEvent)
+                MeEventControllerView(showMeEventControllerView: $showMeEventController, tappedEvent: $tappedMeEvent)
             }
             
             // MARK: Show youProfileView when user taps on a YouEvent

@@ -10,11 +10,12 @@ import URLImage
 
 struct MeMatchNCardView: View {
     
-    @StateObject var youProfileVM: YouProfilViewModel = YouProfilViewModel()
+    //    @StateObject var youProfileVM: YouProfilViewModel = YouProfilViewModel()
     @ObservedObject var meMatchCardVM: MeMatchCardViewModel = MeMatchCardViewModel()
     
     
     @Binding var showMeMatchNCardView: Bool
+    @Binding var showMeEventControllerView: Bool
     @Binding var likedUsers: [UserModel]
     @Binding var userAccepted: Bool
     
@@ -61,9 +62,9 @@ struct MeMatchNCardView: View {
                             
                             
                             // showing the capsules for switching the pictures
-                            if youProfileVM.userModel.userPhotos.count > 1 {
+                            if likedUsers[userIndex].userPhotos.count > 1 {
                                 HStack(spacing: 10.0) {
-                                    ForEach(youProfileVM.userModel.userPhotos.sorted(by: <), id: \.key) { photoIndex, photoUrlString in
+                                    ForEach(likedUsers[userIndex].userPhotos.sorted(by: <), id: \.key) { photoIndex, photoUrlString in
                                         IndicatorCapsule(tappedPhoto: $showPictureIndex, pictureIndex: photoIndex)
                                     }
                                 }
@@ -74,6 +75,7 @@ struct MeMatchNCardView: View {
                         
                         // buttons to like and dislike a YOU
                         buttons
+                            .frame(width: bounds.size.width - 48)
                             .offset(y: ((bounds.size.width - 48) * 1.33 / 2) + 60)
                     }
                     
@@ -108,7 +110,7 @@ struct MeMatchNCardView: View {
                     )
                 
                 // MARK: Image downloaded from the Database
-                URLImage(url: URL(string: youProfileVM.userModel.userPhotos[showPictureIndex] ?? stockUrlString)!) { image in
+                URLImage(url: URL(string: likedUsers[userIndex].userPhotos[showPictureIndex] ?? stockUrlString)!) { image in
                     image.resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: bounds.size.width - 48 - 20, height: (bounds.size.width - 48) * 1.33 - 20)
@@ -133,7 +135,7 @@ struct MeMatchNCardView: View {
                     // right tap
                     Color.black.opacity(0.001)
                         .onTapGesture {
-                            if showPictureIndex < youProfileVM.userModel.userPhotos.count - 1 {
+                            if showPictureIndex < likedUsers[userIndex].userPhotos.count - 1 {
                                 showPictureIndex += 1
                             } else {
                                 hapticFeedback(feedBackstyle: .error)
@@ -178,13 +180,13 @@ struct MeMatchNCardView: View {
                 // MARK: Content of Information-Box
                 HStack {
                     // name of the YOUser
-                    Text(youProfileVM.userModel.name)
+                    Text(likedUsers[userIndex].name)
                     
                     // Pushing the texts to the ends
                     Spacer()
                     
                     // age of the YOUser
-                    Text(String(dateToAge(date: youProfileVM.userModel.birthdayDate)))
+                    Text(String(dateToAge(date: likedUsers[userIndex].birthdayDate)))
                 }
                 .font(.largeTitle)
                 .padding(.horizontal, 16)
@@ -236,28 +238,26 @@ struct MeMatchNCardView: View {
     var buttons: some View {
         
         // MARK: Buttons to like and dislike a YOU
-        GeometryReader { bounds in
-            HStack {
-                
-                // dislike button
-                Button(action: {
-                    userWasDenied()
-                }, label: {
-                    MatchButtonLabel()
-                })
-                
-                Spacer()
-                
-                // like button
-                Button(action: {
-                    userWasAccepted()
-                }, label: {
-                    MatchButtonLabel(sfSymbol: "checkmark.circle.fill", color: Color.green)
-                })
-                
-            }
-            .frame(width: bounds.size.width - 48, height: bounds.size.height, alignment: .center)
+        HStack {
+            
+            // dislike button
+            Button(action: {
+                userWasDenied()
+            }, label: {
+                MatchButtonLabel()
+            })
+            
+            Spacer()
+            
+            // like button
+            Button(action: {
+                userWasAccepted()
+            }, label: {
+                MatchButtonLabel(sfSymbol: "checkmark.circle.fill", color: Color.green)
+            })
+            
         }
+        
     }
     
     
@@ -266,11 +266,13 @@ struct MeMatchNCardView: View {
     // MARK: Function which gets called after user accepted the profile
     func userWasAccepted() {
         meMatchCardVM.addMatch(eventModel: event, userModel: likedUsers[userIndex])
+        
         userAccepted = true
         
         // close view with a little delay to animate
         DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.1) {
             showMeMatchNCardView = false
+            showMeEventControllerView = false
         }
     }
     
@@ -286,18 +288,12 @@ struct MeMatchNCardView: View {
             // close view with a little delay to animate
             DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.1) {
                 showMeMatchNCardView = false
+                showMeEventControllerView = false
             }
         }
     }
     
 }
-
-//struct MeMatchNCardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MeMatchNCardView(showMeMatchNCardView: .constant(true), event: .constant(stockEvent))
-//    }
-//}
-
 
 
 // MARK: -

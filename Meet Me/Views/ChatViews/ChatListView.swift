@@ -15,22 +15,13 @@ struct ChatListView: View {
     @State var chatTapped: Bool = false
     @State var matchTapped: AllMatchInformationModel = AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)
     
+    
+    
     var body: some View {
         
         
         NavigationView {
             VStack {
-                
-                // MARK: Header of the chat part
-                HStack(spacing: 0.0) {
-                    Text("Chat ")
-                    Text("ME")
-                        .font(.system(.largeTitle, design: .rounded))
-                        .foregroundColor(.accentColor)
-                    Text(" Area")
-                }
-                .font(.largeTitle)
-                .padding(.vertical, 12)
                 
                 // chatListView is not created when there is no match
                 if !chatListVM.matches.isEmpty {
@@ -65,6 +56,8 @@ struct ChatListView: View {
                 }
             }
             .navigationBarHidden(true)
+            .background(Image("background"))
+            
             
         }
         .onAppear {

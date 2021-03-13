@@ -101,6 +101,7 @@
 		90D42B2225EBA75C0060311B /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B2125EBA75C0060311B /* MessagesViewModel.swift */; };
 		90D8BE8725FC1EC000EF160D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90D8BE8625FC1EC000EF160D /* GoogleService-Info.plist */; };
 		90D8BE8F25FCF03400EF160D /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8BE8E25FCF03400EF160D /* PushNotificationSender.swift */; };
+		90D8BE9925FCF3AD00EF160D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8BE9825FCF3AD00EF160D /* AppDelegate.swift */; };
 		90DFB50025F92C7400E26ED7 /* ChangeMeEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DFB4FF25F92C7400E26ED7 /* ChangeMeEventViewModel.swift */; };
 		90ED49A625F2EA1A00843170 /* DeleteMatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ED49A525F2EA1A00843170 /* DeleteMatchViewModel.swift */; };
 		90F2334D25D58481003FB1D9 /* ImageOldP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2334C25D58481003FB1D9 /* ImageOldP.swift */; };
@@ -205,6 +206,7 @@
 		90D42B2125EBA75C0060311B /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
 		90D8BE8625FC1EC000EF160D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		90D8BE8E25FCF03400EF160D /* PushNotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
+		90D8BE9825FCF3AD00EF160D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90DFB4FF25F92C7400E26ED7 /* ChangeMeEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeMeEventViewModel.swift; sourceTree = "<group>"; };
 		90ED49A525F2EA1A00843170 /* DeleteMatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMatchViewModel.swift; sourceTree = "<group>"; };
 		90F2334C25D58481003FB1D9 /* ImageOldP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOldP.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 				903E020525DFF681005BB173 /* FirestoreMangersEvent */,
 				90D42B0325EAC0E00060311B /* FirestoreManagerChat */,
 				9012001D25F4E8CC006E7DF4 /* LocationManager.swift */,
+				90D8BE9825FCF3AD00EF160D /* AppDelegate.swift */,
 				90D8BE8E25FCF03400EF160D /* PushNotificationSender.swift */,
 			);
 			path = Manager;
@@ -774,6 +777,7 @@
 				17A2EBC125F2D669003D1921 /* Enums.swift in Sources */,
 				175E40E925B4A31C00ADC9BF /* HapticFeedback.swift in Sources */,
 				17AF633525FC2EF100A43BB3 /* MeEventDetailedView.swift in Sources */,
+				90D8BE9925FCF3AD00EF160D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
