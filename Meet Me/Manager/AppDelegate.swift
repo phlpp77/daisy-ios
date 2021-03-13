@@ -75,17 +75,17 @@ class  AppDelegate: NSObject, UIApplicationDelegate {
 //CloudMessaging...
 extension AppDelegate: MessagingDelegate {
     
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
         let db: Firestore = Firestore.firestore()
-        print(fcmToken)
+        print("New user Token \(fcmToken)")
         let _ =  db.collection("users")
-            .document(currentUser.uid).updateData(["token" : fcmToken ?? ""]) { error in
+            .document(currentUser.uid).updateData(["token" : fcmToken]) { error in
                 if let error = error {
-                    print("FEHLER AKTUALISIERUNG CODE")
-                    print(error)
+                    print("DEBUG: Fehler by Token ")
+                    print(error.localizedDescription)
                 }
             }
         

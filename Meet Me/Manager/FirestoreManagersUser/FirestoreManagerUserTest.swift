@@ -211,10 +211,33 @@ class FirestoreManagerUserTest {
         }
     }
     
-    //Muss noch eingefügt werden
+
     func getUserWhichCreatedEvent(eventModel: EventModel) -> Promise<UserModel> {
         return Promise { seal in
             db.collection("users").document(eventModel.userId).getDocument { snapshot, error in
+                if let error = error {
+                    seal.reject(error)
+                } else {
+                    if let snapshot = snapshot {
+                        let userModel = try? snapshot.data(as: UserModel.self)
+                        DispatchQueue.main.async {
+                            if userModel != nil{
+                                seal.fulfill(userModel!)
+                            } else {
+                                let error = Err("Cant get UserProfil from Creator")
+                                seal.reject(error)
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    func getUserWithUserId(userId: String) -> Promise<UserModel> {
+        return Promise { seal in
+            db.collection("users").document(userId).getDocument { snapshot, error in
                 if let error = error {
                     seal.reject(error)
                 } else {

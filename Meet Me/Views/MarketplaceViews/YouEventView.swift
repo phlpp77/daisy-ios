@@ -138,7 +138,7 @@ struct YouEventView: View {
                         if value.translation.height > 100 {
                             self.dragPosition = .init(width: 0, height: 500)
                             // delete the item at the position from the Array
-                            youEventVM.addLikeToEvent(eventId: eventArray[eventIndex].eventId)
+                            youEventVM.addLikeToEvent(eventModel: eventArray[eventIndex])
                             self.eventArray.remove(at: eventIndex)
 
                         } else {

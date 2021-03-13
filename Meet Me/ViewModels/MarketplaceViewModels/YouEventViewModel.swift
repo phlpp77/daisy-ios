@@ -13,7 +13,7 @@ class YouEventViewModel: ObservableObject {
     private var firestoreManagerUserTest: FirestoreManagerUserTest
     private var firestoreManagerEventTest: FirestoreManagerEventTest
     private var currentUserModel: UserModel = stockUser
-    
+    let sender = PushNotificationSender()
     
     init(){
         firestoreManagerUserTest = FirestoreManagerUserTest()
@@ -23,13 +23,15 @@ class YouEventViewModel: ObservableObject {
 
     
 
-    func addLikeToEvent(eventId: String){
+    func addLikeToEvent(eventModel: EventModel){
         firstly {
-            self.firestoreManagerUserTest.addLikeToEventArray(eventId: eventId)
+            when(fulfilled: self.firestoreManagerUserTest.addLikeToEventArray(eventId: eventModel.eventId),
+                 self.firestoreManagerEventTest.addLikeToEventArray(eventId: eventModel.eventId),
+                 self.firestoreManagerEventTest.setLikedUserToTrue(eventId:eventModel.eventId))
         }.then {
-            self.firestoreManagerEventTest.addLikeToEventArray(eventId: eventId)
-        }.then {
-            self.firestoreManagerEventTest.setLikedUserToTrue(eventId: eventId)
+            self.firestoreManagerUserTest.getUserWhichCreatedEvent(eventModel: eventModel)
+        }.done { user in
+            self.sender.sendPushNotification(to: user.token, title: "New Like", body: "Jemand neues möchte an dein Event teilnehmen")
         }.catch { error in
             print("DEBUG: error in getUserModelChain \(error)")
             print("DEBUG \(error.localizedDescription)")
