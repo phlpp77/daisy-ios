@@ -10,6 +10,16 @@ import URLImage
 
 struct MeEventDetailedView: View {
     
+    // FIXME: @budni rename the old VM
+    @StateObject private var meMatchStartVM : MeMatchStartViewModel = MeMatchStartViewModel()
+    
+    @Binding var showMeEventDetailedView: Bool
+    
+    @Binding var showMeMatchCardView: Bool
+    @Binding var event: EventModel
+    
+    @State var eventStatus: EventStatus = .liked
+    @State var likedUsers: [UserModel]
     
     var body: some View {
         
@@ -19,6 +29,7 @@ struct MeEventDetailedView: View {
                 Color.black.opacity(0.001)
                     .onTapGesture(perform: {
                         print("dismiss")
+                        showMeEventDetailedView = false
                         
                     })
                 
@@ -37,16 +48,50 @@ struct MeEventDetailedView: View {
                         eventCircle
                             .offset(x: (bounds.size.width - 48) / 2 - 30, y: -((bounds.size.width - 48) * 1.33) / 2 + 30)
                         
-                        FrozenTextBox(text: "Wait")
+                        // text to inform user about the current MeEvent Status
+                        FrozenTextBox(text: eventStatus == .matched ? "You already have a YOU to meet, go to Chats to set up the details!" : eventStatus == .liked ? "Ready to find a YOU?" : "Wait a bit that other YOUs can find your Event")
                         
+                        
+                        
+                        // button to delete the current event
+                        Button(action: {
+                            // TODO: add action when user taps delete event
+                            
+                        }, label: {
+                            FrozenButton(text: "Delete Event", sfSymbol: "pencil.circle")
+                        })
+                        .offset(y: 150)
+                        
+                        // button to start the matching / swipe
+                        Button(action: {
+                            // TODO: add action when user taps start match
+                            
+                            // show me match view now
+                            if likedUsers.count != 0 {
+                                showMeMatchCardView = true
+                            } else {
+                                showMeEventDetailedView = false
+                            }
+                            
+                            // haptic feedback when button is tapped
+                            hapticPulse(feedback: .rigid)
+                            
+                        }, label: {
+                            FrozenButton(text: "Start Match", sfSymbol: "")
+                        })
+                        .offset(y: ((bounds.size.width - 48) * 1.33 / 2) - 10)
+                        .disabled(eventStatus == .matched ? true : eventStatus == .notLiked ? true : false)
+                        .opacity(eventStatus == .matched ? 0.7 : eventStatus == .notLiked ? 0.7 : 1)
+                        
+                        
+                        
+                        // xmark symbol to show the user how to dismiss the view
                         Image(systemName: "xmark")
                             .foregroundColor(Color("BackgroundSecondary").opacity(0.5))
                             .font(.system(size: 30))
                             .offset(y: ((bounds.size.width - 48) * 1.33 / 2) + 60)
                         
-                        
                     }
-                    
                     
                     // spacer is used to get full area to tap
                     Spacer()
@@ -56,6 +101,17 @@ struct MeEventDetailedView: View {
                 
             }
             .frame(width: bounds.size.width, height: bounds.size.height, alignment: .center)
+            
+            // MARK: OnAppear
+            .onAppear {
+                if event.eventMatched {
+                    eventStatus = .matched
+                } else if event.likedUser {
+                    eventStatus = .liked
+                } else {
+                    eventStatus = .notLiked
+                }
+            }
             
         }
     }
@@ -135,6 +191,8 @@ struct MeEventDetailedView: View {
 struct MeEventDetailedView_Previews: PreviewProvider {
     static var previews: some View {
         MeEventDetailedView()
+    }
+}
         
 // MARK: -
 struct FrozenTextBox: View {
@@ -149,7 +207,7 @@ struct FrozenTextBox: View {
             
             // MARK: Background of the Text-Box
             BlurView(style: .systemUltraThinMaterial)
-                .frame(width: 323, height: 228)
+                .frame(width: 232, height: 228)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
                         .stroke(
@@ -170,8 +228,44 @@ struct FrozenTextBox: View {
             Text(text)
                 .font(.title3)
                 .padding(30)
-                .frame(width: 323, height: 228)
+                .frame(width: 232, height: 228)
         }
-        
+    }
+}
+
+
+// MARK: -
+
+struct FrozenButton: View {
+    
+    var text: String
+    var sfSymbol: String
+    
+    var body: some View {
+        Label(
+            title: { Text(text) },
+            icon: { Image(systemName: sfSymbol) }
+        )
+        .frame(width: 138, height: 47)
+        .background(
+            BlurView(style: .systemUltraThinMaterial)
+                .frame(width: 138, height: 47)
+                
+                // Stroke to get glass effect
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .stroke(
+                            LinearGradient(
+                                gradient: Gradient(stops: [
+                                                    .init(color: Color(#colorLiteral(red: 0.7791666388511658, green: 0.7791666388511658, blue: 0.7791666388511658, alpha: 0.949999988079071)), location: 0),
+                                                    .init(color: Color(#colorLiteral(red: 0.7250000238418579, green: 0.7250000238418579, blue: 0.7250000238418579, alpha: 0)), location: 1)]),
+                                startPoint: UnitPoint(x: 0.9016393067273221, y: 0.10416647788375455),
+                                endPoint: UnitPoint(x: 0.035519096038869824, y: 0.85416653880629)),
+                            lineWidth: 0.5
+                        )
+                )
+                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
     }
 }
