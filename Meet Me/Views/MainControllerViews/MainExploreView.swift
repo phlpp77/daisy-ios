@@ -27,28 +27,32 @@ struct MainExploreView: View {
                 
                 HeaderView(text1: "Meet ", text2: " Market", highlightText: "ME")
                 
-                VStack {
-                    
-                    Text("Me Events")
-                        .font(.subheadline)
-                        .bold()
-                        .textCase(.uppercase)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.leading, 12)
-                    
-                    MeEventLineView(showCreationView: $showCreationView, showMeMatchView: $showMeEventController, tappedEvent: $tappedMeEvent)
-                    
-                    Text("You Events")
-                        .font(.subheadline)
-                        .bold()
-                        .textCase(.uppercase)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.leading, 12)
-                    
-                    YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView)
+                if !showYouProfileView && !showMeEventController {
+                    VStack {
+                        
+                        Text("Me Events")
+                            .font(.subheadline)
+                            .bold()
+                            .textCase(.uppercase)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 12)
+                        
+                        MeEventLineView(showCreationView: $showCreationView, showMeMatchView: $showMeEventController, tappedEvent: $tappedMeEvent)
+                        
+                        Text("You Events")
+                            .font(.subheadline)
+                            .bold()
+                            .textCase(.uppercase)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 12)
+                        
+                        YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView)
+                    }
+//                    .opacity(showYouProfileView ? 0 : 1)
+//                    .opacity(showMeEventController ? 0 : 1)
                 }
-                .opacity(showYouProfileView ? 0 : 1)
-                .opacity(showMeEventController ? 0 : 1)
+                
+                
             }
             
             // create the setup EventView on top of the rest
