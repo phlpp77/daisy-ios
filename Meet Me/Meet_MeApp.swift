@@ -15,12 +15,15 @@ import FirebaseAuth
 struct Meet_MeApp: App {
     
     @State var startProcessDone: Bool = false
+
     //@ObservedObject private var meet_MeAppVM: Meet_MeAppViewModel = Meet_MeAppViewModel()
 
     
     init() {
         FirebaseApp.configure()
-    }
+
+        }
+    
 
     
     var body: some Scene {
