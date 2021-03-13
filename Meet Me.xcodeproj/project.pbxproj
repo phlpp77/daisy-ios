@@ -97,7 +97,7 @@
 		90D42B1E25EBA7190060311B /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B1D25EBA7190060311B /* ChatListViewModel.swift */; };
 		90D42B2225EBA75C0060311B /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B2125EBA75C0060311B /* MessagesViewModel.swift */; };
 		90D8BE8725FC1EC000EF160D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90D8BE8625FC1EC000EF160D /* GoogleService-Info.plist */; };
-		90D8BE8A25FC21F300EF160D /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8BE8925FC21F300EF160D /* PushNotificationManager.swift */; };
+		90D8BE8A25FC21F300EF160D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8BE8925FC21F300EF160D /* AppDelegate.swift */; };
 		90DFB50025F92C7400E26ED7 /* ChangeMeEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DFB4FF25F92C7400E26ED7 /* ChangeMeEventViewModel.swift */; };
 		90ED49A625F2EA1A00843170 /* DeleteMatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ED49A525F2EA1A00843170 /* DeleteMatchViewModel.swift */; };
 		90F2334D25D58481003FB1D9 /* ImageOldP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2334C25D58481003FB1D9 /* ImageOldP.swift */; };
@@ -198,7 +198,7 @@
 		90D42B1D25EBA7190060311B /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		90D42B2125EBA75C0060311B /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
 		90D8BE8625FC1EC000EF160D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		90D8BE8925FC21F300EF160D /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
+		90D8BE8925FC21F300EF160D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90DFB4FF25F92C7400E26ED7 /* ChangeMeEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeMeEventViewModel.swift; sourceTree = "<group>"; };
 		90ED49A525F2EA1A00843170 /* DeleteMatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMatchViewModel.swift; sourceTree = "<group>"; };
 		90F2334C25D58481003FB1D9 /* ImageOldP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOldP.swift; sourceTree = "<group>"; };
@@ -466,7 +466,7 @@
 				903E020525DFF681005BB173 /* FirestoreMangersEvent */,
 				90D42B0325EAC0E00060311B /* FirestoreManagerChat */,
 				9012001D25F4E8CC006E7DF4 /* LocationManager.swift */,
-				90D8BE8925FC21F300EF160D /* PushNotificationManager.swift */,
+				90D8BE8925FC21F300EF160D /* AppDelegate.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -747,7 +747,7 @@
 				17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */,
 				90D42AD525EA59350060311B /* YouProfilViewModel.swift in Sources */,
 				1795DF9E25DF0E22002D537F /* MeMatchStartView.swift in Sources */,
-				90D8BE8A25FC21F300EF160D /* PushNotificationManager.swift in Sources */,
+				90D8BE8A25FC21F300EF160D /* AppDelegate.swift in Sources */,
 				17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */,
 				17F34F1025F6CF5400690122 /* MeEventNView.swift in Sources */,
 				17B0B61525F546810014B0FD /* TabButtonView.swift in Sources */,
