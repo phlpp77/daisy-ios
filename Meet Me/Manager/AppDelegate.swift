@@ -43,7 +43,6 @@ class  AppDelegate: NSObject, UIApplicationDelegate {
     // Handle silent Messages
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-
     //Do Something with Message Data Here
       if let messageID = userInfo[gcmMessageIDKey] {
         print("Message ID: \(messageID)")
