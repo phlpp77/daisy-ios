@@ -8,10 +8,10 @@
 import Foundation
 import PromiseKit
 
-class MeMatchStartViewModel: ObservableObject {
+class MeEventControllerViewModel: ObservableObject {
     
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
-    @Published var userModels: [UserModel] = []
+    @Published var likedUsers: [UserModel] = []
     
     func getLikedUsers(eventId: String) {
         
@@ -20,7 +20,7 @@ class MeMatchStartViewModel: ObservableObject {
             }.then { likedUser in
                 self.firestoreManagerEventTest.getAllLikedUserModels(likedUser: likedUser)
             }.done { users in
-                self.userModels = users
+                self.likedUsers = users
             }.catch { error in
                 print("DEBUG: error bei gettting likedUsers, error: \(error)")
                 print("DEBUG: error localized \(error.localizedDescription)")

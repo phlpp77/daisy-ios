@@ -10,16 +10,13 @@ import URLImage
 
 struct MeEventDetailedView: View {
     
-    // FIXME: @budni rename the old VM
-    @StateObject private var meMatchStartVM : MeMatchStartViewModel = MeMatchStartViewModel()
-    
     @Binding var showMeEventDetailedView: Bool
     
     @Binding var showMeMatchCardView: Bool
     @Binding var event: EventModel
+    @Binding var likedUsers: [UserModel]
     
     @State var eventStatus: EventStatus = .liked
-    @State var likedUsers: [UserModel]
     
     var body: some View {
         
@@ -51,7 +48,7 @@ struct MeEventDetailedView: View {
                         // text to inform user about the current MeEvent Status
                         FrozenTextBox(text: eventStatus == .matched ? "You already have a YOU to meet, go to Chats to set up the details!" : eventStatus == .liked ? "Ready to find a YOU?" : "Wait a bit that other YOUs can find your Event")
                         
-                        
+                        // ---
                         
                         // button to delete the current event
                         Button(action: {
@@ -83,7 +80,7 @@ struct MeEventDetailedView: View {
                         .disabled(eventStatus == .matched ? true : eventStatus == .notLiked ? true : false)
                         .opacity(eventStatus == .matched ? 0.7 : eventStatus == .notLiked ? 0.7 : 1)
                         
-                        
+                        // ---
                         
                         // xmark symbol to show the user how to dismiss the view
                         Image(systemName: "xmark")
@@ -102,8 +99,10 @@ struct MeEventDetailedView: View {
             }
             .frame(width: bounds.size.width, height: bounds.size.height, alignment: .center)
             
-            // MARK: OnAppear
+            // MARK: OnAppear to get the event Status
             .onAppear {
+                
+                // get the event status
                 if event.eventMatched {
                     eventStatus = .matched
                 } else if event.likedUser {
@@ -111,6 +110,7 @@ struct MeEventDetailedView: View {
                 } else {
                     eventStatus = .notLiked
                 }
+                
             }
             
         }
@@ -188,11 +188,11 @@ struct MeEventDetailedView: View {
     
 }
 
-struct MeEventDetailedView_Previews: PreviewProvider {
-    static var previews: some View {
-        MeEventDetailedView()
-    }
-}
+//struct MeEventDetailedView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MeEventDetailedView()
+//    }
+//}
         
 // MARK: -
 struct FrozenTextBox: View {
