@@ -25,7 +25,6 @@ struct YouProfileNView: View {
                 
                 Color.black.opacity(0.001)
                     .onTapGesture(perform: {
-                        print("dismiss")
                         showYouProfileView = false
                     })
                 
@@ -65,7 +64,6 @@ struct YouProfileNView: View {
                             .font(.system(size: 30))
                             .offset(y: ((bounds.size.width - 48) * 1.33 / 2) + 60)
                         
-                        
                     }
                     
                     
@@ -79,10 +77,7 @@ struct YouProfileNView: View {
                 
             }
             .frame(width: bounds.size.width, height: bounds.size.height, alignment: .center)
-            .onAppear {
-                youProfileVM.getYouProfil(eventModel: event)
-                print("DEBUG: userPhots in dic\(youProfileVM.userModel.userPhotos)")
-        }
+            
         }
         
     }

@@ -87,14 +87,12 @@ struct MeEventDetailedView: View {
                             .foregroundColor(Color("BackgroundSecondary").opacity(0.5))
                             .font(.system(size: 30))
                             .offset(y: ((bounds.size.width - 48) * 1.33 / 2) + 60)
-                        
                     }
                     
                     // spacer is used to get full area to tap
                     Spacer()
                     
                 }
-                
                 
             }
             .frame(width: bounds.size.width, height: bounds.size.height, alignment: .center)
@@ -141,10 +139,7 @@ struct MeEventDetailedView: View {
                     .clipShape(
                         RoundedRectangle(cornerRadius: 26, style: .continuous)
                     )
-                
-                
             }
-            
             .frame(width: bounds.size.width, height: bounds.size.height, alignment: .center)
         }
     }
@@ -187,14 +182,8 @@ struct MeEventDetailedView: View {
     }
     
 }
-
-//struct MeEventDetailedView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MeEventDetailedView()
-//    }
-//}
         
-// MARK: -
+// MARK: - FrozenTextBox
 struct FrozenTextBox: View {
     
     var text: String = ""
@@ -202,7 +191,6 @@ struct FrozenTextBox: View {
     var body: some View {
         
         // MARK: Text-box in the middle of the screen
-        
         ZStack {
             
             // MARK: Background of the Text-Box
@@ -234,8 +222,7 @@ struct FrozenTextBox: View {
 }
 
 
-// MARK: -
-
+// MARK: - FrozenButton
 struct FrozenButton: View {
     
     var text: String
@@ -244,7 +231,12 @@ struct FrozenButton: View {
     var body: some View {
         Label(
             title: { Text(text) },
-            icon: { Image(systemName: sfSymbol) }
+            
+            icon: {
+                if sfSymbol != "" {
+                    Image(systemName: sfSymbol)
+                }
+            }
         )
         .frame(width: 138, height: 47)
         .background(
