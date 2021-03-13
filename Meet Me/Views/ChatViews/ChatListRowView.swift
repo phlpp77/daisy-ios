@@ -38,7 +38,7 @@ struct ChatListRowView: View {
             HStack {
                 
                 // profile picture
-                URLImage(url: URL(string: match.user.userPhotos[1] ?? stockUrlString)!) { image in
+                URLImage(url: URL(string: match.user.userPhotos[0] ?? stockUrlString)!) { image in
                     image.resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 60, height: 60)
@@ -74,7 +74,7 @@ struct ChatListRowView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(8)
-            .modifier(FrozenWindowModifier())
+            .modifier(offWhiteShadow(cornerRadius: 12))
             .padding(.horizontal, 10)
             
             // show soon when Event is in the next 12 hours
@@ -94,10 +94,15 @@ struct ChatListRowView: View {
             }
             
         }
-        // tapping on the item
+        // tapping to show the chat
         .onTapGesture {
             matchTapped = match
             chatTapped = true
+        }
+        
+        // long-pressing to delete the event
+        .onLongPressGesture {
+            print("tapped on chat \(match)")
         }
 
         // on appear
