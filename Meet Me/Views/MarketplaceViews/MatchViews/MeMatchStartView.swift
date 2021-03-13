@@ -20,7 +20,7 @@ struct MeMatchStartView: View {
     @State var eventStatus: EventStatus = .liked
     
     @Binding var likedUsers : [UserModel]
-    @StateObject private var meMatchStartVM : MeMatchStartViewModel = MeMatchStartViewModel()
+    @StateObject private var meMatchStartVM : MeEventControllerViewModel = MeEventControllerViewModel()
     
     var body: some View {
         ZStack {

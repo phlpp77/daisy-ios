@@ -13,7 +13,7 @@ struct MainExploreView: View {
     
     // states for animation
     @State private var showCreationView: Bool = false
-    @State private var showMeMatchView: Bool = false
+    @State private var showMeEventController: Bool = false
     @State private var showYouProfileView: Bool = false
     
     @State private var eventArray: [EventModel] = [stockEvent, stockEvent]
@@ -22,37 +22,34 @@ struct MainExploreView: View {
     
     var body: some View {
         ZStack {
+            
             VStack {
                 
-                HStack(spacing: 0.0) {
-                    Text("Meet ")
-                    Text("ME")
-                        .font(.system(.largeTitle, design: .rounded))
-                        .foregroundColor(.accentColor)
-                    Text(" Market")
+                HeaderView(text1: "Meet ", text2: " Market", highlightText: "ME")
+                
+                VStack {
+                    
+                    Text("Me Events")
+                        .font(.subheadline)
+                        .bold()
+                        .textCase(.uppercase)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 12)
+                    
+                    MeEventLineView(showCreationView: $showCreationView, showMeMatchView: $showMeEventController, tappedEvent: $tappedMeEvent)
+                    
+                    Text("You Events")
+                        .font(.subheadline)
+                        .bold()
+                        .textCase(.uppercase)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 12)
+                    
+                    YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView)
                 }
-                .font(.largeTitle)
-                .padding(.vertical, 12)
-                
-                Text("Me Events")
-                    .font(.subheadline)
-                    .bold()
-                    .textCase(.uppercase)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading, 12)
-                
-                MeEventLineView(showCreationView: $showCreationView, showMeMatchView: $showMeMatchView, tappedEvent: $tappedMeEvent)
-                
-                Text("You Events")
-                    .font(.subheadline)
-                    .bold()
-                    .textCase(.uppercase)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading, 12)
-                
-                YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView)
+                .opacity(showYouProfileView ? 0 : 1)
+                .opacity(showMeEventController ? 0 : 1)
             }
-            .opacity(showYouProfileView ? 0 : 1)
             
             // create the setup EventView on top of the rest
             if showCreationView {
@@ -60,8 +57,8 @@ struct MainExploreView: View {
             }
             
             // start the MeMatch process
-            if showMeMatchView {
-                MeMatchView(showMeMatchMainView: $showMeMatchView, tappedEvent: $tappedMeEvent)
+            if showMeEventController {
+                MeEventControllerView(showMeEventDetailedView: $showMeEventController, tappedEvent: $tappedMeEvent)
             }
             
             // MARK: Show youProfileView when user taps on a YouEvent
