@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1705790E25FCD26400A56CE6 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705790D25FCD26400A56CE6 /* HeaderView.swift */; };
 		1711EEBB25F29C6600D87EFA /* ChatProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711EEBA25F29C6600D87EFA /* ChatProfileView.swift */; };
 		17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */; };
 		17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EE825A8C5C30072CE83 /* Assets.xcassets */; };
@@ -108,6 +109,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1705790D25FCD26400A56CE6 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		1711EEBA25F29C6600D87EFA /* ChatProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatProfileView.swift; sourceTree = "<group>"; };
 		17153EE125A8C5C30072CE83 /* Meet Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meet Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meet_MeApp.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				17B0B61025F543F70014B0FD /* TabBarView.swift */,
 				17B0B61425F546810014B0FD /* TabButtonView.swift */,
 				174EFCD625FABDC40028C04C /* RingView.swift */,
+				1705790D25FCD26400A56CE6 /* HeaderView.swift */,
 			);
 			path = ViewHelpers;
 			sourceTree = "<group>";
@@ -728,6 +731,7 @@
 				90779B0D25E308220070D794 /* FirestoreManagerUserTest.swift in Sources */,
 				1711EEBB25F29C6600D87EFA /* ChatProfileView.swift in Sources */,
 				90F2334D25D58481003FB1D9 /* ImageOldP.swift in Sources */,
+				1705790E25FCD26400A56CE6 /* HeaderView.swift in Sources */,
 				90B0F4D425DF0EA000AB8EF9 /* MeEventLinieViewModel.swift in Sources */,
 				1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */,
 				17DE530F25EAC1AA000D0B4D /* ChatListView.swift in Sources */,
