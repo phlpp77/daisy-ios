@@ -15,6 +15,8 @@ struct ChatListView: View {
     @State var chatTapped: Bool = false
     @State var matchTapped: AllMatchInformationModel = AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)
     
+    
+    
     var body: some View {
         
         
@@ -54,6 +56,8 @@ struct ChatListView: View {
                 }
             }
             .navigationBarHidden(true)
+            .background(Image("background"))
+            
             
         }
         .onAppear {
