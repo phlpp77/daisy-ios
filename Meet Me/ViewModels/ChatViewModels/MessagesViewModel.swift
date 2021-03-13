@@ -15,6 +15,7 @@ class MessagesViewModel: ObservableObject {
     @Published var chat: ChatModel = stockChat
     var userId: String = Auth.auth().currentUser!.uid
     private var db: Firestore
+    let sender = PushNotificationSender()
     
     init() {
         db = Firestore.firestore()
@@ -56,9 +57,12 @@ class MessagesViewModel: ObservableObject {
         }
     }
     
-    func UploadChat(chatId: String, messageText: String) {
+    func UploadChat(allMatchInformation: AllMatchInformationModel, messageText: String) {
+        print("upload chat")
         firstly {
-            self.firestoreManagerChat.uploadMessage(messageText: messageText, chatId: chatId)
+            self.firestoreManagerChat.uploadMessage(messageText: messageText, chatId: allMatchInformation.chatId)
+        }.done {
+            self.sender.sendPushNotification(to: allMatchInformation.user.token, title: "Neue Nachricht", body: "\(allMatchInformation.user.name) hat dir eine neue Nachricht geschickt")
         }.catch { error in
             print("DEBUG: error in MessageUploadChain error: \(error)")
             print("DEGUB: error localized: \(error.localizedDescription)")
