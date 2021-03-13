@@ -13,6 +13,7 @@ class LocationManager: NSObject, ObservableObject {
     
     private let locationManager = CLLocationManager()
     @Published var location: CLLocation? = nil
+    @Published var region: MKCoordinateRegion = MKCoordinateRegion.defaultRegion
     
         override init() {
         super.init()
@@ -33,6 +34,7 @@ extension LocationManager: CLLocationManagerDelegate {
         
         DispatchQueue.main.async {
             self.location = location
+            self.region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
         }
     }
 }

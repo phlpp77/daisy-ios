@@ -11,7 +11,7 @@ import PromiseKit
 struct YouEventLineView: View {
     
     @StateObject private var youEventLineVM = YouEventLineViewModel()
-    
+    @EnvironmentObject var locationManager: LocationManager
     // data transfer form database
     @State var eventArray: [EventModel] = []
     @State private var loading: Bool = false
@@ -87,11 +87,10 @@ struct YouEventLineView: View {
         }
         .frame(height: 380)
         .onAppear {
-
-            
+            print(locationManager.region)
             loading = true
             firstly {
-                self.youEventLineVM.getYouEvents()
+                self.youEventLineVM.getYouEvents(region: locationManager.region)
             }.done { events in
                 self.eventArray = events
                 print("done")
