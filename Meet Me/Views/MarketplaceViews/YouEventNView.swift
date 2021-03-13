@@ -84,7 +84,7 @@ struct YouEventNView: View {
                         self.dragPosition = .init(width: 0, height: 500)
                         
                         // add like to the database
-                        youEventVM.addLikeToEvent(eventId: events[eventIndex].eventId)
+                        youEventVM.addLikeToEvent(eventModel: events[eventIndex])
                         
                         // delete the item at the position from the Array
                         self.events.remove(at: eventIndex)
