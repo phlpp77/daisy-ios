@@ -27,7 +27,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Enable your Location to find YOU Events nearby</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>The app let&apos;s you pick profile pictures.</string>
+	<string>The app let's you pick profile pictures.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

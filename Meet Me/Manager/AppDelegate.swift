@@ -67,7 +67,10 @@ class  AppDelegate: NSObject, UIApplicationDelegate {
         didRegisterForRemoteNotificationsWithDeviceToken
             deviceToken: Data) {
         
+        
     }
+    
+
 
 }
 
