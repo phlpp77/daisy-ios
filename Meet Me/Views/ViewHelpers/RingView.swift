@@ -27,7 +27,7 @@ struct RingView: View {
         case let x where x >= 60:
             progress = 1
         default:
-            progress = 0.25
+            progress = 1
         }
         
         // handling the text output

@@ -10,6 +10,7 @@ import SwiftUI
 enum MessageStyle {
     case creator
     case receiver
+    case noUser
 }
 
 struct MessageView: View {
@@ -27,7 +28,7 @@ struct MessageView: View {
     
     var body: some View {
         VStack {
-            VStack(alignment: messageStyle == .receiver ? .leading : .trailing, spacing: 5) {
+            VStack(alignment: messageStyle == .creator ? .trailing : .leading, spacing: 5) {
                 Text(dateFormatter.string(from: message.timeStamp.dateValue()))
                     .font(.footnote)
                     .foregroundColor(.accentColor)
@@ -35,14 +36,14 @@ struct MessageView: View {
                 Text(message.messageText)
             }
             .padding(8)
-            .background(messageStyle == .receiver ? Color.gray : Color.green)
+            .background(messageStyle == .receiver ? Color.gray : messageStyle == .noUser ? Color("BackgroundSecondary") : Color.accentColor)
             .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-            .frame(width: 250, alignment: messageStyle == .receiver ? .leading : .trailing)
+            .frame(width: 250, alignment: messageStyle == .creator ? .trailing : .leading)
             
             
             
         }
-        .frame(maxWidth: .infinity, alignment: messageStyle == .receiver ? .leading : .trailing)
+        .frame(maxWidth: .infinity, alignment: messageStyle == .creator ? .trailing : .leading)
         .padding()
         // on appear to change MessageStyle
         .onAppear {
