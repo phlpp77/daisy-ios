@@ -66,8 +66,7 @@ class ChatListViewModel: ObservableObject {
                  self.firestoreManagerMatches.deleteMatchFromMatchedUser(chatId: match.chatId, matchedUserId: match.user.userId),
                  self.firestoreManagerMatches.deleteChat(chatId: match.chatId),
                  self.firestoreManagerMatches.deleteEvent(eventId: match.event.eventId))
-        }.done {
-            self.getMatches()
+
         }.catch { error in
             print("DEGUB: error in deleteMatch complete, error: \(error)")
             print("DEGUB: error localized: \(error.localizedDescription)")
@@ -84,8 +83,7 @@ class ChatListViewModel: ObservableObject {
                  self.firestoreManagerMatches.deleteAllLikedUserFromEvent(eventId: match.event.eventId),
                  self.firestoreManagerEventTest.createLikedUserArray(eventId: match.event.eventId),
                  self.firestoreManagerMatches.setLikedUserAndMatchedUserToFalse(eventId: match.event.eventId))
-        }.done {
-            self.getMatches()
+
         }.catch { error in
             print("DEGUB: error in deleteMatch complete, error: \(error)")
             print("DEGUB: error localized: \(error.localizedDescription)")
