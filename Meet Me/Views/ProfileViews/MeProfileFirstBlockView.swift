@@ -10,7 +10,7 @@ import URLImage
 
 struct MeProfileFirstBlockView: View {
     
-    @StateObject var meProfileVM: MeProfileViewModel = MeProfileViewModel()
+    @EnvironmentObject var meProfileVM: MeProfileViewModel
     
     var body: some View {
         VStack {
@@ -53,7 +53,7 @@ struct MeProfileFirstBlockView: View {
         )
         .modifier(offWhiteShadow(cornerRadius: 14))
         .onAppear {
-            meProfileVM.getCurrentUser()
+
         }
     }
 }
@@ -68,7 +68,7 @@ struct MeProfileFirstBlockView_Previews: PreviewProvider {
 // MARK: - View which is used to replicate the user photos
 struct PictureCircle: View {
     
-    @StateObject var meProfileVM: MeProfileViewModel = MeProfileViewModel()
+    @EnvironmentObject var meProfileVM: MeProfileViewModel
     @Binding var userPhotos: [Int: String]
     
     @State var showPHPicker: Bool = false
@@ -154,7 +154,7 @@ struct PictureCircle: View {
                 }
             })
             .onAppear {
-                meProfileVM.getCurrentUser()
+
             }
             
         }

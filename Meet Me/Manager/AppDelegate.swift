@@ -43,7 +43,6 @@ class  AppDelegate: NSObject, UIApplicationDelegate {
     // Handle silent Messages
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-
     //Do Something with Message Data Here
       if let messageID = userInfo[gcmMessageIDKey] {
         print("Message ID: \(messageID)")
@@ -80,7 +79,7 @@ extension AppDelegate: MessagingDelegate {
             return
         }
         let db: Firestore = Firestore.firestore()
-        print("New user Token \(fcmToken)")
+        print("New user Token \(fcmToken )")
         let _ =  db.collection("users")
             .document(currentUser.uid).updateData(["token" : fcmToken]) { error in
                 if let error = error {

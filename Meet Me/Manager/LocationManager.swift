@@ -8,11 +8,13 @@
 import Foundation
 import CoreLocation
 import MapKit
+import PromiseKit
 
 class LocationManager: NSObject, ObservableObject {
     
     private let locationManager = CLLocationManager()
     @Published var location: CLLocation? = nil
+    @Published var region: MKCoordinateRegion = MKCoordinateRegion.defaultRegion
     
         override init() {
         super.init()
@@ -28,14 +30,17 @@ class LocationManager: NSObject, ObservableObject {
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        guard let location = locations.last else {return}
-        
-        DispatchQueue.main.async {
-            self.location = location
+
+            guard let location = locations.last else {return}
+            
+            DispatchQueue.main.async {
+                self.location = location
+                self.region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
+
+            }
         }
     }
-}
+
 
 extension MKCoordinateRegion {
 

@@ -47,12 +47,24 @@ struct MessageView: View {
         .padding()
         // on appear to change MessageStyle
         .onAppear {
+            print(message.userId)
             // check if the message was received or sent
-            if message.userId == messagesVM.userId {
+            switch message.userId {
+            case "NoUser":
+                messageStyle = .noUser
+            case "":
+                messageStyle = .noUser
+            case messagesVM.userId:
                 messageStyle = .creator
-            } else {
+            default:
                 messageStyle = .receiver
             }
+            
+//            if message.userId == messagesVM.userId {
+//                messageStyle = .creator
+//            } else {
+//                messageStyle = .receiver
+//            }
         }
     }
 }

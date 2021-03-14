@@ -9,11 +9,11 @@ import SwiftUI
 
 
 struct MeProfileSecondBlockView: View {
-    @StateObject var meProfileVM: MeProfileViewModel = MeProfileViewModel()
+    @EnvironmentObject var meProfileVM: MeProfileViewModel
     
     //@State private var range: Double = 150
     //@State private var pickedGender = 1
-    private var genders = ["Female", "Male", "Other"]
+    private var genders = ["Female", "Male", "Both"]
     
     
     init() {
@@ -60,7 +60,7 @@ struct MeProfileSecondBlockView: View {
                 // title
                 HStack(spacing: 0.0) {
                     Text("Show me ")
-                    Text(meProfileVM.userModel.searchingFor)
+                    Text(meProfileVM.gender[meProfileVM.picked])//meProfileVM.userModel.searchingFor)
                         .foregroundColor(.accentColor)
                     Text(" YOUs")
                 }
@@ -79,14 +79,14 @@ struct MeProfileSecondBlockView: View {
         .frame(width: 327, height: 200)
         .modifier(offWhiteShadow(cornerRadius: 14))
         .onAppear {
-            meProfileVM.getCurrentUser()
+
  
             }
         .onDisappear{
             print("disaper")
             meProfileVM.changedSearchingFor(searchingFor: meProfileVM.picked)
             meProfileVM.changedRange(radius: meProfileVM.userModel.radiusInKilometer)
-            
+            meProfileVM.stopListening()
         }
         }
     }

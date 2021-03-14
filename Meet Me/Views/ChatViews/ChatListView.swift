@@ -10,7 +10,7 @@ import SwiftUI
 struct ChatListView: View {
     
     @ObservedObject var chatListVM: ChatListViewModel = ChatListViewModel()
-    @ObservedObject var deleteMatchVM: DeleteMatchViewModel = DeleteMatchViewModel()
+
     
     @State var chatTapped: Bool = false
     @State var matchTapped: AllMatchInformationModel = AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)
@@ -49,13 +49,13 @@ struct ChatListView: View {
                                     .contextMenu {
                                         
                                         Button {
-                                            deleteMatchVM.deleteMatchAndBackToPool(match: chatListVM.matches[matchNumber])
+                                            chatListVM.deleteMatchAndBackToPool(match: chatListVM.matches[matchNumber])
                                         } label: {
                                             Label("Dissolve Match", systemImage: "person.crop.circle.badge.minus")
                                         }
                                         
                                         Button {
-                                            deleteMatchVM.deleteMatchAndEventCompletely(match: chatListVM.matches[matchNumber])
+                                            chatListVM.deleteMatchAndEventCompletely(match: chatListVM.matches[matchNumber])
                                         } label: {
                                             Label("Dissolve Match and delete Event", systemImage: "minus.circle")
                                         }

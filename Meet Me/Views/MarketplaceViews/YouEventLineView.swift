@@ -7,11 +7,13 @@
 
 import SwiftUI
 import PromiseKit
+import MapKit
+
 
 struct YouEventLineView: View {
     
     @StateObject private var youEventLineVM = YouEventLineViewModel()
-    
+    @EnvironmentObject var locationManager: LocationManager
     // data transfer form database
     @State var eventArray: [EventModel] = []
     @State private var loading: Bool = false
@@ -88,19 +90,20 @@ struct YouEventLineView: View {
         .frame(height: 380)
         .onAppear {
 
-            
-            loading = true
-            firstly {
-                self.youEventLineVM.getYouEvents()
-            }.done { events in
-                self.eventArray = events
-                print("done")
-            }.catch { error in
-                print("DEBUG: error in GetYouEventChain: \(error)")
-                print("DEBUG: \(error.localizedDescription)")
-            }.finally {
-                loading = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                firstly {
+                    self.youEventLineVM.getYouEvents(region: locationManager.region)
+                }.done { events in
+                    self.eventArray = events
+                    print("done")
+                }.catch { error in
+                    print("DEBUG: error in GetYouEventChain: \(error)")
+                    print("DEBUG: \(error.localizedDescription)")
+                }
             }
+
+
+            
             
             
             
