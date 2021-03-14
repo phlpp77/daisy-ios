@@ -53,8 +53,8 @@ let secondaryGradient = LinearGradient(
 // MARK - Stockdata
 
 // MARK: stock user to use as default
-let stockUser: UserModel = UserModel(userId: "007", name: "Stocky One", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Female", userPhotos: [0: stockUrlString], userPhotosId: [0: ""], radiusInKilometer: 1000, token: "")
-let stockUser2: UserModel = UserModel(userId: "008", name: "Stockise Two", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [0: stockUrlString], userPhotosId: [0: ""], radiusInKilometer: 1000, token: "")
+let stockUser: UserModel = UserModel(userId: "007", name: "Stocky One", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Female", userPhotos: [1: stockUrlString], userPhotosId: [0: ""], radiusInKilometer: 1000, token: "")
+let stockUser2: UserModel = UserModel(userId: "008", name: "Stockise Two", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [0: stockUrlString], userPhotosId: [1: ""], radiusInKilometer: 1000, token: "")
 
 
 
@@ -70,5 +70,5 @@ let stockEvent2: EventModel = EventModel(eventId: "009", userId: "008", category
 //let stockEventObject: EventModel = EventModelObject(eventModel: stockEvent, position: .constant(.zero))
 
 // MARK: stock chat for chat area
-let stockChat: ChatModel = ChatModel(chatId: "egal", eventCreatorId: "creatoRR", matchedUserId: "receiveRR", eventId: "egal2", messages: [MessageModel(userId: "egal3", timeStamp: Timestamp(date: Date()), messageText: "Hey, we have a match! Speak with YOU about the event settings...")])
+let stockChat: ChatModel = ChatModel(chatId: "egal", eventCreatorId: "creatoRR", matchedUserId: "receiveRR", eventId: "egal2", messages: [MessageModel(userId: "firstChat", timeStamp: Timestamp(date: Date()), messageText: "Hey, we have a match! Speak with YOU about the event settings...")])
 

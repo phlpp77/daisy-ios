@@ -90,7 +90,7 @@ struct YouEventLineView: View {
         .frame(height: 380)
         .onAppear {
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                 firstly {
                     self.youEventLineVM.getYouEvents(region: locationManager.region)
                 }.done { events in

@@ -75,7 +75,7 @@ class FirestoreManagerMatches {
                 return
             }
             
-            let chatModel = ChatModel(chatId: chatId, eventCreatorId: currentUser.uid, matchedUserId: userModel.userId, eventId: eventModel.eventId, messages: [])
+            let chatModel = ChatModel(chatId: chatId, eventCreatorId: currentUser.uid, matchedUserId: userModel.userId, eventId: eventModel.eventId, messages: [MessageModel(userId: "firstChat", timeStamp: Timestamp(date: Date()), messageText: "Hey, we have a match! Speak with YOU about the event settings...")])
             do {
                 let _ = try db.collection("chats")
                     .document(chatId).setData(from:chatModel) { error in
