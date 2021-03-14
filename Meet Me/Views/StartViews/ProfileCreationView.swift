@@ -201,28 +201,28 @@ struct ProfileCreationView: View {
                     
                     // case 0 is the first step -> name creation
                     case 0:
-                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", textFieldInput: true, output: $addProfileCreationVM.name, show: $showAlertBox, accepted: $acceptedAction[0])
+                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", textFieldInput: true, selectedDuration: .constant(.medium), output: $addProfileCreationVM.name, show: $showAlertBox, accepted: $acceptedAction[0])
                             // z index 1 == the top layer -> this is needed due to animation processes
                             .zIndex(1.0)
                         
                     // case 1 is the second step -> gender creation
                     case 1:
-                        AlertBoxView(title: "Choose your gender", placeholder: "Tap here to choose..", defaultText: "Gender", pickerInput: true, pickerInputArray: ["Male", "Female", "Other"], output: $addProfileCreationVM.gender, show: $showAlertBox, accepted: $acceptedAction[1])
+                        AlertBoxView(title: "Choose your gender", placeholder: "Tap here to choose..", defaultText: "Gender", pickerInput: true, selectedDuration: .constant(.medium), pickerInputArray: ["Male", "Female", "Other"], output: $addProfileCreationVM.gender, show: $showAlertBox, accepted: $acceptedAction[1])
                             .zIndex(1.0)
                         
                     // case 2 is the third step -> birthday date
                     case 2:
-                        AlertBoxView(title: "Select your birthday date", placeholder: "Tap here to choose..", defaultText: "Birthday", dateInput: true, output: $birthdayDate, show: $showAlertBox, accepted: $acceptedAction[2])
+                        AlertBoxView(title: "Select your birthday date", placeholder: "Tap here to choose..", defaultText: "Birthday", selectedDuration: .constant(.medium), dateInput: true, output: $birthdayDate, show: $showAlertBox, accepted: $acceptedAction[2])
                             .zIndex(1.0)
                         
                     // case 3 is the fourth step -> searching for creation
                     case 3:
-                        AlertBoxView(title: "Choose for whom you are searching", placeholder: "Tap here to choose..", defaultText: "Searching for", pickerInput: true, pickerInputArray: ["Male", "Female", "Both"], output: $addProfileCreationVM.searchingFor, show: $showAlertBox, accepted: $acceptedAction[3])
+                        AlertBoxView(title: "Choose for whom you are searching", placeholder: "Tap here to choose..", defaultText: "Searching for", pickerInput: true, selectedDuration: .constant(.medium), pickerInputArray: ["Male", "Female", "Both"], output: $addProfileCreationVM.searchingFor, show: $showAlertBox, accepted: $acceptedAction[3])
                             .zIndex(1.0)
                         
                     case 4:
                         // add alert-box to ask user for location services
-                        AlertBoxView(title: "Allow app to use your current location", placeholder: "", defaultText: "", output: $acceptLocation, show: $showAlertBox, accepted: $acceptedAction[4])
+                        AlertBoxView(title: "Allow app to use your current location", placeholder: "", defaultText: "", selectedDuration: .constant(.medium), output: $acceptLocation, show: $showAlertBox, accepted: $acceptedAction[4])
                             .zIndex(1.0)
                         
                     // image picker view
@@ -237,7 +237,7 @@ struct ProfileCreationView: View {
                         
                     // the default is 0 which is the first step in the pathway -> name creation
                     default:
-                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", output: $outputAlertBox, show: $showAlertBox, accepted: $acceptedAction[2])
+                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", selectedDuration: .constant(.medium), output: $outputAlertBox, show: $showAlertBox, accepted: $acceptedAction[2])
                             // z index 1 == the top layer -> this is needed due to animation processes
                             .zIndex(1.0)
                     }

@@ -22,7 +22,28 @@ struct EventCreationView: View {
     @State private var date: Date = Date()
     @State private var startTime: Date = Date()
     @State private var endTime: Date = Date() + 60*30
+    @State private var duration: Duration = .medium
     @State private var pictureURL: String = ""
+    
+    
+    // get nearest quarter as start
+    
+    let roundedDate = { () -> Date in
+        let now = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: now)
+        let minute = calendar.component(.minute, from: now)
+
+        // Round down to nearest date eg. every 15 minutes
+        let minuteGranuity = 15
+        let roundedMinute = minute - (minute % minuteGranuity)
+        
+        return calendar.date(bySettingHour: hour,
+                             minute: roundedMinute,
+                             second: 0,
+                             of: now)!
+    }()
+
     
     // image handling with PhPicker
     @State private var images: [UIImage] = [UIImage(named: "cafe")!]
@@ -109,41 +130,51 @@ struct EventCreationView: View {
                         Spacer()
                         
                         HStack {
-                            Image(uiImage: #imageLiteral(resourceName: "Philipp"))
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 60, height: 60, alignment: .center)
-                                .overlay(
-                                    Circle()
-                                        .stroke(Color.white.opacity(0.9), lineWidth: 5)
-                                )
-                                .clipShape(Circle())
-                                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 12)
-                                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+//                            Image(uiImage: #imageLiteral(resourceName: "Philipp"))
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fill)
+//                                .frame(width: 60, height: 60, alignment: .center)
+//                                .overlay(
+//                                    Circle()
+//                                        .stroke(Color.white.opacity(0.9), lineWidth: 5)
+//                                )
+//                                .clipShape(Circle())
+//                                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 12)
+//                                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
                             
                             Spacer()
                             
                             
                             // time
                             HStack {
-                                Text(startTimeAsString)
-                                    .foregroundColor(.accentColor)
-                                    .onAppear {
-                                        self.startTimeAsString = timeFormatter.string(from: startTime)
+                                
+                                HStack {
+                                    Text("Start")
+                                    Text(startTimeAsString)
+                                        .foregroundColor(.accentColor)
+                                        
+                                }
+                                .onAppear {
+                                    self.startTimeAsString = timeFormatter.string(from: startTime)
+                                }
+                                .onTapGesture {
+                                    self.showAlertBox = true
+                                    self.pathNumber = 2
+                            }
+                                
+                                HStack {
+                                    Text("duration")
+                                    Text(duration.rawValue)
+                                        .foregroundColor(.accentColor)
+                                       
                                     }
-                                    .onTapGesture {
-                                        self.showAlertBox = true
-                                        self.pathNumber = 2
-                                    }
-                                Text("until")
-                                Text(endTimeAsString)
-                                    .onAppear {
-                                        self.endTimeAsString = timeFormatter.string(from: endTime)
-                                    }
-                                    .onTapGesture {
-                                        self.showAlertBox = true
-                                        self.pathNumber = 3
-                                    }
+                                .onAppear {
+                                    self.endTimeAsString = timeFormatter.string(from: endTime)
+                                }
+                                .onTapGesture {
+                                    self.showAlertBox = true
+                                    self.pathNumber = 3
+                                }
                             }
                             .font(.headline)
         //                        .padding(.horizontal, 20)
@@ -197,6 +228,10 @@ struct EventCreationView: View {
             .sheet(isPresented: $showImagePicker, content: {
                 ImagePicker(images: $images, showPicker: $showImagePicker, limit: 1, didFinishPicking: {_ in})
                 })
+            .onAppear {
+                startTime = roundedDate
+                startTimeAsString = timeFormatter.string(from: roundedDate)
+            }
             
             
             if showAlertBox {
@@ -204,22 +239,22 @@ struct EventCreationView: View {
                 
                 // AlertBox to define the category
                 case 0:
-                    AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", categoryPicker: true, output: $category, show: $showAlertBox, accepted: $accepted)
+                    AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", categoryPicker: true, selectedDuration: .constant(.medium), output: $category, show: $showAlertBox, accepted: $accepted)
                     
                 // AlertBox to define the date
                 case 1:
-                    AlertBoxView(title: "Choose a date", placeholder: dateFormatter.string(from: date), defaultText: dateFormatter.string(from: date), datePicker: true, output: $dateAsString, show: $showAlertBox, accepted: $accepted)
+                    AlertBoxView(title: "Choose a date", placeholder: dateFormatter.string(from: date), defaultText: dateFormatter.string(from: date), datePicker: true, selectedDuration: .constant(.medium), output: $dateAsString, show: $showAlertBox, accepted: $accepted)
                     
                 // AlertBox to define the startTime of the event
                 case 2:
-                    AlertBoxView(title: "Choose your start time", placeholder: timeFormatter.string(from: startTime), defaultText: timeFormatter.string(from: startTime), timePicker: true, dateFormat: "HH:mm", output: $startTimeAsString, show: $showAlertBox, accepted: $accepted)
+                    AlertBoxView(title: "Choose your start time", placeholder: timeFormatter.string(from: startTime), defaultText: timeFormatter.string(from: startTime), timePicker: true, selectedDuration: .constant(.medium), dateFormat: "HH:mm", output: $startTimeAsString, show: $showAlertBox, accepted: $accepted)
                     
                 // AlertBox to define the endTime of the event
                 case 3:
-                    AlertBoxView(title: "Choose the duration", placeholder: timeFormatter.string(from: endTime), defaultText: timeFormatter.string(from: endTime), durationPicker: true, dateFormat: "HH:mm", output: $endTimeAsString, show: $showAlertBox, accepted: $accepted)
+                    AlertBoxView(title: "Choose the duration", placeholder: timeFormatter.string(from: endTime), defaultText: timeFormatter.string(from: endTime), startTime: startTimeAsString, durationPicker: true, selectedDuration: $duration, dateFormat: "HH:mm", output: $endTimeAsString, show: $showAlertBox, accepted: $accepted)
                     
                 default:
-                    AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", output: $category, show: $showAlertBox, accepted: $accepted)
+                    AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", selectedDuration: .constant(.medium), output: $category, show: $showAlertBox, accepted: $accepted)
                 }
             }
             

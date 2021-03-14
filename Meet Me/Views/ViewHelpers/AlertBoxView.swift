@@ -34,12 +34,15 @@ struct AlertBoxView: View {
     var datePicker: Bool = false
     @State var selectedDate = Date()
     
-    let minMaxRange = Date()...Date() + 86400
+    var startTime: String = ""
+    let minMaxRange = Date() - 86400 ... Date() + 86400
     var timePicker: Bool = false
     @State var selectedTime = Date()
     
     var durationPicker: Bool = false
-    @State var selectedDuration = Duration.medium
+    @Binding var selectedDuration: Duration
+    
+    
     
     // -- new end
     
@@ -131,7 +134,7 @@ struct AlertBoxView: View {
                 
                 if timePicker {
                     // pick a startTime from now to the future "..."
-                    DatePickerX(selection: $selectedTime, in: minMaxRange, minuteInterval: 30)
+                    DatePickerX(selection: $selectedTime, in: minMaxRange, minuteInterval: 15)
                         
                 }
                 
@@ -211,6 +214,10 @@ struct AlertBoxView: View {
                             
                             if durationPicker {
                                 var dateOutput = Date()
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.locale = Locale(identifier: "en_DE")
+                                dateFormatter.dateFormat = self.dateFormat
+                                dateOutput = dateFormatter.date(from: startTime) ?? Date()
                                 
                                 switch selectedDuration {
                                 case .veryShort:
@@ -227,9 +234,6 @@ struct AlertBoxView: View {
                                     dateOutput += 180 * 60
                                 }
                                 
-                                let dateFormatter = DateFormatter()
-                                dateFormatter.locale = Locale(identifier: "en_DE")
-                                dateFormatter.dateFormat = self.dateFormat
                                 output = dateFormatter.string(from: dateOutput)
                             }
                             
@@ -271,6 +275,6 @@ struct AlertBoxView: View {
 
 struct AlertBoxView_Previews: PreviewProvider {
     static var previews: some View {
-        AlertBoxView(title: "Alert", placeholder: "Text here..", defaultText: "Name", output: .constant(""), show: .constant(true), accepted: .constant(false))
+        AlertBoxView(title: "Alert", placeholder: "Text here..", defaultText: "Name", selectedDuration: .constant(.medium), output: .constant(""), show: .constant(true), accepted: .constant(false))
     }
 }
