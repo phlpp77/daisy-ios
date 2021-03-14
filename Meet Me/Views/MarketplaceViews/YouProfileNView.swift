@@ -77,6 +77,9 @@ struct YouProfileNView: View {
                 
             }
             .frame(width: bounds.size.width, height: bounds.size.height, alignment: .center)
+            .onAppear {
+                youProfileVM.getYouProfil(eventModel: event)
+            }
             
         }
         

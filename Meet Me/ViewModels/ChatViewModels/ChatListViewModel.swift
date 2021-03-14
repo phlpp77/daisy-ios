@@ -14,7 +14,8 @@ import PromiseKit
 class ChatListViewModel: ObservableObject {
     
     private var firestoreManagerChat: FirestoreManagerChat = FirestoreManagerChat()
-    
+    private var firestoreManagerMatches: FirestoreManagerMatches = FirestoreManagerMatches()
+    private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     //private var userModel: UserModel?
     //private var eventModel: EventModel?
     private var matchDoc : [MatchModel] = []
@@ -54,6 +55,41 @@ class ChatListViewModel: ObservableObject {
             }
         }
         
+    }
+    
+    
+    
+    func deleteMatchAndEventCompletely(match: AllMatchInformationModel) {
+        firstly {
+            when(fulfilled:
+                 self.firestoreManagerMatches.deleteMatchFromCurrentUser(chatId: match.chatId),
+                 self.firestoreManagerMatches.deleteMatchFromMatchedUser(chatId: match.chatId, matchedUserId: match.user.userId),
+                 self.firestoreManagerMatches.deleteChat(chatId: match.chatId),
+                 self.firestoreManagerMatches.deleteEvent(eventId: match.event.eventId))
+        }.done {
+            self.getMatches()
+        }.catch { error in
+            print("DEGUB: error in deleteMatch complete, error: \(error)")
+            print("DEGUB: error localized: \(error.localizedDescription)")
+        }
+        
+    }
+    
+    func deleteMatchAndBackToPool(match: AllMatchInformationModel) {
+        firstly {
+            when(fulfilled:
+            self.firestoreManagerMatches.deleteMatchFromCurrentUser(chatId: match.chatId),
+                 self.firestoreManagerMatches.deleteMatchFromMatchedUser(chatId: match.chatId, matchedUserId: match.user.userId),
+                 self.firestoreManagerMatches.deleteChat(chatId: match.chatId),
+                 self.firestoreManagerMatches.deleteAllLikedUserFromEvent(eventId: match.event.eventId),
+                 self.firestoreManagerEventTest.createLikedUserArray(eventId: match.event.eventId),
+                 self.firestoreManagerMatches.setLikedUserAndMatchedUserToFalse(eventId: match.event.eventId))
+        }.done {
+            self.getMatches()
+        }.catch { error in
+            print("DEGUB: error in deleteMatch complete, error: \(error)")
+            print("DEGUB: error localized: \(error.localizedDescription)")
+        }
     }
 
 

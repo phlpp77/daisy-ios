@@ -18,11 +18,11 @@ class MeProfileViewModel: ObservableObject {
 
     
     @Published var userModel: UserModel = stockUser
-    @Published var genders: [String: Int] = ["Female": 0, "Male": 1, "Other": 2]
-    @Published var picked = 0
+    @Published var genders: [String: Int] = ["Female": 0, "Male": 1, "Both": 2]
+    @Published var picked = 1
     
     
-    private var gender: [String] = ["Female", "Male", "Other"]
+     var gender: [String] = ["Female", "Male", "Both"]
     private var url: URL = stockURL
     private var db: Firestore
     private var listener: ListenerRegistration?
@@ -50,13 +50,14 @@ class MeProfileViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         if userModel != nil {
                             self.userModel = userModel!
+                            self.picked = self.genders[userModel!.searchingFor]!
                         }else {
                             print(Err("cant get userProfil"))
                         }
                     }
                 }
             }
-            self.picked = self.genders[self.userModel.searchingFor]!
+
         }
     }
     

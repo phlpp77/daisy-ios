@@ -10,16 +10,20 @@ import SwiftUI
 struct MainSettingsView: View {
     
     @Binding var startProcessDone: Bool
+    @StateObject var meProfileVM: MeProfileViewModel = MeProfileViewModel()
+    //@ObservedObject private var meProfileVM = MeProfileViewModel()
     
-    @ObservedObject private var meProfileVM = MeProfileViewModel()
-    
+
     var body: some View {
         
         ZStack {
             VStack {
                 
                 MeProfileNView()
-                
+                    .environmentObject(meProfileVM)
+                    .onAppear{
+                        meProfileVM.getCurrentUser()
+                    }
                 
             }
             
