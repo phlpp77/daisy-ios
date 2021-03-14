@@ -42,7 +42,23 @@ struct AlertBoxView: View {
     var durationPicker: Bool = false
     @Binding var selectedDuration: Duration
     
+    // get nearest quarter as start
     
+    let roundedDate = { () -> Date in
+        let now = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: now)
+        let minute = calendar.component(.minute, from: now)
+
+        // Round down to nearest date eg. every 15 minutes
+        let minuteGranuity = 15
+        let roundedMinute = minute - (minute % minuteGranuity)
+        
+        return calendar.date(bySettingHour: hour,
+                             minute: roundedMinute,
+                             second: 0,
+                             of: now)!
+    }()
     
     // -- new end
     
@@ -264,6 +280,9 @@ struct AlertBoxView: View {
             .padding()
             .frame(width: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .modifier(FrozenWindowModifier())
+        }
+        .onAppear {
+            selectedTime = roundedDate
         }
     }
     
