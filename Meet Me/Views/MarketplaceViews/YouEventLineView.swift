@@ -7,6 +7,8 @@
 
 import SwiftUI
 import PromiseKit
+import MapKit
+
 
 struct YouEventLineView: View {
     
@@ -87,19 +89,21 @@ struct YouEventLineView: View {
         }
         .frame(height: 380)
         .onAppear {
-            print(locationManager.region)
-            loading = true
-            firstly {
-                self.youEventLineVM.getYouEvents(region: locationManager.region)
-            }.done { events in
-                self.eventArray = events
-                print("done")
-            }.catch { error in
-                print("DEBUG: error in GetYouEventChain: \(error)")
-                print("DEBUG: \(error.localizedDescription)")
-            }.finally {
-                loading = false
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                firstly {
+                    self.youEventLineVM.getYouEvents(region: locationManager.region)
+                }.done { events in
+                    self.eventArray = events
+                    print("done")
+                }.catch { error in
+                    print("DEBUG: error in GetYouEventChain: \(error)")
+                    print("DEBUG: \(error.localizedDescription)")
+                }
             }
+
+
+            
             
             
             
