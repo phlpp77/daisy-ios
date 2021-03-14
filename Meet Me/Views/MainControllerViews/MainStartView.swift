@@ -28,7 +28,7 @@ struct MainStartView: View {
             case .splash:
                 SplashView(currentPosition: $currentPosition)
             case .onboarding:
-                EmptyView()
+                OnboardingController(showOnboarding: $currentPosition)
             case .registerLogin:
                 LoginNView(nextPosition: $currentPosition, startUpDone: $startUpDone)
             case .profileCreation:

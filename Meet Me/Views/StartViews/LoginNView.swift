@@ -34,11 +34,11 @@ struct LoginNView: View {
                 VStack {
                     
                     // MARK: Header
-                    VStack(alignment: .leading, spacing: 0.0) {
+                    VStack(spacing: 0.0) {
                         if !loginMode {
                             Text("Register now for ")
                         }
-                        Text("_APP_NAME_")
+                        Text("DAISY")
                             .foregroundColor(.accentColor)
                     }
                     .font(.title)

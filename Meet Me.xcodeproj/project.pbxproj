@@ -12,6 +12,9 @@
 		1705791425FCE73800A56CE6 /* MatchButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705791325FCE73800A56CE6 /* MatchButtonView.swift */; };
 		1705792925FD59C500A56CE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1705792825FD59C500A56CE6 /* GoogleService-Info.plist */; };
 		1705792C25FD825F00A56CE6 /* DatePickerX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705792B25FD825F00A56CE6 /* DatePickerX.swift */; };
+		1705793425FE3B4100A56CE6 /* OnboardingSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705793325FE3B4100A56CE6 /* OnboardingSlideView.swift */; };
+		1705793725FE3C3A00A56CE6 /* SliderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705793625FE3C3A00A56CE6 /* SliderModel.swift */; };
+		1705793A25FE495F00A56CE6 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705793925FE495F00A56CE6 /* OnboardingController.swift */; };
 		1711EEBB25F29C6600D87EFA /* ChatProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711EEBA25F29C6600D87EFA /* ChatProfileView.swift */; };
 		17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */; };
 		17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EE825A8C5C30072CE83 /* Assets.xcassets */; };
@@ -118,6 +121,9 @@
 		1705791325FCE73800A56CE6 /* MatchButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchButtonView.swift; sourceTree = "<group>"; };
 		1705792825FD59C500A56CE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1705792B25FD825F00A56CE6 /* DatePickerX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerX.swift; sourceTree = "<group>"; };
+		1705793325FE3B4100A56CE6 /* OnboardingSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSlideView.swift; sourceTree = "<group>"; };
+		1705793625FE3C3A00A56CE6 /* SliderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderModel.swift; sourceTree = "<group>"; };
+		1705793925FE495F00A56CE6 /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		1711EEBA25F29C6600D87EFA /* ChatProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatProfileView.swift; sourceTree = "<group>"; };
 		17153EE125A8C5C30072CE83 /* Meet Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meet Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meet_MeApp.swift; sourceTree = "<group>"; };
@@ -235,6 +241,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1705792E25FE3AFA00A56CE6 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				1705793325FE3B4100A56CE6 /* OnboardingSlideView.swift */,
+				1705793925FE495F00A56CE6 /* OnboardingController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		17153ED825A8C5C30072CE83 = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +298,7 @@
 		1724D0FB25BE1EAF007F3277 /* StartViews */ = {
 			isa = PBXGroup;
 			children = (
+				1705792E25FE3AFA00A56CE6 /* Onboarding */,
 				175E40DF25B43BB200ADC9BF /* StartView.swift */,
 				175E40EF25B4CD3300ADC9BF /* RegisterView.swift */,
 				17E45ABA25B74F6600B9A93B /* LoginView.swift */,
@@ -361,6 +377,7 @@
 				90D42ACE25E966220060311B /* LikedEventModel.swift */,
 				902EF6B825D89213004464F0 /* PhotoModel.swift */,
 				174423A925D9A0DF00D25EDD /* EventModel.swift */,
+				1705793625FE3C3A00A56CE6 /* SliderModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -688,6 +705,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1705793725FE3C3A00A56CE6 /* SliderModel.swift in Sources */,
 				1705791125FCE38E00A56CE6 /* MeMatchNCardView.swift in Sources */,
 				17BC5FE025BE0B5900F35075 /* ProfileCreationView.swift in Sources */,
 				90D42AEF25EAAD110060311B /* MatchModel.swift in Sources */,
@@ -756,6 +774,7 @@
 				176745BD25F9381700FF28F2 /* MainStartView.swift in Sources */,
 				90D42B1E25EBA7190060311B /* ChatListViewModel.swift in Sources */,
 				17DE52EA25E9A2D7000D0B4D /* YouProfileView.swift in Sources */,
+				1705793425FE3B4100A56CE6 /* OnboardingSlideView.swift in Sources */,
 				1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */,
 				902EF6BD25D896E3004464F0 /* UIImageResized.swift in Sources */,
 				174423AA25D9A0DF00D25EDD /* EventModel.swift in Sources */,
@@ -778,6 +797,7 @@
 				17F34F1325F8EAEB00690122 /* YouEventNView.swift in Sources */,
 				1746097425FA448700726BA1 /* MeProfileFirstBlockView.swift in Sources */,
 				17A2EBC125F2D669003D1921 /* Enums.swift in Sources */,
+				1705793A25FE495F00A56CE6 /* OnboardingController.swift in Sources */,
 				1705792C25FD825F00A56CE6 /* DatePickerX.swift in Sources */,
 				175E40E925B4A31C00ADC9BF /* HapticFeedback.swift in Sources */,
 				17AF633525FC2EF100A43BB3 /* MeEventDetailedView.swift in Sources */,

@@ -11,27 +11,75 @@ struct SplashView: View {
     
     @Binding var currentPosition: StartPosition
     
+    @State var showSecondLine: Bool = false
+    
     var body: some View {
         
         VStack {
-            HStack(spacing: 0) {
-                Text("Hello, ")
-                Text("Nameless")
-                    .foregroundColor(.accentColor)
-                Text(".")
-            }
-            .font(.title)
             
-            Text("Do you want to meet new people?")
-                .font(.subheadline)
+            Spacer()
+            
+            VStack {
+                HStack(spacing: 0) {
+                    Text("Hello, ")
+                    Text("Nameless")
+                        .gradientForeground(gradient: secondaryGradient)
+                    Text(".")
+                }
+                .font(.largeTitle)
+                
+                
+                if showSecondLine {
+                    Text("Do you want to meet new people?")
+                        .font(.headline)
+                }
+                
+            }
+            .padding()
+            .modifier(offWhiteShadow(cornerRadius: 12))
+            
+            Spacer()
+            
+            Button(action: {
+                self.currentPosition = .onboarding
+            }, label: {
+                button
+                    .padding(.bottom, 40)
+            })
         }
-        .padding()
-        .modifier(offWhiteShadow(cornerRadius: 12))
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                withAnimation {
+                    showSecondLine = true
+                }
+            }
+        }
+        .contentShape(Rectangle())
         .onTapGesture {
             
-            // FIXME: Change this to .onbaording when the onboarding process is implemented
-            self.currentPosition = .registerLogin
+            self.currentPosition = .onboarding
+    }
+    }
+    
+    
+    // MARK: -
+    var button: some View {
+        
+        VStack(spacing: 0.0) {
+            Text("YES")
+                .font(.system(size: 30))
+                .foregroundColor(.accentColor)
+            Capsule()
+                .gradientForeground(gradient: secondaryGradient)
+                .frame(width: 58, height: 6)
+            
         }
+        .frame(maxWidth: .infinity)
+        .frame(height: 53)
+        .modifier(offWhiteShadow(cornerRadius: 14))
+        .padding(.horizontal, 24)
+        
+        
     }
 }
 
