@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 // MARK: Marks the status of an event
 // used in: MeMatchStartView
@@ -51,4 +52,42 @@ enum Distance: String {
     case near
     // far distance is over 30 km until set range
     case far
+}
+
+// MARK: The Category of each event which is possible to choose form
+// used in: EventCreationView
+enum Category: String, Equatable, CaseIterable {
+    // event for meeting for a walk
+    case walk = "Walk"
+    // event for meeting in a cafe
+    case cafe = "Café"
+    // event for meeting eating together
+    case food = "Food"
+    // event for meeting for doing sports together
+    case sport = "Sport"
+    // event for meeting in a bar
+    case bar = "Bar"
+    // event for meeting for everything else which is not listed above
+    case other = "Other"
+    
+    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
+}
+
+// MARK: The Duration of each event which is possible to choose form
+// used in: EventCreationView
+enum Duration: String, Equatable, CaseIterable {
+    // very short event with duration of 30 minutes
+    case veryShort = "30"
+    // short event with duration of 45 minutes
+    case short = "45"
+    // medium event with duration of 60 minutes
+    case medium = "1h"
+    // normal event with duration of 90 minutes
+    case normal = "1,5h"
+    // long event with duration of 120 minutes
+    case long = "2h"
+    // very long event with duration of more than 120 minutes
+    case veryLong = "2+"
+    
+    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
 }

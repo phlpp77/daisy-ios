@@ -10,6 +10,8 @@
 		1705790E25FCD26400A56CE6 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705790D25FCD26400A56CE6 /* HeaderView.swift */; };
 		1705791125FCE38E00A56CE6 /* MeMatchNCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705791025FCE38E00A56CE6 /* MeMatchNCardView.swift */; };
 		1705791425FCE73800A56CE6 /* MatchButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705791325FCE73800A56CE6 /* MatchButtonView.swift */; };
+		1705792925FD59C500A56CE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1705792825FD59C500A56CE6 /* GoogleService-Info.plist */; };
+		1705792C25FD825F00A56CE6 /* DatePickerX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705792B25FD825F00A56CE6 /* DatePickerX.swift */; };
 		1711EEBB25F29C6600D87EFA /* ChatProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711EEBA25F29C6600D87EFA /* ChatProfileView.swift */; };
 		17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */; };
 		17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EE825A8C5C30072CE83 /* Assets.xcassets */; };
@@ -99,7 +101,6 @@
 		90D42B0125EAC0DC0060311B /* FirestoreManagerChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B0025EAC0DC0060311B /* FirestoreManagerChat.swift */; };
 		90D42B1E25EBA7190060311B /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B1D25EBA7190060311B /* ChatListViewModel.swift */; };
 		90D42B2225EBA75C0060311B /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42B2125EBA75C0060311B /* MessagesViewModel.swift */; };
-		90D8BE8725FC1EC000EF160D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90D8BE8625FC1EC000EF160D /* GoogleService-Info.plist */; };
 		90D8BE8F25FCF03400EF160D /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8BE8E25FCF03400EF160D /* PushNotificationSender.swift */; };
 		90D8BE9925FCF3AD00EF160D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8BE9825FCF3AD00EF160D /* AppDelegate.swift */; };
 		90DFB50025F92C7400E26ED7 /* ChangeMeEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DFB4FF25F92C7400E26ED7 /* ChangeMeEventViewModel.swift */; };
@@ -115,6 +116,8 @@
 		1705790D25FCD26400A56CE6 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		1705791025FCE38E00A56CE6 /* MeMatchNCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchNCardView.swift; sourceTree = "<group>"; };
 		1705791325FCE73800A56CE6 /* MatchButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchButtonView.swift; sourceTree = "<group>"; };
+		1705792825FD59C500A56CE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1705792B25FD825F00A56CE6 /* DatePickerX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerX.swift; sourceTree = "<group>"; };
 		1711EEBA25F29C6600D87EFA /* ChatProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatProfileView.swift; sourceTree = "<group>"; };
 		17153EE125A8C5C30072CE83 /* Meet Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meet Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meet_MeApp.swift; sourceTree = "<group>"; };
@@ -204,7 +207,6 @@
 		90D42B0025EAC0DC0060311B /* FirestoreManagerChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerChat.swift; sourceTree = "<group>"; };
 		90D42B1D25EBA7190060311B /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		90D42B2125EBA75C0060311B /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
-		90D8BE8625FC1EC000EF160D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		90D8BE8E25FCF03400EF160D /* PushNotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
 		90D8BE9825FCF3AD00EF160D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90DFB4FF25F92C7400E26ED7 /* ChangeMeEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeMeEventViewModel.swift; sourceTree = "<group>"; };
@@ -254,7 +256,7 @@
 		17153EE325A8C5C30072CE83 /* Meet Me */ = {
 			isa = PBXGroup;
 			children = (
-				90D8BE8625FC1EC000EF160D /* GoogleService-Info.plist */,
+				1705792825FD59C500A56CE6 /* GoogleService-Info.plist */,
 				17AF632925FBF7E000A43BB3 /* Meet Me.entitlements */,
 				17153EED25A8C5C30072CE83 /* Info.plist */,
 				17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */,
@@ -388,6 +390,7 @@
 				17DAD7E225D934D600DBE60B /* GlobalFunctions.swift */,
 				90779B7225E5BA7C0070D794 /* Err.swift */,
 				17A2EBC025F2D669003D1921 /* Enums.swift */,
+				1705792B25FD825F00A56CE6 /* DatePickerX.swift */,
 			);
 			path = Extra;
 			sourceTree = "<group>";
@@ -630,7 +633,7 @@
 			files = (
 				17153EEC25A8C5C30072CE83 /* Preview Assets.xcassets in Resources */,
 				1795DFBA25DF252C002D537F /* heard-loading.json in Resources */,
-				90D8BE8725FC1EC000EF160D /* GoogleService-Info.plist in Resources */,
+				1705792925FD59C500A56CE6 /* GoogleService-Info.plist in Resources */,
 				17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */,
 				1795DFBF25DF25DD002D537F /* planet-loading.json in Resources */,
 			);
@@ -775,6 +778,7 @@
 				17F34F1325F8EAEB00690122 /* YouEventNView.swift in Sources */,
 				1746097425FA448700726BA1 /* MeProfileFirstBlockView.swift in Sources */,
 				17A2EBC125F2D669003D1921 /* Enums.swift in Sources */,
+				1705792C25FD825F00A56CE6 /* DatePickerX.swift in Sources */,
 				175E40E925B4A31C00ADC9BF /* HapticFeedback.swift in Sources */,
 				17AF633525FC2EF100A43BB3 /* MeEventDetailedView.swift in Sources */,
 				90D8BE9925FCF3AD00EF160D /* AppDelegate.swift in Sources */,

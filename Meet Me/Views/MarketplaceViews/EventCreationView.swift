@@ -16,7 +16,6 @@ struct EventCreationView: View {
     @Binding var presentation: Bool
     // binding for updating the array
     @Binding var eventArray: [EventModel]
-//    @State private var event: EventModelObject = stockEventObject
 
     // vars to show in the screen
     @State private var category: String = "Café"
@@ -25,10 +24,7 @@ struct EventCreationView: View {
     @State private var endTime: Date = Date() + 60*30
     @State private var pictureURL: String = ""
     
-    // image handling
-    @State private var image: Image? = Image("cafe")
-    @State private var uiImage: UIImage? = UIImage(named: "cafe")
-    
+    // image handling with PhPicker
     @State private var images: [UIImage] = [UIImage(named: "cafe")!]
     @State private var showImagePicker: Bool = false
     
@@ -208,24 +204,19 @@ struct EventCreationView: View {
                 
                 // AlertBox to define the category
                 case 0:
-                    AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", pickerInput: true, pickerInputArray: ["Café", "Sport", "Other"], output: $category, show: $showAlertBox, accepted: $accepted)
+                    AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", categoryPicker: true, output: $category, show: $showAlertBox, accepted: $accepted)
                     
                 // AlertBox to define the date
                 case 1:
-                    AlertBoxView(title: "Choose a date", placeholder: dateFormatter.string(from: date), defaultText: dateFormatter.string(from: date), dateInput: true, output: $dateAsString, show: $showAlertBox, accepted: $accepted)
+                    AlertBoxView(title: "Choose a date", placeholder: dateFormatter.string(from: date), defaultText: dateFormatter.string(from: date), datePicker: true, output: $dateAsString, show: $showAlertBox, accepted: $accepted)
                     
                 // AlertBox to define the startTime of the event
                 case 2:
-                    AlertBoxView(title: "Choose the starttime of your event", placeholder: timeFormatter.string(from: startTime), defaultText: timeFormatter.string(from: startTime), dateInput: true, dateFormat: "HH:mm", output: $startTimeAsString, show: $showAlertBox, accepted: $accepted)
+                    AlertBoxView(title: "Choose your start time", placeholder: timeFormatter.string(from: startTime), defaultText: timeFormatter.string(from: startTime), timePicker: true, dateFormat: "HH:mm", output: $startTimeAsString, show: $showAlertBox, accepted: $accepted)
                     
                 // AlertBox to define the endTime of the event
                 case 3:
-                    AlertBoxView(title: "Choose the endtime of your event", placeholder: timeFormatter.string(from: endTime), defaultText: timeFormatter.string(from: endTime), dateInput: true, dateFormat: "HH:mm", output: $endTimeAsString, show: $showAlertBox, accepted: $accepted)
-                
-                // AlertBox to define the picture
-//                case 99:
-//                    showImagePicker = true
-//                    ImagePicker(isShown: $showAlertBox, isDone: $accepted, image: $image, originalImage: $uiImage, sourceType: .photoLibrary)
+                    AlertBoxView(title: "Choose the duration", placeholder: timeFormatter.string(from: endTime), defaultText: timeFormatter.string(from: endTime), durationPicker: true, dateFormat: "HH:mm", output: $endTimeAsString, show: $showAlertBox, accepted: $accepted)
                     
                 default:
                     AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", output: $category, show: $showAlertBox, accepted: $accepted)

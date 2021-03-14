@@ -26,6 +26,23 @@ struct AlertBoxView: View {
     // design the alertBox to have a Picker input possibility
     var pickerInput = false
     
+    // -- new
+    
+    var categoryPicker = false
+    @State var selectedCategory = Category.cafe
+    
+    var datePicker: Bool = false
+    @State var selectedDate = Date()
+    
+    let minMaxRange = Date()...Date() + 86400
+    var timePicker: Bool = false
+    @State var selectedTime = Date()
+    
+    var durationPicker: Bool = false
+    @State var selectedDuration = Duration.medium
+    
+    // -- new end
+    
     // array which is shown in the picker view
     var pickerInputArray = [""]
     
@@ -63,7 +80,7 @@ struct AlertBoxView: View {
     
     
     var body: some View {
-                
+        
         ZStack {
             
             // background
@@ -93,6 +110,39 @@ struct AlertBoxView: View {
                     PickerTextField(data: pickerInputArray, placerholder: placeholder, lastSelectedIndex: $lastSelectedIndex)
                         .frame(height: 35)
                         .padding(.horizontal, 20)
+                }
+                
+                if categoryPicker {
+                    Picker("This Title Is Localized", selection: $selectedCategory) {
+                        ForEach(Category.allCases, id: \.self) { value in
+                            Text(value.localizedName)
+                                .tag(value)
+                        }
+                    }
+                    
+                    .pickerStyle(WheelPickerStyle())
+                }
+                
+                if datePicker {
+                    // pick a date from now to the future "..."
+                    DatePicker("Please enter a date", selection: $selectedDate, in: Date()..., displayedComponents: .date)
+                        .labelsHidden()
+                }
+                
+                if timePicker {
+                    // pick a startTime from now to the future "..."
+                    DatePickerX(selection: $selectedTime, in: minMaxRange, minuteInterval: 30)
+                        
+                }
+                
+                if durationPicker {
+                    Picker("This Title Is Localized", selection: $selectedDuration) {
+                        ForEach(Duration.allCases, id: \.self) { value in
+                            Text(value.localizedName)
+                                .tag(value)
+                        }
+                    }                    
+                    .pickerStyle(WheelPickerStyle())
                 }
                 
                 // only show the DatePicker if it is defined
@@ -141,6 +191,48 @@ struct AlertBoxView: View {
                                 output = pickerInputArray[lastSelectedIndex ?? 0]
                             }
                             
+                            if categoryPicker {
+                                output = selectedCategory.rawValue
+                            }
+                            
+                            if datePicker {
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.locale = Locale(identifier: "en_DE")
+                                dateFormatter.dateFormat = self.dateFormat
+                                output = dateFormatter.string(from: selectedDate)
+                            }
+                            
+                            if timePicker {
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.locale = Locale(identifier: "en_DE")
+                                dateFormatter.dateFormat = self.dateFormat
+                                output = dateFormatter.string(from: selectedTime)
+                            }
+                            
+                            if durationPicker {
+                                var dateOutput = Date()
+                                
+                                switch selectedDuration {
+                                case .veryShort:
+                                    dateOutput += 30 * 60
+                                case .short:
+                                    dateOutput += 45 * 60
+                                case .medium:
+                                    dateOutput += 60 * 60
+                                case .normal:
+                                    dateOutput += 90 * 60
+                                case .long:
+                                    dateOutput += 120 * 60
+                                case .veryLong:
+                                    dateOutput += 180 * 60
+                                }
+                                
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.locale = Locale(identifier: "en_DE")
+                                dateFormatter.dateFormat = self.dateFormat
+                                output = dateFormatter.string(from: dateOutput)
+                            }
+                            
                             if dateInput {
                                 let dateFormatter = DateFormatter()
                                 dateFormatter.locale = Locale(identifier: "en_DE")
@@ -158,8 +250,8 @@ struct AlertBoxView: View {
                             
                         }
                         
-                        })
-                        {
+                    })
+                    {
                         Text(confirmButton)
                             .frame(width: 108)
                     }
