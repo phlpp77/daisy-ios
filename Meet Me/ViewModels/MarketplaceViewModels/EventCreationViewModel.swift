@@ -50,9 +50,13 @@ class EventCreationViewModel: ObservableObject {
         _ = locationManager.$location.sink { location in
             self.region = MKCoordinateRegion(center: location?.coordinate ?? CLLocationCoordinate2D(), latitudinalMeters: 200, longitudinalMeters: 200)
         }
+        //zum testen
+        //self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 53.0792962, longitude: 8.8016937), latitudinalMeters: 200, longitudinalMeters: 200)
         let latitude = region.center.latitude
         let longtiude = region.center.longitude
         let hash = GFUtils.geoHash(forLocation: region.center)
+        
+        
         
         let eventId = UUID().uuidString
         var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"", profilePicture: "",likedUser: false, eventMatched: false,latitude: latitude,longitude: longtiude,hash: hash, distance: 0,searchingFor: "",genderFromCreator: "", birthdayDate: Date())

@@ -262,7 +262,7 @@ class FirestoreManagerEventTest {
             //let radiusInKilometers: Double = 50
             
             let queryBounds = GFUtils.queryBounds(forLocation: center,
-                                                  withRadius: user.radiusInKilometer)
+                                                  withRadius: user.radiusInKilometer * 1000)
             let queries = queryBounds.compactMap { (any) -> Query? in
                 guard let bound = any as? GFGeoQueryBounds else { return nil }
                 return db.collection("events")
