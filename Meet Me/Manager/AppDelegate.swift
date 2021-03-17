@@ -16,7 +16,6 @@ class  AppDelegate: NSObject, UIApplicationDelegate {
         //Setting Up cloud Messaging
         Messaging.messaging().delegate = self
         
-        
         //Setting up notifications...
         
         if #available(iOS 10.0, *) {
@@ -39,6 +38,20 @@ class  AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
     
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+          print("Message ID: \(messageID)")
+        }
+
+        // Print full message.
+        print(userInfo)
+      }
     
     // Handle silent Messages
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -60,12 +73,16 @@ class  AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication,
                      didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("fail")
         
     }
+    
+    
     
     func application(_ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken
             deviceToken: Data) {
+        print("working \(deviceToken)")
         
         
     }
@@ -108,7 +125,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     let userInfo = notification.request.content.userInfo
 
     // With swizzling disabled you must let Messaging know about the message, for Analytics
-    // Messaging.messaging().appDidReceiveMessage(userInfo)
+    Messaging.messaging().appDidReceiveMessage(userInfo)
 
     // ...
     if let messageID = userInfo[gcmMessageIDKey] {
