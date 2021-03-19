@@ -14,9 +14,9 @@ struct DateTextField: UIViewRepresentable {
     // format to show the dates
     var localeStyle: String = "en_DE"
     public var dateFormat: String = "dd/MM/YY"
-
+    
     var didChange: () -> Void = { }
-
+    
     private var minimumDate: Date? = Date()
     private var maximumDate: Date? = nil
     private var placeholder: String? = "Select a date"
@@ -31,30 +31,30 @@ struct DateTextField: UIViewRepresentable {
     private var accentColor: UIColor?
     private var textAlignment: NSTextAlignment?
     private var contentType: UITextContentType?
-
+    
     private var autocorrection: UITextAutocorrectionType = .default
     private var autocapitalization: UITextAutocapitalizationType = .sentences
     private var keyboardType: UIKeyboardType = .default
     private var returnKeyType: UIReturnKeyType = .default
-
+    
     private var isSecure: Bool = false
     private var isUserInteractionEnabled: Bool = true
     private var clearsOnBeginEditing: Bool = false
-
+    
     @Environment(\.layoutDirection) private var layoutDirection: LayoutDirection
-
+    
     init(date: Binding<Date>,
          didChange: @escaping () -> Void = { })
     {
         self._date = date
         self.didChange = didChange
     }
-
+    
     func makeUIView(context: Context) -> UITextField {
         let textField = UITextField()
-
+        
         textField.delegate = context.coordinator
-
+        
         // German format DE and English language en
         dateFormatter.locale = Locale(identifier: localeStyle)
         textField.text = dateFormatter.string(from: date)
@@ -73,15 +73,15 @@ struct DateTextField: UIViewRepresentable {
         textField.autocapitalizationType = autocapitalization
         textField.keyboardType = keyboardType
         textField.returnKeyType = returnKeyType
-
+        
         textField.clearsOnBeginEditing = clearsOnBeginEditing
         textField.isSecureTextEntry = isSecure
         textField.isUserInteractionEnabled = isUserInteractionEnabled
-
+        
         textField.setContentHuggingPriority(.defaultHigh, for: .vertical)
         textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-
-
+        
+        
         let datePickerView = UIDatePicker()
         datePickerView.datePickerMode = .date
         datePickerView.maximumDate = minimumDate
@@ -102,50 +102,50 @@ struct DateTextField: UIViewRepresentable {
         addDoneButtonToKeyboard(textField)
         return textField
     }
-
+    
     func updateUIView(_ uiView: UITextField, context: Context) {
         // German format DE and English language en
         dateFormatter.locale = Locale(identifier: localeStyle)
         dateFormatter.dateFormat = dateFormat
         uiView.text = dateFormatter.string(from: date)
     }
-
+    
     private func addDoneButtonToKeyboard(_ view: UITextField) {
-           let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35))
-           doneToolbar.barStyle       = .default
-           let flexSpace              = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-           let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: .done, target: view, action: #selector(UITextField.resignFirstResponder))
-           done.setTitleTextAttributes([NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 18)], for: .normal)
-           
-           var items = [UIBarButtonItem]()
-           items.append(flexSpace)
-           items.append(done)
-           
-           doneToolbar.items = items
-           doneToolbar.sizeToFit()
-           
-           view.inputAccessoryView = doneToolbar
-       }
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35))
+        doneToolbar.barStyle       = .default
+        let flexSpace              = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: .done, target: view, action: #selector(UITextField.resignFirstResponder))
+        done.setTitleTextAttributes([NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 18)], for: .normal)
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        view.inputAccessoryView = doneToolbar
+    }
     
     func makeCoordinator() -> Coordinator {
         return Coordinator(date: $date,
                            didChange: didChange)
     }
-
+    
     final class Coordinator: NSObject, UITextFieldDelegate {
         @Binding var date: Date
         var didChange: () -> Void
-
+        
         init(date: Binding<Date>, didChange: @escaping () -> Void) {
             self._date = date
             self.didChange = didChange
         }
-
+        
         @objc func handleDatePicker(sender: UIDatePicker) {
             date = sender.date
             didChange()
         }
-
+        
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             return false
         }
@@ -190,19 +190,19 @@ extension DateTextField {
         view.font = font
         return view
     }
-
+    
     func foregroundColor(_ color: UIColor?) -> some View {
         var view = self
         view.foregroundColor = color
         return view
     }
-
+    
     func accentColor(_ accentColor: UIColor?) -> some View {
         var view = self
         view.accentColor = accentColor
         return view
     }
-
+    
     func multilineTextAlignment(_ alignment: TextAlignment) -> some View {
         var view = self
         switch alignment {
@@ -215,13 +215,13 @@ extension DateTextField {
         }
         return view
     }
-
+    
     func textContentType(_ textContentType: UITextContentType?) -> some View {
         var view = self
         view.contentType = textContentType
         return view
     }
-
+    
     func disableAutocorrection(_ disable: Bool?) -> some View {
         var view = self
         if let disable = disable {
@@ -231,37 +231,37 @@ extension DateTextField {
         }
         return view
     }
-
+    
     func autocapitalization(_ style: UITextAutocapitalizationType) -> some View {
         var view = self
         view.autocapitalization = style
         return view
     }
-
+    
     func keyboardType(_ type: UIKeyboardType) -> some View {
         var view = self
         view.keyboardType = type
         return view
     }
-
+    
     func returnKeyType(_ type: UIReturnKeyType) -> some View {
         var view = self
         view.returnKeyType = type
         return view
     }
-
+    
     func isSecure(_ isSecure: Bool) -> some View {
         var view = self
         view.isSecure = isSecure
         return view
     }
-
+    
     func clearsOnBeginEditing(_ shouldClear: Bool) -> some View {
         var view = self
         view.clearsOnBeginEditing = shouldClear
         return view
     }
-
+    
     func disabled(_ disabled: Bool) -> some View {
         var view = self
         view.isUserInteractionEnabled = disabled

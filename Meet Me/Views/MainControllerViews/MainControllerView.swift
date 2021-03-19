@@ -54,25 +54,3 @@ struct MainControllerView_Previews: PreviewProvider {
         MainControllerView()
     }
 }
-
-
-// --- OLD TABBAR
-//            TabView(selection: $startTab) {
-//                MainSettingsView(startProcessDone: $startProcessDone).tabItem {
-//                    Image(systemName: "person.circle")
-//                    Text("Profile")
-//                }
-//                .tag(1)
-//
-//                MainExploreView().tabItem {
-//                    Image(systemName: "circle.dashed")
-//                    Text("Marketplace")
-//                }
-//                .tag(2)
-//
-//                MainChatView().tabItem {
-//                    Image(systemName: "paperplane.circle")
-//                    Text("Chats")
-//                }
-//                .tag(3)
-//            }

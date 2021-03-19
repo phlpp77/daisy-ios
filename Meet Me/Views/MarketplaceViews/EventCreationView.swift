@@ -16,7 +16,7 @@ struct EventCreationView: View {
     @Binding var presentation: Bool
     // binding for updating the array
     @Binding var eventArray: [EventModel]
-
+    
     // vars to show in the screen
     @State private var category: String = "Café"
     @State private var date: Date = Date()
@@ -33,7 +33,7 @@ struct EventCreationView: View {
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: now)
         let minute = calendar.component(.minute, from: now)
-
+        
         // Round down to nearest date eg. every 15 minutes
         let minuteGranuity = 15
         let roundedMinute = minute - (minute % minuteGranuity)
@@ -43,7 +43,7 @@ struct EventCreationView: View {
                              second: 0,
                              of: now)!
     }()
-
+    
     
     // image handling with PhPicker
     @State private var images: [UIImage] = [UIImage(named: "cafe")!]
@@ -75,7 +75,7 @@ struct EventCreationView: View {
         formatter.timeStyle = .short
         return formatter
     }()
-
+    
     
     var body: some View {
         ZStack {
@@ -84,7 +84,7 @@ struct EventCreationView: View {
             BlurView(style: .systemMaterial)
                 .ignoresSafeArea()
                 .onTapGesture {
-
+                    
                     presentation = false
                 }
             
@@ -97,9 +97,9 @@ struct EventCreationView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 250, height: 250, alignment: .center)
-                    .onTapGesture {
-                        self.showImagePicker = true
-                    }
+                        .onTapGesture {
+                            self.showImagePicker = true
+                        }
                     
                     VStack(alignment: .leading) {
                         HStack {
@@ -130,17 +130,17 @@ struct EventCreationView: View {
                         Spacer()
                         
                         HStack {
-//                            Image(uiImage: #imageLiteral(resourceName: "Philipp"))
-//                                .resizable()
-//                                .aspectRatio(contentMode: .fill)
-//                                .frame(width: 60, height: 60, alignment: .center)
-//                                .overlay(
-//                                    Circle()
-//                                        .stroke(Color.white.opacity(0.9), lineWidth: 5)
-//                                )
-//                                .clipShape(Circle())
-//                                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 12)
-//                                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                            //                            Image(uiImage: #imageLiteral(resourceName: "Philipp"))
+                            //                                .resizable()
+                            //                                .aspectRatio(contentMode: .fill)
+                            //                                .frame(width: 60, height: 60, alignment: .center)
+                            //                                .overlay(
+                            //                                    Circle()
+                            //                                        .stroke(Color.white.opacity(0.9), lineWidth: 5)
+                            //                                )
+                            //                                .clipShape(Circle())
+                            //                                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 12)
+                            //                                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
                             
                             Spacer()
                             
@@ -152,7 +152,7 @@ struct EventCreationView: View {
                                     Text("Start")
                                     Text(startTimeAsString)
                                         .foregroundColor(.accentColor)
-                                        
+                                    
                                 }
                                 .onAppear {
                                     self.startTimeAsString = timeFormatter.string(from: startTime)
@@ -160,14 +160,14 @@ struct EventCreationView: View {
                                 .onTapGesture {
                                     self.showAlertBox = true
                                     self.pathNumber = 2
-                            }
+                                }
                                 
                                 HStack {
                                     Text("duration")
                                     Text(duration.rawValue)
                                         .foregroundColor(.accentColor)
-                                       
-                                    }
+                                    
+                                }
                                 .onAppear {
                                     self.endTimeAsString = timeFormatter.string(from: endTime)
                                 }
@@ -177,7 +177,7 @@ struct EventCreationView: View {
                                 }
                             }
                             .font(.headline)
-        //                        .padding(.horizontal, 20)
+                            //                        .padding(.horizontal, 20)
                         }
                         .padding(.vertical, 5)
                         .padding(.horizontal, 8)
@@ -205,7 +205,7 @@ struct EventCreationView: View {
                 .scaleEffect(buttonPressed ? 0.8 : 1)
                 .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
                 .onTapGesture {
-
+                    
                     // update handling
                     prepareUpload()
                     //youEventLineVM.getYouEvents()
@@ -217,17 +217,17 @@ struct EventCreationView: View {
                     
                     // update event array
                     eventArray.append(createUpdateEvent())
-                                        
+                    
                     // close view
                     presentation = false
-
+                    
                 }
                 
             }
             .scaleEffect(1.3)
             .sheet(isPresented: $showImagePicker, content: {
                 ImagePicker(images: $images, showPicker: $showImagePicker, limit: 1, didFinishPicking: {_ in})
-                })
+            })
             .onAppear {
                 startTime = roundedDate
                 startTimeAsString = timeFormatter.string(from: roundedDate)
@@ -289,7 +289,7 @@ struct EventCreationView: View {
         
         //let eventObject = EventModel(eventModel: event, position: .constant(.zero))
         
-
+        
         return event
     }
     

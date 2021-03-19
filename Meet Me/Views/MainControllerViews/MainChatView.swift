@@ -16,8 +16,6 @@ struct MainChatView: View {
         
             VStack {
                 
-                
-                
                 // MARK: List with chats available to the user
                 ChatListView()
             }

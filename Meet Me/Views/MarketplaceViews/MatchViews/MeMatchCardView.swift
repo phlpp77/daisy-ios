@@ -41,14 +41,14 @@ struct MeMatchCardView: View {
         let dragGesture = DragGesture()
             .onChanged{ (value) in
                 translation = value.translation
-            
+                
                 // state is change to 2 if the drag is to the right and -2 if to the left
                 if value.translation.width > 0 {
                     degrees = Double(translation.width / 10)
                     if value.translation.width > 80 {
                         // secure that each user is only accepted once
                         if !userAccepted {
-                        
+                            
                             userWasAccepted()
                         }
                         
@@ -76,12 +76,12 @@ struct MeMatchCardView: View {
             //user.UserPhotos.url
             URLImage(url: URL(string: user.userPhotos[0] ?? stockUrlString)!  ) { image in
                 image.resizable()
-                   .aspectRatio(contentMode: .fill)
-                   .frame(width: screenWidth, height: 620, alignment: .center)
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: screenWidth, height: 620, alignment: .center)
             }
             
             
-             
+            
             VStack {
                 
                 // push all details down to show more of the picture
@@ -89,31 +89,31 @@ struct MeMatchCardView: View {
                 
                 // MARK: Text Content
                 VStack {
-                        
+                    
                     // MARK: Profile information
                     HStack {
-                            Text(user.name)
-                                .font(.title)
-                                .foregroundColor(.accentColor)
-                            Text(String(dateToAge(date: user.birthdayDate)))
-                                .font(.body)
-                        }
+                        Text(user.name)
+                            .font(.title)
+                            .foregroundColor(.accentColor)
+                        Text(String(dateToAge(date: user.birthdayDate)))
+                            .font(.body)
+                    }
                     .padding(.top, 5)
                     .padding(.bottom, -5)
                     .padding(.horizontal, 12)
                     .frame(width: screenWidth, alignment: .leading)
-                        
-                        Divider()
-                        
+                    
+                    Divider()
+                    
                     // MARK: - Button area
                     HStack {
                         
                         // MARK: Deny Match - Button
                         ZStack {
                             Image(systemName: "xmark.circle")
-                                    .font(.title)
+                                .font(.title)
                                 .foregroundColor(.red)
-                                
+                            
                         }
                         .frame(width: ((screenWidth! - 40) * 2/3))
                         .padding(4)
@@ -122,12 +122,12 @@ struct MeMatchCardView: View {
                             // update database - user not
                             userWasDenied()
                         }
-                    
-                            
+                        
+                        
                         // MARK: Accept Match - Button
                         ZStack {
                             Image(systemName: "checkmark.circle")
-                                    .font(.title)
+                                .font(.title)
                                 .foregroundColor(.green)
                         }
                         .frame(width: (screenWidth! - 40) * 1/3)
@@ -135,22 +135,22 @@ struct MeMatchCardView: View {
                         .background(Color.green.opacity(0.3))
                         .onTapGesture {
                             // user was taken
-
+                            
                             userWasAccepted()
                         }
                         
                         
-                        }
+                    }
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                     .padding(.bottom, 12)
-                        
-                        
-                        
+                    
+                    
+                    
                 }
                 .background(BlurView(style: .systemThinMaterial))
                 
             }
-                
+            
             
         }
         .frame(width: screenWidth, height: 620, alignment: .center)

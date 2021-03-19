@@ -10,19 +10,21 @@ import Firebase
 import FirebaseFirestoreSwift
 import SwiftUI
 
-// MARK: Get information from screen etc
+// MARK: Get information from screen etc - NOT USED ANYMORE, USE GEOMETRY READER INSTEAD
 // get the size of the screen (defined here that it can be used in every View)
-let screen = UIScreen.main.bounds
+//let screen = UIScreen.main.bounds
+
+
+// MARK: - Functions
 
 // MARK: Function to get the age from a date object
-
 func dateToAge(date: Date) -> Int {
     let lifeTime = date.timeIntervalSinceNow
     let years = -lifeTime / 60 / 60 / 24 / 365
     return Int(years)
 }
 
-// MARK: create a sample date
+// MARK: Create a sample date
 func createSampleDate() -> Date {
     
     var dateComponents = DateComponents()
@@ -36,7 +38,11 @@ func createSampleDate() -> Date {
     let someDateTime = userCalendar.date(from: dateComponents)!
     return someDateTime
 }
+
+// MARK: Create a UUID as a string
 var createdId = UUID().uuidString
+
+
 
 // MARK: - Colors
 
@@ -50,13 +56,11 @@ let secondaryGradient = LinearGradient(
 )
 
 
-// MARK - Stockdata
+// MARK: - Stockdata
 
 // MARK: stock user to use as default
 let stockUser: UserModel = UserModel(userId: "007", name: "Stocky One", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Male", userPhotos: [1: stockUrlString], userPhotosId: [0: ""], radiusInKilometer: 1000, token: "")
 let stockUser2: UserModel = UserModel(userId: "008", name: "Stockise Two", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [0: stockUrlString], userPhotosId: [1: ""], radiusInKilometer: 1000, token: "")
-
-
 
 // TODO: Need to be changed to a stock photo
 let stockURL: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2FstockPic.jpg?alt=media&token=59dfa4eb-81b0-4845-80f6-33b35f305414")!
@@ -66,8 +70,6 @@ let stockUrlString: String = "https://firebasestorage.googleapis.com/v0/b/meetme
 // MARK: stock event for marketplace and eventObject (length: half an hour - 30*60 seconds)
 let stockEvent: EventModel = EventModel(eventId: "008", userId: "007", category: "Café", date: Date(), startTime: Date(), endTime: Date() + 30 * 60, pictureURL: "", profilePicture: "",likedUser: false,eventMatched: false,latitude: 0.0, longitude: 0.0, hash: "", distance: 0, searchingFor: "Male", genderFromCreator: "Female", birthdayDate: Date())
 let stockEvent2: EventModel = EventModel(eventId: "009", userId: "008", category: "Walk", date: Date(), startTime: Date(), endTime: Date() + 30 * 60, pictureURL: "", profilePicture: "",likedUser: false,eventMatched: false,latitude: 0.0, longitude: 0.0, hash: "", distance: 0,searchingFor: "Male", genderFromCreator: "Female", birthdayDate: Date())
-
-//let stockEventObject: EventModel = EventModelObject(eventModel: stockEvent, position: .constant(.zero))
 
 // MARK: stock chat for chat area
 let stockChat: ChatModel = ChatModel(chatId: "egal", eventCreatorId: "creatoRR", matchedUserId: "receiveRR", eventId: "egal2", messages: [MessageModel(userId: "", timeStamp: Timestamp(date: Date()), messageText: "Hey, we have a match! Speak with YOU about the event settings...")])

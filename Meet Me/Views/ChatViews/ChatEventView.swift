@@ -11,6 +11,7 @@ struct ChatEventView: View {
     
     @Binding var event: EventModel
     @Binding var showChatEventView: Bool
+    @State var events: [EventModel] = []
     
     var body: some View {
         
@@ -24,8 +25,12 @@ struct ChatEventView: View {
                     }
                 }
             
-            YouEventView(eventModelObject: event, eventIndex: 0, dragPossible: false, eventArray: .constant([stockEvent]))
+//            YouEventView(eventModelObject: event, eventIndex: 0, dragPossible: false, eventArray: .constant([stockEvent]))
+            YouEventNView(events: $events, eventIndex: 0, currentEvent: event, dragAllowed: false)
                 .scaleEffect(1.2)
+        }
+        .onAppear {
+            events.append(event)
         }
     }
 }

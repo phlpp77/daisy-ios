@@ -23,9 +23,6 @@ struct LogoutView: View {
             }.catch { error in
                 print("DEBUG: error by Logout error: \(error)")
             }
-
-
-
             
         }
         .padding()

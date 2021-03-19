@@ -11,10 +11,7 @@ import SwiftUI
 struct MeProfileSecondBlockView: View {
     @EnvironmentObject var meProfileVM: MeProfileViewModel
     
-    //@State private var range: Double = 150
-    //@State private var pickedGender = 1
     private var genders = ["Female", "Male", "Both"]
-    
     
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color("BackgroundSecondary"))

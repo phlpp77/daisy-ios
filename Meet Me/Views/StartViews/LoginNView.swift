@@ -15,10 +15,6 @@ struct LoginNView: View {
     @Binding var nextPosition: StartPosition
     @Binding var startUpDone: Bool
     
-    //@State var emailFieldOutput: String = ""
-    //@State var passwordField1Output: String = ""
-    //@State var passwordField2Output: String = ""
-    
     @State var passwordField1WasEdited: Bool = false
     @State var showPresentTermsAndConditionsSheet: Bool = false
     @State var loginMode: Bool = false

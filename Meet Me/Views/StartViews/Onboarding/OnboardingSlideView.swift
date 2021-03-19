@@ -92,7 +92,6 @@ struct OnboardingSlideView: View {
                     button
                 })
                 .frame(width: (bounds.size.width - 48))
-//                .padding(.bottom, bounds.safeAreaInsets.bottom)
                 .padding(.bottom, 40)
             }
             .onAppear {
@@ -166,9 +165,3 @@ struct OnboardingSlideView: View {
         
     }
 }
-
-//struct OnboardingSlideView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        OnboardingSlideView(showSlider: <#Binding<StartPosition>#>, index: <#Binding<Int>#>, sliderArray: <#[SliderModel]#>)
-//    }
-//}

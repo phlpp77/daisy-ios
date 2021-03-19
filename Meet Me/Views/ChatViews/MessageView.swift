@@ -60,11 +60,6 @@ struct MessageView: View {
                 messageStyle = .receiver
             }
             
-//            if message.userId == messagesVM.userId {
-//                messageStyle = .creator
-//            } else {
-//                messageStyle = .receiver
-//            }
         }
     }
 }

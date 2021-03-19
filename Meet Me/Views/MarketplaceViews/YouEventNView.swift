@@ -15,6 +15,7 @@ struct YouEventNView: View {
     @Binding var events: [EventModel]
     var eventIndex: Int
     var currentEvent: EventModel
+    var dragAllowed: Bool = true
     
     @State var user: UserModel = stockUser
     @State var distanceIndicator: Distance = .near
@@ -67,34 +68,39 @@ struct YouEventNView: View {
             DragGesture()
                 .onChanged { value in
                     
-                    // drag is not allowed to be higher than 20 upwards
-                    if value.translation.height > 0 {
-                        self.dragPosition = value.translation
+                    if dragAllowed {
+                        // drag is not allowed to be higher than 20 upwards
+                        if value.translation.height > 0 {
+                            self.dragPosition = value.translation
+                        }
+                        
+                        // change percentage of thumbsup
+                        if value.translation.height > 0 && value.translation.height < 100{
+                            self.likePercentage = Double(value.translation.height / 100)
+                        }
                     }
                     
-                    // change percentage of thumbsup
-                    if value.translation.height > 0 && value.translation.height < 100{
-                        self.likePercentage = Double(value.translation.height / 100)
-                    }
                 }
                 .onEnded { value in
                     
-                    // drag needs to be down a bit to trigger the deletion / liking
-                    if value.translation.height > 100 {
-                        self.dragPosition = .init(width: 0, height: 500)
-                        
-                        // add like to the database
-                        youEventVM.addLikeToEvent(eventModel: events[eventIndex])
-                        
-                        // delete the item at the position from the Array
-                        self.events.remove(at: eventIndex)
-                        
-                        hapticFeedback(feedBackstyle: .success)
-                        
-                    } else {
-                        
-                        self.dragPosition = .zero
-                        self.likePercentage = 0
+                    if dragAllowed {
+                        // drag needs to be down a bit to trigger the deletion / liking
+                        if value.translation.height > 100 {
+                            self.dragPosition = .init(width: 0, height: 500)
+                            
+                            // add like to the database
+                            youEventVM.addLikeToEvent(eventModel: events[eventIndex])
+                            
+                            // delete the item at the position from the Array
+                            self.events.remove(at: eventIndex)
+                            
+                            hapticFeedback(feedBackstyle: .success)
+                            
+                        } else {
+                            
+                            self.dragPosition = .zero
+                            self.likePercentage = 0
+                        }
                     }
                 }
         )

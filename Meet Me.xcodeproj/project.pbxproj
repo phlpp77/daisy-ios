@@ -29,11 +29,8 @@
 		1746097425FA448700726BA1 /* MeProfileFirstBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1746097325FA448700726BA1 /* MeProfileFirstBlockView.swift */; };
 		1746097725FA45A900726BA1 /* MeProfileSecondBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1746097625FA45A900726BA1 /* MeProfileSecondBlockView.swift */; };
 		174EFCD725FABDC40028C04C /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174EFCD625FABDC40028C04C /* RingView.swift */; };
-		175E40E025B43BB200ADC9BF /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40DF25B43BB200ADC9BF /* StartView.swift */; };
-		175E40E325B4670800ADC9BF /* StartBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40E225B4670800ADC9BF /* StartBackgroundView.swift */; };
 		175E40E625B46ABB00ADC9BF /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40E525B46ABB00ADC9BF /* BlurView.swift */; };
 		175E40E925B4A31C00ADC9BF /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40E825B4A31C00ADC9BF /* HapticFeedback.swift */; };
-		175E40F025B4CD3300ADC9BF /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40EF25B4CD3300ADC9BF /* RegisterView.swift */; };
 		175E40F425B4CD9400ADC9BF /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40F325B4CD9400ADC9BF /* Modifiers.swift */; };
 		176745BD25F9381700FF28F2 /* MainStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176745BC25F9381700FF28F2 /* MainStartView.swift */; };
 		176745C025F939D400FF28F2 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176745BF25F939D400FF28F2 /* SplashView.swift */; };
@@ -43,7 +40,6 @@
 		1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67425D1E31400D1D2F1 /* MainExploreView.swift */; };
 		1774B67925D1E35200D1D2F1 /* MainChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67825D1E35200D1D2F1 /* MainChatView.swift */; };
 		1778E41325D0904100C5D343 /* DateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1778E41225D0904000C5D343 /* DateTextField.swift */; };
-		177F681925D8409200BC345B /* MeProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F681825D8409200BC345B /* MeProfileView.swift */; };
 		177F682A25D8937F00BC345B /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F682925D8937F00BC345B /* KeyboardHandler.swift */; };
 		1795DF9525DD6998002D537F /* MeEventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1795DF9425DD6998002D537F /* MeEventLineView.swift */; };
 		1795DF9E25DF0E22002D537F /* MeMatchStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1795DF9D25DF0E22002D537F /* MeMatchStartView.swift */; };
@@ -52,7 +48,6 @@
 		1795DFAE25DF20AD002D537F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1795DFAD25DF20AD002D537F /* LoadingView.swift */; };
 		1795DFBA25DF252C002D537F /* heard-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 1795DFB825DF252C002D537F /* heard-loading.json */; };
 		1795DFBF25DF25DD002D537F /* planet-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 1795DFBE25DF25DD002D537F /* planet-loading.json */; };
-		179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C525D477F1007F64D6 /* YouEventView.swift */; };
 		179B27CA25D48788007F64D6 /* YouEventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C925D48788007F64D6 /* YouEventLineView.swift */; };
 		17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67225C2093D00E4DA78 /* PickerTextField.swift */; };
 		17A2EBC125F2D669003D1921 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A2EBC025F2D669003D1921 /* Enums.swift */; };
@@ -61,14 +56,13 @@
 		17B0B61525F546810014B0FD /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B61425F546810014B0FD /* TabButtonView.swift */; };
 		17BC5FE025BE0B5900F35075 /* ProfileCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */; };
 		17C0C1CE25BF67D60021987D /* AlertBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C0C1CD25BF67D60021987D /* AlertBoxView.swift */; };
-		17DAD7E325D934D600DBE60B /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DAD7E225D934D600DBE60B /* GlobalFunctions.swift */; };
+		17DAD7E325D934D600DBE60B /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DAD7E225D934D600DBE60B /* Global.swift */; };
 		17DE52EA25E9A2D7000D0B4D /* YouProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE52E925E9A2D7000D0B4D /* YouProfileView.swift */; };
 		17DE52ED25EA3F9E000D0B4D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE52EC25EA3F9E000D0B4D /* ImagePicker.swift */; };
 		17DE530F25EAC1AA000D0B4D /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE530E25EAC1AA000D0B4D /* ChatListView.swift */; };
 		17DE531225EAC372000D0B4D /* ChatListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE531125EAC372000D0B4D /* ChatListRowView.swift */; };
 		17DE531825EAED20000D0B4D /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE531725EAED20000D0B4D /* MessagesView.swift */; };
 		17DE531E25EAEF51000D0B4D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE531D25EAEF51000D0B4D /* MessageView.swift */; };
-		17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E45ABA25B74F6600B9A93B /* LoginView.swift */; };
 		17EDA6F025E6C974004BC651 /* LogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EDA6EF25E6C974004BC651 /* LogoutView.swift */; };
 		17F34F1025F6CF5400690122 /* MeEventNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F34F0F25F6CF5400690122 /* MeEventNView.swift */; };
 		17F34F1325F8EAEB00690122 /* YouEventNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F34F1225F8EAEB00690122 /* YouEventNView.swift */; };
@@ -107,8 +101,6 @@
 		90D8BE8F25FCF03400EF160D /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8BE8E25FCF03400EF160D /* PushNotificationSender.swift */; };
 		90D8BE9925FCF3AD00EF160D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8BE9825FCF3AD00EF160D /* AppDelegate.swift */; };
 		90DFB50025F92C7400E26ED7 /* ChangeMeEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DFB4FF25F92C7400E26ED7 /* ChangeMeEventViewModel.swift */; };
-		90F2334D25D58481003FB1D9 /* ImageOldP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2334C25D58481003FB1D9 /* ImageOldP.swift */; };
-		90F2335125D5943B003FB1D9 /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */; };
 		90F2336325D830E7003FB1D9 /* ProfileCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2336225D830E7003FB1D9 /* ProfileCreationViewModel.swift */; };
 		90F2336725D84736003FB1D9 /* MeProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F2336625D84736003FB1D9 /* MeProfileViewModel.swift */; };
 		90F8AB4625BF5CDA00E969E0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F8AB4525BF5CDA00E969E0 /* UserModel.swift */; };
@@ -139,11 +131,8 @@
 		1746097325FA448700726BA1 /* MeProfileFirstBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileFirstBlockView.swift; sourceTree = "<group>"; };
 		1746097625FA45A900726BA1 /* MeProfileSecondBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileSecondBlockView.swift; sourceTree = "<group>"; };
 		174EFCD625FABDC40028C04C /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
-		175E40DF25B43BB200ADC9BF /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
-		175E40E225B4670800ADC9BF /* StartBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartBackgroundView.swift; sourceTree = "<group>"; };
 		175E40E525B46ABB00ADC9BF /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		175E40E825B4A31C00ADC9BF /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
-		175E40EF25B4CD3300ADC9BF /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		175E40F325B4CD9400ADC9BF /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		176745BC25F9381700FF28F2 /* MainStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStartView.swift; sourceTree = "<group>"; };
 		176745BF25F939D400FF28F2 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
@@ -153,7 +142,6 @@
 		1774B67425D1E31400D1D2F1 /* MainExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainExploreView.swift; sourceTree = "<group>"; };
 		1774B67825D1E35200D1D2F1 /* MainChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChatView.swift; sourceTree = "<group>"; };
 		1778E41225D0904000C5D343 /* DateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTextField.swift; sourceTree = "<group>"; };
-		177F681825D8409200BC345B /* MeProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileView.swift; sourceTree = "<group>"; };
 		177F682925D8937F00BC345B /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		1795DF9425DD6998002D537F /* MeEventLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventLineView.swift; sourceTree = "<group>"; };
 		1795DF9D25DF0E22002D537F /* MeMatchStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchStartView.swift; sourceTree = "<group>"; };
@@ -161,7 +149,6 @@
 		1795DFAD25DF20AD002D537F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		1795DFB825DF252C002D537F /* heard-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "heard-loading.json"; sourceTree = "<group>"; };
 		1795DFBE25DF25DD002D537F /* planet-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "planet-loading.json"; sourceTree = "<group>"; };
-		179B27C525D477F1007F64D6 /* YouEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventView.swift; sourceTree = "<group>"; };
 		179B27C925D48788007F64D6 /* YouEventLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventLineView.swift; sourceTree = "<group>"; };
 		17A1E67225C2093D00E4DA78 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		17A2EBC025F2D669003D1921 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -171,14 +158,13 @@
 		17B0B61425F546810014B0FD /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButtonView.swift; sourceTree = "<group>"; };
 		17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationView.swift; sourceTree = "<group>"; };
 		17C0C1CD25BF67D60021987D /* AlertBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBoxView.swift; sourceTree = "<group>"; };
-		17DAD7E225D934D600DBE60B /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		17DAD7E225D934D600DBE60B /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		17DE52E925E9A2D7000D0B4D /* YouProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouProfileView.swift; sourceTree = "<group>"; };
 		17DE52EC25EA3F9E000D0B4D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		17DE530E25EAC1AA000D0B4D /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		17DE531125EAC372000D0B4D /* ChatListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListRowView.swift; sourceTree = "<group>"; };
 		17DE531725EAED20000D0B4D /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		17DE531D25EAEF51000D0B4D /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
-		17E45ABA25B74F6600B9A93B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		17EDA6EF25E6C974004BC651 /* LogoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutView.swift; sourceTree = "<group>"; };
 		17F34F0F25F6CF5400690122 /* MeEventNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventNView.swift; sourceTree = "<group>"; };
 		17F34F1225F8EAEB00690122 /* YouEventNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventNView.swift; sourceTree = "<group>"; };
@@ -215,8 +201,6 @@
 		90D8BE8E25FCF03400EF160D /* PushNotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
 		90D8BE9825FCF3AD00EF160D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90DFB4FF25F92C7400E26ED7 /* ChangeMeEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeMeEventViewModel.swift; sourceTree = "<group>"; };
-		90F2334C25D58481003FB1D9 /* ImageOldP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOldP.swift; sourceTree = "<group>"; };
-		90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
 		90F2336225D830E7003FB1D9 /* ProfileCreationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCreationViewModel.swift; sourceTree = "<group>"; };
 		90F2336625D84736003FB1D9 /* MeProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeProfileViewModel.swift; sourceTree = "<group>"; };
 		90F8AB4525BF5CDA00E969E0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -297,11 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				1705792E25FE3AFA00A56CE6 /* Onboarding */,
-				175E40DF25B43BB200ADC9BF /* StartView.swift */,
-				175E40EF25B4CD3300ADC9BF /* RegisterView.swift */,
-				17E45ABA25B74F6600B9A93B /* LoginView.swift */,
 				17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */,
-				175E40E225B4670800ADC9BF /* StartBackgroundView.swift */,
 				17F34F1725F90D2A00690122 /* LoginNView.swift */,
 				176745BF25F939D400FF28F2 /* SplashView.swift */,
 			);
@@ -324,8 +304,6 @@
 			isa = PBXGroup;
 			children = (
 				175E40E525B46ABB00ADC9BF /* BlurView.swift */,
-				90F2334C25D58481003FB1D9 /* ImageOldP.swift */,
-				90F2335025D5943B003FB1D9 /* PhotoCaptureView.swift */,
 				17C0C1CD25BF67D60021987D /* AlertBoxView.swift */,
 				1795DFA925DF1923002D537F /* LottieView.swift */,
 				1795DFAD25DF20AD002D537F /* LoadingView.swift */,
@@ -342,7 +320,6 @@
 		174423AC25D9A86E00D25EDD /* ProfileViews */ = {
 			isa = PBXGroup;
 			children = (
-				177F681825D8409200BC345B /* MeProfileView.swift */,
 				17EDA6EF25E6C974004BC651 /* LogoutView.swift */,
 				172CA8F725FA31E4002CAA09 /* MeProfileNView.swift */,
 				1746097325FA448700726BA1 /* MeProfileFirstBlockView.swift */,
@@ -398,14 +375,14 @@
 				175E40E825B4A31C00ADC9BF /* HapticFeedback.swift */,
 				17A1E67225C2093D00E4DA78 /* PickerTextField.swift */,
 				1778E41225D0904000C5D343 /* DateTextField.swift */,
+				1705792B25FD825F00A56CE6 /* DatePickerX.swift */,
 				175E40F325B4CD9400ADC9BF /* Modifiers.swift */,
 				172CA8EA25F98745002CAA09 /* Extentions.swift */,
 				902EF6BC25D896E3004464F0 /* UIImageResized.swift */,
 				177F682925D8937F00BC345B /* KeyboardHandler.swift */,
-				17DAD7E225D934D600DBE60B /* GlobalFunctions.swift */,
+				17DAD7E225D934D600DBE60B /* Global.swift */,
 				90779B7225E5BA7C0070D794 /* Err.swift */,
 				17A2EBC025F2D669003D1921 /* Enums.swift */,
-				1705792B25FD825F00A56CE6 /* DatePickerX.swift */,
 			);
 			path = Extra;
 			sourceTree = "<group>";
@@ -436,7 +413,6 @@
 			children = (
 				1795DF9425DD6998002D537F /* MeEventLineView.swift */,
 				179B27C925D48788007F64D6 /* YouEventLineView.swift */,
-				179B27C525D477F1007F64D6 /* YouEventView.swift */,
 				174423AD25D9A93000D25EDD /* EventCreationView.swift */,
 				17DE52E925E9A2D7000D0B4D /* YouProfileView.swift */,
 				17F34F0F25F6CF5400690122 /* MeEventNView.swift */,
@@ -708,27 +684,22 @@
 				90D42AEF25EAAD110060311B /* MatchModel.swift in Sources */,
 				173F361225E2D72D002E9EE6 /* MeMatchCardView.swift in Sources */,
 				90D42AF725EABC400060311B /* AllMatchInformationModel.swift in Sources */,
-				90F2335125D5943B003FB1D9 /* PhotoCaptureView.swift in Sources */,
 				90F2336725D84736003FB1D9 /* MeProfileViewModel.swift in Sources */,
 				90779B6025E41CC60070D794 /* MainControllerViewModel.swift in Sources */,
 				17DE52ED25EA3F9E000D0B4D /* ImagePicker.swift in Sources */,
-				175E40E025B43BB200ADC9BF /* StartView.swift in Sources */,
 				90F2336325D830E7003FB1D9 /* ProfileCreationViewModel.swift in Sources */,
 				176745C025F939D400FF28F2 /* SplashView.swift in Sources */,
 				17DE531825EAED20000D0B4D /* MessagesView.swift in Sources */,
 				17C0C1CE25BF67D60021987D /* AlertBoxView.swift in Sources */,
 				90DFB50025F92C7400E26ED7 /* ChangeMeEventViewModel.swift in Sources */,
 				17DE531E25EAEF51000D0B4D /* MessageView.swift in Sources */,
-				175E40E325B4670800ADC9BF /* StartBackgroundView.swift in Sources */,
 				175E40F425B4CD9400ADC9BF /* Modifiers.swift in Sources */,
 				175E40E625B46ABB00ADC9BF /* BlurView.swift in Sources */,
 				90D8BE8F25FCF03400EF160D /* PushNotificationSender.swift in Sources */,
-				175E40F025B4CD3300ADC9BF /* RegisterView.swift in Sources */,
 				1746097725FA45A900726BA1 /* MeProfileSecondBlockView.swift in Sources */,
-				177F681925D8409200BC345B /* MeProfileView.swift in Sources */,
 				174EFCD725FABDC40028C04C /* RingView.swift in Sources */,
 				1795DFAE25DF20AD002D537F /* LoadingView.swift in Sources */,
-				17DAD7E325D934D600DBE60B /* GlobalFunctions.swift in Sources */,
+				17DAD7E325D934D600DBE60B /* Global.swift in Sources */,
 				176A5AC725F3C0A000C857E8 /* ChatEventView.swift in Sources */,
 				90D42ACF25E966220060311B /* LikedEventModel.swift in Sources */,
 				1778E41325D0904100C5D343 /* DateTextField.swift in Sources */,
@@ -740,7 +711,6 @@
 				17F34F1825F90D2A00690122 /* LoginNView.swift in Sources */,
 				90779B0725E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift in Sources */,
 				90779AED25E2C8CD0070D794 /* FirestoreManagerEventTest.swift in Sources */,
-				179B27C625D477F1007F64D6 /* YouEventView.swift in Sources */,
 				90D42AF225EAAD250060311B /* ChatModel.swift in Sources */,
 				90779B6D25E5A3F40070D794 /* MeMatchCardViewModel.swift in Sources */,
 				90D42B2225EBA75C0060311B /* MessagesViewModel.swift in Sources */,
@@ -759,7 +729,6 @@
 				174423AE25D9A93000D25EDD /* EventCreationView.swift in Sources */,
 				90779B0D25E308220070D794 /* FirestoreManagerUserTest.swift in Sources */,
 				1711EEBB25F29C6600D87EFA /* ChatProfileView.swift in Sources */,
-				90F2334D25D58481003FB1D9 /* ImageOldP.swift in Sources */,
 				1705790E25FCD26400A56CE6 /* HeaderView.swift in Sources */,
 				90B0F4D425DF0EA000AB8EF9 /* MeEventLinieViewModel.swift in Sources */,
 				1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */,
@@ -781,7 +750,6 @@
 				17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */,
 				90D42AD525EA59350060311B /* YouProfilViewModel.swift in Sources */,
 				1795DF9E25DF0E22002D537F /* MeMatchStartView.swift in Sources */,
-				17E45ABB25B74F6600B9A93B /* LoginView.swift in Sources */,
 				17F34F1025F6CF5400690122 /* MeEventNView.swift in Sources */,
 				17B0B61525F546810014B0FD /* TabButtonView.swift in Sources */,
 				902EF6B925D89213004464F0 /* PhotoModel.swift in Sources */,
