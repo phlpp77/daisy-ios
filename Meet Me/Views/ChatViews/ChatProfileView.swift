@@ -20,7 +20,7 @@ struct ChatProfileView: View {
             Color.black.opacity(0.0001)
                 .onTapGesture {
                     withAnimation(.default) {
-                        showChatProfileView = false
+                        showChatProfileView.toggle()
                     }
                 }
             

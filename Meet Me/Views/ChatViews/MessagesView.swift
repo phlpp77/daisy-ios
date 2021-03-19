@@ -26,18 +26,27 @@ struct MessagesView: View {
             VStack {
                 
                 // MARK: Message area
-                
-                ScrollView {
-                    VStack {
-                        ForEach(messagesVM.chat.messages.indices.reversed(), id: \.self) { messageNumber in
-                            MessageView(message: $messagesVM.chat.messages[messageNumber])
-                                .rotationEffect(.radians(.pi))
-                                .scaleEffect(x: -1, y: 1, anchor: .center)
+                ZStack {
+                    
+                    
+                    ScrollView {
+                        VStack {
+                            ForEach(messagesVM.chat.messages.indices.reversed(), id: \.self) { messageNumber in
+                                MessageView(message: $messagesVM.chat.messages[messageNumber])
+                                    .rotationEffect(.radians(.pi))
+                                    .scaleEffect(x: -1, y: 1, anchor: .center)
+                            }
                         }
                     }
+                    .rotationEffect(.radians(.pi))
+                    .scaleEffect(x: -1, y: 1, anchor: .center)
+                    
+                    // MARK: Top area
+                    VStack {
+                        topBar
+                        Spacer()
+                    }
                 }
-                .rotationEffect(.radians(.pi))
-                .scaleEffect(x: -1, y: 1, anchor: .center)
                 
                 
                 // MARK: Send and type area
@@ -80,47 +89,18 @@ struct MessagesView: View {
                 .aspectRatio(contentMode: .fill)
         )
         .navigationBarTitleDisplayMode(.inline)
+        
+        
         // MARK: - Top area (inside the toolbar)
         .toolbar {
-            // MARK: Showing the user
+            // MARK: 
             ToolbarItem {
-                HStack {
-                    
-                    // event "name" based on category
-                    Button(action: {
-                        withAnimation(.easeInOut) {
-                            showChatEventView = true
-                        }
-                    }, label: {
-                        Text(firstPartString)
-                    })
-                    
-                    
-                    // user clickable
-                    Button(action: {
-                        showChatProfileView = true
-                    }, label: {
-                        HStack {
-                            // username
-                            Text(match.user.name)
-                            
-                            // profile image of user
-                            URLImage(url: URL(string: match.user.userPhotos[1] ?? stockUrlString)!) { image in
-                                image.resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 30, height: 30)
-                                    .overlay(
-                                        Circle()
-                                            .stroke(
-                                                LinearGradient(gradient: Gradient(colors: [Color.white.opacity(0.9), Color.gray]), startPoint: .topTrailing, endPoint: .bottomLeading),
-                                                lineWidth: 4
-                                            )
-                                    )
-                                    .clipShape(Circle())
-                            }
-                        }
-                    })
+                HStack(spacing: 0.0) {
+                    Text(firstPartString)
+                    Text(" ")
+                    Text(match.user.name)
                 }
+                .foregroundColor(.primary)
             }
             
         }
@@ -136,7 +116,87 @@ struct MessagesView: View {
         }
         
     }
+    
+    
+    var topBar: some View {
+        HStack {
+            
+            // MARK: Show the event picture
+            URLImage(url: URL(string: match.event.pictureURL) ?? stockURL) { image in
+                    image.resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 80, height: 80)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5, style: .continuous)
+                            .stroke(
+                                LinearGradient(gradient: Gradient(colors: [Color.white.opacity(0.9), Color.gray]), startPoint: .topTrailing, endPoint: .bottomLeading),
+                                lineWidth: 4
+                            )
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+                    .padding(.trailing, 20)
+            }
+            .onTapGesture {
+                withAnimation(.default) {
+                    showChatEventView.toggle()
+                }
+            }
+                
+            // MARK: Show the profile picture
+            URLImage(url: URL(string: match.user.userPhotos[1] ?? stockUrlString)!) { image in
+                    image.resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 80, height: 80)
+                    .overlay(
+                        Circle()
+                            .stroke(
+                                LinearGradient(gradient: Gradient(colors: [Color.white.opacity(0.9), Color.gray]), startPoint: .topTrailing, endPoint: .bottomLeading),
+                                lineWidth: 4
+                            )
+                    )
+            .clipShape(Circle())
+            }
+            .onTapGesture {
+                withAnimation(.default) {
+                    showChatProfileView.toggle()
+                }
+            }
+            
+        }
+        .padding(8)
+        
+        // MARK: Background of the TopBar
+        .background(
+            BlurView(style: .systemUltraThinMaterial)
+                .overlay(
+                    HalfRoundedRectangle()
+                        .stroke(
+                            LinearGradient(
+                                gradient: Gradient(stops: [
+                                                    .init(color: Color(#colorLiteral(red: 0.7791666388511658, green: 0.7791666388511658, blue: 0.7791666388511658, alpha: 0.949999988079071)), location: 0),
+                                                    .init(color: Color(#colorLiteral(red: 0.7250000238418579, green: 0.7250000238418579, blue: 0.7250000238418579, alpha: 0)), location: 1)]),
+                                startPoint: UnitPoint(x: 0.9016393067273221, y: 0.10416647788375455),
+                                endPoint: UnitPoint(x: 0.035519096038869824, y: 0.85416653880629)),
+                            lineWidth: 0.5
+                        )
+                )
+                .clipShape(
+                    HalfRoundedRectangle()
+                )
+        )
+    }
 }
+
+struct HalfRoundedRectangle: Shape {
+    
+    func path(in rect: CGRect) -> Path {
+        
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: [.bottomLeft, .bottomRight], cornerRadii: CGSize(width: 13, height: 13))
+        
+        return Path(path.cgPath)
+    }
+}
+
 
 struct MessagesView_Previews: PreviewProvider {
     static var previews: some View {
