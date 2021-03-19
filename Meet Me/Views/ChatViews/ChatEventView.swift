@@ -17,15 +17,15 @@ struct ChatEventView: View {
         
         ZStack {
             
-            BlurView(style: .systemUltraThinMaterialDark)
-                .ignoresSafeArea()
+            // MARK: Tab-able background
+            Color.black.opacity(0.0001)
                 .onTapGesture {
-                    withAnimation(.easeInOut) {
+                    withAnimation(.default) {
                         showChatEventView.toggle()
                     }
                 }
             
-//            YouEventView(eventModelObject: event, eventIndex: 0, dragPossible: false, eventArray: .constant([stockEvent]))
+            // MARK: Show Event on top
             YouEventNView(events: $events, eventIndex: 0, currentEvent: event, dragAllowed: false)
                 .scaleEffect(1.2)
         }

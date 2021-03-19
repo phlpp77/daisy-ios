@@ -42,8 +42,9 @@ struct MessagesView: View {
                 
                 // MARK: Send and type area
                 HStack {
-                    TextField("type new message here...", text: $newMessage)
+                    TextField("Type new message here...", text: $newMessage)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.leading, 5)
                     
                     Button(action: {
                         
@@ -55,20 +56,29 @@ struct MessagesView: View {
                             .padding()
                     })
                 }
-                .padding()
-                .modifier(FrozenWindowModifier())
+                .padding(8)
+                .modifier(offWhiteShadow(cornerRadius: 12))
+                .padding(.horizontal, 16)
+                .padding(.bottom, 18)
             }
+            .opacity(showChatProfileView ? 0.1 : 1)
+            .opacity(showChatEventView ? 0.1 : 1)
             
             if showChatProfileView {
-                
-                ChatProfileView(user: $match.user, showChatProfileView: $showChatProfileView)
+                ChatProfileView(event: $match.event, showChatProfileView: $showChatProfileView)
             }
+            
             
             if showChatEventView {
                 ChatEventView(event: $match.event, showChatEventView: $showChatEventView)
             }
             
         }
+        .background(
+            Image("background")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+        )
         .navigationBarTitleDisplayMode(.inline)
         // MARK: - Top area (inside the toolbar)
         .toolbar {
