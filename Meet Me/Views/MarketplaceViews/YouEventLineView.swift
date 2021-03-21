@@ -28,8 +28,8 @@ struct YouEventLineView: View {
         ZStack {
             
             // MARK: Dashed rectangle for dragging
-            Color.clear
-                .frame(width: 250, height: 20, alignment: .center)
+            Text("Drag Events down to like")
+                .frame(width: 250, height: 25, alignment: .center)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
                         .strokeBorder(style: StrokeStyle(
