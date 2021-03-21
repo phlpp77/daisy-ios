@@ -24,6 +24,7 @@ struct YouEventNView: View {
     @State var dragPosition: CGSize = .zero
     @State var likePercentage: Double = 0
     @State var isPressed: Bool = false
+    @GestureState var isDetectingLongPress = false
 //    @State var isTapped: Bool = false
     
     // to configure the date which is showing in the second line of the row
@@ -45,10 +46,10 @@ struct YouEventNView: View {
     var body: some View {
         
         // drag gesture to combine with tap
-        let dragGesture = DragGesture()
+        let dragGesture = DragGesture(minimumDistance: 20)
             .onChanged { value in
-                
-                if dragAllowed {
+                print("is dragged")
+                if dragAllowed && isDetectingLongPress {
                     // drag is not allowed to be higher than 20 upwards
                     if value.translation.height > 0 {
                         self.dragPosition = value.translation
@@ -63,35 +64,23 @@ struct YouEventNView: View {
             }
             .onEnded { value in
                 print("drag ended")
-                if dragAllowed {
-                    // drag needs to be down a bit to trigger the deletion / liking
-                    if dragPosition.height > 100 {
-                        
-                        // move event out of the sight of the user
-                        self.dragPosition = .init(width: 0, height: 500)
-                        
-                        // add like to the database
-                        youEventVM.addLikeToEvent(eventModel: events[eventIndex])
-                        
-                        // delete the item at the position from the Array
-                        self.events.remove(at: eventIndex)
-                        
-                        hapticFeedback(feedBackstyle: .success)
-                        
-                    } else {
-                        
-                        self.dragPosition = .zero
-                        self.likePercentage = 0
-                    }
-                }
+                
                 
             }
         
         // tap gesture to start and stop dragging / starting to match only if user lifts thumb
         let longPressGesture = LongPressGesture()
             .onChanged { _ in
-                self.isPressed = true
+                print("is pressed")
+//                self.isPressed = true
             }
+            .updating($isDetectingLongPress) { currentState, gestureState,
+                                transaction in
+                print("is beeing pressed")
+                            gestureState = currentState
+//                            transaction.animation = Animation.easeIn(duration: 2.0)
+                print(isDetectingLongPress)
+                        }
             .onEnded { _ in
                 print("pressed released")
                 self.isPressed = false
@@ -148,8 +137,8 @@ struct YouEventNView: View {
         .offset(y: dragPosition.height)
 //        .gesture(combinedGestures)
         
-        .gesture(dragGesture)
-//        .simultaneousGesture(longPressGesture)
+        .gesture(longPressGesture)
+        .simultaneousGesture(dragGesture)
         
         // MARK: - OnAppear
         .onAppear {
