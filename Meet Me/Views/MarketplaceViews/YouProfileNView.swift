@@ -46,6 +46,10 @@ struct YouProfileNView: View {
                         // show the event at the top right corner
                         eventCircle
                             .offset(x: (bounds.size.width - 48) / 2 - 30, y: -((bounds.size.width - 48) * 1.33) / 2 + 30)
+                            // dismiss Profile when users taps on Event picture
+                            .onTapGesture {
+                                showYouProfileView = false
+                            }
                         
                         
                         // showing the capsules for switching the pictures
