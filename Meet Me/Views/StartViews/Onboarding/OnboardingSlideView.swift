@@ -69,33 +69,48 @@ struct OnboardingSlideView: View {
                     
                     iconCircle
                         .offset(x: (bounds.size.width - 48) / 2 - 30, y: -((bounds.size.width - 48) * 1.33) / 2 + 10)
-                }
-                .onTapGesture {
-                    if index < sliderArray.count - 1 {
-                        index += 1
-                    } else {
-                        showSlider = .registerLogin
+                   
+                    // MARK: Tapping area for changing pictures
+                    HStack {
+                        // left tap
+                        Color.black.opacity(0.001)
+                            .onTapGesture {
+                                goBackward()
+                            }
+                        
+                        // right tap
+                        Color.black.opacity(0.001)
+                            .onTapGesture {
+                                goForward()
+                            }
                     }
+
+                    
                 }
-                
-                
                 
                 Spacer()
                 
-                Button(action: {
-                    if index < sliderArray.count - 1 {
-                        index += 1
-                    } else {
-                        showSlider = .registerLogin
-                    }
-                }, label: {
-                    button
-                })
+                // MARK: Buttons at the bottom
+                HStack {
+                    
+                    // button to go back
+                    Button(action: {
+                        goBackward()
+                    }, label: {
+                        backwardButton
+                    })
+                    .padding(.trailing, 20)
+                    
+                    // button to go forward
+                    Button(action: {
+                        goForward()
+                    }, label: {
+                        forwardButton
+                    })
+                    
+                }
                 .frame(width: (bounds.size.width - 48))
                 .padding(.bottom, 40)
-            }
-            .onAppear {
-                print(bounds.safeAreaInsets.bottom)
             }
             
             .frame(width: bounds.size.width, height: bounds.size.height)
@@ -105,8 +120,6 @@ struct OnboardingSlideView: View {
                     .aspectRatio(contentMode: .fill)
                 
             )
-            
-            
             
         }
     }
@@ -147,7 +160,7 @@ struct OnboardingSlideView: View {
     
     
     // MARK: -
-    var button: some View {
+    var forwardButton: some View {
         
         VStack(spacing: 0.0) {
             Text(sliderArray[index].buttonText)
@@ -162,6 +175,38 @@ struct OnboardingSlideView: View {
         .frame(height: 53)
         .modifier(offWhiteShadow(cornerRadius: 14))
         
-        
+    }
+    
+    // MARK: -
+    var backwardButton: some View {
+        Image(systemName: "chevron.backward")
+            .font(.system(size: 30))
+            .frame(width: 53, height: 53)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .stroke(lineWidth: 3)
+            )
+            .foregroundColor(.gray)
+            .opacity(0.8)
+    }
+    
+    // MARK: - Functions
+    
+    // MARK: Function to go one step forward in the onboarding process
+    func goForward() {
+        if index < sliderArray.count - 1 {
+            index += 1
+        } else {
+            showSlider = .registerLogin
+        }
+    }
+    
+    // MARK: Function to go one step forward in the onboarding process
+    func goBackward() {
+        if index > 0 {
+            index -= 1
+        } else {
+            showSlider = .splash
+        }
     }
 }
