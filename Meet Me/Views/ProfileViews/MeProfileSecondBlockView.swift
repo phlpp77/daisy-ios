@@ -64,9 +64,9 @@ struct MeProfileSecondBlockView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 // segmented picker
                 Picker("Test", selection: $meProfileVM.picked) {
+                    Text("Both").tag(2)
                     Text("Female").tag(0)
                     Text("Male").tag(1)
-                    Text("Both").tag(2)
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }
