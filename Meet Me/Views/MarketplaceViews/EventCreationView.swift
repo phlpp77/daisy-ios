@@ -81,14 +81,19 @@ struct EventCreationView: View {
         ZStack {
             
             // background
-            BlurView(style: .systemMaterial)
-                .ignoresSafeArea()
+            Color.black.opacity(0.0001)
                 .onTapGesture {
-                    
                     presentation = false
                 }
             
             VStack {
+                
+                Text("Tap on each event aspect to change it directly - create your own unique event!")
+                    .padding(8)
+                    .modifier(offWhiteShadow(cornerRadius: 12))
+                    .frame(width: 250)
+                    .padding(.bottom, 20)
+                
                 ZStack {
                     // Main image as a background of the event
                     
@@ -130,17 +135,6 @@ struct EventCreationView: View {
                         Spacer()
                         
                         HStack {
-                            //                            Image(uiImage: #imageLiteral(resourceName: "Philipp"))
-                            //                                .resizable()
-                            //                                .aspectRatio(contentMode: .fill)
-                            //                                .frame(width: 60, height: 60, alignment: .center)
-                            //                                .overlay(
-                            //                                    Circle()
-                            //                                        .stroke(Color.white.opacity(0.9), lineWidth: 5)
-                            //                                )
-                            //                                .clipShape(Circle())
-                            //                                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 12)
-                            //                                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
                             
                             Spacer()
                             
@@ -204,6 +198,7 @@ struct EventCreationView: View {
                 .padding(.bottom, 16)
                 .scaleEffect(buttonPressed ? 0.8 : 1)
                 .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
+                .padding(.top, 20)
                 .onTapGesture {
                     
                     // update handling
@@ -222,6 +217,12 @@ struct EventCreationView: View {
                     presentation = false
                     
                 }
+                
+                // xmark symbol to show the user how to dismiss the view
+                Image(systemName: "xmark")
+                    .foregroundColor(Color("BackgroundSecondary").opacity(0.7))
+                    .font(.system(size: 30))
+                    .padding(.top, 10)
                 
             }
             .scaleEffect(1.3)
@@ -258,27 +259,27 @@ struct EventCreationView: View {
                 }
             }
             
-            Image(systemName: "xmark.circle")
-                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                .padding(10)
-                .background(BlurView(style: .systemMaterial))
-                .clipShape(Circle())
-                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
-                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
-                .scaleEffect(buttonPressed ? 0.8 : 1)
-                .opacity(buttonPressed ? 0.5 : 1)
-                .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
-                .onTapGesture {
-                    // button animation start
-                    buttonPressed.toggle()
-                    
-                    // haptic feedback when button is tapped
-                    hapticPulse(feedback: .rigid)
-                    
-                    // close view
-                    presentation = false
-                }
-                .offset(x: 130, y: -320)
+//            Image(systemName: "xmark.circle")
+//                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+//                .padding(10)
+//                .background(BlurView(style: .systemMaterial))
+//                .clipShape(Circle())
+//                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+//                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+//                .scaleEffect(buttonPressed ? 0.8 : 1)
+//                .opacity(buttonPressed ? 0.5 : 1)
+//                .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
+//                .onTapGesture {
+//                    // button animation start
+//                    buttonPressed.toggle()
+//
+//                    // haptic feedback when button is tapped
+//                    hapticPulse(feedback: .rigid)
+//
+//                    // close view
+//                    presentation = false
+//                }
+//                .offset(x: 130, y: -320)
             
         }
         

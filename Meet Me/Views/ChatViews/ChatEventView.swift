@@ -25,9 +25,18 @@ struct ChatEventView: View {
                     }
                 }
             
-            // MARK: Show Event on top
-            YouEventNView(events: $events, eventIndex: 0, currentEvent: event, dragAllowed: false)
-                .scaleEffect(1.2)
+            
+            VStack {
+                // MARK: Show Event on top
+                YouEventNView(events: $events, eventIndex: 0, currentEvent: event, dragAllowed: false)
+                    .scaleEffect(1.2)
+                
+                // xmark symbol to show the user how to dismiss the view
+                Image(systemName: "xmark")
+                    .foregroundColor(Color("BackgroundSecondary").opacity(0.7))
+                    .font(.system(size: 30))
+                    .padding(.top, 55)
+            }
         }
         .onAppear {
             events.append(event)

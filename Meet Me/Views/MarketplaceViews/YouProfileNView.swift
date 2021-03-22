@@ -64,7 +64,7 @@ struct YouProfileNView: View {
                         
                         // xmark symbol to show the user how to dismiss the view
                         Image(systemName: "xmark")
-                            .foregroundColor(Color("BackgroundSecondary").opacity(0.5))
+                            .foregroundColor(Color("BackgroundSecondary").opacity(0.7))
                             .font(.system(size: 30))
                             .offset(y: ((bounds.size.width - 48) * 1.33 / 2) + 60)
                         

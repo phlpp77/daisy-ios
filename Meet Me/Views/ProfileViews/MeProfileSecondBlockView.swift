@@ -56,10 +56,10 @@ struct MeProfileSecondBlockView: View {
             VStack {
                 // title
                 HStack(spacing: 0.0) {
-                    Text("Show me ")
+                    Text("Show me Events with ")
                     Text(meProfileVM.gender[meProfileVM.picked])//meProfileVM.userModel.searchingFor)
                         .foregroundColor(.accentColor)
-                    Text(" YOUs")
+                    Text(" Creators")
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 // segmented picker

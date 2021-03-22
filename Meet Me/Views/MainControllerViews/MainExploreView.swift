@@ -49,6 +49,7 @@ struct MainExploreView: View {
                         YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView)
                     }
                     .opacity(showYouProfileView ? 0.1 : 1)
+                    .opacity(showCreationView ? 0.1 : 1)
                 }
                 
             }
