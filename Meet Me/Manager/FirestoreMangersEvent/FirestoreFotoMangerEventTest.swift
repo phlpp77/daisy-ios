@@ -75,7 +75,6 @@ class FirestoreFotoManagerEventTest: ObservableObject {
                 let _ = db.collection("events")
                     .document(eventId)
                     .updateData(["pictureURL" : url.absoluteString])
-                //.updateData(["name": "right"])
                 seal.fulfill(())
             }
         }

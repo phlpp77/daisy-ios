@@ -15,7 +15,6 @@ import PromiseKit
 class FirestoreManagerMatches {
     
     private var db: Firestore
-    //private var currentUserModel: UserModel?
     
     
     init() {

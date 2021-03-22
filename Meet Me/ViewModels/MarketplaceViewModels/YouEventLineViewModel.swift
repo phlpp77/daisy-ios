@@ -14,8 +14,6 @@ import Firebase
 class YouEventLineViewModel: ObservableObject {
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
-//    private var locationManager: LocationManager = LocationManager()
-//    @Published var region = MKCoordinateRegion.defaultRegion
     private var userModel: UserModel = stockUser
     
 

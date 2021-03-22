@@ -145,7 +145,6 @@ class MeProfileViewModel: ObservableObject {
                         firstly {
                             self.firestoreFotoManagerUserTest.changedProfilPicture(newProfilePicture: URL(string: newUrl)!)
                         }.catch { error in
-                            print("error 1")
                             seal.reject(error)
                         }
                     }
@@ -157,12 +156,10 @@ class MeProfileViewModel: ObservableObject {
                                                                               url1: self.userModel.userPhotos[position2]!,
                                                                               urlId1: self.userModel.userPhotosId[position2]!)
                         }.catch { error in
-                            print("errror 2")
                             seal.reject(error)
                         }
                     }
                 }.catch { error in
-                    print("error 3")
                     seal.reject(error)
                 }
             } else {
@@ -178,12 +175,10 @@ class MeProfileViewModel: ObservableObject {
                         }.then {
                             self.firestoreFotoManagerUserTest.changedProfilPicture(newProfilePicture: stockURL)
                         }.catch { error in
-                            print("error 4")
                             seal.reject(error)
                         }
                     }
                 }.catch { error in
-                    print("error 5")
                     seal.reject(error)
                 }
             }
