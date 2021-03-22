@@ -48,8 +48,8 @@ struct YouEventNView: View {
         // drag gesture to combine with tap
         let dragGesture = DragGesture(minimumDistance: 20)
             .onChanged { value in
-                print("is dragged")
-                if dragAllowed && isDetectingLongPress {
+                print("is dragged \(value.translation)")
+                if dragAllowed {
                     // drag is not allowed to be higher than 20 upwards
                     if value.translation.height > 0 {
                         self.dragPosition = value.translation
@@ -69,25 +69,17 @@ struct YouEventNView: View {
             }
         
         // tap gesture to start and stop dragging / starting to match only if user lifts thumb
-        let longPressGesture = LongPressGesture()
+        let pressReleaseGesture = DragGesture(minimumDistance: 0)
             .onChanged { _ in
-                print("is pressed")
-//                self.isPressed = true
+                self.isPressed = true
+                print("event is pressed")
             }
-            .updating($isDetectingLongPress) { currentState, gestureState,
-                                transaction in
-                print("is beeing pressed")
-                            gestureState = currentState
-//                            transaction.animation = Animation.easeIn(duration: 2.0)
-                print(isDetectingLongPress)
-                        }
             .onEnded { _ in
-                print("pressed released")
                 self.isPressed = false
-                
+                print("event is released")
                 if dragAllowed {
                     // drag needs to be down a bit to trigger the deletion / liking
-                    if dragPosition.height > 100 {
+                    if self.dragPosition.height > 30 {
                         
                         // move event out of the sight of the user
                         self.dragPosition = .init(width: 0, height: 500)
@@ -137,7 +129,7 @@ struct YouEventNView: View {
         .offset(y: dragPosition.height)
 //        .gesture(combinedGestures)
         
-        .gesture(longPressGesture)
+        .gesture(pressReleaseGesture)
         .simultaneousGesture(dragGesture)
         
         // MARK: - OnAppear
