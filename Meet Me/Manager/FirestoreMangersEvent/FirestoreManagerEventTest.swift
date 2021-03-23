@@ -275,7 +275,7 @@ class FirestoreManagerEventTest {
         }
     }
     
-    func querysInEvent(likedEvents: [String], queries: [Query], center : CLLocationCoordinate2D, user: UserModel) ->Promise<[EventModel]> {
+    func querysInEvent(likedEvents: [String], queries: [Query], center : CLLocationCoordinate2D, user: UserModel, shuffle: Bool) ->Promise<[EventModel]> {
         return Promise { seal in
 
             let userPoint = CLLocation(latitude: center.latitude, longitude: center.longitude)
@@ -321,7 +321,10 @@ class FirestoreManagerEventTest {
                                     }
                                     
                                     DispatchQueue.main.async {
-                                        seal.fulfill(event!)
+                                        if shuffle {
+                                        event!.shuffle()
+                                        }
+                                        seal.fulfill(Array(event!.prefix(15)))
                                     }
                                 }
                             }else {

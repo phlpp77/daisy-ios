@@ -55,7 +55,6 @@ class MeEventLineViewModel: ObservableObject {
                                 var event = try? doc.data(as: EventModel.self)
                                 event?.eventId = doc.documentID
                                 if let event = event {
-                                    //return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
                                     return event
                                 }
                                 return nil

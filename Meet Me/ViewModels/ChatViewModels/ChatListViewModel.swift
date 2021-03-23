@@ -16,8 +16,6 @@ class ChatListViewModel: ObservableObject {
     private var firestoreManagerChat: FirestoreManagerChat = FirestoreManagerChat()
     private var firestoreManagerMatches: FirestoreManagerMatches = FirestoreManagerMatches()
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
-    //private var userModel: UserModel?
-    //private var eventModel: EventModel?
     private var matchDoc : [MatchModel] = []
     @Published var matches : [AllMatchInformationModel] = []
     

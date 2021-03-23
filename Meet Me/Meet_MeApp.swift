@@ -19,11 +19,11 @@ struct Meet_MeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     //@ObservedObject private var meet_MeAppVM: Meet_MeAppViewModel = Meet_MeAppViewModel()
 
-    
-    init() {
-        FirebaseApp.configure()
-
-        }
+//    
+//    init() {
+//        FirebaseApp.configure()
+//
+//        }
     
 
     
@@ -58,15 +58,15 @@ struct Meet_MeApp: App {
         }
     }
     
-    func checkUserAccForAutoLogin() -> Bool {
-        if Auth.auth().currentUser != nil{
-            return true
-            
-        } else {
-            return false
-
-        }
-    }
+//    func checkUserAccForAutoLogin() -> Bool {
+//        if Auth.auth().currentUser != nil{
+//            return true
+//            
+//        } else {
+//            return false
+//
+//        }
+//    }
     
 
     

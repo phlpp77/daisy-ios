@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import PromiseKit
 
 struct MainControllerView: View {
     
@@ -14,6 +15,7 @@ struct MainControllerView: View {
     @State var userIsLoggedIn: Bool = false
     @State var startTab = 2
     @StateObject var locationManager = LocationManager()
+    private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     
     var body: some View {
         
@@ -40,7 +42,13 @@ struct MainControllerView: View {
     
     func checkUserAccForAutoLogin(){
         if Auth.auth().currentUser != nil{
-            userIsLoggedIn = true
+            firstly {
+                self.firestoreManagerUserTest.getCurrentUser()
+            }.done { userModel in
+                userIsLoggedIn = true
+            }.catch { error in
+                userIsLoggedIn = false
+            }
             
         } else {
             userIsLoggedIn = false

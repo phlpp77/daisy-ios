@@ -14,13 +14,11 @@ import Firebase
 class YouEventLineViewModel: ObservableObject {
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
-//    private var locationManager: LocationManager = LocationManager()
-//    @Published var region = MKCoordinateRegion.defaultRegion
     private var userModel: UserModel = stockUser
     
 
 
-    func getYouEvents(region: MKCoordinateRegion) -> Promise<[EventModel]> {
+    func getYouEvents(region: MKCoordinateRegion, shuffle: Bool) -> Promise<[EventModel]> {
         return Promise { seal in
             firstly{
                 firestoreManagerUserTest.getCurrentUser()
@@ -31,7 +29,7 @@ class YouEventLineViewModel: ObservableObject {
             }.then { likedEvents in
                 self.firestoreManagerEventTest.queryColletion(center: region.center, user: self.userModel).map { ($0, likedEvents) }
             }.then { queries, likedEvents in
-                self.firestoreManagerEventTest.querysInEvent(likedEvents: likedEvents , queries: queries, center: region.center, user: self.userModel)
+                self.firestoreManagerEventTest.querysInEvent(likedEvents: likedEvents , queries: queries, center: region.center, user: self.userModel, shuffle: shuffle)
             }.done { events in
                 seal.fulfill(events)
             }.catch { error in
