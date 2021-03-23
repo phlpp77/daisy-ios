@@ -143,7 +143,7 @@ struct MessagesView: View {
             }
                 
             // MARK: Show the profile picture
-            URLImage(url: URL(string: match.user.userPhotos[1] ?? stockUrlString)!) { image in
+            URLImage(url: URL(string: match.user.userPhotos[0] ?? stockUrlString)!) { image in
                     image.resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 80, height: 80)

@@ -15,8 +15,8 @@ struct LogoutView: View {
     @Binding var startProcessDone: Bool
     
     var body: some View {
-        Button("Logout") {
-            
+        
+        Button(action: {
             logoutVM.authSignOut().done {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                 print("now logout")
@@ -24,13 +24,17 @@ struct LogoutView: View {
                 }
             }.catch { error in
                 print("DEBUG: error by Logout error: \(error)")
-            }
-            
         }
+        }, label: {
+            Text("Logout")
+        })
         .padding()
         .modifier(FrozenWindowModifier())
+            
+        }
+        
     }
-}
+
 
 struct LogoutView_Previews: PreviewProvider {
     static var previews: some View {
