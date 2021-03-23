@@ -45,6 +45,7 @@ struct YouEventLineView: View {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 30) {
+                        
                         // create a view for each event in the array
                         ForEach(eventArray.indices, id: \.self) { eventIndex in
                             GeometryReader { geometry in
@@ -58,13 +59,13 @@ struct YouEventLineView: View {
                                     )
                                     
                                     
-                                    .onTapGesture {
-                                        tappedYouEvent = eventArray[eventIndex]
-                                        withAnimation(.easeIn(duration: 0.1)) {
-                                            showYouProfileView = true
-                                        }
-                                        
-                                    }
+//                                    .onTapGesture {
+//                                        tappedYouEvent = eventArray[eventIndex]
+//                                        withAnimation(.easeIn(duration: 0.1)) {
+//                                            showYouProfileView = true
+//                                        }
+//                                        
+//                                    }
                             }
                             
                             .frame(width: 250, height: 250)
@@ -74,6 +75,18 @@ struct YouEventLineView: View {
                         }
                         // needed to update dragged event and array
                         .id(UUID())
+                        
+                        // button at the end to refresh events
+                        Button(action: {
+                            // TODO: @bundi refresh code here
+                            
+                        }, label: {
+                            Text("REfresh")
+                                .font(.largeTitle)
+                                .frame(width: 175, height: 175)
+                                .modifier(offWhiteShadow(cornerRadius: 14))
+                                .padding(30)
+                        })
                         
                     }
                 }
