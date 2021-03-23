@@ -18,8 +18,10 @@ struct LogoutView: View {
         Button("Logout") {
             
             logoutVM.authSignOut().done {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                 print("now logout")
                 startProcessDone = false
+                }
             }.catch { error in
                 print("DEBUG: error by Logout error: \(error)")
             }

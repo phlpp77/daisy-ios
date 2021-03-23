@@ -58,15 +58,15 @@ struct Meet_MeApp: App {
         }
     }
     
-    func checkUserAccForAutoLogin() -> Bool {
-        if Auth.auth().currentUser != nil{
-            return true
-            
-        } else {
-            return false
-
-        }
-    }
+//    func checkUserAccForAutoLogin() -> Bool {
+//        if Auth.auth().currentUser != nil{
+//            return true
+//            
+//        } else {
+//            return false
+//
+//        }
+//    }
     
 
     
