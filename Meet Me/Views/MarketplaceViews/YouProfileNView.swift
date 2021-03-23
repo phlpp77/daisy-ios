@@ -46,6 +46,10 @@ struct YouProfileNView: View {
                         // show the event at the top right corner
                         eventCircle
                             .offset(x: (bounds.size.width - 48) / 2 - 30, y: -((bounds.size.width - 48) * 1.33) / 2 + 30)
+                            // dismiss Profile when users taps on Event picture
+                            .onTapGesture {
+                                showYouProfileView = false
+                            }
                         
                         
                         // showing the capsules for switching the pictures
@@ -60,7 +64,7 @@ struct YouProfileNView: View {
                         
                         // xmark symbol to show the user how to dismiss the view
                         Image(systemName: "xmark")
-                            .foregroundColor(Color("BackgroundSecondary").opacity(0.5))
+                            .foregroundColor(Color("BackgroundSecondary").opacity(0.7))
                             .font(.system(size: 30))
                             .offset(y: ((bounds.size.width - 48) * 1.33 / 2) + 60)
                         

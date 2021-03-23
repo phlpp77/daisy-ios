@@ -16,7 +16,7 @@ import FirebaseAuth
 struct Meet_MeApp: App {
     
     @State var startProcessDone: Bool = false
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     //@ObservedObject private var meet_MeAppVM: Meet_MeAppViewModel = Meet_MeAppViewModel()
 
 //    

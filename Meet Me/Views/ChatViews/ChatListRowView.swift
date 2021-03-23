@@ -17,7 +17,7 @@ struct ChatListRowView: View {
     @Binding var matchLongPressed: AllMatchInformationModel
     
     @State var firstPartString: String = ""
- 
+    
     // to configure the date which is showing in the second line of the row
     var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -90,7 +90,7 @@ struct ChatListRowView: View {
                         .shadow(color: Color.black.opacity(0.3), radius: 4, x: 2, y: 2)
                         .padding(.leading, 80)
                     Spacer()
-                        
+                    
                 }
                 .offset(y: -35)
             }
@@ -107,7 +107,7 @@ struct ChatListRowView: View {
         .onLongPressGesture {
             matchLongPressed = match
         }
-
+        
         // on appear
         .onAppear {
             switch match.event.category {
@@ -116,7 +116,7 @@ struct ChatListRowView: View {
             default:
                 firstPartString = "Event with"
             }
-    }
+        }
     }
 }
 

@@ -31,7 +31,7 @@ struct MessageView: View {
             VStack(alignment: messageStyle == .creator ? .trailing : .leading, spacing: 5) {
                 Text(dateFormatter.string(from: message.timeStamp.dateValue()))
                     .font(.footnote)
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(messageStyle == .creator ? .white : .accentColor)
                 
                 Text(message.messageText)
             }
@@ -60,11 +60,6 @@ struct MessageView: View {
                 messageStyle = .receiver
             }
             
-//            if message.userId == messagesVM.userId {
-//                messageStyle = .creator
-//            } else {
-//                messageStyle = .receiver
-//            }
         }
     }
 }

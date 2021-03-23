@@ -10,7 +10,7 @@ import SwiftUI
 struct ChatListView: View {
     
     @ObservedObject var chatListVM: ChatListViewModel = ChatListViewModel()
-
+    
     
     @State var chatTapped: Bool = false
     @State var matchTapped: AllMatchInformationModel = AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)

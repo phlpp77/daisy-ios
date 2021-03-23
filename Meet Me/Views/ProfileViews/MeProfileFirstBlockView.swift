@@ -146,8 +146,7 @@ struct PictureCircle: View {
             .sheet(isPresented: $showPHPicker, content: {
                 ImagePicker(images: $imagesFromPHPicker, showPicker: $showPHPicker, limit: 1) { (imagesPicked) in
                     if imagesPicked {
-                        // TODO: @budni hier .first hochladen
-                        // tag
+
                         meProfileVM.addPhotoInPosition(image: imagesFromPHPicker.first!, position: tag)
                         
                     }
@@ -163,8 +162,6 @@ struct PictureCircle: View {
     // MARK: Function to change the picture
     func changePicture(pictureIndex: Int) {
         
-
-        
         // show ImagePicker and delete the picking Array
         imagesFromPHPicker = []
         showPHPicker = true
@@ -173,10 +170,7 @@ struct PictureCircle: View {
     
     // Function to delete the picture
     func deletePicture(pictureIndex: Int) {
-        
-        
         meProfileVM.deletePhoto(position: pictureIndex)
-        // TODO: @budni delete picture with index here
     }
 }
 

@@ -15,7 +15,6 @@ struct HeaderView: View {
     
     var body: some View {
         
-//        GeometryReader { bounds in
             HStack(spacing: 0.0) {
                 Text(text1)
                 Text(highlightText)
@@ -24,7 +23,10 @@ struct HeaderView: View {
                 Text(text2)
             }
             .font(.largeTitle)
-            .frame(width: 327, height: 53)
+            .frame(maxWidth: .infinity)
+            
+            .frame(height: 53)
+            .background(Color("Offwhite").opacity(1))
             .overlay(
                 RoundedRectangle(cornerRadius: 14, style: .continuous)
                     .stroke(
@@ -38,8 +40,8 @@ struct HeaderView: View {
                     )
             )
             .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-//            .frame(width: bounds.size.width, height: bounds.size.height, alignment: .center)
-//        }
+            .padding(.horizontal, 24)
+            .padding(.bottom, 10)
     }
 }
 

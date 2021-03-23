@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: Frozen Window modifier used for glass look with transparent background, not used on 19/03/21
 struct FrozenWindowModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
@@ -24,6 +25,7 @@ struct FrozenWindowModifier: ViewModifier {
     }
 }
 
+// MARK: Grey/white looking background with round-corners and shadow
 struct offWhiteShadow: ViewModifier {
     
     var cornerRadius: CGFloat

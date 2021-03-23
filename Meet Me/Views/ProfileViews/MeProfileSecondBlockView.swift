@@ -11,10 +11,7 @@ import SwiftUI
 struct MeProfileSecondBlockView: View {
     @EnvironmentObject var meProfileVM: MeProfileViewModel
     
-    //@State private var range: Double = 150
-    //@State private var pickedGender = 1
     private var genders = ["Female", "Male", "Both"]
-    
     
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color("BackgroundSecondary"))
@@ -59,17 +56,17 @@ struct MeProfileSecondBlockView: View {
             VStack {
                 // title
                 HStack(spacing: 0.0) {
-                    Text("Show me ")
+                    Text("Show me Events with ")
                     Text(meProfileVM.gender[meProfileVM.picked])//meProfileVM.userModel.searchingFor)
                         .foregroundColor(.accentColor)
-                    Text(" YOUs")
+                    Text(" Creators")
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 // segmented picker
                 Picker("Test", selection: $meProfileVM.picked) {
+                    Text("Both").tag(2)
                     Text("Female").tag(0)
                     Text("Male").tag(1)
-                    Text("Both").tag(2)
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }

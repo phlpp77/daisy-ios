@@ -186,7 +186,7 @@ struct MeEventDetailedView: View {
     }
     
 }
-        
+
 // MARK: - FrozenTextBox
 struct FrozenTextBox: View {
     

@@ -27,7 +27,7 @@ struct MainExploreView: View {
                 
                 HeaderView(text1: "Meet ", text2: " Market", highlightText: "ME")
                 
-                if !showYouProfileView && !showMeEventController {
+                if !showMeEventController {
                     VStack {
                         
                         Text("Me Events")
@@ -48,10 +48,9 @@ struct MainExploreView: View {
                         
                         YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView)
                     }
-//                    .opacity(showYouProfileView ? 0 : 1)
-//                    .opacity(showMeEventController ? 0 : 1)
+                    .opacity(showYouProfileView ? 0.1 : 1)
+                    .opacity(showCreationView ? 0.1 : 1)
                 }
-                
                 
             }
             

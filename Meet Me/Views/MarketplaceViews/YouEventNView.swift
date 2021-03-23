@@ -15,6 +15,7 @@ struct YouEventNView: View {
     @Binding var events: [EventModel]
     var eventIndex: Int
     var currentEvent: EventModel
+    var dragAllowed: Bool = true
     
     @State var user: UserModel = stockUser
     @State var distanceIndicator: Distance = .near
@@ -22,6 +23,9 @@ struct YouEventNView: View {
     
     @State var dragPosition: CGSize = .zero
     @State var likePercentage: Double = 0
+    @State var isPressed: Bool = false
+    @GestureState var isDetectingLongPress = false
+//    @State var isTapped: Bool = false
     
     // to configure the date which is showing in the second line of the row
     var dateFormatter: DateFormatter = {
@@ -37,7 +41,67 @@ struct YouEventNView: View {
         return formatter
     }()
     
+    
+    
     var body: some View {
+        
+        // drag gesture to combine with tap
+        let dragGesture = DragGesture(minimumDistance: 20)
+            .onChanged { value in
+                print("is dragged \(value.translation)")
+                if dragAllowed {
+                    // drag is not allowed to be higher than 20 upwards
+                    if value.translation.height > 0 {
+                        self.dragPosition = value.translation
+                    }
+                    
+                    // change percentage of thumbsup
+                    if value.translation.height > 0 && value.translation.height < 100{
+                        self.likePercentage = Double(value.translation.height / 100)
+                    }
+                }
+                
+            }
+            .onEnded { value in
+                print("drag ended")
+                
+                
+            }
+        
+        // tap gesture to start and stop dragging / starting to match only if user lifts thumb
+        let pressReleaseGesture = DragGesture(minimumDistance: 0)
+            .onChanged { _ in
+                self.isPressed = true
+                print("event is pressed")
+            }
+            .onEnded { _ in
+                self.isPressed = false
+                print("event is released")
+                if dragAllowed {
+                    // drag needs to be down a bit to trigger the deletion / liking
+                    if self.dragPosition.height > 30 {
+                        
+                        // move event out of the sight of the user
+                        self.dragPosition = .init(width: 0, height: 500)
+                        
+                        // add like to the database
+                        youEventVM.addLikeToEvent(eventModel: events[eventIndex])
+                        
+                        // delete the item at the position from the Array
+                        self.events.remove(at: eventIndex)
+                        
+                        hapticFeedback(feedBackstyle: .success)
+                        
+                    } else {
+                        
+                        self.dragPosition = .zero
+                        self.likePercentage = 0
+                    }
+                }
+            }
+        
+        // combine gestures - first pressed then drag
+//        let combinedGestures = longPressGesture.sequenced(before: dragGesture)
         
         ZStack {
             
@@ -63,41 +127,10 @@ struct YouEventNView: View {
         
         // MARK: - Drag Gesture
         .offset(y: dragPosition.height)
-        .gesture(
-            DragGesture()
-                .onChanged { value in
-                    
-                    // drag is not allowed to be higher than 20 upwards
-                    if value.translation.height > 0 {
-                        self.dragPosition = value.translation
-                    }
-                    
-                    // change percentage of thumbsup
-                    if value.translation.height > 0 && value.translation.height < 100{
-                        self.likePercentage = Double(value.translation.height / 100)
-                    }
-                }
-                .onEnded { value in
-                    
-                    // drag needs to be down a bit to trigger the deletion / liking
-                    if value.translation.height > 100 {
-                        self.dragPosition = .init(width: 0, height: 500)
-                        
-                        // add like to the database
-                        youEventVM.addLikeToEvent(eventModel: events[eventIndex])
-                        
-                        // delete the item at the position from the Array
-                        self.events.remove(at: eventIndex)
-                        
-                        hapticFeedback(feedBackstyle: .success)
-                        
-                    } else {
-                        
-                        self.dragPosition = .zero
-                        self.likePercentage = 0
-                    }
-                }
-        )
+//        .gesture(combinedGestures)
+        
+        .gesture(pressReleaseGesture)
+        .simultaneousGesture(dragGesture)
         
         // MARK: - OnAppear
         .onAppear {

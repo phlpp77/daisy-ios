@@ -11,24 +11,26 @@ struct MainSettingsView: View {
     
     @Binding var startProcessDone: Bool
     @StateObject var meProfileVM: MeProfileViewModel = MeProfileViewModel()
-    //@ObservedObject private var meProfileVM = MeProfileViewModel()
     
 
     var body: some View {
         
-        ZStack {
-            VStack {
+        GeometryReader { bounds in
+            ZStack {
+                VStack {
+                    
+                    MeProfileNView()
+                        .environmentObject(meProfileVM)
+                        .onAppear{
+                            meProfileVM.getCurrentUser()
+                        }
+                    
+                }
                 
-                MeProfileNView()
-                    .environmentObject(meProfileVM)
-                    .onAppear{
-                        meProfileVM.getCurrentUser()
-                    }
-                
+                LogoutView(startProcessDone: $startProcessDone)
+                    .offset(x: bounds.size.width / 2 - (bounds.size.width * 0.15), y: -bounds.size.height / 2 + (bounds.size.width * 0.22))
             }
-            
-            LogoutView(startProcessDone: $startProcessDone)
-                .offset(x: screen.width / 2 - (screen.width * 0.15), y: -screen.height / 2 + (screen.width * 0.22))
+            .frame(width: bounds.size.width, height: bounds.size.height, alignment: .center)
         }
 
     }
