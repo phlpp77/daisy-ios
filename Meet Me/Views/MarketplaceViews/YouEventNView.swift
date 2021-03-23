@@ -46,11 +46,10 @@ struct YouEventNView: View {
     var body: some View {
         
         // drag gesture to combine with tap
-        let dragGesture = DragGesture(minimumDistance: 20)
+        let dragGesture = DragGesture()
             .onChanged { value in
-                print("is dragged \(value.translation)")
                 if dragAllowed {
-                    // drag is not allowed to be higher than 20 upwards
+                    // drag is not allowed to be upwards
                     if value.translation.height > 0 {
                         self.dragPosition = value.translation
                     }
@@ -63,30 +62,16 @@ struct YouEventNView: View {
                 
             }
             .onEnded { value in
-                print("drag ended")
-                
-                
-            }
-        
-        // tap gesture to start and stop dragging / starting to match only if user lifts thumb
-        let pressReleaseGesture = DragGesture(minimumDistance: 0)
-            .onChanged { _ in
-                self.isPressed = true
-                print("event is pressed")
-            }
-            .onEnded { _ in
-                self.isPressed = false
-                print("event is released")
                 if dragAllowed {
                     // drag needs to be down a bit to trigger the deletion / liking
-                    if self.dragPosition.height > 30 {
-                        
+                    if self.dragPosition.height > 100 {
+                        print("now it's liked")
                         // move event out of the sight of the user
                         self.dragPosition = .init(width: 0, height: 500)
-                        
+
                         // add like to the database
                         youEventVM.addLikeToEvent(eventModel: events[eventIndex])
-                        
+
                         // delete the item at the position from the Array
                         self.events.remove(at: eventIndex)
                         
@@ -98,10 +83,9 @@ struct YouEventNView: View {
                         self.likePercentage = 0
                     }
                 }
+                
             }
         
-        // combine gestures - first pressed then drag
-//        let combinedGestures = longPressGesture.sequenced(before: dragGesture)
         
         ZStack {
             
@@ -127,10 +111,7 @@ struct YouEventNView: View {
         
         // MARK: - Drag Gesture
         .offset(y: dragPosition.height)
-//        .gesture(combinedGestures)
-        
-        .gesture(pressReleaseGesture)
-        .simultaneousGesture(dragGesture)
+        .gesture(dragGesture)
         
         // MARK: - OnAppear
         .onAppear {
