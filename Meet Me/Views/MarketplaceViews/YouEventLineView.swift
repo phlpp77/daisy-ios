@@ -58,13 +58,13 @@ struct YouEventLineView: View {
                                     )
                                     
                                     
-                                    .onTapGesture {
-                                        tappedYouEvent = eventArray[eventIndex]
-                                        withAnimation(.easeIn(duration: 0.1)) {
-                                            showYouProfileView = true
-                                        }
-                                        
-                                    }
+//                                    .onTapGesture {
+//                                        tappedYouEvent = eventArray[eventIndex]
+//                                        withAnimation(.easeIn(duration: 0.1)) {
+//                                            showYouProfileView = true
+//                                        }
+//                                        
+//                                    }
                             }
                             
                             .frame(width: 250, height: 250)
