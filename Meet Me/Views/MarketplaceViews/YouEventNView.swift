@@ -11,7 +11,7 @@ import URLImage
 struct YouEventNView: View {
     
     @StateObject var youEventVM: YouEventViewModel = YouEventViewModel()
-    
+    @ObservedObject var showedEventsModel = ShowedEventsModel()
     @Binding var events: [EventModel]
     var eventIndex: Int
     var currentEvent: EventModel
@@ -89,7 +89,8 @@ struct YouEventNView: View {
                         
                         // delete the item at the position from the Array
                         self.events.remove(at: eventIndex)
-                        
+                        showedEventsModel.events = self.events
+                        showedEventsModel.save()
                         hapticFeedback(feedBackstyle: .success)
                         
                     } else {

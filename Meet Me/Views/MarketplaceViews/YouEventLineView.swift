@@ -12,6 +12,7 @@ import MapKit
 
 struct YouEventLineView: View {
     
+    @ObservedObject private var showedEventsModel = ShowedEventsModel()
     @StateObject private var youEventLineVM = YouEventLineViewModel()
     @EnvironmentObject var locationManager: LocationManager
     // data transfer form database
@@ -78,8 +79,21 @@ struct YouEventLineView: View {
                         
                         // button at the end to refresh events
                         Button(action: {
-                            // TODO: @bundi refresh code here
-                            
+                            //DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                //if eventArray.count == 0 {
+                                    firstly {
+                                        self.youEventLineVM.getYouEvents(region: locationManager.region, shuffle: false)
+                                    }.done { events in
+                                        self.eventArray = events
+                                        showedEventsModel.events = events
+                                        showedEventsModel.save()
+                                        print("done")
+                                    }.catch { error in
+                                        print("DEBUG: error in GetYouEventChain: \(error)")
+                                        print("DEBUG: \(error.localizedDescription)")
+                                    }
+                                //}
+                            //}
                         }, label: {
                             Text("REfresh")
                                 .font(.largeTitle)
@@ -102,20 +116,8 @@ struct YouEventLineView: View {
         }
         .frame(height: 380)
         .onAppear {
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                if eventArray.count == 0 {
-                    firstly {
-                        self.youEventLineVM.getYouEvents(region: locationManager.region, shuffle: false)
-                    }.done { events in
-                        self.eventArray = events
-                        print("done")
-                    }.catch { error in
-                        print("DEBUG: error in GetYouEventChain: \(error)")
-                        print("DEBUG: \(error.localizedDescription)")
-                    }
-                }
-            }
+            self.eventArray = showedEventsModel.events
+
         }
         
     }

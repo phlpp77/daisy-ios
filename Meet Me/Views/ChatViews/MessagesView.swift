@@ -106,6 +106,7 @@ struct MessagesView: View {
         }
         
         .onAppear {
+            
             messagesVM.downloadChat(chatId: match.chatId)
             switch match.event.category {
             case "Café":
