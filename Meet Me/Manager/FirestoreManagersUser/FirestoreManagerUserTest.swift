@@ -60,7 +60,8 @@ class FirestoreManagerUserTest {
     func addLikeToEventArray(eventId: String) -> Promise<Void>{
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
-                throw Err("No User Profile")
+                seal.reject(Err("No User Profile"))
+                return
             }
             
             do {
@@ -74,6 +75,24 @@ class FirestoreManagerUserTest {
                 }
             }
         }
+    
+    func addOneToRefreshCounter() -> Promise<Void> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                seal.reject(Err("No User Profile"))
+                return
+            }
+            
+            let _ = db.collection("users")
+                .document(currentUser.uid).updateData(["refreshCounter" : FieldValue.increment(Int64(1))]) { error in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        seal.fulfill(())
+                    }
+                }
+        }
+    }
     
 
     // MARK: - Functions to Update current User

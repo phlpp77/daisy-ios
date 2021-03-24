@@ -20,7 +20,7 @@ struct UserModel: Codable {
     var userPhotosId: [Int: String]
     var radiusInKilometer: Double
     var token: String 
-
+    var refreshCounter: Int
     
 }
 

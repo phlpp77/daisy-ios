@@ -37,6 +37,15 @@ class YouEventLineViewModel: ObservableObject {
             }
         }
     }
+    
+    func addOneToRefreshCounter() {
+        firstly {
+            self.firestoreManagerUserTest.addOneToRefreshCounter()
+        }.catch { error in
+            print("DEBUG: Error in refreshCounter, \(error)")
+            print(error.localizedDescription)
+        }
+    }
 }
     
     

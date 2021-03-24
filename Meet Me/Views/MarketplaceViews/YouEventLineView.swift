@@ -79,8 +79,6 @@ struct YouEventLineView: View {
                         
                         // button at the end to refresh events
                         Button(action: {
-                            //DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                                //if eventArray.count == 0 {
                                     firstly {
                                         self.youEventLineVM.getYouEvents(region: locationManager.region, shuffle: false)
                                     }.done { events in
@@ -92,8 +90,7 @@ struct YouEventLineView: View {
                                         print("DEBUG: error in GetYouEventChain: \(error)")
                                         print("DEBUG: \(error.localizedDescription)")
                                     }
-                                //}
-                            //}
+                            self.youEventLineVM.addOneToRefreshCounter()
                         }, label: {
                             Text("REfresh")
                                 .font(.largeTitle)
