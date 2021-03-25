@@ -74,7 +74,7 @@ struct ChatListView: View {
                     
                     Spacer()
                     
-                    Text("Drag Events and Match!")
+                    Text(chatListVM.messageIfNoMatches)
                     
                     Spacer()
                 }

@@ -18,26 +18,31 @@ class ChatListViewModel: ObservableObject {
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     private var matchDoc : [MatchModel] = []
     @Published var matches : [AllMatchInformationModel] = []
-    
+    @Published var messageIfNoMatches = ""
     
     func getMatches() {
-            firstly {
-                self.firestoreManagerChat.getAllMatchDocumentsCurrentUser()
-            }.map { matchDocs in
-                self.matchDoc = matchDocs
-            }.then {
-                when(fulfilled: self.matchDoc.compactMap(self.getAllMatchInformation)).done { result in
-                    self.matches = result
-                }.done{
+        firstly {
+            self.firestoreManagerChat.getAllMatchDocumentsCurrentUser()
+        }.map { matchDocs in
+            self.matchDoc = matchDocs
+        }.then {
+            when(fulfilled: self.matchDoc.compactMap(self.getAllMatchInformation)).done { result in
+                self.matches = result
+            }.done{
+                if self.matches.count != 0 {
                     self.matches = self.matches.sorted{
                         $0.event.distance < $1.event.distance
-
                     }
                 }
-            }.catch { error in
-                print("DEBUG: error in getMatchesChain error: \(error)")
+                else {
+                    self.messageIfNoMatches = "Drag Events and Match!"
+                }
             }
+        }.catch { error in
+            print("DEBUG: error in getMatchesChain error: \(error)")
+            self.messageIfNoMatches = "Drag Events and Match!"
         }
+    }
     
     
     func getAllMatchInformation(doc: MatchModel) -> Promise<AllMatchInformationModel> {
@@ -49,7 +54,7 @@ class ChatListViewModel: ObservableObject {
                 let matchInformation = AllMatchInformationModel(chatId: doc.chatId, user: user, event: event)
                 seal.fulfill(matchInformation)
             }.catch { error in
-                print(error)
+                seal.reject(error)
             }
         }
         
@@ -75,7 +80,7 @@ class ChatListViewModel: ObservableObject {
     func deleteMatchAndBackToPool(match: AllMatchInformationModel) {
         firstly {
             when(fulfilled:
-            self.firestoreManagerMatches.deleteMatchFromCurrentUser(chatId: match.chatId),
+                 self.firestoreManagerMatches.deleteMatchFromCurrentUser(chatId: match.chatId),
                  self.firestoreManagerMatches.deleteMatchFromMatchedUser(chatId: match.chatId, matchedUserId: match.user.userId),
                  self.firestoreManagerMatches.deleteChat(chatId: match.chatId),
                  self.firestoreManagerMatches.deleteAllLikedUserFromEvent(eventId: match.event.eventId),
