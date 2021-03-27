@@ -77,6 +77,7 @@
 		902EF6FF25D9A51B004464F0 /* EventCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6FE25D9A51B004464F0 /* EventCreationViewModel.swift */; };
 		902EF7AA25DC439D004464F0 /* YouEventLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF7A925DC439D004464F0 /* YouEventLineViewModel.swift */; };
 		9045DD52260B9DD300922DA5 /* ShowedEventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9045DD51260B9DD300922DA5 /* ShowedEventsModel.swift */; };
+		9045DD59260F8E9300922DA5 /* FirstActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9045DD58260F8E9300922DA5 /* FirstActions.swift */; };
 		906E352125F2CCF800F0C7C6 /* LogoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906E352025F2CCF800F0C7C6 /* LogoutViewModel.swift */; };
 		90779AEA25E2C7250070D794 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 90779AE925E2C7250070D794 /* PromiseKit */; };
 		90779AED25E2C8CD0070D794 /* FirestoreManagerEventTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */; };
@@ -180,6 +181,7 @@
 		902EF6FE25D9A51B004464F0 /* EventCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationViewModel.swift; sourceTree = "<group>"; };
 		902EF7A925DC439D004464F0 /* YouEventLineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventLineViewModel.swift; sourceTree = "<group>"; };
 		9045DD51260B9DD300922DA5 /* ShowedEventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowedEventsModel.swift; sourceTree = "<group>"; };
+		9045DD58260F8E9300922DA5 /* FirstActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstActions.swift; sourceTree = "<group>"; };
 		906E352025F2CCF800F0C7C6 /* LogoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewModel.swift; sourceTree = "<group>"; };
 		90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerEventTest.swift; sourceTree = "<group>"; };
 		90779B0625E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreFotoMangerEventTest.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				175E40DC25B4320E00ADC9BF /* Views */,
 				175E40DE25B4322000ADC9BF /* ViewModels */,
 				175E40DD25B4321600ADC9BF /* Models */,
+				9045DD57260F8DF700922DA5 /* UserDefaults */,
 				175E40F225B4CD8100ADC9BF /* Extra */,
 				17153EE825A8C5C30072CE83 /* Assets.xcassets */,
 				1795DFA025DF1753002D537F /* Lottie */,
@@ -350,7 +353,6 @@
 			isa = PBXGroup;
 			children = (
 				90F8AB4525BF5CDA00E969E0 /* UserModel.swift */,
-				9045DD51260B9DD300922DA5 /* ShowedEventsModel.swift */,
 				90D42A9D25E937630060311B /* LikedUserModel.swift */,
 				90D42AF125EAAD250060311B /* ChatModel.swift */,
 				90D42AEE25EAAD110060311B /* MatchModel.swift */,
@@ -467,6 +469,15 @@
 				90779B0625E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift */,
 			);
 			path = FirestoreMangersEvent;
+			sourceTree = "<group>";
+		};
+		9045DD57260F8DF700922DA5 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				9045DD51260B9DD300922DA5 /* ShowedEventsModel.swift */,
+				9045DD58260F8E9300922DA5 /* FirstActions.swift */,
+			);
+			path = UserDefaults;
 			sourceTree = "<group>";
 		};
 		905485D025C4AA6100E2024D /* Manager */ = {
@@ -701,6 +712,7 @@
 				90DFB50025F92C7400E26ED7 /* ChangeMeEventViewModel.swift in Sources */,
 				17DE531E25EAEF51000D0B4D /* MessageView.swift in Sources */,
 				175E40F425B4CD9400ADC9BF /* Modifiers.swift in Sources */,
+				9045DD59260F8E9300922DA5 /* FirstActions.swift in Sources */,
 				175E40E625B46ABB00ADC9BF /* BlurView.swift in Sources */,
 				90D8BE8F25FCF03400EF160D /* PushNotificationSender.swift in Sources */,
 				1746097725FA45A900726BA1 /* MeProfileSecondBlockView.swift in Sources */,

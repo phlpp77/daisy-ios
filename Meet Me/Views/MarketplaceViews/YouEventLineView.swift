@@ -13,6 +13,8 @@ import MapKit
 struct YouEventLineView: View {
     
     @ObservedObject private var showedEventsModel = ShowedEventsModel()
+    @ObservedObject private var firstActions = FirstActions()
+    
     @StateObject private var youEventLineVM = YouEventLineViewModel()
     @EnvironmentObject var locationManager: LocationManager
     // data transfer form database
@@ -106,8 +108,29 @@ struct YouEventLineView: View {
         }
         .frame(height: 380)
         .onAppear {
-            self.eventArray = showedEventsModel.events
-            
+            //Check if it is the first login
+            if firstActions.firstViews["FirstEventShuffle"] == nil {
+                //if it is the first Login load events without hitting shuffle button 
+                firstly {
+                    self.youEventLineVM.getYouEvents(region: locationManager.region, shuffle: true)
+                }.done { events in
+                    self.eventArray = events
+                    showedEventsModel.events = events
+                    showedEventsModel.save()
+                    self.youEventLineVM.addOneToRefreshCounter()
+                    
+                    //add FirstventShuffle to Dictionary
+                    firstActions.firstViews["FirstEventShuffle"] = true
+                    firstActions.save()
+                    print("aufgerufen")
+                    print("done")
+                }.catch { error in
+                    print("DEBUG: error in GetYouEventChain: \(error)")
+                    print("DEBUG: \(error.localizedDescription)")
+                }
+            }else {
+                self.eventArray = showedEventsModel.events
+            }
         }
         
     }
@@ -145,7 +168,7 @@ struct YouEventLineView: View {
                                 
                                 // refresh youEvents
                                 firstly {
-                                    self.youEventLineVM.getYouEvents(region: locationManager.region, shuffle: false)
+                                    self.youEventLineVM.getYouEvents(region: locationManager.region, shuffle: true)
                                 }.done { events in
                                     self.eventArray = events
                                     showedEventsModel.events = events

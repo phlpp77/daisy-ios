@@ -324,7 +324,7 @@ class FirestoreManagerEventTest {
                                         if shuffle {
                                         event!.shuffle()
                                         }
-                                        seal.fulfill(Array(event!.prefix(15)))
+                                        seal.fulfill(Array(event!.prefix(10)))
                                     }
                                 }
                             }else {
