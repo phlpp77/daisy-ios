@@ -99,8 +99,8 @@ struct YouEventLineView: View {
             // loading screen deactivated
             //            LoadingView(showLoadingScreen: $loading)
             
-                boomBar
-                    .opacity(pressDone ? 0 : 0.95)
+//                boomBar
+//                    .opacity(pressDone ? 0 : 0.95)
             
             
             

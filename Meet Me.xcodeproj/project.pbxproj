@@ -12,7 +12,6 @@
 		1705791425FCE73800A56CE6 /* MatchButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705791325FCE73800A56CE6 /* MatchButtonView.swift */; };
 		1705792925FD59C500A56CE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1705792825FD59C500A56CE6 /* GoogleService-Info.plist */; };
 		1705792C25FD825F00A56CE6 /* DatePickerX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705792B25FD825F00A56CE6 /* DatePickerX.swift */; };
-		1705793425FE3B4100A56CE6 /* OnboardingSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705793325FE3B4100A56CE6 /* OnboardingSlideView.swift */; };
 		1705793725FE3C3A00A56CE6 /* SliderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705793625FE3C3A00A56CE6 /* SliderModel.swift */; };
 		1705793A25FE495F00A56CE6 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705793925FE495F00A56CE6 /* OnboardingController.swift */; };
 		1711EEBB25F29C6600D87EFA /* ChatProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711EEBA25F29C6600D87EFA /* ChatProfileView.swift */; };
@@ -40,6 +39,8 @@
 		1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67425D1E31400D1D2F1 /* MainExploreView.swift */; };
 		1774B67925D1E35200D1D2F1 /* MainChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67825D1E35200D1D2F1 /* MainChatView.swift */; };
 		1778E41325D0904100C5D343 /* DateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1778E41225D0904000C5D343 /* DateTextField.swift */; };
+		177A29C5260F88B200E968D7 /* DeveloperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177A29C4260F88B200E968D7 /* DeveloperView.swift */; };
+		177A29C8260F8DBF00E968D7 /* InformationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177A29C7260F8DBF00E968D7 /* InformationCard.swift */; };
 		177F682A25D8937F00BC345B /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F682925D8937F00BC345B /* KeyboardHandler.swift */; };
 		1795DF9525DD6998002D537F /* MeEventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1795DF9425DD6998002D537F /* MeEventLineView.swift */; };
 		1795DF9E25DF0E22002D537F /* MeMatchStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1795DF9D25DF0E22002D537F /* MeMatchStartView.swift */; };
@@ -115,7 +116,6 @@
 		1705791325FCE73800A56CE6 /* MatchButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchButtonView.swift; sourceTree = "<group>"; };
 		1705792825FD59C500A56CE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1705792B25FD825F00A56CE6 /* DatePickerX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerX.swift; sourceTree = "<group>"; };
-		1705793325FE3B4100A56CE6 /* OnboardingSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSlideView.swift; sourceTree = "<group>"; };
 		1705793625FE3C3A00A56CE6 /* SliderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderModel.swift; sourceTree = "<group>"; };
 		1705793925FE495F00A56CE6 /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		1711EEBA25F29C6600D87EFA /* ChatProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatProfileView.swift; sourceTree = "<group>"; };
@@ -145,6 +145,8 @@
 		1774B67425D1E31400D1D2F1 /* MainExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainExploreView.swift; sourceTree = "<group>"; };
 		1774B67825D1E35200D1D2F1 /* MainChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChatView.swift; sourceTree = "<group>"; };
 		1778E41225D0904000C5D343 /* DateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTextField.swift; sourceTree = "<group>"; };
+		177A29C4260F88B200E968D7 /* DeveloperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperView.swift; sourceTree = "<group>"; };
+		177A29C7260F8DBF00E968D7 /* InformationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCard.swift; sourceTree = "<group>"; };
 		177F682925D8937F00BC345B /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		1795DF9425DD6998002D537F /* MeEventLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventLineView.swift; sourceTree = "<group>"; };
 		1795DF9D25DF0E22002D537F /* MeMatchStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMatchStartView.swift; sourceTree = "<group>"; };
@@ -232,7 +234,6 @@
 		1705792E25FE3AFA00A56CE6 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				1705793325FE3B4100A56CE6 /* OnboardingSlideView.swift */,
 				1705793925FE495F00A56CE6 /* OnboardingController.swift */,
 			);
 			path = Onboarding;
@@ -321,6 +322,7 @@
 				174EFCD625FABDC40028C04C /* RingView.swift */,
 				1705790D25FCD26400A56CE6 /* HeaderView.swift */,
 				1705791325FCE73800A56CE6 /* MatchButtonView.swift */,
+				177A29C7260F8DBF00E968D7 /* InformationCard.swift */,
 			);
 			path = ViewHelpers;
 			sourceTree = "<group>";
@@ -332,6 +334,7 @@
 				172CA8F725FA31E4002CAA09 /* MeProfileNView.swift */,
 				1746097325FA448700726BA1 /* MeProfileFirstBlockView.swift */,
 				1746097625FA45A900726BA1 /* MeProfileSecondBlockView.swift */,
+				177A29C4260F88B200E968D7 /* DeveloperView.swift */,
 			);
 			path = ProfileViews;
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 				90D42AF725EABC400060311B /* AllMatchInformationModel.swift in Sources */,
 				90F2336725D84736003FB1D9 /* MeProfileViewModel.swift in Sources */,
 				90779B6025E41CC60070D794 /* MainControllerViewModel.swift in Sources */,
+				177A29C8260F8DBF00E968D7 /* InformationCard.swift in Sources */,
 				9045DD52260B9DD300922DA5 /* ShowedEventsModel.swift in Sources */,
 				17DE52ED25EA3F9E000D0B4D /* ImagePicker.swift in Sources */,
 				90F2336325D830E7003FB1D9 /* ProfileCreationViewModel.swift in Sources */,
@@ -758,12 +762,12 @@
 				176745BD25F9381700FF28F2 /* MainStartView.swift in Sources */,
 				90D42B1E25EBA7190060311B /* ChatListViewModel.swift in Sources */,
 				17DE52EA25E9A2D7000D0B4D /* YouProfileView.swift in Sources */,
-				1705793425FE3B4100A56CE6 /* OnboardingSlideView.swift in Sources */,
 				1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */,
 				902EF6BD25D896E3004464F0 /* UIImageResized.swift in Sources */,
 				174423AA25D9A0DF00D25EDD /* EventModel.swift in Sources */,
 				177F682A25D8937F00BC345B /* KeyboardHandler.swift in Sources */,
 				902EF6FF25D9A51B004464F0 /* EventCreationViewModel.swift in Sources */,
+				177A29C5260F88B200E968D7 /* DeveloperView.swift in Sources */,
 				17AE48FC260E836500A76F88 /* ImageCroppingView.swift in Sources */,
 				1774B67925D1E35200D1D2F1 /* MainChatView.swift in Sources */,
 				173E48F125FB894600D3DA0A /* YouProfileNView.swift in Sources */,

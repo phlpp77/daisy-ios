@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MeProfileNView: View {
     
-    
+    @State var showDeveloperView: Bool = false
     
     var body: some View {
         
@@ -17,6 +17,9 @@ struct MeProfileNView: View {
             
             // Header
             HeaderView()
+                .onTapGesture {
+                    showDeveloperView = true
+                }
             
             
             Spacer()
@@ -31,6 +34,9 @@ struct MeProfileNView: View {
             
             Spacer()
         }
+        .sheet(isPresented: $showDeveloperView, content: {
+            DeveloperView()
+        })
         
     }
 }

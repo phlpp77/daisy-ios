@@ -7,12 +7,14 @@
 
 import SwiftUI
 
-struct OnboardingSlideView: View {
-    
-    @Binding var showSlider: StartPosition
+struct InformationCard: View {
+        
+    @Binding var goToNextView: Bool
+    @Binding var goToLastView: Bool
     
     @Binding var index: Int
     var sliderArray: [SliderModel]
+    
     
     var body: some View {
         
@@ -35,8 +37,6 @@ struct OnboardingSlideView: View {
                             Text(sliderArray[index].headerText)
                                 .font(.largeTitle)
                         }
-                        
-                        
                         
                         
                         if sliderArray[index].footerText != "" {
@@ -197,7 +197,7 @@ struct OnboardingSlideView: View {
         if index < sliderArray.count - 1 {
             index += 1
         } else {
-            showSlider = .registerLogin
+            goToNextView.toggle()
         }
     }
     
@@ -206,7 +206,7 @@ struct OnboardingSlideView: View {
         if index > 0 {
             index -= 1
         } else {
-            showSlider = .splash
+            goToLastView.toggle()
         }
     }
 }
