@@ -80,4 +80,12 @@ class DeveloperViewModel: ObservableObject {
     }
     
     
+    func deleteAllOldEvents() {
+        
+    }
+    
+    func getAllChats() {
+        
+    }
+    
 }
