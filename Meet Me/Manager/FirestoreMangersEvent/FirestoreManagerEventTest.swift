@@ -310,21 +310,24 @@ class FirestoreManagerEventTest {
                                 }
                                 return nil
                             }
-                            
                             if event != nil {
+                                
+                                var eventsSorted: [EventModel] = []
+                                if shuffle {
+                                    event!.shuffle()
+                                }
                                 if event!.count > 0 {
-                                    print("COUNT: \(event!.count)")
                                     for (index, eventModel) in event!.enumerated().reversed() {
-                                        if likedEvents.contains(eventModel.eventId) {
-                                            event!.remove(at: index)
+                                        if likedEvents.contains(eventModel.eventId) == false {
+                                            //event!.remove(at: index)
+                                            eventsSorted.append(event![index])
+                                        }
+                                        if eventsSorted.count >= 11 {
+                                            break
                                         }
                                     }
-                                    
                                     DispatchQueue.main.async {
-                                        if shuffle {
-                                        event!.shuffle()
-                                        }
-                                        seal.fulfill(Array(event!.prefix(10)))
+                                        seal.fulfill(Array(eventsSorted.prefix(10)))
                                     }
                                 }
                             }else {
