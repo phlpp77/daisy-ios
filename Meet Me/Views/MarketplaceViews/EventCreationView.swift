@@ -88,11 +88,7 @@ struct EventCreationView: View {
             
             VStack {
                 
-                Text("Tap on each event aspect to change it directly - create your own unique event!")
-                    .padding(8)
-                    .modifier(offWhiteShadow(cornerRadius: 12))
-                    .frame(width: 250)
-                    .padding(.bottom, 20)
+                
                 
                 ZStack {
                     // Main image as a background of the event

@@ -20,6 +20,8 @@ struct MainExploreView: View {
     @State private var tappedMeEvent: EventModel = stockEvent
     @State private var tappedYouEvent: EventModel = stockEvent
     
+    @State private var firstEventCreation: Bool = true
+    
     var body: some View {
         ZStack {
             
@@ -56,7 +58,11 @@ struct MainExploreView: View {
             
             // create the setup EventView on top of the rest
             if showCreationView {
-                EventCreationView(presentation: $showCreationView, eventArray: $eventArray)
+                if firstEventCreation {
+                    InformationCard(goToNextView: $firstEventCreation, goToLastView: $firstEventCreation, sliderArray: [InformationCardModel(headerText: "Create Event", highlight: true, footerText: "", image: "create-event", sfSymbol: "calendar.badge.plus", buttonText: "OK!", subtext: "Tap on each event aspect to change it directly - create your own unique event!")])
+                } else {
+                    EventCreationView(presentation: $showCreationView, eventArray: $eventArray)
+                }
             }
             
             // start the MeMatch process

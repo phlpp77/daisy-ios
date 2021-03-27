@@ -58,7 +58,6 @@
 		17BC5FE025BE0B5900F35075 /* ProfileCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */; };
 		17C0C1CE25BF67D60021987D /* AlertBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C0C1CD25BF67D60021987D /* AlertBoxView.swift */; };
 		17DAD7E325D934D600DBE60B /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DAD7E225D934D600DBE60B /* Global.swift */; };
-		17DE52EA25E9A2D7000D0B4D /* YouProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE52E925E9A2D7000D0B4D /* YouProfileView.swift */; };
 		17DE52ED25EA3F9E000D0B4D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE52EC25EA3F9E000D0B4D /* ImagePicker.swift */; };
 		17DE530F25EAC1AA000D0B4D /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE530E25EAC1AA000D0B4D /* ChatListView.swift */; };
 		17DE531225EAC372000D0B4D /* ChatListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE531125EAC372000D0B4D /* ChatListRowView.swift */; };
@@ -164,7 +163,6 @@
 		17BC5FDF25BE0B5900F35075 /* ProfileCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationView.swift; sourceTree = "<group>"; };
 		17C0C1CD25BF67D60021987D /* AlertBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBoxView.swift; sourceTree = "<group>"; };
 		17DAD7E225D934D600DBE60B /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
-		17DE52E925E9A2D7000D0B4D /* YouProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouProfileView.swift; sourceTree = "<group>"; };
 		17DE52EC25EA3F9E000D0B4D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		17DE530E25EAC1AA000D0B4D /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		17DE531125EAC372000D0B4D /* ChatListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListRowView.swift; sourceTree = "<group>"; };
@@ -416,7 +414,6 @@
 				1795DF9425DD6998002D537F /* MeEventLineView.swift */,
 				179B27C925D48788007F64D6 /* YouEventLineView.swift */,
 				174423AD25D9A93000D25EDD /* EventCreationView.swift */,
-				17DE52E925E9A2D7000D0B4D /* YouProfileView.swift */,
 				17F34F0F25F6CF5400690122 /* MeEventNView.swift */,
 				17F34F1225F8EAEB00690122 /* YouEventNView.swift */,
 				173E48F025FB894600D3DA0A /* YouProfileNView.swift */,
@@ -754,7 +751,6 @@
 				17EDA6F025E6C974004BC651 /* LogoutView.swift in Sources */,
 				176745BD25F9381700FF28F2 /* MainStartView.swift in Sources */,
 				90D42B1E25EBA7190060311B /* ChatListViewModel.swift in Sources */,
-				17DE52EA25E9A2D7000D0B4D /* YouProfileView.swift in Sources */,
 				1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */,
 				902EF6BD25D896E3004464F0 /* UIImageResized.swift in Sources */,
 				174423AA25D9A0DF00D25EDD /* EventModel.swift in Sources */,
