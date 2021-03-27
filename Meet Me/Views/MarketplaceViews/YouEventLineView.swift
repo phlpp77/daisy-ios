@@ -172,7 +172,7 @@ struct YouEventLineView: View {
             .resizable()
             .aspectRatio(contentMode: .fill)
 //            .frame(maxWidth: pressDone ? .infinity : 0, maxHeight: pressDone ? .infinity : 0)
-            .frame(width: 450, height: 350, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .frame(width: 400, height: 350, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .offset(x: pressDone ? 0 : -1500)
             .animation(.easeOut(duration: 1.5))
             .padding(.vertical, 5)

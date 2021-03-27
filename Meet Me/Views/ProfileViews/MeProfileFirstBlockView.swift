@@ -73,6 +73,8 @@ struct PictureCircle: View {
     
     @State var showPHPicker: Bool = false
     @State var imagesFromPHPicker: [UIImage] = [UIImage(named: "cafe")!]
+    @State var showImageCropper: Bool = false
+    @State var croppedImage: UIImage?
     
     var tag: Int
     var isProfilePicture: Bool
@@ -144,11 +146,25 @@ struct PictureCircle: View {
                 }
             }
             .sheet(isPresented: $showPHPicker, content: {
-                ImagePicker(images: $imagesFromPHPicker, showPicker: $showPHPicker, limit: 1) { (imagesPicked) in
-                    if imagesPicked {
-
-                        meProfileVM.addPhotoInPosition(image: imagesFromPHPicker.first!, position: tag)
-                        
+                if !showImageCropper {
+                    ImagePicker(images: $imagesFromPHPicker, showPicker: .constant(true), limit: 1) { (imagesPicked) in
+                        if imagesPicked {
+                            // show image cropper sheet
+                            showImageCropper = true
+                        }
+                    }
+                } else {
+                    ImageCroppingView(shown: $showImageCropper, image: imagesFromPHPicker.first!, croppedImage: $croppedImage) { (imageCropped) in
+                        if imageCropped {
+                            // add cropped Image to database if not nil
+                            if croppedImage != nil {
+                                meProfileVM.addPhotoInPosition(image: croppedImage!, position: tag)
+                            }
+                            if !showImageCropper {
+                                showPHPicker = false
+                            }
+                            
+                        }
                     }
                 }
             })

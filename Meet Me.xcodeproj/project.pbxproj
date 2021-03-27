@@ -51,6 +51,7 @@
 		179B27CA25D48788007F64D6 /* YouEventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C925D48788007F64D6 /* YouEventLineView.swift */; };
 		17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67225C2093D00E4DA78 /* PickerTextField.swift */; };
 		17A2EBC125F2D669003D1921 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A2EBC025F2D669003D1921 /* Enums.swift */; };
+		17AE48FC260E836500A76F88 /* ImageCroppingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE48FB260E836500A76F88 /* ImageCroppingView.swift */; };
 		17AF633525FC2EF100A43BB3 /* MeEventDetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AF633425FC2EF100A43BB3 /* MeEventDetailedView.swift */; };
 		17B0B61125F543F70014B0FD /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B61025F543F70014B0FD /* TabBarView.swift */; };
 		17B0B61525F546810014B0FD /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B61425F546810014B0FD /* TabButtonView.swift */; };
@@ -153,6 +154,7 @@
 		179B27C925D48788007F64D6 /* YouEventLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventLineView.swift; sourceTree = "<group>"; };
 		17A1E67225C2093D00E4DA78 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		17A2EBC025F2D669003D1921 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		17AE48FB260E836500A76F88 /* ImageCroppingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCroppingView.swift; sourceTree = "<group>"; };
 		17AF632925FBF7E000A43BB3 /* Meet Me.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Meet Me.entitlements"; sourceTree = "<group>"; };
 		17AF633425FC2EF100A43BB3 /* MeEventDetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventDetailedView.swift; sourceTree = "<group>"; };
 		17B0B61025F543F70014B0FD /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				1795DFA925DF1923002D537F /* LottieView.swift */,
 				1795DFAD25DF20AD002D537F /* LoadingView.swift */,
 				17DE52EC25EA3F9E000D0B4D /* ImagePicker.swift */,
+				17AE48FB260E836500A76F88 /* ImageCroppingView.swift */,
 				17B0B61025F543F70014B0FD /* TabBarView.swift */,
 				17B0B61425F546810014B0FD /* TabButtonView.swift */,
 				174EFCD625FABDC40028C04C /* RingView.swift */,
@@ -749,6 +752,7 @@
 				174423AA25D9A0DF00D25EDD /* EventModel.swift in Sources */,
 				177F682A25D8937F00BC345B /* KeyboardHandler.swift in Sources */,
 				902EF6FF25D9A51B004464F0 /* EventCreationViewModel.swift in Sources */,
+				17AE48FC260E836500A76F88 /* ImageCroppingView.swift in Sources */,
 				1774B67925D1E35200D1D2F1 /* MainChatView.swift in Sources */,
 				173E48F125FB894600D3DA0A /* YouProfileNView.swift in Sources */,
 				17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */,
