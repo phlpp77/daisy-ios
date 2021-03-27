@@ -41,6 +41,8 @@ struct MainControllerView: View {
     }
     
     func checkUserAccForAutoLogin(){
+        //TODO: Loding screen Philipp 
+        //Start laoding View
         if Auth.auth().currentUser != nil{
             firstly {
                 self.firestoreManagerUserTest.getCurrentUser()
@@ -48,11 +50,13 @@ struct MainControllerView: View {
                 userIsLoggedIn = true
             }.catch { error in
                 userIsLoggedIn = false
+            }.finally {
+                //disappear loading View here
             }
             
         } else {
             userIsLoggedIn = false
-
+            //disappear loading view here
         }
     }
 }

@@ -31,7 +31,9 @@ class ChatListViewModel: ObservableObject {
             }.done{
                 if self.matches.count != 0 {
                     self.matches = self.matches.sorted{
-                        $0.event.distance < $1.event.distance
+                        ($0.event.date,$0.event.startTime ) <
+                            ($1.event.date,$1.event.startTime )
+                       
                     }
                 }
                 else {

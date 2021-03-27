@@ -150,12 +150,16 @@ struct YouEventLineView: View {
                                     self.eventArray = events
                                     showedEventsModel.events = events
                                     showedEventsModel.save()
+                                    self.youEventLineVM.addOneToRefreshCounter()
                                     print("done")
                                 }.catch { error in
                                     print("DEBUG: error in GetYouEventChain: \(error)")
                                     print("DEBUG: \(error.localizedDescription)")
+                                }.finally {
+                                    //enter Code to end Animation here
+                                    // TODO: End Button animation
                                 }
-                                self.youEventLineVM.addOneToRefreshCounter()
+                                
                                 
                             })
                 
