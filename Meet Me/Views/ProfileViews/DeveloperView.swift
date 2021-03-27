@@ -26,7 +26,7 @@ struct DeveloperView: View {
                     developerVM.setShuffelCouterToZeroAllUsers()
                 }, label: {
                     // label text
-                    Text("SetRefreshCounter0")
+                    Text("Set RefreshCounter to 0")
                 })
                 
                 Button(action: {

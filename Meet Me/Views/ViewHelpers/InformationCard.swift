@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct InformationCard: View {
-        
+    
     @Binding var goToNextView: Bool
     @Binding var goToLastView: Bool
     
-    @Binding var index: Int
-    var sliderArray: [SliderModel]
+    @State var index: Int = 0
+    var sliderArray: [InformationCardModel]
     
     
     var body: some View {
@@ -25,26 +25,41 @@ struct InformationCard: View {
                 
                 
                 ZStack {
-                    VStack {
+                    VStack(alignment: .leading) {
                         
-                        Spacer()
-                        
+                        // MARK: Top of the card
                         if sliderArray[index].highlight {
+                            
+                            // highlighted heading
                             Text(sliderArray[index].headerText)
                                 .font(.largeTitle)
                                 .gradientForeground(gradient: secondaryGradient)
+                                .padding(.trailing, 55)
                         } else {
+                            
+                            // normal heading
                             Text(sliderArray[index].headerText)
                                 .font(.largeTitle)
+                                .padding(.trailing, 55)
                         }
                         
-                        
+                        // MARK: Subheading
                         if sliderArray[index].footerText != "" {
                             Text(sliderArray[index].footerText)
                                 .font(.title)
                                 .padding(.top, 5)
                         }
                         
+                        Spacer()
+                        
+                        // MARK: Main info/describing text
+                        if sliderArray[index].subtext != "" {
+                            Text(sliderArray[index].subtext)
+                                .font(.body)
+                                .padding(.top, 5)
+                        }
+                        
+                        // MARK: Image
                         Image(sliderArray[index].image)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -52,24 +67,35 @@ struct InformationCard: View {
                         
                         Spacer()
                         
-                        HStack(spacing: 5.0) {
-                            ForEach(sliderArray.indices, id: \.self) { sliderIndex in
-                                Capsule()
-                                    .frame(width: sliderIndex == index ? 24 : 13, height: 13)
-                                    .foregroundColor(sliderIndex == index ? Color("BackgroundSecondary") : .gray)
+                        // MARK: Bottom dots to show how many cards are left
+                        if sliderArray.count > 1 {
+                            HStack(spacing: 5.0) {
+                                ForEach(sliderArray.indices, id: \.self) { sliderIndex in
+                                    Capsule()
+                                        .frame(width: sliderIndex == index ? 24 : 13, height: 13)
+                                        .foregroundColor(sliderIndex == index ? Color("BackgroundSecondary") : .gray)
+                                }
                             }
+                            .frame(maxWidth: .infinity, alignment: .center)
                         }
                     }
                     .padding()
                     .frame(maxWidth: .infinity)
                     
                     .frame(width: (bounds.size.width - 48), height: (bounds.size.width - 48) * 1.33 + 40)
+                    .background(
+                        Image("me-event-background")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .scaleEffect(1.1)
+                    )
                     .modifier(offWhiteShadow(cornerRadius: 26))
                     .padding(.horizontal, 48)
                     
+                    
                     iconCircle
                         .offset(x: (bounds.size.width - 48) / 2 - 30, y: -((bounds.size.width - 48) * 1.33) / 2 + 10)
-                   
+                    
                     // MARK: Tapping area for changing pictures
                     HStack {
                         // left tap
@@ -84,22 +110,25 @@ struct InformationCard: View {
                                 goForward()
                             }
                     }
-
+                    
                     
                 }
+                
                 
                 Spacer()
                 
                 // MARK: Buttons at the bottom
                 HStack {
                     
-                    // button to go back
-                    Button(action: {
-                        goBackward()
-                    }, label: {
-                        backwardButton
-                    })
-                    .padding(.trailing, 20)
+                    // button to go back in the array or to the last view
+                    if sliderArray.count > 1 {
+                        Button(action: {
+                            goBackward()
+                        }, label: {
+                            backwardButton
+                        })
+                        .padding(.trailing, 20)
+                    }
                     
                     // button to go forward
                     Button(action: {
