@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DeveloperView: View {
+    @ObservedObject var developerVM: DeveloperViewModel = DeveloperViewModel()
     
     
     var body: some View {
@@ -22,10 +23,10 @@ struct DeveloperView: View {
             VStack(spacing: 20.0) {
                 Button(action: {
                     // paste code to work with here
-                    
+                    developerVM.setShuffelCouterToZeroAllUsers()
                 }, label: {
                     // label text
-                    Text("Button")
+                    Text("SetRefreshCounter0")
                 })
                 
                 Button(action: {
