@@ -20,7 +20,7 @@ struct AppLaunchView: View {
             LoadingView(showLoadingScreen: .constant(true))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.white)
+        .background(Color("BackgroundMain"))
         .ignoresSafeArea()
     }
 }
