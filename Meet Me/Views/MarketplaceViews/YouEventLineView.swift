@@ -109,7 +109,7 @@ struct YouEventLineView: View {
         .frame(height: 380)
         .onAppear {
             //Check if it is the first login
-            if firstActions.firstViews["FirstEventShuffle"] == nil {
+            if firstActions.firstViews["FirstEventShuffle"] == false || firstActions.firstViews["FirstEventShuffle"] == nil {
                 //if it is the first Login load events without hitting shuffle button 
                 firstly {
                     self.youEventLineVM.getYouEvents(region: locationManager.region, shuffle: true)

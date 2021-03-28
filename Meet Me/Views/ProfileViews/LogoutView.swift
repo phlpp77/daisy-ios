@@ -11,6 +11,7 @@ import PromiseKit
 
 struct LogoutView: View {
     @ObservedObject var logoutVM: LogoutViewModel = LogoutViewModel()
+    @ObservedObject private var firstActions = FirstActions()
     var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     @Binding var startProcessDone: Bool
     
@@ -21,6 +22,7 @@ struct LogoutView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                 print("now logout")
                 startProcessDone = false
+                    firstActions.firstViews["FirstEventShuffle"] = false
                     self.firestoreManagerUserTest.deletePushNotificationTokenFromUser().catch { error in
                         print(error)
                     }
