@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainExploreView: View {
     
-    // create VM here for market and co
+    @ObservedObject var firstActions: FirstActions = FirstActions()
     
     // states for animation
     @State private var showCreationView: Bool = false
@@ -58,8 +58,14 @@ struct MainExploreView: View {
             
             // create the setup EventView on top of the rest
             if showCreationView {
-                if firstEventCreation {
+                if firstActions.firstViews["FirstEventCreation"] == false || firstActions.firstViews["FirstEventCreation"] == nil {
                     InformationCard(goToNextView: $firstEventCreation, goToLastView: $firstEventCreation, sliderArray: [InformationCardModel(headerText: "Create Event", highlight: true, footerText: "", image: "create-event", sfSymbol: "calendar.badge.plus", buttonText: "OK!", subtext: "Tap on each event aspect to change it directly - create your own unique event!")])
+                        .onChange(of: firstEventCreation, perform: { value in
+                            // update variable to true that user does not see the info again
+                            firstActions.firstViews["FirstEventCreation"] = true
+                            // save the status to the phone
+                            firstActions.save()
+                        })
                 } else {
                     EventCreationView(presentation: $showCreationView, eventArray: $eventArray)
                 }

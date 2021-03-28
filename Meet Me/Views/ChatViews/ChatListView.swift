@@ -49,13 +49,13 @@ struct ChatListView: View {
                                     .contextMenu {
                                         
                                         Button {
-                                            chatListVM.deleteMatchAndBackToPool(match: chatListVM.matches[matchNumber])
+                                            chatListVM.deleteMatchAndBackToPool(match: chatListVM.matches[matchNumber], index: matchNumber)
                                         } label: {
                                             Label("Dissolve Match", systemImage: "person.crop.circle.badge.minus")
                                         }
                                         
                                         Button {
-                                            chatListVM.deleteMatchAndEventCompletely(match: chatListVM.matches[matchNumber])
+                                            chatListVM.deleteMatchAndEventCompletely(match: chatListVM.matches[matchNumber], index: matchNumber)
                                         } label: {
                                             Label("Dissolve Match and delete Event", systemImage: "minus.circle")
                                         }

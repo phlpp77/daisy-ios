@@ -43,6 +43,7 @@ class ChatListViewModel: ObservableObject {
         }.catch { error in
             print("DEBUG: error in getMatchesChain error: \(error)")
             self.messageIfNoMatches = "Drag Events and Match!"
+            print(error.localizedDescription)
         }
     }
     
@@ -64,7 +65,7 @@ class ChatListViewModel: ObservableObject {
     
     
     
-    func deleteMatchAndEventCompletely(match: AllMatchInformationModel) {
+    func deleteMatchAndEventCompletely(match: AllMatchInformationModel, index: Int) {
         firstly {
             when(fulfilled:
                  self.firestoreManagerMatches.deleteMatchFromCurrentUser(chatId: match.chatId),
@@ -80,7 +81,7 @@ class ChatListViewModel: ObservableObject {
         
     }
     
-    func deleteMatchAndBackToPool(match: AllMatchInformationModel) {
+    func deleteMatchAndBackToPool(match: AllMatchInformationModel, index: Int) {
         firstly {
             when(fulfilled:
                  self.firestoreManagerMatches.deleteMatchFromCurrentUser(chatId: match.chatId),
