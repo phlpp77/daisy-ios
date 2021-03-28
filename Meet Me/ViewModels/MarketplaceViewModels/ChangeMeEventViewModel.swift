@@ -45,13 +45,15 @@ class ChangeMeEventViewModel: ObservableObject {
         
     func deleteMeEvent(eventModel: EventModel) {
         firstly {
-            firestoreManagerMatches.deleteEvent(eventId: eventModel.eventId)
+            self.firestoreManagerMatches.deleteEvent(eventId: eventModel.eventId)
+        }.then {
+            self.firestoreManagerMatches.deleteAllLikedUserFromEvent(eventId: eventModel.eventId)
         }.catch { error in
             print("DEBUG: error in deleteMeEvent, error \(error)")
             print("DEBUG: error localized: \(error.localizedDescription)")
         }
         
-        if eventModel.eventMatched == true {
+        if eventModel.eventMatched {
             firstly{
                 firestoreManagerMatches.getChatWithEventId(eventId: eventModel.eventId)
             }.map { chat in

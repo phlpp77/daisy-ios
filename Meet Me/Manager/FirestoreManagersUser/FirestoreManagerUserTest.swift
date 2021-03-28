@@ -76,6 +76,23 @@ class FirestoreManagerUserTest {
             }
         }
     
+    func deletePushNotificationTokenFromUser() ->Promise<Void> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                seal.reject(Err("No User Profile"))
+                return
+            }
+            
+            let _ = db.collection("users").document(currentUser.uid).updateData(["token" : ""]) { error in
+                if let error = error {
+                    seal.reject(error)
+                } else {
+                    seal.fulfill(())
+                }
+            }
+        }
+    }
+    
     func addOneToRefreshCounter() -> Promise<Void> {
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {

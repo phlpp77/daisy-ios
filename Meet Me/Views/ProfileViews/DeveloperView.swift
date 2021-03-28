@@ -31,10 +31,11 @@ struct DeveloperView: View {
                 
                 Button(action: {
                     // paste code to work with here
+                    developerVM.deleteAllOldEvents()
                     
                 }, label: {
                     // label text
-                    Text("Button")
+                    Text("DeleteEveryEventOlderThanYesterday")
                 })
                 
                 Button(action: {
