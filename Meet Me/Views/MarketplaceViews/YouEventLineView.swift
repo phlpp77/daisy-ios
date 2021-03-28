@@ -41,7 +41,7 @@ struct YouEventLineView: View {
                             lineWidth: 2,
                             dash: [10]
                         ))
-                        .foregroundColor(Color.green.opacity(0.9))
+                        .gradientForeground(gradient: secondaryGradient)
                 )
                 .offset(y: 150)
             
