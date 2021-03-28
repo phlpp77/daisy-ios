@@ -61,9 +61,9 @@ struct RingView: View {
                                     .init(color: Color(#colorLiteral(red: 0.0313725508749485, green: 0.45490196347236633, blue: 0.5490196347236633, alpha: 1)).opacity(0.2), location: 0)
                                 ]
                                 ),
-                                center: UnitPoint(x: 0.5, y: 0.6)
+                                center: UnitPoint(x: 0.5, y: 0.55)
                               ),
-                    style: StrokeStyle(lineWidth: lineWidth, lineCap: .round, lineJoin: .round, miterLimit: .infinity, dash: [20, 0], dashPhase: 0 )
+                    style: StrokeStyle(lineWidth: lineWidth, lineCap: .round, lineJoin: .round, miterLimit: .infinity, dash: [20, 0], dashPhase: 0)
                 )
                 .rotationEffect(Angle(degrees: 90))
                 .rotation3DEffect(

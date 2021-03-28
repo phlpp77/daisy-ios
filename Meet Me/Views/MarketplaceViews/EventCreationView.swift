@@ -226,8 +226,14 @@ struct EventCreationView: View {
                 ImagePicker(images: $images, showPicker: $showImagePicker, limit: 1, didFinishPicking: {_ in})
             })
             .onAppear {
+                
+                // standard start time is the next quarter to the actual time
                 startTime = roundedDate
                 startTimeAsString = timeFormatter.string(from: roundedDate)
+                
+                // standard end time is the next quarter to the actual time plus 1 hour
+                endTime = roundedDate + 60 * 60
+                endTimeAsString = timeFormatter.string(from: roundedDate + 60 * 60)
             }
             
             
@@ -297,7 +303,7 @@ struct EventCreationView: View {
         eventCreationVM.date = dateFormatter.date(from: dateAsString) ?? Date()
         eventCreationVM.startTime = timeFormatter.date(from: startTimeAsString) ?? Date()
         eventCreationVM.endTime = timeFormatter.date(from: endTimeAsString) ?? Date()
-        print("DEBUG: Date which is in the string \(dateAsString)")
+        print("DEBUG: Duration which is in the string \(duration)")
         print("DEBUG: Date which gets uploaded \(eventCreationVM.date)")
     }
 }
