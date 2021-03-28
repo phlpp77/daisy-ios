@@ -13,6 +13,7 @@ struct MainControllerView: View {
     
     @State var startProcessDone: Bool = false
     @State var userIsLoggedIn: Bool = false
+    @State var loading: Bool = true
     @State var startTab = 2
     @StateObject var locationManager = LocationManager()
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
@@ -20,15 +21,15 @@ struct MainControllerView: View {
     var body: some View {
         
         // shows the main screen if the startProcess (user-creation) is done OR logged into firebase
-        VStack {
+        ZStack {
             if startProcessDone || userIsLoggedIn {
                 TabBarView(startProcessDone: $startProcessDone).environmentObject(locationManager)
-                    .onAppear{
-
-                    }
-
             } else {
                 MainStartView(startUpDone: $startProcessDone)
+            }
+            
+            if loading {
+                AppLaunchView()
             }
         }
         .onAppear {
@@ -41,8 +42,7 @@ struct MainControllerView: View {
     }
     
     func checkUserAccForAutoLogin(){
-        //TODO: Loding screen Philipp 
-        //Start laoding View
+        
         if Auth.auth().currentUser != nil{
             firstly {
                 self.firestoreManagerUserTest.getCurrentUser()
@@ -51,12 +51,14 @@ struct MainControllerView: View {
             }.catch { error in
                 userIsLoggedIn = false
             }.finally {
-                //disappear loading View here
+                //disappear loading View
+                loading = false
             }
             
         } else {
             userIsLoggedIn = false
-            //disappear loading view here
+            //disappear loading view
+            loading = false
         }
     }
 }

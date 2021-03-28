@@ -14,6 +14,8 @@
 		1705792C25FD825F00A56CE6 /* DatePickerX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705792B25FD825F00A56CE6 /* DatePickerX.swift */; };
 		1705793725FE3C3A00A56CE6 /* InformationCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705793625FE3C3A00A56CE6 /* InformationCardModel.swift */; };
 		1705793A25FE495F00A56CE6 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705793925FE495F00A56CE6 /* OnboardingController.swift */; };
+		171124132610F8C0004A7864 /* pacman-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 171124122610F8C0004A7864 /* pacman-loading.json */; };
+		171124162610F914004A7864 /* AppLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171124152610F914004A7864 /* AppLaunchView.swift */; };
 		1711EEBB25F29C6600D87EFA /* ChatProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711EEBA25F29C6600D87EFA /* ChatProfileView.swift */; };
 		17153EE525A8C5C30072CE83 /* Meet_MeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */; };
 		17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17153EE825A8C5C30072CE83 /* Assets.xcassets */; };
@@ -117,6 +119,8 @@
 		1705792B25FD825F00A56CE6 /* DatePickerX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerX.swift; sourceTree = "<group>"; };
 		1705793625FE3C3A00A56CE6 /* InformationCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCardModel.swift; sourceTree = "<group>"; };
 		1705793925FE495F00A56CE6 /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
+		171124122610F8C0004A7864 /* pacman-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "pacman-loading.json"; sourceTree = "<group>"; };
+		171124152610F914004A7864 /* AppLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunchView.swift; sourceTree = "<group>"; };
 		1711EEBA25F29C6600D87EFA /* ChatProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatProfileView.swift; sourceTree = "<group>"; };
 		17153EE125A8C5C30072CE83 /* Meet Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meet Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17153EE425A8C5C30072CE83 /* Meet_MeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meet_MeApp.swift; sourceTree = "<group>"; };
@@ -395,6 +399,7 @@
 				1774B67425D1E31400D1D2F1 /* MainExploreView.swift */,
 				1774B67825D1E35200D1D2F1 /* MainChatView.swift */,
 				176745BC25F9381700FF28F2 /* MainStartView.swift */,
+				171124152610F914004A7864 /* AppLaunchView.swift */,
 			);
 			path = MainControllerViews;
 			sourceTree = "<group>";
@@ -402,6 +407,7 @@
 		1795DFA025DF1753002D537F /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				171124122610F8C0004A7864 /* pacman-loading.json */,
 				1795DFBE25DF25DD002D537F /* planet-loading.json */,
 				1795DFB825DF252C002D537F /* heard-loading.json */,
 			);
@@ -634,6 +640,7 @@
 				1795DFBA25DF252C002D537F /* heard-loading.json in Resources */,
 				1705792925FD59C500A56CE6 /* GoogleService-Info.plist in Resources */,
 				17153EE925A8C5C30072CE83 /* Assets.xcassets in Resources */,
+				171124132610F8C0004A7864 /* pacman-loading.json in Resources */,
 				1795DFBF25DF25DD002D537F /* planet-loading.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -716,6 +723,7 @@
 				90D42ACF25E966220060311B /* LikedEventModel.swift in Sources */,
 				1778E41325D0904100C5D343 /* DateTextField.swift in Sources */,
 				90F8AB4625BF5CDA00E969E0 /* UserModel.swift in Sources */,
+				171124162610F914004A7864 /* AppLaunchView.swift in Sources */,
 				90D42AFA25EABC590060311B /* FirestoreManagerMatches.swift in Sources */,
 				90D42A9E25E937630060311B /* LikedUserModel.swift in Sources */,
 				9045DD5E260F999200922DA5 /* DeveloperViewModel.swift in Sources */,

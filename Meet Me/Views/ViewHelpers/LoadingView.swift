@@ -14,12 +14,10 @@ struct LoadingView: View {
     var body: some View {
         
         if showLoadingScreen {
-            LottieView(filename: "planet-loading", loopMode: .loop)
+            LottieView(filename: "pacman-loading", loopMode: .loop)
                 .frame(width: 150, height: 150, alignment: .center)
                 .padding()
-                .modifier(FrozenWindowModifier())
         }
-        
     }
 }
 
