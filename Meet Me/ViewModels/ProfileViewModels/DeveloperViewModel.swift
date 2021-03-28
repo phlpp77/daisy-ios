@@ -60,7 +60,6 @@ class DeveloperViewModel: ObservableObject {
                             return nil
                         }
                         DispatchQueue.main.async {
-                            print(userIDs)
                             self.Ids = userIDs
                             seal.fulfill(())
                         }
@@ -137,7 +136,7 @@ class DeveloperViewModel: ObservableObject {
                             return nil
                         }
                         DispatchQueue.main.async {
-                            print(events)
+
                             seal.fulfill(events)
                         }
                     }

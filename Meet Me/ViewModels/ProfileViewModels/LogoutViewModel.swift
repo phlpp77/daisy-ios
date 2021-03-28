@@ -13,6 +13,7 @@ import FirebaseAuth
 
 class LogoutViewModel: ObservableObject {
     
+    
     func authSignOut() -> Promise<Void> {
         return Promise { seal in
             let firebaseAuth = Auth.auth()
@@ -26,6 +27,7 @@ class LogoutViewModel: ObservableObject {
         }
     
     }
+
 }
 
 
