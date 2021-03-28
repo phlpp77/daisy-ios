@@ -70,6 +70,7 @@ class ChatListViewModel: ObservableObject {
                  self.firestoreManagerMatches.deleteMatchFromCurrentUser(chatId: match.chatId),
                  self.firestoreManagerMatches.deleteMatchFromMatchedUser(chatId: match.chatId, matchedUserId: match.user.userId),
                  self.firestoreManagerMatches.deleteChat(chatId: match.chatId),
+                 self.firestoreManagerMatches.deleteAllLikedUserFromEvent(eventId: match.event.eventId),
                  self.firestoreManagerMatches.deleteEvent(eventId: match.event.eventId))
 
         }.catch { error in
