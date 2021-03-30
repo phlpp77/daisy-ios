@@ -302,7 +302,23 @@ struct EventCreationView: View {
         eventCreationVM.pictureURL = pictureURL
         eventCreationVM.date = dateFormatter.date(from: dateAsString) ?? Date()
         eventCreationVM.startTime = timeFormatter.date(from: startTimeAsString) ?? Date()
-        eventCreationVM.endTime = timeFormatter.date(from: endTimeAsString) ?? Date()
+        
+        switch duration {
+        case .veryShort:
+            eventCreationVM.endTime = eventCreationVM.startTime + 30 * 60
+        case .short:
+            eventCreationVM.endTime = eventCreationVM.startTime + 45 * 60
+        case .medium:
+            eventCreationVM.endTime = eventCreationVM.startTime + 60 * 60
+        case .normal:
+            eventCreationVM.endTime = eventCreationVM.startTime + 90 * 60
+        case .long:
+            eventCreationVM.endTime = eventCreationVM.startTime + 120 * 60
+        case .veryLong:
+            eventCreationVM.endTime = eventCreationVM.startTime + 180 * 60
+        }
+        
+//        eventCreationVM.endTime = timeFormatter.date(from: endTimeAsString) ?? Date()
         print("DEBUG: Duration which is in the string \(duration)")
         print("DEBUG: Date which gets uploaded \(eventCreationVM.date)")
     }

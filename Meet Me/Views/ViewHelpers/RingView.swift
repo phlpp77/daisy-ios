@@ -34,6 +34,8 @@ struct RingView: View {
         switch timeInMinutes {
         case let x where x < 60:
             text = String(timeInMinutes)
+        case 60:
+            text = "1h"
         case 90:
             text = "1,5"
         case 180:
