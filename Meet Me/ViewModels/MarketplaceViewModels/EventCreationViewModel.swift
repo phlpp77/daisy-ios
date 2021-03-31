@@ -32,6 +32,7 @@ class EventCreationViewModel: ObservableObject {
     var startTime: Date = Date ()
     var endTime: Date = Date() + 30 * 60
     var pictureURL: String = ""
+    var covidPreferences: String = ""
     let storage = Storage.storage()
     
 
@@ -59,7 +60,7 @@ class EventCreationViewModel: ObservableObject {
         
         
         let eventId = UUID().uuidString
-        var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"", eventPhotosId: "", profilePicture: "",likedUser: false, eventMatched: false,latitude: latitude,longitude: longtiude,hash: hash, distance: 0,searchingFor: "",genderFromCreator: "", birthdayDate: Date(),covidPreferences: "")
+        var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"", eventPhotosId: "", profilePicture: "",likedUser: false, eventMatched: false,latitude: latitude,longitude: longtiude,hash: hash, distance: 0,searchingFor: "",genderFromCreator: "", birthdayDate: Date(),covidPreferences: covidPreferences)
         
 
             firstly{
