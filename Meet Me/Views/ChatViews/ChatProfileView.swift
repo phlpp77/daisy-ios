@@ -18,12 +18,12 @@ struct ChatProfileView: View {
         ZStack {
             
             // MARK: Tab-able Background
-            Color.black.opacity(0.001)
-                .onTapGesture {
-                    withAnimation(.default) {
-                        showChatProfileView.toggle()
-                    }
-                }
+//            Color.black.opacity(0.001)
+//                .onTapGesture {
+//                    withAnimation(.default) {
+//                        showChatProfileView.toggle()
+//                    }
+//                }
             
             // MARK: Profile on top
             YouProfileNView(showYouProfileView: $showChatProfileView, event: $event)

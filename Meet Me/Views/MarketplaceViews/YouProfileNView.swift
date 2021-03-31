@@ -23,8 +23,9 @@ struct YouProfileNView: View {
         GeometryReader { bounds in
             ZStack {
                 
-                Color.black.opacity(0.001)
+                Color.black.opacity(1)
                     .onTapGesture(perform: {
+                        print("area tapped - out of you profile")
                         showYouProfileView = false
                     })
                 
@@ -67,6 +68,11 @@ struct YouProfileNView: View {
                             .foregroundColor(Color("BackgroundSecondary").opacity(0.7))
                             .font(.system(size: 30))
                             .offset(y: ((bounds.size.width - 48) * 1.33 / 2) + 60)
+                            .onTapGesture(perform: {
+                                print("area button xmark - out of you profile")
+                                showYouProfileView = false
+                            })
+                        
                         
                     }
                     
