@@ -19,7 +19,7 @@ struct ChatProfileView: View {
         ZStack {
             
             // MARK: Tab-able Background
-            Color.black.opacity(0.0001)
+            Color.black.opacity(0.001)
                 .onTapGesture {
                     withAnimation(.default) {
                         showChatProfileView.toggle()
