@@ -31,7 +31,7 @@ class FirestoreManagerChat: ObservableObject  {
             db.collection("users")
                 .document(currentUser.uid)
                 .collection("matches")
-                .getDocuments { (snapshot, error) in
+                .addSnapshotListener { (snapshot, error) in
                     if let error = error {
                         seal.reject(error)
                     } else {
