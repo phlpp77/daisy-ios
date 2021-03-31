@@ -30,6 +30,7 @@ struct EventModel: Codable {
     var searchingFor: String
     var genderFromCreator: String
     var birthdayDate: Date
+    var covidPreferences: String
     
 }
 

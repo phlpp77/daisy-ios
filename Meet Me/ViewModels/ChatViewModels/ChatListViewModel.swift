@@ -35,6 +35,7 @@ class ChatListViewModel: ObservableObject {
                             ($1.event.date,$1.event.startTime )
                        
                     }
+                    print(self.matches)
                 }
                 else {
                     self.messageIfNoMatches = "Drag Events and Match!"
@@ -73,6 +74,8 @@ class ChatListViewModel: ObservableObject {
                  self.firestoreManagerMatches.deleteChat(chatId: match.chatId),
                  self.firestoreManagerMatches.deleteAllLikedUserFromEvent(eventId: match.event.eventId),
                  self.firestoreManagerMatches.deleteEvent(eventId: match.event.eventId))
+        }.done {
+            //self.matches.remove(at: index)
 
         }.catch { error in
             print("DEGUB: error in deleteMatch complete, error: \(error)")
@@ -90,6 +93,8 @@ class ChatListViewModel: ObservableObject {
                  self.firestoreManagerMatches.deleteAllLikedUserFromEvent(eventId: match.event.eventId),
                  self.firestoreManagerEventTest.createLikedUserArray(eventId: match.event.eventId),
                  self.firestoreManagerMatches.setLikedUserAndMatchedUserToFalse(eventId: match.event.eventId))
+        }.done {
+            //self.matches.remove(at: index)
 
         }.catch { error in
             print("DEGUB: error in deleteMatch complete, error: \(error)")
