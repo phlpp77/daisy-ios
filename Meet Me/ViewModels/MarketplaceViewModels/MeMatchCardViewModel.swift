@@ -11,6 +11,7 @@ import PromiseKit
 class MeMatchCardViewModel: ObservableObject {
     private var firestoreManagerMatches: FirestoreManagerMatches = FirestoreManagerMatches()
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
+    private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     let sender = PushNotificationSender()
     
     func addMatch(eventModel: EventModel, userModel: UserModel) {
@@ -19,8 +20,11 @@ class MeMatchCardViewModel: ObservableObject {
                 when(fulfilled:
                 self.firestoreManagerMatches.addMatchToCurrentUser(userModel: userModel, eventModel: eventModel, chatId: chatId),
                 self.firestoreManagerMatches.addMatchToMatchedUser(userModel: userModel, eventModel: eventModel, chatId: chatId),
-                self.firestoreManagerMatches.createChatRoom(userModel: userModel, eventModel: eventModel, chatId: chatId),
                 self.firestoreManagerEventTest.setEventMatchedToTrue(eventId: eventModel.eventId))
+            }.then {
+                self.firestoreManagerUserTest.getCurrentUser()
+            }.then { currentUser in
+                self.firestoreManagerMatches.createChatRoom(currentUser: currentUser, userModel: userModel, eventModel: eventModel, chatId: chatId)
             }.done { 
                 self.sender.sendPushNotification(to: userModel.token, title: "Neues Match", body: "Du Hast ein neues Match")
             }.catch { error in
