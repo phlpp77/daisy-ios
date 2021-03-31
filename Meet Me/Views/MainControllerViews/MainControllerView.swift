@@ -22,7 +22,7 @@ struct MainControllerView: View {
         
         // shows the main screen if the startProcess (user-creation) is done OR logged into firebase
         ZStack {
-            if (startProcessDone || userIsLoggedIn) && false{
+            if startProcessDone || userIsLoggedIn {
                 TabBarView(startProcessDone: $startProcessDone).environmentObject(locationManager)
             } else {
                 MainStartView(startUpDone: $startProcessDone)
