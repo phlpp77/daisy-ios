@@ -91,3 +91,18 @@ enum Duration: String, Equatable, CaseIterable {
     
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
 }
+
+// MARK: The Covid19 preference for the event
+// used in: EventCreationView
+enum CovidPreference: String, Equatable, CaseIterable {
+    // outdoor with a mask
+    case outdoorMask = "Outdoors with face covering"
+    // outdoor without a mask
+    case outdoor = "Outdoors without face covering"
+    // indoor and outdoor with mask
+    case inOutMask = "In- and Outdoors with face covering"
+    // user will adapt to other preferences
+    case adapt = "I adapt to your preferences"
+    
+    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
+}

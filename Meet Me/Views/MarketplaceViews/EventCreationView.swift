@@ -25,6 +25,7 @@ struct EventCreationView: View {
     @State private var duration: Duration = .medium
     @State private var pictureURL: String = ""
     
+    @State private var covidPreference: CovidPreference = .adapt
     
     // get nearest quarter as start
     
@@ -182,37 +183,62 @@ struct EventCreationView: View {
                 .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 15)
                 
                 // update button
-                HStack {
-                    Text("Create event")
-                        .foregroundColor(.accentColor)
-                    Image(systemName: "checkmark.circle")
+                VStack {
+                    
+                    Picker(selection: $covidPreference,
+                           label: 
+                            VStack(alignment: .leading, spacing: 0.0) {
+                                Text("Choose your")
+                                Text("Covid-preference")
+                            }
+                            .padding()
+                            .frame(width: 175)
+                            .modifier(FrozenWindowModifier())
+                           
+                           , content: {
+                            ForEach(CovidPreference.allCases, id: \.self) { value in
+                                Text(value.localizedName)
+                                    .tag(value)
+                            }
+                           })
+                        .pickerStyle(MenuPickerStyle())
+                    
+                    HStack {
+                        Text("Create event")
+                            .foregroundColor(.accentColor)
+                        Image(systemName: "checkmark.circle")
+                    }
+                    .opacity(buttonPressed ? 0.5 : 1)
+                    
+                    .padding()
+                    .frame(width: 175)
+                    .modifier(FrozenWindowModifier())
+                    
+                    .scaleEffect(buttonPressed ? 0.8 : 1)
+                    .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
+                    
+                    .onTapGesture {
+                        
+                        // update handling
+                        prepareUpload()
+                        //youEventLineVM.getYouEvents()
+                        eventCreationVM.saveEvent(uiImage: images.last!)
+                        // button animation start
+                        buttonPressed.toggle()
+                        // haptic feedback when button is tapped
+                        hapticPulse(feedback: .rigid)
+                        
+                        // update event array
+                        eventArray.append(createUpdateEvent())
+                        
+                        // close view
+                        presentation = false
+                        
+                    }
                 }
-                .opacity(buttonPressed ? 0.5 : 1)
                 
-                .padding()
-                .modifier(FrozenWindowModifier())
                 .padding(.bottom, 16)
-                .scaleEffect(buttonPressed ? 0.8 : 1)
-                .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
                 .padding(.top, 20)
-                .onTapGesture {
-                    
-                    // update handling
-                    prepareUpload()
-                    //youEventLineVM.getYouEvents()
-                    eventCreationVM.saveEvent(uiImage: images.last!)
-                    // button animation start
-                    buttonPressed.toggle()
-                    // haptic feedback when button is tapped
-                    hapticPulse(feedback: .rigid)
-                    
-                    // update event array
-                    eventArray.append(createUpdateEvent())
-                    
-                    // close view
-                    presentation = false
-                    
-                }
                 
                 // xmark symbol to show the user how to dismiss the view
                 Image(systemName: "xmark")
@@ -261,27 +287,27 @@ struct EventCreationView: View {
                 }
             }
             
-//            Image(systemName: "xmark.circle")
-//                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-//                .padding(10)
-//                .background(BlurView(style: .systemMaterial))
-//                .clipShape(Circle())
-//                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
-//                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
-//                .scaleEffect(buttonPressed ? 0.8 : 1)
-//                .opacity(buttonPressed ? 0.5 : 1)
-//                .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
-//                .onTapGesture {
-//                    // button animation start
-//                    buttonPressed.toggle()
-//
-//                    // haptic feedback when button is tapped
-//                    hapticPulse(feedback: .rigid)
-//
-//                    // close view
-//                    presentation = false
-//                }
-//                .offset(x: 130, y: -320)
+            //            Image(systemName: "xmark.circle")
+            //                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+            //                .padding(10)
+            //                .background(BlurView(style: .systemMaterial))
+            //                .clipShape(Circle())
+            //                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+            //                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+            //                .scaleEffect(buttonPressed ? 0.8 : 1)
+            //                .opacity(buttonPressed ? 0.5 : 1)
+            //                .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
+            //                .onTapGesture {
+            //                    // button animation start
+            //                    buttonPressed.toggle()
+            //
+            //                    // haptic feedback when button is tapped
+            //                    hapticPulse(feedback: .rigid)
+            //
+            //                    // close view
+            //                    presentation = false
+            //                }
+            //                .offset(x: 130, y: -320)
             
         }
         
@@ -298,6 +324,7 @@ struct EventCreationView: View {
     
     // function to convert strings into dates for upload into the database
     func prepareUpload() {
+        
         eventCreationVM.category = category
         eventCreationVM.pictureURL = pictureURL
         eventCreationVM.date = dateFormatter.date(from: dateAsString) ?? Date()
@@ -318,7 +345,7 @@ struct EventCreationView: View {
             eventCreationVM.endTime = eventCreationVM.startTime + 180 * 60
         }
         
-//        eventCreationVM.endTime = timeFormatter.date(from: endTimeAsString) ?? Date()
+        //        eventCreationVM.endTime = timeFormatter.date(from: endTimeAsString) ?? Date()
         print("DEBUG: Duration which is in the string \(duration)")
         print("DEBUG: Date which gets uploaded \(eventCreationVM.date)")
     }
