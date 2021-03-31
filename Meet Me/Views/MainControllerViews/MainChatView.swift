@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainChatView: View {
     
-    @ObservedObject var firstActions: FirstActions = FirstActions()
+    @StateObject var firstActions: FirstActions = FirstActions()
     
     @State var showInformation: Bool = true
     
@@ -32,14 +32,8 @@ struct MainChatView: View {
                         firstActions.save()
                     })
             }
-//            if showInformation {
-//                InformationCard(goToNextView: $showInformation, goToLastView: $showInformation, sliderArray: [InformationCardModel(headerText: "Chat Area", highlight: true, footerText: "", image: "chat", sfSymbol: "bubble.left.and.bubble.right.fill", buttonText: "OK!", subtext: "Here you can chat with the people you matched. You can dissolve a match or delete the whole event with a long-press on each chat.")])
-//            }
             
         }
-//        .onAppear {
-//            showInformation = true
-//        }
     }
 }
 
