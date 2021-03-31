@@ -22,6 +22,7 @@ struct LogoutView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                 print("now logout")
                 startProcessDone = false
+                    print("startprocess: \(startProcessDone)")
                     firstActions.firstViews["FirstEventShuffle"] = false
                     self.firestoreManagerUserTest.deletePushNotificationTokenFromUser().catch { error in
                         print(error)

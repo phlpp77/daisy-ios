@@ -108,30 +108,30 @@ struct ProfileCreationView: View {
                         // get the birthday date of the user
                         BirthdayLineView(birthday: $birthdayDate, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[2] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[2] ? .constant("Clear") : .constant("BackgroundMain"))
                         
-                        // create image for the third to the fourth step of the pathway
-                        Image("Pathway-ProfileCreation")
-                            .resizable()
-                            .frame(width: 268.58, height: 92.92, alignment: .center)
-                        
-                        // get for what the user is searching (women, men, both)
-                        SearchingLineView(searchingFor: $addProfileCreationVM.searchingFor, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[3] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[3] ? .constant("Clear") : .constant("BackgroundMain"))
-                        
-                        // create image for the fourth to the fifth step of the pathway
-                        Image("Pathway-ProfileCreation")
-                            .resizable()
-                            .frame(width: 268.58, height: 92.92, alignment: .center)
-                            .rotation3DEffect(
-                                Angle(degrees: 180),
-                                axis: (x: 0, y: 1.0, z: 0.0)
-                            )
-                        
-                        // get the user permission to use the current position
-                        LocationLineView(acceptLocation: $acceptLocation, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[4] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[4] ? .constant("Clear") : .constant("BackgroundMain"))
+//                        // create image for the third to the fourth step of the pathway
+//                        Image("Pathway-ProfileCreation")
+//                            .resizable()
+//                            .frame(width: 268.58, height: 92.92, alignment: .center)
+//
+//                        // get for what the user is searching (women, men, both)
+//                        SearchingLineView(searchingFor: $addProfileCreationVM.searchingFor, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[3] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[3] ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         // create image for the fifth to the sixth step of the pathway
                         Image("Pathway-ProfileCreation")
                             .resizable()
                             .frame(width: 268.58, height: 92.92, alignment: .center)
+                        
+//                        // get the user permission to use the current position
+//                        LocationLineView(acceptLocation: $acceptLocation, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[4] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[4] ? .constant("Clear") : .constant("BackgroundMain"))
+//
+//                        // create image for the fourth to the fifth step of the pathway
+//                        Image("Pathway-ProfileCreation")
+//                            .resizable()
+//                            .frame(width: 268.58, height: 92.92, alignment: .center)
+//                            .rotation3DEffect(
+//                                Angle(degrees: 180),
+//                                axis: (x: 0, y: 1.0, z: 0.0)
+//                            )
                         
                         // upload image to database
                         PictureLineView(pictureText: acceptedAction[5] ? .constant("You look good today") : .constant("No picture"), showPicker: $showImagePicker, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[5] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[5] ? .constant("Clear") : .constant("BackgroundMain"))
@@ -154,6 +154,8 @@ struct ProfileCreationView: View {
                         
                         // update button
                         Button(action: {
+                            addProfileCreationVM.searchingFor = "Both"
+                            
                             addProfileCreationVM.createUser(images: images, bDate: birthdayDate)
                             // haptic feedback when button is tapped
                             hapticPulse(feedback: .rigid)
@@ -320,13 +322,16 @@ struct GenderLineView: View {
     var body: some View {
         HStack {
             
-            Text(gender)
+            
             
             Button(action: {
                 // configure which step it is in the pathway
                 pathwayStep = 1
                 showAlertBox = true
             }) {
+                Text(gender)
+                    .foregroundColor(.primary)
+                
                 Image(systemName: iconName)
                     .font(.title)
                     .padding(4)
@@ -371,12 +376,15 @@ struct BirthdayLineView: View {
                     .padding(4)
                     .background(Color(backgroundColor))
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                
+                Text(birthday)
+                    .foregroundColor(.primary)
+                    .onAppear {
+                        birthday = "Birthday"
+                    }
             }
             
-            Text(birthday)
-                .onAppear {
-                    birthday = "Birthday"
-                }
+            
             
         }
         .padding(.horizontal, 16)
@@ -452,6 +460,10 @@ struct LocationLineView: View {
                 pathwayStep = 4
                 showAlertBox = true
             }) {
+                
+                Text("Location")
+                    .foregroundColor(.primary)
+                
                 Image(systemName: iconName)
                     .font(.title)
                     .padding(4)
@@ -459,7 +471,7 @@ struct LocationLineView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
             }
             
-            Text("Location")
+            
             
         }
         .padding(.horizontal, 16)
@@ -490,7 +502,7 @@ struct PictureLineView: View {
     var body: some View {
         HStack {
             
-            Text(pictureText)
+            
             
             Button(action: {
                 // configure which step it is in the pathway
@@ -504,6 +516,9 @@ struct PictureLineView: View {
                     .padding(4)
                     .background(Color(backgroundColor))
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                
+                Text(pictureText)
+                    .foregroundColor(.primary)
             }
             
             
