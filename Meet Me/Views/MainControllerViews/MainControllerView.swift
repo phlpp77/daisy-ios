@@ -36,7 +36,9 @@ struct MainControllerView: View {
             checkUserAccForAutoLogin()
         }
         .onChange(of: startProcessDone, perform: { value in
+            print("before check. startprocess: \(startProcessDone) and userlogged: \(userIsLoggedIn)")
             checkUserAccForAutoLogin()
+            print("after check. startprocess: \(startProcessDone) and userlogged: \(userIsLoggedIn)")
         })
         
     }

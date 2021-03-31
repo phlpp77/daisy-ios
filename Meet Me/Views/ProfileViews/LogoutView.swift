@@ -28,25 +28,25 @@ struct LogoutView: View {
             }.done {
                 print("now logout")
                 startProcessDone = false
-                    print("startprocess: \(startProcessDone)")
-                    firstActions.firstViews["FirstEventShuffle"] = false
-                    self.firestoreManagerUserTest.deletePushNotificationTokenFromUser().catch { error in
-                        print(error)
-                    }
+                print("startprocess: \(startProcessDone)")
+                firstActions.firstViews["FirstEventShuffle"] = false
+                self.firestoreManagerUserTest.deletePushNotificationTokenFromUser().catch { error in
+                    print(error)
+                }
                 
             }.catch { error in
                 print(error)
             }
-
+            
         }, label: {
             Text("Logout")
         })
         .padding()
         .modifier(FrozenWindowModifier())
-            
-        }
         
     }
+    
+}
 
 
 struct LogoutView_Previews: PreviewProvider {
