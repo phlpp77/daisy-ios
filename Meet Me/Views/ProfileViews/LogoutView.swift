@@ -27,6 +27,7 @@ struct LogoutView: View {
                 logoutVM.authSignOut()
             }.done {
                 print("now logout")
+                startProcessDone = true
                 startProcessDone = false
                 print("startprocess: \(startProcessDone)")
             }.catch { error in
@@ -35,9 +36,10 @@ struct LogoutView: View {
             
         }, label: {
             Text("Logout")
+                .padding()
+                .modifier(FrozenWindowModifier())
         })
-        .padding()
-        .modifier(FrozenWindowModifier())
+        
         
     }
     

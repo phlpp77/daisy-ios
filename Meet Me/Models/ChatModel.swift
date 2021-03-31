@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+
 struct ChatModel: Codable {
     var chatId: String
     var eventCreatorId: String

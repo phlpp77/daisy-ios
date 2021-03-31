@@ -12,14 +12,13 @@ struct ChatProfileView: View {
     
     @Binding var showChatProfileView: Bool
     @Binding var event: EventModel
-//    @Binding var user: UserModel
     
     var body: some View {
         
         ZStack {
             
             // MARK: Tab-able Background
-            Color.black.opacity(0.0001)
+            Color.black.opacity(0.001)
                 .onTapGesture {
                     withAnimation(.default) {
                         showChatProfileView.toggle()
@@ -30,10 +29,6 @@ struct ChatProfileView: View {
             YouProfileNView(showYouProfileView: $showChatProfileView, event: $event)
             
         }
-//        .onAppear {
-//            event.userId = user.userId
-//
-//        }
     }
 }
 

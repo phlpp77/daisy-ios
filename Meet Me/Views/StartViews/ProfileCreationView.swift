@@ -45,8 +45,10 @@ struct ProfileCreationView: View {
     
     // show
     @State var showImagePicker = false
+    @State var showImageCropper = false
     // images in array
     @State var images: [UIImage] = []
+    @State var croppedImage: UIImage?
     
     // image (swiftUI)
     //@State var image: Image?
@@ -156,7 +158,7 @@ struct ProfileCreationView: View {
                         Button(action: {
                             addProfileCreationVM.searchingFor = "Both"
                             
-                            addProfileCreationVM.createUser(images: images, bDate: birthdayDate)
+                            addProfileCreationVM.createUser(images: [croppedImage!], bDate: birthdayDate)
                             // haptic feedback when button is tapped
                             hapticPulse(feedback: .rigid)
                             
@@ -230,11 +232,35 @@ struct ProfileCreationView: View {
                     // image picker view
                     case 5:
                         Color.clear
+//                            .sheet(isPresented: $showImagePicker, content: {
+//                                ImagePicker(images: $images, showPicker: $showImagePicker, limit: 3) { (_) in
+//                                    acceptedAction[5] = true
+//                                }
+//                            })
                             .sheet(isPresented: $showImagePicker, content: {
-                                ImagePicker(images: $images, showPicker: $showImagePicker, limit: 3) { (_) in
-                                    acceptedAction[5] = true
+                                if !showImageCropper {
+                                    ImagePicker(images: $images, showPicker: .constant(true), limit: 1) { (imagesPicked) in
+                                        if imagesPicked {
+                                            // show image cropper sheet
+                                            showImageCropper = true
+                                        }
+                                    }
+                                } else {
+                                    ImageCroppingView(shown: $showImageCropper, image: images.first!, croppedImage: $croppedImage) { (imageCropped) in
+                                        if imageCropped {
+                                            // add cropped Image to database if not nil
+                                            if croppedImage != nil {
+                                                acceptedAction[5] = true
+                                            }
+                                            if !showImageCropper {
+                                                showImagePicker = false
+                                            }
+                                            
+                                        }
+                                    }
                                 }
                             })
+                        
                         
                         
                     // the default is 0 which is the first step in the pathway -> name creation
