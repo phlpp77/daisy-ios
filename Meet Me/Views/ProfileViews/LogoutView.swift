@@ -27,6 +27,7 @@ struct LogoutView: View {
                 logoutVM.authSignOut()
             }.done {
                 print("now logout")
+                startProcessDone = true
                 startProcessDone = false
                 print("startprocess: \(startProcessDone)")
                 firstActions.firstViews["FirstEventShuffle"] = false
