@@ -51,6 +51,16 @@ struct YouEventLineView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 30) {
                         
+                        // show message if no events are available
+                        if eventArray.count < 1 {
+                            Text("Sorry, no events available. Press REFRESH to see new ones!")
+                                .padding(8)
+                                .frame(width: 175, alignment: .center)
+                                .modifier(offWhiteShadow(cornerRadius: 12))
+                                .padding(.leading, 10)
+                                
+                        }
+                        
                         // create a view for each event in the array
                         ForEach(eventArray.indices, id: \.self) { eventIndex in
                             GeometryReader { geometry in
@@ -99,8 +109,8 @@ struct YouEventLineView: View {
             // loading screen deactivated
             //            LoadingView(showLoadingScreen: $loading)
             
-//                boomBar
-//                    .opacity(pressDone ? 0 : 0.95)
+            //                boomBar
+            //                    .opacity(pressDone ? 0 : 0.95)
             
             
             
@@ -145,9 +155,6 @@ struct YouEventLineView: View {
             Text("REFRESH")
                 .gradientForeground(gradient: secondaryGradient)
                 .font(.largeTitle)
-                .frame(minWidth: 175, minHeight: 175)
-//                .frame(width: longPress ? 200 : 175, height: longPress ? 200 : 175)
-                
                 
                 .gesture(LongPressGesture(minimumDuration: 2)
                             .updating($longPress) { currentState, gestureState, transaction in
@@ -179,17 +186,17 @@ struct YouEventLineView: View {
                                 
                                 
                             })
-                .frame(width: 175, height: 175, alignment: .center)
-                .modifier(offWhiteShadow(cornerRadius: 14))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .trim(from: longPress ? 0 : 1, to: 1)
-                        .stroke(Color.secondary, style: StrokeStyle(lineWidth: longPress ? 30 : 4, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [longPress ? 800 : 0, 1000], dashPhase: 0))
-                )
-                .padding(30)
-                .frame(width: 250, height: 250, alignment: .center)
             
         }
+        .frame(width: 175, height: 175, alignment: .center)
+        .modifier(offWhiteShadow(cornerRadius: 14))
+        .overlay(
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .trim(from: longPress ? 0 : 1, to: 1)
+                .stroke(Color.secondary, style: StrokeStyle(lineWidth: longPress ? 30 : 4, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [longPress ? 800 : 0, 1000], dashPhase: 0))
+        )
+        .padding(30)
+        .frame(width: 250, height: 250, alignment: .center)
         
     }
     
@@ -199,14 +206,14 @@ struct YouEventLineView: View {
         Image("Beam")
             .resizable()
             .aspectRatio(contentMode: .fill)
-//            .frame(maxWidth: pressDone ? .infinity : 0, maxHeight: pressDone ? .infinity : 0)
+            //            .frame(maxWidth: pressDone ? .infinity : 0, maxHeight: pressDone ? .infinity : 0)
             .frame(width: 400, height: 350, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .offset(x: pressDone ? 0 : -1500)
             .animation(.easeOut(duration: 1.5))
             .padding(.vertical, 5)
             .onChange(of: pressDone, perform: { value in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
-                                                pressDone = false
+                    pressDone = false
                     
                 })
             })
