@@ -18,8 +18,14 @@ struct LogoutView: View {
     var body: some View {
         
         Button(action: {
-            logoutVM.authSignOut().done {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+            
+            firstActions.firstViews["FirstEventShuffle"] = false
+            
+            firstly {
+                self.firestoreManagerUserTest.deletePushNotificationTokenFromUser()
+            }.then {
+                logoutVM.authSignOut()
+            }.done {
                 print("now logout")
                 startProcessDone = false
                     print("startprocess: \(startProcessDone)")
@@ -29,8 +35,9 @@ struct LogoutView: View {
                     }
                 }
             }.catch { error in
-                print("DEBUG: error by Logout error: \(error)")
-        }
+                print(error)
+            }
+
         }, label: {
             Text("Logout")
         })

@@ -26,7 +26,7 @@ class MeMatchCardViewModel: ObservableObject {
             }.then { currentUser in
                 self.firestoreManagerMatches.createChatRoom(currentUser: currentUser, userModel: userModel, eventModel: eventModel, chatId: chatId)
             }.done { 
-                self.sender.sendPushNotification(to: userModel.token, title: "Neues Match", body: "Du Hast ein neues Match")
+                self.sender.sendPushNotification(to: userModel.token, title: "New Match", body: "you have a new match")
             }.catch { error in
                 print("DEBUG: Fehler in addMatchChain Error: \(error)")
                 print("DEBUG: Error in addMatchChain localized: \(error.localizedDescription)")

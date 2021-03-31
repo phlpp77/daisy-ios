@@ -16,6 +16,7 @@ class ChatListViewModel: ObservableObject {
     private var firestoreManagerChat: FirestoreManagerChat = FirestoreManagerChat()
     private var firestoreManagerMatches: FirestoreManagerMatches = FirestoreManagerMatches()
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
+    private var firestroeManagerFotoEventTest: FirestoreFotoManagerEventTest = FirestoreFotoManagerEventTest()
     private var matchDoc : [MatchModel] = []
     @Published var matches : [AllMatchInformationModel] = []
     @Published var messageIfNoMatches = ""
@@ -73,7 +74,9 @@ class ChatListViewModel: ObservableObject {
                  self.firestoreManagerMatches.deleteMatchFromMatchedUser(chatId: match.chatId, matchedUserId: match.user.userId),
                  self.firestoreManagerMatches.deleteChat(chatId: match.chatId),
                  self.firestoreManagerMatches.deleteAllLikedUserFromEvent(eventId: match.event.eventId),
-                 self.firestoreManagerMatches.deleteEvent(eventId: match.event.eventId))
+                 self.firestoreManagerMatches.deleteEvent(eventId: match.event.eventId),
+                 self.firestroeManagerFotoEventTest.deleteImageFromStorage(storageId: match.event.eventPhotosId))
+            
         }.done {
             //self.matches.remove(at: index)
 
