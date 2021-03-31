@@ -293,6 +293,7 @@ struct NameLineView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                 
                 Text(name)
+                    .foregroundColor(.primary)
             }
             
             

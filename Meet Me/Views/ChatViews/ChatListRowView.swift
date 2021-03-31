@@ -78,11 +78,10 @@ struct ChatListRowView: View {
             .modifier(offWhiteShadow(cornerRadius: 12))
             .padding(.horizontal, 10)
             
-            // FIXME: add the time back to the if
-            // show soon when Event is in the next 12 hours ------------> Date().distance(to: match.event.date) < 43200
-            if true {
+            // show soon when Event is in the next 12 hours and "event over when it's over
+            if Date().distance(to: combineDateWithTime(date: match.event.date, time: match.event.startTime)!) < 43200 {
                 HStack {
-                    Text(Date().distance(to: match.event.date) < 0 ? "EVENT over" : "soon!")
+                    Text(Date().distance(to: combineDateWithTime(date: match.event.date, time: match.event.startTime)!) < 0 ? "Event over" : "soon!")
                         .padding(4)
                         .foregroundColor(.white)
                         .background(Color.accentColor)
@@ -111,12 +110,47 @@ struct ChatListRowView: View {
         // on appear
         .onAppear {
             switch match.event.category {
+            
+            // event for meeting for a walk
+            case "Walk":
+                firstPartString = "Go for a walk with"
+            // event for meeting in a cafe
             case "Café":
                 firstPartString = "Drinking coffee with"
+            // event for meeting eating together
+            case "Food":
+                firstPartString = "Eating with"
+            // event for meeting for doing sports together
+            case "Sport":
+                firstPartString = "Doing an exercise with"
+            // event for meeting in a bar
+            case "Bar":
+                firstPartString = "Having drinks with"
+            // event for meeting for everything else which is not listed above
             default:
-                firstPartString = "Event with"
+                firstPartString = "Meeting with"
             }
         }
+    }
+    
+    // MARK: Functions
+    
+    // combine the day form the date and time from startTimeDate
+    func combineDateWithTime(date: Date, time: Date) -> Date? {
+        let calendar = NSCalendar.current
+        
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+        let timeComponents = calendar.dateComponents([.hour, .minute, .second], from: time)
+        
+        var mergedComponents = DateComponents()
+        mergedComponents.year = dateComponents.year!
+        mergedComponents.month = dateComponents.month!
+        mergedComponents.day = dateComponents.day!
+        mergedComponents.hour = timeComponents.hour!
+        mergedComponents.minute = timeComponents.minute!
+        mergedComponents.second = timeComponents.second!
+        
+        return calendar.date(from: mergedComponents)
     }
 }
 
