@@ -288,7 +288,7 @@ struct EventCreationView: View {
     }
     
     func createUpdateEvent() -> EventModel {
-        let event = EventModel(eventId: "", userId: "", category: category, date: date, startTime: startTime, endTime: endTime, pictureURL: pictureURL, profilePicture: "", likedUser: false,eventMatched: false, latitude: 0.0, longitude: 0.0, hash: "", distance: 0, searchingFor: "", genderFromCreator: "", birthdayDate: Date(), covidPreferences: "")
+        let event = EventModel(eventId: "", userId: "", category: category, date: date, startTime: startTime, endTime: endTime, pictureURL: pictureURL, eventPhotosId: "", profilePicture: "", likedUser: false,eventMatched: false, latitude: 0.0, longitude: 0.0, hash: "", distance: 0, searchingFor: "", genderFromCreator: "", birthdayDate: Date(), covidPreferences: "")
         
         //let eventObject = EventModel(eventModel: event, position: .constant(.zero))
         

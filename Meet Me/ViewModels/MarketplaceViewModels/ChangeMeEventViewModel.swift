@@ -45,9 +45,9 @@ class ChangeMeEventViewModel: ObservableObject {
         
     func deleteMeEvent(eventModel: EventModel) {
         firstly {
-            self.firestoreManagerMatches.deleteEvent(eventId: eventModel.eventId)
-        }.then {
-            self.firestoreManagerMatches.deleteAllLikedUserFromEvent(eventId: eventModel.eventId)
+            when(fulfilled:self.firestoreManagerMatches.deleteAllLikedUserFromEvent(eventId: eventModel.eventId),
+                           self.firestoreManagerMatches.deleteEvent(eventId: eventModel.eventId),
+                           self.firestoreFotoManagerEventTest.deleteImageFromStorage(storageId: event.eventPhotosId))
         }.catch { error in
             print("DEBUG: error in deleteMeEvent, error \(error)")
             print("DEBUG: error localized: \(error.localizedDescription)")

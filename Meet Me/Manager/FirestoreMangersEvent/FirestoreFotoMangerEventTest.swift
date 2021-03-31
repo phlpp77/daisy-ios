@@ -16,6 +16,8 @@ class FirestoreFotoManagerEventTest: ObservableObject {
     
     let storage = Storage.storage()
     private var db: Firestore
+    var imageName = ""
+    
 //    @Published var photoModel: [PhotoModelObject] = []
 //    var stockPhotoModel: PhotoModel = PhotoModel()
 //    var url: URL?
@@ -44,7 +46,7 @@ class FirestoreFotoManagerEventTest: ObservableObject {
     func uploadEventPhoto(data: Data) -> Promise<URL> {
         return Promise { seal in
             
-            let imageName = UUID().uuidString
+            imageName = UUID().uuidString
             let storageRef = storage.reference()
             let photoRef = storageRef.child("EventImages/\(imageName).png")
             
@@ -74,11 +76,27 @@ class FirestoreFotoManagerEventTest: ObservableObject {
             do {
                 let _ = db.collection("events")
                     .document(eventId)
-                    .updateData(["pictureURL" : url.absoluteString])
+                    .updateData(["pictureURL" : url.absoluteString,
+                                "eventPhotosId" : imageName])
                 seal.fulfill(())
             }
         }
     }
+    
+    func deleteImageFromStorage(storageId: String?) ->Promise<Void> {
+        return Promise { seal in
+            print("delete Storage aufgerufen")
+            if storageId != nil {
+            let storageRef = storage.reference()
+            let photoRef = storageRef.child("EventImages/\(storageId!).png")
+            
+            photoRef.delete()
+                } else {
+                    seal.fulfill(())
+                }
+            seal.fulfill(())
+            }
+        }
 }
     
     
