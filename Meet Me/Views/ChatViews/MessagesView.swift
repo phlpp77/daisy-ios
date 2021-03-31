@@ -80,7 +80,7 @@ struct MessagesView: View {
             }
 
             if showChatProfileView {
-                ChatProfileView(showChatProfileView: $showChatProfileView, event: Binding($eventWithOtherUser)!)
+                YouProfileNView(showYouProfileView: $showChatProfileView, event: Binding($eventWithOtherUser)!)
             }
             
             
