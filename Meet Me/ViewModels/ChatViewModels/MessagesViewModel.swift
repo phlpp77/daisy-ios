@@ -65,7 +65,7 @@ class MessagesViewModel: ObservableObject {
         }.then {
             self.firestoreMangaerUser.getCurrentUser()
         }.done { user in
-            self.sender.sendPushNotification(to: allMatchInformation.user.token, title: "Neue Nachricht", body: "\(user.name) hat dir eine neue Nachricht geschickt")
+            self.sender.sendPushNotification(to: allMatchInformation.user.token, title: "New Message", body: "\(user.name) sent you new message")
         }.catch { error in
             print("DEBUG: error in MessageUploadChain error: \(error)")
             print("DEGUB: error localized: \(error.localizedDescription)")
