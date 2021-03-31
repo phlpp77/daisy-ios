@@ -324,7 +324,7 @@ struct EventCreationView: View {
     
     // function to convert strings into dates for upload into the database
     func prepareUpload() {
-        
+        eventCreationVM.covidPreferences = covidPreference.rawValue
         eventCreationVM.category = category
         eventCreationVM.pictureURL = pictureURL
         eventCreationVM.date = dateFormatter.date(from: dateAsString) ?? Date()

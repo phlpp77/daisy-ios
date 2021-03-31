@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ChatProfileView: View {
     
-    @Binding var event: EventModel
+    
     @Binding var showChatProfileView: Bool
+    @Binding var event: EventModel
+//    @Binding var user: UserModel
     
     var body: some View {
         
@@ -28,12 +30,16 @@ struct ChatProfileView: View {
             YouProfileNView(showYouProfileView: $showChatProfileView, event: $event)
             
         }
+//        .onAppear {
+//            event.userId = user.userId
+//
+//        }
     }
 }
 
 struct ChatProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatProfileView(event: .constant(stockEvent), showChatProfileView: .constant(true))
+        ChatProfileView(showChatProfileView: .constant(true), event: .constant(stockEvent))
     }
 }
 

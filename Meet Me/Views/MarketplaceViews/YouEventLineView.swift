@@ -140,21 +140,15 @@ struct YouEventLineView: View {
         
         
         VStack {
-            
+            Text("Press and hold to")
+                .font(.footnote)
             Text("REFRESH")
                 .gradientForeground(gradient: secondaryGradient)
                 .font(.largeTitle)
                 .frame(minWidth: 175, minHeight: 175)
 //                .frame(width: longPress ? 200 : 175, height: longPress ? 200 : 175)
                 
-                .frame(width: 175, height: 175, alignment: .center)
-                .modifier(offWhiteShadow(cornerRadius: 14))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .trim(from: longPress ? 0 : 1, to: 1)
-                        .stroke(Color.secondary, style: StrokeStyle(lineWidth: longPress ? 30 : 4, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [longPress ? 800 : 0, 1000], dashPhase: 0))
-                )
-                .padding(30)
+                
                 .gesture(LongPressGesture(minimumDuration: 2)
                             .updating($longPress) { currentState, gestureState, transaction in
                                 
@@ -185,7 +179,14 @@ struct YouEventLineView: View {
                                 
                                 
                             })
-                
+                .frame(width: 175, height: 175, alignment: .center)
+                .modifier(offWhiteShadow(cornerRadius: 14))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 14, style: .continuous)
+                        .trim(from: longPress ? 0 : 1, to: 1)
+                        .stroke(Color.secondary, style: StrokeStyle(lineWidth: longPress ? 30 : 4, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [longPress ? 800 : 0, 1000], dashPhase: 0))
+                )
+                .padding(30)
                 .frame(width: 250, height: 250, alignment: .center)
             
         }

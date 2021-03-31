@@ -20,6 +20,8 @@ struct MessagesView: View {
     @State var showChatProfileView: Bool = false
     @State var showChatEventView: Bool = false
     
+    @State var eventWithOtherUser: EventModel = stockEvent
+    
     var body: some View {
         
         ZStack {
@@ -72,9 +74,13 @@ struct MessagesView: View {
             }
             .opacity(showChatProfileView ? 0.1 : 1)
             .opacity(showChatEventView ? 0.1 : 1)
+            .onAppear {
+                eventWithOtherUser = match.event
+                eventWithOtherUser.userId = match.user.userId
+            }
             
             if showChatProfileView {
-                ChatProfileView(event: $match.event, showChatProfileView: $showChatProfileView)
+                ChatProfileView(showChatProfileView: $showChatProfileView, event: $eventWithOtherUser)
             }
             
             

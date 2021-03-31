@@ -33,7 +33,7 @@ struct LogoutView: View {
                     self.firestoreManagerUserTest.deletePushNotificationTokenFromUser().catch { error in
                         print(error)
                     }
-                }
+                
             }.catch { error in
                 print(error)
             }
