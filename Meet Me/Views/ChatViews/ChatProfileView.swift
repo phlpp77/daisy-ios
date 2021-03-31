@@ -12,7 +12,6 @@ struct ChatProfileView: View {
     
     @Binding var showChatProfileView: Bool
     @Binding var event: EventModel
-//    @Binding var user: UserModel
     
     var body: some View {
         
@@ -30,10 +29,6 @@ struct ChatProfileView: View {
             YouProfileNView(showYouProfileView: $showChatProfileView, event: $event)
             
         }
-//        .onAppear {
-//            event.userId = user.userId
-//
-//        }
     }
 }
 

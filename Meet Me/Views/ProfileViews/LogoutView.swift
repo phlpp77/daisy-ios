@@ -41,9 +41,10 @@ struct LogoutView: View {
             
         }, label: {
             Text("Logout")
+                .padding()
+                .modifier(FrozenWindowModifier())
         })
-        .padding()
-        .modifier(FrozenWindowModifier())
+        
         
     }
     
