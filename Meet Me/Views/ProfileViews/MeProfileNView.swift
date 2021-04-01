@@ -10,7 +10,7 @@ import SwiftUI
 struct MeProfileNView: View {
     
     @State var showDeveloperView: Bool = false
-//    @EnvironmentObject currentUser: UserModel
+    @EnvironmentObject var meProfileVM: MeProfileViewModel
     
     var body: some View {
         
@@ -19,7 +19,9 @@ struct MeProfileNView: View {
             // Header
             HeaderView()
                 .onTapGesture {
-                    showDeveloperView = true
+                    if meProfileVM.userModel.userStatus == "developer" {
+                        showDeveloperView = true
+                    }
                 }
             
             

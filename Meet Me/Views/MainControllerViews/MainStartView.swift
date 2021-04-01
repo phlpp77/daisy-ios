@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainStartView: View {
     
+    @StateObject var firstActions: FirstActions = FirstActions()
+    
     @Binding var startUpDone: Bool
     
     @State var currentPosition: StartPosition = .splash
@@ -24,6 +26,7 @@ struct MainStartView: View {
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
             
+            
             switch currentPosition {
             case .splash:
                 SplashView(currentPosition: $currentPosition)
@@ -34,7 +37,19 @@ struct MainStartView: View {
             case .profileCreation:
                 ProfileCreationView(profileCreationFinished: $startUpDone)
             }
-
+            
+        }
+        .onAppear {
+            if firstActions.firstViews["FirstStartUp"] == false || firstActions.firstViews["FirstStartUp"] == nil {
+                currentPosition = .splash
+                // update variable to true that user does not see the info again
+                firstActions.firstViews["FirstStartUp"] = true
+                // save the status to the phone
+                firstActions.save()
+            } else {
+                currentPosition = .registerLogin
+            }
+            
         }
         
     }

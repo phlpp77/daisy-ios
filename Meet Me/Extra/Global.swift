@@ -80,7 +80,7 @@ let notificationLikeEventTitle = "Daisy"
 let notificationLikeEventMessage = "Someone new liked your event."
 
 let notificationMatchMessageTitle = "Daisy"
-let notificationMatchMessage = "You`ve got a new match."
+let notificationMatchMessage = "You've got a new match."
 
 //username gets written in front of message
 let notificationMessageTitle = "Daisy"
