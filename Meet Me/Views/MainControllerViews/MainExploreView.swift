@@ -10,7 +10,7 @@ import SwiftUI
 struct MainExploreView: View {
     
     @ObservedObject var firstActions: FirstActions = FirstActions()
-    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     // states for animation
     @State private var showCreationView: Bool = false
     @State private var showMeEventController: Bool = false
