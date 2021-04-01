@@ -212,7 +212,7 @@ class FirestoreManagerMatches {
 
     func deleteLikedUser(eventModel: EventModel, userModel: UserModel) -> Promise<Void> {
         return Promise { seal in
-            db.collection("events")
+            let _ = db.collection("events")
                 .document(eventModel.eventId)
                 .collection("likedUser")
                 .document("likedUser").updateData(["likedUser" : FieldValue.arrayRemove([userModel.userId])]) { error in
