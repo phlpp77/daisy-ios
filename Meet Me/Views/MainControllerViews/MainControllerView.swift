@@ -31,6 +31,11 @@ struct MainControllerView: View {
             if loading {
                 AppLaunchView()
             }
+            
+            // FIXME: @budni put bool from database here to switch the whole app in maintenance mode
+            if false {
+                MaintenanceView()
+            }
         }
         .onAppear {
             checkUserAccForAutoLogin()

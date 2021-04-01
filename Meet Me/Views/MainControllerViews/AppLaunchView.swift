@@ -13,7 +13,7 @@ struct AppLaunchView: View {
             Text("DAISY")
                 .font(.system(size: 75))
                 .gradientForeground(gradient: secondaryGradient)
-            Text("Meet new people.")
+            Text("Events with new people.")
                 .font(.title2)
                 .padding(.bottom, 40)
             

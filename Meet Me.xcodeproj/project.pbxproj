@@ -69,6 +69,7 @@
 		17F34F1025F6CF5400690122 /* MeEventNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F34F0F25F6CF5400690122 /* MeEventNView.swift */; };
 		17F34F1325F8EAEB00690122 /* YouEventNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F34F1225F8EAEB00690122 /* YouEventNView.swift */; };
 		17F34F1825F90D2A00690122 /* LoginNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F34F1725F90D2A00690122 /* LoginNView.swift */; };
+		17FA420A2616265C001BE294 /* MaintenanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA42092616265C001BE294 /* MaintenanceView.swift */; };
 		3C4632628DFAFFCA3B1B6674 /* Pods_Meet_Me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6866AE96A8202B7FCBDD60 /* Pods_Meet_Me.framework */; };
 		9012001E25F4E8CC006E7DF4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9012001D25F4E8CC006E7DF4 /* LocationManager.swift */; };
 		902EF6B925D89213004464F0 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6B825D89213004464F0 /* PhotoModel.swift */; };
@@ -176,6 +177,7 @@
 		17F34F0F25F6CF5400690122 /* MeEventNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventNView.swift; sourceTree = "<group>"; };
 		17F34F1225F8EAEB00690122 /* YouEventNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventNView.swift; sourceTree = "<group>"; };
 		17F34F1725F90D2A00690122 /* LoginNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNView.swift; sourceTree = "<group>"; };
+		17FA42092616265C001BE294 /* MaintenanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceView.swift; sourceTree = "<group>"; };
 		8CC506F59200740347A6B95E /* Pods-Meet Me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Me.debug.xcconfig"; path = "Target Support Files/Pods-Meet Me/Pods-Meet Me.debug.xcconfig"; sourceTree = "<group>"; };
 		9012001D25F4E8CC006E7DF4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		902EF6B825D89213004464F0 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
@@ -310,7 +312,6 @@
 				1795DFAD25DF20AD002D537F /* LoadingView.swift */,
 				17DE52EC25EA3F9E000D0B4D /* ImagePicker.swift */,
 				17AE48FB260E836500A76F88 /* ImageCroppingView.swift */,
-				17B0B61025F543F70014B0FD /* TabBarView.swift */,
 				17B0B61425F546810014B0FD /* TabButtonView.swift */,
 				174EFCD625FABDC40028C04C /* RingView.swift */,
 				1705790D25FCD26400A56CE6 /* HeaderView.swift */,
@@ -395,11 +396,13 @@
 			isa = PBXGroup;
 			children = (
 				1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */,
+				17B0B61025F543F70014B0FD /* TabBarView.swift */,
 				1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */,
 				1774B67425D1E31400D1D2F1 /* MainExploreView.swift */,
 				1774B67825D1E35200D1D2F1 /* MainChatView.swift */,
 				176745BC25F9381700FF28F2 /* MainStartView.swift */,
 				171124152610F914004A7864 /* AppLaunchView.swift */,
+				17FA42092616265C001BE294 /* MaintenanceView.swift */,
 			);
 			path = MainControllerViews;
 			sourceTree = "<group>";
@@ -761,6 +764,7 @@
 				90D42B1E25EBA7190060311B /* ChatListViewModel.swift in Sources */,
 				1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */,
 				902EF6BD25D896E3004464F0 /* UIImageResized.swift in Sources */,
+				17FA420A2616265C001BE294 /* MaintenanceView.swift in Sources */,
 				174423AA25D9A0DF00D25EDD /* EventModel.swift in Sources */,
 				177F682A25D8937F00BC345B /* KeyboardHandler.swift in Sources */,
 				902EF6FF25D9A51B004464F0 /* EventCreationViewModel.swift in Sources */,
