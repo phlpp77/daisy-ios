@@ -23,7 +23,7 @@ struct YouProfileNView: View {
         GeometryReader { bounds in
             ZStack {
                 
-                Color.black.opacity(1)
+                Color.black.opacity(0.001)
                     .onTapGesture(perform: {
                         print("area tapped - out of you profile")
                         showYouProfileView = false

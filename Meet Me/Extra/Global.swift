@@ -77,14 +77,14 @@ let stockChat: ChatModel = ChatModel(chatId: "egal", eventCreatorId: "creatoRR",
 
 
 //PushNotifications
-let notificationLikeEventTitle = "Daisy"
-let notificationLikeEventMessage = "Someone new liked your event."
+let notificationLikeEventTitle = "New Like!"
+let notificationLikeEventMessage = "Someone liked your event."
 
-let notificationMatchMessageTitle = "Daisy"
+let notificationMatchMessageTitle = "New match!"
 let notificationMatchMessage = "You've got a new match."
 
 //username gets written in front of message
-let notificationMessageTitle = "Daisy"
-let notificationMessageMessage = " sent you a new message."
+let notificationMessageTitle = "New message!"
+let notificationMessageMessage = "sent you a new message."
 
 
