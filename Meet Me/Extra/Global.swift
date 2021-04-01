@@ -59,8 +59,8 @@ let secondaryGradient = LinearGradient(
 // MARK: - Stockdata
 
 // MARK: stock user to use as default
-let stockUser: UserModel = UserModel(userId: "007", name: "Stocky One", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Male", userPhotos: [1: stockUrlString], userPhotosId: [0: ""], radiusInKilometer: 1000, token: "", refreshCounter: 0)
-let stockUser2: UserModel = UserModel(userId: "008", name: "Stockise Two", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [0: stockUrlString], userPhotosId: [1: ""], radiusInKilometer: 1000, token: "", refreshCounter: 0)
+let stockUser: UserModel = UserModel(userId: "007", name: "Stocky One", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Male", userPhotos: [1: stockUrlString], userPhotosId: [0: ""], radiusInKilometer: 1000, token: "", refreshCounter: 0, userStatus: "normal")
+let stockUser2: UserModel = UserModel(userId: "008", name: "Stockise Two", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [0: stockUrlString], userPhotosId: [1: ""], radiusInKilometer: 1000, token: "", refreshCounter: 0, userStatus: "normal")
 
 // TODO: Need to be changed to a stock photo
 let stockURL: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2FstockPic.jpg?alt=media&token=59dfa4eb-81b0-4845-80f6-33b35f305414")!
@@ -73,4 +73,17 @@ let stockEvent2: EventModel = EventModel(eventId: "009", userId: "008", category
 
 // MARK: stock chat for chat area
 let stockChat: ChatModel = ChatModel(chatId: "egal", eventCreatorId: "creatoRR", matchedUserId: "receiveRR", eventId: "egal2", messages: [MessageModel(userId: "", timeStamp: Timestamp(date: Date()), messageText: "Hey, we have a match! Speak with YOU about the event settings...")])
+
+
+//PushNotifications
+let notificationLikeEventTitle = "Daisy"
+let notificationLikeEventMessage = "Someone new liked your event."
+
+let notificationMatchMessageTitle = "Daisy"
+let notificationMatchMessage = "You`ve got a new match."
+
+//username gets written in front of message
+let notificationMessageTitle = "Daisy"
+let notificationMessageMessage = " sent you a new message."
+
 

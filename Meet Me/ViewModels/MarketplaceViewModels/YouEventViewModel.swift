@@ -31,7 +31,7 @@ class YouEventViewModel: ObservableObject {
         }.then {
             self.firestoreManagerUserTest.getUserWhichCreatedEvent(eventModel: eventModel)
         }.done { user in
-            self.sender.sendPushNotification(to: user.token, title: "New Like", body: "someone new want to join your event")
+            self.sender.sendPushNotification(to: user.token, title: notificationLikeEventTitle, body: notificationLikeEventMessage)
         }.catch { error in
             print("DEBUG: error in getUserModelChain \(error)")
             print("DEBUG \(error.localizedDescription)")

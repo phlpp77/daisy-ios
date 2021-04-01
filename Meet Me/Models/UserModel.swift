@@ -21,6 +21,7 @@ struct UserModel: Codable {
     var radiusInKilometer: Double
     var token: String 
     var refreshCounter: Int
+    var userStatus: String
     
 }
 

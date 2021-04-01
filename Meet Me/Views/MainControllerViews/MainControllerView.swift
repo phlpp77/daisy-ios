@@ -44,7 +44,6 @@ struct MainControllerView: View {
     }
     
     func checkUserAccForAutoLogin(){
-        
         if Auth.auth().currentUser != nil{
             firstly {
                 self.firestoreManagerUserTest.getCurrentUser()

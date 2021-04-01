@@ -30,11 +30,6 @@ struct LogoutView: View {
                 startProcessDone = true
                 startProcessDone = false
                 print("startprocess: \(startProcessDone)")
-                firstActions.firstViews["FirstEventShuffle"] = false
-                self.firestoreManagerUserTest.deletePushNotificationTokenFromUser().catch { error in
-                    print(error)
-                }
-                
             }.catch { error in
                 print(error)
             }

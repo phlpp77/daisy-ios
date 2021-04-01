@@ -36,7 +36,6 @@ class ChatListViewModel: ObservableObject {
                             ($1.event.date,$1.event.startTime )
                        
                     }
-                    print(self.matches)
                 }
                 else {
                     self.messageIfNoMatches = "Drag Events and Match!"
