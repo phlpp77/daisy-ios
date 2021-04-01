@@ -33,7 +33,7 @@ class DeveloperManager: ObservableObject  {
     func getMaintenanceMode() -> Promise<Void> {
         return Promise { seal in
 
-            db.collection("developerOptions").document("developerOptions").getDocument { snapshot, error in
+            db.collection("developerOptions").document("developerOptions").addSnapshotListener { snapshot, error in
                 if let error = error {
                     seal.reject(error)
                 } else {
