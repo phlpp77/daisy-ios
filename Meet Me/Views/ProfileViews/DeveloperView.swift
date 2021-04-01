@@ -40,18 +40,18 @@ struct DeveloperView: View {
                 
                 Button(action: {
                     // paste code to work with here
-                    
+                    developerVM.setMaintenanceModeToFalse()
                 }, label: {
                     // label text
-                    Text("Button")
+                    Text("setMaintenanceModeToFalse")
                 })
                 
                 Button(action: {
-                    // paste code to work with here
+                    developerVM.setMaintenanceModeToTrue()
                     
                 }, label: {
                     // label text
-                    Text("Button")
+                    Text("setMaintenanceModeToTrue")
                 })
                 
                 Button(action: {

@@ -18,6 +18,7 @@ class DeveloperViewModel: ObservableObject {
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     private var firestoreFotoManagerEventTest: FirestoreFotoManagerEventTest = FirestoreFotoManagerEventTest()
     private var firestoreManagerChat: FirestoreManagerChat = FirestoreManagerChat()
+    private var developerManager: DeveloperManager = DeveloperManager()
     private var db: Firestore
     
     private var Ids: [String] = []
@@ -188,6 +189,27 @@ class DeveloperViewModel: ObservableObject {
             seal.fulfill(())
         }
     }
+    
+    func setMaintenanceModeToTrue() {
+        firstly {
+            developerManager.setMaintenanceMode(status: true)
+        }.done {
+            print("setMaintenanceModeToTrue, done")
+        }.catch { error in
+            print(error)
+        }
+    }
+    
+    func setMaintenanceModeToFalse() {
+        firstly {
+            developerManager.setMaintenanceMode(status: false)
+        }.done {
+            print("setMaintenanceModeToFalse, done")
+        }.catch { error in
+            print(error)
+        }
+    }
+    
     
 
     

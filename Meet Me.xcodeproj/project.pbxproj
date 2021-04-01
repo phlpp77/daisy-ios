@@ -94,6 +94,7 @@
 		90B0F4D425DF0EA000AB8EF9 /* MeEventLinieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4D325DF0EA000AB8EF9 /* MeEventLinieViewModel.swift */; };
 		90B0F4F125DFC63400AB8EF9 /* YouEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */; };
 		90B1BFDB25B8DBB700F8FBF7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1BFDA25B8DBB700F8FBF7 /* LoginViewModel.swift */; };
+		90BDC68526164CF400758741 /* DeveloperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BDC68426164CF400758741 /* DeveloperManager.swift */; };
 		90D42A9E25E937630060311B /* LikedUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42A9D25E937630060311B /* LikedUserModel.swift */; };
 		90D42ACF25E966220060311B /* LikedEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42ACE25E966220060311B /* LikedEventModel.swift */; };
 		90D42AD525EA59350060311B /* YouProfilViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42AD425EA59350060311B /* YouProfilViewModel.swift */; };
@@ -200,6 +201,7 @@
 		90B0F4D325DF0EA000AB8EF9 /* MeEventLinieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventLinieViewModel.swift; sourceTree = "<group>"; };
 		90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventViewModel.swift; sourceTree = "<group>"; };
 		90B1BFDA25B8DBB700F8FBF7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = "Meet Me/ViewModels/StartViewModels/LoginViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		90BDC68426164CF400758741 /* DeveloperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperManager.swift; sourceTree = "<group>"; };
 		90D42A9D25E937630060311B /* LikedUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUserModel.swift; sourceTree = "<group>"; };
 		90D42ACE25E966220060311B /* LikedEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedEventModel.swift; sourceTree = "<group>"; };
 		90D42AD425EA59350060311B /* YouProfilViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouProfilViewModel.swift; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 				90D42B0325EAC0E00060311B /* FirestoreManagerChat */,
 				9012001D25F4E8CC006E7DF4 /* LocationManager.swift */,
 				90D8BE9825FCF3AD00EF160D /* AppDelegate.swift */,
+				90BDC68426164CF400758741 /* DeveloperManager.swift */,
 				90D8BE8E25FCF03400EF160D /* PushNotificationSender.swift */,
 			);
 			path = Manager;
@@ -734,6 +737,7 @@
 				172CA8F825FA31E4002CAA09 /* MeProfileNView.swift in Sources */,
 				17F34F1825F90D2A00690122 /* LoginNView.swift in Sources */,
 				90779B0725E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift in Sources */,
+				90BDC68526164CF400758741 /* DeveloperManager.swift in Sources */,
 				90779AED25E2C8CD0070D794 /* FirestoreManagerEventTest.swift in Sources */,
 				90D42AF225EAAD250060311B /* ChatModel.swift in Sources */,
 				90779B6D25E5A3F40070D794 /* MeMatchCardViewModel.swift in Sources */,
