@@ -89,7 +89,23 @@ struct EventCreationView: View {
             
             VStack {
                 
-                
+                Picker(selection: $covidPreference,
+                       label:
+                        VStack(alignment: .leading, spacing: 0.0) {
+                            Text("Choose your")
+                            Text("Covid-preference")
+                        }
+                        .padding()
+                        .frame(width: 175)
+                        .modifier(FrozenWindowModifier())
+                       
+                       , content: {
+                        ForEach(CovidPreference.allCases, id: \.self) { value in
+                            Text(value.localizedName)
+                                .tag(value)
+                        }
+                       })
+                    .pickerStyle(MenuPickerStyle())
                 
                 ZStack {
                     // Main image as a background of the event
@@ -185,23 +201,7 @@ struct EventCreationView: View {
                 // update button
                 VStack {
                     
-                    Picker(selection: $covidPreference,
-                           label: 
-                            VStack(alignment: .leading, spacing: 0.0) {
-                                Text("Choose your")
-                                Text("Covid-preference")
-                            }
-                            .padding()
-                            .frame(width: 175)
-                            .modifier(FrozenWindowModifier())
-                           
-                           , content: {
-                            ForEach(CovidPreference.allCases, id: \.self) { value in
-                                Text(value.localizedName)
-                                    .tag(value)
-                            }
-                           })
-                        .pickerStyle(MenuPickerStyle())
+                    
                     
                     HStack {
                         Text("Create event")

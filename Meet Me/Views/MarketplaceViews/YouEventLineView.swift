@@ -33,17 +33,19 @@ struct YouEventLineView: View {
         ZStack {
             
             // MARK: Dashed rectangle for dragging
-            Text("Drag Events down to like")
-                .frame(width: 250, height: 25, alignment: .center)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .strokeBorder(style: StrokeStyle(
-                            lineWidth: 2,
-                            dash: [10]
-                        ))
-                        .gradientForeground(gradient: secondaryGradient)
-                )
-                .offset(y: 150)
+            if eventArray.count >= 1 {
+                Text("Drag Events down to like")
+                    .frame(width: 250, height: 25, alignment: .center)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .strokeBorder(style: StrokeStyle(
+                                lineWidth: 2,
+                                dash: [10]
+                            ))
+                            .gradientForeground(gradient: secondaryGradient)
+                    )
+                    .offset(y: 150)
+            }
             
             
             // MARK: Horizontal event list
@@ -55,9 +57,12 @@ struct YouEventLineView: View {
                         if eventArray.count < 1 {
                             Text("Sorry, no events available. Press REFRESH to see new ones!")
                                 .padding(8)
-                                .frame(width: 175, alignment: .center)
+                                .frame(width: 150, height: 150, alignment: .center)
                                 .modifier(offWhiteShadow(cornerRadius: 12))
                                 .padding(.leading, 10)
+                                .frame(width: 250, height: 250)
+                                .padding(.top, 30)
+                                .padding(.bottom, 120)
                                 
                         }
                         

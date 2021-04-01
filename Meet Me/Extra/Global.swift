@@ -63,9 +63,10 @@ let stockUser: UserModel = UserModel(userId: "007", name: "Stocky One", birthday
 let stockUser2: UserModel = UserModel(userId: "008", name: "Stockise Two", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [0: stockUrlString], userPhotosId: [1: ""], radiusInKilometer: 1000, token: "", refreshCounter: 0, userStatus: "normal")
 
 // TODO: Need to be changed to a stock photo
-let stockURL: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2FstockPic.jpg?alt=media&token=59dfa4eb-81b0-4845-80f6-33b35f305414")!
+let stockURL: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2Fphilipp%401024x.png?alt=media&token=6ce1af89-a75c-45a4-a698-ff0a9ac68f46")!
 
-let stockUrlString: String = "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2FstockPic.jpg?alt=media&token=59dfa4eb-81b0-4845-80f6-33b35f305414"
+let stockUrlString: String = "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2Fphilipp%401024x.png?alt=media&token=6ce1af89-a75c-45a4-a698-ff0a9ac68f46"
+
 
 // MARK: stock event for marketplace and eventObject (length: half an hour - 30*60 seconds)
 let stockEvent: EventModel = EventModel(eventId: "008", userId: "007", category: "Café", date: Date(), startTime: Date(), endTime: Date() + 30 * 60, pictureURL: "", eventPhotosId: "", profilePicture: "",likedUser: false,eventMatched: false,latitude: 0.0, longitude: 0.0, hash: "", distance: 0, searchingFor: "Male", genderFromCreator: "Female", birthdayDate: Date(),covidPreferences: "")
