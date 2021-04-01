@@ -13,6 +13,7 @@ struct MaintenanceView: View {
             VStack {
                 Text("DAISY")
                 Text("Maintenance break")
+                    .font(.system(size: 40))
             }
             .font(.system(size: 75))
             .gradientForeground(gradient: secondaryGradient)
