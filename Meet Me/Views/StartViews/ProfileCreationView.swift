@@ -254,11 +254,16 @@ struct ProfileCreationView: View {
                                             }
                                             if !showImageCropper {
                                                 showImagePicker = false
+                                                
+                                                // empty array to let new pictures in for selection
+                                                images = []
                                             }
                                             
                                         }
                                     }
                                 }
+                                
+                                
                             })
                         
                         

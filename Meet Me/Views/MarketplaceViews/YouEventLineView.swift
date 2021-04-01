@@ -171,7 +171,7 @@ struct YouEventLineView: View {
                             .onEnded { value in
                                 print("ended")
                                 pressDone = true
-                                
+                                hapticFeedback(feedBackstyle: .success)
                                 // refresh youEvents
                                 firstly {
                                     self.youEventLineVM.getYouEvents(region: locationManager.region, shuffle: true)

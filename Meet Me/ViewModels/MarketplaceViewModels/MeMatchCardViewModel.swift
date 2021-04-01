@@ -36,8 +36,11 @@ class MeMatchCardViewModel: ObservableObject {
         
     
     func deleteLikedUser(eventModel : EventModel, userModel: UserModel){
+        print("start delete liked user")
             firstly {
                 firestoreManagerMatches.deleteLikedUser(eventModel: eventModel, userModel: userModel)
+            }.done {
+                print("deleted user done")
             }.catch { error in
                 print("DEBUG: Fehler in deleteLikedUser Error: \(error)")
                 print("DEBUG: Error in deleteLikedUser localized: \(error.localizedDescription)")

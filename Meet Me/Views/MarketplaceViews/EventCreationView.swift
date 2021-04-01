@@ -106,6 +106,7 @@ struct EventCreationView: View {
                         }
                        })
                     .pickerStyle(MenuPickerStyle())
+                    .padding(.top, 30)
                 
                 ZStack {
                     // Main image as a background of the event

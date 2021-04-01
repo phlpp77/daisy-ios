@@ -81,6 +81,7 @@ struct MeMatchNCardView: View {
                     
                     
                     
+                    
                     // spacer is used to get full area to tap
                     Spacer()
                     
@@ -89,6 +90,7 @@ struct MeMatchNCardView: View {
                 
             }
             .frame(width: bounds.size.width, height: bounds.size.height, alignment: .center)
+            .offset(x: userDenied ? 600 : 0)
             
         }
         
@@ -242,6 +244,7 @@ struct MeMatchNCardView: View {
             
             // dislike button
             Button(action: {
+                print("user was denied")
                 userWasDenied()
             }, label: {
                 MatchButtonLabel()
@@ -278,8 +281,10 @@ struct MeMatchNCardView: View {
     
     // MARK: Function which gets called after user denied the profile
     func userWasDenied() {
-        userDenied = true
+        
         meMatchCardVM.deleteLikedUser(eventModel: event, userModel: likedUsers[userIndex])
+        
+        userDenied = true
         
         // if the last user (which is the first in the array) is denied the view gets canceled
         if self.likedUsers.first!.userId == likedUsers[userIndex].userId {
