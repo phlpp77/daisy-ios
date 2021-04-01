@@ -10,6 +10,7 @@ import SwiftUI
 struct MeProfileNView: View {
     
     @State var showDeveloperView: Bool = false
+//    @EnvironmentObject currentUser: UserModel
     
     var body: some View {
         
