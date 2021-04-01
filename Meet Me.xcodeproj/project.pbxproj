@@ -95,6 +95,7 @@
 		90B0F4F125DFC63400AB8EF9 /* YouEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */; };
 		90B1BFDB25B8DBB700F8FBF7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1BFDA25B8DBB700F8FBF7 /* LoginViewModel.swift */; };
 		90BDC68526164CF400758741 /* DeveloperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BDC68426164CF400758741 /* DeveloperManager.swift */; };
+		90BDC68926165AF300758741 /* DeveloperOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BDC68826165AF300758741 /* DeveloperOptionsModel.swift */; };
 		90D42A9E25E937630060311B /* LikedUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42A9D25E937630060311B /* LikedUserModel.swift */; };
 		90D42ACF25E966220060311B /* LikedEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42ACE25E966220060311B /* LikedEventModel.swift */; };
 		90D42AD525EA59350060311B /* YouProfilViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D42AD425EA59350060311B /* YouProfilViewModel.swift */; };
@@ -202,6 +203,7 @@
 		90B0F4F025DFC63300AB8EF9 /* YouEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventViewModel.swift; sourceTree = "<group>"; };
 		90B1BFDA25B8DBB700F8FBF7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = "Meet Me/ViewModels/StartViewModels/LoginViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		90BDC68426164CF400758741 /* DeveloperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperManager.swift; sourceTree = "<group>"; };
+		90BDC68826165AF300758741 /* DeveloperOptionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperOptionsModel.swift; sourceTree = "<group>"; };
 		90D42A9D25E937630060311B /* LikedUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUserModel.swift; sourceTree = "<group>"; };
 		90D42ACE25E966220060311B /* LikedEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedEventModel.swift; sourceTree = "<group>"; };
 		90D42AD425EA59350060311B /* YouProfilViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouProfilViewModel.swift; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 			children = (
 				90F8AB4525BF5CDA00E969E0 /* UserModel.swift */,
 				90D42A9D25E937630060311B /* LikedUserModel.swift */,
+				90BDC68826165AF300758741 /* DeveloperOptionsModel.swift */,
 				90D42AF125EAAD250060311B /* ChatModel.swift */,
 				90D42AEE25EAAD110060311B /* MatchModel.swift */,
 				90D42AF625EABC400060311B /* AllMatchInformationModel.swift */,
@@ -724,6 +727,7 @@
 				1746097725FA45A900726BA1 /* MeProfileSecondBlockView.swift in Sources */,
 				174EFCD725FABDC40028C04C /* RingView.swift in Sources */,
 				1795DFAE25DF20AD002D537F /* LoadingView.swift in Sources */,
+				90BDC68926165AF300758741 /* DeveloperOptionsModel.swift in Sources */,
 				17DAD7E325D934D600DBE60B /* Global.swift in Sources */,
 				176A5AC725F3C0A000C857E8 /* ChatEventView.swift in Sources */,
 				90D42ACF25E966220060311B /* LikedEventModel.swift in Sources */,

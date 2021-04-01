@@ -15,8 +15,12 @@ struct MainControllerView: View {
     @State var userIsLoggedIn: Bool = false
     @State var loading: Bool = true
     @State var startTab = 2
+    @State var userModel: UserModel = stockUser
+    private var developerIds: [String] = []
     @StateObject var locationManager = LocationManager()
+    @ObservedObject var developerManager = DeveloperManager()
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
+    
     
     var body: some View {
         
@@ -33,12 +37,13 @@ struct MainControllerView: View {
             }
             
             // FIXME: @budni put bool from database here to switch the whole app in maintenance mode
-            if false {
+            if developerManager.developerOptionsModel.maintenance && !developerIds.contains(userModel.userId) {
                 MaintenanceView()
             }
         }
         .onAppear {
             checkUserAccForAutoLogin()
+            ckeckMaintenanceMode()
         }
         .onChange(of: startProcessDone, perform: { value in
             print("before check. startprocess: \(startProcessDone) and userlogged: \(userIsLoggedIn)")
@@ -53,6 +58,7 @@ struct MainControllerView: View {
             firstly {
                 self.firestoreManagerUserTest.getCurrentUser()
             }.done { userModel in
+                self.userModel = userModel
                 userIsLoggedIn = true
             }.catch { error in
                 userIsLoggedIn = false
@@ -65,6 +71,14 @@ struct MainControllerView: View {
             userIsLoggedIn = false
             //disappear loading view
             loading = false
+        }
+    }
+    
+    func ckeckMaintenanceMode() {
+        firstly {
+            self.developerManager.getMaintenanceMode()
+        }.catch { error in
+            print(error)
         }
     }
 }

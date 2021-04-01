@@ -12,6 +12,7 @@ import PromiseKit
 class DeveloperManager: ObservableObject  {
     
     private var db: Firestore
+    @Published var developerOptionsModel = DeveloperOptionsModel(maintenance: false)
     
     init() {
         db = Firestore.firestore()
@@ -28,4 +29,34 @@ class DeveloperManager: ObservableObject  {
             }
         }
     }
+    
+    func getMaintenanceMode() -> Promise<Void> {
+        return Promise { seal in
+
+            db.collection("developerOptions").document("developerOptions").getDocument { snapshot, error in
+                if let error = error {
+                    seal.reject(error)
+                } else {
+                    if let snapshot = snapshot {
+                        let developerOptionsModel = try? snapshot.data(as: DeveloperOptionsModel.self)
+                        DispatchQueue.main.async {
+                            if developerOptionsModel != nil {
+                                self.developerOptionsModel = developerOptionsModel!
+                                seal.fulfill(())
+                            }else {
+                                let err = Err("developer Options")
+                                seal.reject(err)
+                            }
+                        }
+                        
+                        
+                    }
+                }
+                
+            }
+            
+            
+        }
+    }
+    
 }
