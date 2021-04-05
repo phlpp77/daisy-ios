@@ -52,8 +52,9 @@ class FirestoreFotoManagerEventTest: ObservableObject {
             
             photoRef.putData(data, metadata: nil) { metadata, error in
                 
-                if let err = error {
-                    print(err.localizedDescription)
+                if let error = error {
+                    seal.reject(error)
+                    //print(err.localizedDescription)
                 }
                 photoRef.downloadURL { (url, error) in
                     
@@ -71,15 +72,23 @@ class FirestoreFotoManagerEventTest: ObservableObject {
     
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
     func saveEventPhotoUrlToFirestore(url: URL,eventId: String) -> Promise<Void> {
+        var urlProfed = url
+        if urlProfed.absoluteString == "" {
+            urlProfed = stockURL
+        }
  
         return Promise { seal in
-            do {
+            
                 let _ = db.collection("events")
                     .document(eventId)
-                    .updateData(["pictureURL" : url.absoluteString,
-                                "eventPhotosId" : imageName])
-                seal.fulfill(())
-            }
+                    .updateData(["pictureURL" : urlProfed.absoluteString,
+                                 "eventPhotosId" : imageName]) { error in
+                        if let error = error {
+                            seal.reject(error)
+                        }else {
+                            seal.fulfill(())
+                        }
+                    }
         }
     }
     

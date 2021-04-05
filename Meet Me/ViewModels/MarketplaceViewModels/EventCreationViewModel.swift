@@ -60,7 +60,7 @@ class EventCreationViewModel: ObservableObject {
         
         
         let eventId = UUID().uuidString
-        var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL:"", eventPhotosId: "", profilePicture: "",likedUser: false, eventMatched: false,latitude: latitude,longitude: longtiude,hash: hash, distance: 0,searchingFor: "",genderFromCreator: "", birthdayDate: Date(),covidPreferences: covidPreferences)
+        var eventModel = EventModel(eventId: eventId, userId: currentUser.uid, category: category, date: date, startTime: startTime, endTime: endTime, pictureURL: stockUrlString ,eventPhotosId: "", profilePicture: "",likedUser: false, eventMatched: false,latitude: latitude,longitude: longtiude,hash: hash, distance: 0,searchingFor: "",genderFromCreator: "", birthdayDate: Date(),covidPreferences: covidPreferences)
         
 
             firstly{

@@ -223,7 +223,7 @@ struct MeMatchNCardView: View {
                 .clipShape(Circle())
             
             // Actual event image
-            URLImage(url: URL(string: event.pictureURL)!) { image in
+            URLImage(url: URL(string: event.pictureURL) ?? stockURL) { image in
                 image.resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 70, height: 70)
