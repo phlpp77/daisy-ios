@@ -49,6 +49,8 @@ struct ProfileCreationView: View {
     // images in array
     @State var images: [UIImage] = []
     @State var croppedImage: UIImage?
+    // temp image which is used with the new cropper
+    @State private var tempInputImage: UIImage?
     
     // image (swiftUI)
     //@State var image: Image?
@@ -110,30 +112,30 @@ struct ProfileCreationView: View {
                         // get the birthday date of the user
                         BirthdayLineView(birthday: $birthdayDate, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[2] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[2] ? .constant("Clear") : .constant("BackgroundMain"))
                         
-//                        // create image for the third to the fourth step of the pathway
-//                        Image("Pathway-ProfileCreation")
-//                            .resizable()
-//                            .frame(width: 268.58, height: 92.92, alignment: .center)
-//
-//                        // get for what the user is searching (women, men, both)
-//                        SearchingLineView(searchingFor: $addProfileCreationVM.searchingFor, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[3] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[3] ? .constant("Clear") : .constant("BackgroundMain"))
+                        //                        // create image for the third to the fourth step of the pathway
+                        //                        Image("Pathway-ProfileCreation")
+                        //                            .resizable()
+                        //                            .frame(width: 268.58, height: 92.92, alignment: .center)
+                        //
+                        //                        // get for what the user is searching (women, men, both)
+                        //                        SearchingLineView(searchingFor: $addProfileCreationVM.searchingFor, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[3] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[3] ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         // create image for the fifth to the sixth step of the pathway
                         Image("Pathway-ProfileCreation")
                             .resizable()
                             .frame(width: 268.58, height: 92.92, alignment: .center)
                         
-//                        // get the user permission to use the current position
-//                        LocationLineView(acceptLocation: $acceptLocation, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[4] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[4] ? .constant("Clear") : .constant("BackgroundMain"))
-//
-//                        // create image for the fourth to the fifth step of the pathway
-//                        Image("Pathway-ProfileCreation")
-//                            .resizable()
-//                            .frame(width: 268.58, height: 92.92, alignment: .center)
-//                            .rotation3DEffect(
-//                                Angle(degrees: 180),
-//                                axis: (x: 0, y: 1.0, z: 0.0)
-//                            )
+                        //                        // get the user permission to use the current position
+                        //                        LocationLineView(acceptLocation: $acceptLocation, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[4] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[4] ? .constant("Clear") : .constant("BackgroundMain"))
+                        //
+                        //                        // create image for the fourth to the fifth step of the pathway
+                        //                        Image("Pathway-ProfileCreation")
+                        //                            .resizable()
+                        //                            .frame(width: 268.58, height: 92.92, alignment: .center)
+                        //                            .rotation3DEffect(
+                        //                                Angle(degrees: 180),
+                        //                                axis: (x: 0, y: 1.0, z: 0.0)
+                        //                            )
                         
                         // upload image to database
                         PictureLineView(pictureText: acceptedAction[5] ? .constant("You look good today") : .constant("No picture"), showPicker: $showImagePicker, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[5] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[5] ? .constant("Clear") : .constant("BackgroundMain"))
@@ -232,58 +234,58 @@ struct ProfileCreationView: View {
                     // image picker view
                     case 5:
                         Color.clear
-//                            .sheet(isPresented: $showImagePicker, content: {
-//                                ImagePicker(images: $images, showPicker: $showImagePicker, limit: 3) { (_) in
-//                                    acceptedAction[5] = true
-//                                }
-//                            })
                             .sheet(isPresented: $showImagePicker, content: {
                                 if !showImageCropper {
                                     ImagePicker(images: $images, showPicker: .constant(true), limit: 1) { (imagesPicked) in
                                         if imagesPicked {
                                             // show image cropper sheet
                                             showImageCropper = true
+                                            
+                                            // add the picked image to the temp storage which is used by the cropper
+                                            tempInputImage = images.first!
                                         }
                                     }
                                 } else {
-                                    ImageCroppingView(shown: $showImageCropper, image: images.first!, croppedImage: $croppedImage) { (imageCropped) in
-                                        if imageCropped {
-                                            // add cropped Image to database if not nil
-                                            if croppedImage != nil {
-                                                acceptedAction[5] = true
-                                            }
-                                            if !showImageCropper {
-                                                showImagePicker = false
-                                                
-                                                // empty array to let new pictures in for selection
-                                                images = []
-                                            }
+                                    
+                                    ImageCropper(image: $tempInputImage, visible: $showImageCropper) { (croppedImage) in
+                                        
+                                        // assign the cropped image to the image which is shown in the app
+                                        self.croppedImage = croppedImage
+                                        
+                                        // accept the image so the user know the image is now in the app
+                                        acceptedAction[5] = true
+                                        
+                                        // dismiss the whole sheet when the cropper is dismissed
+                                        if !showImageCropper {
                                             
+                                            // dismiss the sheet
+                                            showImagePicker = false
+                                            
+                                            // empty array to let new pictures in for selection
+                                            images = []
                                         }
                                     }
+                                    
+                                    
                                 }
-                                
-                                
                             })
-                        
-                        
-                        
+                    
                     // the default is 0 which is the first step in the pathway -> name creation
                     default:
-                        AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", selectedDuration: .constant(.medium), output: $outputAlertBox, show: $showAlertBox, accepted: $acceptedAction[2])
-                            // z index 1 == the top layer -> this is needed due to animation processes
-                            .zIndex(1.0)
-                    }
-                    
+                    AlertBoxView(title: "Type in your Name", placeholder: "Type here..", defaultText: "Name", selectedDuration: .constant(.medium), output: $outputAlertBox, show: $showAlertBox, accepted: $acceptedAction[2])
+                    // z index 1 == the top layer -> this is needed due to animation processes
+                    .zIndex(1.0)
                 }
                 
-                
             }
-            .animation(.spring(blendDuration: 0.15))
+            
             
         }
+        .animation(.spring(blendDuration: 0.15))
+        
     }
-    
+}
+
 }
 
 struct ProfileCreationView_Previews: PreviewProvider {

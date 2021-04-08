@@ -73,6 +73,7 @@ struct PictureCircle: View {
     
     @State var showPHPicker: Bool = false
     @State var imagesFromPHPicker: [UIImage] = [UIImage(named: "cafe")!]
+    @State private var tempInputImage: UIImage?
     @State var showImageCropper: Bool = false
     @State var croppedImage: UIImage?
     
@@ -150,27 +151,30 @@ struct PictureCircle: View {
                     ImagePicker(images: $imagesFromPHPicker, showPicker: .constant(true), limit: 1) { (imagesPicked) in
                         if imagesPicked {
                             // show image cropper sheet
+                            tempInputImage = imagesFromPHPicker.first
                             showImageCropper = true
                         }
                     }
                 } else {
-                    ImageCroppingView(shown: $showImageCropper, image: imagesFromPHPicker.first!, croppedImage: $croppedImage) { (imageCropped) in
-                        if imageCropped {
-                            // add cropped Image to database if not nil
-                            if croppedImage != nil {
-                                meProfileVM.addPhotoInPosition(image: croppedImage!, position: tag)
-                            }
-                            if !showImageCropper {
-                                showPHPicker = false
-                            }
+                    ImageCropper(image: $tempInputImage, visible: $showImageCropper) { (croppedImage) in
+                        
+                        // upload the cropped image to the database, the tag is needed to know which of the three profile pictures is changed
+                        meProfileVM.addPhotoInPosition(image: croppedImage, position: tag)
+                        
+                        // when the cropper is dismissed dismiss the whole sheet
+                        if !showImageCropper {
                             
+                            // dismiss the whole sheet
+                            showPHPicker = false
+                            
+                            // clear the array for further picking and re-picking of images
+                            imagesFromPHPicker = []
                         }
+                        
                     }
                 }
             })
-            .onAppear {
-
-            }
+            
             
         }
     }

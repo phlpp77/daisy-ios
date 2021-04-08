@@ -14,7 +14,7 @@ struct OnboardingController: View {
     @State var goToNextView: Bool = false
     @State var goToLastView: Bool = false
     
-    var sliderArray: [InformationCardModel] = [InformationCardModel(), InformationCardModel(headerText: "Do this with DAISY instead!", highlight: true, image: "walking", sfSymbol: "person.2.fill", buttonText: "OK!"), InformationCardModel(headerText: "Making meeting people", highlight: true, footerText: "easy as going shopping.", image: "shopping", sfSymbol: "cart.fill", buttonText: "OK!"), InformationCardModel(headerText: "Making meeting people", highlight: true, footerText: "normal as walking the dog.", image: "dog", sfSymbol: "hare.fill", buttonText: "OK!"), InformationCardModel(headerText: "Making meeting people", highlight: true, footerText: "safely as chilling at home.", image: "chilling", sfSymbol: "lock.shield.fill", buttonText: "GO!")]
+    var sliderArray: [InformationCardModel] = [InformationCardModel(), InformationCardModel(headerText: "Do this with DAISY instead!", highlight: true, image: "walking", sfSymbol: "person.2.fill", buttonText: "OK!"), InformationCardModel(headerText: "Making meeting people", highlight: true, footerText: "easy as going shopping", image: "shopping", sfSymbol: "cart.fill", buttonText: "OK!"), InformationCardModel(headerText: "Making meeting people", highlight: true, footerText: "normal as walking the dog", image: "dog", sfSymbol: "hare.fill", buttonText: "OK!"), InformationCardModel(headerText: "Making meeting people", highlight: true, footerText: "safely as chilling at home", image: "chilling", sfSymbol: "lock.shield.fill", buttonText: "GO!")]
     
     var body: some View {
         

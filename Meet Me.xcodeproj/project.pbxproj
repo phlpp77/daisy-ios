@@ -65,6 +65,9 @@
 		17DE531225EAC372000D0B4D /* ChatListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE531125EAC372000D0B4D /* ChatListRowView.swift */; };
 		17DE531825EAED20000D0B4D /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE531725EAED20000D0B4D /* MessagesView.swift */; };
 		17DE531E25EAEF51000D0B4D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE531D25EAEF51000D0B4D /* MessageView.swift */; };
+		17E6A2E8261F769900BEC363 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 17E6A2E7261F769900BEC363 /* CropViewController */; };
+		17E6A2EA261F769900BEC363 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 17E6A2E9261F769900BEC363 /* TOCropViewController */; };
+		17E6A2ED261F76BB00BEC363 /* ImageCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E6A2EC261F76BB00BEC363 /* ImageCropper.swift */; };
 		17EDA6F025E6C974004BC651 /* LogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EDA6EF25E6C974004BC651 /* LogoutView.swift */; };
 		17F34F1025F6CF5400690122 /* MeEventNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F34F0F25F6CF5400690122 /* MeEventNView.swift */; };
 		17F34F1325F8EAEB00690122 /* YouEventNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F34F1225F8EAEB00690122 /* YouEventNView.swift */; };
@@ -175,6 +178,7 @@
 		17DE531125EAC372000D0B4D /* ChatListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListRowView.swift; sourceTree = "<group>"; };
 		17DE531725EAED20000D0B4D /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		17DE531D25EAEF51000D0B4D /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		17E6A2EC261F76BB00BEC363 /* ImageCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropper.swift; sourceTree = "<group>"; };
 		17EDA6EF25E6C974004BC651 /* LogoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutView.swift; sourceTree = "<group>"; };
 		17F34F0F25F6CF5400690122 /* MeEventNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventNView.swift; sourceTree = "<group>"; };
 		17F34F1225F8EAEB00690122 /* YouEventNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventNView.swift; sourceTree = "<group>"; };
@@ -232,6 +236,8 @@
 				902EF6C625D92112004464F0 /* URLImage in Frameworks */,
 				90779AEA25E2C7250070D794 /* PromiseKit in Frameworks */,
 				3C4632628DFAFFCA3B1B6674 /* Pods_Meet_Me.framework in Frameworks */,
+				17E6A2E8261F769900BEC363 /* CropViewController in Frameworks */,
+				17E6A2EA261F769900BEC363 /* TOCropViewController in Frameworks */,
 				1795DFA625DF1805002D537F /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,6 +399,7 @@
 				17DAD7E225D934D600DBE60B /* Global.swift */,
 				90779B7225E5BA7C0070D794 /* Err.swift */,
 				17A2EBC025F2D669003D1921 /* Enums.swift */,
+				17E6A2EC261F76BB00BEC363 /* ImageCropper.swift */,
 			);
 			path = Extra;
 			sourceTree = "<group>";
@@ -598,6 +605,8 @@
 				902EF6C525D92112004464F0 /* URLImage */,
 				1795DFA525DF1805002D537F /* Lottie */,
 				90779AE925E2C7250070D794 /* PromiseKit */,
+				17E6A2E7261F769900BEC363 /* CropViewController */,
+				17E6A2E9261F769900BEC363 /* TOCropViewController */,
 			);
 			productName = "Meet Me";
 			productReference = 17153EE125A8C5C30072CE83 /* Meet Me.app */;
@@ -630,6 +639,7 @@
 				902EF6C425D92112004464F0 /* XCRemoteSwiftPackageReference "url-image" */,
 				1795DFA425DF1805002D537F /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				90779AE825E2C7250070D794 /* XCRemoteSwiftPackageReference "PromiseKit" */,
+				17E6A2E6261F769900BEC363 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
 			);
 			productRefGroup = 17153EE225A8C5C30072CE83 /* Products */;
 			projectDirPath = "";
@@ -740,6 +750,7 @@
 				90B1BFDB25B8DBB700F8FBF7 /* LoginViewModel.swift in Sources */,
 				172CA8F825FA31E4002CAA09 /* MeProfileNView.swift in Sources */,
 				17F34F1825F90D2A00690122 /* LoginNView.swift in Sources */,
+				17E6A2ED261F76BB00BEC363 /* ImageCropper.swift in Sources */,
 				90779B0725E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift in Sources */,
 				90BDC68526164CF400758741 /* DeveloperManager.swift in Sources */,
 				90779AED25E2C8CD0070D794 /* FirestoreManagerEventTest.swift in Sources */,
@@ -1008,6 +1019,14 @@
 				minimumVersion = 3.2.1;
 			};
 		};
+		17E6A2E6261F769900BEC363 /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.0;
+			};
+		};
 		902EF6C425D92112004464F0 /* XCRemoteSwiftPackageReference "url-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
@@ -1031,6 +1050,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1795DFA425DF1805002D537F /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		17E6A2E7261F769900BEC363 /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17E6A2E6261F769900BEC363 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
+		};
+		17E6A2E9261F769900BEC363 /* TOCropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17E6A2E6261F769900BEC363 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = TOCropViewController;
 		};
 		902EF6C525D92112004464F0 /* URLImage */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -21,10 +21,10 @@ struct SplashView: View {
             
             VStack {
                 HStack(spacing: 0) {
-                    Text("Hello, ")
+                    Text("Hello ")
                     Text("Nameless")
                         .gradientForeground(gradient: secondaryGradient)
-                    Text(".")
+                    Text(",")
                 }
                 .font(.largeTitle)
                 
