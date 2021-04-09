@@ -63,6 +63,8 @@ class MessagesViewModel: ObservableObject {
         firstly {
             self.firestoreManagerChat.uploadMessage(messageText: messageText, chatId: allMatchInformation.chatId)
         }.then {
+            self.firestoreManagerChat.setUnReadMessageToTrue(chatId: allMatchInformation.chatId, userIdReciever: allMatchInformation.user.userId)
+        }.then {
             self.firestoreMangaerUser.getCurrentUser()
         }.done { user in
             self.sender.sendPushNotification(to: allMatchInformation.user.token, title: notificationMessageTitle, body: "\(user.name) \(notificationMessageMessage)")
@@ -70,6 +72,14 @@ class MessagesViewModel: ObservableObject {
             print("DEBUG: error in MessageUploadChain error: \(error)")
             print("DEGUB: error localized: \(error.localizedDescription)")
             
+        }
+    }
+    
+    func unReadMessageFalse(chatId: String) {
+        firstly {
+            firestoreManagerChat.setUnReadMessageToFalse(chatId: chatId)
+        }.catch { error in
+            print(error)
         }
     }
 }

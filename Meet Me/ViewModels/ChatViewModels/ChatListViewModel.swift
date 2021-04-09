@@ -55,7 +55,7 @@ class ChatListViewModel: ObservableObject {
                 when(fulfilled: self.firestoreManagerChat.getEventWithEventId(eventId: doc.eventId),
                      self.firestoreManagerChat.getUserWithUserId(userId: doc.matchedUserId))
             }.done{ event, user in
-                let matchInformation = AllMatchInformationModel(chatId: doc.chatId, user: user, event: event)
+                let matchInformation = AllMatchInformationModel(chatId: doc.chatId, unReadMessage: doc.unReadMessage, user: user, event: event)
                 seal.fulfill(matchInformation)
             }.catch { error in
                 seal.reject(error)

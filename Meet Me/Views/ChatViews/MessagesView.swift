@@ -113,6 +113,7 @@ struct MessagesView: View {
         
         .onAppear {
             
+            messagesVM.unReadMessageFalse(chatId: match.chatId)
             messagesVM.downloadChat(chatId: match.chatId)
             switch match.event.category {
             case "Café":
@@ -207,6 +208,6 @@ struct HalfRoundedRectangle: Shape {
 
 struct MessagesView_Previews: PreviewProvider {
     static var previews: some View {
-        MessagesView(match: .constant(AllMatchInformationModel(chatId: "08470AAA-128F-46A3-9D23-1CD48C528938", user: stockUser, event: stockEvent)))
+        MessagesView(match: .constant(AllMatchInformationModel(chatId: "08470AAA-128F-46A3-9D23-1CD48C528938", unReadMessage: false, user: stockUser, event: stockEvent)))
     }
 }

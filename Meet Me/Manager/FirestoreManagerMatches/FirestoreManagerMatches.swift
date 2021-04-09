@@ -28,7 +28,7 @@ class FirestoreManagerMatches {
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
-            let matchModel = MatchModel(chatId: chatId, eventId: eventModel.eventId, matchedUserId: userModel.userId)
+            let matchModel = MatchModel(chatId: chatId, eventId: eventModel.eventId, matchedUserId: userModel.userId, unReadMessage: false)
             do {
                 let _ = try db.collection("users")
                     .document(currentUser.uid)
@@ -52,7 +52,7 @@ class FirestoreManagerMatches {
                 return
             }
 
-            let matchModel = MatchModel(chatId: chatId, eventId: eventModel.eventId, matchedUserId: currentUser.uid)
+            let matchModel = MatchModel(chatId: chatId, eventId: eventModel.eventId, matchedUserId: currentUser.uid, unReadMessage: false)
             do {
                 let _ = try db.collection("users")
                     .document(userModel.userId)

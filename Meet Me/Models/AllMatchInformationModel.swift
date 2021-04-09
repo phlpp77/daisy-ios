@@ -9,7 +9,7 @@ import Foundation
 
 struct AllMatchInformationModel: Codable {
     var chatId: String
-    
+    var unReadMessage: Bool
 //All User Informations
     var user: UserModel
     var event: EventModel
