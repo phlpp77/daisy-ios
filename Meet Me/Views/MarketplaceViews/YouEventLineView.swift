@@ -36,8 +36,8 @@ struct YouEventLineView: View {
             
             // MARK: Dashed rectangle for dragging
             if eventArray.count >= 1 {
-                Text("Drag Events down to like")
-                    .frame(width: 250, height: 25, alignment: .center)
+                Text("Drag Events down you like to join")
+                    .frame(width: 300, height: 25, alignment: .center)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10, style: .continuous)
                             .strokeBorder(style: StrokeStyle(

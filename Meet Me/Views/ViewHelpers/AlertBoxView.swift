@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct AlertBoxView: View {
     
@@ -27,6 +28,11 @@ struct AlertBoxView: View {
     var pickerInput = false
     
     // -- new
+    
+    // own categories with limit length
+    var textFieldInputWithLimit = false
+    @State var ownCategory: String = ""
+    let textLimit = 10
     
     var categoryPicker = false
     @State var selectedCategory = Category.cafe
@@ -111,18 +117,27 @@ struct AlertBoxView: View {
             VStack {
                 
                 // title text
-                Text(title)
-                    .font(.title2)
-                    .bold()
-                
-                // only show textField if it defined
-                if textFieldInput {
-                    // texfield
-                    TextField(placeholder, text: $emptyText)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding(.horizontal, 20)
+                VStack {
+                    Text(title)
+                        .font(.title2)
+                        .bold()
+                    
+                    // only show textField if it defined
+                    if textFieldInput {
+                        TextField(placeholder, text: $emptyText)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.horizontal, 20)
+                    }
+                    
+                    // show with limited textField
+                    if textFieldInputWithLimit {
+                        TextField("Other", text: $ownCategory)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.horizontal, 20)
+                            .onReceive(Just(ownCategory)) { _ in limitText(textLimit) }
+                    }
+                    
                 }
-                
                 // only show Picker if it defined
                 if pickerInput {
                     // picker
@@ -203,6 +218,11 @@ struct AlertBoxView: View {
                             
                             if textFieldInput {
                                 output = emptyText
+                            }
+                            
+                            if textFieldInputWithLimit {
+                                output = ownCategory
+
                             }
                             
                             // check if the picker was used then the pickeroutput needs to be assigned to the normal output
@@ -290,6 +310,13 @@ struct AlertBoxView: View {
     func getBirthdayDate() -> Date {
         return self.date
     }
+    
+    //Function to keep text length in limits
+        func limitText(_ upper: Int) {
+            if ownCategory.count > upper {
+                ownCategory = String(ownCategory.prefix(upper))
+            }
+        }
 }
 
 struct AlertBoxView_Previews: PreviewProvider {

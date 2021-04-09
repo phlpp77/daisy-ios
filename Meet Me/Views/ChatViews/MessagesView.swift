@@ -119,10 +119,25 @@ struct MessagesView: View {
             
             messagesVM.downloadChat(chatId: match.chatId)
             switch match.event.category {
+            
+            // event for meeting for a walk
+            case "Walk":
+                firstPartString = "Go for a walk with"
+            // event for meeting in a cafe
             case "Café":
                 firstPartString = "Drinking coffee with"
+            // event for meeting eating together
+            case "Food":
+                firstPartString = "Eating with"
+            // event for meeting for doing sports together
+            case "Sport":
+                firstPartString = "Doing an exercise with"
+            // event for meeting in a bar
+            case "Bar":
+                firstPartString = "Having drinks with"
+            // event for meeting for everything else which is not listed above
             default:
-                firstPartString = "Event"
+                firstPartString = "\(match.event.category) with"
             }
         }
         

@@ -54,6 +54,7 @@ struct EventCreationView: View {
     @State private var showAlertBox: Bool = false
     @State private var pathNumber: Int = 0
     @State private var accepted: Bool = false
+    @State private var showOtherTextField: Bool = false
     // legacy handling of date as a string
     @State private var dateAsString = ""
     @State private var startTimeAsString = ""
@@ -284,7 +285,7 @@ struct EventCreationView: View {
                 
                 // AlertBox to define the category
                 case 0:
-                    AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", categoryPicker: true, selectedDuration: .constant(.medium), output: $category, show: $showAlertBox, accepted: $accepted)
+                        AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", categoryPicker: true, selectedDuration: .constant(.medium), output: $category, show: $showAlertBox, accepted: $accepted)
                     
                 // AlertBox to define the date
                 case 1:
@@ -301,6 +302,10 @@ struct EventCreationView: View {
                 default:
                     AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", selectedDuration: .constant(.medium), output: $category, show: $showAlertBox, accepted: $accepted)
                 }
+            }
+            
+            if category == "Other" {
+                AlertBoxView(title: "Name your category", placeholder: "Other", defaultText: "", textFieldInputWithLimit: true, selectedDuration: .constant(.medium), output: $category, show: $showOtherTextField, accepted: $accepted)
             }
             
             //            Image(systemName: "xmark.circle")

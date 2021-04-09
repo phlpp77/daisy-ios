@@ -61,6 +61,7 @@ struct ChatListRowView: View {
                         Text(" \(match.user.name)")
                             .foregroundColor(.accentColor)
                     }
+                    .lineLimit(1)
                     
                     // second row with event date
                     HStack(spacing: 0.0) {
@@ -133,7 +134,7 @@ struct ChatListRowView: View {
                 firstPartString = "Having drinks with"
             // event for meeting for everything else which is not listed above
             default:
-                firstPartString = "Meeting with"
+                firstPartString = "\(match.event.category) with"
             }
         }
     }
