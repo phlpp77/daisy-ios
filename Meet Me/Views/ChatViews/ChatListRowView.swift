@@ -101,8 +101,7 @@ struct ChatListRowView: View {
             }
             
             // show a marker when a new message is in the chat
-            // TODO: @budni true mit deiner abfrage tauschen, ob neue Nachrichten im Chat sind
-            if true {
+            if match.unReadMessage {
                 HStack {
                     Spacer()
                     Text("!")
