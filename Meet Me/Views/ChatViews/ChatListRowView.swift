@@ -61,15 +61,19 @@ struct ChatListRowView: View {
                         Text(" \(match.user.name)")
                             .foregroundColor(.accentColor)
                     }
-                    .font(.system(size: 22))
                     
                     // second row with event date
                     HStack(spacing: 0.0) {
                         Text(dateFormatter.string(from: match.event.date))
+                            
                         Text(" at ")
+                            
                         Text(timeFormatter.string(from: match.event.startTime))
+                            
                     }
                     .font(.subheadline)
+                    .foregroundColor(.gray)
+                    
                 }
                 .foregroundColor(.primary)
             }
@@ -81,8 +85,9 @@ struct ChatListRowView: View {
             // show soon when Event is in the next 12 hours and "event over when it's over
             if Date().distance(to: combineDateWithTime(date: match.event.date, time: match.event.startTime)!) < 43200 {
                 HStack {
-                    Text(Date().distance(to: combineDateWithTime(date: match.event.date, time: match.event.startTime)!) < 0 ? "Event over" : "soon!")
-                        .padding(4)
+                    Text(Date().distance(to: combineDateWithTime(date: match.event.date, time: match.event.startTime)!) < 0 ? "Event over" : "Soon!")
+                        .font(.system(size: 14))
+                        .padding(5)
                         .foregroundColor(.white)
                         .background(Color.accentColor)
                         .mask(Capsule())

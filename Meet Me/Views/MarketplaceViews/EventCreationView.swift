@@ -81,32 +81,49 @@ struct EventCreationView: View {
     var body: some View {
         ZStack {
             
-            // background
-            Color.black.opacity(0.0001)
-                .onTapGesture {
-                    presentation = false
-                }
+//            // background
+//            Color.black.opacity(0.0001)
+//
             
             VStack {
                 
-                Picker(selection: $covidPreference,
-                       label:
-                        VStack(alignment: .leading, spacing: 0.0) {
-                            Text("Choose your")
-                            Text("Covid-preference")
+                
+                
+                    
+                                            
+//                        .padding(.top, 10)
+//                        .padding()
+//                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        
+                HStack {
+                    Picker(selection: $covidPreference,
+                           label:
+                           
+                            Text("Tap here to choose your Covid-preference")
+                            .padding()
+                            .frame(width: 210)
+                            .modifier(FrozenWindowModifier())
+                           
+                           , content: {
+                            ForEach(CovidPreference.allCases, id: \.self) { value in
+                                Text(value.localizedName)
+                                    .tag(value)
+                            }
+                           })
+                        .pickerStyle(MenuPickerStyle())
+                    
+                    // xmark symbol to show the user how to dismiss the view
+                    Image(systemName: "xmark")
+                        .foregroundColor(Color("BackgroundSecondary").opacity(0.7))
+                        .font(.system(size: 30))
+                        .onTapGesture {
+                            presentation = false
                         }
-                        .padding()
-                        .frame(width: 175)
-                        .modifier(FrozenWindowModifier())
-                       
-                       , content: {
-                        ForEach(CovidPreference.allCases, id: \.self) { value in
-                            Text(value.localizedName)
-                                .tag(value)
-                        }
-                       })
-                    .pickerStyle(MenuPickerStyle())
-                    .padding(.top, 30)
+
+                }
+                .padding(.bottom, 12)
+
+                
                 
                 ZStack {
                     // Main image as a background of the event
@@ -199,6 +216,8 @@ struct EventCreationView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 15)
                 
+                
+                
                 // update button
                 VStack {
                     
@@ -212,7 +231,7 @@ struct EventCreationView: View {
                     .opacity(buttonPressed ? 0.5 : 1)
                     
                     .padding()
-                    .frame(width: 175)
+                    .frame(width: 210)
                     .modifier(FrozenWindowModifier())
                     
                     .scaleEffect(buttonPressed ? 0.8 : 1)
@@ -241,11 +260,7 @@ struct EventCreationView: View {
                 .padding(.bottom, 16)
                 .padding(.top, 20)
                 
-                // xmark symbol to show the user how to dismiss the view
-                Image(systemName: "xmark")
-                    .foregroundColor(Color("BackgroundSecondary").opacity(0.7))
-                    .font(.system(size: 30))
-                    .padding(.top, 10)
+                
                 
             }
             .scaleEffect(1.3)

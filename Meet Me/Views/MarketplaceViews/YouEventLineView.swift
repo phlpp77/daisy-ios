@@ -46,7 +46,7 @@ struct YouEventLineView: View {
                             ))
                             .gradientForeground(gradient: secondaryGradient)
                     )
-                    .offset(y: 150)
+                    .offset(y: notchPhone ? 150 : 120)
             }
             
             
@@ -94,6 +94,7 @@ struct YouEventLineView: View {
                             .padding(.bottom, notchPhone ? 120 : 80)
                             .padding(.leading, 30)
                             .padding(.top, notchPhone ? 30 : 15)
+                            .offset(y: notchPhone ? 0 : -30)
                         }
                         // needed to update dragged event and array
                         .id(UUID())
@@ -101,9 +102,9 @@ struct YouEventLineView: View {
                         // button at the end to refresh events
                         refreshButton
                             .frame(width: notchPhone ? 250 : 200, height: notchPhone ? 250 : 200)
-                            .padding(.bottom, 120)
+                            .padding(.bottom, notchPhone ? 120 : 80)
                             .padding(.leading, 30)
-                            .padding(.top, 30)
+                            .padding(.top, notchPhone ? 30 : 15)
                         
                     }
                 }

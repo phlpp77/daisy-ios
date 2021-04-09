@@ -55,6 +55,9 @@ struct MainExploreView: View {
                 }
                 
             }
+            .sheet(isPresented: $showCreationView, content: {
+                EventCreationView(presentation: $showCreationView, eventArray: $eventArray)
+            })
             
             // create the setup EventView on top of the rest
             if showCreationView {
@@ -67,7 +70,7 @@ struct MainExploreView: View {
                             firstActions.save()
                         })
                 } else {
-                    EventCreationView(presentation: $showCreationView, eventArray: $eventArray)
+//                    EventCreationView(presentation: $showCreationView, eventArray: $eventArray)
                 }
             }
             

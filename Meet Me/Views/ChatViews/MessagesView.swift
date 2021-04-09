@@ -22,6 +22,8 @@ struct MessagesView: View {
     
     @State var eventWithOtherUser: EventModel?
     
+    let notchPhone: Bool = UIApplication.shared.windows[0].safeAreaInsets.bottom > 0 ? true : false
+    
     var body: some View {
         
         ZStack {
@@ -81,11 +83,13 @@ struct MessagesView: View {
 
             if showChatProfileView {
                 YouProfileNView(showYouProfileView: $showChatProfileView, event: Binding($eventWithOtherUser)!)
+                    .scaleEffect(notchPhone ? 1 : 0.85)
             }
             
             
             if showChatEventView {
                 ChatEventView(event: $match.event, showChatEventView: $showChatEventView)
+                    .padding(.trailing, 20)
             }
             
         }
