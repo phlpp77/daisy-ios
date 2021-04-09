@@ -136,6 +136,44 @@ class FirestoreManagerChat: ObservableObject  {
         }
     }
     
+    func setUnReadMessageToTrue(chatId: String, userIdReciever: String) -> Promise<Void> {
+        return Promise { seal in
+            
+            let _ = db.collection("users")
+                .document(userIdReciever)
+                .collection("matches")
+                .document(chatId)
+                .updateData(["unReadMessage" : true]) { error in
+                if let error = error {
+                    seal.reject(error)
+                }else {
+                    seal.fulfill(())
+                }
+            }
+        }
+    }
+    
+    func setUnReadMessageToFalse(chatId: String) -> Promise<Void> {
+        return Promise { seal in
+            
+            guard let currentUser = Auth.auth().currentUser else {
+                return
+            }
+            
+            let _ = db.collection("users")
+                .document(currentUser.uid)
+                .collection("matches")
+                .document(chatId)
+                .updateData(["unReadMessage" : false]) { error in
+                if let error = error {
+                    seal.reject(error)
+                }else {
+                    seal.fulfill(())
+                }
+            }
+        }
+    }
+    
 }
 
 

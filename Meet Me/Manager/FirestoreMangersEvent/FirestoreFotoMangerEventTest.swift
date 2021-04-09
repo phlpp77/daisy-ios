@@ -71,24 +71,36 @@ class FirestoreFotoManagerEventTest: ObservableObject {
     
     
     //Wird nicht direkt aufgerufen -> wird in savePhoto aufgerufen
-    func saveEventPhotoUrlToFirestore(url: URL,eventId: String) -> Promise<Void> {
-        var urlProfed = url
-        if urlProfed.absoluteString == "" {
-            urlProfed = stockURL
-        }
- 
+    func saveEventPhotoUrlToFirestore(url: URL,eventModel: EventModel) -> Promise<Void> {
         return Promise { seal in
-            
-                let _ = db.collection("events")
-                    .document(eventId)
-                    .updateData(["pictureURL" : urlProfed.absoluteString,
-                                 "eventPhotosId" : imageName]) { error in
-                        if let error = error {
-                            seal.reject(error)
-                        }else {
-                            seal.fulfill(())
-                        }
+            var checkUrl = url
+            print(checkUrl.absoluteString)
+            if checkUrl == stockURL || checkUrl.absoluteString ==  ""  {
+                switch eventModel.category {
+                case "Café":
+                    checkUrl = stockUrlCoffee
+                case "Walk":
+                    checkUrl = stockUrlWalk
+                case "Food":
+                    checkUrl = stockUrlFood
+                case "Sport":
+                    checkUrl = stockUrlSport
+                case "Bar":
+                    checkUrl = stockUrlBar
+                default:
+                    checkUrl = stockURL
+                }
+            }
+            let _ = db.collection("events")
+                .document(eventModel.eventId)
+                .updateData(["pictureURL" : checkUrl.absoluteString,
+                             "eventPhotosId" : imageName]) { error in
+                    if let error = error {
+                        seal.reject(error)
+                    }else {
+                        seal.fulfill(())
                     }
+                }
         }
     }
     

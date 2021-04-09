@@ -12,4 +12,5 @@ struct MatchModel: Codable {
     var chatId : String
     var eventId : String
     var matchedUserId: String
+    var unReadMessage: Bool
 }

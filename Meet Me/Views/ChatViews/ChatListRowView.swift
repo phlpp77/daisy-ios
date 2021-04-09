@@ -179,6 +179,6 @@ struct ChatListRowView: View {
 
 struct ChatListRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatListRowView(match: .constant(AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)), chatTapped: .constant(false), matchTapped: .constant(AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)), matchLongPressed: .constant(AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)))
+        ChatListRowView(match: .constant(AllMatchInformationModel(chatId: "", unReadMessage: false, user: stockUser, event: stockEvent)), chatTapped: .constant(false), matchTapped: .constant(AllMatchInformationModel(chatId: "", unReadMessage: false, user: stockUser, event: stockEvent)), matchLongPressed: .constant(AllMatchInformationModel(chatId: "", unReadMessage: false, user: stockUser, event: stockEvent)))
     }
 }

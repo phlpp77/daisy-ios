@@ -34,7 +34,7 @@ class ChangeMeEventViewModel: ObservableObject {
             }.then { picture in
                 self.firestoreFotoManagerEventTest.uploadEventPhoto(data: picture)
             }.then { url in
-                self.firestoreFotoManagerEventTest.saveEventPhotoUrlToFirestore(url: url, eventId: eventModel.eventId)
+                self.firestoreFotoManagerEventTest.saveEventPhotoUrlToFirestore(url: url, eventModel: eventModel)
             }.catch { error in
                 print("DEBUG: catch, Fehler in EventCreationChain\(error)")
                 print(error.localizedDescription)

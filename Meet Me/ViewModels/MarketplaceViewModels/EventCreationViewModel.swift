@@ -70,6 +70,10 @@ class EventCreationViewModel: ObservableObject {
                 eventModel.searchingFor = userModel.searchingFor
                 eventModel.genderFromCreator = userModel.gender
                 eventModel.birthdayDate = userModel.birthdayDate
+                
+                
+                
+                
             }.then {
                 self.firestoreManagerEventTest.saveEvent(eventModel: eventModel, eventId: eventId)
             }.then {
@@ -79,7 +83,7 @@ class EventCreationViewModel: ObservableObject {
             }.then { picture in
                 self.firestoreFotoManagerEventTest.uploadEventPhoto(data: picture)
             }.then { url in
-                self.firestoreFotoManagerEventTest.saveEventPhotoUrlToFirestore(url: url, eventId: eventId)
+                self.firestoreFotoManagerEventTest.saveEventPhotoUrlToFirestore(url: url, eventModel: eventModel)
             }.catch { error in
                 print("DEBUG: catch, Fehler in EventCreationChain\(error)")
                 print(error.localizedDescription)

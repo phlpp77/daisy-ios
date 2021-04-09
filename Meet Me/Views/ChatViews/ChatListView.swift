@@ -13,8 +13,8 @@ struct ChatListView: View {
     
     
     @State var chatTapped: Bool = false
-    @State var matchTapped: AllMatchInformationModel = AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)
-    @State var matchLongPressed: AllMatchInformationModel = AllMatchInformationModel(chatId: "", user: stockUser, event: stockEvent)
+    @State var matchTapped: AllMatchInformationModel = AllMatchInformationModel(chatId: "", unReadMessage: false, user: stockUser, event: stockEvent)
+    @State var matchLongPressed: AllMatchInformationModel = AllMatchInformationModel(chatId: "", unReadMessage: false, user: stockUser, event: stockEvent)
     
     var body: some View {
         

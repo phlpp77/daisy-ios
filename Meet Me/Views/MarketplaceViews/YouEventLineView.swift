@@ -129,7 +129,8 @@ struct YouEventLineView: View {
         .onAppear {
             //Check if it is the first login
             if firstActions.firstViews["FirstEventShuffle"] == false || firstActions.firstViews["FirstEventShuffle"] == nil {
-                //if it is the first Login load events without hitting shuffle button 
+                //if it is the first Login load events without hitting shuffle button
+                print("onApear aufgerufen")
                 firstly {
                     self.youEventLineVM.getYouEvents(region: locationManager.region, shuffle: true)
                 }.done { events in
@@ -173,9 +174,11 @@ struct YouEventLineView: View {
                                 
                             }
                             .onEnded { value in
-                                print("ended")
                                 pressDone = true
                                 hapticFeedback(feedBackstyle: .success)
+                                self.eventArray = []
+                                showedEventsModel.events = eventArray
+                                showedEventsModel.save()
                                 // refresh youEvents
                                 firstly {
                                     self.youEventLineVM.getYouEvents(region: locationManager.region, shuffle: true)
@@ -183,15 +186,12 @@ struct YouEventLineView: View {
                                     self.eventArray = events
                                     showedEventsModel.events = events
                                     showedEventsModel.save()
-                                    self.youEventLineVM.addOneToRefreshCounter()
-                                    print("done")
+                                    
                                 }.catch { error in
                                     print("DEBUG: error in GetYouEventChain: \(error)")
                                     print("DEBUG: \(error.localizedDescription)")
-                                }.finally {
-                                    //enter Code to end Animation here
-                                    // TODO: End Button animation
                                 }
+                                self.youEventLineVM.addOneToRefreshCounter()
                                 
                                 
                             })
