@@ -100,6 +100,23 @@ struct ChatListRowView: View {
                 .offset(y: -35)
             }
             
+            // show a marker when a new message is in the chat
+            // TODO: @budni true mit deiner abfrage tauschen, ob neue Nachrichten im Chat sind
+            if true {
+                HStack {
+                    Spacer()
+                    Text("!")
+                        .font(.system(size: 14))
+                        .padding(10)
+                        .foregroundColor(.white)
+                        .background(Color.accentColor)
+                        .mask(Circle())
+                        .shadow(color: Color.black.opacity(0.3), radius: 4, x: 2, y: 2)
+                        .padding(.trailing, 40)
+                }
+                .offset(y: -35)
+            }
+            
         }
         .padding(.vertical, 10)
         // tapping to show the chat
