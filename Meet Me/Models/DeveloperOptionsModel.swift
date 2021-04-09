@@ -10,5 +10,6 @@ import Foundation
 
 struct DeveloperOptionsModel: Codable {
     var maintenance: Bool
+    var reason: String
 }
 

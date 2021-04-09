@@ -12,7 +12,7 @@ import PromiseKit
 class DeveloperManager: ObservableObject  {
     
     private var db: Firestore
-    @Published var developerOptionsModel = DeveloperOptionsModel(maintenance: false)
+    @Published var developerOptionsModel = DeveloperOptionsModel(maintenance: false, reason: "")
     
     init() {
         db = Firestore.firestore()

@@ -63,6 +63,13 @@ class MeEventLineViewModel: ObservableObject {
                             DispatchQueue.main.async {
                                 if let event = event {
                                     self.eventArray = event
+                                    
+                                    self.eventArray = self.eventArray.sorted {
+                                        if $0.eventMatched && $1.eventMatched == false {
+                                            return ($0.likedUser && !$1.likedUser)
+                                        }
+                                        return (!$0.eventMatched && $1.eventMatched)
+                                    }
                                     seal.fulfill(())
                                 }
                                 
@@ -76,6 +83,12 @@ class MeEventLineViewModel: ObservableObject {
         }
     }
 }
+
+//self.matches = self.matches.sorted{
+//    ($0.event.date,$0.event.startTime ) <
+//        ($1.event.date,$1.event.startTime )
+//
+//}
 
 
 
