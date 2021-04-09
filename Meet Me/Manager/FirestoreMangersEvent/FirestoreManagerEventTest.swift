@@ -298,14 +298,15 @@ class FirestoreManagerEventTest {
                                 event?.eventId = doc.documentID
                                 if var event = event {
                                     if event.userId != currentUser.uid && event.eventMatched == false {
-                                        //print("DEBUG geschlecht abfrage: event.serchingFor: \(event.searchingFor)  == user.gender: \(user.gender) && event.genderFromCreator: \(event.genderFromCreator) ==  user.searchingFor:  \(user.searchingFor)")
-                                        //if event.searchingFor == user.gender && event.genderFromCreator == user.searchingFor {
+                                       // print("DEBUG geschlecht abfrage: event.serchingFor: \(event.searchingFor)  == user.gender: \(user.gender) && event.genderFromCreator: \(event.genderFromCreator) ==  user.searchingFor:  \(user.searchingFor)")
+                                        
+                                        if event.searchingFor == user.gender && event.genderFromCreator == user.searchingFor || user.searchingFor == "Both"{
                                             let eventPoint = CLLocation(latitude: event.latitude, longitude: event.longitude)
                                             event.distance = GFUtils.distance(from: userPoint, to: eventPoint) / 1000
                                             print("EventDistance: \(event.distance)")
                                             //return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
                                             return event
-                                        //}
+                                        }
                                     }
                                 }
                                 return nil
@@ -327,10 +328,12 @@ class FirestoreManagerEventTest {
                                         }
                                     }
                                     DispatchQueue.main.async {
+                                        print(Array(eventsSorted.prefix(10)))
                                         seal.fulfill(Array(eventsSorted.prefix(10)))
                                     }
                                 }
                             }else {
+                                
                                 let error = Err("No Events in GetYouEvents")
                                 DispatchQueue.main.async {
                                     seal.reject(error)
