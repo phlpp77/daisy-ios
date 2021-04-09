@@ -9,6 +9,7 @@
 //Alle MatchInformationModels
 import Foundation
 import PromiseKit
+import Firebase
 
 
 class ChatListViewModel: ObservableObject {
@@ -20,6 +21,12 @@ class ChatListViewModel: ObservableObject {
     private var matchDoc : [MatchModel] = []
     @Published var matches : [AllMatchInformationModel] = []
     @Published var messageIfNoMatches = ""
+    private var db: Firestore
+    
+    
+    init() {
+        db = Firestore.firestore()
+    }
     
     func getMatches() {
         firstly {
@@ -67,21 +74,28 @@ class ChatListViewModel: ObservableObject {
     
     
     func deleteMatchAndEventCompletely(match: AllMatchInformationModel, index: Int) {
-        firstly {
-            when(fulfilled:
-                 self.firestoreManagerMatches.deleteMatchFromCurrentUser(chatId: match.chatId),
-                 self.firestoreManagerMatches.deleteMatchFromMatchedUser(chatId: match.chatId, matchedUserId: match.user.userId),
-                 self.firestoreManagerMatches.deleteChat(chatId: match.chatId),
-                 self.firestoreManagerMatches.deleteAllLikedUserFromEvent(eventId: match.event.eventId),
-                 self.firestoreManagerMatches.deleteEvent(eventId: match.event.eventId),
-                 self.firestroeManagerFotoEventTest.deleteImageFromStorage(storageId: match.event.eventPhotosId))
-            
-        }.done {
-            //self.matches.remove(at: index)
-
-        }.catch { error in
-            print("DEGUB: error in deleteMatch complete, error: \(error)")
-            print("DEGUB: error localized: \(error.localizedDescription)")
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        
+        if currentUser.uid == match.event.userId {
+            firstly {
+                when(fulfilled:
+                        self.firestoreManagerMatches.deleteMatchFromCurrentUser(chatId: match.chatId),
+                     self.firestoreManagerMatches.deleteMatchFromMatchedUser(chatId: match.chatId, matchedUserId: match.user.userId),
+                     self.firestoreManagerMatches.deleteChat(chatId: match.chatId),
+                     self.firestoreManagerMatches.deleteAllLikedUserFromEvent(eventId: match.event.eventId),
+                     self.firestoreManagerMatches.deleteEvent(eventId: match.event.eventId),
+                     self.firestroeManagerFotoEventTest.deleteImageFromStorage(storageId: match.event.eventPhotosId))
+                
+            }.done {
+                //self.matches.remove(at: index)
+            }.catch { error in
+                print("DEGUB: error in deleteMatch complete, error: \(error)")
+                print("DEGUB: error localized: \(error.localizedDescription)")
+            }
+        }else {
+            deleteMatchAndBackToPool(match: match, index: index)
         }
         
     }
