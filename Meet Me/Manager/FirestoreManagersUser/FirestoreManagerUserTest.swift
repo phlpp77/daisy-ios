@@ -112,6 +112,20 @@ class FirestoreManagerUserTest {
         }
     }
     
+    func addOneToReportCounter(userId: String) -> Promise<Void> {
+        return Promise { seal in
+            
+            let _ = db.collection("users")
+                .document(userId).updateData(["reports" : FieldValue.increment(Int64(1))]) { error in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        seal.fulfill(())
+                    }
+                }
+        }
+    }
+    
 
     // MARK: - Functions to Update current User
     func setRadius(radius: Double) -> Promise<Void>{

@@ -18,6 +18,7 @@ class ChatListViewModel: ObservableObject {
     private var firestoreManagerMatches: FirestoreManagerMatches = FirestoreManagerMatches()
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     private var firestroeManagerFotoEventTest: FirestoreFotoManagerEventTest = FirestoreFotoManagerEventTest()
+    private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     private var matchDoc : [MatchModel] = []
     @Published var matches : [AllMatchInformationModel] = []
     @Published var messageIfNoMatches = ""
@@ -86,7 +87,21 @@ class ChatListViewModel: ObservableObject {
     }
     
     
-    
+    func reportUser(match: AllMatchInformationModel) {
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        
+        if currentUser.uid == match.event.userId {
+            deleteMatchAndEventCompletely(match: match, index: 0)
+        } else {
+            deleteMatchAndBackToPool(match: match, index: 0)
+        }
+        firestoreManagerUserTest.addOneToReportCounter(userId: match.user.userId).catch { error in
+            print(error.localizedDescription)
+        }
+        
+    }
     
     func deleteMatchAndEventCompletely(match: AllMatchInformationModel, index: Int) {
         guard let currentUser = Auth.auth().currentUser else {
