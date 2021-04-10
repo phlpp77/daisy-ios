@@ -74,23 +74,9 @@ class FirestoreFotoManagerEventTest: ObservableObject {
     func saveEventPhotoUrlToFirestore(url: URL,eventModel: EventModel) -> Promise<Void> {
         return Promise { seal in
             var checkUrl = url
-            print(checkUrl.absoluteString)
             if checkUrl == stockURL || checkUrl.absoluteString ==  ""  {
-                switch eventModel.category {
-                case "Café":
-                    checkUrl = stockUrlCoffee
-                case "Walk":
-                    checkUrl = stockUrlWalk
-                case "Food":
-                    checkUrl = stockUrlFood
-                case "Sport":
-                    checkUrl = stockUrlSport
-                case "Bar":
-                    checkUrl = stockUrlBar
-                default:
                     checkUrl = stockURL
                 }
-            }
             let _ = db.collection("events")
                 .document(eventModel.eventId)
                 .updateData(["pictureURL" : checkUrl.absoluteString,

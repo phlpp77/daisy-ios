@@ -115,17 +115,26 @@ class FirestoreFotoManagerUserTest: ObservableObject {
 
         }
     
-    func uploadStockPhotoAsProfilPhoto() ->Promise<Void> {
+    func uploadStockPhotoAsProfilPhoto(userModel : UserModel) ->Promise<URL> {
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
                 return
             }
-            let _ = db.collection("users").document(currentUser.uid).updateData(["userPhotos.0": stockUrlString,
+            var stockUrl = stockURL
+            switch userModel.gender {
+                case "Male":
+                    stockUrl = stockMale
+                case "Female":
+                    stockUrl = stockFemale
+                default:
+                    stockUrl = stockURL
+            }
+            let _ = db.collection("users").document(currentUser.uid).updateData(["userPhotos.0": stockUrl.absoluteString,
                                                                                  "userPhotosId.0": "StockPhoto"]) { error in
                 if let error = error {
                     seal.reject(error)
                 }else {
-                    seal.fulfill(())
+                    seal.fulfill(stockUrl)
                 }
             }
         }

@@ -66,12 +66,16 @@ let stockUser2: UserModel = UserModel(userId: "008", name: "Stockise Two", birth
 let stockURL: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2Fphilipp%401024x.png?alt=media&token=6ce1af89-a75c-45a4-a698-ff0a9ac68f46")!
 let stockUrlString: String = "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2Fphilipp%401024x.png?alt=media&token=6ce1af89-a75c-45a4-a698-ff0a9ac68f46"
 
+let stockMale: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2Fmale-light%20Kopie.jpg?alt=media&token=cbcfc58a-4dec-43dc-ba19-66946f5d1f68")!
+let stockMaleString: String = "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2Fmale-light%20Kopie.jpg?alt=media&token=cbcfc58a-4dec-43dc-ba19-66946f5d1f68"
+let stockFemale: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2Ffemale-light%20Kopie.jpg?alt=media&token=68f407fc-6651-4592-a553-5ab99fed85f9")!
+let stockFemaleString: String = "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2Ffemale-light%20Kopie.jpg?alt=media&token=68f407fc-6651-4592-a553-5ab99fed85f9"
 
-let stockUrlBar: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2FBar.jpg?alt=media&token=628505b0-d3c4-429c-9e81-14ff75479a26")!
-let stockUrlCoffee: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2FCoffee.jpg?alt=media&token=64a3caa8-7209-4cc7-8011-d3032fcfff8e")!
-let stockUrlSport: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2FSport.jpeg?alt=media&token=652b2c84-b94a-4463-ab08-b381ba8d6605")!
-let stockUrlWalk: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2FWalk.jpeg?alt=media&token=d7f07da6-f962-49b1-8289-4cbecd7f5b5c")!
-let stockUrlFood: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2FResaurant.jpg?alt=media&token=6c01f295-a8c5-4c62-bed6-571758ac6e47")!
+//let stockUrlBar: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2FBar.jpg?alt=media&token=628505b0-d3c4-429c-9e81-14ff75479a26")!
+//let stockUrlCoffee: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2FCoffee.jpg?alt=media&token=64a3caa8-7209-4cc7-8011-d3032fcfff8e")!
+//let stockUrlSport: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2FSport.jpeg?alt=media&token=652b2c84-b94a-4463-ab08-b381ba8d6605")!
+//let stockUrlWalk: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2FWalk.jpeg?alt=media&token=d7f07da6-f962-49b1-8289-4cbecd7f5b5c")!
+//let stockUrlFood: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2FResaurant.jpg?alt=media&token=6c01f295-a8c5-4c62-bed6-571758ac6e47")!
 
 
 
