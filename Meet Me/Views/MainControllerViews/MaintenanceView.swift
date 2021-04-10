@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MaintenanceView: View {
     
-    @ObservedObject var developerManager = DeveloperManager()
+    @StateObject var developerManager = DeveloperManager()
     
     var body: some View {
         VStack {
@@ -27,6 +27,10 @@ struct MaintenanceView: View {
                 .padding(.bottom, 40)
             
             LoadingView(showLoadingScreen: .constant(true))
+        }.onAppear {
+            developerManager.getMaintenanceMode().catch { error in
+                print(error.localizedDescription)
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("BackgroundMain"))
