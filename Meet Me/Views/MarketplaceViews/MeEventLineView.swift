@@ -54,6 +54,17 @@ struct MeEventLineView: View {
                             showCreationView = true
                         }
                     
+                    // show message if no events are available
+                    if meEventLineVM.eventArray.count < 1 {
+                        Text("Create your own event, now. Just hit the + button")
+                            .padding(8)
+                            .frame(width: 130, height: 130, alignment: .center)
+                            .background(Color("Offwhite"))
+                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                            .padding(.leading, 10)
+                    }
+                    
                     // MARK: List with own events
                     ForEach(meEventLineVM.eventArray.indices, id: \.self) { event in
                         HStack {

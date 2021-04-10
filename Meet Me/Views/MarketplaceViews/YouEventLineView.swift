@@ -58,9 +58,9 @@ struct YouEventLineView: View {
                         
                         // show message if no events are available
                         if eventArray.count < 1 {
-                            Text("Sorry, no events available. Press REFRESH to see new ones!")
+                            Text("Sorry, we couldn't find any events with your filter, because we are pretty new. Change your settings and REFRESH.")
                                 .padding(8)
-                                .frame(width: 150, height: 150, alignment: .center)
+                                .frame(width: 175, height: 175, alignment: .center)
                                 .modifier(offWhiteShadow(cornerRadius: 12))
                                 .padding(.leading, 10)
                                 .frame(width: 250, height: 250)
@@ -104,7 +104,7 @@ struct YouEventLineView: View {
                         refreshButton
                             .frame(width: notchPhone ? 250 : 200, height: notchPhone ? 250 : 200)
                             .padding(.bottom, notchPhone ? 120 : 80)
-                            .padding(.leading, 30)
+                            .padding(.leading, eventArray.count < 1 ? -10 : 30)
                             .padding(.top, notchPhone ? 30 : 15)
                         
                     }

@@ -34,10 +34,6 @@ struct MeEventControllerView: View {
                         .opacity(showMeMatchCardView ? 1 : 0)
                         .onChange(of: userChosen) { (chosen) in
                             
-                            print("user chosen! \(chosen)")
-                            // TODO: delete
-//                            firstActions.firstViews["FirstMatch"] = false
-                            
                             if firstActions.firstViews["FirstMatch"] == false || firstActions.firstViews["FirstMatch"] == nil {
                                 showMeEventControllerView = true
                             } else {
