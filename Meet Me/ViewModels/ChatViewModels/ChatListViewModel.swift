@@ -22,10 +22,24 @@ class ChatListViewModel: ObservableObject {
     @Published var matches : [AllMatchInformationModel] = []
     @Published var messageIfNoMatches = ""
     private var db: Firestore
+    private var currentUserId = ""
     
     
     init() {
         db = Firestore.firestore()
+        
+
+    }
+    
+    func checkIfUserIsCreatorFromEvent(creatorId: String) -> Bool {
+        guard let currentUser = Auth.auth().currentUser else {
+            return false
+        }
+        if currentUser.uid == creatorId {
+            return true
+        }else {
+            return false
+        }
     }
     
     func getMatches() {
@@ -70,6 +84,7 @@ class ChatListViewModel: ObservableObject {
         }
         
     }
+    
     
     
     
