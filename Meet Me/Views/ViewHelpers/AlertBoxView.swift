@@ -221,7 +221,12 @@ struct AlertBoxView: View {
                             }
                             
                             if textFieldInputWithLimit {
-                                output = ownCategory
+                                if ownCategory != "" {
+                                    output = ownCategory
+                                } else {
+                                    output = "Other Event"
+                                }
+                                
 
                             }
                             

@@ -47,8 +47,9 @@ struct EventCreationView: View {
     
     
     // image handling with PhPicker
-    @State private var images: [UIImage] = [UIImage(named: "cafe")!]
+    @State private var images: [UIImage] = [UIImage(named: "OtherStockImage")!]
     @State private var showImagePicker: Bool = false
+    @State private var pictureChangedByUser: Bool = false
     
     // animation of alert-boxes
     @State private var showAlertBox: Bool = false
@@ -130,7 +131,7 @@ struct EventCreationView: View {
                     // Main image as a background of the event
                     
                     // event image
-                    Image(uiImage: images.last!)
+                    Image(uiImage: (pictureChangedByUser ? images.last! : UIImage(named: "\(category)StockImage") ?? images.last!))
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 250, height: 250, alignment: .center)
@@ -266,7 +267,9 @@ struct EventCreationView: View {
             }
             .scaleEffect(1.3)
             .sheet(isPresented: $showImagePicker, content: {
-                ImagePicker(images: $images, showPicker: $showImagePicker, limit: 1, didFinishPicking: {_ in})
+                ImagePicker(images: $images, showPicker: $showImagePicker, limit: 1, didFinishPicking: {_ in
+                    pictureChangedByUser = true
+                })
             })
             .onAppear {
                 
