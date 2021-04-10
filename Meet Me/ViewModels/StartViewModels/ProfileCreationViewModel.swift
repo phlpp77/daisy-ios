@@ -58,8 +58,12 @@ class ProfileCreationModel: ObservableObject {
             self.firestoreManagerUserTest.saveUser(userModel: userModel)
         }.then {
             self.firestoreManagerUserTest.createLikedEventsArray()
-        }.then {
-            when(fulfilled: images!.compactMap(self.uploadUserPhotos))
+        }.done {
+            if images != nil {
+                when(fulfilled: images!.compactMap(self.uploadUserPhotos)).catch { error in
+                    print(error)
+                }
+            }
         }.catch { error in
             print("DEBUG: catch, fehler in event creation \(error)")
             print(error.localizedDescription)

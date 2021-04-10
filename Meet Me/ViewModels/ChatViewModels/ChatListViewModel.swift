@@ -43,6 +43,33 @@ class ChatListViewModel: ObservableObject {
         }
     }
     
+    func activateListner() ->Promise<Void> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                return
+            }
+            
+            db.collection("users")
+                .document(currentUser.uid)
+                .collection("matches")
+                .addSnapshotListener { (snapshot, error) in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        if let _ = snapshot {
+                            self.getMatches()
+                            seal.fulfill(())
+                        }
+                        
+                    }
+                }
+        }
+    }
+    
+        
+
+    
+    
     func getMatches() {
         firstly {
             self.firestoreManagerChat.getAllMatchDocumentsCurrentUser()

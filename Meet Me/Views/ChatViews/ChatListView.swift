@@ -99,7 +99,10 @@ struct ChatListView: View {
             
         }
         .onAppear {
-            chatListVM.getMatches()
+            chatListVM.activateListner().catch { error in
+                print(error)
+            }
+            //chatListVM.getMatches()
         }
         
     }
