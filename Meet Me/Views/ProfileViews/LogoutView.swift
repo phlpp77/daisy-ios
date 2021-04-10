@@ -18,9 +18,7 @@ struct LogoutView: View {
     var body: some View {
         
         Button(action: {
-            
             firstActions.firstViews["FirstEventShuffle"] = false
-            
             firstly {
                 self.firestoreManagerUserTest.deletePushNotificationTokenFromUser()
             }.then {

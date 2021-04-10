@@ -22,13 +22,13 @@ class LogoutViewModel: ObservableObject {
             } catch { let error = error
                 seal.reject(error)
             }
-            DispatchQueue.main.async {
+            //DispatchQueue.main.async {
             seal.fulfill(())
-            }
+           // }
         }
-    
+        
     }
-
+    
 }
 
 

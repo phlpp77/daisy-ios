@@ -87,13 +87,12 @@ class FirestoreManagerUserTest {
                 if let error = error {
                     seal.reject(error)
                 } else {
-                    DispatchQueue.main.async {
                     seal.fulfill(())
                     }
                 }
             }
         }
-    }
+    
     
     func addOneToRefreshCounter() -> Promise<Void> {
         return Promise { seal in
