@@ -18,12 +18,55 @@ class LoginViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var password2: String = ""
     @Published var errorMessage: String = ""
+    @Published var loginToken: String = ""
+    @Published var checkToken: Bool = false
     
     
     
     
+    
+    
+    
+    
+    func checkLoginToken(){
+        firstly {
+            getAllLoginTokens()
+        }.done { tokenCheck in
+            self.checkToken = tokenCheck
+        }.catch { error in
+            print(error)
+        }
+    }
+    
+  
     //login Functions
+    func getAllLoginTokens() ->Promise<Bool> {
+        return Promise { seal in
+            let _ = db.collection("loginTokens").document("loginTokens").getDocument { snapshot, error in
+                if let error = error {
+                    seal.reject(error)
+                } else {
+                    if let snapshot = snapshot {
+                        let tokens = try? snapshot.data(as: LoginTokenModel.self)
+                        if tokens != nil {
+                            DispatchQueue.main.async {
+                                if tokens!.tokens.contains(self.loginToken) {
+                                    seal.fulfill(true)
+                                } else {
+                                    seal.fulfill(false)
+                                }
+                            }
+                        }else {
+                            seal.reject(Err("no tokens avaliable"))
+                        }
+                    }
+                }
+            }
+        }
+    }
         
+
+    
     func checkUserAcc() -> Promise<Bool> {
         return Promise { seal in
             firstly {

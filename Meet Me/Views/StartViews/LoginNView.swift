@@ -10,7 +10,7 @@ import PromiseKit
 
 struct LoginNView: View {
     
-    @ObservedObject var loginVM: LoginViewModel = LoginViewModel()
+    @StateObject var loginVM: LoginViewModel = LoginViewModel()
     
     @Binding var nextPosition: StartPosition
     @Binding var startUpDone: Bool
