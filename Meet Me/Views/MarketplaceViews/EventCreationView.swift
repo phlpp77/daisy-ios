@@ -54,6 +54,7 @@ struct EventCreationView: View {
     @State private var showAlertBox: Bool = false
     @State private var pathNumber: Int = 0
     @State private var accepted: Bool = false
+    @State private var showOtherTextField: Bool = false
     // legacy handling of date as a string
     @State private var dateAsString = ""
     @State private var startTimeAsString = ""
@@ -81,31 +82,49 @@ struct EventCreationView: View {
     var body: some View {
         ZStack {
             
-            // background
-            Color.black.opacity(0.0001)
-                .onTapGesture {
-                    presentation = false
-                }
+//            // background
+//            Color.black.opacity(0.0001)
+//
             
             VStack {
                 
-                Picker(selection: $covidPreference,
-                       label:
-                        VStack(alignment: .leading, spacing: 0.0) {
-                            Text("Choose your")
-                            Text("Covid-preference")
+                
+                
+                    
+                                            
+//                        .padding(.top, 10)
+//                        .padding()
+//                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        
+                HStack {
+                    Picker(selection: $covidPreference,
+                           label:
+                           
+                            Text("Tap here to choose your Covid-preference")
+                            .padding()
+                            .frame(width: 210)
+                            .modifier(FrozenWindowModifier())
+                           
+                           , content: {
+                            ForEach(CovidPreference.allCases, id: \.self) { value in
+                                Text(value.localizedName)
+                                    .tag(value)
+                            }
+                           })
+                        .pickerStyle(MenuPickerStyle())
+                    
+                    // xmark symbol to show the user how to dismiss the view
+                    Image(systemName: "xmark")
+                        .foregroundColor(Color("BackgroundSecondary").opacity(0.7))
+                        .font(.system(size: 30))
+                        .onTapGesture {
+                            presentation = false
                         }
-                        .padding()
-                        .frame(width: 175)
-                        .modifier(FrozenWindowModifier())
-                       
-                       , content: {
-                        ForEach(CovidPreference.allCases, id: \.self) { value in
-                            Text(value.localizedName)
-                                .tag(value)
-                        }
-                       })
-                    .pickerStyle(MenuPickerStyle())
+
+                }
+                .padding(.bottom, 12)
+
+                
                 
                 ZStack {
                     // Main image as a background of the event
@@ -198,6 +217,8 @@ struct EventCreationView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 15)
                 
+                
+                
                 // update button
                 VStack {
                     
@@ -211,7 +232,7 @@ struct EventCreationView: View {
                     .opacity(buttonPressed ? 0.5 : 1)
                     
                     .padding()
-                    .frame(width: 175)
+                    .frame(width: 210)
                     .modifier(FrozenWindowModifier())
                     
                     .scaleEffect(buttonPressed ? 0.8 : 1)
@@ -240,11 +261,7 @@ struct EventCreationView: View {
                 .padding(.bottom, 16)
                 .padding(.top, 20)
                 
-                // xmark symbol to show the user how to dismiss the view
-                Image(systemName: "xmark")
-                    .foregroundColor(Color("BackgroundSecondary").opacity(0.7))
-                    .font(.system(size: 30))
-                    .padding(.top, 10)
+                
                 
             }
             .scaleEffect(1.3)
@@ -268,7 +285,7 @@ struct EventCreationView: View {
                 
                 // AlertBox to define the category
                 case 0:
-                    AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", categoryPicker: true, selectedDuration: .constant(.medium), output: $category, show: $showAlertBox, accepted: $accepted)
+                        AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", categoryPicker: true, selectedDuration: .constant(.medium), output: $category, show: $showAlertBox, accepted: $accepted)
                     
                 // AlertBox to define the date
                 case 1:
@@ -285,6 +302,10 @@ struct EventCreationView: View {
                 default:
                     AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", selectedDuration: .constant(.medium), output: $category, show: $showAlertBox, accepted: $accepted)
                 }
+            }
+            
+            if category == "Other" {
+                AlertBoxView(title: "Name your category", placeholder: "Other", defaultText: "", textFieldInputWithLimit: true, selectedDuration: .constant(.medium), output: $category, show: $showOtherTextField, accepted: $accepted)
             }
             
             //            Image(systemName: "xmark.circle")

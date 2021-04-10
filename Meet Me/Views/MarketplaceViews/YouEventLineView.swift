@@ -29,13 +29,15 @@ struct YouEventLineView: View {
     @GestureState var longPress: Bool = false
     @State var pressDone: Bool = false
     
+    let notchPhone: Bool = UIApplication.shared.windows[0].safeAreaInsets.bottom > 0 ? true : false
+    
     var body: some View {
         ZStack {
             
             // MARK: Dashed rectangle for dragging
             if eventArray.count >= 1 {
-                Text("Drag Events down to like")
-                    .frame(width: 250, height: 25, alignment: .center)
+                Text("Drag Events down you like to join")
+                    .frame(width: 300, height: 25, alignment: .center)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10, style: .continuous)
                             .strokeBorder(style: StrokeStyle(
@@ -44,7 +46,7 @@ struct YouEventLineView: View {
                             ))
                             .gradientForeground(gradient: secondaryGradient)
                     )
-                    .offset(y: 150)
+                    .offset(y: notchPhone ? 150 : 120)
             }
             
             
@@ -71,6 +73,7 @@ struct YouEventLineView: View {
                             GeometryReader { geometry in
                                 
                                 YouEventNView(events: $eventArray, eventIndex: eventIndex, currentEvent: eventArray[eventIndex])
+                                    .scaleEffect(notchPhone ? 1 : 0.7)
                                     .rotation3DEffect(
                                         // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
                                         Angle(
@@ -87,20 +90,21 @@ struct YouEventLineView: View {
                                     }
                             }
                             
-                            .frame(width: 250, height: 250)
-                            .padding(.bottom, 120)
+                            .frame(width: notchPhone ? 250 : 200, height: notchPhone ? 250 : 200)
+                            .padding(.bottom, notchPhone ? 120 : 80)
                             .padding(.leading, 30)
-                            .padding(.top, 30)
+                            .padding(.top, notchPhone ? 30 : 15)
+                            .offset(y: notchPhone ? 0 : -30)
                         }
                         // needed to update dragged event and array
                         .id(UUID())
                         
                         // button at the end to refresh events
                         refreshButton
-                            .frame(width: 250, height: 250)
-                            .padding(.bottom, 120)
+                            .frame(width: notchPhone ? 250 : 200, height: notchPhone ? 250 : 200)
+                            .padding(.bottom, notchPhone ? 120 : 80)
                             .padding(.leading, 30)
-                            .padding(.top, 30)
+                            .padding(.top, notchPhone ? 30 : 15)
                         
                     }
                 }
@@ -109,7 +113,7 @@ struct YouEventLineView: View {
                 
                 Spacer()
             }
-            .frame(height: 380)
+            .frame(height: notchPhone ? 380 : 300)
             
             // loading screen deactivated
             //            LoadingView(showLoadingScreen: $loading)
@@ -121,7 +125,7 @@ struct YouEventLineView: View {
             
             
         }
-        .frame(height: 380)
+        .frame(height: notchPhone ? 380 : 300)
         .onAppear {
             //Check if it is the first login
             if firstActions.firstViews["FirstEventShuffle"] == false || firstActions.firstViews["FirstEventShuffle"] == nil {
@@ -171,6 +175,7 @@ struct YouEventLineView: View {
                             }
                             .onEnded { value in
                                 pressDone = true
+                                hapticFeedback(feedBackstyle: .success)
                                 self.eventArray = []
                                 showedEventsModel.events = eventArray
                                 showedEventsModel.save()

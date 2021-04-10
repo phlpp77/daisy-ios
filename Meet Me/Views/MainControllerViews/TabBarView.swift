@@ -50,7 +50,7 @@ struct TabBarView: View {
                     .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 5)
                     .padding(.horizontal, 24)
                     // for older iPhones 15 padding
-                    .padding(.bottom, bounds.safeAreaInsets.bottom == 0 ? 15 : 30)
+                    .padding(.bottom, bounds.safeAreaInsets.bottom == 0 ? 10 : 30)
                 }
                 .ignoresSafeArea(.all, edges: .bottom)
                 .background(

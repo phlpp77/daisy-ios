@@ -45,7 +45,7 @@ class ChatListViewModel: ObservableObject {
                     }
                 }
                 else {
-                    self.messageIfNoMatches = "Drag Events and Match!"
+                    self.messageIfNoMatches = "Drag Events at the Meet ME Market and match!"
                 }
             }
         }.catch { error in

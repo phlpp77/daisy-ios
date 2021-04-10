@@ -96,7 +96,7 @@ struct MeEventNView: View {
                     }
                     .font(.subheadline)
                 }
-                .frame(height: 35.0)
+                .frame(width: 157, height: 35.0)
             }
             .offset(x: 10.0, y: 60)
             

@@ -20,6 +20,8 @@ struct MeEventLineView: View {
     
     @Binding var tappedEvent: EventModel
     
+    let notchPhone: Bool = UIApplication.shared.windows[0].safeAreaInsets.bottom > 0 ? true : false
+    
     var body: some View {
         GeometryReader { geometry in
             ScrollView(.horizontal, showsIndicators: false) {
@@ -39,6 +41,7 @@ struct MeEventLineView: View {
                         .scaleEffect(buttonPressed ? 0.8 : 1)
                         .opacity(buttonPressed ? 0.5 : 1)
                         .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
+                        .padding()
                         .onTapGesture {
                             
                             // button animation start
@@ -55,6 +58,7 @@ struct MeEventLineView: View {
                     ForEach(meEventLineVM.eventArray.indices, id: \.self) { event in
                         HStack {
                             MeEventNView(event: $meEventLineVM.eventArray[event])
+                                .scaleEffect(notchPhone ? 1 : 0.8)
                                 .rotation3DEffect(
                                     // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
                                     Angle(
@@ -75,6 +79,7 @@ struct MeEventLineView: View {
                     }
                 }
             }
+            .offset(y: notchPhone ? 0 : -10)
         }        
         .onAppear {
             self.meEventLineVM.getMeEvents()

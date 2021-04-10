@@ -27,15 +27,25 @@ struct MeProfileNView: View {
             
             Spacer()
             
-            // First block (look of the user)
-            MeProfileFirstBlockView()
+            ScrollView {
+                VStack(spacing: 12) {
+                    Spacer()
+                    
+                    // First block (look of the user)
+                    MeProfileFirstBlockView()
+                    
+                    // Second block (change the search-settings)
+                    MeProfileSecondBlockView()
+                    
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.top, 20)
+            }
+            .offset(y: -20)
             
-            Spacer()
             
-            // Second block (change the search-settings)
-            MeProfileSecondBlockView()
             
-            Spacer()
         }
         .sheet(isPresented: $showDeveloperView, content: {
             DeveloperView()

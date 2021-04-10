@@ -8,16 +8,21 @@
 import SwiftUI
 
 struct MaintenanceView: View {
+    
+    @ObservedObject var developerManager = DeveloperManager()
+    
     var body: some View {
         VStack {
             VStack {
                 Text("DAISY")
+                    .gradientForeground(gradient: secondaryGradient)
                 Text("Maintenance break")
+                    .foregroundColor(.accentColor)
                     .font(.system(size: 40))
             }
             .font(.system(size: 75))
-            .gradientForeground(gradient: secondaryGradient)
-            Text("We are updating DAISY for the best experience...")
+            
+            Text(developerManager.developerOptionsModel.reason == "" ? "We are updating DAISY for the best experience..." : developerManager.developerOptionsModel.reason)
                 .font(.title2)
                 .padding(.bottom, 40)
             

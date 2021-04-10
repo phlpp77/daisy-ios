@@ -61,15 +61,20 @@ struct ChatListRowView: View {
                         Text(" \(match.user.name)")
                             .foregroundColor(.accentColor)
                     }
-                    .font(.system(size: 22))
+                    .lineLimit(1)
                     
                     // second row with event date
                     HStack(spacing: 0.0) {
                         Text(dateFormatter.string(from: match.event.date))
+                            
                         Text(" at ")
+                            
                         Text(timeFormatter.string(from: match.event.startTime))
+                            
                     }
                     .font(.subheadline)
+                    .foregroundColor(.gray)
+                    
                 }
                 .foregroundColor(.primary)
             }
@@ -81,8 +86,9 @@ struct ChatListRowView: View {
             // show soon when Event is in the next 12 hours and "event over when it's over
             if Date().distance(to: combineDateWithTime(date: match.event.date, time: match.event.startTime)!) < 43200 {
                 HStack {
-                    Text(Date().distance(to: combineDateWithTime(date: match.event.date, time: match.event.startTime)!) < 0 ? "Event over" : "soon!")
-                        .padding(4)
+                    Text(Date().distance(to: combineDateWithTime(date: match.event.date, time: match.event.startTime)!) < 0 ? "Event over" : "Soon!")
+                        .font(.system(size: 14))
+                        .padding(5)
                         .foregroundColor(.white)
                         .background(Color.accentColor)
                         .mask(Capsule())
@@ -90,6 +96,22 @@ struct ChatListRowView: View {
                         .padding(.leading, 80)
                     Spacer()
                     
+                }
+                .offset(y: -35)
+            }
+            
+            // show a marker when a new message is in the chat
+            if match.unReadMessage {
+                HStack {
+                    Spacer()
+                    Text("!")
+                        .font(.system(size: 14))
+                        .padding(10)
+                        .foregroundColor(.white)
+                        .background(Color.accentColor)
+                        .mask(Circle())
+                        .shadow(color: Color.black.opacity(0.3), radius: 4, x: 2, y: 2)
+                        .padding(.trailing, 40)
                 }
                 .offset(y: -35)
             }
@@ -128,7 +150,7 @@ struct ChatListRowView: View {
                 firstPartString = "Having drinks with"
             // event for meeting for everything else which is not listed above
             default:
-                firstPartString = "Meeting with"
+                firstPartString = "\(match.event.category) with"
             }
         }
     }
