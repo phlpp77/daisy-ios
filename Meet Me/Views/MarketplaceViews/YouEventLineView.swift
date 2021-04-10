@@ -23,6 +23,7 @@ struct YouEventLineView: View {
     
     @Binding var tappedYouEvent: EventModel
     @Binding var showYouProfileView: Bool
+    @Binding var showSuccess: Bool
     
     // index which event needs to be removed from the array/scrollview
     @State var eventRemoveIndex: Int = -1
@@ -72,7 +73,7 @@ struct YouEventLineView: View {
                         ForEach(eventArray.indices, id: \.self) { eventIndex in
                             GeometryReader { geometry in
                                 
-                                YouEventNView(events: $eventArray, eventIndex: eventIndex, currentEvent: eventArray[eventIndex])
+                                YouEventNView(events: $eventArray, showSuccess: $showSuccess, eventIndex: eventIndex, currentEvent: eventArray[eventIndex])
                                     .scaleEffect(notchPhone ? 1 : 0.7)
                                     .rotation3DEffect(
                                         // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
@@ -166,10 +167,10 @@ struct YouEventLineView: View {
                 .gradientForeground(gradient: secondaryGradient)
                 .font(.largeTitle)
                 
-                .gesture(LongPressGesture(minimumDuration: 2)
+                .gesture(LongPressGesture(minimumDuration: 1)
                             .updating($longPress) { currentState, gestureState, transaction in
                                 
-                                transaction.animation = Animation.easeInOut(duration: 2.0)
+                                transaction.animation = Animation.easeInOut(duration: 1.0)
                                 gestureState = currentState
                                 
                             }
@@ -232,6 +233,6 @@ struct YouEventLineView: View {
 
 struct EventLineView_Previews: PreviewProvider {
     static var previews: some View {
-        YouEventLineView(tappedYouEvent: .constant(stockEvent), showYouProfileView: .constant(true))
+        YouEventLineView(tappedYouEvent: .constant(stockEvent), showYouProfileView: .constant(true), showSuccess: .constant(false))
     }
 }

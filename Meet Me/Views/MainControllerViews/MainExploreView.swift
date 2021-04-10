@@ -19,6 +19,7 @@ struct MainExploreView: View {
     @State private var eventArray: [EventModel] = [stockEvent, stockEvent]
     @State private var tappedMeEvent: EventModel = stockEvent
     @State private var tappedYouEvent: EventModel = stockEvent
+    @State private var showSuccess: Bool = false
     
     @State private var firstEventCreation: Bool = true
     
@@ -48,7 +49,7 @@ struct MainExploreView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 12)
                         
-                        YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView)
+                        YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView, showSuccess: $showSuccess)
                     }
                     .opacity(showYouProfileView ? 0.1 : 1)
                     .opacity(showCreationView ? 0.1 : 1)
@@ -82,6 +83,11 @@ struct MainExploreView: View {
             // MARK: Show youProfileView when user taps on a YouEvent
             if showYouProfileView {
                 YouProfileNView(showYouProfileView: $showYouProfileView, event: $tappedYouEvent)
+            }
+            
+            // MARK: Show success animation after like
+            if showSuccess {
+                CheckView(showCheckView: $showSuccess)
             }
         }
     }

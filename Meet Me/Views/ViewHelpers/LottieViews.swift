@@ -21,6 +21,26 @@ struct LoadingView: View {
     }
 }
 
+struct CheckView: View {
+    
+    @Binding var showCheckView: Bool
+    
+    var body: some View {
+        
+        if showCheckView {
+            LottieView(filename: "check-mark", loopMode: .playOnce)
+                .frame(width: 100, height: 100, alignment: .center)
+                .padding()
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.15) {
+                        showCheckView.toggle()
+                    }
+                }
+        }
+        
+    }
+}
+
 struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
         LoadingView(showLoadingScreen: .constant(true))
