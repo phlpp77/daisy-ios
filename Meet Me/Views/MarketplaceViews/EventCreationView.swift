@@ -17,6 +17,8 @@ struct EventCreationView: View {
     // binding for updating the array
     @Binding var eventArray: [EventModel]
     
+    @Binding var eventCreated: Bool
+    
     // vars to show in the screen
     @State private var category: String = "Café"
     @State private var date: Date = Date()
@@ -256,6 +258,9 @@ struct EventCreationView: View {
                         // close view
                         presentation = false
                         
+                        // show the success animation
+                        eventCreated.toggle()
+                        
                     }
                 }
                 
@@ -377,6 +382,6 @@ struct EventCreationView: View {
 
 struct EventCreationView_Previews: PreviewProvider {
     static var previews: some View {
-        EventCreationView(presentation: .constant(true), eventArray: .constant([stockEvent]))
+        EventCreationView(presentation: .constant(true), eventArray: .constant([stockEvent]), eventCreated: .constant(false))
     }
 }

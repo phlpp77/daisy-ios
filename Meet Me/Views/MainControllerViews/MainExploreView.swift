@@ -19,7 +19,9 @@ struct MainExploreView: View {
     @State private var eventArray: [EventModel] = [stockEvent, stockEvent]
     @State private var tappedMeEvent: EventModel = stockEvent
     @State private var tappedYouEvent: EventModel = stockEvent
-    @State private var showSuccess: Bool = false
+    
+    @State private var eventLiked: Bool = false
+    @State private var eventCreated: Bool = false
     
     @State private var firstEventCreation: Bool = true
     
@@ -49,7 +51,7 @@ struct MainExploreView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 12)
                         
-                        YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView, showSuccess: $showSuccess)
+                        YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView, showSuccess: $eventLiked)
                     }
                     .opacity(showYouProfileView ? 0.1 : 1)
                     .opacity(showCreationView ? 0.1 : 1)
@@ -57,7 +59,7 @@ struct MainExploreView: View {
                 
             }
             .sheet(isPresented: $showCreationView, content: {
-                EventCreationView(presentation: $showCreationView, eventArray: $eventArray)
+                EventCreationView(presentation: $showCreationView, eventArray: $eventArray, eventCreated: $eventCreated)
             })
             
             // create the setup EventView on top of the rest
@@ -85,9 +87,11 @@ struct MainExploreView: View {
                 YouProfileNView(showYouProfileView: $showYouProfileView, event: $tappedYouEvent)
             }
             
-            // MARK: Show success animation after like
-            if showSuccess {
-                CheckView(showCheckView: $showSuccess)
+            // MARK: Show success animations
+            if eventLiked {
+                CheckView(showCheckView: $eventLiked, text: "Event liked")
+            } else if eventCreated {
+                CheckView(showCheckView: $eventCreated, text: "Event created")
             }
         }
     }

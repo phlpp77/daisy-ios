@@ -48,7 +48,7 @@ struct MeEventDetailedView: View {
                             .offset(x: (bounds.size.width - 48) / 2 - 30, y: -((bounds.size.width - 48) * 1.33) / 2 + 30)
                         
                         // text to inform user about the current MeEvent Status
-                        FrozenTextBox(text: eventStatus == .matched ? "You already have a YOU to meet, go to Chats to set up the details!" : eventStatus == .liked ? "Ready to find a YOU?" : "Wait a bit that other YOUs can find your Event")
+                        FrozenTextBox(text: eventStatus == .matched ? "You already have someone to meet, go to the chat area to set up the details!" : eventStatus == .liked ? "Ready to find someone for your event? Tap on start match." : "Wait a bit that others can find your Event...")
                         
                         // ---
                         
@@ -79,8 +79,10 @@ struct MeEventDetailedView: View {
                             
                         }, label: {
                             FrozenButton(text: "Start Match", sfSymbol: "")
+                                .scaleEffect(eventStatus == .liked ? 1.2 : 1)
                         })
                         .offset(y: ((bounds.size.width - 48) * 1.33 / 2) - 10)
+                        .offset(y: eventStatus == .liked ? 5 : 0)
                         .disabled(eventStatus == .matched ? true : eventStatus == .notLiked ? true : false)
                         .opacity(eventStatus == .matched ? 0.7 : eventStatus == .notLiked ? 0.7 : 1)
                         

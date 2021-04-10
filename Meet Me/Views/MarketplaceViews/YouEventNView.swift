@@ -77,7 +77,7 @@ struct YouEventNView: View {
                         self.events.remove(at: eventIndex)
                         showedEventsModel.events = self.events
                         showedEventsModel.save()
-                        hapticFeedback(feedBackstyle: .success)
+                        
                         showSuccess.toggle()
                         
                     } else {

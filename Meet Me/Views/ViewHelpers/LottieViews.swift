@@ -25,17 +25,32 @@ struct CheckView: View {
     
     @Binding var showCheckView: Bool
     
+    var text: String?
+    
     var body: some View {
         
         if showCheckView {
-            LottieView(filename: "check-mark", loopMode: .playOnce)
-                .frame(width: 100, height: 100, alignment: .center)
-                .padding()
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.15) {
-                        showCheckView.toggle()
-                    }
+            VStack {
+                
+                if text != nil {
+                    Text(text!)
+                        .foregroundColor(.gray)
+                        .frame(width: 150)
                 }
+                
+                LottieView(filename: "check-mark", loopMode: .playOnce)
+                    .frame(width: 100, height: 100, alignment: .center)
+                    .padding()
+                    .onAppear {
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.15) {
+                            hapticFeedback(feedBackstyle: .success)
+                            showCheckView.toggle()
+                        }
+                }
+            }
+            .padding()
+            .modifier(FrozenWindowModifier())
         }
         
     }
@@ -43,6 +58,6 @@ struct CheckView: View {
 
 struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        LoadingView(showLoadingScreen: .constant(true))
+        CheckView(showCheckView: .constant(true))
     }
 }
