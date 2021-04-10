@@ -15,7 +15,7 @@ struct MainExploreView: View {
     @State private var showCreationView: Bool = false
     @State private var showMeEventController: Bool = false
     @State private var showYouProfileView: Bool = false
-    
+    //let application: UIApplication = UIApplication()
     @State private var eventArray: [EventModel] = [stockEvent, stockEvent]
     @State private var tappedMeEvent: EventModel = stockEvent
     @State private var tappedYouEvent: EventModel = stockEvent
