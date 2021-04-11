@@ -33,7 +33,7 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     func resizeImage(originalImage: UIImage?) -> Promise<Data> {
         return Promise { seal in
             if let originalImage = originalImage {
-                    if let resizedImage = originalImage.resized(width: 500) {
+                    if let resizedImage = originalImage.resized(width: 350) {
                         if let data = resizedImage.pngData() {
                             seal.fulfill(data)
                         }
