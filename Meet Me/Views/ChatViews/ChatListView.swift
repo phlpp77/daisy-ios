@@ -86,6 +86,7 @@ struct ChatListView: View {
                     Spacer()
                     
                     Text(chatListVM.messageIfNoMatches)
+                        .padding()
                     
                     Spacer()
                 }

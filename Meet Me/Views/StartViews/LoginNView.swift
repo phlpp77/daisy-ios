@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PromiseKit
+import Combine
 
 struct LoginNView: View {
     
@@ -18,7 +19,10 @@ struct LoginNView: View {
     @State var passwordField1WasEdited: Bool = false
     @State var showPresentTermsAndConditionsSheet: Bool = false
     @State var loginMode: Bool = false
-
+    
+    // TODO: @budni take token-string to VM
+    @State var token: String = ""
+    
     
     var body: some View {
         
@@ -63,17 +67,28 @@ struct LoginNView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.emailAddress)
                     
+                    // password field
                     SecureField("Password", text: $loginVM.password)
                         .onTapGesture {
                             withAnimation(.easeInOut) {
                                 passwordField1WasEdited = true
                             }
                         }
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                     
+                    // confirm password field
                     if passwordField1WasEdited && !loginMode {
                         SecureField("Repeat password", text: $loginVM.password2)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                    
+                    // token field (only available when login)
+                    if !loginMode {
+                        TextField("Token", text: $token)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .disableAutocorrection(true)
+                            .onReceive(Just(token)) { _ in limitText(6) }
+                            
                     }
                     
                     // MARK: Button to switch between login and register mode
@@ -105,23 +120,16 @@ struct LoginNView: View {
                                         }else {
                                             self.nextPosition = .profileCreation
                                         }
-                                }.catch { error in
-                                    loginVM.errorMessage = error.localizedDescription
+                                    }.catch { error in
+                                        loginVM.errorMessage = error.localizedDescription
                                     }
                                 }
                                 
                             }
+                            
                             // if button shows register
                             else {
-                                DispatchQueue.main.async {
-                                self.loginVM.register().done {
-                                    print("viewDone")
-                                    // switches view to the profile Creation
-                                    self.nextPosition = .profileCreation
-                                }.catch { error in
-                                    loginVM.errorMessage = error.localizedDescription
-                                    }
-                                }
+                                registerUser()
                             }
                             
                             
@@ -177,6 +185,30 @@ struct LoginNView: View {
             .padding(.top, bounds.size.height * 0.33)
         }
         
+    }
+    
+    // MARK: Functions
+    
+    // Function to register the user in the db
+    func registerUser() {
+        // TODO: @budni check if entered token is in db - otherwise error
+        
+        DispatchQueue.main.async {
+            self.loginVM.register().done {
+                print("viewDone")
+                // switches view to the profile Creation
+                self.nextPosition = .profileCreation
+            }.catch { error in
+                loginVM.errorMessage = error.localizedDescription
+            }
+        }
+    }
+    
+    //Function to keep text length in limits
+    func limitText(_ upper: Int) {
+        if token.count > upper {
+            token = String(token.prefix(upper))
+        }
     }
 }
 
