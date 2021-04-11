@@ -15,6 +15,8 @@ struct MainStartView: View {
     
     @State var currentPosition: StartPosition = .splash
     
+    @State var userToken: String = ""
+    
     var startPosition = [StartPosition.splash, StartPosition.onboarding, StartPosition.registerLogin, StartPosition.profileCreation]
     
     var body: some View {
@@ -33,9 +35,9 @@ struct MainStartView: View {
             case .onboarding:
                 OnboardingController(showOnboarding: $currentPosition)
             case .registerLogin:
-                LoginNView(nextPosition: $currentPosition, startUpDone: $startUpDone)
+                LoginNView(nextPosition: $currentPosition, startUpDone: $startUpDone, userToken: $userToken)
             case .profileCreation:
-                ProfileCreationView(profileCreationFinished: $startUpDone)
+                ProfileCreationView(profileCreationFinished: $startUpDone, userToken: $userToken)
             }
             
         }

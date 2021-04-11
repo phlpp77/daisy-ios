@@ -106,6 +106,7 @@ struct YouEventLineView: View {
                             .padding(.bottom, notchPhone ? 120 : 80)
                             .padding(.leading, eventArray.count < 1 ? -10 : 30)
                             .padding(.top, notchPhone ? 30 : 15)
+                            .padding(.trailing, 20)
                         
                     }
                 }
@@ -160,53 +161,65 @@ struct YouEventLineView: View {
     var refreshButton: some View {
         
         
-        VStack {
-            Text("Press and hold to")
-                .font(.footnote)
-            Text("REFRESH")
-                .gradientForeground(gradient: secondaryGradient)
-                .font(.largeTitle)
-                
-                .gesture(LongPressGesture(minimumDuration: 1)
-                            .updating($longPress) { currentState, gestureState, transaction in
-                                
-                                transaction.animation = Animation.easeInOut(duration: 1.0)
-                                gestureState = currentState
-                                
-                            }
-                            .onEnded { value in
-                                pressDone = true
-                                hapticFeedback(feedBackstyle: .success)
-                                self.eventArray = []
-                                showedEventsModel.events = eventArray
-                                showedEventsModel.save()
-                                // refresh youEvents
-                                firstly {
-                                    self.youEventLineVM.getYouEvents(region: locationManager.region, shuffle: true)
-                                }.done { events in
-                                    self.eventArray = events
-                                    showedEventsModel.events = events
-                                    showedEventsModel.save()
-                                    
-                                }.catch { error in
-                                    print("DEBUG: error in GetYouEventChain: \(error)")
-                                    print("DEBUG: \(error.localizedDescription)")
-                                }
-                                self.youEventLineVM.addOneToRefreshCounter()
-                                
-                                
-                            })
+        ZStack {
             
+            // actual button
+            VStack(spacing: 12.0) {
+                Text("Press and hold to")
+                    .font(.footnote)
+                
+                Image(systemName: "arrow.clockwise")
+                    .font(.system(size: 40))
+                    .gradientForeground(gradient: secondaryGradient)
+                
+                Text("REFRESH")
+            }
+            .frame(width: 175, height: 175, alignment: .center)
+            .modifier(offWhiteShadow(cornerRadius: 14))
+            .overlay(
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .trim(from: longPress ? 0 : 1, to: 1)
+                    .stroke(Color.secondary, style: StrokeStyle(lineWidth: longPress ? 30 : 4, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [longPress ? 800 : 0, 1000], dashPhase: 0))
+            )
+            .gesture(LongPressGesture(minimumDuration: 1)
+                        .updating($longPress) { currentState, gestureState, transaction in
+                            
+                            transaction.animation = Animation.easeInOut(duration: 1.0)
+                            gestureState = currentState
+                            
+                        }
+                        .onEnded { value in
+                            pressDone = true
+                            hapticFeedback(feedBackstyle: .success)
+                            self.eventArray = []
+                            showedEventsModel.events = eventArray
+                            showedEventsModel.save()
+                            // refresh youEvents
+                            firstly {
+                                self.youEventLineVM.getYouEvents(region: locationManager.region, shuffle: true)
+                            }.done { events in
+                                self.eventArray = events
+                                showedEventsModel.events = events
+                                showedEventsModel.save()
+                                
+                            }.catch { error in
+                                print("DEBUG: error in GetYouEventChain: \(error)")
+                                print("DEBUG: \(error.localizedDescription)")
+                            }
+                            self.youEventLineVM.addOneToRefreshCounter()
+                            
+                            
+                        })
+            .padding(30)
+            .frame(width: 250, height: 250, alignment: .center)
+            
+            // overlay with number
+            Text("1/5")
+                .padding(8)
+                .background(Color(UIColor(.accentColor)))
+                .mask(Capsule())
+                .offset(x: 175 / 2, y: -175 / 2)
         }
-        .frame(width: 175, height: 175, alignment: .center)
-        .modifier(offWhiteShadow(cornerRadius: 14))
-        .overlay(
-            RoundedRectangle(cornerRadius: 14, style: .continuous)
-                .trim(from: longPress ? 0 : 1, to: 1)
-                .stroke(Color.secondary, style: StrokeStyle(lineWidth: longPress ? 30 : 4, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [longPress ? 800 : 0, 1000], dashPhase: 0))
-        )
-        .padding(30)
-        .frame(width: 250, height: 250, alignment: .center)
         
     }
     

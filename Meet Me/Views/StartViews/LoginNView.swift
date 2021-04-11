@@ -15,6 +15,7 @@ struct LoginNView: View {
     
     @Binding var nextPosition: StartPosition
     @Binding var startUpDone: Bool
+    @Binding var userToken: String
     
     @State var passwordField1WasEdited: Bool = false
     @State var showPresentTermsAndConditionsSheet: Bool = false
@@ -193,6 +194,10 @@ struct LoginNView: View {
         firstly {
             loginVM.checkLoginToken()
         }.done { loginTokenExist in
+            
+            // pass token to the next screen
+            userToken = loginVM.loginToken
+            
             if loginTokenExist {
                 self.loginVM.register().done {
                     print("viewDone")
@@ -221,6 +226,6 @@ struct LoginNView: View {
 
 struct LoginNView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginNView(nextPosition: .constant(.registerLogin), startUpDone: .constant(true))
+        LoginNView(nextPosition: .constant(.registerLogin), startUpDone: .constant(true), userToken: .constant(""))
     }
 }

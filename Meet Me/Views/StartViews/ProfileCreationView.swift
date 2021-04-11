@@ -23,6 +23,8 @@ struct ProfileCreationView: View {
     // binding to show the main controller that the proccess is finished
     @Binding var profileCreationFinished: Bool
     
+    @Binding var userToken: String
+    
     // MARK: - state vars
     
     // var for the birthday date of the profile owner in the date format
@@ -177,6 +179,9 @@ struct ProfileCreationView: View {
                             updateButtonTapped = true
                             
                             if enoughInformation {
+                                
+                                addProfileCreationVM.userToken = userToken
+                                
                                 addProfileCreationVM.searchingFor = "Both"
                                 
                                 addProfileCreationVM.createUser(images: [croppedImage ?? UIImage(named: "FemaleStockImage")!], bDate: birthdayDate)
@@ -311,7 +316,7 @@ struct ProfileCreationView: View {
 
 struct ProfileCreationView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCreationView(profileCreationFinished: .constant(false))
+        ProfileCreationView(profileCreationFinished: .constant(false), userToken: .constant(""))
         //            .previewDevice("iPhone 8")
     }
 }

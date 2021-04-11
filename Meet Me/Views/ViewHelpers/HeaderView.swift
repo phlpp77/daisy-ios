@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import PromiseKit
 
 struct HeaderView: View {
+    
+    var userManger: FirestoreManagerUserTest = FirestoreManagerUserTest()
+    @State var user: UserModel = stockUser
     
     var text1: String = "That's "
     var text2: String = "!"
@@ -18,7 +22,7 @@ struct HeaderView: View {
         ZStack {
             
             // TODO: @bundi abfrage ob nak prefix im token
-            if true {
+            if user.loginToken.prefix(3) == "NAK" {
                 Image("Stupa")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -61,6 +65,20 @@ struct HeaderView: View {
         .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
         .padding(.horizontal, 24)
         .padding(.bottom, 10)
+        .onAppear {
+            
+            firstly {
+                userManger.getCurrentUser()
+            }.done { userModel in
+                self.user = userModel
+                
+                print("usertoken: \(user.loginToken.prefix(3))")
+                
+            }.catch { error in
+                print(error.localizedDescription)
+            }
+            
+        }
     }
 }
 
