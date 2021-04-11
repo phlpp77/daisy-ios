@@ -55,7 +55,7 @@ struct ChatListView: View {
                                             Label("Dissolve Match", systemImage: "person.crop.circle.badge.minus")
                                         }
                                         
-                                        // Button to dissolve the match and delete the whole event
+                                        // Button to dissolve the match and delete the whole event, only available when the current user is the creator
                                         if chatListVM.checkIfUserIsCreatorFromEvent(creatorId: chatListVM.matches[matchNumber].event.userId) {
                                             Button {
                                                 chatListVM.deleteMatchAndEventCompletely(match: chatListVM.matches[matchNumber], index: matchNumber)
@@ -63,51 +63,49 @@ struct ChatListView: View {
                                                 Label("Dissolve Match and delete Event", systemImage: "minus.circle")
                                             }
                                         }
-                                    
-                                    
-                                    // Button to report a user and dissolve the match
-                                    Button {
-                                        // TODO: @budni add the reporting function here
-                                        chatListVM.reportUser(match: chatListVM.matches[matchNumber])
-                                    } label: {
-                                        Label("Report user and dissolve Match", systemImage: "exclamationmark.circle")
+                                        
+                                        // Button to report a user and dissolve the match
+                                        Button {
+                                            chatListVM.reportUser(match: chatListVM.matches[matchNumber])
+                                        } label: {
+                                            Label("Report user and dissolve Match", systemImage: "exclamationmark.circle")
+                                        }
+                                        
                                     }
                                     
                                 }
                                 
                             }
-                            
                         }
+                        
+                        
+                        
                     }
+                } else {
                     
+                    Spacer()
                     
+                    Text(chatListVM.messageIfNoMatches)
                     
+                    Spacer()
                 }
-            } else {
-                
-                Spacer()
-                
-                Text(chatListVM.messageIfNoMatches)
-                
-                Spacer()
             }
+            .frame(maxWidth: .infinity)
+            .background(
+                Image("background")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            )
+            
+            .navigationBarHidden(true)
+            
         }
-        .frame(maxWidth: .infinity)
-        .background(
-            Image("background")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-        )
+        .onAppear {
+            chatListVM.getMatches()
+        }
         
-        .navigationBarHidden(true)
-        
-    }
-    .onAppear {
-    chatListVM.getMatches()
     }
     
-}
-
 }
 
 struct ChatListView_Previews: PreviewProvider {
