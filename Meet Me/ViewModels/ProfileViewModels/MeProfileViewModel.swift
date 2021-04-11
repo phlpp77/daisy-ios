@@ -171,9 +171,9 @@ class MeProfileViewModel: ObservableObject {
                 }.done {
                     if position == 0 {
                         firstly {
-                            self.firestoreFotoManagerUserTest.uploadStockPhotoAsProfilPhoto()
-                        }.then {
-                            self.firestoreFotoManagerUserTest.changedProfilPicture(newProfilePicture: stockURL)
+                            self.firestoreFotoManagerUserTest.uploadStockPhotoAsProfilPhoto(userModel: self.userModel)
+                        }.then { stock in
+                            self.firestoreFotoManagerUserTest.changedProfilPicture(newProfilePicture: stock)
                         }.catch { error in
                             seal.reject(error)
                         }

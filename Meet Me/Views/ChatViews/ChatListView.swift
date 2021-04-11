@@ -68,6 +68,7 @@ struct ChatListView: View {
                                     // Button to report a user and dissolve the match
                                     Button {
                                         // TODO: @budni add the reporting function here
+                                        chatListVM.reportUser(match: chatListVM.matches[matchNumber])
                                     } label: {
                                         Label("Report user and dissolve Match", systemImage: "exclamationmark.circle")
                                     }

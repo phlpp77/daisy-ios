@@ -22,6 +22,8 @@ struct UserModel: Codable {
     var token: String 
     var refreshCounter: Int
     var userStatus: String
+    var reports: Int
+    var loginToken: String
     
 }
 
