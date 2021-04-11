@@ -68,20 +68,22 @@ struct MainExploreView: View {
             .sheet(isPresented: $showCreationView, content: {
                 EventCreationView(presentation: $showCreationView, eventArray: $eventArray, eventCreated: $eventCreated)
             })
-            .sheet(isPresented: $showHeaderSheet, content: {
-                VStack {
-                    Spacer()
-                    
-                    Text("What are you searching here? There is nothing to find.. Create events and meet people!")
-                        .italic()
-                        .padding()
-                    Spacer()
-                    Text("#EasterEgg")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                }
-            })
+            
+            // FIXME: Can be activated with iOS 14.5
+//            .sheet(isPresented: $showHeaderSheet, content: {
+//                VStack {
+//                    Spacer()
+//                    
+//                    Text("What are you searching here? There is nothing to find.. Create events and meet people!")
+//                        .italic()
+//                        .padding()
+//                    Spacer()
+//                    Text("#EasterEgg")
+//                        .font(.subheadline)
+//                        .foregroundColor(.gray)
+//                        .frame(maxWidth: .infinity, alignment: .trailing)
+//                }
+//            })
             
             // create the setup EventView on top of the rest
             if showCreationView {
