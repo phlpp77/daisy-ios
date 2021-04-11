@@ -20,8 +20,7 @@ struct LoginNView: View {
     @State var showPresentTermsAndConditionsSheet: Bool = false
     @State var loginMode: Bool = false
     
-    // TODO: @budni take token-string to VM
-    @State var token: String = ""
+
     
     
     var body: some View {
@@ -84,10 +83,10 @@ struct LoginNView: View {
                     
                     // token field (only available when login)
                     if !loginMode {
-                        TextField("Token", text: $token)
+                        TextField("Token", text: $loginVM.loginToken)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .disableAutocorrection(true)
-                            .onReceive(Just(token)) { _ in limitText(6) }
+                            .onReceive(Just(loginVM.loginToken)) { _ in limitText(6) }
                             
                     }
                     
@@ -191,23 +190,31 @@ struct LoginNView: View {
     
     // Function to register the user in the db
     func registerUser() {
-        // TODO: @budni check if entered token is in db - otherwise error
-        
-        DispatchQueue.main.async {
-            self.loginVM.register().done {
-                print("viewDone")
-                // switches view to the profile Creation
-                self.nextPosition = .profileCreation
-            }.catch { error in
-                loginVM.errorMessage = error.localizedDescription
+        firstly {
+            loginVM.checkLoginToken()
+        }.done { loginTokenExist in
+            if loginTokenExist {
+                self.loginVM.register().done {
+                    print("viewDone")
+                    // switches view to the profile Creation
+                    self.nextPosition = .profileCreation
+                }.catch { error in
+                    loginVM.errorMessage = error.localizedDescription
+                }
+            } else {
+                loginVM.errorMessage = "Token doesn't exist"
             }
+        }.catch { error in
+            loginVM.errorMessage = error.localizedDescription
+            
         }
+        
     }
     
     //Function to keep text length in limits
     func limitText(_ upper: Int) {
-        if token.count > upper {
-            token = String(token.prefix(upper))
+        if loginVM.loginToken.count > upper {
+            loginVM.loginToken = String(loginVM.loginToken.prefix(upper))
         }
     }
 }
