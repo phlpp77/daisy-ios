@@ -17,6 +17,8 @@ struct EventCreationView: View {
     // binding for updating the array
     @Binding var eventArray: [EventModel]
     
+    @Binding var eventCreated: Bool
+    
     // vars to show in the screen
     @State private var category: String = "Café"
     @State private var date: Date = Date()
@@ -47,8 +49,9 @@ struct EventCreationView: View {
     
     
     // image handling with PhPicker
-    @State private var images: [UIImage] = [UIImage(named: "cafe")!]
+    @State private var images: [UIImage] = [UIImage(named: "OtherStockImage")!]
     @State private var showImagePicker: Bool = false
+    @State private var pictureChangedByUser: Bool = false
     
     // animation of alert-boxes
     @State private var showAlertBox: Bool = false
@@ -130,7 +133,7 @@ struct EventCreationView: View {
                     // Main image as a background of the event
                     
                     // event image
-                    Image(uiImage: images.last!)
+                    Image(uiImage: (pictureChangedByUser ? images.last! : UIImage(named: "\(category)StockImage") ?? images.last!))
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 250, height: 250, alignment: .center)
@@ -255,6 +258,9 @@ struct EventCreationView: View {
                         // close view
                         presentation = false
                         
+                        // show the success animation
+                        eventCreated.toggle()
+                        
                     }
                 }
                 
@@ -266,7 +272,9 @@ struct EventCreationView: View {
             }
             .scaleEffect(1.3)
             .sheet(isPresented: $showImagePicker, content: {
-                ImagePicker(images: $images, showPicker: $showImagePicker, limit: 1, didFinishPicking: {_ in})
+                ImagePicker(images: $images, showPicker: $showImagePicker, limit: 1, didFinishPicking: {_ in
+                    pictureChangedByUser = true
+                })
             })
             .onAppear {
                 
@@ -374,6 +382,6 @@ struct EventCreationView: View {
 
 struct EventCreationView_Previews: PreviewProvider {
     static var previews: some View {
-        EventCreationView(presentation: .constant(true), eventArray: .constant([stockEvent]))
+        EventCreationView(presentation: .constant(true), eventArray: .constant([stockEvent]), eventCreated: .constant(false))
     }
 }

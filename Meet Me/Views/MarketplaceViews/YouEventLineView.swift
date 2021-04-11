@@ -23,6 +23,7 @@ struct YouEventLineView: View {
     
     @Binding var tappedYouEvent: EventModel
     @Binding var showYouProfileView: Bool
+    @Binding var showSuccess: Bool
     
     // index which event needs to be removed from the array/scrollview
     @State var eventRemoveIndex: Int = -1
@@ -57,9 +58,9 @@ struct YouEventLineView: View {
                         
                         // show message if no events are available
                         if eventArray.count < 1 {
-                            Text("Sorry, no events available. Press REFRESH to see new ones!")
+                            Text("Sorry, we couldn't find any events with your filter, because we are pretty new. Change your settings and REFRESH.")
                                 .padding(8)
-                                .frame(width: 150, height: 150, alignment: .center)
+                                .frame(width: 175, height: 175, alignment: .center)
                                 .modifier(offWhiteShadow(cornerRadius: 12))
                                 .padding(.leading, 10)
                                 .frame(width: 250, height: 250)
@@ -72,7 +73,7 @@ struct YouEventLineView: View {
                         ForEach(eventArray.indices, id: \.self) { eventIndex in
                             GeometryReader { geometry in
                                 
-                                YouEventNView(events: $eventArray, eventIndex: eventIndex, currentEvent: eventArray[eventIndex])
+                                YouEventNView(events: $eventArray, showSuccess: $showSuccess, eventIndex: eventIndex, currentEvent: eventArray[eventIndex])
                                     .scaleEffect(notchPhone ? 1 : 0.7)
                                     .rotation3DEffect(
                                         // get new angle, move the min x 30pt more to the right and make the whole angle smaller with the / - 40
@@ -103,7 +104,7 @@ struct YouEventLineView: View {
                         refreshButton
                             .frame(width: notchPhone ? 250 : 200, height: notchPhone ? 250 : 200)
                             .padding(.bottom, notchPhone ? 120 : 80)
-                            .padding(.leading, 30)
+                            .padding(.leading, eventArray.count < 1 ? -10 : 30)
                             .padding(.top, notchPhone ? 30 : 15)
                         
                     }
@@ -166,10 +167,10 @@ struct YouEventLineView: View {
                 .gradientForeground(gradient: secondaryGradient)
                 .font(.largeTitle)
                 
-                .gesture(LongPressGesture(minimumDuration: 2)
+                .gesture(LongPressGesture(minimumDuration: 1)
                             .updating($longPress) { currentState, gestureState, transaction in
                                 
-                                transaction.animation = Animation.easeInOut(duration: 2.0)
+                                transaction.animation = Animation.easeInOut(duration: 1.0)
                                 gestureState = currentState
                                 
                             }
@@ -232,6 +233,6 @@ struct YouEventLineView: View {
 
 struct EventLineView_Previews: PreviewProvider {
     static var previews: some View {
-        YouEventLineView(tappedYouEvent: .constant(stockEvent), showYouProfileView: .constant(true))
+        YouEventLineView(tappedYouEvent: .constant(stockEvent), showYouProfileView: .constant(true), showSuccess: .constant(false))
     }
 }

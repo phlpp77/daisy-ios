@@ -15,10 +15,14 @@ struct MainExploreView: View {
     @State private var showCreationView: Bool = false
     @State private var showMeEventController: Bool = false
     @State private var showYouProfileView: Bool = false
+    @State private var showHeaderSheet: Bool = false
     //let application: UIApplication = UIApplication()
     @State private var eventArray: [EventModel] = [stockEvent, stockEvent]
     @State private var tappedMeEvent: EventModel = stockEvent
     @State private var tappedYouEvent: EventModel = stockEvent
+    
+    @State private var eventLiked: Bool = false
+    @State private var eventCreated: Bool = false
     
     @State private var firstEventCreation: Bool = true
     
@@ -28,6 +32,12 @@ struct MainExploreView: View {
             VStack {
                 
                 HeaderView(text1: "Meet ", text2: " Market", highlightText: "ME")
+                    .onTapGesture {
+                        if true {
+                            showHeaderSheet = true
+                        }
+                    }
+
                 
                 if !showMeEventController {
                     VStack {
@@ -48,7 +58,7 @@ struct MainExploreView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 12)
                         
-                        YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView)
+                        YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView, showSuccess: $eventLiked)
                     }
                     .opacity(showYouProfileView ? 0.1 : 1)
                     .opacity(showCreationView ? 0.1 : 1)
@@ -56,7 +66,21 @@ struct MainExploreView: View {
                 
             }
             .sheet(isPresented: $showCreationView, content: {
-                EventCreationView(presentation: $showCreationView, eventArray: $eventArray)
+                EventCreationView(presentation: $showCreationView, eventArray: $eventArray, eventCreated: $eventCreated)
+            })
+            .sheet(isPresented: $showHeaderSheet, content: {
+                VStack {
+                    Spacer()
+                    
+                    Text("What are you searching here? There is nothing to find.. Create events and meet people!")
+                        .italic()
+                        .padding()
+                    Spacer()
+                    Text("#EasterEgg")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                }
             })
             
             // create the setup EventView on top of the rest
@@ -82,6 +106,13 @@ struct MainExploreView: View {
             // MARK: Show youProfileView when user taps on a YouEvent
             if showYouProfileView {
                 YouProfileNView(showYouProfileView: $showYouProfileView, event: $tappedYouEvent)
+            }
+            
+            // MARK: Show success animations
+            if eventLiked {
+                CheckView(showCheckView: $eventLiked, text: "Event liked")
+            } else if eventCreated {
+                CheckView(showCheckView: $eventCreated, text: "Event created")
             }
         }
     }

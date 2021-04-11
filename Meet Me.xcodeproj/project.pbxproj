@@ -35,6 +35,7 @@
 		175E40F425B4CD9400ADC9BF /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E40F325B4CD9400ADC9BF /* Modifiers.swift */; };
 		176745BD25F9381700FF28F2 /* MainStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176745BC25F9381700FF28F2 /* MainStartView.swift */; };
 		176745C025F939D400FF28F2 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176745BF25F939D400FF28F2 /* SplashView.swift */; };
+		176995582621FF9D00F6BE0C /* check-mark.json in Resources */ = {isa = PBXBuildFile; fileRef = 176995572621FF9D00F6BE0C /* check-mark.json */; };
 		176A5AC725F3C0A000C857E8 /* ChatEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176A5AC625F3C0A000C857E8 /* ChatEventView.swift */; };
 		1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */; };
 		1774B67225D1E2E500D1D2F1 /* MainSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */; };
@@ -47,7 +48,7 @@
 		1795DF9525DD6998002D537F /* MeEventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1795DF9425DD6998002D537F /* MeEventLineView.swift */; };
 		1795DFA625DF1805002D537F /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1795DFA525DF1805002D537F /* Lottie */; };
 		1795DFAA25DF1923002D537F /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1795DFA925DF1923002D537F /* LottieView.swift */; };
-		1795DFAE25DF20AD002D537F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1795DFAD25DF20AD002D537F /* LoadingView.swift */; };
+		1795DFAE25DF20AD002D537F /* LottieViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1795DFAD25DF20AD002D537F /* LottieViews.swift */; };
 		1795DFBA25DF252C002D537F /* heard-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 1795DFB825DF252C002D537F /* heard-loading.json */; };
 		1795DFBF25DF25DD002D537F /* planet-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 1795DFBE25DF25DD002D537F /* planet-loading.json */; };
 		179B27CA25D48788007F64D6 /* YouEventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C925D48788007F64D6 /* YouEventLineView.swift */; };
@@ -149,6 +150,7 @@
 		175E40F325B4CD9400ADC9BF /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		176745BC25F9381700FF28F2 /* MainStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStartView.swift; sourceTree = "<group>"; };
 		176745BF25F939D400FF28F2 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		176995572621FF9D00F6BE0C /* check-mark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "check-mark.json"; sourceTree = "<group>"; };
 		176A5AC625F3C0A000C857E8 /* ChatEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEventView.swift; sourceTree = "<group>"; };
 		1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerView.swift; sourceTree = "<group>"; };
 		1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSettingsView.swift; sourceTree = "<group>"; };
@@ -160,7 +162,7 @@
 		177F682925D8937F00BC345B /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		1795DF9425DD6998002D537F /* MeEventLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventLineView.swift; sourceTree = "<group>"; };
 		1795DFA925DF1923002D537F /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		1795DFAD25DF20AD002D537F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		1795DFAD25DF20AD002D537F /* LottieViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieViews.swift; sourceTree = "<group>"; };
 		1795DFB825DF252C002D537F /* heard-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "heard-loading.json"; sourceTree = "<group>"; };
 		1795DFBE25DF25DD002D537F /* planet-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "planet-loading.json"; sourceTree = "<group>"; };
 		179B27C925D48788007F64D6 /* YouEventLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventLineView.swift; sourceTree = "<group>"; };
@@ -321,7 +323,7 @@
 				175E40E525B46ABB00ADC9BF /* BlurView.swift */,
 				17C0C1CD25BF67D60021987D /* AlertBoxView.swift */,
 				1795DFA925DF1923002D537F /* LottieView.swift */,
-				1795DFAD25DF20AD002D537F /* LoadingView.swift */,
+				1795DFAD25DF20AD002D537F /* LottieViews.swift */,
 				17DE52EC25EA3F9E000D0B4D /* ImagePicker.swift */,
 				17AE48FB260E836500A76F88 /* ImageCroppingView.swift */,
 				17B0B61425F546810014B0FD /* TabButtonView.swift */,
@@ -425,6 +427,7 @@
 		1795DFA025DF1753002D537F /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				176995572621FF9D00F6BE0C /* check-mark.json */,
 				171124122610F8C0004A7864 /* pacman-loading.json */,
 				1795DFBE25DF25DD002D537F /* planet-loading.json */,
 				1795DFB825DF252C002D537F /* heard-loading.json */,
@@ -658,6 +661,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				176995582621FF9D00F6BE0C /* check-mark.json in Resources */,
 				17153EEC25A8C5C30072CE83 /* Preview Assets.xcassets in Resources */,
 				1795DFBA25DF252C002D537F /* heard-loading.json in Resources */,
 				1705792925FD59C500A56CE6 /* GoogleService-Info.plist in Resources */,
@@ -740,7 +744,7 @@
 				90D8BE8F25FCF03400EF160D /* PushNotificationSender.swift in Sources */,
 				1746097725FA45A900726BA1 /* MeProfileSecondBlockView.swift in Sources */,
 				174EFCD725FABDC40028C04C /* RingView.swift in Sources */,
-				1795DFAE25DF20AD002D537F /* LoadingView.swift in Sources */,
+				1795DFAE25DF20AD002D537F /* LottieViews.swift in Sources */,
 				90BDC68926165AF300758741 /* DeveloperOptionsModel.swift in Sources */,
 				17DAD7E325D934D600DBE60B /* Global.swift in Sources */,
 				176A5AC725F3C0A000C857E8 /* ChatEventView.swift in Sources */,

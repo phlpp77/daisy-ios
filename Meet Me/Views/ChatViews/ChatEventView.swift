@@ -24,7 +24,7 @@ struct ChatEventView: View {
             
             VStack {
                 // MARK: Show Event on top
-                YouEventNView(events: $events, eventIndex: 0, currentEvent: event, dragAllowed: false)
+                YouEventNView(events: $events, showSuccess: .constant(false), eventIndex: 0, currentEvent: event, dragAllowed: false)
                     .scaleEffect(1.2)
                 
                 // xmark symbol to show the user how to dismiss the view

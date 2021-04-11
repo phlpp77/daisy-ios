@@ -55,11 +55,13 @@ struct ChatListView: View {
                                             Label("Dissolve Match", systemImage: "person.crop.circle.badge.minus")
                                         }
                                         
-                                        // Button to dissolve the match and delete the whole event
-                                        Button {
-                                            chatListVM.deleteMatchAndEventCompletely(match: chatListVM.matches[matchNumber], index: matchNumber)
-                                        } label: {
-                                            Label("Dissolve Match and delete Event", systemImage: "minus.circle")
+                                        // Button to dissolve the match and delete the whole event, only available when the current user is the creator
+                                        if chatListVM.checkIfUserIsCreatorFromEvent(creatorId: chatListVM.matches[matchNumber].event.userId) {
+                                            Button {
+                                                chatListVM.deleteMatchAndEventCompletely(match: chatListVM.matches[matchNumber], index: matchNumber)
+                                            } label: {
+                                                Label("Dissolve Match and delete Event", systemImage: "minus.circle")
+                                            }
                                         }
                                         
                                         // Button to report a user and dissolve the match
@@ -84,6 +86,7 @@ struct ChatListView: View {
                     Spacer()
                     
                     Text(chatListVM.messageIfNoMatches)
+                        .padding()
                     
                     Spacer()
                 }

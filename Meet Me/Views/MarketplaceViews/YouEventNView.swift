@@ -13,6 +13,7 @@ struct YouEventNView: View {
     @StateObject var youEventVM: YouEventViewModel = YouEventViewModel()
     @ObservedObject var showedEventsModel = ShowedEventsModel()
     @Binding var events: [EventModel]
+    @Binding var showSuccess: Bool
     var eventIndex: Int
     var currentEvent: EventModel
     var dragAllowed: Bool = true
@@ -76,7 +77,8 @@ struct YouEventNView: View {
                         self.events.remove(at: eventIndex)
                         showedEventsModel.events = self.events
                         showedEventsModel.save()
-                        hapticFeedback(feedBackstyle: .success)
+                        
+                        showSuccess.toggle()
                         
                     } else {
                         
@@ -266,6 +268,6 @@ struct YouEventNView: View {
 
 struct YouEventN_Previews: PreviewProvider {
     static var previews: some View {
-        YouEventNView(events: .constant([stockEvent]), eventIndex: 0, currentEvent: stockEvent)
+        YouEventNView(events: .constant([stockEvent]), showSuccess: .constant(false), eventIndex: 0, currentEvent: stockEvent)
     }
 }

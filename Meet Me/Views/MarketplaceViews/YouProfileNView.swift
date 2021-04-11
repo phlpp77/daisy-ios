@@ -63,15 +63,33 @@ struct YouProfileNView: View {
                             .offset(y: ((bounds.size.width - 48) * 1.33 / 2) - 45)
                         }
                         
+                        
+                        
                         // xmark symbol to show the user how to dismiss the view
-                        Image(systemName: "xmark")
-                            .foregroundColor(Color("BackgroundSecondary").opacity(0.7))
-                            .font(.system(size: 30))
-                            .offset(y: ((bounds.size.width - 48) * 1.33 / 2) + 60)
-                            .onTapGesture(perform: {
-                                print("area button xmark - out of you profile")
-                                showYouProfileView = false
+                        HStack {
+                            
+                            Spacer()
+                            
+                            Image(systemName: "xmark")
+                                .foregroundColor(Color("BackgroundSecondary").opacity(0.7))
+                                .font(.system(size: 30))
+                                
+                                .onTapGesture(perform: {
+                                    print("area button xmark - out of you profile")
+                                    showYouProfileView = false
                             })
+                            
+                            Spacer()
+                            
+                            // like button
+                            Button(action: {
+                                
+                            }, label: {
+                                MatchButtonLabel(sfSymbol: "checkmark.circle.fill", color: Color.green)
+                            })
+                        }
+                        .offset(y: ((bounds.size.width - 48) * 1.33 / 2) + 60)
+                        .frame(width: bounds.size.width - 48)
                         
                         
                     }

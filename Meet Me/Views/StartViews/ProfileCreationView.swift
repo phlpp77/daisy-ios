@@ -68,6 +68,7 @@ struct ProfileCreationView: View {
     
     // var to see if the action in the alert was accepted or not
     @State var acceptedAction = [false, false, false, false, false, false]
+    @State var updateButtonTapped: Bool = false
     
     
     var body: some View {
@@ -138,7 +139,7 @@ struct ProfileCreationView: View {
                         //                            )
                         
                         // upload image to database
-                        PictureLineView(pictureText: acceptedAction[5] ? .constant("You look good today") : .constant("No picture"), showPicker: $showImagePicker, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[5] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[5] ? .constant("Clear") : .constant("BackgroundMain"))
+                        PictureLineView(pictureText: acceptedAction[5] ? .constant("You look good today") : .constant("Profile picture"), showPicker: $showImagePicker, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[5] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[5] ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         // create image for the end pathway to the update profile button
                         VStack(alignment: .trailing) {
@@ -154,30 +155,50 @@ struct ProfileCreationView: View {
                         .frame(width: 268.58)
                         
                         // button is disabled until the user set at least the name, the gender, the birthday 
-                        let enoughInformation = !(acceptedAction[0] && acceptedAction[1] && acceptedAction[2])
+                        let enoughInformation = acceptedAction[0] && acceptedAction[1] && acceptedAction[2]
                         
-                        // update button
+                        if updateButtonTapped && !acceptedAction[0] {
+                            Text("Please enter your name at the very top")
+                                .font(.subheadline)
+                                .foregroundColor(.accentColor)
+                        } else if updateButtonTapped && !acceptedAction[1] {
+                            Text("Please enter your gender")
+                                .font(.subheadline)
+                                .foregroundColor(.accentColor)
+                        } else if updateButtonTapped && !acceptedAction[2] {
+                            Text("Please enter your birthdate")
+                                .font(.subheadline)
+                                .foregroundColor(.accentColor)
+                        }
+                        
+                        // MARK: update button
                         Button(action: {
-                            addProfileCreationVM.searchingFor = "Both"
                             
-                            addProfileCreationVM.createUser(images: [croppedImage!], bDate: birthdayDate)
-                            // haptic feedback when button is tapped
-                            hapticPulse(feedback: .rigid)
+                            updateButtonTapped = true
                             
-                            profileCreationFinished = true      
+                            if enoughInformation {
+                                addProfileCreationVM.searchingFor = "Both"
+                                
+                                addProfileCreationVM.createUser(images: [croppedImage ?? UIImage(named: "FemaleStockImage")!], bDate: birthdayDate)
+                                // haptic feedback when button is tapped
+                                hapticPulse(feedback: .rigid)
+                                
+                                profileCreationFinished = true
+                            }
                             
                         }, label: {
                             HStack {
                                 Text("Update profile")
                                     .foregroundColor(.primary)
                                 Image(systemName: "checkmark.circle")
+                                
                             }
+                            .padding()
+                            .modifier(FrozenWindowModifier())
                         })
-                        .padding()
-                        .modifier(FrozenWindowModifier())
+                        
                         .padding(.bottom, 16)
                         .opacity(enoughInformation ? 1 : 0.7)
-                        .disabled(enoughInformation)
                         
                         .onChange(of: addProfileCreationVM.saved, perform: { value in
                             if value {
