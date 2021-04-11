@@ -179,7 +179,7 @@ struct ProfileCreationView: View {
                             if enoughInformation {
                                 addProfileCreationVM.searchingFor = "Both"
                                 
-                                addProfileCreationVM.createUser(images: [croppedImage!], bDate: birthdayDate)
+                                addProfileCreationVM.createUser(images: [croppedImage ?? UIImage(named: "FemaleStockImage")!], bDate: birthdayDate)
                                 // haptic feedback when button is tapped
                                 hapticPulse(feedback: .rigid)
                                 
