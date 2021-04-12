@@ -21,8 +21,7 @@ struct LoginNView: View {
     @State var showPresentTermsAndConditionsSheet: Bool = false
     @State var loginMode: Bool = false
     
-
-    
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         
@@ -47,12 +46,13 @@ struct LoginNView: View {
                     Button(action: {
                         showPresentTermsAndConditionsSheet.toggle()
                     }, label: {
-                        Text("By continuing, you agree to our friendly Terms and Conditions.")
+                        Text("By continuing, you agree to our friendly Terms and Conditions. And data policies. Tap here to see them.")
                             .font(.caption)
                             .foregroundColor(.primary)
                     })
                     .sheet(isPresented: $showPresentTermsAndConditionsSheet) {
-                        Text("AGBs sind langweilig.")
+                        Link("Datenschutzerklärung", destination: URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/PDFs%2Fdata-policy.pdf?alt=media&token=d6c46b30-d867-4d95-aded-5ab587d2edae")!)
+                        Link("Data Policies", destination: URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/PDFs%2FDatenschutzerkla%CC%88rung%20(1).pdf?alt=media&token=0eb34266-d598-49cb-b8bd-daa28f0059fd")!)
                     }
                     
                     // MARK: Error-message can be presented here
@@ -97,9 +97,16 @@ struct LoginNView: View {
                             loginMode.toggle()
                         }
                     }, label: {
-                        Text(loginMode ? "Don't have an account? Create one" : "I already have an account")
-                            .font(.caption)
-                            .gradientForeground(gradient: secondaryGradient)
+                        if !(colorScheme == .dark) {
+                            Text(loginMode ? "Don't have an account? Create one" : "I already have an account")
+                                .font(.caption)
+                                .gradientForeground(gradient: secondaryGradient)
+                        } else {
+                            Text(loginMode ? "Don't have an account? Create one" : "I already have an account")
+                                .font(.caption)
+                        }
+                        
+                            
                     })
                     
                     // MARK: Button to Login/register

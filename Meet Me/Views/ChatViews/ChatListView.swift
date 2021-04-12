@@ -43,6 +43,7 @@ struct ChatListView: View {
                                     )
                                     {
                                         ChatListRowView(match: $chatListVM.matches[matchNumber], chatTapped: $chatTapped, matchTapped: $matchTapped, matchLongPressed: $matchLongPressed)
+                                            
                                         
                                     }
                                     // menu to dissolve match or delete and dissolve match

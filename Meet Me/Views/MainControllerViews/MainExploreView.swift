@@ -40,10 +40,6 @@ struct MainExploreView: View {
                             showHeaderSheet = true
                         }
                     }
-                    // TODO: delete that onAppear
-                    .onAppear {
-                        firstActions.firstViews["FirstEventCreation"] = false
-                    }
 
                 
                 if !showMeEventController {
