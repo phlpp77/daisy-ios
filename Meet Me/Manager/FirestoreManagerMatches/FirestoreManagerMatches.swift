@@ -70,11 +70,9 @@ class FirestoreManagerMatches {
     
     func createChatRoom(currentUser: UserModel, userModel: UserModel, eventModel: EventModel, chatId: String) -> Promise<Void> {
         return Promise { seal in
-            guard let currentUser = Auth.auth().currentUser else {
-                return
-            }
+
                         
-            let chatModel = ChatModel(chatId: chatId, eventCreatorId: currentUser.uid, matchedUserId: userModel.userId, eventId: eventModel.eventId, messages: [MessageModel(userId: "NoUser", timeStamp: Timestamp(date: Date()), messageText: "Hey, you have a match! \(userModel.name) choosed as covid-preference: \(eventModel.covidPreferences), talk about your event settings...")])
+            let chatModel = ChatModel(chatId: chatId, eventCreatorId: currentUser.userId, matchedUserId: userModel.userId, eventId: eventModel.eventId, messages: [MessageModel(userId: "NoUser", timeStamp: Timestamp(date: Date()), messageText: "Hey, you have a match! \(currentUser.name) choosed as covid-preference: \(eventModel.covidPreferences), talk about your event settings...")])
             do {
                 let _ = try db.collection("chats")
                     .document(chatId).setData(from:chatModel) { error in

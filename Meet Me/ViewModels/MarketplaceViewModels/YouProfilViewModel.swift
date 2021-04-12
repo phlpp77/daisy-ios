@@ -10,8 +10,13 @@ import PromiseKit
 
 class YouProfilViewModel: ObservableObject {
     private var firestoreManagerUser: FirestoreManagerUserTest = FirestoreManagerUserTest()
+    private var firestoreManagerMatches: FirestoreManagerMatches = FirestoreManagerMatches()
+    private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
+    let sender = PushNotificationSender()
+    
     @Published var userModel : UserModel = stockUser
     @Published var userPictureUrl: URL = stockURL
+    
     
     func getYouProfil(eventModel: EventModel) {
         
@@ -24,7 +29,23 @@ class YouProfilViewModel: ObservableObject {
             print("DEBUG: Error in getYouProfil Chain error: \(error)")
             print("DEBUG: error localized: \(error.localizedDescription)")
         }
-        
+    }
+    
+    func addLikeToEvent(eventModel: EventModel){
+        firstly {
+            when(fulfilled: self.firestoreManagerUser.addLikeToEventArray(eventId: eventModel.eventId),
+                 self.firestoreManagerEventTest.addLikeToEventArray(eventId: eventModel.eventId),
+                 self.firestoreManagerEventTest.setLikedUserToTrue(eventId:eventModel.eventId))
+        }.then {
+            self.firestoreManagerUser.getUserWhichCreatedEvent(eventModel: eventModel)
+        }.done { user in
+            self.sender.sendPushNotification(to: user.token, title: notificationLikeEventTitle, body: notificationLikeEventMessage)
+        }.catch { error in
+            print("DEBUG: error in getUserModelChain \(error)")
+            print("DEBUG \(error.localizedDescription)")
+        }
     }
     
 }
+    
+

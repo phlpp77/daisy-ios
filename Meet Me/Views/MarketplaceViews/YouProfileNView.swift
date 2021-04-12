@@ -83,7 +83,7 @@ struct YouProfileNView: View {
                             
                             // like button
                             Button(action: {
-                                
+                                youProfileVM.addLikeToEvent(eventModel: event)
                             }, label: {
                                 MatchButtonLabel(sfSymbol: "checkmark.circle.fill", color: Color.green)
                             })
