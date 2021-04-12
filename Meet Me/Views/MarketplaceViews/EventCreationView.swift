@@ -133,7 +133,7 @@ struct EventCreationView: View {
                     // Main image as a background of the event
                     
                     // event image
-                    Image(uiImage: (pictureChangedByUser ? images.last! : UIImage(named: "\(category)StockImage") ?? images.last!))
+                    Image(uiImage: (pictureChangedByUser ? images.last! : UIImage(named: "\(category)StockImage") ?? UIImage(named: "OtherStockImage")!))
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 250, height: 250, alignment: .center)
@@ -246,7 +246,7 @@ struct EventCreationView: View {
                         // update handling
                         prepareUpload()
                         //youEventLineVM.getYouEvents()
-                        eventCreationVM.saveEvent(uiImage: images.last!)
+                        eventCreationVM.saveEvent(uiImage: (pictureChangedByUser ? images.last! : UIImage(named: "\(category)StockImage") ?? UIImage(named: "OtherStockImage")!))
                         // button animation start
                         buttonPressed.toggle()
                         // haptic feedback when button is tapped

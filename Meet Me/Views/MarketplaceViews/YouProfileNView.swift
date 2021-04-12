@@ -81,12 +81,12 @@ struct YouProfileNView: View {
                             
                             Spacer()
                             
-                            // like button
-                            Button(action: {
-                                youProfileVM.addLikeToEvent(eventModel: event)
-                            }, label: {
-                                MatchButtonLabel(sfSymbol: "checkmark.circle.fill", color: Color.green)
-                            })
+//                            // like button
+//                            Button(action: {
+//                                youProfileVM.addLikeToEvent(eventModel: event)
+//                            }, label: {
+//                                MatchButtonLabel(sfSymbol: "checkmark.circle.fill", color: Color.green)
+//                            })
                         }
                         .offset(y: ((bounds.size.width - 48) * 1.33 / 2) + 60)
                         .frame(width: bounds.size.width - 48)
