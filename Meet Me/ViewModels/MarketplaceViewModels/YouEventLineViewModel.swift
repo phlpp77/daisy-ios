@@ -14,17 +14,24 @@ import Firebase
 class YouEventLineViewModel: ObservableObject {
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
-    private var userModel: UserModel = stockUser
+    @Published var userModel: UserModel = stockUser
+    private var db: Firestore
+    @Published var refreshCounter = 0
+    @Published var changedSearchingFor = false
+
+  
+    
+    init() {
+        db = Firestore.firestore()
+        
+    }
     
 
 
     func getYouEvents(region: MKCoordinateRegion, shuffle: Bool) -> Promise<[EventModel]> {
         return Promise { seal in
+
             firstly{
-                firestoreManagerUserTest.getCurrentUser()
-            }.map { user in
-                self.userModel = user
-            }.then {
                  self.firestoreManagerUserTest.getAllLikedEvents()//, self.getLocation())
             }.then { likedEvents in
                 self.firestoreManagerEventTest.queryColletion(center: region.center, user: self.userModel).map { ($0, likedEvents) }
@@ -46,8 +53,62 @@ class YouEventLineViewModel: ObservableObject {
             print(error.localizedDescription)
         }
     }
+    
+    func getRefreshCounter() ->Promise<Void> {
+        return Promise { seal in
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        db.collection("users").document(currentUser.uid).addSnapshotListener { snapshot, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    if let snapshot = snapshot {
+                        let userModel = try? snapshot.data(as: UserModel.self)
+                        DispatchQueue.main.async {
+                            if userModel != nil {
+                                if userModel!.searchingFor != self.userModel.searchingFor {
+                                    self.changedSearchingFor = true
+                                }
+                                self.refreshCounter = userModel!.refreshCounter
+                                self.userModel = userModel!
+                                seal.fulfill(())
+                            }else {
+                                print("Error by getting refresh counter")
+                                
+                            }
+                        }
+                        
+                        
+                    }
+                }
+                
+            }
+
+            
+        }
+    }
 }
     
+
+    
     
 
-
+//
+//func addOneToRefreshCounter() -> Promise<Void> {
+//    return Promise { seal in
+//        guard let currentUser = Auth.auth().currentUser else {
+//            seal.reject(Err("No User Profile"))
+//            return
+//        }
+//
+//        let _ = db.collection("users")
+//            .document(currentUser.uid).updateData(["refreshCounter" : FieldValue.increment(Int64(1))]) { error in
+//                if let error = error {
+//                    seal.reject(error)
+//                } else {
+//                    seal.fulfill(())
+//                }
+//            }
+//    }
+//}

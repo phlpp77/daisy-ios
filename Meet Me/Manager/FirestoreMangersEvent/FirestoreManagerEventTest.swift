@@ -303,7 +303,7 @@ class FirestoreManagerEventTest {
                                         if event.searchingFor == user.gender && event.genderFromCreator == user.searchingFor || user.searchingFor == "Both"{
                                             let eventPoint = CLLocation(latitude: event.latitude, longitude: event.longitude)
                                             event.distance = GFUtils.distance(from: userPoint, to: eventPoint) / 1000
-                                            print("EventDistance: \(event.distance)")
+                                            //print("EventDistance: \(event.distance)")
                                             //return EventModelObject(eventModel: event, position: .constant(CGSize.zero))
                                             return event
                                         }
@@ -328,7 +328,7 @@ class FirestoreManagerEventTest {
                                         }
                                     }
                                     DispatchQueue.main.async {
-                                        print(Array(eventsSorted.prefix(10)))
+                                        
                                         seal.fulfill(Array(eventsSorted.prefix(10)))
                                     }
                                 }

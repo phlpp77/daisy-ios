@@ -40,16 +40,18 @@ class DeveloperManager: ObservableObject  {
                 } else {
                     if let snapshot = snapshot {
                         let developerOptionsModel = try? snapshot.data(as: DeveloperOptionsModel.self)
-                        DispatchQueue.main.async {
+                    
                             if developerOptionsModel != nil {
+                                DispatchQueue.main.async {
                                 self.developerOptionsModel = developerOptionsModel!
                                 print(self.developerOptionsModel)
                                 seal.fulfill(())
+                                }
                             }else {
                                 let err = Err("developer Options")
                                 seal.reject(err)
                             }
-                        }
+                       
                         
                         
                     }

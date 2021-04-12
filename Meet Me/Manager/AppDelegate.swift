@@ -4,11 +4,11 @@ import Firebase
 import FirebaseFirestore
 import FirebaseAuth
 
-
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
   let gcmMessageIDKey = "gcm.message_id"
+  @ObservedObject private var pushToken = PushTokens()
 
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -22,19 +22,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Register for remote notifications. This shows a permission dialog on first run, to
     // show the dialog at a more appropriate time move this registration accordingly.
     // [START register_for_notifications]
-    if #available(iOS 10.0, *) {
-      // For iOS 10 display notification (sent via APNS)
-      UNUserNotificationCenter.current().delegate = self
-
-      let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-      UNUserNotificationCenter.current().requestAuthorization(
-        options: authOptions,
-        completionHandler: {_, _ in })
-    } else {
-      let settings: UIUserNotificationSettings =
-      UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-      application.registerUserNotificationSettings(settings)
-    }
+//    if #available(iOS 10.0, *) {
+//      // For iOS 10 display notification (sent via APNS)
+//      UNUserNotificationCenter.current().delegate = self
+//
+//      let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+//      UNUserNotificationCenter.current().requestAuthorization(
+//        options: authOptions,
+//        completionHandler: {_, _ in })
+//    } else {
+//      let settings: UIUserNotificationSettings =
+//      UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+//      application.registerUserNotificationSettings(settings)
+//    }
 
     application.registerForRemoteNotifications()
 
@@ -150,18 +150,24 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
 extension AppDelegate : MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        guard let currentUser = Auth.auth().currentUser else {
-            return
-        }
-        let db: Firestore = Firestore.firestore()
-        print("New user Token \(fcmToken )")
-        let _ =  db.collection("users")
-            .document(currentUser.uid).updateData(["token" : fcmToken]) { error in
-                if let error = error {
-                    print("DEBUG: Fehler by Token ")
-                    print(error.localizedDescription)
-                }
-            }
+        print("start save")
+        pushToken.token["token"] = fcmToken
+        pushToken.save()
+        print("save done")
+        
+        
+//        guard let currentUser = Auth.auth().currentUser else {
+//            return
+//        }
+//        let db: Firestore = Firestore.firestore()
+//        print("New user Token \(fcmToken )")
+//        let _ =  db.collection("users")
+//            .document(currentUser.uid).updateData(["token" : fcmToken]) { error in
+//                if let error = error {
+//                    print("DEBUG: Fehler by Token ")
+//                    print(error.localizedDescription)
+//                }
+//            }
     }
   // [END refresh_token]
 }

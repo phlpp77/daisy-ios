@@ -62,13 +62,15 @@ class MeProfileViewModel: ObservableObject {
     }
     
     func changedSearchingFor(searchingFor: Int){
-        firstly {
-            self.firestoreManagerUserTest.setSearchingForUserProfile(searchingFor: self.gender[searchingFor])
-        }.then {
-            self.firestoreManagerUserTest.setSearchingForEvents(searchingFor: self.gender[searchingFor])
-        }.catch { error in
-            print("DEBUG: Error in chagedSerachingFor: \(error)")
-            print("DEBUG: Error localized in: \(error.localizedDescription)")
+        if self.gender[searchingFor] != userModel.searchingFor {
+            firstly {
+                self.firestoreManagerUserTest.setSearchingForUserProfile(searchingFor: self.gender[searchingFor])
+            }.then {
+                self.firestoreManagerUserTest.setSearchingForEvents(searchingFor: self.gender[searchingFor])
+            }.catch { error in
+                print("DEBUG: Error in chagedSerachingFor: \(error)")
+                print("DEBUG: Error localized in: \(error.localizedDescription)")
+            }
         }
     }
     

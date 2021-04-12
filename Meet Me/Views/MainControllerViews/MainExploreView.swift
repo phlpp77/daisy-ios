@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct MainExploreView: View {
-    
+    @StateObject var pushTokens = PushTokens()
     @ObservedObject var firstActions: FirstActions = FirstActions()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     // states for animation
@@ -23,6 +24,8 @@ struct MainExploreView: View {
     
     @State private var eventLiked: Bool = false
     @State private var eventCreated: Bool = false
+    
+    @StateObject var locationManager = LocationManager()
     
     @State private var firstEventCreation: Bool = true
     
@@ -58,11 +61,54 @@ struct MainExploreView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 12)
                         
-                        YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView, showSuccess: $eventLiked)
+                        YouEventLineView(tappedYouEvent: $tappedYouEvent, showYouProfileView: $showYouProfileView, showSuccess: $eventLiked).environmentObject(locationManager)
                     }
                     .opacity(showYouProfileView ? 0.1 : 1)
                     .opacity(showCreationView ? 0.1 : 1)
                 }
+                
+            }.onAppear{
+                if #available(iOS 10.0, *) {
+                  // For iOS 10 display notification (sent via APNS)
+                  //UNUserNotificationCenter.current().delegate = self
+
+                  let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+                  UNUserNotificationCenter.current().requestAuthorization(
+                    options: authOptions,
+                    completionHandler: {granted, error in
+                        if let error = error {
+                            print(error)
+                        }else {
+                            print("save datenbank")
+                           // DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(6), execute: {
+                               
+                            
+                            if pushTokens.token["token"] != nil {
+                                let token: String = pushTokens.token["token"] ?? ""
+                                print(token)
+                                guard let currentUser = Auth.auth().currentUser else {
+                                    return
+                                }
+                                let db: Firestore = Firestore.firestore()
+                                //print("New user Token \(pushTokens.token["token"])")
+                                let _ =  db.collection("users")
+                                    .document(currentUser.uid).updateData(["token" : token]) { error in
+                                        if let error = error {
+                                            print("DEBUG: Fehler by Token ")
+                                            print(error.localizedDescription)
+                                        }
+                                    }
+                            }
+                        //})
+                        }
+                    })
+                } else {
+                    let _: UIUserNotificationSettings =
+                        UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+                    //application.registerUserNotificationSettings(settings)
+                }
+                
+           
                 
             }
             .sheet(isPresented: $showCreationView, content: {

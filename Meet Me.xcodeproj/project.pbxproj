@@ -86,6 +86,7 @@
 		9045DD59260F8E9300922DA5 /* FirstActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9045DD58260F8E9300922DA5 /* FirstActions.swift */; };
 		9045DD5E260F999200922DA5 /* DeveloperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9045DD5D260F999200922DA5 /* DeveloperViewModel.swift */; };
 		905193A12621F2AD009B4996 /* LoginTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905193A02621F2AD009B4996 /* LoginTokenModel.swift */; };
+		905193C1262466B9009B4996 /* PushToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905193C0262466B9009B4996 /* PushToken.swift */; };
 		906E352125F2CCF800F0C7C6 /* LogoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906E352025F2CCF800F0C7C6 /* LogoutViewModel.swift */; };
 		90779AEA25E2C7250070D794 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 90779AE925E2C7250070D794 /* PromiseKit */; };
 		90779AED25E2C8CD0070D794 /* FirestoreManagerEventTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */; };
@@ -198,6 +199,7 @@
 		9045DD58260F8E9300922DA5 /* FirstActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstActions.swift; sourceTree = "<group>"; };
 		9045DD5D260F999200922DA5 /* DeveloperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperViewModel.swift; sourceTree = "<group>"; };
 		905193A02621F2AD009B4996 /* LoginTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTokenModel.swift; sourceTree = "<group>"; };
+		905193C0262466B9009B4996 /* PushToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushToken.swift; sourceTree = "<group>"; };
 		906E352025F2CCF800F0C7C6 /* LogoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewModel.swift; sourceTree = "<group>"; };
 		90779AEC25E2C8CD0070D794 /* FirestoreManagerEventTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagerEventTest.swift; sourceTree = "<group>"; };
 		90779B0625E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreFotoMangerEventTest.swift; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 			children = (
 				9045DD51260B9DD300922DA5 /* ShowedEventsModel.swift */,
 				9045DD58260F8E9300922DA5 /* FirstActions.swift */,
+				905193C0262466B9009B4996 /* PushToken.swift */,
 			);
 			path = UserDefaults;
 			sourceTree = "<group>";
@@ -793,6 +796,7 @@
 				902EF6BD25D896E3004464F0 /* UIImageResized.swift in Sources */,
 				17FA420A2616265C001BE294 /* MaintenanceView.swift in Sources */,
 				174423AA25D9A0DF00D25EDD /* EventModel.swift in Sources */,
+				905193C1262466B9009B4996 /* PushToken.swift in Sources */,
 				177F682A25D8937F00BC345B /* KeyboardHandler.swift in Sources */,
 				902EF6FF25D9A51B004464F0 /* EventCreationViewModel.swift in Sources */,
 				177A29C5260F88B200E968D7 /* DeveloperView.swift in Sources */,

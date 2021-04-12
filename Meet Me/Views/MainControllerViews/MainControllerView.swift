@@ -17,7 +17,7 @@ struct MainControllerView: View {
     @State var startTab = 2
     @State var userModel: UserModel = stockUser
     private var developerIds: [String] = []
-    @StateObject var locationManager = LocationManager()
+    //@StateObject var locationManager = LocationManager()
     @ObservedObject var developerManager = DeveloperManager()
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     
@@ -27,7 +27,7 @@ struct MainControllerView: View {
         // shows the main screen if the startProcess (user-creation) is done OR logged into firebase
         ZStack {
             if startProcessDone || userIsLoggedIn {
-                TabBarView(startProcessDone: $startProcessDone).environmentObject(locationManager)
+                TabBarView(startProcessDone: $startProcessDone)
             } else {
                 MainStartView(startUpDone: $startProcessDone)
             }
