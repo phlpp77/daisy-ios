@@ -40,6 +40,10 @@ struct MainExploreView: View {
                             showHeaderSheet = true
                         }
                     }
+                    // TODO: delete that onAppear
+                    .onAppear {
+                        firstActions.firstViews["FirstEventCreation"] = false
+                    }
 
                 
                 if !showMeEventController {
@@ -111,7 +115,21 @@ struct MainExploreView: View {
                 
             }
             .sheet(isPresented: $showCreationView, content: {
-                EventCreationView(presentation: $showCreationView, eventArray: $eventArray, eventCreated: $eventCreated)
+                
+                if firstActions.firstViews["FirstEventCreation"] == false || firstActions.firstViews["FirstEventCreation"] == nil {
+                    InformationCard(goToNextView: $firstEventCreation, goToLastView: $firstEventCreation, sliderArray: [InformationCardModel(headerText: "Create Event", highlight: true, footerText: "", image: "create-event", sfSymbol: "calendar.badge.plus", buttonText: "OK!", subtext: "Tap on each event aspect to change it directly - create your own unique event!")])
+                        .onChange(of: firstEventCreation, perform: { value in
+                            // update variable to true that user does not see the info again
+                            firstActions.firstViews["FirstEventCreation"] = true
+                            // save the status to the phone
+                            firstActions.save()
+                        })
+                        .zIndex(1.0)
+                } else {
+                    // create the setup EventView on top of the rest
+                    EventCreationView(presentation: $showCreationView, eventArray: $eventArray, eventCreated: $eventCreated)
+                }
+                
             })
             
             // FIXME: Can be activated with iOS 14.5
@@ -129,21 +147,6 @@ struct MainExploreView: View {
 //                        .frame(maxWidth: .infinity, alignment: .trailing)
 //                }
 //            })
-            
-            // create the setup EventView on top of the rest
-            if showCreationView {
-                if firstActions.firstViews["FirstEventCreation"] == false || firstActions.firstViews["FirstEventCreation"] == nil {
-                    InformationCard(goToNextView: $firstEventCreation, goToLastView: $firstEventCreation, sliderArray: [InformationCardModel(headerText: "Create Event", highlight: true, footerText: "", image: "create-event", sfSymbol: "calendar.badge.plus", buttonText: "OK!", subtext: "Tap on each event aspect to change it directly - create your own unique event!")])
-                        .onChange(of: firstEventCreation, perform: { value in
-                            // update variable to true that user does not see the info again
-                            firstActions.firstViews["FirstEventCreation"] = true
-                            // save the status to the phone
-                            firstActions.save()
-                        })
-                } else {
-//                    EventCreationView(presentation: $showCreationView, eventArray: $eventArray)
-                }
-            }
             
             // start the MeMatch process
             if showMeEventController {
