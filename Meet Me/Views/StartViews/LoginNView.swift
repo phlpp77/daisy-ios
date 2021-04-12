@@ -12,6 +12,7 @@ import Combine
 struct LoginNView: View {
     
     @StateObject var loginVM: LoginViewModel = LoginViewModel()
+    @StateObject var developerManager = DeveloperManager()
     
     @Binding var nextPosition: StartPosition
     @Binding var startUpDone: Bool
@@ -51,8 +52,8 @@ struct LoginNView: View {
                             .foregroundColor(.primary)
                     })
                     .sheet(isPresented: $showPresentTermsAndConditionsSheet) {
-                        Link("Datenschutzerklärung", destination: URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/PDFs%2Fdata-policy.pdf?alt=media&token=d6c46b30-d867-4d95-aded-5ab587d2edae")!)
-                        Link("Data Policies", destination: URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/PDFs%2FDatenschutzerkla%CC%88rung%20(1).pdf?alt=media&token=0eb34266-d598-49cb-b8bd-daa28f0059fd")!)
+                        Link("Datenschutzerklärung", destination: URL(string: developerManager.legalModel.datenschutzerklärung)!)
+                        Link("Nutzungsbedingungen", destination: URL(string: developerManager.legalModel.nutzungsbedingungen)!)
                     }
                     
                     // MARK: Error-message can be presented here
@@ -145,6 +146,12 @@ struct LoginNView: View {
                                 .padding(.horizontal, 50)
                                 .padding(.vertical, 8)
                         })
+                    }
+                }.onAppear {
+                    developerManager.getLegalModel().done {
+                    print(developerManager.legalModel)
+                    }.catch { error in
+                        print(error)
                     }
                 }
                 .frame(maxWidth: .infinity)

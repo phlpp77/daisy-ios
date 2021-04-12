@@ -14,6 +14,7 @@ class DeveloperManager: ObservableObject  {
     private var db: Firestore
     @Published var developerOptionsModel = DeveloperOptionsModel(maintenance: false, reason: "")
     //@Published var developerOptionsModel = DeveloperOptionsModel()
+    @Published var legalModel: LegalModel = LegalModel(datenschutzerklärung: "", nutzungsbedingungen: "")
     
     init() {
         db = Firestore.firestore()
@@ -61,6 +62,29 @@ class DeveloperManager: ObservableObject  {
             
             
         }
+    }
+    
+    func getLegalModel() ->Promise<Void> {
+        return Promise { seal in
+            let _ = db.collection("legal").document("legal").getDocument { snapshot, error in
+                if let error = error {
+                    seal.reject(error)
+                } else {
+                    if let snapshot = snapshot {
+                    let legalModel = try? snapshot.data(as: LegalModel.self)
+                    
+                    if legalModel != nil {
+                        DispatchQueue.main.async {
+                            self.legalModel = legalModel!
+                            seal.fulfill(())
+                        }
+                    }else {
+                        seal.reject(Err("cant get legalModel"))
+                    }
+                }
+            }
+        }
+    }
     }
     
 }
