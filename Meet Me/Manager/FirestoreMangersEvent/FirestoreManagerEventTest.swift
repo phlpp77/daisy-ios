@@ -300,7 +300,7 @@ class FirestoreManagerEventTest {
                                     if event.userId != currentUser.uid && event.eventMatched == false {
                                        // print("DEBUG geschlecht abfrage: event.serchingFor: \(event.searchingFor)  == user.gender: \(user.gender) && event.genderFromCreator: \(event.genderFromCreator) ==  user.searchingFor:  \(user.searchingFor)")
                                         
-                                        if event.searchingFor == user.gender && event.genderFromCreator == user.searchingFor || user.searchingFor == "Both"{
+                                        if (event.searchingFor == user.gender && event.genderFromCreator == user.searchingFor) || user.searchingFor == "Both"{
                                             let eventPoint = CLLocation(latitude: event.latitude, longitude: event.longitude)
                                             event.distance = GFUtils.distance(from: userPoint, to: eventPoint) / 1000
                                             //print("EventDistance: \(event.distance)")
@@ -317,7 +317,8 @@ class FirestoreManagerEventTest {
                                 if shuffle {
                                     event!.shuffle()
                                 }
-                                if event!.count > 0 {
+                                print(event!.count)
+                                if event!.count > 1 {
                                     for (index, eventModel) in event!.enumerated().reversed() {
                                         if likedEvents.contains(eventModel.eventId) == false {
                                             //event!.remove(at: index)
@@ -327,9 +328,12 @@ class FirestoreManagerEventTest {
                                             break
                                         }
                                     }
+                                    print(event!.count)
                                     DispatchQueue.main.async {
-                                        
-                                        seal.fulfill(Array(eventsSorted.prefix(10)))
+                                        print(event!.count)
+                                        print(eventsSorted)
+                                        //seal.fulfill(Array(eventsSorted.prefix(10)))
+                                        seal.fulfill(eventsSorted)
                                     }
                                 }
                             }else {
