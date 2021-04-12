@@ -10,7 +10,7 @@ import URLImage
 
 struct MeEventDetailedView: View {
     
-    @ObservedObject var changeMeEventVM: ChangeMeEventViewModel = ChangeMeEventViewModel()
+    @StateObject var changeMeEventVM: ChangeMeEventViewModel = ChangeMeEventViewModel()
     
     @Binding var showMeEventDetailedView: Bool
     

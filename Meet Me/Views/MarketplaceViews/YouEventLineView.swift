@@ -132,7 +132,7 @@ struct YouEventLineView: View {
             youEventLineVM.getRefreshCounter().done {
                 
                 //Check if it is the first login
-                if firstActions.firstViews["FirstEventShuffle"] == false || firstActions.firstViews["FirstEventShuffle"] == nil || youEventLineVM.changedSearchingFor {
+                if firstActions.firstViews["FirstEventShuffle"] == false || firstActions.firstViews["FirstEventShuffle"] == nil {
                     //if it is the first Login load events without hitting shuffle button
                     if youEventLineVM.refreshCounter < 10 || youEventLineVM.userModel.userStatus == "developer" {
                       

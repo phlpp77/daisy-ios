@@ -10,7 +10,7 @@ import URLImage
 
 struct MessagesView: View {
     
-    @ObservedObject var messagesVM : MessagesViewModel = MessagesViewModel()
+    @StateObject var messagesVM : MessagesViewModel = MessagesViewModel()
     @Binding var match: AllMatchInformationModel
     
     // message which needs to be uploaded

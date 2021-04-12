@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChatListView: View {
     
-    @ObservedObject var chatListVM: ChatListViewModel = ChatListViewModel()
+    @StateObject var chatListVM: ChatListViewModel = ChatListViewModel()
     
     
     @State var chatTapped: Bool = false
@@ -102,10 +102,10 @@ struct ChatListView: View {
             
         }
         .onAppear {
-            chatListVM.activateListner().catch { error in
-                print(error)
-            }
-            //chatListVM.getMatches()
+//            chatListVM.activateListner().catch { error in
+//                print(error)
+//            }
+            chatListVM.getMatches()
         }
         
     }
