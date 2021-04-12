@@ -150,10 +150,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
 extension AppDelegate : MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("start save")
         pushToken.token["token"] = fcmToken
         pushToken.save()
-        print("save done")
         
         
 //        guard let currentUser = Auth.auth().currentUser else {

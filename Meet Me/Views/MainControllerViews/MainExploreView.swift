@@ -79,9 +79,8 @@ struct MainExploreView: View {
                         if let error = error {
                             print(error)
                         }else {
-                            print("save datenbank")
                            // DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(6), execute: {
-                               
+
                             
                             if pushTokens.token["token"] != nil {
                                 let token: String = pushTokens.token["token"] ?? ""
