@@ -153,7 +153,7 @@ struct YouEventNView: View {
                 )
             
             // MARK: Image downloaded from the Database
-            // FIXME: Needs to be changed to URL Image
+            
             URLImage(url: URL(string: currentEvent.pictureURL) ?? stockURL) { image in
                 image.resizable()
                     .aspectRatio(contentMode: .fill)

@@ -21,7 +21,7 @@ struct HeaderView: View {
         
         ZStack {
             
-            // TODO: @bundi abfrage ob nak prefix im token
+            
             if user.loginToken.prefix(3) == "NAK" {
                 Image("Stupa")
                     .resizable()
