@@ -87,8 +87,20 @@ struct YouEventLineView: View {
                                         withAnimation(.easeIn(duration: 0.1)) {
                                             showYouProfileView = true
                                         }
-                                        
                                     }
+                                    .contextMenu(ContextMenu(menuItems: {
+                                        Button(action: {
+                                            
+                                            // TODO: @budni add the backend content here, as you see you can delete from eventArray without problems
+                                            
+                                            eventArray.remove(at: eventIndex)
+                                            
+                                            
+                                        }, label: {
+                                            Label("Report and dismiss event", systemImage: "exclamationmark.circle")
+                                        })
+                                        
+                                    }))
                             }
                             
                             .frame(width: notchPhone ? 250 : 200, height: notchPhone ? 250 : 200)
