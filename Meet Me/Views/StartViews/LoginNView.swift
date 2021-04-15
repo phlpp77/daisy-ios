@@ -21,6 +21,8 @@ struct LoginNView: View {
     @State var passwordField1WasEdited: Bool = false
     @State var showPresentTermsAndConditionsSheet: Bool = false
     @State var loginMode: Bool = false
+    @State var isChecked: Bool = false
+    @State var tryAgain: Bool = false
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -47,13 +49,23 @@ struct LoginNView: View {
                     Button(action: {
                         showPresentTermsAndConditionsSheet.toggle()
                     }, label: {
-                        Text("By continuing, you agree to our friendly Terms and Conditions. And data policies. Tap here to see them.")
-                            .font(.caption)
-                            .foregroundColor(.primary)
+                        HStack {
+                            Image(systemName: isChecked ? "checkmark.square" : "square")
+                                .onTapGesture {
+                                    isChecked.toggle()
+                                }
+                            Text("By continuing, you agree to our End user licence agreement (EULA) and data policies. Tap here to see them.")
+                                .font(.caption)
+                                .foregroundColor(.primary)
+                        }
                     })
                     .sheet(isPresented: $showPresentTermsAndConditionsSheet) {
-                        Link("Datenschutzerklärung", destination: URL(string: developerManager.legalModel.datenschutzerklärung)!)
-                        Link("Nutzungsbedingungen", destination: URL(string: developerManager.legalModel.nutzungsbedingungen)!)
+                        VStack {
+                            Link("Datenschutzerklärung", destination: URL(string: developerManager.legalModel.datenschutzerklärung)!)
+                            Link("Nutzungsbedingungen (EULA)", destination: URL(string: developerManager.legalModel.nutzungsbedingungen)!)
+                        }
+                        .font(.title2)
+                        
                     }
                     
                     // MARK: Error-message can be presented here
@@ -61,6 +73,9 @@ struct LoginNView: View {
                         Text(loginVM.errorMessage)
                             .foregroundColor(.accentColor)
                             .font(.caption)
+                            .scaleEffect(tryAgain ? 1.2 : 1)
+                            .animation(.spring())
+                            
                     }
                     
                     // MARK: Input for Registration
@@ -114,31 +129,46 @@ struct LoginNView: View {
                     HStack {
                         Button(action: {
                             
-                            // if button shows login
-                            if loginMode {
-                                print("button tapped")
-                                DispatchQueue.main.async {
-                                    firstly{
-                                        loginVM.loginAuth()
-                                    }.then {
-                                        loginVM.checkUserAcc()
-                                    }.done { startProcessDone in
-                                        if startProcessDone {
-                                            self.startUpDone = true
-                                        }else {
-                                            self.nextPosition = .profileCreation
-                                        }
-                                    }.catch { error in
-                                        loginVM.errorMessage = error.localizedDescription
-                                    }
-                                }
+                            if loginVM.errorMessage != "" {
+                                tryAgain = true
                                 
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    tryAgain = false
+                                }
                             }
                             
-                            // if button shows register
-                            else {
-                                registerUser()
+                            // check if the user checked the EULA and data policies
+                            if !isChecked {
+                                loginVM.errorMessage = "Please accept our EULA and data policies"
+                            } else {
+                                // if button shows login
+                                if loginMode {
+                                    print("button tapped")
+                                    DispatchQueue.main.async {
+                                        firstly{
+                                            loginVM.loginAuth()
+                                        }.then {
+                                            loginVM.checkUserAcc()
+                                        }.done { startProcessDone in
+                                            if startProcessDone {
+                                                self.startUpDone = true
+                                            }else {
+                                                self.nextPosition = .profileCreation
+                                            }
+                                        }.catch { error in
+                                            loginVM.errorMessage = error.localizedDescription
+                                        }
+                                    }
+                                    
+                                }
+                                
+                                // if button shows register
+                                else {
+                                    registerUser()
+                                }
                             }
+                            
+                            
                             
                             
                         }, label: {

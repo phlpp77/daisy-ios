@@ -85,19 +85,8 @@ struct EventCreationView: View {
     var body: some View {
         ZStack {
             
-//            // background
-//            Color.black.opacity(0.0001)
-//
-            
             VStack {
                 
-                
-                
-                    
-                                            
-//                        .padding(.top, 10)
-//                        .padding()
-//                        .frame(maxWidth: .infinity, alignment: .trailing)
                         
                 HStack {
                     Picker(selection: $covidPreference,
