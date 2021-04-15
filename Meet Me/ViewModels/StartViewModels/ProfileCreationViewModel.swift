@@ -98,8 +98,8 @@ class ProfileCreationModel: ObservableObject {
         let dateFormatter = DateFormatter()
         
         dateFormatter.locale = Locale(identifier: "en_DE")
-        dateFormatter.dateFormat = "dd/MM/y"
-        
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        print(date)
         let date = dateFormatter.date(from: date)!
         return date
     }
