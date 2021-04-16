@@ -57,9 +57,24 @@ struct MainControllerView: View {
         if Auth.auth().currentUser != nil{
             firstly {
                 self.firestoreManagerUserTest.getCurrentUser()
-            }.done { userModel in
+            }.map { userModel in
                 self.userModel = userModel
                 userIsLoggedIn = true
+            }.done {
+                if self.userModel.lastLogin == Date() {
+                    self.firestoreManagerUserTest.setLastLogin().catch { error in
+                        print(error)
+                    }
+                }else {
+                    firstly {
+                        self.firestoreManagerUserTest.setRefreshCounterToZero()
+                    }.then {
+                        self.firestoreManagerUserTest.setLastLogin()
+                    }.catch { error in
+                        print(error)
+                    }
+                }
+                
             }.catch { error in
                 userIsLoggedIn = false
             }.finally {
