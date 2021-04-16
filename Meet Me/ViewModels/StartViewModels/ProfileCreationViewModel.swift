@@ -59,6 +59,8 @@ class ProfileCreationModel: ObservableObject {
             self.firestoreManagerUserTest.saveUser(userModel: userModel)
         }.then {
             self.firestoreManagerUserTest.createLikedEventsArray()
+        }.then {
+            self.firestoreManagerUserTest.createReportedEventsArray()
         }.done {
             if images != nil {
                 when(fulfilled: images!.compactMap(self.uploadUserPhotos)).catch { error in

@@ -82,6 +82,7 @@
 		902EF6E225D985F0004464F0 /* Meet_MeAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6E125D985F0004464F0 /* Meet_MeAppViewModel.swift */; };
 		902EF6FF25D9A51B004464F0 /* EventCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF6FE25D9A51B004464F0 /* EventCreationViewModel.swift */; };
 		902EF7AA25DC439D004464F0 /* YouEventLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EF7A925DC439D004464F0 /* YouEventLineViewModel.swift */; };
+		903091D32629CAEB006FE37A /* ReportedEventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903091D22629CAEB006FE37A /* ReportedEventsModel.swift */; };
 		9045DD52260B9DD300922DA5 /* ShowedEventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9045DD51260B9DD300922DA5 /* ShowedEventsModel.swift */; };
 		9045DD59260F8E9300922DA5 /* FirstActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9045DD58260F8E9300922DA5 /* FirstActions.swift */; };
 		9045DD5E260F999200922DA5 /* DeveloperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9045DD5D260F999200922DA5 /* DeveloperViewModel.swift */; };
@@ -196,6 +197,7 @@
 		902EF6E125D985F0004464F0 /* Meet_MeAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meet_MeAppViewModel.swift; sourceTree = "<group>"; };
 		902EF6FE25D9A51B004464F0 /* EventCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationViewModel.swift; sourceTree = "<group>"; };
 		902EF7A925DC439D004464F0 /* YouEventLineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventLineViewModel.swift; sourceTree = "<group>"; };
+		903091D22629CAEB006FE37A /* ReportedEventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportedEventsModel.swift; sourceTree = "<group>"; };
 		9045DD51260B9DD300922DA5 /* ShowedEventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowedEventsModel.swift; sourceTree = "<group>"; };
 		9045DD58260F8E9300922DA5 /* FirstActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstActions.swift; sourceTree = "<group>"; };
 		9045DD5D260F999200922DA5 /* DeveloperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperViewModel.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				90D42AEE25EAAD110060311B /* MatchModel.swift */,
 				90D42AF625EABC400060311B /* AllMatchInformationModel.swift */,
 				90D42ACE25E966220060311B /* LikedEventModel.swift */,
+				903091D22629CAEB006FE37A /* ReportedEventsModel.swift */,
 				902EF6B825D89213004464F0 /* PhotoModel.swift */,
 				174423A925D9A0DF00D25EDD /* EventModel.swift */,
 				1705793625FE3C3A00A56CE6 /* InformationCardModel.swift */,
@@ -765,6 +768,7 @@
 				172CA8F825FA31E4002CAA09 /* MeProfileNView.swift in Sources */,
 				17F34F1825F90D2A00690122 /* LoginNView.swift in Sources */,
 				17E6A2ED261F76BB00BEC363 /* ImageCropper.swift in Sources */,
+				903091D32629CAEB006FE37A /* ReportedEventsModel.swift in Sources */,
 				90779B0725E2DFC90070D794 /* FirestoreFotoMangerEventTest.swift in Sources */,
 				90BDC68526164CF400758741 /* DeveloperManager.swift in Sources */,
 				90779AED25E2C8CD0070D794 /* FirestoreManagerEventTest.swift in Sources */,

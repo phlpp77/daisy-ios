@@ -18,6 +18,8 @@ class YouEventLineViewModel: ObservableObject {
     private var db: Firestore
     @Published var refreshCounter = 0
     @Published var changedSearchingFor = false
+    
+    private var reportedEvents: [String] = []
 
   
     
@@ -30,18 +32,31 @@ class YouEventLineViewModel: ObservableObject {
 
     func getYouEvents(region: MKCoordinateRegion, shuffle: Bool) -> Promise<[EventModel]> {
         return Promise { seal in
-
-            firstly{
+            firstly {
+                firestoreManagerUserTest.getAllReportedEvents()
+            }.map { reportedEvents in
+                self.reportedEvents = reportedEvents
+            }.then{
                  self.firestoreManagerUserTest.getAllLikedEvents()//, self.getLocation())
             }.then { likedEvents in
                 self.firestoreManagerEventTest.queryColletion(center: region.center, user: self.userModel).map { ($0, likedEvents) }
             }.then { queries, likedEvents in
-                self.firestoreManagerEventTest.querysInEvent(likedEvents: likedEvents , queries: queries, center: region.center, user: self.userModel, shuffle: shuffle)
+                self.firestoreManagerEventTest.querysInEvent(likedEvents: likedEvents , queries: queries, center: region.center, user: self.userModel, shuffle: shuffle, reportedEvents: self.reportedEvents)
             }.done { events in
                 seal.fulfill(events)
             }.catch { error in
                 seal.reject(error)
             }
+        }
+    }
+    
+    func reportEvent(eventModel: EventModel) {
+        firstly {
+            self.firestoreManagerUserTest.addReportToReportArray(eventId: eventModel.eventId)
+        }.then {
+            self.firestoreManagerUserTest.addOneToReportCounter(userId: eventModel.userId)
+        }.catch { error in
+            print(error)
         }
     }
     

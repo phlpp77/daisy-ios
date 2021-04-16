@@ -92,8 +92,11 @@ struct YouEventLineView: View {
                                         Button(action: {
                                             
                                             // TODO: @budni add the backend content here, as you see you can delete from eventArray without problems
+                                            youEventLineVM.reportEvent(eventModel: eventArray[eventIndex])
                                             
                                             eventArray.remove(at: eventIndex)
+                                            showedEventsModel.events = eventArray
+                                            showedEventsModel.save()
                                             
                                             
                                         }, label: {

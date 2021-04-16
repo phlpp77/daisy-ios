@@ -57,6 +57,23 @@ class FirestoreManagerUserTest {
         }
     }
     
+    func createReportedEventsArray() -> Promise<Void> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                return
+            }
+            do {
+                let _ =  db.collection("users")
+                    .document(currentUser.uid)
+                    .collection("reportedEvents")
+                    .document("reportedEvents").setData(["reportedEvents": ["Im not a Bug Im a feature"]])
+                
+                seal.fulfill(())
+                
+            }
+        }
+    }
+    
     func addLikeToEventArray(eventId: String) -> Promise<Void>{
         return Promise { seal in
             guard let currentUser = Auth.auth().currentUser else {
@@ -70,6 +87,25 @@ class FirestoreManagerUserTest {
                     .collection("likedEvent")
                     .document("likedEvent")
                     .updateData(["likedEvent" : FieldValue.arrayUnion([eventId])])
+                seal.fulfill(())
+                
+            }
+        }
+    }
+    
+    func addReportToReportArray(eventId: String) -> Promise<Void>{
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                seal.reject(Err("No User Profile"))
+                return
+            }
+            
+            do {
+                let _ =  db.collection("users")
+                    .document(currentUser.uid)
+                    .collection("reportedEvents")
+                    .document("reportedEvents")
+                    .updateData(["reportedEvents" : FieldValue.arrayUnion([eventId])])
                 seal.fulfill(())
                 
             }
@@ -246,12 +282,40 @@ class FirestoreManagerUserTest {
                             if likedEvent != nil {
                                 
                                 DispatchQueue.main.async {
-                                    if likedEvent?.likedEvent.count != 0 {
-                                        seal.fulfill(likedEvent!.likedEvent)
-                                    } else {
-                                        let error = Err("No Liked Availibale")
-                                        seal.reject(error)
-                                    }
+                                    seal.fulfill(likedEvent!.likedEvent)
+                                    
+                                }
+                            }
+                            
+                        }
+                        
+                        
+                    }
+                }
+        }
+    }
+    
+    func getAllReportedEvents() -> Promise<[String]> {
+        return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                throw Err("No User Profile")
+            }
+            
+            db.collection("users")
+                .document(currentUser.uid)
+                .collection("reportedEvents")
+                .document("reportedEvents")
+                .getDocument { (snapshot, error) in
+                    if let error = error {
+                        seal.reject(error)
+                    } else {
+                        if let snapshot = snapshot {
+                            let reportedEvents = try? snapshot.data(as: ReportedEvents.self)
+                            if reportedEvents  != nil {
+                                
+                                DispatchQueue.main.async {
+                                    
+                                    seal.fulfill(reportedEvents!.reportedEvents)
                                 }
                             }
                             
