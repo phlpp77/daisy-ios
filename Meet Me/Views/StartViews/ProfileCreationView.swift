@@ -28,7 +28,7 @@ struct ProfileCreationView: View {
     // MARK: - state vars
     
     // var for the birthday date of the profile owner in the date format
-    @State var birthdayDate: String = ""
+    @State var birthdayDate: String = "01/01/1970"
     
     
     // user accepts the location usage - NEEDS TO BE CHANGED TO BOOL
@@ -156,22 +156,24 @@ struct ProfileCreationView: View {
                         }
                         .frame(width: 268.58)
                         
-                        // button is disabled until the user set at least the name, the gender, the birthday 
-                        let enoughInformation = acceptedAction[0] && acceptedAction[1] && acceptedAction[2]
+                        // button is disabled until the user set at least the gender
+                        let enoughInformation = acceptedAction[1]
+//                            && acceptedAction[1] && acceptedAction[2]
                         
-                        if updateButtonTapped && !acceptedAction[0] {
-                            Text("Please enter your name at the very top")
-                                .font(.subheadline)
-                                .foregroundColor(.accentColor)
-                        } else if updateButtonTapped && !acceptedAction[1] {
+//                        if updateButtonTapped && !acceptedAction[0] {
+//                            Text("Please enter your name at the very top")
+//                                .font(.subheadline)
+//                                .foregroundColor(.accentColor)
+                        if updateButtonTapped && !acceptedAction[1] {
                             Text("Please enter your gender")
                                 .font(.subheadline)
                                 .foregroundColor(.accentColor)
-                        } else if updateButtonTapped && !acceptedAction[2] {
-                            Text("Please enter your birthdate")
-                                .font(.subheadline)
-                                .foregroundColor(.accentColor)
                         }
+//                        } else if updateButtonTapped && !acceptedAction[2] {
+//                            Text("Please enter your birthdate")
+//                                .font(.subheadline)
+//                                .foregroundColor(.accentColor)
+//                        }
                         
                         // MARK: update button
                         Button(action: {
@@ -180,9 +182,23 @@ struct ProfileCreationView: View {
                             
                             if enoughInformation {
                                 
+                                if !acceptedAction[0] {
+                                    addProfileCreationVM.name = "Nameless"
+                                }
+                                
+                                if !acceptedAction[2] {
+                                    // is not used idk
+                                    addProfileCreationVM.birthdayDate = Date() - 568025136
+//                                    addProfileCreationVM.birthdayDate = "01/01/1970"
+                                }
+                                
                                 addProfileCreationVM.userToken = userToken
                                 
                                 addProfileCreationVM.searchingFor = "Both"
+                                
+                                if birthdayDate == "Birthday" {
+                                    birthdayDate = "01/01/1970"
+                                }
                                 
                                 addProfileCreationVM.createUser(images: [croppedImage ?? UIImage(named: "FemaleStockImage")!], bDate: birthdayDate)
                                 // haptic feedback when button is tapped

@@ -13,6 +13,8 @@ struct SplashView: View {
     
     @State var showSecondLine: Bool = false
     
+    let notchPhone: Bool = UIApplication.shared.windows[0].safeAreaInsets.bottom > 0 ? true : false
+    
     var body: some View {
         
         VStack {
@@ -46,6 +48,7 @@ struct SplashView: View {
                 button
                     .padding(.bottom, 40)
             })
+            .offset(y: notchPhone ? 0 : -55)
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {

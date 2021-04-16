@@ -15,6 +15,8 @@ struct InformationCard: View {
     @State var index: Int = 0
     var sliderArray: [InformationCardModel]
     
+    var onBoardingUsage: Bool = false
+    let notchPhone: Bool = UIApplication.shared.windows[0].safeAreaInsets.bottom > 0 ? true : false
     
     var body: some View {
         
@@ -140,6 +142,7 @@ struct InformationCard: View {
                 }
                 .frame(width: (bounds.size.width - 48))
                 .padding(.bottom, 40)
+                .offset(y: !notchPhone && onBoardingUsage ? -55 : 0)
             }
             
             .frame(width: bounds.size.width, height: bounds.size.height)

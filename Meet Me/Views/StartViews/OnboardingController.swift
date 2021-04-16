@@ -18,7 +18,7 @@ struct OnboardingController: View {
     
     var body: some View {
         
-        InformationCard(goToNextView: $goToNextView, goToLastView: $goToLastView, sliderArray: sliderArray)
+        InformationCard(goToNextView: $goToNextView, goToLastView: $goToLastView, sliderArray: sliderArray, onBoardingUsage: true)
         .onChange(of: goToNextView, perform: { value in
             showOnboarding = .registerLogin
         })
