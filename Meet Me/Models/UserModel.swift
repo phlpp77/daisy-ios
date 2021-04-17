@@ -24,6 +24,7 @@ struct UserModel: Codable {
     var userStatus: String
     var reports: Int
     var loginToken: String
+    var lastLogin: String
     
 }
 

@@ -275,7 +275,7 @@ class FirestoreManagerEventTest {
         }
     }
     
-    func querysInEvent(likedEvents: [String], queries: [Query], center : CLLocationCoordinate2D, user: UserModel, shuffle: Bool) ->Promise<[EventModel]> {
+    func querysInEvent(likedEvents: [String], queries: [Query], center : CLLocationCoordinate2D, user: UserModel, shuffle: Bool, reportedEvents : [String]) ->Promise<[EventModel]> {
         return Promise { seal in
 
             let userPoint = CLLocation(latitude: center.latitude, longitude: center.longitude)
@@ -320,9 +320,11 @@ class FirestoreManagerEventTest {
                                 print(event!.count)
                                 if event!.count > 1 {
                                     for (index, eventModel) in event!.enumerated().reversed() {
-                                        if likedEvents.contains(eventModel.eventId) == false {
-                                            //event!.remove(at: index)
-                                            eventsSorted.append(event![index])
+                                        if reportedEvents.contains(eventModel.eventId) == false {
+                                            if likedEvents.contains(eventModel.eventId) == false {
+                                                //event!.remove(at: index)
+                                                eventsSorted.append(event![index])
+                                            }
                                         }
                                         if eventsSorted.count >= 11 {
                                             break

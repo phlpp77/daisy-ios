@@ -53,12 +53,14 @@ class ProfileCreationModel: ObservableObject {
 
         self.birthdayDate = convertStringToDate(date: bDate)
         
-        let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor, userPhotos: [0: stockURL.absoluteString], userPhotosId: [0: "stockPhoto"], radiusInKilometer: 150, token: "", refreshCounter: 0, userStatus: "normal",reports: 0, loginToken: userToken)
+        let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor, userPhotos: [0: stockURL.absoluteString], userPhotosId: [0: "stockPhoto"], radiusInKilometer: 150, token: "", refreshCounter: 0, userStatus: "normal",reports: 0, loginToken: userToken, lastLogin: getShortDate())
         
         firstly {
             self.firestoreManagerUserTest.saveUser(userModel: userModel)
         }.then {
             self.firestoreManagerUserTest.createLikedEventsArray()
+        }.then {
+            self.firestoreManagerUserTest.createReportedEventsArray()
         }.done {
             if images != nil {
                 when(fulfilled: images!.compactMap(self.uploadUserPhotos)).catch { error in
