@@ -42,7 +42,11 @@ func createSampleDate() -> Date {
 // MARK: Create a UUID as a string
 var createdId = UUID().uuidString
 
-
+func getShortDate() -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd/MM/yyyy"
+    return dateFormatter.string(from: Date())
+}
 
 // MARK: - Colors
 
@@ -59,8 +63,8 @@ let secondaryGradient = LinearGradient(
 // MARK: - Stockdata
 
 // MARK: stock user to use as default
-let stockUser: UserModel = UserModel(userId: "007", name: "Stocky One", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Male", userPhotos: [1: stockUrlString], userPhotosId: [0: ""], radiusInKilometer: 1000, token: "", refreshCounter: 0, userStatus: "normal",reports: 0, loginToken: "", lastLogin: Date())
-let stockUser2: UserModel = UserModel(userId: "008", name: "Stockise Two", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [0: stockUrlString], userPhotosId: [1: ""], radiusInKilometer: 1000, token: "", refreshCounter: 0, userStatus: "normal",reports: 0, loginToken: "", lastLogin: Date())
+let stockUser: UserModel = UserModel(userId: "007", name: "Stocky One", birthdayDate: createSampleDate(), gender: "Male", searchingFor: "Male", userPhotos: [1: stockUrlString], userPhotosId: [0: ""], radiusInKilometer: 1000, token: "", refreshCounter: 0, userStatus: "normal",reports: 0, loginToken: "", lastLogin: getShortDate())
+let stockUser2: UserModel = UserModel(userId: "008", name: "Stockise Two", birthdayDate: createSampleDate(), gender: "Female", searchingFor: "Male", userPhotos: [0: stockUrlString], userPhotosId: [1: ""], radiusInKilometer: 1000, token: "", refreshCounter: 0, userStatus: "normal",reports: 0, loginToken: "", lastLogin: getShortDate())
 
 // TODO: Need to be changed to a stock photo
 let stockURL: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/meetme-1c961.appspot.com/o/StockImages%2Fphilipp%401024x.png?alt=media&token=6ce1af89-a75c-45a4-a698-ff0a9ac68f46")!

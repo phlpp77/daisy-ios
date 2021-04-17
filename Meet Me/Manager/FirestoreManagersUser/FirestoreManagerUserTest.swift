@@ -230,7 +230,7 @@ class FirestoreManagerUserTest {
                 return
             }
             
-            let _ =  db.collection("users").document(currentUser.uid).updateData(["lastLogin" : Date()]){ error in
+            let _ =  db.collection("users").document(currentUser.uid).updateData(["lastLogin" : getShortDate()]){ error in
                 if let error = error {
                     seal.reject(error)
                 }else {

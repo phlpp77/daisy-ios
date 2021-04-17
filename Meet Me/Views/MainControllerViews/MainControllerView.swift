@@ -61,7 +61,7 @@ struct MainControllerView: View {
                 self.userModel = userModel
                 userIsLoggedIn = true
             }.done {
-                if self.userModel.lastLogin == Date() {
+                if self.userModel.lastLogin == getShortDate() {
                     self.firestoreManagerUserTest.setLastLogin().catch { error in
                         print(error)
                     }
