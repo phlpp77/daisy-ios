@@ -201,7 +201,7 @@ struct ProfileCreationView: View {
                                 
                                 addProfileCreationVM.birthdayDate = dateFormatter.date(from: birthdayDate) ?? (Date() - 568025136)
                                 
-                                addProfileCreationVM.userToken = userToken
+                                addProfileCreationVM.userToken = userToken  
                                 
                                 addProfileCreationVM.searchingFor = "Both"
                                 

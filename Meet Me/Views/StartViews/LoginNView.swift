@@ -61,7 +61,7 @@ struct LoginNView: View {
                     })
                     .sheet(isPresented: $showPresentTermsAndConditionsSheet) {
                         VStack {
-                            Link("Datenschutzerklärung", destination: URL(string: developerManager.legalModel.datenschutzerklärung)!)
+                            Link("Datenschutzerklärung", destination: URL(string: "https://support.berrybblog.com/Datenschutzerkl%C3%A4rung.pdf")!)
                             Link("Nutzungsbedingungen (EULA)", destination: URL(string: developerManager.legalModel.nutzungsbedingungen)!)
                         }
                         .font(.title2)
@@ -105,6 +105,12 @@ struct LoginNView: View {
                             .disableAutocorrection(true)
                             .onReceive(Just(loginVM.loginToken)) { _ in limitText(6) }
                             
+                    }
+                    
+                    if !loginMode {
+                        Link("No TOKEN? Get infos here", destination: URL(string: "https://support.berrybblog.com")!)
+                            .font(.caption)
+                            .padding(.bottom, 3)
                     }
                     
                     // MARK: Button to switch between login and register mode
