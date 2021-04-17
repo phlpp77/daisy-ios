@@ -47,7 +47,6 @@ struct ProfileCreationView: View {
     
     // show
     @State var showImagePicker = false
-    @State var showImageCropper = false
     // images in array
     @State var images: [UIImage] = []
     @State var croppedImage: UIImage?
@@ -277,39 +276,10 @@ struct ProfileCreationView: View {
                     case 5:
                         Color.clear
                             .sheet(isPresented: $showImagePicker, content: {
-                                if !showImageCropper {
-                                    ImagePicker(images: $images, showPicker: .constant(true), limit: 1) { (imagesPicked) in
-                                        if imagesPicked {
-                                            // show image cropper sheet
-                                            showImageCropper = true
-                                            
-                                            // add the picked image to the temp storage which is used by the cropper
-                                            tempInputImage = images.first!
-                                        }
-                                    }
-                                } else {
-                                    
-                                    ImageCropper(image: $tempInputImage, visible: $showImageCropper) { (croppedImage) in
-                                        
-                                        // assign the cropped image to the image which is shown in the app
-                                        self.croppedImage = croppedImage
-                                        
-                                        // accept the image so the user know the image is now in the app
-                                        acceptedAction[5] = true
-                                        
-                                        // dismiss the whole sheet when the cropper is dismissed
-                                        if !showImageCropper {
-                                            
-                                            // dismiss the sheet
-                                            showImagePicker = false
-                                            
-                                            // empty array to let new pictures in for selection
-                                            images = []
-                                        }
-                                    }
-                                    
-                                    
-                                }
+                                ImageHandler(croppedImage: $croppedImage, showView: $showImagePicker)
+                            })
+                            .onChange(of: croppedImage, perform: { value in
+                                acceptedAction[5] = true
                             })
                     
                     // the default is 0 which is the first step in the pathway -> name creation
