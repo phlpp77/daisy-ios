@@ -71,6 +71,14 @@ struct ProfileCreationView: View {
     @State var acceptedAction = [false, false, false, false, false, false]
     @State var updateButtonTapped: Bool = false
     
+    var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_DE")
+        formatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
+        formatter.dateFormat = "dd/MM/yy"
+        return formatter
+    }()
+    
     
     var body: some View {
         ZStack {
@@ -191,15 +199,13 @@ struct ProfileCreationView: View {
 //                                    addProfileCreationVM.birthdayDate = "01/01/1970"
                                 }
                                 
+                                addProfileCreationVM.birthdayDate = dateFormatter.date(from: birthdayDate) ?? (Date() - 568025136)
+                                
                                 addProfileCreationVM.userToken = userToken
                                 
                                 addProfileCreationVM.searchingFor = "Both"
                                 
-                                if birthdayDate == "Birthday" {
-                                    birthdayDate = "01/01/1970"
-                                }
-                                
-                                addProfileCreationVM.createUser(images: [croppedImage ?? UIImage(named: "FemaleStockImage")!], bDate: birthdayDate)
+                                addProfileCreationVM.createUser(images: [croppedImage ?? UIImage(named: "FemaleStockImage")!])
                                 // haptic feedback when button is tapped
                                 hapticPulse(feedback: .rigid)
                                 
