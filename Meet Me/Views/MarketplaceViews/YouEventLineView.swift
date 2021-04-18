@@ -145,33 +145,54 @@ struct YouEventLineView: View {
         .frame(height: notchPhone ? 380 : 300)
         .onAppear {
             youEventLineVM.getRefreshCounter().done {
-                
-                //Check if it is the first login
-                if firstActions.firstViews["FirstEventShuffle"] == false || firstActions.firstViews["FirstEventShuffle"] == nil {
-                    //if it is the first Login load events without hitting shuffle button
-                    if youEventLineVM.refreshCounter < 10 || youEventLineVM.userModel.userStatus == "developer" {
-                      
-                        firstly {
-                            self.youEventLineVM.getYouEvents(region: locationManager.region, shuffle: true)
-                        }.done { events in
-                            self.eventArray = events
-                            showedEventsModel.events = events
-                            showedEventsModel.save()
-                            //self.youEventLineVM.addOneToRefreshCounter()
-                            
-                            //add FirstventShuffle to Dictionary
-                            firstActions.firstViews["FirstEventShuffle"] = true
-                            firstActions.save()
-                            print("aufgerufen")
-                            print("done")
-                        }.catch { error in
-                            print("DEBUG: error in GetYouEventChain: \(error)")
-                            print("DEBUG: \(error.localizedDescription)")
-                        }
+                if youEventLineVM.userModel.userStatus == "test" {
+                    firstly {
+                        self.youEventLineVM.getYouEventsTest(shuffle: true)
+                    }.done { events in
+                        self.eventArray = events
+                        showedEventsModel.events = events
+                        showedEventsModel.save()
+                        //self.youEventLineVM.addOneToRefreshCounter()
+                        
+                        //add FirstventShuffle to Dictionary
+                        firstActions.firstViews["FirstEventShuffle"] = true
+                        firstActions.save()
+                        print("aufgerufen")
+                        print("done")
+                    }.catch { error in
+                        print("DEBUG: error in GetYouEventChain: \(error)")
+                        print("DEBUG: \(error.localizedDescription)")
                     }
-                }else {
-                    print("aufgerufen: \(eventArray)")
-                    self.eventArray = showedEventsModel.events
+                    
+                } else {
+                    
+                    //Check if it is the first login
+                    if firstActions.firstViews["FirstEventShuffle"] == false || firstActions.firstViews["FirstEventShuffle"] == nil {
+                        //if it is the first Login load events without hitting shuffle button
+                        if youEventLineVM.refreshCounter < 10 || youEventLineVM.userModel.userStatus == "developer" {
+                            
+                            firstly {
+                                self.youEventLineVM.getYouEvents(region: locationManager.region, shuffle: true)
+                            }.done { events in
+                                self.eventArray = events
+                                showedEventsModel.events = events
+                                showedEventsModel.save()
+                                //self.youEventLineVM.addOneToRefreshCounter()
+                                
+                                //add FirstventShuffle to Dictionary
+                                firstActions.firstViews["FirstEventShuffle"] = true
+                                firstActions.save()
+                                print("aufgerufen")
+                                print("done")
+                            }.catch { error in
+                                print("DEBUG: error in GetYouEventChain: \(error)")
+                                print("DEBUG: \(error.localizedDescription)")
+                            }
+                        }
+                    }else {
+                        print("aufgerufen: \(eventArray)")
+                        self.eventArray = showedEventsModel.events
+                    }
                 }
             }.catch { error in
                 print(error)
@@ -216,6 +237,26 @@ struct YouEventLineView: View {
                         .onEnded { value in
                             pressDone = true
                             hapticFeedback(feedBackstyle: .success)
+                            if youEventLineVM.userModel.userStatus == "test" {
+                                firstly {
+                                    self.youEventLineVM.getYouEventsTest(shuffle: true)
+                                }.done { events in
+                                    self.eventArray = events
+                                    showedEventsModel.events = events
+                                    showedEventsModel.save()
+                                    //self.youEventLineVM.addOneToRefreshCounter()
+                                    
+                                    //add FirstventShuffle to Dictionary
+                                    firstActions.firstViews["FirstEventShuffle"] = true
+                                    firstActions.save()
+                                    print("aufgerufen")
+                                    print("done")
+                                }.catch { error in
+                                    print("DEBUG: error in GetYouEventChain: \(error)")
+                                    print("DEBUG: \(error.localizedDescription)")
+                                }
+                                
+                            } else {
                             
                             if youEventLineVM.refreshCounter < 10 || youEventLineVM.userModel.userStatus == "developer" {
                                 self.eventArray = []
@@ -237,6 +278,7 @@ struct YouEventLineView: View {
                             }else {
                                 //Feedback for User that maximum amount of refreshes are reached
                                 
+                            }
                             }
                             
                             

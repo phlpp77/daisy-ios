@@ -50,6 +50,20 @@ class YouEventLineViewModel: ObservableObject {
         }
     }
     
+    func getYouEventsTest(shuffle: Bool) -> Promise<[EventModel]> {
+        return Promise { seal in
+            firstly {
+                self.firestoreManagerUserTest.getAllLikedEvents()
+            }.then { likedEvent in
+                self.firestoreManagerEventTest.firebaseGetYouEventsTest(likedEvents: likedEvent)
+            }.done { events in
+                seal.fulfill(events)
+            }.catch { error in
+                seal.reject(error)
+            }
+        }
+    }
+    
     func reportEvent(eventModel: EventModel) {
         firstly {
             self.firestoreManagerUserTest.addReportToReportArray(eventId: eventModel.eventId)
