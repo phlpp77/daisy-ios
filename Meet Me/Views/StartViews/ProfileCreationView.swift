@@ -47,7 +47,6 @@ struct ProfileCreationView: View {
     
     // show
     @State var showImagePicker = false
-    @State var showImageCropper = false
     // images in array
     @State var images: [UIImage] = []
     @State var croppedImage: UIImage?
@@ -71,6 +70,14 @@ struct ProfileCreationView: View {
     // var to see if the action in the alert was accepted or not
     @State var acceptedAction = [false, false, false, false, false, false]
     @State var updateButtonTapped: Bool = false
+    
+    var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_DE")
+        formatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
+        formatter.dateFormat = "dd/MM/yy"
+        return formatter
+    }()
     
     
     var body: some View {
@@ -192,15 +199,13 @@ struct ProfileCreationView: View {
 //                                    addProfileCreationVM.birthdayDate = "01/01/1970"
                                 }
                                 
-                                addProfileCreationVM.userToken = userToken
+                                addProfileCreationVM.birthdayDate = dateFormatter.date(from: birthdayDate) ?? (Date() - 568025136)
+                                
+                                addProfileCreationVM.userToken = userToken  
                                 
                                 addProfileCreationVM.searchingFor = "Both"
                                 
-                                if birthdayDate == "Birthday" {
-                                    birthdayDate = "01/01/1970"
-                                }
-                                
-                                addProfileCreationVM.createUser(images: [croppedImage ?? UIImage(named: "FemaleStockImage")!], bDate: birthdayDate)
+                                addProfileCreationVM.createUser(images: [croppedImage ?? UIImage(named: "FemaleStockImage")!])
                                 // haptic feedback when button is tapped
                                 hapticPulse(feedback: .rigid)
                                 
@@ -277,39 +282,10 @@ struct ProfileCreationView: View {
                     case 5:
                         Color.clear
                             .sheet(isPresented: $showImagePicker, content: {
-                                if !showImageCropper {
-                                    ImagePicker(images: $images, showPicker: .constant(true), limit: 1) { (imagesPicked) in
-                                        if imagesPicked {
-                                            // show image cropper sheet
-                                            showImageCropper = true
-                                            
-                                            // add the picked image to the temp storage which is used by the cropper
-                                            tempInputImage = images.first!
-                                        }
-                                    }
-                                } else {
-                                    
-                                    ImageCropper(image: $tempInputImage, visible: $showImageCropper) { (croppedImage) in
-                                        
-                                        // assign the cropped image to the image which is shown in the app
-                                        self.croppedImage = croppedImage
-                                        
-                                        // accept the image so the user know the image is now in the app
-                                        acceptedAction[5] = true
-                                        
-                                        // dismiss the whole sheet when the cropper is dismissed
-                                        if !showImageCropper {
-                                            
-                                            // dismiss the sheet
-                                            showImagePicker = false
-                                            
-                                            // empty array to let new pictures in for selection
-                                            images = []
-                                        }
-                                    }
-                                    
-                                    
-                                }
+                                ImageHandler(croppedImage: $croppedImage, showView: $showImagePicker)
+                            })
+                            .onChange(of: croppedImage, perform: { value in
+                                acceptedAction[5] = true
                             })
                     
                     // the default is 0 which is the first step in the pathway -> name creation

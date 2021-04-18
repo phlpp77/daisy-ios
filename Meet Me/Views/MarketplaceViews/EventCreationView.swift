@@ -52,6 +52,7 @@ struct EventCreationView: View {
     @State private var images: [UIImage] = [UIImage(named: "OtherStockImage")!]
     @State private var showImagePicker: Bool = false
     @State private var pictureChangedByUser: Bool = false
+    @State private var croppedImage: UIImage?
     
     // animation of alert-boxes
     @State private var showAlertBox: Bool = false
@@ -122,7 +123,7 @@ struct EventCreationView: View {
                     // Main image as a background of the event
                     
                     // event image
-                    Image(uiImage: (pictureChangedByUser ? images.last! : UIImage(named: "\(category)StockImage") ?? UIImage(named: "OtherStockImage")!))
+                    Image(uiImage: (pictureChangedByUser ? croppedImage! : UIImage(named: "\(category)StockImage") ?? UIImage(named: "OtherStockImage")!))
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 250, height: 250, alignment: .center)
@@ -235,7 +236,7 @@ struct EventCreationView: View {
                         // update handling
                         prepareUpload()
                         //youEventLineVM.getYouEvents()
-                        eventCreationVM.saveEvent(uiImage: (pictureChangedByUser ? images.last! : UIImage(named: "\(category)StockImage") ?? UIImage(named: "OtherStockImage")!))
+                        eventCreationVM.saveEvent(uiImage: (pictureChangedByUser ? croppedImage! : UIImage(named: "\(category)StockImage") ?? UIImage(named: "OtherStockImage")!))
                         // button animation start
                         buttonPressed.toggle()
                         // haptic feedback when button is tapped
@@ -261,10 +262,13 @@ struct EventCreationView: View {
             }
             .scaleEffect(1.3)
             .sheet(isPresented: $showImagePicker, content: {
-                ImagePicker(images: $images, showPicker: $showImagePicker, limit: 1, didFinishPicking: {_ in
-                    pictureChangedByUser = true
-                })
+                ImageHandler(croppedImage: $croppedImage, showView: $showImagePicker)
+                
             })
+            .onChange(of: croppedImage, perform: { value in
+                pictureChangedByUser = true
+            })
+            
             .onAppear {
                 
                 // standard start time is the next quarter to the actual time

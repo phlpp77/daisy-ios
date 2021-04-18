@@ -32,6 +32,8 @@ class ProfileCreationModel: ObservableObject {
     let storage = Storage.storage()
     
     
+    
+    
     init() {
         firestoreManagerUserTest = FirestoreManagerUserTest()
         firestoreFotoMangerUserTest = FirestoreFotoManagerUserTest()
@@ -45,13 +47,13 @@ class ProfileCreationModel: ObservableObject {
 
 
     
-    func createUser(images: [UIImage]?, bDate: String) {
+    func createUser(images: [UIImage]?) {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
         
 
-        self.birthdayDate = convertStringToDate(date: bDate)
+//        self.birthdayDate = convertStringToDate(date: bDate)
         
         let userModel = UserModel(userId: currentUser.uid, name: name, birthdayDate: birthdayDate, gender: gender, startProcessDone: startProcessDone, searchingFor : searchingFor, userPhotos: [0: stockURL.absoluteString], userPhotosId: [0: "stockPhoto"], radiusInKilometer: 150, token: "", refreshCounter: 0, userStatus: "normal",reports: 0, loginToken: userToken, lastLogin: getShortDate())
         

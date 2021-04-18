@@ -37,6 +37,8 @@
 		176745C025F939D400FF28F2 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176745BF25F939D400FF28F2 /* SplashView.swift */; };
 		176995582621FF9D00F6BE0C /* check-mark.json in Resources */ = {isa = PBXBuildFile; fileRef = 176995572621FF9D00F6BE0C /* check-mark.json */; };
 		176A5AC725F3C0A000C857E8 /* ChatEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176A5AC625F3C0A000C857E8 /* ChatEventView.swift */; };
+		17730CC2262AD87600277F01 /* ImageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17730CC1262AD87600277F01 /* ImageHandler.swift */; };
+		17730CC9262B280900277F01 /* ReportedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17730CC8262B280900277F01 /* ReportedView.swift */; };
 		1774B66F25D1DF0B00D1D2F1 /* MainControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */; };
 		1774B67225D1E2E500D1D2F1 /* MainSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */; };
 		1774B67525D1E31400D1D2F1 /* MainExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774B67425D1E31400D1D2F1 /* MainExploreView.swift */; };
@@ -155,6 +157,8 @@
 		176745BF25F939D400FF28F2 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		176995572621FF9D00F6BE0C /* check-mark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "check-mark.json"; sourceTree = "<group>"; };
 		176A5AC625F3C0A000C857E8 /* ChatEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEventView.swift; sourceTree = "<group>"; };
+		17730CC1262AD87600277F01 /* ImageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHandler.swift; sourceTree = "<group>"; };
+		17730CC8262B280900277F01 /* ReportedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportedView.swift; sourceTree = "<group>"; };
 		1774B66E25D1DF0B00D1D2F1 /* MainControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerView.swift; sourceTree = "<group>"; };
 		1774B67125D1E2E500D1D2F1 /* MainSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSettingsView.swift; sourceTree = "<group>"; };
 		1774B67425D1E31400D1D2F1 /* MainExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainExploreView.swift; sourceTree = "<group>"; };
@@ -337,6 +341,7 @@
 				1705790D25FCD26400A56CE6 /* HeaderView.swift */,
 				1705791325FCE73800A56CE6 /* MatchButtonView.swift */,
 				177A29C7260F8DBF00E968D7 /* InformationCard.swift */,
+				17730CC1262AD87600277F01 /* ImageHandler.swift */,
 			);
 			path = ViewHelpers;
 			sourceTree = "<group>";
@@ -428,6 +433,7 @@
 				176745BC25F9381700FF28F2 /* MainStartView.swift */,
 				171124152610F914004A7864 /* AppLaunchView.swift */,
 				17FA42092616265C001BE294 /* MaintenanceView.swift */,
+				17730CC8262B280900277F01 /* ReportedView.swift */,
 			);
 			path = MainControllerViews;
 			sourceTree = "<group>";
@@ -739,6 +745,7 @@
 				90779B6025E41CC60070D794 /* MainControllerViewModel.swift in Sources */,
 				177A29C8260F8DBF00E968D7 /* InformationCard.swift in Sources */,
 				905193A12621F2AD009B4996 /* LoginTokenModel.swift in Sources */,
+				17730CC2262AD87600277F01 /* ImageHandler.swift in Sources */,
 				9045DD52260B9DD300922DA5 /* ShowedEventsModel.swift in Sources */,
 				17DE52ED25EA3F9E000D0B4D /* ImagePicker.swift in Sources */,
 				90F2336325D830E7003FB1D9 /* ProfileCreationViewModel.swift in Sources */,
@@ -809,6 +816,7 @@
 				177A29C5260F88B200E968D7 /* DeveloperView.swift in Sources */,
 				17AE48FC260E836500A76F88 /* ImageCroppingView.swift in Sources */,
 				1774B67925D1E35200D1D2F1 /* MainChatView.swift in Sources */,
+				17730CC9262B280900277F01 /* ReportedView.swift in Sources */,
 				173E48F125FB894600D3DA0A /* YouProfileNView.swift in Sources */,
 				17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */,
 				90D42AD525EA59350060311B /* YouProfilViewModel.swift in Sources */,
@@ -960,7 +968,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Meet Me/Meet Me.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
 				DEVELOPMENT_TEAM = LTC2Q574RM;
@@ -971,7 +979,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = de.philipphemkemeyer.Daisy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = DaisyMessagingProvisioning;
@@ -989,7 +997,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Meet Me/Meet Me.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
 				DEVELOPMENT_TEAM = LTC2Q574RM;
@@ -1000,7 +1008,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = de.philipphemkemeyer.Daisy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = DaisyMessagingProvisioning;

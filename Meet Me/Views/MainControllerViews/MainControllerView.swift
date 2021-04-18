@@ -40,6 +40,10 @@ struct MainControllerView: View {
             if developerManager.developerOptionsModel.maintenance && !(userModel.userStatus == "developer") {
                 MaintenanceView()
             }
+            
+            if userModel.userStatus == "blocked" {
+                ReportedView()
+            }
         }
         .onAppear {
             checkUserAccForAutoLogin()

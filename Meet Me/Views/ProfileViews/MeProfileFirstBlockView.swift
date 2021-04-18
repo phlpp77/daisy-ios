@@ -71,10 +71,7 @@ struct PictureCircle: View {
     @EnvironmentObject var meProfileVM: MeProfileViewModel
     @Binding var userPhotos: [Int: String]
     
-    @State var showPHPicker: Bool = false
-    @State var imagesFromPHPicker: [UIImage] = [UIImage(named: "cafe")!]
-    @State private var tempInputImage: UIImage?
-    @State var showImageCropper: Bool = false
+    @State var showImageHandler: Bool = false
     @State var croppedImage: UIImage?
     
     var tag: Int
@@ -85,7 +82,8 @@ struct PictureCircle: View {
         // MARK: If the users taps on a pictureCircle
         Menu {
             Button(action: {
-                changePicture(pictureIndex: tag)
+//                changePicture(pictureIndex: tag)
+                showImageHandler = true
             }, label: {
                 Label("Change picture", systemImage: "pencil.circle")
             })
@@ -146,47 +144,17 @@ struct PictureCircle: View {
                         .clipShape(Circle())
                 }
             }
-            .sheet(isPresented: $showPHPicker, content: {
-                if !showImageCropper {
-                    ImagePicker(images: $imagesFromPHPicker, showPicker: .constant(true), limit: 1) { (imagesPicked) in
-                        if imagesPicked {
-                            // show image cropper sheet
-                            tempInputImage = imagesFromPHPicker.first
-                            showImageCropper = true
-                        }
-                    }
-                } else {
-                    ImageCropper(image: $tempInputImage, visible: $showImageCropper) { (croppedImage) in
-                        
-                        // upload the cropped image to the database, the tag is needed to know which of the three profile pictures is changed
-                        meProfileVM.addPhotoInPosition(image: croppedImage, position: tag)
-                        
-                        // when the cropper is dismissed dismiss the whole sheet
-                        if !showImageCropper {
-                            
-                            // dismiss the whole sheet
-                            showPHPicker = false
-                            
-                            // clear the array for further picking and re-picking of images
-                            imagesFromPHPicker = []
-                        }
-                        
-                    }
-                }
+            .sheet(isPresented: $showImageHandler, content: {
+               ImageHandler(croppedImage: $croppedImage, showView: $showImageHandler)
+            })
+            .onChange(of: croppedImage, perform: { value in
+                meProfileVM.addPhotoInPosition(image: croppedImage ?? UIImage(named: "FemaleStockImage")!, position: tag)
             })
             
             
         }
     }
     
-    // MARK: Function to change the picture
-    func changePicture(pictureIndex: Int) {
-        
-        // show ImagePicker and delete the picking Array
-        imagesFromPHPicker = []
-        showPHPicker = true
-        
-    }
     
     // Function to delete the picture
     func deletePicture(pictureIndex: Int) {
