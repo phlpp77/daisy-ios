@@ -123,7 +123,16 @@ struct MainExploreView: View {
                         .zIndex(1.0)
                 } else {
                     // create the setup EventView on top of the rest
-                    EventCreationView(presentation: $showCreationView, eventArray: $eventArray, eventCreated: $eventCreated)
+                    NavigationView {
+                        VStack {
+                            EventCreationView(presentation: $showCreationView, eventArray: $eventArray, eventCreated: $eventCreated)
+                        }
+                        .navigationBarItems(leading: Button("Cancel",
+                                                            action: {
+                                                                showCreationView = false
+                                                        }))
+                    }
+                    
                 }
                 
             })

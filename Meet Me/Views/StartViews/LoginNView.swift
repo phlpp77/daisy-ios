@@ -60,11 +60,24 @@ struct LoginNView: View {
                         }
                     })
                     .sheet(isPresented: $showPresentTermsAndConditionsSheet) {
-                        VStack {
-                            Link("Datenschutzerklärung", destination: URL(string: "https://support.berrybblog.com/Datenschutzerkl%C3%A4rung.pdf")!)
-                            Link("Nutzungsbedingungen (EULA)", destination: URL(string: developerManager.legalModel.nutzungsbedingungen)!)
+                        
+                        NavigationView {
+                            
+                            VStack(alignment: .leading, spacing: 10.0) {
+                                Link("Datenschutzerklärung", destination: URL(string: "https://support.berrybblog.com/legal/Datenschutz.pdf")!)
+                                Link("Nutzungsbedingungen (EULA)", destination: URL(string: "https://support.berrybblog.com/legal/Nutzungsbedingungen.pdf")!)
+                            }
+                            .font(.title2)
+                            
+                            .navigationBarItems(leading: Button("Cancel",
+                                                                action: {
+                                                                    showPresentTermsAndConditionsSheet = false
+                                                                }),
+                                                trailing: Button("Done",
+                                                                 action: {
+                                                                    showPresentTermsAndConditionsSheet = false
+                                                                 }))
                         }
-                        .font(.title2)
                         
                     }
                     
@@ -75,7 +88,7 @@ struct LoginNView: View {
                             .font(.caption)
                             .scaleEffect(tryAgain ? 1.2 : 1)
                             .animation(.spring())
-                            
+                        
                     }
                     
                     // MARK: Input for Registration
@@ -104,7 +117,7 @@ struct LoginNView: View {
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .disableAutocorrection(true)
                             .onReceive(Just(loginVM.loginToken)) { _ in limitText(6) }
-                            
+                        
                     }
                     
                     if !loginMode {
@@ -128,7 +141,7 @@ struct LoginNView: View {
                                 .font(.caption)
                         }
                         
-                            
+                        
                     })
                     
                     // MARK: Button to Login/register
@@ -185,7 +198,7 @@ struct LoginNView: View {
                     }
                 }.onAppear {
                     developerManager.getLegalModel().done {
-                    print(developerManager.legalModel)
+                        print(developerManager.legalModel)
                     }.catch { error in
                         print(error)
                     }

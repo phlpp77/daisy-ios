@@ -44,16 +44,10 @@ struct ImageHandler: View {
         }
         
         if showImageCropper {
-            ImageCropper(image: $tempInputImage, visible: $showImageCropper) { (croppedImage) in
-                
+            ImageCropper(image: $tempInputImage, visible: $showView) { (croppedImage) in
+
                 self.croppedImage = croppedImage
                 showView = false
-                // when the cropper is dismissed dismiss the whole sheet
-                if !showImageCropper {
-                    
-                    
-                
-                }
                 
             }
             .background(

@@ -86,37 +86,25 @@ struct EventCreationView: View {
     var body: some View {
         ZStack {
             
-            VStack {
+            VStack(spacing: 50) {
                 
+                Picker(selection: $covidPreference,
+                       label:
                         
-                HStack {
-                    Picker(selection: $covidPreference,
-                           label:
-                           
-                            Text("Tap here to choose your Covid-preference")
-                            .padding()
-                            .frame(width: 210)
-                            .modifier(FrozenWindowModifier())
-                           
-                           , content: {
-                            ForEach(CovidPreference.allCases, id: \.self) { value in
-                                Text(value.localizedName)
-                                    .tag(value)
-                            }
-                           })
-                        .pickerStyle(MenuPickerStyle())
-                    
-                    // xmark symbol to show the user how to dismiss the view
-                    Image(systemName: "xmark")
-                        .foregroundColor(Color("BackgroundSecondary").opacity(0.7))
-                        .font(.system(size: 30))
-                        .onTapGesture {
-                            presentation = false
+                        Text("Tap here to choose your Covid preference")
+                        .padding()
+                        .frame(width: 210)
+                        .modifier(FrozenWindowModifier())
+                       
+                       , content: {
+                        ForEach(CovidPreference.allCases, id: \.self) { value in
+                            Text(value.localizedName)
+                                .tag(value)
                         }
-
-                }
-                .padding(.bottom, 12)
-
+                       })
+                    .pickerStyle(MenuPickerStyle())
+                    
+                
                 
                 
                 ZStack {
@@ -209,13 +197,12 @@ struct EventCreationView: View {
                 .frame(width: 250, height: 250, alignment: .center)
                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 15)
+                .scaleEffect(1.3)
                 
                 
                 
                 // update button
                 VStack {
-                    
-                    
                     
                     HStack {
                         Text("Create event")
@@ -253,14 +240,11 @@ struct EventCreationView: View {
                         
                     }
                 }
-                
-                .padding(.bottom, 16)
-                .padding(.top, 20)
-                
+                      
                 
                 
             }
-            .scaleEffect(1.3)
+            
             .sheet(isPresented: $showImagePicker, content: {
                 ImageHandler(croppedImage: $croppedImage, showView: $showImagePicker)
                 
@@ -286,7 +270,7 @@ struct EventCreationView: View {
                 
                 // AlertBox to define the category
                 case 0:
-                        AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", categoryPicker: true, selectedDuration: .constant(.medium), output: $category, show: $showAlertBox, accepted: $accepted)
+                    AlertBoxView(title: "Choose a category", placeholder: "Café", defaultText: "Café", categoryPicker: true, selectedDuration: .constant(.medium), output: $category, show: $showAlertBox, accepted: $accepted)
                     
                 // AlertBox to define the date
                 case 1:
@@ -308,28 +292,6 @@ struct EventCreationView: View {
             if category == "Other" {
                 AlertBoxView(title: "Name your category", placeholder: "Other", defaultText: "", textFieldInputWithLimit: true, selectedDuration: .constant(.medium), output: $category, show: $showOtherTextField, accepted: $accepted)
             }
-            
-            //            Image(systemName: "xmark.circle")
-            //                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-            //                .padding(10)
-            //                .background(BlurView(style: .systemMaterial))
-            //                .clipShape(Circle())
-            //                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
-            //                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
-            //                .scaleEffect(buttonPressed ? 0.8 : 1)
-            //                .opacity(buttonPressed ? 0.5 : 1)
-            //                .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3))
-            //                .onTapGesture {
-            //                    // button animation start
-            //                    buttonPressed.toggle()
-            //
-            //                    // haptic feedback when button is tapped
-            //                    hapticPulse(feedback: .rigid)
-            //
-            //                    // close view
-            //                    presentation = false
-            //                }
-            //                .offset(x: 130, y: -320)
             
         }
         
