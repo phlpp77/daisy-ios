@@ -127,7 +127,7 @@ struct ProfileCreationView: View {
                         //                            .resizable()
                         //                            .frame(width: 268.58, height: 92.92, alignment: .center)
                         //
-                        //                        // get for what the user is searching (women, men, both)
+                        //                        // get for what the user is searching (women, men, All)
                         //                        SearchingLineView(searchingFor: $addProfileCreationVM.searchingFor, pathwayStep: $pathwayStep, showAlertBox: $showAlertBox, iconName: acceptedAction[3] ? .constant("checkmark.circle") : .constant("pencil.circle"), backgroundColor: acceptedAction[3] ? .constant("Clear") : .constant("BackgroundMain"))
                         
                         // create image for the fifth to the sixth step of the pathway
@@ -203,7 +203,7 @@ struct ProfileCreationView: View {
                                 
                                 addProfileCreationVM.userToken = userToken  
                                 
-                                addProfileCreationVM.searchingFor = "Both"
+                                addProfileCreationVM.searchingFor = "All"
                                 
                                 addProfileCreationVM.createUser(images: [croppedImage ?? UIImage(named: "FemaleStockImage")!])
                                 // haptic feedback when button is tapped
@@ -270,7 +270,7 @@ struct ProfileCreationView: View {
                         
                     // case 3 is the fourth step -> searching for creation
                     case 3:
-                        AlertBoxView(title: "Choose for whom you are searching", placeholder: "Tap here to choose..", defaultText: "Searching for", pickerInput: true, selectedDuration: .constant(.medium), pickerInputArray: ["Male", "Female", "Both"], output: $addProfileCreationVM.searchingFor, show: $showAlertBox, accepted: $acceptedAction[3])
+                        AlertBoxView(title: "Choose for whom you are searching", placeholder: "Tap here to choose..", defaultText: "Searching for", pickerInput: true, selectedDuration: .constant(.medium), pickerInputArray: ["Male", "Female", "All"], output: $addProfileCreationVM.searchingFor, show: $showAlertBox, accepted: $acceptedAction[3])
                             .zIndex(1.0)
                         
                     case 4:

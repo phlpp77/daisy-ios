@@ -968,7 +968,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Meet Me/Meet Me.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
 				DEVELOPMENT_TEAM = LTC2Q574RM;
@@ -997,7 +997,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Meet Me/Meet Me.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
 				DEVELOPMENT_TEAM = LTC2Q574RM;
