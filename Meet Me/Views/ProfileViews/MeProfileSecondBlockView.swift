@@ -40,8 +40,8 @@ struct MeProfileSecondBlockView: View {
                 HStack(spacing: 0.0) {
                     Text("Show me YOUs within ")
                     Text(String(Int(meProfileVM.userModel.radiusInKilometer)))
-                    Text(" km")
                         .foregroundColor(.accentColor)
+                    Text(" km")
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 // slider
