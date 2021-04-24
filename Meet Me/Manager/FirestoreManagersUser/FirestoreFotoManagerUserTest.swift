@@ -48,11 +48,15 @@ class FirestoreFotoManagerUserTest: ObservableObject {
     func uploadUserPhoto(data: Data) -> Promise<URL> {
         return Promise { seal in
 
+            guard let currentUser = Auth.auth().currentUser else {
+                seal.reject(Err("No User Profile"))
+                return
+            }
             
             let imageName = UUID().uuidString
             storageIds.append(imageName)
             let storageRef = storage.reference()
-            let photoRef = storageRef.child("UserImages/\(imageName).png")
+            let photoRef = storageRef.child("UserImages2/\(currentUser.uid)/\(imageName).png")
 
             photoRef.putData(data, metadata: nil) { metadata, error in
                 
@@ -196,10 +200,13 @@ class FirestoreFotoManagerUserTest: ObservableObject {
  
     func deleteImageFromStorage(storageId: String?) ->Promise<Void> {
         return Promise { seal in
+            guard let currentUser = Auth.auth().currentUser else {
+                return
+            }
             print("delete Storage aufgerufen")
             if storageId != nil {
             let storageRef = storage.reference()
-            let photoRef = storageRef.child("UserImages/\(storageId!).png")
+                let photoRef = storageRef.child("UserImages2/\(currentUser.uid)/\(storageId!).png")
             
             photoRef.delete()
                 } else {

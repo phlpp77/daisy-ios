@@ -326,7 +326,7 @@ class FirestoreManagerEventTest {
                                                 eventsSorted.append(event![index])
                                             }
                                         }
-                                        if eventsSorted.count >= 11 {
+                                        if eventsSorted.count >= 15 {
                                             break
                                         }
                                     }
