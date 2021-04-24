@@ -12,6 +12,7 @@ struct MainSettingsView: View {
     @Binding var startProcessDone: Bool
     @StateObject var meProfileVM: MeProfileViewModel = MeProfileViewModel()
     
+    @State var showCheckView: Bool = false
 
     var body: some View {
         
@@ -27,8 +28,15 @@ struct MainSettingsView: View {
                     
                 }
                 
-                LogoutView(startProcessDone: $startProcessDone)
+                LogoutView(startProcessDone: $startProcessDone, showCheck: $showCheckView)
                     .offset(x: bounds.size.width / 2 - (bounds.size.width * 0.15), y: -bounds.size.height / 2 + (bounds.size.width * 0.22))
+                    
+                
+                CheckView(showCheckView: $showCheckView, text: "Logged out")
+                    .onDisappear {
+                        startProcessDone = false
+                    }
+                
             }
             .frame(width: bounds.size.width, height: bounds.size.height, alignment: .center)
         }

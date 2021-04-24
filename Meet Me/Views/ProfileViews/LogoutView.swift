@@ -14,6 +14,7 @@ struct LogoutView: View {
     @ObservedObject private var firstActions = FirstActions()
     var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
     @Binding var startProcessDone: Bool
+    @Binding var showCheck: Bool
     
     var body: some View {
         
@@ -24,10 +25,12 @@ struct LogoutView: View {
             }.then {
                 logoutVM.authSignOut()
             }.done {
-                print("now logout")
-                startProcessDone = true
+                print("logout database done")
+                
                 startProcessDone = false
-                print("startprocess: \(startProcessDone)")
+                print("startProcessDone changed to: \(startProcessDone)")
+                
+                showCheck = true
             }.catch { error in
                 print(error)
             }
@@ -37,15 +40,12 @@ struct LogoutView: View {
                 .padding()
                 .modifier(FrozenWindowModifier())
         })
-        
-        
     }
-    
 }
 
 
 struct LogoutView_Previews: PreviewProvider {
     static var previews: some View {
-        LogoutView(startProcessDone: .constant(true))
+        LogoutView(startProcessDone: .constant(true), showCheck: .constant(true))
     }
 }

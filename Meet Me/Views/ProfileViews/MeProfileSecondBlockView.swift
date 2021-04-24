@@ -45,7 +45,7 @@ struct MeProfileSecondBlockView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 // slider
-                Slider(value: $meProfileVM.userModel.radiusInKilometer, in: 5...150) { (editingChanged) in
+                Slider(value: $meProfileVM.userModel.radiusInKilometer, in: 5...300) { (editingChanged) in
                     //
                 }
                 .accentColor(Color("BackgroundSecondary"))
