@@ -11,7 +11,7 @@ import SwiftUI
 struct MeProfileSecondBlockView: View {
     @EnvironmentObject var meProfileVM: MeProfileViewModel
     
-    private var genders = ["Female", "Male", "Both"]
+    private var genders = ["Female", "Male", "All"]
     
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color("BackgroundSecondary"))
@@ -64,7 +64,7 @@ struct MeProfileSecondBlockView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 // segmented picker
                 Picker("Test", selection: $meProfileVM.picked) {
-                    Text("Both").tag(2)
+                    Text("All").tag(2)
                     Text("Female").tag(0)
                     Text("Male").tag(1)
                 }

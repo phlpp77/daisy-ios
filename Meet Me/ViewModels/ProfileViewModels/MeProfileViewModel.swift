@@ -18,11 +18,11 @@ class MeProfileViewModel: ObservableObject {
 
     
     @Published var userModel: UserModel = stockUser
-    @Published var genders: [String: Int] = ["Female": 0, "Male": 1, "Both": 2]
+    @Published var genders: [String: Int] = ["Female": 0, "Male": 1, "All": 2]
     @Published var picked = 1
     
     
-     var gender: [String] = ["Female", "Male", "Both"]
+     var gender: [String] = ["Female", "Male", "All"]
     private var url: URL = stockURL
     private var db: Firestore
     private var listener: ListenerRegistration?
