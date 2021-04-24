@@ -205,7 +205,7 @@ struct AlertBoxView: View {
                         }
                     }) {
                         Text(cancelButton)
-                            .frame(width: 108)
+                            .frame(width: 118, height: 40)
                     }
                     
                     Divider()
@@ -298,11 +298,11 @@ struct AlertBoxView: View {
                     })
                     {
                         Text(confirmButton)
-                            .frame(width: 108)
+                            .frame(width: 118, height: 40)
                     }
                 }
             }
-            .padding()
+            .padding(8)
             .frame(width: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .modifier(FrozenWindowModifier())
         }
