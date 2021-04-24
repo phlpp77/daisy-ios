@@ -35,6 +35,8 @@ struct EventModel: Codable {
     
 }
 
+
+
 //struct EventModelObject {
 //    
 //    let eventModel: EventModel
