@@ -27,6 +27,7 @@ struct MessagesView: View {
     var body: some View {
         
         ZStack {
+            
             VStack {
                 
                 // MARK: Message area
@@ -39,8 +40,19 @@ struct MessagesView: View {
                                 MessageView(message: $messagesVM.chat.messages[messageNumber])
                                     .rotationEffect(.radians(.pi))
                                     .scaleEffect(x: -1, y: 1, anchor: .center)
+                                    .onTapGesture {
+                                        UIApplication.shared.endEditing()
+                                    }
                             }
                         }
+                        .background(
+                            Color.white.opacity(0.001)
+                                .onTapGesture {
+                                    // dismiss keyboard when tapped the background
+                                    UIApplication.shared.endEditing()
+                                }
+                        )
+                        
                     }
                     .rotationEffect(.radians(.pi))
                     .scaleEffect(x: -1, y: 1, anchor: .center)
@@ -94,9 +106,11 @@ struct MessagesView: View {
             
         }
         .background(
-            Image("background")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
+            ZStack {
+                Image("background")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            }
         )
         .navigationBarTitleDisplayMode(.inline)
         
@@ -165,6 +179,7 @@ struct MessagesView: View {
             }
             .onTapGesture {
                 withAnimation(.default) {
+                    UIApplication.shared.endEditing() 
                     showChatEventView.toggle()
                 }
             }
@@ -185,6 +200,7 @@ struct MessagesView: View {
             }
             .onTapGesture {
                 withAnimation(.default) {
+                    UIApplication.shared.endEditing()
                     showChatProfileView.toggle()
                 }
             }

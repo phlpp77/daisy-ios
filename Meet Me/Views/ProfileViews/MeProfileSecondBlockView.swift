@@ -38,7 +38,7 @@ struct MeProfileSecondBlockView: View {
             VStack {
                 // title
                 HStack(spacing: 0.0) {
-                    Text("Show me YOUs within ")
+                    Text("Show me Events within ")
                     Text(String(Int(meProfileVM.userModel.radiusInKilometer)))
                         .foregroundColor(.accentColor)
                     Text(" km")
@@ -63,7 +63,7 @@ struct MeProfileSecondBlockView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 // segmented picker
-                Picker("Test", selection: $meProfileVM.picked) {
+                Picker("", selection: $meProfileVM.picked) {
                     Text("All").tag(2)
                     Text("Female").tag(0)
                     Text("Male").tag(1)

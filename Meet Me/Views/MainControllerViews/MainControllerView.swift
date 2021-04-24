@@ -34,7 +34,7 @@ struct MainControllerView: View {
             
             if loading {
                 AppLaunchView()
-            }
+            }            
             
             if developerManager.developerOptionsModel.maintenance && !(userModel.userStatus == "developer") {
                 MaintenanceView()

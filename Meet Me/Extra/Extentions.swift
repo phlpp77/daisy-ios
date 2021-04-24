@@ -25,3 +25,10 @@ extension Spacer {
         }
     }
 }
+
+// MARK: Extension to close the keyboard
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}

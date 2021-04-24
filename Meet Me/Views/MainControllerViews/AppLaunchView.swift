@@ -10,6 +10,9 @@ import SwiftUI
 struct AppLaunchView: View {
     var body: some View {
         VStack {
+            
+            Spacer()
+            
             Text("DAISY")
                 .font(.system(size: 75))
                 .gradientForeground(gradient: secondaryGradient)
@@ -18,6 +21,12 @@ struct AppLaunchView: View {
                 .padding(.bottom, 40)
             
             LoadingView(showLoadingScreen: .constant(true))
+            
+            Spacer()
+            
+            Text("Powered by StuPaNAK")
+                .italic()
+                .padding(.bottom, 45)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("BackgroundMain"))
