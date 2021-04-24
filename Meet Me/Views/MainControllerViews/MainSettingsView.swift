@@ -10,6 +10,7 @@ import SwiftUI
 struct MainSettingsView: View {
     
     @Binding var startProcessDone: Bool
+    @Binding var userIsLoggedIn: Bool
     @StateObject var meProfileVM: MeProfileViewModel = MeProfileViewModel()
     
     @State var showCheckView: Bool = false
@@ -35,6 +36,7 @@ struct MainSettingsView: View {
                 CheckView(showCheckView: $showCheckView, text: "Logged out")
                     .onDisappear {
                         startProcessDone = false
+                        userIsLoggedIn = false
                     }
                 
             }
@@ -47,7 +49,7 @@ struct MainSettingsView: View {
 struct MainSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         TabView {
-            MainSettingsView(startProcessDone: .constant(true))
+            MainSettingsView(startProcessDone: .constant(true), userIsLoggedIn: .constant(true))
         }
         
     }

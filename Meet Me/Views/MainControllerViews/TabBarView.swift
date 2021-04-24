@@ -10,6 +10,7 @@ import SwiftUI
 struct TabBarView: View {
     
     @Binding var startProcessDone: Bool
+    @Binding var userIsLoggedIn: Bool
     
     @State var selectedTab: Tab = .marketplace
     @Namespace var animation
@@ -26,7 +27,7 @@ struct TabBarView: View {
                         // MARK: Tabs
                         switch selectedTab {
                         case .profile:
-                            MainSettingsView(startProcessDone: $startProcessDone)
+                            MainSettingsView(startProcessDone: $startProcessDone, userIsLoggedIn: $userIsLoggedIn)
                         case .marketplace:
                             MainExploreView()
                         case .chat:
@@ -66,6 +67,6 @@ struct TabBarView: View {
     
     struct TabView_Previews: PreviewProvider {
         static var previews: some View {
-            TabBarView(startProcessDone: .constant(true))
+            TabBarView(startProcessDone: .constant(true), userIsLoggedIn: .constant(true))
         }
     }
