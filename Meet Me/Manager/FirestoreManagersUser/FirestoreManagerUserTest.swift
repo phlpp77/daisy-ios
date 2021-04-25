@@ -119,7 +119,7 @@ class FirestoreManagerUserTest {
                 return
             }
             
-            let _ = db.collection("users").document(currentUser.uid).updateData(["token" : ""]) { error in
+            let _ = db.collection("token").document(currentUser.uid).updateData(["token" : ""]) { error in
                 if let error = error {
                     seal.reject(error)
                 } else {
