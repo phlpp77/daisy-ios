@@ -36,8 +36,8 @@ struct MainControllerView: View {
                 AppLaunchView()
             }
             
-            if UIApplication.appVersion != "1.4" {
-                UpdateAppScreen(newVersion: .constant("1.4"))
+            if UIApplication.appVersion == "1.4" && userModel.userStatus == "version" {
+                UpdateAppScreen(newVersion: .constant("1.5"))
             }
             
             if developerManager.developerOptionsModel.maintenance && !(userModel.userStatus == "developer" || userModel.userStatus == "test") {
