@@ -60,17 +60,28 @@ class FirestoreManagerEventTest {
     
     func createLikedUserArray(eventId: String) -> Promise<Void>{
         return Promise { seal in
-            do {
-                let _ =  db.collection("events")
+            
+            guard let currentUser = Auth.auth().currentUser else {
+                throw Err("No User Profile")
+            }
+            
+            let likedUser = LikedUser(userId: currentUser.uid, likedUser: ["Im a feature not a bug"])
+            let _ =  try db.collection("events")
                     .document(eventId)
                     .collection("likedUser")
-                    .document("likedUser").setData(["likedUser": ["Im a feature not a bug"]])
+                    .document("likedUser").setData(from: likedUser) { error in
+                        if let error = error {
+                            seal.reject(error)
+                        }else {
+                            seal.fulfill(())
+                        }
+                    }
                 
-                seal.fulfill(())
+                
                 
             }
         }
-    }
+    
     
     func addLikeToEventArray(eventId: String) -> Promise<Void>{
         return Promise { seal in
