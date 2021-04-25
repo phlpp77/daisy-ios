@@ -40,7 +40,7 @@ struct MainControllerView: View {
                 UpdateAppScreen(newVersion: .constant("1.4"))
             }
             
-            if developerManager.developerOptionsModel.maintenance && !(userModel.userStatus == "developer") {
+            if developerManager.developerOptionsModel.maintenance && !(userModel.userStatus == "developer" || userModel.userStatus == "test") {
                 MaintenanceView()
             }
             
