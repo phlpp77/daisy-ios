@@ -219,6 +219,9 @@ struct YouEventLineView: View {
                     .gradientForeground(gradient: secondaryGradient)
                 
                 Text("REFRESH")
+                
+                Text("Only 10 times a day")
+                    .font(.footnote)
             }
             .frame(width: 175, height: 175, alignment: .center)
             .modifier(offWhiteShadow(cornerRadius: 14))

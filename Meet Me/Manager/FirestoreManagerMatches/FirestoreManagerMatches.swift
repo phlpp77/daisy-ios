@@ -72,7 +72,7 @@ class FirestoreManagerMatches {
         return Promise { seal in
 
                         
-            let chatModel = ChatModel(chatId: chatId, eventCreatorId: currentUser.userId, matchedUserId: userModel.userId, eventId: eventModel.eventId, messages: [MessageModel(userId: "NoUser", timeStamp: Timestamp(date: Date()), messageText: "Hey, you have a match! \(currentUser.name) choosed as covid-preference: \(eventModel.covidPreferences), talk about your event settings...")])
+            let chatModel = ChatModel(chatId: chatId, eventCreatorId: currentUser.userId, matchedUserId: userModel.userId, eventId: eventModel.eventId, messages: [MessageModel(userId: "NoUser", timeStamp: Timestamp(date: Date()), messageText: "Hey, you're having an Event together! \(currentUser.name) chose as a Covid preference: \(eventModel.covidPreferences), talk about your event settings here...")])
             do {
                 let _ = try db.collection("chats")
                     .document(chatId).setData(from:chatModel) { error in

@@ -27,47 +27,4 @@ struct UserModel: Codable {
     
 }
 
-//struct UserModelObject {
-//
-//    let user: UserModel
-//
-//
-//    var name: String {
-//        user.name
-//    }
-//
-//    var birthdayDate: Date {
-//        user.birthdayDate
-//    }
-//
-//    var gender: String {
-//        user.gender
-//    }
-//
-//    var startProcessDone: Bool {
-//        user.startProcessDone
-//    }
-//
-//    var searchingFor: String {
-//        user.searchingFor
-//    }
-//
-//    var userId: String {
-//        user.userId
-//    }
-//
-//    var userPhotos: [Int: String] {
-//        user.userPhotos
-//    }
-//    var userPhotosId: [Int: String] {
-//        user.userPhotosId
-//    }
-//    var radiusInKilometer: Double {
-//        user.radiusInKilometer
-//    }
-//
-//
-//
-//}
-
 

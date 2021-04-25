@@ -103,6 +103,8 @@ enum CovidPreference: String, Equatable, CaseIterable {
     case inOutMask = "In- and Outdoors with face covering"
     // user will adapt to other preferences
     case adapt = "I adapt to your preferences"
+    // event is only
+    case online = "Event will be online"
     
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
 }
