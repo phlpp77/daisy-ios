@@ -9,6 +9,7 @@ import Foundation
 
 
 struct MatchModel: Codable {
+    var userId: String
     var chatId : String
     var eventId : String
     var matchedUserId: String
