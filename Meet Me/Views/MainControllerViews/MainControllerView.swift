@@ -34,7 +34,11 @@ struct MainControllerView: View {
             
             if loading {
                 AppLaunchView()
-            }            
+            }
+            
+            if UIApplication.appVersion != "1.4" {
+                UpdateAppScreen(newVersion: .constant("1.4"))
+            }
             
             if developerManager.developerOptionsModel.maintenance && !(userModel.userStatus == "developer") {
                 MaintenanceView()
@@ -47,6 +51,7 @@ struct MainControllerView: View {
         .onAppear {
             checkUserAccForAutoLogin()
             ckeckMaintenanceMode()
+            print(UIApplication.appVersion ?? "no version found")
         }
         .onChange(of: startProcessDone, perform: { value in
             print("before check. startprocess: \(startProcessDone) and userlogged: \(userIsLoggedIn)")
@@ -101,8 +106,8 @@ struct MainControllerView: View {
     }
 }
 
-struct MainControllerView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainControllerView()
-    }
-}
+//struct MainControllerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MainControllerView()
+//    }
+//}

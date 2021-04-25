@@ -55,6 +55,7 @@
 		179B27CA25D48788007F64D6 /* YouEventLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B27C925D48788007F64D6 /* YouEventLineView.swift */; };
 		17A1E67325C2093D00E4DA78 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E67225C2093D00E4DA78 /* PickerTextField.swift */; };
 		17A2EBC125F2D669003D1921 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A2EBC025F2D669003D1921 /* Enums.swift */; };
+		17A4D31C2635F389006F121D /* UpdateAppScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A4D31B2635F389006F121D /* UpdateAppScreen.swift */; };
 		17AE48FC260E836500A76F88 /* ImageCroppingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE48FB260E836500A76F88 /* ImageCroppingView.swift */; };
 		17AF633525FC2EF100A43BB3 /* MeEventDetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AF633425FC2EF100A43BB3 /* MeEventDetailedView.swift */; };
 		17B0B61125F543F70014B0FD /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B61025F543F70014B0FD /* TabBarView.swift */; };
@@ -174,6 +175,7 @@
 		179B27C925D48788007F64D6 /* YouEventLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouEventLineView.swift; sourceTree = "<group>"; };
 		17A1E67225C2093D00E4DA78 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		17A2EBC025F2D669003D1921 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		17A4D31B2635F389006F121D /* UpdateAppScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAppScreen.swift; sourceTree = "<group>"; };
 		17AE48FB260E836500A76F88 /* ImageCroppingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCroppingView.swift; sourceTree = "<group>"; };
 		17AF632925FBF7E000A43BB3 /* Meet Me.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Meet Me.entitlements"; sourceTree = "<group>"; };
 		17AF633425FC2EF100A43BB3 /* MeEventDetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeEventDetailedView.swift; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 				171124152610F914004A7864 /* AppLaunchView.swift */,
 				17FA42092616265C001BE294 /* MaintenanceView.swift */,
 				17730CC8262B280900277F01 /* ReportedView.swift */,
+				17A4D31B2635F389006F121D /* UpdateAppScreen.swift */,
 			);
 			path = MainControllerViews;
 			sourceTree = "<group>";
@@ -784,6 +787,7 @@
 				90D42B2225EBA75C0060311B /* MessagesViewModel.swift in Sources */,
 				173F361C25E2FF0D002E9EE6 /* MeEventControllerView.swift in Sources */,
 				9012001E25F4E8CC006E7DF4 /* LocationManager.swift in Sources */,
+				17A4D31C2635F389006F121D /* UpdateAppScreen.swift in Sources */,
 				17DE531225EAC372000D0B4D /* ChatListRowView.swift in Sources */,
 				1705791425FCE73800A56CE6 /* MatchButtonView.swift in Sources */,
 				902EF6E225D985F0004464F0 /* Meet_MeAppViewModel.swift in Sources */,
@@ -968,7 +972,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Meet Me/Meet Me.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
 				DEVELOPMENT_TEAM = LTC2Q574RM;
@@ -979,7 +983,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = de.philipphemkemeyer.Daisy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = DaisyMessagingProvisioning;
@@ -997,7 +1001,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Meet Me/Meet Me.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Meet Me/Preview Content\"";
 				DEVELOPMENT_TEAM = LTC2Q574RM;
@@ -1008,7 +1012,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = de.philipphemkemeyer.Daisy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = DaisyMessagingProvisioning;
