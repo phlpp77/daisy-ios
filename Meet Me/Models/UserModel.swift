@@ -19,7 +19,6 @@ struct UserModel: Codable {
     var userPhotos: [Int: String]
     var userPhotosId: [Int: String]
     var radiusInKilometer: Double
-    var token: String 
     var refreshCounter: Int
     var userStatus: String
     var reports: Int

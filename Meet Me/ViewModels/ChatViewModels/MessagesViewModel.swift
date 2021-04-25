@@ -16,7 +16,6 @@ class MessagesViewModel: ObservableObject {
     @Published var chat: ChatModel = stockChat
     var userId: String = Auth.auth().currentUser!.uid
     private var db: Firestore
-    let sender = PushNotificationSender()
     
     init() {
         db = Firestore.firestore()
@@ -64,10 +63,6 @@ class MessagesViewModel: ObservableObject {
             self.firestoreManagerChat.uploadMessage(messageText: messageText, chatId: allMatchInformation.chatId)
         }.then {
             self.firestoreManagerChat.setUnReadMessageToTrue(chatId: allMatchInformation.chatId, userIdReciever: allMatchInformation.user.userId)
-        }.then {
-            self.firestoreMangaerUser.getCurrentUser()
-        }.done { user in
-            self.sender.sendPushNotification(to: allMatchInformation.user.token, title: notificationMessageTitle, body: "\(user.name) \(notificationMessageMessage)")
         }.catch { error in
             print("DEBUG: error in MessageUploadChain error: \(error)")
             print("DEGUB: error localized: \(error.localizedDescription)")

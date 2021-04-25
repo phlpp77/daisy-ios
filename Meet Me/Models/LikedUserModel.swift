@@ -8,5 +8,6 @@
 import Foundation
 
 struct LikedUser: Codable {
+    var userId: String
     var likedUser: [String]
 }

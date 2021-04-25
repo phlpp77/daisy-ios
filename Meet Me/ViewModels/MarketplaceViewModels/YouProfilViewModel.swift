@@ -38,8 +38,6 @@ class YouProfilViewModel: ObservableObject {
                  self.firestoreManagerEventTest.setLikedUserToTrue(eventId:eventModel.eventId))
         }.then {
             self.firestoreManagerUser.getUserWhichCreatedEvent(eventModel: eventModel)
-        }.done { user in
-            self.sender.sendPushNotification(to: user.token, title: notificationLikeEventTitle, body: notificationLikeEventMessage)
         }.catch { error in
             print("DEBUG: error in getUserModelChain \(error)")
             print("DEBUG \(error.localizedDescription)")

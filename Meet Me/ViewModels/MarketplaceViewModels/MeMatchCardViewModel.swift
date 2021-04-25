@@ -12,7 +12,7 @@ class MeMatchCardViewModel: ObservableObject {
     private var firestoreManagerMatches: FirestoreManagerMatches = FirestoreManagerMatches()
     private var firestoreManagerEventTest: FirestoreManagerEventTest = FirestoreManagerEventTest()
     private var firestoreManagerUserTest: FirestoreManagerUserTest = FirestoreManagerUserTest()
-    let sender = PushNotificationSender()
+
     
     func addMatch(eventModel: EventModel, userModel: UserModel) {
         let chatId = UUID().uuidString
@@ -25,8 +25,6 @@ class MeMatchCardViewModel: ObservableObject {
                 self.firestoreManagerUserTest.getCurrentUser()
             }.then { currentUser in
                 self.firestoreManagerMatches.createChatRoom(currentUser: currentUser, userModel: userModel, eventModel: eventModel, chatId: chatId)
-            }.done { 
-                self.sender.sendPushNotification(to: userModel.token, title: notificationMatchMessageTitle, body: notificationMatchMessage)
             }.catch { error in
                 print("DEBUG: Fehler in addMatchChain Error: \(error)")
                 print("DEBUG: Error in addMatchChain localized: \(error.localizedDescription)")

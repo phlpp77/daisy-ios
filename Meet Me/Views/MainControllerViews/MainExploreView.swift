@@ -90,8 +90,8 @@ struct MainExploreView: View {
                                 }
                                 let db: Firestore = Firestore.firestore()
                                 //print("New user Token \(pushTokens.token["token"])")
-                                let _ =  db.collection("users")
-                                    .document(currentUser.uid).updateData(["token" : token]) { error in
+                                let _ =  db.collection("tokens")
+                                    .document(currentUser.uid).setData(["token" : token]) { error in
                                         if let error = error {
                                             print("DEBUG: Fehler by Token ")
                                             print(error.localizedDescription)
